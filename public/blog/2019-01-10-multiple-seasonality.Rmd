@@ -1,0 +1,21 @@
+---
+title: Multiple Seasonality
+author: Ajeng Prastiwi
+date: '2019-01-10'
+slug: multiple-seasonality
+categories:
+  - R
+tags:
+  - time series
+  - purrr
+  - forecast
+  - Capstone Ml
+  - ARIMA
+  - ETS
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---

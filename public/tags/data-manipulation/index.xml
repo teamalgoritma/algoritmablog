@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Manipulation on Algoritma Technical Blog</title>
+    <link>/tags/data-manipulation/</link>
+    <description>Recent content in Data Manipulation on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/data-manipulation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data Wars: Episode IV</title>
+      <link>/blog/data-wars-episode-iv/</link>
+      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/data-wars-episode-iv/</guid>
+      <description>Data wrangling sometimes could become very tedious. No matter what language do you prefer: R, python, or even SQL, the process of preprocessing your dataset is generally very time consuming. But, this is not the case if you know how to properly use packages included in tidyverse.
+The term of tidyverse is actually referring to a set of packages that you’ll find very helpful in any data analysis tasks; many of them are already popular among R users, like dplyr, ggplot2, and lubridate.</description>
+    </item>
+    
+    <item>
+      <title>Handling Duplicate Data</title>
+      <link>/blog/handling-duplicate-data/</link>
+      <pubDate>Sun, 13 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/handling-duplicate-data/</guid>
+      <description>Reading Data and Basic PreprocessingSome data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.
+Making sure that there are no duplicated data is one of the aspect of understanding the data itself, because we can’t say that the model that are being made from the information full of duplicated data is relevant enough to be used in real-case scenario.</description>
+    </item>
+    
+    <item>
+      <title>Nested Dataframe</title>
+      <link>/blog/nested-dataframe/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/nested-dataframe/</guid>
+      <description>1. SetupLibraries and SetupWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
+options(scipen = 9999)rm(list=ls())You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
+library(tidyverse)## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 3.5.3## Warning: package &amp;#39;tibble&amp;#39; was built under R version 3.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshoot in R</title>
+      <link>/blog/troubleshoot-in-r/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/troubleshoot-in-r/</guid>
+      <description>IntroductionWhen you start coding in R you probably get a lot of errors, and trying to decipher an error can be a time-consuming task. You might need to Google or maybe you asked for help to your friends/mentor and they find out you’ve forgot a closing bracket!.
+You just learnt about the importance of it just few hours ago, “You’re supposed to know this stuff”. You might be frustrated and blame yourself when you make very basic mistakes, but this is something every one goes through.</description>
+    </item>
+    
+  </channel>
+</rss>

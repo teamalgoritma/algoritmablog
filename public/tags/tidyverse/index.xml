@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tidyverse on Algoritma Technical Blog</title>
+    <link>/tags/tidyverse/</link>
+    <description>Recent content in tidyverse on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Purrr-operly Fitting Multiple Time Series Model</title>
+      <link>/blog/purrr-operly-fitting-multiple-time-series-model/</link>
+      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
+      <description>In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
+TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
+    </item>
+    
+    <item>
+      <title>Data Wars: Episode IV</title>
+      <link>/blog/data-wars-episode-iv/</link>
+      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/data-wars-episode-iv/</guid>
+      <description>Data wrangling sometimes could become very tedious. No matter what language do you prefer: R, python, or even SQL, the process of preprocessing your dataset is generally very time consuming. But, this is not the case if you know how to properly use packages included in tidyverse.
+The term of tidyverse is actually referring to a set of packages that you’ll find very helpful in any data analysis tasks; many of them are already popular among R users, like dplyr, ggplot2, and lubridate.</description>
+    </item>
+    
+    <item>
+      <title>Nested Dataframe</title>
+      <link>/blog/nested-dataframe/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/nested-dataframe/</guid>
+      <description>1. SetupLibraries and SetupWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
+options(scipen = 9999)rm(list=ls())You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
+library(tidyverse)## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 3.5.3## Warning: package &amp;#39;tibble&amp;#39; was built under R version 3.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,119 @@
+---
+title: Metrics Evaluation using `yardstick`
+author: Nor Iffadathul Faddilla
+date: '2019-01-10'
+slug: metrics-evaluation-using-yardstick
+categories:
+  - R
+tags:
+  - metrics evaluation
+  - yardstick
+  - accuracy
+  - recall
+  - precision
+  - Capstone Ml
+  - dplyr
+description: ''
+featured: 'Yardstick.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+```
+
+# Motivation
+
+
+Evaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared.  Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm. Usually, after we've got prediction from our models, we can use `confusionMatrix()` from `caret` packages to evaluate classification models. In this article we'll discover how to evaluate Machine Learning Performance using `yardstick` packages for Classification Algorithms.
+
+
+# Installation
+
+To install `yardstick` package, you can run: 
+```{r eval=FALSE}
+install.packages("yardstick")
+
+# Development version:
+devtools::install_github("tidymodels/yardstick")
+```
+
+# How to use 
+
+After installation, we can called the library before used it:
+```{r warning=FALSE, message=FALSE}
+library(yardstick)
+```
+We will demonstrate the data for evaluating used `two_class_example`. Take a look the data:
+```{r}
+head(two_class_example)
+```
+
+Check structure from the data:
+
+```{r}
+str(two_class_example)
+```
+
+
+These data are a test set form a model built from two classes (`Class1` and `Class2`). There are columns for the true (`truth`), prediction (`predicted`) and columns for each probability for each class. 
+
+To evaluate the prediction, we can use Accuracy, Recall and Precision (recall course materials Classification in Machine Learning 1 & 2). Remember when we're doing this in `caret` packages, we can use :
+
+```{r}
+# data is prediction value, and reference is truh value
+caret::confusionMatrix(data = two_class_example$predicted, reference = two_class_example$truth)
+```
+
+
+In `yardstick` packages, we can customize what we want to show in our confusion matrix. By default, we don't want customize the metrics it'll give use accuracy and kap metrics:
+
+```{r}
+# 2 class only
+metrics(data = two_class_example, truth = truth, estimate = predicted)
+```
+
+If we want to customize the metrics, we can create set of metrics that we want to show and then applied that to our data: 
+```{r}
+# set metrics 
+multi_met <- metric_set(accuracy, precision, recall, spec)
+
+two_class_example %>% 
+  multi_met(truth = truth, estimate = predicted)
+```
+
+
+If we have data with multi-class it'll we very helpful because we can have accuracy, precision, recall and the others metrics from our prediction. We'll use the `hpc_cv` data to demonstrate, the data column columns for the true class (obs), the class prediction (pred) and columns for each class probability (columns VF, F, M, and L). Additionally, a column for the resample indicator is included.
+
+
+```{r}
+head(hpc_cv)
+```
+Let's check what's class for `obs` and `pred`:
+
+```{r}
+levels(hpc_cv$obs)
+levels(hpc_cv$pred)
+```
+
+To get the accuracy, we can use:
+```{r}
+# multi-class
+metrics(data = hpc_cv, truth = obs, estimate = pred)
+```
+
+We can use the `multi_met` that we've created above, and we define the truth column and prediction column.
+```{r}
+hpc_cv %>% 
+  multi_met(truth = obs, estimate = pred)
+```
+
+# Annotation 
+- More metrics you can access in [here](https://tidymodels.github.io/yardstick/articles/metric-types.html)
+- How calculated the estimator [here](https://tidymodels.github.io/yardstick/articles/multiclass.html)
+- How to custom your own metrics [here](https://tidymodels.github.io/yardstick/articles/custom-metrics.html)

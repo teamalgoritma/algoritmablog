@@ -1,0 +1,219 @@
+---
+title: Text Preprocessing using textclean
+author: Wulan Andriyani
+date: '2019-01-15'
+slug: textclean
+categories:
+  - R
+tags:
+  - textclean
+  - NLP
+  - text preprocessiong
+  - feature engineering
+  - dplyr
+  - Capstone Ml
+description: ''
+featured: 'textclean.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+# Take tweet from twitter using rtweet package
+
+Function used for take tweet from twitter is search_tweets(). There are several parameter usually used in that function: <br /> 
+- `Topic`    : topic you will find at twitter <br />
+- `n`           : how many tweet that you want to take <br />
+- `include_rts` : logical. If FALSE tweet taken didn't contain retweet <br />
+- `lang`        : spesified language. If you want take tweet in english you can add 
+                argument lang = "en" <br />
+You can use this code below to try taking tweets from twitter by removing the command 
+
+```{r}
+library(rtweet)
+```
+
+## [Additional] Subset content text from tweets and save that to csv file
+```{r}
+
+tweets <- read.csv("data_input/tweets.csv")
+```
+
+# Remove duplicate tweet using dplyr package
+
+Function used for retain only unique/distinct rows from input data frame is distinct() 
+```{r}
+library(dplyr)
+
+tweets_proces <- tweets %>%
+  distinct(text)
+```
+
+# Text processing (cleaning text) using textclean package
+
+## Check content text
+```{r}
+library(textclean)
+
+check_text(tweets_proces$text)
+```
+
+## Drop empty rows and NA text rows, then change class to character
+```{r}
+tweets_proces <- tweets_proces %>% 
+  drop_empty_row() %>% 
+  drop_NA()
+
+tweets_proces <- as.character(tweets$text)
+```
+
+## Replace contraction
+
+Contractions to be replaced with their multi-word forms. Example: <br /> 
+- wasn't : was not <br />
+- I'll   : I will <br />
+- isn't  : is not <br />
+- i'd    : i would <br />
+- etc
+```{r}
+tweets_proces <- replace_contraction(tweets_proces)
+```
+
+## Remove date
+
+Date to be replaced with character. The default is month, date, and year. Example: <br />
+- 11-16-1980 : November sixteenth, one thousand nine hundred eighty <br />
+- 1/31/2019  : January thirty first, two thousand nineteen <br />
+- etc <br />
+But, more recommended to add parameters in this function like replacement if you want to replace or remove date content. Example for argument replacement: <br />
+replacement = "" : replace date content with blank character or remove date content
+```{r}
+tweets_proces <- replace_date(tweets_proces, replacement = "")
+```
+
+## Remove email
+
+Replaces email addresses with blank character. Example: <br />
+- wulan_andriyani@gmail.com : "" <br />
+- wulan123@yahoo.co.id      : "" <br />
+- etc
+```{r}
+tweets_proces <- replace_email(tweets_proces)
+```
+
+## Replace emoji
+
+Replaces emojis with word equivalents. Example: <br /> 
+- <f0><9f><9a><bc> : baby symbol <br />
+- <f0><9f><9a><bd> : toilet <br />
+- etc <br />
+```{r}
+tweets_proces <- replace_emoji(tweets_proces)
+```
+
+## Replace emoticon
+
+Replaces emoticons with word equivalents. Example: <br />
+- :'( : crying <br />
+- :)  : smiley <br />
+- :*  : kiss <br />
+- etc 
+```{r}
+tweets_proces <- replace_emoticon(tweets_proces)
+```
+
+## Replace grade
+
+Replaces grades with word equivalents. Example: <br /> 
+- A  : very excellent <br />
+- B+ : almost excellent <br />
+- D  : bad <br />
+- etc
+```{r}
+tweets_proces <- replace_grade(tweets_proces)
+```
+
+## Remove hashtags
+
+Replaces Twitter hash tags with blank character. Example: <br />
+- #Rforbigdata      : "" <br />
+- #happynewyear2019 : "" <br />
+- etc
+```{r}
+tweets_proces <- replace_hash(tweets_proces)
+```
+
+## Remove HTML
+
+Remove angle braces and replaces HTML symbol markup with equivalent symbols. Example: <br />
+- <bold>   : "" <br />
+- &lt; &gt : < > <br />
+- etc <br />
+But, more recommended to add parameters in this function like symbol if you want to replace or remove HTML symbol markup. Example for argument symbol: <br />
+symbol = TRUE/FALSE : logical. If FALSE HTML symbol markup will be removed  
+
+```{r}
+tweets_proces <- replace_html(tweets_proces, symbol = FALSE)
+```
+
+## Remove incomplete sentence
+
+Replaces incomplete sentence end marks with "|". Example: <br />
+- ... : | <br />
+- .?  : | <br />
+- etc <br />
+But, more recommended to add parameters in this function like replacement if you don't want to add | as replacement of incomplete sentence. Example for argument replacement: <br />
+replacement = "" : replace incomplete sentence with blank character or don't add |
+```{r}
+tweets_proces <- replace_incomplete(tweets_proces, replacement = "")
+```
+
+##  Replace internet slang
+
+Replaces internet slang with longer word equivalents that are more easily analyzed. Example: <br />
+- 2nte : tonight <br />
+- ASAP : as soon as possible <br />
+- TGIF : thank god, it's friday <br />
+- etc
+```{r}
+tweets_proces <- replace_internet_slang(tweets_proces)
+```
+
+## Replace number
+
+Numeric to be replaced with words. Example: <br />
+- 1.997 : November sixteenth, one thousand nine hundred eighty <br />
+- 28    : January thirty first, two thousand nineteen <br />
+- 1,888 :
+- etc <br />
+But, more recommended to add parameters in this function like replacement if you want to replace or remove date content. Example for argument replacement: <br />
+replacement = "" : replace date content with blank character or remove date content
+```{r}
+tweets_proces <- replace_number(tweets_proces, remove = TRUE)
+```
+
+## Remove tag
+
+Replaces Twitter style handle tags with blank character. Example: <br />
+- @ramnath_vaidya : "" <br />
+- @wulan123       : "" <br />
+- @hadley         : "" <br />
+- etc
+```{r}
+tweets_proces <- replace_tag(tweets_proces)
+```
+
+## Remove url
+
+Replace URLs with blank character. Example: <br />
+- http://renkun.me/r/2014/07/26/difference-between-magrittr-and-pipeR.html : "" <br />
+- ftp://cran.r-project.org/incoming/"                                      : "" <br />
+- etc
+```{r}
+tweets_proces <- replace_url(tweets_proces, replacement = "")
+```
+
+# References
+
+[https://cran.r-project.org/web/packages/textclean/textclean.pdf](https://cran.r-project.org/web/packages/textclean/textclean.pdf) 

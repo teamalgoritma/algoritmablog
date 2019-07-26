@@ -1,0 +1,286 @@
+---
+title: Age-Period-Cohort (APC) Analysis
+author: Shelloren
+date: '2019-03-29'
+slug: age-period-cohort-apc-analysis
+categories:
+  - R
+tags:
+  - APC
+  - time series
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(scipen = 9999)
+rm(list = ls())
+```
+
+# Background
+
+## Disclaimer
+
+The following coursebook is produced by the team at [Algoritma](https://algorit.ma) for its Data Science Academy internal training. The coursebook is intended for a restricted audience only, i.e. the individuals and organizations having received this coursebook directly from the training organization. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission. 
+
+## Libraries and Setup
+
+You will need install the package to do APC analysis if it's not already downloaded onto your machine.
+
+```{r lib, message=FALSE}
+library(broom)
+library(tidyverse)
+```
+
+## Training Objectives
+
+The primary objective of this course is to provide a comprehensive introduction to the science of APC analysis. The syllabus covers:
+
+- **APC Analysis**
+- Workflow   
+- APC in R  
+
+# APC Analysis
+
+Age-period-cohort (APC) analysis is widely used for capturing the characteristics in time-varying elements, and mostly used in epidemiology and demographic fields or we could say this is identification problem. In particular, APC analysis discerns three types of time varying phenomena[^1]: 
+
+* **Age effects**:
+
+    Age effect is variations linked to biological and social processes of aging specific to individuals. They include physiologic changes and accumulation of social experiences linked to aging, but unrelated to the time period or birth cohort to which an individual belongs. 
+    
+* **Period effects**:
+
+    Period effect is the result from external factors that equally affect all age groups at a particular calendar time. It could arise from a range of environmental, social and economic factors e.g. war, famine, economic crisis. Methodological changes in outcome definitions, classifications, or method of data collection could also lead to period effects in data.
+
+* **Cohort effects**:
+
+    Cohort effect is variations resulting from the unique experience/exposure of a group of subjects (cohort) as they move across time.  In epidemiology, a cohort effect is conceptualized as an interaction or effect modification due to a period effect that is differentially experienced through age-specific exposure or susceptibility to that event or cause.
+
+    In contrast to this conceptualization of cohort effect as an effect modification in epidemiology, sociological literature consider cohort effect as a structural factor representing the sum of all unique exposures experienced by the cohort from birth. In this case, age and period effect are conceived as confounders of cohort effect and APC analysis aims to disentangle the independent effect of age, period and cohort. Most of the APC analysis strategies are based on the sociological model of cohort effect, conceptualize independent effect of age, period and cohort effect.
+
+**Identification problem in APC:** APC analysis aims at describing and estimating the independent effect of age, period and cohort on the outcome under study. The different strategies used aims to partition variance into the unique components attributable to age, period, and cohort effects. However, there is a major impediment to independently estimating age, period, and cohort effects by modeling the data which is know as the “identification problem” in APC. This is due to the exact linear dependency among age, period, and cohort: $Period – Age = Cohort$; that is, given the calendar year and age, one can determine the cohort (birth year). The presence of perfectly collinear predictors (age, period and cohort) in a regression model will produce a singular non-identifiable design matrix, from which it is statistically impossible to estimate unique estimates for the three effects.
+
+  Age-Period-Cohort will be exist together at once, we saperate them to see which more important driving the societal changes. But those sometimes could be dificult because three of them were collinear.
+
+
+## Conventional solutions to APC
+  
+Turn APC with regression in order to estimate parameters (trends and deviations). The parameters are combined to produce functions that describe relationships between the observed number of suicides and age, calendar period, and birth cohort.
+ 
+A popular approach to resolving the identification problem was by using constraint based regression analysis (Constrained Coefficients GLIM estimator (CGLIM)). In this strategy additional constrains are placed on one of the categories of at least one predictor to simultaneously estimate the age period and cohort effect. Thus assuming some categories of age groups, cohorts or time periods have identical effects on the dependent variable it becomes possible to estimate independent effect of age period and cohort[^3]
+
+However, the results from this analysis will depend on constrains chosen by the investigator based on external information. The validity of the constraints chosen will depend on the theoretical preconception about the categories of parameter that are identical, is often subjective and there is no empirical way to confirm the validity of the chosen constraints [^4].
+
+### APC with `lm`
+
+I've prepared the following data originally made available in [kaggle](https://www.kaggle.com/russellyates88/suicide-rates-overview-1985-to-2016). We'll read the data into our workspace:
+
+```{r, message=FALSE, warning=FALSE}
+# load data
+suicides <- read_csv("data_input/suicides.csv")
+
+# quick check
+glimpse(suicides)
+```
+
+The data have 27.820 observation and 5 variables, here some description to get insight of the data:  
+
+- `sucides`: number of suicides
+- `age`: _self explanatory_
+- `period`: current year when the data is collected
+- `cohort`: birth year of each age group during that `period`
+- `sex`: gender indicator
+- `country`: country indicator
+
+We need to readjust APC variable to start with:
+
+```{r warning=FALSE}
+# readjust apc variable
+suicides <- suicides %>%
+  mutate(age_squared = age ^ 2) %>% 
+  mutate_at(vars(period, cohort), funs(as.factor(.))) %>% 
+  select(suicides, age, age_squared, period, cohort, everything())
+
+suicides
+```
+
+Now we have our data that contained APC variables. For the next step we applied linear regression to extract coefficient of APC with equation:
+
+$$y_{ij} = \alpha_{ij} + \beta_{ij}Age + \beta_{ij}Age^2 + e_{ij}$$
+
+where $i$ is representing period, and $j$ representing cohort.
+
+```{r}
+apc_lm <- lm(suicides ~ age + age_squared + period + cohort, suicides)
+
+summary(apc_lm)
+```
+
+Use package [broom](https://cran.r-project.org/web/packages/broom/vignettes/broom.html) to constructs a data frame that summarizes the model’s statistical findings.
+  
+```{r}
+apc_tidy <- tidy(apc_lm)
+
+apc_tidy
+```
+
+From tidied coefficients, we need to tidy our results, starting from period and cohort first:
+
+```{r}
+pc_tidy <- apc_tidy %>%
+  mutate(
+    key = str_replace_all(term, "[:digit:]", ""), 
+    value = str_replace_all(term, "[:alpha:]", "") %>% as.numeric() 
+  ) %>% # seperate digit number and alphabet of term 
+  select(key, value, estimate) %>% 
+  filter(key == "period" | key == "cohort") %>% 
+  spread(key, value)
+
+pc_tidy
+```
+
+Then we can extract and tidy each coefficient using code in the chunk below:
+
+```{r}
+age_coef <- apc_tidy %>% 
+  filter(term == "age") %>% 
+  pull(estimate)
+
+age_squared_coef <- apc_tidy %>% 
+  filter(term == "age_squared") %>% 
+  pull(estimate)
+
+period_coef <- pc_tidy %>% 
+  select(x = period, y = estimate) %>% 
+  drop_na()
+
+cohort_coef <- pc_tidy %>% 
+  select(x = cohort, y = estimate) %>% 
+  drop_na()
+```
+
+Now we can calculate the age effect, then combine all the coefficient together:
+
+```{r}
+apc_all <- suicides %>%
+  mutate(age_effect = (age * age_coef) + (age_squared * age_squared_coef)) %>% 
+  select(x = age, y = age_effect) %>% 
+  distinct() %>% 
+  mutate(group = "Age Effect") %>% 
+  bind_rows(mutate(period_coef, group = "Period Effect")) %>% 
+  bind_rows(mutate(cohort_coef, group = "Cohort Effect")) %>% 
+  select(group, x, y) %>% 
+  arrange(x)
+
+apc_all
+```
+
+The last but not least, we can visualize the estimated coefficient to get some insight regarding our APC decomposition:
+
+```{r}
+ggplot(apc_all, aes(x, y)) +
+  geom_line() +
+  facet_wrap(~ group, scales = "free", ncol = 1)
+```
+
+From plot above we can identify Age, Period and Cohort effect of suicides. But it's not capturing all of our the data dynamics, lets try it to more specific cases from the data. We filltered the data by sex and country:
+
+```{r}
+suicides_male_us <- suicides %>% 
+  filter(
+    sex == "male",
+    country == "United States"
+  )
+
+suicides_male_us
+```
+
+Now we have our data that contained APC variables of `male` in `United States`. For the next step we applied linear regression to extract coefficient of APC from the data :
+
+```{r}
+apc_lm <- lm(suicides ~ age + age_squared + period + cohort, suicides_male_us)
+
+summary(apc_lm)
+```
+
+Again, from tidied coefficients, we need to tidy our results:
+
+```{r}
+apc_tidy <- tidy(apc_lm)
+
+pc_tidy <- apc_tidy %>%
+  mutate(
+    key = str_replace_all(term, "[:digit:]", ""), 
+    value = str_replace_all(term, "[:alpha:]", "") %>% as.numeric() 
+  ) %>% # seperate digit number and alphabet of term 
+  select(key, value, estimate) %>% 
+  filter(key == "period" | key == "cohort") %>% 
+  spread(key, value)
+
+age_coef <- apc_tidy %>% 
+  filter(term == "age") %>% 
+  pull(estimate)
+
+age_squared_coef <- apc_tidy %>% 
+  filter(term == "age_squared") %>% 
+  pull(estimate)
+
+period_coef <- pc_tidy %>% 
+  select(x = period, y = estimate) %>% 
+  drop_na()
+
+cohort_coef <- pc_tidy %>% 
+  select(x = cohort, y = estimate) %>% 
+  drop_na()
+```
+
+Now we can calculate the age effect, then combine all the coefficient together:
+
+```{r}
+apc_all_male_us <- suicides_male_us %>%
+  mutate(age_effect = (age * age_coef) + (age_squared * age_squared_coef)) %>% 
+  select(x = age, y = age_effect) %>% 
+  distinct() %>% 
+  mutate(group = "Age Effect") %>% 
+  bind_rows(mutate(period_coef, group = "Period Effect")) %>% 
+  bind_rows(mutate(cohort_coef, group = "Cohort Effect")) %>% 
+  select(group, x, y) %>% 
+  arrange(x)
+
+apc_all_male_us
+```
+
+The last we visualize the estimated coefficient to get some insight regarding our APC decomposition:
+
+```{r}
+ggplot(apc_all_male_us, aes(x, y)) +
+  geom_line() +
+  facet_wrap(~ group, scales = "free", ncol = 1)
+```
+
+*dive deeper*
+
+Create APC analysis, try to compare the APC of `female` in `United States` with the APC we get above:
+
+```{r,eval=FALSE}
+suicides_female_us <- suicides %>% 
+  filter(
+    sex == "female",
+    country == "United States"
+  )
+
+suicides_female_us
+```
+
+
+
+# Annotations
+
+[^1]: Yang Y, Schulhofer‐Wohl S, Fu WJ, Land KC. The Intrinsic Estimator for Age‐Period‐Cohort Analysis: What It Is and How to Use It1. American Journal of Sociology 2008;113(6):1697-736.
+[^2]: Yang, Yang, and Kenneth C. Land. Age-period-cohort analysis: new models, methods, and empirical applications. CRC Press, 2013
+[^3]: Mason, Karen Oppenheim, et al. “Some methodological issues in cohort analysis of archival data.” American sociological review (1973): 242-258
+[^4]: Keyes KM, Utz RL, Robinson W, Li G. What is a cohort effect? Comparison of three statistical methods for modeling cohort effects in obesity prevalence in the United States, 1971-2006. Soc Sci Med 2010;70(7):1100-8

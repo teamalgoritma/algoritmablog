@@ -1,0 +1,19 @@
+---
+title: Multiple Seasonality
+author: Ajeng Prastiwi
+date: '2019-01-05'
+slug: multiple-seasonality
+categories:
+  - R
+tags:
+  - forecast
+  - multiple seasonality
+  - Capstone Ml
+  - time series
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---

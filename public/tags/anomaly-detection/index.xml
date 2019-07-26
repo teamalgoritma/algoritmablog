@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Anomaly Detection on Algoritma Technical Blog</title>
+    <link>/tags/anomaly-detection/</link>
+    <description>Recent content in Anomaly Detection on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/anomaly-detection/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Facebook `prophet` and Twitter&#39;s `AnomalyDetection` R Packages</title>
+      <link>/blog/prophet-anomalydetection/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/prophet-anomalydetection/</guid>
+      <description>Anomaly detectionBackgroundAboutAnomaly detection(outlier detection) is the identification of data points, items, observations or events that do not conform to the expected pattern of a given group. These anomalies occur very infrequently but may signify a large and significant threat such as cyber intrusions or fraud. Anomaly detection is heavily used in behavioral analysis and other forms of analysis in order to aid in learning about the detection, identification and prediction of the occurrence of these anomalies.</description>
+    </item>
+    
+  </channel>
+</rss>

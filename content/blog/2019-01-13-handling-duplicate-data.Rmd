@@ -1,0 +1,239 @@
+---
+title: Handling Duplicate Data
+author: Ardhito Utomo
+date: '2019-01-13'
+slug: handling-duplicate-data
+categories:
+  - R
+tags:
+  - Data Manipulation
+  - Capstone Ml
+  - dplyr
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+
+# Reading Data and Basic Preprocessing
+
+Some data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that's a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.
+
+Making sure that there are no duplicated data is one of the aspect of understanding the data itself, because we can't say that the model that are being made from the information full of duplicated data is relevant enough to be used in real-case scenario. This time, we will learn how to hande duplicated data, so then we are sure that the data we're going to use to create a model, visual interpretation, etc is reliable enough.
+
+One of the example is a case when we want to find out the amount of requests in an online transportation. When we have a data that the `canceled` requests or `no-driver` conditions are exist, there are probability that some of those rows are consisted of only one consumer, henceforth irrelevant.
+
+Now, we want to solve another case of understanding our data more: to decide which one is considered as duplicate, and to remove it.
+
+This case is about [Online Auctions Dataset](https://www.kaggle.com/onlineauctions/online-auctions-dataset#auction.csv) from Kaggle. This data is about an auction held by eBay. Now, our main objective is to see people bidding an item each day.
+
+The package
+
+Before we process our data, it would be wise to understand each column that exist there:
+
+- auctionid : unique identifier of an auction
+- bid : the proxy bid placed by a bidder
+- bidtime : the time in days that the bid was placed, from the start of the auction
+- bidder : eBay username of the bidder
+- bidderrate : eBay feedback rating of the bidder
+- openbid : the opening bid set by the seller
+- price : the closing price that the item sold for (equivalent to the second highest bid + an increment)
+- item : auction item
+- auction_type : type of an auction: 3-days auction, 5-days auction, or 7-days auction.
+
+If we look at the columns provided, we know that some columns are not needed. But to make sure, we will now read the data and call libraries needed, then take a look of the structure to make sure that every column has the right type of data.
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(prettydoc)
+```
+
+```{r, message= FALSE}
+library(dplyr)
+library(ggplot2)
+
+data <- read.csv("data_input/auction.csv")
+```
+
+```{r}
+glimpse(data)
+```
+
+The chunk above shows that the data we have is ordered by `auctionid`. But, `auctionid` is still being read as numeric data type instead of factor. Then, because of our objection is to see how many people bid each item each day, we will round the number of `bidtime`. Also, some columns is useless in out objective, like `bid`, `bidderrate`, `openbid`, and `price`.
+
+```{r}
+data <- data %>% 
+  mutate(auctionid = as.factor(auctionid), 
+         bidtime = floor(bidtime)) %>% 
+  dplyr::select(auctionid, bidtime, bidder, bid, item, auction_type)
+
+glimpse(data)
+```
+
+Before going further, we will also check if there's any NA in our data.
+
+```{r}
+colSums(is.na(data))
+```
+
+As a rule of thumb, because the amount of NA in `bidder` is less than 5% of our data, we will remove them.
+
+```{r}
+data <- data[complete.cases(data),]
+```
+
+Then, we will order the data depend on three things and in order: `auctionid`, `bidtime`, then `bidder`. By doing that, we can see each bidder bids each time, each day.
+
+```{r}
+data <- data %>% 
+  arrange(auctionid, bidtime, bidder)
+
+glimpse(data)
+```
+
+# Lead, Lag, and Complete
+
+Now, we will find out which rows considered as duplicate so we can remove them. The rows we will remove is the rows existed because a bidder bids more than one time a day for an item. We will choose only the biggest amount of bid for each person each day.
+
+For that, two functions from `dplyr` library will be introduced: `lag` and `lead`. The `lag` is being used to see the next value of a vector, and the `lead` one is the exact opposite of it. 
+
+But before we start jumping into our main objective, it would be wise to learn about why arranging before using `lag` and `lead` so important. For example, we have 5 numbers from 0 to 1, and we want to see what number before and after in each number using those two functions.
+
+```{r}
+set.seed(8)
+x <- runif(5)
+cbind(x, after = lead(x), before = lag(x))
+```
+
+Well that's easy, considering we only have a column before and we don't have to care about ordering our value by what. But sometimes there are conditions that an error is occured because we don't specify in which order we want to know our `lag` and `lead`.
+
+So let's make another example. Say that we have a data frame consists of a year, its quartal, and a value for each quartal. But the condition is the rows are scrambled and some rows are missing. Should we fill the incomplete rows first? or should we arrange it first? or can we directly find our next and before value?
+
+Let's read the arranged but incomplete data first.
+
+```{r}
+set.seed(8)
+y <- data.frame(year = c(2000,2000,2001,2001,2001,2001,2002,2002,2002),
+                quartal = c(1,3,1,2,3,4,2,3,4),
+                value = runif(9))
+head(y)
+```
+
+We will then complete our missing quartal. We're using `complete` from `tidyr` library.
+
+```{r}
+y %>% 
+  tidyr::complete(year, quartal) %>% 
+  head()
+```
+
+We can fill the NAs using `ifelse` in `mutate` function from `dplyr`, or we can also easily use `fill` as a parameter inside `complete` above.
+
+```{r}
+y <- y %>% 
+  tidyr::complete(year, quartal, fill = list(value = 0))
+head(y)
+```
+
+Now we'll try to scramble them.
+
+```{r}
+set.seed(8)
+scrambled <- y[sample(nrow(y)),]
+head(scrambled)
+```
+
+In order to solve that, we can first arrange our data depend on year and quartal before using `lag` or `lead` function. This example we will use `lag`.
+
+```{r}
+wrong <- scrambled %>% 
+  mutate(prev = lag(value)) %>% 
+  arrange(year, quartal)
+head(wrong)
+
+right <- scrambled %>% 
+  arrange(year,quartal) %>% 
+  mutate(prev = lag(value))
+head(right)
+```
+
+The 2 tables above show how important ordering is, especially when you want to know the value before and after a row: doing wrong once, and your column will be broken.
+
+Now we understand, that when we're faced with a data of scrambled, and full of missing rows and we want to find its `lag` or `lead`, we can:
+
+1. Rearrange them, 
+2. Fill the incomeplete rows, and 
+3. Finally find their `lead` and `lag`
+
+Now let's get back to our main quest. We will apply those functions to determine that a row is considered as duplicate or not. After separating of which one is duplicate and which one is not, we will filter them to show only the non-duplicate ones.
+
+```{r}
+data_mod <- data %>% 
+  mutate(
+    Final = ifelse(bidder == lead(bidder,1) &
+                     auctionid == lead(auctionid,1) &
+                     bidtime == lead(bidtime,1), 0, 1))
+
+data_mod <- data_mod %>% 
+  filter(Final == 1 | is.na(Final)) # NA will be returned in the last row of data
+```
+
+Fortunately we can use only `lead` one to know which of them is a duplicate. But for knowledge purposes, we can use `lag` also. In this condition, we don't need to have each bidder's biggest amount of bid in a day, so we can take only the first time they bid. This can be used if the data we have is prone to be accidentally inputted (like filling forms or quizzes).
+
+```{r}
+data_mod2 <- data %>%
+  mutate(
+    Final = ifelse(bidder == lag(bidder,1) &
+                     auctionid == lag(auctionid,1) &
+                     bidtime == lag(bidtime,1), 0, 1))
+
+data_mod2 <- data_mod2 %>% 
+  filter(Final == 1 | is.na(Final)) # NA will be returned in the first row of data
+```
+
+The difference of them can be seen below. If we focus on the 5th row, we can see that the amount of bid is different. Because it happens that carloss8055 was bidding more than one time a day. It's highest amount is placed in 4th column, and it's lowest one in 5th.
+
+```{r}
+merge <- cbind(data_mod[,1:4],data_mod2[,4])
+colnames(merge)[4] <- "bid_lead"
+colnames(merge)[5] <- "bid_lag"
+
+head(merge)
+```
+
+Because we want to get the highest bid of each bidder in each day, we will use `data_mod`, that took only the last one and remove the row before that because considered as a dup.
+
+# The Difference of Raw and Edited Data
+
+At last, we will see the differencess of the data when we don't filter it and when we do. First we will see first 8 of both data, then making a plot to make it more clear.
+
+```{r}
+head(data[,1:5], 8)
+head(data_mod[,1:5], 8)
+```
+
+Some rows has been deleted, like now we don't have a row consists of carloss8055 bidding an item (Cartier wristwatch with auctionid 1638843936) for 1550, because after that carloss8055 was bidding again at higher price in the same day. Now, our modified data is not as much as the original one (it's around the half of the original data).
+
+```{r}
+data_agg <- data %>% 
+  group_by(auctionid, bidtime) %>% 
+  summarise(tot_bidder = n()) %>% 
+  mutate(Type = "Raw") %>% 
+  as.data.frame()
+
+data_mod_agg <- data_mod %>% 
+  group_by(auctionid, bidtime) %>% 
+  summarise(tot_bidder = n()) %>% 
+  mutate(Type = "Edited") %>% 
+  as.data.frame()
+
+data_combined <- rbind(data_agg, data_mod_agg) %>% 
+  mutate(Type = as.factor(Type))
+
+ggplot(data_combined, aes(x = bidtime, y = tot_bidder, group = Type)) + 
+  geom_bin2d(position = "dodge", aes(colour = Type)) +
+  labs(x = "bid time", y = "total bidder", title = "Original and Edited Data Comparison")
+```
+
+Using only `lag` and `lead`, we can see that the impact they're given to the data is massive. And the edited data is considered more related to the real life scenario than the raw one, and we can easily say that we reach our objective with this.

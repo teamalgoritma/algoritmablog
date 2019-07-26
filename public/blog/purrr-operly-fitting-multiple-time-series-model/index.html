@@ -1,0 +1,1647 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "blog",
+        "name" : "Purrr-operly Fitting Multiple Time Series Model",
+        "headline" : "Purrr-operly Fitting Multiple Time Series Model",
+        "description" : "In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.\n\rTL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:\n\rPreface\rWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2019",
+        "datePublished": "2019-01-29 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2019-01-29 00:00:00 \x2b0000 UTC",
+        "url" : "\/blog\/purrr-operly-fitting-multiple-time-series-model\/",
+        "wordCount" : "5590",
+        "keywords" : [ "forecast","purrr","tidyverse","time series","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Purrr-operly Fitting Multiple Time Series Model</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.55.4" />
+        
+
+
+        
+            <meta name="author" content="R. Dimas Bagas Herlambang">
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Purrr-operly Fitting Multiple Time Series Model"/>
+<meta name="twitter:description" content="In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
+TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package."/>
+<meta name="twitter:site" content="@teamalgoritma"/>
+
+        <meta property="og:title" content="Purrr-operly Fitting Multiple Time Series Model" />
+<meta property="og:description" content="In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
+TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/purrr-operly-fitting-multiple-time-series-model/" />
+<meta property="article:published_time" content="2019-01-29T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-01-29T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="Purrr-operly Fitting Multiple Time Series Model">
+<meta itemprop="description" content="In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
+TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.">
+
+
+<meta itemprop="datePublished" content="2019-01-29T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-01-29T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="5590">
+
+
+
+<meta itemprop="keywords" content="forecast,purrr,tidyverse,time series," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+
+
+      <link rel="stylesheet" href="/css/pojoaque.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="/js/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/blog/">
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/self-organizing-maps/">Self-Organizing Maps</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-04-26'>
+                                    April 26, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fpurrr-operly-fitting-multiple-time-series-model%2f&amp;text=Purrr-operly%20Fitting%20Multiple%20Time%20Series%20Model&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fpurrr-operly-fitting-multiple-time-series-model%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fpurrr-operly-fitting-multiple-time-series-model%2f&amp;title=Purrr-operly%20Fitting%20Multiple%20Time%20Series%20Model" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/purrr-operly-fitting-multiple-time-series-model/">Purrr-operly Fitting Multiple Time Series Model</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2019-01-29'>
+            January 29, 2019</time>
+        <span class="author">R. Dimas Bagas Herlambang</span>
+        
+            <p>27 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fpurrr-operly-fitting-multiple-time-series-model%2f&amp;text=Purrr-operly%20Fitting%20Multiple%20Time%20Series%20Model&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fpurrr-operly-fitting-multiple-time-series-model%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fpurrr-operly-fitting-multiple-time-series-model%2f&amp;title=Purrr-operly%20Fitting%20Multiple%20Time%20Series%20Model" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </section>
+  
+
+  
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/purrr-operly-fitting-multiple-time-series-model/" class="image featured">
+            <img src="/img/2019/01/tidyverse.png" alt="">
+        </a>
+    
+
+
+  <div id="content">
+    
+
+
+<p>In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using <code>purrr</code> interface.</p>
+<blockquote>
+<p><strong>TL;DR</strong>: you can find the distraction-free script in <a href="https://github.com/bagasbgy/blog/tree/master/content/post/2019-01-29-purrr-operly-fitting-multiple-time-series-models/R/fit.R" target="_blank">here</a>, and read some of my concluding remarks for a quick summary :grin:</p>
+</blockquote>
+<div id="preface" class="section level2">
+<h2>Preface</h2>
+<p>When it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: <a href="https://github.com/robjhyndman/forecast" target="_blank"><code>forecast</code></a> package. This package is authored by <a href="https://robjhyndman.com/" target="_blank">Prof. Rob. J. Hyndman</a> from Monash University. If you are interested in time series and forecasting, but new to the <code>forecast</code> package, I really recommend you to checkout his <a href="https://otexts.com/fpp2/" target="_blank">Forecasting: Principles and Practice</a> book to get you started; its online version is totally free!</p>
+<p>Back then when I’m working with some econometrics cases, I was saved a lot by this package. Well, who can resist to use <code>auto.arima()</code> ? (I actually agree with you on this <a href="https://niffadf.netlify.com/" target="_blank">Iffa</a>, just too “Bagas” to admit :v:). I’m also found its source code very helpful if you need to edit the algorithms to suit your need.</p>
+<p>Yet, this package still have some limitation when you need to handle multiple time series object simultaneously; it doesn’t have that kind of built-in support (yet!). I was very curious back then. First, I found a solution proposed by <a href="https://earo.me" target="_blank">Earo Wang</a>. She released the <a href="http://pkg.earo.me/hts/" target="_blank"><code>hts</code></a> (hierarchical time series) package, which give some workaround on this case using aggregration approach. But somehow I found the package are less versatile than <code>forecast</code> on fitting complex univariate models; well, it doesn’t built for that purpose at the first place.</p>
+<p>Then I finally found an article that inspired me to write this post: <a href="https://rsangole.netlify.com/post/pur-r-ify-your-carets/" target="_blank">Pur(r)rify Your Carets</a> by Rahul Sangole. He cleverly hack his model selection routines using <a href="http://purrr.tidyverse.org" target="_blank"><code>purrr</code></a>. Basically, he explained a workflow to use functional programming approach to fit a combination of multiple data transformation, and multiple model.</p>
+<p>This kind of approach actually already implemented in <a href="https://business-science.github.io/sweep/" target="_blank"><code>sweep</code></a> package for time series and forecasting. But unfortunately, after seeing the package now “orphaned” (doesn’t have an official maintainer), I decided to not include the package in this tutorial; don’t worry, it doesn’t affecting the workflow that much.</p>
+<p>In this article, I will explain how to a-<code>purrr</code>-opriately fit multiple time series using functional programming. If you happen to be new to <code>purrr</code>, I really recommend you to read this <a href="https://jennybc.github.io/purrr-tutorial/" target="_blank"><code>purrr</code>-fect tutorial by Jennifer Bryan</a>; and if you confused with my piping flow, then I suggest you to read my <a href="/post/2019/01/18/data-wars-episode-iv/" target="_blank">Data Wars series</a> first :grin:</p>
+</div>
+<div id="libraries-used" class="section level2">
+<h2>Libraries used</h2>
+<p>For this tutorial, we will use some time series, data wrangling, and statistical modeling packages. Among them, the core packages that we will use are:</p>
+<ul>
+<li><code>forecast</code>: for time series modeling and forecasting</li>
+<li><code>yardstick</code>: for measuring forecast performance</li>
+<li><code>recipes</code>: for data preprocess</li>
+<li><code>purrr</code>: for functional programming</li>
+<li><code>dplyr</code>: for general data wrangling</li>
+<li><code>lubridate</code>: for working with dates</li>
+</ul>
+<p>In addition to that, there are also some some package that I recommend to use for easier workflow:</p>
+<ul>
+<li><code>magrittr</code>: for various pipe operators</li>
+<li><code>timetk</code>: for creating future time index for our forecast results</li>
+<li><code>tidyquant</code>: for some ggplot aesthetics</li>
+</ul>
+<p>Note that I don’t import <code>timetk</code> and <code>tidyquant</code> in the following chunk, since we only use their one or two functions. Also some packages are already included in their bigger packages; e.g., <code>dplyr</code> and <code>purrr</code> are already included in <code>tidyverse</code>, and <code>recipes</code> and <code>yardstick</code> are already included in <code>tidymodels</code>, so we only need to import the bigger packages:</p>
+<pre class="r"><code># import libs
+library(forecast)
+library(lubridate)
+library(magrittr)
+library(tidymodels)
+library(tidyverse)</code></pre>
+</div>
+<div id="hourly-energy-consumption-dataset-from-pjm" class="section level2">
+<h2>Hourly Energy Consumption dataset from PJM</h2>
+<p>For this tutorial, we will use Hourly Energy Consumption dataset provided by PJM, and could be accessed from <a href="https://www.kaggle.com/robikscube/hourly-energy-consumption/home" target="_blank">Kaggle dataset</a>, which kindly shared by Rob Mulla. The data contains the hourly power consumption estimated by each electricity provider.</p>
+<p>The dataset is actually need more cleaning before we can use it for time series analyses and forecasting. The version I use in this tutorial is already going through some cleaning and adjustment. If you are interested in the cleaning process, or simply want to reproduce the results using the same dataset, you can check the script from this post folder in my <a href="https://github.com/bagasbgy/blog" target="_blank">blog repository</a> (to be exact, in file <a href="https://github.com/bagasbgy/blog/tree/master/content/post/2019-01-29-purrr-operly-fitting-multiple-time-series-models/R/data.R" target="_blank"><code>data.R</code></a> inside the <code>R</code> folder).</p>
+<p>Let’s start by importing the dataset:</p>
+<pre class="r"><code># import dataset
+pjm &lt;- read_csv(&quot;data_input/pjm.csv&quot;)
+
+pjm
+#&gt; # A tibble: 362,688 x 3
+#&gt;    datetime            provider  cons
+#&gt;    &lt;dttm&gt;              &lt;chr&gt;    &lt;int&gt;
+#&gt;  1 2013-06-01 00:00:00 AEP      13477
+#&gt;  2 2013-06-01 01:00:00 AEP      12699
+#&gt;  3 2013-06-01 02:00:00 AEP      12274
+#&gt;  4 2013-06-01 03:00:00 AEP      11904
+#&gt;  5 2013-06-01 04:00:00 AEP      11862
+#&gt;  6 2013-06-01 05:00:00 AEP      11976
+#&gt;  7 2013-06-01 06:00:00 AEP      12447
+#&gt;  8 2013-06-01 07:00:00 AEP      12713
+#&gt;  9 2013-06-01 08:00:00 AEP      13730
+#&gt; 10 2013-06-01 09:00:00 AEP      14609
+#&gt; # ... with 362,678 more rows</code></pre>
+<p>The data contain <code>datetime</code>, <code>provider</code>, and <code>cons</code> columns. The dates are ranging from 2013-06-01 to 2018-08-02 23:00:00. Here’s some example data from the last month:</p>
+<pre class="r"><code># quick plot
+pjm %&gt;%
+  filter(datetime &gt;= max(datetime) - hours(24 * 7 * 4)) %&gt;%
+  ggplot(aes(x = datetime, y = cons)) +
+    geom_line() +
+    labs(x = NULL, y = NULL) +
+    facet_wrap(~ provider, scale = &quot;free&quot;, ncol = 1) +
+    tidyquant::theme_tq()</code></pre>
+<p><img src="/blog/2019-01-29-purrr-operly-fitting-multiple-time-series-model_files/figure-html/data-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="the-scenario" class="section level3">
+<h3>The scenario</h3>
+<p>To help us benchmark multiple models, we will need to split some portion of our data for validation. The strategy here is to cut the last 4 weeks–approximately 1 month–as our test dataset. Then, we will cut again some (bigger) portion as the train dataset, say, 4 weeks times 3–approximately 3 months. This strategy is just the simplified version of <a href="https://robjhyndman.com/hyndsight/tscv/" target="_blank">Rolling Forecasting Origin</a>, with only having one pair of train and test sample. Of course, you can experiment with the lengths; will definitely cover more on this in one of my future posts, stay tuned!</p>
+<p>So the first step here is to get the start and end date of the train and test sample. The most straighforward way is to define the train and test size, then recursively get the start and end index for each:</p>
+<pre class="r"><code># train-val-test size
+test_size &lt;- 24 * 7 * 4
+train_size &lt;- 24 * 7 * 4 * 3
+
+# get the min-max of the time index for each sample
+test_end &lt;- max(pjm$datetime)
+test_start &lt;- test_end - hours(test_size) + hours(1)
+
+train_end &lt;- test_start - hours(1)
+train_start &lt;- train_end - hours(train_size) + hours(1)</code></pre>
+<p>To make it more handy, we can combine the start and end indices into a date interval:</p>
+<pre class="r"><code># get the interval of each samples
+intrain &lt;- interval(train_start, train_end)
+intest &lt;- interval(test_start, test_end)
+
+intrain
+#&gt; [1] 2018-04-13 UTC--2018-07-05 23:00:00 UTC
+
+intest
+#&gt; [1] 2018-07-06 UTC--2018-08-02 23:00:00 UTC</code></pre>
+<p>I really recommend this splitting approach, since you can use the date interval for many things while still keeping the true data.</p>
+<p>For example, we can use the intervals to visualize the train and test series:</p>
+<pre class="r"><code># plot the train and test
+pjm %&gt;%
+  mutate(sample = case_when(
+    datetime %within% intrain ~ &quot;train&quot;,
+    datetime %within% intest ~ &quot;test&quot;
+  )) %&gt;%
+  drop_na() %&gt;%
+  mutate(sample = factor(sample, levels = c(&quot;train&quot;, &quot;test&quot;))) %&gt;%
+  ggplot(aes(x = datetime, y = cons, colour = sample)) +
+    geom_line() +
+    labs(x = NULL, y = NULL, colour = NULL) +
+    facet_wrap(~ provider, scale = &quot;free&quot;, ncol = 1) +
+    tidyquant::theme_tq() +
+    tidyquant::scale_colour_tq()</code></pre>
+<p><img src="/blog/2019-01-29-purrr-operly-fitting-multiple-time-series-model_files/figure-html/data-split-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="data-preprocess-using-recipes" class="section level2">
+<h2>Data preprocess using <code>recipes</code></h2>
+<p>Data preprocessing is a very crucial step in time series model fitting. In this tutorial, we will use <code>recipes</code> package for data preprocessing.</p>
+<p>Since recipe package work columnwise, we need to convert our data into a wide format first:</p>
+<pre class="r"><code># convert to wide format
+pjm %&lt;&gt;%
+  spread(provider, cons)
+
+pjm
+#&gt; # A tibble: 45,336 x 9
+#&gt;    datetime              AEP COMED DAYTON  DEOK   DOM   DUQ  EKPC    FE
+#&gt;    &lt;dttm&gt;              &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+#&gt;  1 2013-06-01 00:00:00 13477 11378   1682  2773 10150  1739  1166  7099
+#&gt;  2 2013-06-01 01:00:00 12699 10584   1568  2613  9406  1641  1098  6617
+#&gt;  3 2013-06-01 02:00:00 12274  9973   1514  2499  8910  1569  1036  6351
+#&gt;  4 2013-06-01 03:00:00 11904  9451   1467  2409  8551  1518  1023  6201
+#&gt;  5 2013-06-01 04:00:00 11862  9184   1456  2392  8413  1503   949  6157
+#&gt;  6 2013-06-01 05:00:00 11976  9043   1485  2425  8409  1515  1017  6187
+#&gt;  7 2013-06-01 06:00:00 12447  9054   1511  2469  8582  1531  1036  6257
+#&gt;  8 2013-06-01 07:00:00 12713  9290   1596  2606  9600  1586  1096  6606
+#&gt;  9 2013-06-01 08:00:00 13730  9980   1711  2823 10816  1745  1200  7182
+#&gt; 10 2013-06-01 09:00:00 14609 10590   1823  3013 12017  1903  1285  7777
+#&gt; # ... with 45,326 more rows</code></pre>
+<p>Then we could start to define the preprocess <code>recipe()</code>, and <code>bake()</code> our data based on the defined recipe:</p>
+<pre class="r"><code># recipes: square root, center, scale
+rec &lt;- recipe(~ ., filter(pjm, datetime %within% intrain)) %&gt;%
+  step_sqrt(all_numeric()) %&gt;%
+  step_center(all_numeric()) %&gt;%
+  step_scale(all_numeric()) %&gt;%
+  prep()
+
+# preview the bake results
+pjm &lt;- bake(rec, pjm)
+
+pjm
+#&gt; # A tibble: 45,336 x 9
+#&gt;    datetime                AEP   COMED DAYTON   DEOK     DOM     DUQ   EKPC
+#&gt;    &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+#&gt;  1 2013-06-01 00:00:00 -0.393   0.0676 -0.784 -0.510 -0.373   0.481  -0.837
+#&gt;  2 2013-06-01 01:00:00 -0.722  -0.247  -1.10  -0.741 -0.693   0.191  -1.08 
+#&gt;  3 2013-06-01 02:00:00 -0.907  -0.496  -1.25  -0.911 -0.913  -0.0282 -1.31 
+#&gt;  4 2013-06-01 03:00:00 -1.07   -0.716  -1.39  -1.05  -1.08   -0.186  -1.35 
+#&gt;  5 2013-06-01 04:00:00 -1.09   -0.831  -1.42  -1.07  -1.14   -0.233  -1.63 
+#&gt;  6 2013-06-01 05:00:00 -1.04   -0.892  -1.34  -1.02  -1.14   -0.196  -1.38 
+#&gt;  7 2013-06-01 06:00:00 -0.831  -0.887  -1.26  -0.956 -1.06   -0.146  -1.31 
+#&gt;  8 2013-06-01 07:00:00 -0.716  -0.785  -1.02  -0.752 -0.608   0.0240 -1.09 
+#&gt;  9 2013-06-01 08:00:00 -0.288  -0.493  -0.706 -0.439 -0.0967  0.499  -0.719
+#&gt; 10 2013-06-01 09:00:00  0.0699 -0.244  -0.408 -0.175  0.381   0.949  -0.431
+#&gt; # ... with 45,326 more rows, and 1 more variable: FE &lt;dbl&gt;</code></pre>
+<p><strong>Note</strong>: Don’t forget to do the preprocess based on the data in train sample only, since it’s similar to the actual scenario where we only have the “train” data.</p>
+<p>If we use <code>recipes</code> package, the next steps is to create a revert back function:</p>
+<pre class="r"><code># revert back function
+rec_revert &lt;- function(vector, rec, varname) {
+
+  # store recipe values
+  rec_center &lt;- rec$steps[[2]]$means[varname]
+  rec_scale &lt;- rec$steps[[3]]$sds[varname]
+
+  # convert back based on the recipe
+  results &lt;- (vector * rec_scale + rec_center) ^ 2
+
+  # add additional adjustment if necessary
+  results &lt;- round(results)
+
+  # return the results
+  results
+
+}</code></pre>
+<p>This revert back function would be very handy if we want to convert back the data to its original form.</p>
+<p>Now we can convert our data into the long format again:</p>
+<pre class="r"><code># convert back to long format
+pjm %&lt;&gt;%
+  gather(provider, cons, -datetime)
+  
+pjm
+#&gt; # A tibble: 362,688 x 3
+#&gt;    datetime            provider    cons
+#&gt;    &lt;dttm&gt;              &lt;chr&gt;      &lt;dbl&gt;
+#&gt;  1 2013-06-01 00:00:00 AEP      -0.393 
+#&gt;  2 2013-06-01 01:00:00 AEP      -0.722 
+#&gt;  3 2013-06-01 02:00:00 AEP      -0.907 
+#&gt;  4 2013-06-01 03:00:00 AEP      -1.07  
+#&gt;  5 2013-06-01 04:00:00 AEP      -1.09  
+#&gt;  6 2013-06-01 05:00:00 AEP      -1.04  
+#&gt;  7 2013-06-01 06:00:00 AEP      -0.831 
+#&gt;  8 2013-06-01 07:00:00 AEP      -0.716 
+#&gt;  9 2013-06-01 08:00:00 AEP      -0.288 
+#&gt; 10 2013-06-01 09:00:00 AEP       0.0699
+#&gt; # ... with 362,678 more rows</code></pre>
+</div>
+<div id="nested-model-fitting-and-forecasting" class="section level2">
+<h2>Nested model fitting and forecasting</h2>
+<p>In functional programming using <code>purrr</code>, we need to convert our <code>tbl</code> into a nested <code>tbl</code>. You can think a nested data like a <em>table inside a table</em>, which could be controlled using a key indicator; in other words, we can have <code>tbl</code> for each <code>provider</code> and <code>samples</code>. Using this format, the fitting and forecasting process would be very versatile, yet we can still convert the results as long as we have a proper key like <code>provider</code>.</p>
+<p>Let’s start by converting our <code>tbl</code> into a nested <code>tbl</code>. First, we need to add sample indicator so it could be recognized as a key when we <code>nest()</code> the data:</p>
+<pre class="r"><code># adjust by sample
+pjm %&lt;&gt;%
+  mutate(sample = case_when(
+    datetime %within% intrain ~ &quot;train&quot;,
+    datetime %within% intest ~ &quot;test&quot;
+  )) %&gt;%
+  drop_na()
+  
+pjm
+#&gt; # A tibble: 21,504 x 4
+#&gt;    datetime            provider   cons sample
+#&gt;    &lt;dttm&gt;              &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; 
+#&gt;  1 2018-04-13 00:00:00 AEP      -1.26  train 
+#&gt;  2 2018-04-13 01:00:00 AEP      -1.43  train 
+#&gt;  3 2018-04-13 02:00:00 AEP      -1.52  train 
+#&gt;  4 2018-04-13 03:00:00 AEP      -1.49  train 
+#&gt;  5 2018-04-13 04:00:00 AEP      -1.39  train 
+#&gt;  6 2018-04-13 05:00:00 AEP      -1.07  train 
+#&gt;  7 2018-04-13 06:00:00 AEP      -0.548 train 
+#&gt;  8 2018-04-13 07:00:00 AEP      -0.308 train 
+#&gt;  9 2018-04-13 08:00:00 AEP      -0.228 train 
+#&gt; 10 2018-04-13 09:00:00 AEP      -0.209 train 
+#&gt; # ... with 21,494 more rows</code></pre>
+<p>Then, we could start to <code>nest()</code> the the data by <code>provider</code> and <code>sample</code>, and <code>spread()</code> the <code>tbl</code> based on <code>sample</code> key:</p>
+<pre class="r"><code># nest the train data
+pjm %&lt;&gt;%
+  group_by(provider, sample) %&gt;%
+  nest(.key = &quot;data&quot;) %&gt;%
+  spread(sample, data)
+
+pjm
+#&gt; # A tibble: 8 x 3
+#&gt;   provider test               train               
+#&gt;   &lt;chr&gt;    &lt;list&gt;             &lt;list&gt;              
+#&gt; 1 AEP      &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt;
+#&gt; 2 COMED    &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt;
+#&gt; 3 DAYTON   &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt;
+#&gt; 4 DEOK     &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt;
+#&gt; 5 DOM      &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt;
+#&gt; 6 DUQ      &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt;
+#&gt; 7 EKPC     &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt;
+#&gt; 8 FE       &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt;</code></pre>
+<div id="preparing-the-data-model-list" class="section level3">
+<h3>Preparing the data model list</h3>
+<p>For data and model combination, we could start by defining some options for data representation. Recall that our series have a relatively high frequency, so we could consider two option of data representation here: a <code>ts</code> object with daily seasonality, and an <code>msts</code> with daily and weekly seasonality.</p>
+<p>To incorporate them into our nested data, we need to create another nested data frame containing the data representation name, and the accompanying function for converting the data into the specified data representation.</p>
+<p>Let’s start with making a named list containing the transformation functions:</p>
+<pre class="r"><code># data funs list
+data_funs &lt;- list(
+  ts = function(x) ts(x$cons, frequency = 24),
+  msts = function(x) msts(x$cons, seasonal.periods = c(24, 24 * 7))
+)
+
+data_funs
+#&gt; $ts
+#&gt; function (x) 
+#&gt; ts(x$cons, frequency = 24)
+#&gt; 
+#&gt; $msts
+#&gt; function (x) 
+#&gt; msts(x$cons, seasonal.periods = c(24, 24 * 7))</code></pre>
+<p>Then we could convert the <code>list</code> into a <code>tbl</code> using <code>enframe()</code>. Note that we should also give a key–which is the <code>provider</code> in our case–so we could use <code>left_join()</code> later. The trick here is to use <code>rep()</code> function:</p>
+<pre class="r"><code># convert to nested
+data_funs %&lt;&gt;%
+  rep(length(unique(pjm$provider))) %&gt;%
+  enframe(&quot;data_fun_name&quot;, &quot;data_fun&quot;) %&gt;%
+  mutate(provider =
+    sort(rep(unique(pjm$provider), length(unique(.$data_fun_name))))
+  )
+
+data_funs
+#&gt; # A tibble: 16 x 3
+#&gt;    data_fun_name data_fun provider
+#&gt;    &lt;chr&gt;         &lt;list&gt;   &lt;chr&gt;   
+#&gt;  1 ts            &lt;fn&gt;     AEP     
+#&gt;  2 msts          &lt;fn&gt;     AEP     
+#&gt;  3 ts            &lt;fn&gt;     COMED   
+#&gt;  4 msts          &lt;fn&gt;     COMED   
+#&gt;  5 ts            &lt;fn&gt;     DAYTON  
+#&gt;  6 msts          &lt;fn&gt;     DAYTON  
+#&gt;  7 ts            &lt;fn&gt;     DEOK    
+#&gt;  8 msts          &lt;fn&gt;     DEOK    
+#&gt;  9 ts            &lt;fn&gt;     DOM     
+#&gt; 10 msts          &lt;fn&gt;     DOM     
+#&gt; 11 ts            &lt;fn&gt;     DUQ     
+#&gt; 12 msts          &lt;fn&gt;     DUQ     
+#&gt; 13 ts            &lt;fn&gt;     EKPC    
+#&gt; 14 msts          &lt;fn&gt;     EKPC    
+#&gt; 15 ts            &lt;fn&gt;     FE      
+#&gt; 16 msts          &lt;fn&gt;     FE</code></pre>
+<p>Then the last steps here is to join the nested function with our nested data:</p>
+<pre class="r"><code># combine with models
+pjm %&lt;&gt;%
+  left_join(data_funs)
+
+pjm
+#&gt; # A tibble: 16 x 5
+#&gt;    provider test               train                data_fun_name data_fun
+#&gt;    &lt;chr&gt;    &lt;list&gt;             &lt;list&gt;               &lt;chr&gt;         &lt;list&gt;  
+#&gt;  1 AEP      &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; ts            &lt;fn&gt;    
+#&gt;  2 AEP      &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; msts          &lt;fn&gt;    
+#&gt;  3 COMED    &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; ts            &lt;fn&gt;    
+#&gt;  4 COMED    &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; msts          &lt;fn&gt;    
+#&gt;  5 DAYTON   &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; ts            &lt;fn&gt;    
+#&gt;  6 DAYTON   &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; msts          &lt;fn&gt;    
+#&gt;  7 DEOK     &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; ts            &lt;fn&gt;    
+#&gt;  8 DEOK     &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; msts          &lt;fn&gt;    
+#&gt;  9 DOM      &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; ts            &lt;fn&gt;    
+#&gt; 10 DOM      &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; msts          &lt;fn&gt;    
+#&gt; 11 DUQ      &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; ts            &lt;fn&gt;    
+#&gt; 12 DUQ      &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; msts          &lt;fn&gt;    
+#&gt; 13 EKPC     &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; ts            &lt;fn&gt;    
+#&gt; 14 EKPC     &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; msts          &lt;fn&gt;    
+#&gt; 15 FE       &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; ts            &lt;fn&gt;    
+#&gt; 16 FE       &lt;tibble [672 x 2]&gt; &lt;tibble [2,016 x 2]&gt; msts          &lt;fn&gt;</code></pre>
+</div>
+<div id="preparing-the-time-series-model-list" class="section level3">
+<h3>Preparing the time series model list</h3>
+<p>Similar to when we create the data representation list, we could also make some time series models as a nested list.</p>
+<p>Again, let’s start by making a list of models. For this tutorial, let’s consider to use <code>auto.arima()</code>, <code>ets()</code>, <code>stlm()</code>, and <code>tbats()</code>. We need to make some functions to call those model, and store them inside a list:</p>
+<pre class="r"><code># models list
+models &lt;- list(
+  auto.arima = function(x) auto.arima(x),
+  ets = function(x) ets(x),
+  stlm = function(x) stlm(x),
+  tbats = function(x) tbats(x, use.box.cox = FALSE)
+)
+
+models
+#&gt; $auto.arima
+#&gt; function (x) 
+#&gt; auto.arima(x)
+#&gt; 
+#&gt; $ets
+#&gt; function (x) 
+#&gt; ets(x)
+#&gt; 
+#&gt; $stlm
+#&gt; function (x) 
+#&gt; stlm(x)
+#&gt; 
+#&gt; $tbats
+#&gt; function (x) 
+#&gt; tbats(x, use.box.cox = FALSE)</code></pre>
+<p>Then we can convert it into a nested format like previous example:</p>
+<pre class="r"><code># convert to nested
+models %&lt;&gt;%
+  rep(length(unique(pjm$provider))) %&gt;%
+  enframe(&quot;model_name&quot;, &quot;model&quot;) %&gt;%
+  mutate(provider =
+    sort(rep(unique(pjm$provider), length(unique(.$model_name))))
+  )
+
+models
+#&gt; # A tibble: 32 x 3
+#&gt;    model_name model  provider
+#&gt;    &lt;chr&gt;      &lt;list&gt; &lt;chr&gt;   
+#&gt;  1 auto.arima &lt;fn&gt;   AEP     
+#&gt;  2 ets        &lt;fn&gt;   AEP     
+#&gt;  3 stlm       &lt;fn&gt;   AEP     
+#&gt;  4 tbats      &lt;fn&gt;   AEP     
+#&gt;  5 auto.arima &lt;fn&gt;   COMED   
+#&gt;  6 ets        &lt;fn&gt;   COMED   
+#&gt;  7 stlm       &lt;fn&gt;   COMED   
+#&gt;  8 tbats      &lt;fn&gt;   COMED   
+#&gt;  9 auto.arima &lt;fn&gt;   DAYTON  
+#&gt; 10 ets        &lt;fn&gt;   DAYTON  
+#&gt; # ... with 22 more rows</code></pre>
+<p>And finally, we can join the result into our nested data. <strong>Note</strong> that we could also apply some rule here. For example, if I don’t want to have <code>ets()</code> and <code>auto.arima()</code> for data with <code>msts</code> class–since they are not suitable for multiple seasonality time series–we can use filter to remove them out:</p>
+<pre class="r"><code># combine with models
+pjm %&lt;&gt;%
+  left_join(models) %&gt;%
+  filter(
+    !(model_name == &quot;ets&quot; &amp; data_fun_name == &quot;msts&quot;),
+    !(model_name == &quot;auto.arima&quot; &amp; data_fun_name == &quot;msts&quot;)
+  )</code></pre>
+<p>Here’s our data with the full combination:</p>
+<pre class="r"><code>pjm
+#&gt; # A tibble: 48 x 7
+#&gt;    provider test        train       data_fun_name data_fun model_name model
+#&gt;    &lt;chr&gt;    &lt;list&gt;      &lt;list&gt;      &lt;chr&gt;         &lt;list&gt;   &lt;chr&gt;      &lt;lis&gt;
+#&gt;  1 AEP      &lt;tibble [6~ &lt;tibble [2~ ts            &lt;fn&gt;     auto.arima &lt;fn&gt; 
+#&gt;  2 AEP      &lt;tibble [6~ &lt;tibble [2~ ts            &lt;fn&gt;     ets        &lt;fn&gt; 
+#&gt;  3 AEP      &lt;tibble [6~ &lt;tibble [2~ ts            &lt;fn&gt;     stlm       &lt;fn&gt; 
+#&gt;  4 AEP      &lt;tibble [6~ &lt;tibble [2~ ts            &lt;fn&gt;     tbats      &lt;fn&gt; 
+#&gt;  5 AEP      &lt;tibble [6~ &lt;tibble [2~ msts          &lt;fn&gt;     stlm       &lt;fn&gt; 
+#&gt;  6 AEP      &lt;tibble [6~ &lt;tibble [2~ msts          &lt;fn&gt;     tbats      &lt;fn&gt; 
+#&gt;  7 COMED    &lt;tibble [6~ &lt;tibble [2~ ts            &lt;fn&gt;     auto.arima &lt;fn&gt; 
+#&gt;  8 COMED    &lt;tibble [6~ &lt;tibble [2~ ts            &lt;fn&gt;     ets        &lt;fn&gt; 
+#&gt;  9 COMED    &lt;tibble [6~ &lt;tibble [2~ ts            &lt;fn&gt;     stlm       &lt;fn&gt; 
+#&gt; 10 COMED    &lt;tibble [6~ &lt;tibble [2~ ts            &lt;fn&gt;     tbats      &lt;fn&gt; 
+#&gt; # ... with 38 more rows</code></pre>
+</div>
+<div id="execute-the-nested-fitting" class="section level3">
+<h3>Execute the nested fitting</h3>
+<p>To execute the model fitting, we need to wrap up the needed arguments as a <code>list</code> using <code>map()</code> function. Then, we could call the function using <code>invoke_map()</code>. We need to do this for data transformation using the function inside <code>data_fun</code>, then continue to fit the model with the same process using the function inside <code>model</code>.</p>
+<p>See the code in the chunk below for the implementation of the process:</p>
+<pre class="r"><code># invoke nested fitting
+pjm %&lt;&gt;%
+  mutate(
+    params = map(train, ~ list(x = .x)),
+    data = invoke_map(data_fun, params),
+    params = map(data, ~ list(x = .x)),
+    fitted = invoke_map(model, params)
+  ) %&gt;%
+  select(-data, -params)
+  
+pjm
+#&gt; # A tibble: 48 x 8
+#&gt;    provider test    train    data_fun_name data_fun model_name model fitted
+#&gt;    &lt;chr&gt;    &lt;list&gt;  &lt;list&gt;   &lt;chr&gt;         &lt;list&gt;   &lt;chr&gt;      &lt;lis&gt; &lt;list&gt;
+#&gt;  1 AEP      &lt;tibbl~ &lt;tibble~ ts            &lt;fn&gt;     auto.arima &lt;fn&gt;  &lt;S3: ~
+#&gt;  2 AEP      &lt;tibbl~ &lt;tibble~ ts            &lt;fn&gt;     ets        &lt;fn&gt;  &lt;S3: ~
+#&gt;  3 AEP      &lt;tibbl~ &lt;tibble~ ts            &lt;fn&gt;     stlm       &lt;fn&gt;  &lt;S3: ~
+#&gt;  4 AEP      &lt;tibbl~ &lt;tibble~ ts            &lt;fn&gt;     tbats      &lt;fn&gt;  &lt;S3: ~
+#&gt;  5 AEP      &lt;tibbl~ &lt;tibble~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  &lt;S3: ~
+#&gt;  6 AEP      &lt;tibbl~ &lt;tibble~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  &lt;S3: ~
+#&gt;  7 COMED    &lt;tibbl~ &lt;tibble~ ts            &lt;fn&gt;     auto.arima &lt;fn&gt;  &lt;S3: ~
+#&gt;  8 COMED    &lt;tibbl~ &lt;tibble~ ts            &lt;fn&gt;     ets        &lt;fn&gt;  &lt;S3: ~
+#&gt;  9 COMED    &lt;tibbl~ &lt;tibble~ ts            &lt;fn&gt;     stlm       &lt;fn&gt;  &lt;S3: ~
+#&gt; 10 COMED    &lt;tibbl~ &lt;tibble~ ts            &lt;fn&gt;     tbats      &lt;fn&gt;  &lt;S3: ~
+#&gt; # ... with 38 more rows</code></pre>
+<p>Now the next step is to measure the test error. First, we need to <code>forecast()</code> into the test dataset, and then pipe it into the error measurement using one of function provided in <code>yardstick</code>. For this example, let’s use Root Mean Squared-Error (we use <code>rmse_vec</code> for simple vector calculation) as an error measurement:</p>
+<pre class="r"><code># calculate test errors
+pjm %&lt;&gt;%
+  mutate(error =
+    map(fitted, ~ forecast(.x, h = 24 * 7 * 4)) %&gt;%
+    map2_dbl(test, ~ rmse_vec(truth = .y$cons, estimate = .x$mean))
+  ) %&gt;%
+  arrange(provider, error)
+
+pjm %&gt;%
+  select(provider, ends_with(&quot;_name&quot;), error)
+#&gt; # A tibble: 48 x 4
+#&gt;    provider data_fun_name model_name error
+#&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;      &lt;dbl&gt;
+#&gt;  1 AEP      msts          stlm       0.733
+#&gt;  2 AEP      msts          tbats      0.745
+#&gt;  3 AEP      ts            stlm       0.761
+#&gt;  4 AEP      ts            auto.arima 0.820
+#&gt;  5 AEP      ts            tbats      0.951
+#&gt;  6 AEP      ts            ets        4.28 
+#&gt;  7 COMED    msts          tbats      0.805
+#&gt;  8 COMED    msts          stlm       0.813
+#&gt;  9 COMED    ts            stlm       0.837
+#&gt; 10 COMED    ts            tbats      0.935
+#&gt; # ... with 38 more rows</code></pre>
+</div>
+<div id="unnesting-the-result" class="section level3">
+<h3>Unnesting the result</h3>
+<p>Beside measuring the error, we can also compare the forecast results to the real test series through graphical analysis. But to do that, we need to make a <code>tbl</code> containing our forecast to the test dataset, then do some spread-gather tricks to make a set of keys that unique for each data representations, models, and also one for the forecast itself. If we get to that format, we could conveniently <code>unnest()</code> the data into a proper long format</p>
+<p>Let’s start with creating the forecast first:</p>
+<pre class="r"><code>pjm_test &lt;- pjm %&gt;%
+  mutate(
+    forecast =
+      map(fitted, ~ forecast(.x, h = 24 * 7 * 4)) %&gt;%
+      map2(test, ~ tibble(
+        datetime = .y$datetime,
+        cons = as.vector(.x$mean)
+      )),
+    key = paste(data_fun_name, model_name, sep = &quot;-&quot;)
+  )
+  
+pjm_test
+#&gt; # A tibble: 48 x 11
+#&gt;    provider test  train data_fun_name data_fun model_name model fitted
+#&gt;    &lt;chr&gt;    &lt;lis&gt; &lt;lis&gt; &lt;chr&gt;         &lt;list&gt;   &lt;chr&gt;      &lt;lis&gt; &lt;list&gt;
+#&gt;  1 AEP      &lt;tib~ &lt;tib~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  &lt;S3: ~
+#&gt;  2 AEP      &lt;tib~ &lt;tib~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  &lt;S3: ~
+#&gt;  3 AEP      &lt;tib~ &lt;tib~ ts            &lt;fn&gt;     stlm       &lt;fn&gt;  &lt;S3: ~
+#&gt;  4 AEP      &lt;tib~ &lt;tib~ ts            &lt;fn&gt;     auto.arima &lt;fn&gt;  &lt;S3: ~
+#&gt;  5 AEP      &lt;tib~ &lt;tib~ ts            &lt;fn&gt;     tbats      &lt;fn&gt;  &lt;S3: ~
+#&gt;  6 AEP      &lt;tib~ &lt;tib~ ts            &lt;fn&gt;     ets        &lt;fn&gt;  &lt;S3: ~
+#&gt;  7 COMED    &lt;tib~ &lt;tib~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  &lt;S3: ~
+#&gt;  8 COMED    &lt;tib~ &lt;tib~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  &lt;S3: ~
+#&gt;  9 COMED    &lt;tib~ &lt;tib~ ts            &lt;fn&gt;     stlm       &lt;fn&gt;  &lt;S3: ~
+#&gt; 10 COMED    &lt;tib~ &lt;tib~ ts            &lt;fn&gt;     tbats      &lt;fn&gt;  &lt;S3: ~
+#&gt; # ... with 38 more rows, and 3 more variables: error &lt;dbl&gt;,
+#&gt; #   forecast &lt;list&gt;, key &lt;chr&gt;</code></pre>
+<p>Then do some spread-gather to create a proper key:</p>
+<pre class="r"><code>pjm_test %&lt;&gt;%
+  select(provider, key, actual = test, forecast) %&gt;%
+  spread(key, forecast) %&gt;%
+  gather(key, value, -provider)
+
+pjm_test
+#&gt; # A tibble: 56 x 3
+#&gt;    provider key       value             
+#&gt;    &lt;chr&gt;    &lt;chr&gt;     &lt;list&gt;            
+#&gt;  1 AEP      actual    &lt;tibble [672 x 2]&gt;
+#&gt;  2 COMED    actual    &lt;tibble [672 x 2]&gt;
+#&gt;  3 DAYTON   actual    &lt;tibble [672 x 2]&gt;
+#&gt;  4 DEOK     actual    &lt;tibble [672 x 2]&gt;
+#&gt;  5 DOM      actual    &lt;tibble [672 x 2]&gt;
+#&gt;  6 DUQ      actual    &lt;tibble [672 x 2]&gt;
+#&gt;  7 EKPC     actual    &lt;tibble [672 x 2]&gt;
+#&gt;  8 FE       actual    &lt;tibble [672 x 2]&gt;
+#&gt;  9 AEP      msts-stlm &lt;tibble [672 x 2]&gt;
+#&gt; 10 COMED    msts-stlm &lt;tibble [672 x 2]&gt;
+#&gt; # ... with 46 more rows</code></pre>
+<p>The last but not least, <code>unnest()</code> the series data, and apply the revert back function:</p>
+<pre class="r"><code>pjm_test %&lt;&gt;%
+  unnest(value) %&gt;%
+  mutate(cons = rec_revert(cons, rec, provider))
+  
+pjm_test
+#&gt; # A tibble: 37,632 x 4
+#&gt;    provider key    datetime             cons
+#&gt;    &lt;chr&gt;    &lt;chr&gt;  &lt;dttm&gt;              &lt;dbl&gt;
+#&gt;  1 AEP      actual 2018-07-06 00:00:00 15139
+#&gt;  2 AEP      actual 2018-07-06 01:00:00 14325
+#&gt;  3 AEP      actual 2018-07-06 02:00:00 13685
+#&gt;  4 AEP      actual 2018-07-06 03:00:00 13350
+#&gt;  5 AEP      actual 2018-07-06 04:00:00 13357
+#&gt;  6 AEP      actual 2018-07-06 05:00:00 13671
+#&gt;  7 AEP      actual 2018-07-06 06:00:00 14124
+#&gt;  8 AEP      actual 2018-07-06 07:00:00 14646
+#&gt;  9 AEP      actual 2018-07-06 08:00:00 15294
+#&gt; 10 AEP      actual 2018-07-06 09:00:00 15804
+#&gt; # ... with 37,622 more rows</code></pre>
+<p>With the resulting <code>tbl</code>, we can compare the forecast and actual data on test like this:</p>
+<pre class="r"><code># plot forecast on test
+pjm_test %&gt;%
+  ggplot(aes(x = datetime, y = cons, colour = key)) +
+    geom_line() +
+    labs(x = NULL, y = NULL, colour = NULL) +
+    facet_wrap(~ provider, scale = &quot;free&quot;, ncol = 1) +
+    tidyquant::theme_tq() +
+    tidyquant::scale_colour_tq()</code></pre>
+<p><img src="/blog/2019-01-29-purrr-operly-fitting-multiple-time-series-model_files/figure-html/nest-test-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="automate-the-model-selection" class="section level3">
+<h3>Automate the model selection</h3>
+<p>As you can see from the plot results, it is hard to decide which model we want to use based on graphical comparation. Then the most straighforward solution is to use the model with the least error.</p>
+<p>It is very simple to do the model selection, we only need some basic <code>dplyr</code> grammars to <code>filter()</code> the model with lowest error:</p>
+<pre class="r"><code># filter by lowest test error
+pjm %&lt;&gt;%
+  select(-fitted) %&gt;% # remove unused
+  group_by(provider) %&gt;%
+  filter(error == min(error)) %&gt;%
+  ungroup()
+
+pjm
+#&gt; # A tibble: 8 x 8
+#&gt;   provider test      train    data_fun_name data_fun model_name model error
+#&gt;   &lt;chr&gt;    &lt;list&gt;    &lt;list&gt;   &lt;chr&gt;         &lt;list&gt;   &lt;chr&gt;      &lt;lis&gt; &lt;dbl&gt;
+#&gt; 1 AEP      &lt;tibble ~ &lt;tibble~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  0.733
+#&gt; 2 COMED    &lt;tibble ~ &lt;tibble~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  0.805
+#&gt; 3 DAYTON   &lt;tibble ~ &lt;tibble~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  0.714
+#&gt; 4 DEOK     &lt;tibble ~ &lt;tibble~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  0.687
+#&gt; 5 DOM      &lt;tibble ~ &lt;tibble~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  0.865
+#&gt; 6 DUQ      &lt;tibble ~ &lt;tibble~ ts            &lt;fn&gt;     stlm       &lt;fn&gt;  0.619
+#&gt; 7 EKPC     &lt;tibble ~ &lt;tibble~ ts            &lt;fn&gt;     stlm       &lt;fn&gt;  0.802
+#&gt; 8 FE       &lt;tibble ~ &lt;tibble~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  0.713</code></pre>
+</div>
+<div id="perform-the-final-forecast" class="section level3">
+<h3>Perform the final forecast</h3>
+<p>After we have the final model, then finally we can proceed to the final forecast. For the final forecast, we can do the same process as in model fitting, but this time we will use train and test data as our new “full data”.</p>
+<p>Now let’s start by recombine the train and test dataset:</p>
+<pre class="r"><code># recombine samples
+pjm %&lt;&gt;%
+  mutate(fulldata = map2(train, test, ~ bind_rows(.x, .y))) %&gt;%
+  select(provider, fulldata, everything(), -train, -test)
+
+pjm
+#&gt; # A tibble: 8 x 7
+#&gt;   provider fulldata           data_fun_name data_fun model_name model error
+#&gt;   &lt;chr&gt;    &lt;list&gt;             &lt;chr&gt;         &lt;list&gt;   &lt;chr&gt;      &lt;lis&gt; &lt;dbl&gt;
+#&gt; 1 AEP      &lt;tibble [2,688 x ~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  0.733
+#&gt; 2 COMED    &lt;tibble [2,688 x ~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  0.805
+#&gt; 3 DAYTON   &lt;tibble [2,688 x ~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  0.714
+#&gt; 4 DEOK     &lt;tibble [2,688 x ~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  0.687
+#&gt; 5 DOM      &lt;tibble [2,688 x ~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  0.865
+#&gt; 6 DUQ      &lt;tibble [2,688 x ~ ts            &lt;fn&gt;     stlm       &lt;fn&gt;  0.619
+#&gt; 7 EKPC     &lt;tibble [2,688 x ~ ts            &lt;fn&gt;     stlm       &lt;fn&gt;  0.802
+#&gt; 8 FE       &lt;tibble [2,688 x ~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  0.713</code></pre>
+<p>Then do the same nested fitting as in previous example:</p>
+<pre class="r"><code># invoke nested fitting for full data
+pjm %&lt;&gt;%
+  mutate(
+    params = map(fulldata, ~ list(x = .x)),
+    data = invoke_map(data_fun, params),
+    params = map(data, ~ list(x = .x)),
+    fitted = invoke_map(model, params)
+  ) %&gt;%
+  select(-data, -params)</code></pre>
+<p>Next, let’s make a <code>tbl</code> containing each of our forecast results, and convert our nested data to a proper long format:</p>
+<pre class="r"><code># get forecast
+pjm %&lt;&gt;%
+  mutate(forecast =
+    map(fitted, ~ forecast(.x, h = 24 * 7 * 4)) %&gt;%
+    map2(fulldata, ~ tibble(
+      datetime = timetk::tk_make_future_timeseries(.y$datetime, 24 * 7 * 4),
+      cons = as.vector(.x$mean)
+    ))
+  )
+
+pjm
+#&gt; # A tibble: 8 x 9
+#&gt;   provider fulldata data_fun_name data_fun model_name model error fitted
+#&gt;   &lt;chr&gt;    &lt;list&gt;   &lt;chr&gt;         &lt;list&gt;   &lt;chr&gt;      &lt;lis&gt; &lt;dbl&gt; &lt;list&gt;
+#&gt; 1 AEP      &lt;tibble~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  0.733 &lt;S3: ~
+#&gt; 2 COMED    &lt;tibble~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  0.805 &lt;S3: ~
+#&gt; 3 DAYTON   &lt;tibble~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  0.714 &lt;S3: ~
+#&gt; 4 DEOK     &lt;tibble~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  0.687 &lt;S3: ~
+#&gt; 5 DOM      &lt;tibble~ msts          &lt;fn&gt;     tbats      &lt;fn&gt;  0.865 &lt;S3: ~
+#&gt; 6 DUQ      &lt;tibble~ ts            &lt;fn&gt;     stlm       &lt;fn&gt;  0.619 &lt;S3: ~
+#&gt; 7 EKPC     &lt;tibble~ ts            &lt;fn&gt;     stlm       &lt;fn&gt;  0.802 &lt;S3: ~
+#&gt; 8 FE       &lt;tibble~ msts          &lt;fn&gt;     stlm       &lt;fn&gt;  0.713 &lt;S3: ~
+#&gt; # ... with 1 more variable: forecast &lt;list&gt;</code></pre>
+<p>Finally, we can <code>unnest()</code> the data to get the result:</p>
+<pre class="r"><code># unnest actual and forecast
+pjm %&lt;&gt;%
+  select(provider, actual = fulldata, forecast) %&gt;%
+  gather(key, value, -provider) %&gt;%
+  unnest(value) %&gt;%
+  mutate(cons = rec_revert(cons, rec, provider))
+  
+pjm
+#&gt; # A tibble: 26,880 x 4
+#&gt;    provider key    datetime             cons
+#&gt;    &lt;chr&gt;    &lt;chr&gt;  &lt;dttm&gt;              &lt;dbl&gt;
+#&gt;  1 AEP      actual 2018-04-13 00:00:00 11488
+#&gt;  2 AEP      actual 2018-04-13 01:00:00 11100
+#&gt;  3 AEP      actual 2018-04-13 02:00:00 10915
+#&gt;  4 AEP      actual 2018-04-13 03:00:00 10972
+#&gt;  5 AEP      actual 2018-04-13 04:00:00 11204
+#&gt;  6 AEP      actual 2018-04-13 05:00:00 11895
+#&gt;  7 AEP      actual 2018-04-13 06:00:00 13107
+#&gt;  8 AEP      actual 2018-04-13 07:00:00 13681
+#&gt;  9 AEP      actual 2018-04-13 08:00:00 13874
+#&gt; 10 AEP      actual 2018-04-13 09:00:00 13921
+#&gt; # ... with 26,870 more rows</code></pre>
+<p>There you go, the forecast results for each <code>provider</code> in a proper long format :grimacing:</p>
+<p>You can proceed to plot the forecast:</p>
+<pre class="r"><code>pjm %&gt;%
+  ggplot(aes(x = datetime, y = cons, colour = key)) +
+    geom_line() +
+    labs(x = NULL, y = NULL, colour = NULL) +
+    facet_wrap(~ provider, scale = &quot;free&quot;, ncol = 1) +
+    tidyquant::theme_tq() +
+    tidyquant::scale_colour_tq()</code></pre>
+<p><img src="/blog/2019-01-29-purrr-operly-fitting-multiple-time-series-model_files/figure-html/nest-full-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="concluding-remarks" class="section level2">
+<h2>Concluding remarks</h2>
+<p>Fitting multiple time series models using <code>purrr</code> is somehow a little bit complicated, but on the other hand, very flexible. Actually, it also could be easily extended into a more complex scenario, such as incorporating multiple preprocess <code>recipes</code> as another model combination, or applying more complex rule in automating the fitting. Despite of that, I do understand that for someone new to <code>purrr</code>, it would be very hard to follow the workflow; to be honest, even me spending around 80% of writing this post thinking about the easiest way to explain the process narratively. But I really hope that the codes above enough to explain the basic workflow for functional programming in time series :smile:</p>
+<p>If you want to tryout yourself, you can checkout this post folder in my <a href="https://github.com/bagasbgy/blog" target="_blank">blog repository</a>, and use the distraction-free version of the codes above inside the <a href="https://github.com/bagasbgy/blog/tree/master/content/posts/2019-01-29-purrr-operly-fitting-multiple-time-series-models/R/fit.R" target="_blank"><code>fit.R</code></a> script, which located inside the <code>R</code> folder. I really recommend you to use your own dataset, so you could understand better about the workflow! :grin:</p>
+<p>If you find any difficulties in trying this example, please let me know in the comment so I can help you :ok_hand:</p>
+<p>Ok, as always, here’s a <code>tidyverse</code> logo for you:</p>
+<pre><code>#&gt; * __  _    __   .    o           *  . 
+#&gt;  / /_(_)__/ /_ ___  _____ _______ ___ 
+#&gt; / __/ / _  / // / |/ / -_) __(_-&lt;/ -_)
+#&gt; \__/_/\_,_/\_, /|___/\__/_/ /___/\__/ 
+#&gt;      *  . /___/      o      .       *</code></pre>
+<p><strong>Session:</strong></p>
+<pre class="r"><code># session info
+sessionInfo()
+#&gt; R version 3.5.2 (2018-12-20)
+#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
+#&gt; Running under: Windows 10 x64 (build 17763)
+#&gt; 
+#&gt; Matrix products: default
+#&gt; 
+#&gt; locale:
+#&gt; [1] LC_COLLATE=English_Indonesia.1252  LC_CTYPE=English_Indonesia.1252   
+#&gt; [3] LC_MONETARY=English_Indonesia.1252 LC_NUMERIC=C                      
+#&gt; [5] LC_TIME=English_Indonesia.1252    
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
+#&gt; 
+#&gt; other attached packages:
+#&gt;  [1] forcats_0.3.0    stringr_1.3.1    readr_1.1.1      tidyverse_1.2.1 
+#&gt;  [5] yardstick_0.0.2  tibble_2.0.1     rsample_0.0.4    tidyr_0.8.2     
+#&gt;  [9] recipes_0.1.4    purrr_0.2.5      parsnip_0.0.1    infer_0.4.0     
+#&gt; [13] ggplot2_3.1.0    dplyr_0.8.0.1    dials_0.0.2      scales_1.0.0    
+#&gt; [17] broom_0.5.1      tidymodels_0.0.2 magrittr_1.5     lubridate_1.7.4 
+#&gt; [21] forecast_8.4    
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;   [1] readxl_1.2.0               backports_1.1.4           
+#&gt;   [3] tidytext_0.2.0             plyr_1.8.4                
+#&gt;   [5] igraph_1.2.2               lazyeval_0.2.1            
+#&gt;   [7] splines_3.5.2              crosstalk_1.0.0           
+#&gt;   [9] SnowballC_0.5.1            rstantools_1.5.1          
+#&gt;  [11] inline_0.3.15              digest_0.6.18             
+#&gt;  [13] htmltools_0.3.6            rsconnect_0.8.12          
+#&gt;  [15] fansi_0.4.0                modelr_0.1.2              
+#&gt;  [17] gower_0.1.2                matrixStats_0.54.0        
+#&gt;  [19] tidyquant_0.5.5            xts_0.11-2                
+#&gt;  [21] tseries_0.10-46            prettyunits_1.0.2         
+#&gt;  [23] colorspace_1.4-0           rvest_0.3.2               
+#&gt;  [25] haven_2.1.0                xfun_0.6                  
+#&gt;  [27] callr_3.1.1                crayon_1.3.4              
+#&gt;  [29] jsonlite_1.6               lme4_1.1-19               
+#&gt;  [31] survival_2.43-3            zoo_1.8-4                 
+#&gt;  [33] glue_1.3.1                 gtable_0.2.0              
+#&gt;  [35] ipred_0.9-8                pkgbuild_1.0.2            
+#&gt;  [37] Quandl_2.9.1               rstan_2.18.2              
+#&gt;  [39] timetk_0.1.1.1             quantmod_0.4-13           
+#&gt;  [41] miniUI_0.1.1.1             Rcpp_1.0.0                
+#&gt;  [43] xtable_1.8-3               stats4_3.5.2              
+#&gt;  [45] lava_1.6.4                 StanHeaders_2.18.0-1      
+#&gt;  [47] prodlim_2018.04.18         DT_0.5                    
+#&gt;  [49] htmlwidgets_1.3            httr_1.4.0                
+#&gt;  [51] threejs_0.3.1              pkgconfig_2.0.2           
+#&gt;  [53] loo_2.0.0                  nnet_7.3-12               
+#&gt;  [55] utf8_1.1.4                 labeling_0.3              
+#&gt;  [57] tidyselect_0.2.5           rlang_0.3.1               
+#&gt;  [59] reshape2_1.4.3             later_0.8.0               
+#&gt;  [61] cellranger_1.1.0           munsell_0.5.0             
+#&gt;  [63] tools_3.5.2                cli_1.1.0                 
+#&gt;  [65] generics_0.0.2             ggridges_0.5.1            
+#&gt;  [67] evaluate_0.13              yaml_2.2.0                
+#&gt;  [69] processx_3.2.1             knitr_1.21                
+#&gt;  [71] nlme_3.1-137               mime_0.6                  
+#&gt;  [73] rstanarm_2.18.2            xml2_1.2.0                
+#&gt;  [75] tokenizers_0.2.1           compiler_3.5.2            
+#&gt;  [77] bayesplot_1.6.0            shinythemes_1.1.2         
+#&gt;  [79] rstudioapi_0.9.0           curl_3.3                  
+#&gt;  [81] tidyposterior_0.0.2        stringi_1.2.4             
+#&gt;  [83] ps_1.3.0                   blogdown_0.11             
+#&gt;  [85] lattice_0.20-38            uroot_2.0-9               
+#&gt;  [87] Matrix_1.2-15              nloptr_1.2.1              
+#&gt;  [89] markdown_0.9               shinyjs_1.0.1.9004        
+#&gt;  [91] urca_1.3-0                 pillar_1.3.1              
+#&gt;  [93] lmtest_0.9-36              httpuv_1.5.1              
+#&gt;  [95] R6_2.4.0                   bookdown_0.9              
+#&gt;  [97] promises_1.0.1             gridExtra_2.3             
+#&gt;  [99] janeaustenr_0.1.5          codetools_0.2-15          
+#&gt; [101] colourpicker_1.0           MASS_7.3-51.1             
+#&gt; [103] gtools_3.8.1               assertthat_0.2.1          
+#&gt; [105] withr_2.1.2                shinystan_2.5.0           
+#&gt; [107] fracdiff_1.4-2             PerformanceAnalytics_1.5.2
+#&gt; [109] parallel_3.5.2             hms_0.4.2                 
+#&gt; [111] quadprog_1.5-5             grid_3.5.2                
+#&gt; [113] rpart_4.1-13               timeDate_3043.102         
+#&gt; [115] class_7.3-14               minqa_1.2.4               
+#&gt; [117] rmarkdown_1.11             TTR_0.23-4                
+#&gt; [119] pROC_1.13.0                tidypredict_0.2.1         
+#&gt; [121] shiny_1.2.0                base64enc_0.1-3           
+#&gt; [123] dygraphs_1.1.1.6</code></pre>
+</div>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/forecast">forecast</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/purrr">purrr</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/tidyverse">tidyverse</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/time-series">time series</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/data-wars-episode-iv/"
+                class="button big previous">Data Wars: Episode IV</a></li>
+    
+
+    
+        <li><a href="/blog/twitter-interactions-analysis-using-twinetverse/"
+                class="button big next">Twitter Interactions Analysis using Twinetverse</a></li>
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>Algoritma Technical Blog</h2>
+        <p>We're a group of people who teach data science to individuals, trains companies and their employees to better profit from data. We care about the development of data science and a sense of community that connects our alumni and team with one another. To learn more about our approach to data science problems, feel free to hop over to our blog.</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Recent Posts</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/self-organizing-maps/">Self-Organizing Maps</a>
+              </h3>
+              
+              <time class="published" datetime='2019-04-26'>
+                April 26, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">View more posts</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+    <p class="copyright">
+      
+        &copy; 2019
+        
+          Algoritma Technical Blog
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

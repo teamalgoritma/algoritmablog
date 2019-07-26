@@ -1,0 +1,1021 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "blog",
+        "name" : "Metrics Evaluation using `yardstick`",
+        "headline" : "Metrics Evaluation using `yardstick`",
+        "description" : "Motivation\rEvaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2019",
+        "datePublished": "2019-01-10 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2019-01-10 00:00:00 \x2b0000 UTC",
+        "url" : "\/blog\/metrics-evaluation-using-yardstick\/",
+        "wordCount" : "866",
+        "keywords" : [ "metrics evaluation","yardstick","accuracy","recall","precision","Capstone Ml","dplyr","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Metrics Evaluation using `yardstick`</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.55.4" />
+        
+
+
+        
+            <meta name="author" content="Nor Iffadathul Faddilla">
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Metrics Evaluation using `yardstick`"/>
+<meta name="twitter:description" content="MotivationEvaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm."/>
+<meta name="twitter:site" content="@teamalgoritma"/>
+
+        <meta property="og:title" content="Metrics Evaluation using `yardstick`" />
+<meta property="og:description" content="MotivationEvaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/metrics-evaluation-using-yardstick/" />
+<meta property="article:published_time" content="2019-01-10T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-01-10T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="Metrics Evaluation using `yardstick`">
+<meta itemprop="description" content="MotivationEvaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.">
+
+
+<meta itemprop="datePublished" content="2019-01-10T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-01-10T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="866">
+
+
+
+<meta itemprop="keywords" content="metrics evaluation,yardstick,accuracy,recall,precision,Capstone Ml,dplyr," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+
+
+      <link rel="stylesheet" href="/css/pojoaque.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="/js/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/blog/">
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/self-organizing-maps/">Self-Organizing Maps</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-04-26'>
+                                    April 26, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fmetrics-evaluation-using-yardstick%2f&amp;text=Metrics%20Evaluation%20using%20%60yardstick%60&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fmetrics-evaluation-using-yardstick%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fmetrics-evaluation-using-yardstick%2f&amp;title=Metrics%20Evaluation%20using%20%60yardstick%60" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/metrics-evaluation-using-yardstick/">Metrics Evaluation using `yardstick`</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2019-01-10'>
+            January 10, 2019</time>
+        <span class="author">Nor Iffadathul Faddilla</span>
+        
+            <p>5 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fmetrics-evaluation-using-yardstick%2f&amp;text=Metrics%20Evaluation%20using%20%60yardstick%60&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fmetrics-evaluation-using-yardstick%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fmetrics-evaluation-using-yardstick%2f&amp;title=Metrics%20Evaluation%20using%20%60yardstick%60" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </section>
+  
+
+  
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/metrics-evaluation-using-yardstick/" class="image featured">
+            <img src="/img/2019/01/Yardstick.png" alt="">
+        </a>
+    
+
+
+  <div id="content">
+    
+
+
+<div id="motivation" class="section level1">
+<h1>Motivation</h1>
+<p>Evaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm. Usually, after we’ve got prediction from our models, we can use <code>confusionMatrix()</code> from <code>caret</code> packages to evaluate classification models. In this article we’ll discover how to evaluate Machine Learning Performance using <code>yardstick</code> packages for Classification Algorithms.</p>
+</div>
+<div id="installation" class="section level1">
+<h1>Installation</h1>
+<p>To install <code>yardstick</code> package, you can run:</p>
+<pre class="r"><code>install.packages(&quot;yardstick&quot;)
+
+# Development version:
+devtools::install_github(&quot;tidymodels/yardstick&quot;)</code></pre>
+</div>
+<div id="how-to-use" class="section level1">
+<h1>How to use</h1>
+<p>After installation, we can called the library before used it:</p>
+<pre class="r"><code>library(yardstick)</code></pre>
+<p>We will demonstrate the data for evaluating used <code>two_class_example</code>. Take a look the data:</p>
+<pre class="r"><code>head(two_class_example)</code></pre>
+<pre><code>##    truth      Class1       Class2 predicted
+## 1 Class2 0.003589243 0.9964107574    Class2
+## 2 Class1 0.678621054 0.3213789460    Class1
+## 3 Class2 0.110893522 0.8891064779    Class2
+## 4 Class1 0.735161703 0.2648382969    Class1
+## 5 Class2 0.016239960 0.9837600397    Class2
+## 6 Class1 0.999275071 0.0007249286    Class1</code></pre>
+<p>Check structure from the data:</p>
+<pre class="r"><code>str(two_class_example)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    500 obs. of  4 variables:
+##  $ truth    : Factor w/ 2 levels &quot;Class1&quot;,&quot;Class2&quot;: 2 1 2 1 2 1 1 1 2 2 ...
+##  $ Class1   : num  0.00359 0.67862 0.11089 0.73516 0.01624 ...
+##  $ Class2   : num  0.996 0.321 0.889 0.265 0.984 ...
+##  $ predicted: Factor w/ 2 levels &quot;Class1&quot;,&quot;Class2&quot;: 2 1 2 1 2 1 1 1 2 2 ...</code></pre>
+<p>These data are a test set form a model built from two classes (<code>Class1</code> and <code>Class2</code>). There are columns for the true (<code>truth</code>), prediction (<code>predicted</code>) and columns for each probability for each class.</p>
+<p>To evaluate the prediction, we can use Accuracy, Recall and Precision (recall course materials Classification in Machine Learning 1 &amp; 2). Remember when we’re doing this in <code>caret</code> packages, we can use :</p>
+<pre class="r"><code># data is prediction value, and reference is truh value
+caret::confusionMatrix(data = two_class_example$predicted, reference = two_class_example$truth)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction Class1 Class2
+##     Class1    227     50
+##     Class2     31    192
+##                                           
+##                Accuracy : 0.838           
+##                  95% CI : (0.8027, 0.8692)
+##     No Information Rate : 0.516           
+##     P-Value [Acc &gt; NIR] : &lt;2e-16          
+##                                           
+##                   Kappa : 0.6749          
+##  Mcnemar&#39;s Test P-Value : 0.0455          
+##                                           
+##             Sensitivity : 0.8798          
+##             Specificity : 0.7934          
+##          Pos Pred Value : 0.8195          
+##          Neg Pred Value : 0.8610          
+##              Prevalence : 0.5160          
+##          Detection Rate : 0.4540          
+##    Detection Prevalence : 0.5540          
+##       Balanced Accuracy : 0.8366          
+##                                           
+##        &#39;Positive&#39; Class : Class1          
+## </code></pre>
+<p>In <code>yardstick</code> packages, we can customize what we want to show in our confusion matrix. By default, we don’t want customize the metrics it’ll give use accuracy and kap metrics:</p>
+<pre class="r"><code># 2 class only
+metrics(data = two_class_example, truth = truth, estimate = predicted)</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.838
+## 2 kap      binary         0.675</code></pre>
+<p>If we want to customize the metrics, we can create set of metrics that we want to show and then applied that to our data:</p>
+<pre class="r"><code># set metrics 
+multi_met &lt;- metric_set(accuracy, precision, recall, spec)
+
+two_class_example %&gt;% 
+  multi_met(truth = truth, estimate = predicted)</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##   .metric   .estimator .estimate
+##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy  binary         0.838
+## 2 precision binary         0.819
+## 3 recall    binary         0.880
+## 4 spec      binary         0.793</code></pre>
+<p>If we have data with multi-class it’ll we very helpful because we can have accuracy, precision, recall and the others metrics from our prediction. We’ll use the <code>hpc_cv</code> data to demonstrate, the data column columns for the true class (obs), the class prediction (pred) and columns for each class probability (columns VF, F, M, and L). Additionally, a column for the resample indicator is included.</p>
+<pre class="r"><code>head(hpc_cv)</code></pre>
+<pre><code>##   obs pred        VF          F           M            L Resample
+## 1  VF   VF 0.9136340 0.07786694 0.008479147 1.991225e-05   Fold01
+## 2  VF   VF 0.9380672 0.05710623 0.004816447 1.011557e-05   Fold01
+## 3  VF   VF 0.9473710 0.04946767 0.003156287 4.999849e-06   Fold01
+## 4  VF   VF 0.9289077 0.06528949 0.005787179 1.564496e-05   Fold01
+## 5  VF   VF 0.9418764 0.05430830 0.003808013 7.294581e-06   Fold01
+## 6  VF   VF 0.9510978 0.04618223 0.002716177 3.841455e-06   Fold01</code></pre>
+<p>Let’s check what’s class for <code>obs</code> and <code>pred</code>:</p>
+<pre class="r"><code>levels(hpc_cv$obs)</code></pre>
+<pre><code>## [1] &quot;VF&quot; &quot;F&quot;  &quot;M&quot;  &quot;L&quot;</code></pre>
+<pre class="r"><code>levels(hpc_cv$pred)</code></pre>
+<pre><code>## [1] &quot;VF&quot; &quot;F&quot;  &quot;M&quot;  &quot;L&quot;</code></pre>
+<p>To get the accuracy, we can use:</p>
+<pre class="r"><code># multi-class
+metrics(data = hpc_cv, truth = obs, estimate = pred)</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy multiclass     0.709
+## 2 kap      multiclass     0.508</code></pre>
+<p>We can use the <code>multi_met</code> that we’ve created above, and we define the truth column and prediction column.</p>
+<pre class="r"><code>hpc_cv %&gt;% 
+  multi_met(truth = obs, estimate = pred)</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##   .metric   .estimator .estimate
+##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy  multiclass     0.709
+## 2 precision macro          0.631
+## 3 recall    macro          0.560
+## 4 spec      macro          0.879</code></pre>
+</div>
+<div id="annotation" class="section level1">
+<h1>Annotation</h1>
+<ul>
+<li>More metrics you can access in <a href="https://tidymodels.github.io/yardstick/articles/metric-types.html">here</a></li>
+<li>How calculated the estimator <a href="https://tidymodels.github.io/yardstick/articles/multiclass.html">here</a></li>
+<li>How to custom your own metrics <a href="https://tidymodels.github.io/yardstick/articles/custom-metrics.html">here</a></li>
+</ul>
+</div>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/metrics-evaluation">metrics evaluation</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/yardstick">yardstick</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/accuracy">accuracy</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/recall">recall</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/precision">precision</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/capstone-ml">Capstone Ml</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/dplyr">dplyr</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/nested-dataframe/"
+                class="button big previous">Nested Dataframe</a></li>
+    
+
+    
+        <li><a href="/blog/time-series-prediction-with-lstm/"
+                class="button big next">Time Series Prediction with LSTM</a></li>
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>Algoritma Technical Blog</h2>
+        <p>We're a group of people who teach data science to individuals, trains companies and their employees to better profit from data. We care about the development of data science and a sense of community that connects our alumni and team with one another. To learn more about our approach to data science problems, feel free to hop over to our blog.</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Recent Posts</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/self-organizing-maps/">Self-Organizing Maps</a>
+              </h3>
+              
+              <time class="published" datetime='2019-04-26'>
+                April 26, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">View more posts</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+    <p class="copyright">
+      
+        &copy; 2019
+        
+          Algoritma Technical Blog
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

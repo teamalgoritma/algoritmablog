@@ -1,0 +1,1116 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "blog",
+        "name" : "Handling Duplicate Data",
+        "headline" : "Handling Duplicate Data",
+        "description" : "Reading Data and Basic Preprocessing\rSome data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.\nMaking sure that there are no duplicated data is one of the aspect of understanding the data itself, because we can’t say that the model that are being made from the information full of duplicated data is relevant enough to be used in real-case scenario.",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2019",
+        "datePublished": "2019-01-13 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2019-01-13 00:00:00 \x2b0000 UTC",
+        "url" : "\/blog\/handling-duplicate-data\/",
+        "wordCount" : "2374",
+        "keywords" : [ "Data Manipulation","Capstone Ml","dplyr","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Handling Duplicate Data</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.55.4" />
+        
+
+
+        
+            <meta name="author" content="Ardhito Utomo">
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Handling Duplicate Data"/>
+<meta name="twitter:description" content="Reading Data and Basic PreprocessingSome data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.
+Making sure that there are no duplicated data is one of the aspect of understanding the data itself, because we can’t say that the model that are being made from the information full of duplicated data is relevant enough to be used in real-case scenario."/>
+<meta name="twitter:site" content="@teamalgoritma"/>
+
+        <meta property="og:title" content="Handling Duplicate Data" />
+<meta property="og:description" content="Reading Data and Basic PreprocessingSome data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.
+Making sure that there are no duplicated data is one of the aspect of understanding the data itself, because we can’t say that the model that are being made from the information full of duplicated data is relevant enough to be used in real-case scenario." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/handling-duplicate-data/" />
+<meta property="article:published_time" content="2019-01-13T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-01-13T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="Handling Duplicate Data">
+<meta itemprop="description" content="Reading Data and Basic PreprocessingSome data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.
+Making sure that there are no duplicated data is one of the aspect of understanding the data itself, because we can’t say that the model that are being made from the information full of duplicated data is relevant enough to be used in real-case scenario.">
+
+
+<meta itemprop="datePublished" content="2019-01-13T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-01-13T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2374">
+
+
+
+<meta itemprop="keywords" content="Data Manipulation,Capstone Ml,dplyr," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+
+
+      <link rel="stylesheet" href="/css/pojoaque.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="/js/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/blog/">
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/self-organizing-maps/">Self-Organizing Maps</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-04-26'>
+                                    April 26, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fhandling-duplicate-data%2f&amp;text=Handling%20Duplicate%20Data&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fhandling-duplicate-data%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fhandling-duplicate-data%2f&amp;title=Handling%20Duplicate%20Data" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/handling-duplicate-data/">Handling Duplicate Data</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2019-01-13'>
+            January 13, 2019</time>
+        <span class="author">Ardhito Utomo</span>
+        
+            <p>12 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fhandling-duplicate-data%2f&amp;text=Handling%20Duplicate%20Data&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fhandling-duplicate-data%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fhandling-duplicate-data%2f&amp;title=Handling%20Duplicate%20Data" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </section>
+  
+
+  
+
+  <div id="content">
+    
+
+
+<div id="reading-data-and-basic-preprocessing" class="section level1">
+<h1>Reading Data and Basic Preprocessing</h1>
+<p>Some data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.</p>
+<p>Making sure that there are no duplicated data is one of the aspect of understanding the data itself, because we can’t say that the model that are being made from the information full of duplicated data is relevant enough to be used in real-case scenario. This time, we will learn how to hande duplicated data, so then we are sure that the data we’re going to use to create a model, visual interpretation, etc is reliable enough.</p>
+<p>One of the example is a case when we want to find out the amount of requests in an online transportation. When we have a data that the <code>canceled</code> requests or <code>no-driver</code> conditions are exist, there are probability that some of those rows are consisted of only one consumer, henceforth irrelevant.</p>
+<p>Now, we want to solve another case of understanding our data more: to decide which one is considered as duplicate, and to remove it.</p>
+<p>This case is about <a href="https://www.kaggle.com/onlineauctions/online-auctions-dataset#auction.csv">Online Auctions Dataset</a> from Kaggle. This data is about an auction held by eBay. Now, our main objective is to see people bidding an item each day.</p>
+<p>The package</p>
+<p>Before we process our data, it would be wise to understand each column that exist there:</p>
+<ul>
+<li>auctionid : unique identifier of an auction</li>
+<li>bid : the proxy bid placed by a bidder</li>
+<li>bidtime : the time in days that the bid was placed, from the start of the auction</li>
+<li>bidder : eBay username of the bidder</li>
+<li>bidderrate : eBay feedback rating of the bidder</li>
+<li>openbid : the opening bid set by the seller</li>
+<li>price : the closing price that the item sold for (equivalent to the second highest bid + an increment)</li>
+<li>item : auction item</li>
+<li>auction_type : type of an auction: 3-days auction, 5-days auction, or 7-days auction.</li>
+</ul>
+<p>If we look at the columns provided, we know that some columns are not needed. But to make sure, we will now read the data and call libraries needed, then take a look of the structure to make sure that every column has the right type of data.</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>data &lt;- read.csv(&quot;data_input/auction.csv&quot;)</code></pre>
+<pre class="r"><code>glimpse(data)</code></pre>
+<pre><code>## Observations: 10,681
+## Variables: 9
+## $ auctionid    &lt;dbl&gt; 1638893549, 1638893549, 1638893549, 1638893549, 1...
+## $ bid          &lt;dbl&gt; 175.00, 100.00, 120.00, 150.00, 177.50, 1.00, 1.2...
+## $ bidtime      &lt;dbl&gt; 2.230949, 2.600116, 2.600810, 2.601076, 2.909826,...
+## $ bidder       &lt;fct&gt; schadenfreud, chuik, kiwisstuff, kiwisstuff, eli....
+## $ bidderrate   &lt;int&gt; 0, 0, 2, 2, 4, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 15, ...
+## $ openbid      &lt;dbl&gt; 99, 99, 99, 99, 99, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
+## $ price        &lt;dbl&gt; 177.5, 177.5, 177.5, 177.5, 177.5, 355.0, 355.0, ...
+## $ item         &lt;fct&gt; Cartier wristwatch, Cartier wristwatch, Cartier w...
+## $ auction_type &lt;fct&gt; 3 day auction, 3 day auction, 3 day auction, 3 da...</code></pre>
+<p>The chunk above shows that the data we have is ordered by <code>auctionid</code>. But, <code>auctionid</code> is still being read as numeric data type instead of factor. Then, because of our objection is to see how many people bid each item each day, we will round the number of <code>bidtime</code>. Also, some columns is useless in out objective, like <code>bid</code>, <code>bidderrate</code>, <code>openbid</code>, and <code>price</code>.</p>
+<pre class="r"><code>data &lt;- data %&gt;% 
+  mutate(auctionid = as.factor(auctionid), 
+         bidtime = floor(bidtime)) %&gt;% 
+  dplyr::select(auctionid, bidtime, bidder, bid, item, auction_type)
+
+glimpse(data)</code></pre>
+<pre><code>## Observations: 10,681
+## Variables: 6
+## $ auctionid    &lt;fct&gt; 1638893549, 1638893549, 1638893549, 1638893549, 1...
+## $ bidtime      &lt;dbl&gt; 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1...
+## $ bidder       &lt;fct&gt; schadenfreud, chuik, kiwisstuff, kiwisstuff, eli....
+## $ bid          &lt;dbl&gt; 175.00, 100.00, 120.00, 150.00, 177.50, 1.00, 1.2...
+## $ item         &lt;fct&gt; Cartier wristwatch, Cartier wristwatch, Cartier w...
+## $ auction_type &lt;fct&gt; 3 day auction, 3 day auction, 3 day auction, 3 da...</code></pre>
+<p>Before going further, we will also check if there’s any NA in our data.</p>
+<pre class="r"><code>colSums(is.na(data))</code></pre>
+<pre><code>##    auctionid      bidtime       bidder          bid         item 
+##            0            0           16            0            0 
+## auction_type 
+##            0</code></pre>
+<p>As a rule of thumb, because the amount of NA in <code>bidder</code> is less than 5% of our data, we will remove them.</p>
+<pre class="r"><code>data &lt;- data[complete.cases(data),]</code></pre>
+<p>Then, we will order the data depend on three things and in order: <code>auctionid</code>, <code>bidtime</code>, then <code>bidder</code>. By doing that, we can see each bidder bids each time, each day.</p>
+<pre class="r"><code>data &lt;- data %&gt;% 
+  arrange(auctionid, bidtime, bidder)
+
+glimpse(data)</code></pre>
+<pre><code>## Observations: 10,665
+## Variables: 6
+## $ auctionid    &lt;fct&gt; 1638843936, 1638843936, 1638843936, 1638843936, 1...
+## $ bidtime      &lt;dbl&gt; 0, 0, 3, 5, 6, 6, 6, 1, 1, 1, 3, 4, 6, 6, 6, 6, 6...
+## $ bidder       &lt;fct&gt; doc213, kona-java, zmxu, carloss8055, carloss8055...
+## $ bid          &lt;dbl&gt; 800.00, 500.00, 600.00, 1500.00, 1550.00, 1625.00...
+## $ item         &lt;fct&gt; Cartier wristwatch, Cartier wristwatch, Cartier w...
+## $ auction_type &lt;fct&gt; 7 day auction, 7 day auction, 7 day auction, 7 da...</code></pre>
+</div>
+<div id="lead-lag-and-complete" class="section level1">
+<h1>Lead, Lag, and Complete</h1>
+<p>Now, we will find out which rows considered as duplicate so we can remove them. The rows we will remove is the rows existed because a bidder bids more than one time a day for an item. We will choose only the biggest amount of bid for each person each day.</p>
+<p>For that, two functions from <code>dplyr</code> library will be introduced: <code>lag</code> and <code>lead</code>. The <code>lag</code> is being used to see the next value of a vector, and the <code>lead</code> one is the exact opposite of it.</p>
+<p>But before we start jumping into our main objective, it would be wise to learn about why arranging before using <code>lag</code> and <code>lead</code> so important. For example, we have 5 numbers from 0 to 1, and we want to see what number before and after in each number using those two functions.</p>
+<pre class="r"><code>set.seed(8)
+x &lt;- runif(5)
+cbind(x, after = lead(x), before = lag(x))</code></pre>
+<pre><code>##              x     after    before
+## [1,] 0.4662952 0.2078233        NA
+## [2,] 0.2078233 0.7996580 0.4662952
+## [3,] 0.7996580 0.6518713 0.2078233
+## [4,] 0.6518713 0.3215092 0.7996580
+## [5,] 0.3215092        NA 0.6518713</code></pre>
+<p>Well that’s easy, considering we only have a column before and we don’t have to care about ordering our value by what. But sometimes there are conditions that an error is occured because we don’t specify in which order we want to know our <code>lag</code> and <code>lead</code>.</p>
+<p>So let’s make another example. Say that we have a data frame consists of a year, its quartal, and a value for each quartal. But the condition is the rows are scrambled and some rows are missing. Should we fill the incomplete rows first? or should we arrange it first? or can we directly find our next and before value?</p>
+<p>Let’s read the arranged but incomplete data first.</p>
+<pre class="r"><code>set.seed(8)
+y &lt;- data.frame(year = c(2000,2000,2001,2001,2001,2001,2002,2002,2002),
+                quartal = c(1,3,1,2,3,4,2,3,4),
+                value = runif(9))
+head(y)</code></pre>
+<pre><code>##   year quartal     value
+## 1 2000       1 0.4662952
+## 2 2000       3 0.2078233
+## 3 2001       1 0.7996580
+## 4 2001       2 0.6518713
+## 5 2001       3 0.3215092
+## 6 2001       4 0.7189275</code></pre>
+<p>We will then complete our missing quartal. We’re using <code>complete</code> from <code>tidyr</code> library.</p>
+<pre class="r"><code>y %&gt;% 
+  tidyr::complete(year, quartal) %&gt;% 
+  head()</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##    year quartal  value
+##   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2000       1  0.466
+## 2  2000       2 NA    
+## 3  2000       3  0.208
+## 4  2000       4 NA    
+## 5  2001       1  0.800
+## 6  2001       2  0.652</code></pre>
+<p>We can fill the NAs using <code>ifelse</code> in <code>mutate</code> function from <code>dplyr</code>, or we can also easily use <code>fill</code> as a parameter inside <code>complete</code> above.</p>
+<pre class="r"><code>y &lt;- y %&gt;% 
+  tidyr::complete(year, quartal, fill = list(value = 0))
+head(y)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##    year quartal value
+##   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1  2000       1 0.466
+## 2  2000       2 0    
+## 3  2000       3 0.208
+## 4  2000       4 0    
+## 5  2001       1 0.800
+## 6  2001       2 0.652</code></pre>
+<p>Now we’ll try to scramble them.</p>
+<pre class="r"><code>set.seed(8)
+scrambled &lt;- y[sample(nrow(y)),]
+head(scrambled)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##    year quartal value
+##   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1  2001       2 0.652
+## 2  2000       3 0.208
+## 3  2001       4 0.719
+## 4  2002       4 0.769
+## 5  2002       3 0.932
+## 6  2002       1 0</code></pre>
+<p>In order to solve that, we can first arrange our data depend on year and quartal before using <code>lag</code> or <code>lead</code> function. This example we will use <code>lag</code>.</p>
+<pre class="r"><code>wrong &lt;- scrambled %&gt;% 
+  mutate(prev = lag(value)) %&gt;% 
+  arrange(year, quartal)
+head(wrong)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##    year quartal value   prev
+##   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2000       1 0.466  0.322
+## 2  2000       2 0      0    
+## 3  2000       3 0.208  0.652
+## 4  2000       4 0      0.800
+## 5  2001       1 0.800  0    
+## 6  2001       2 0.652 NA</code></pre>
+<pre class="r"><code>right &lt;- scrambled %&gt;% 
+  arrange(year,quartal) %&gt;% 
+  mutate(prev = lag(value))
+head(right)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##    year quartal value   prev
+##   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2000       1 0.466 NA    
+## 2  2000       2 0      0.466
+## 3  2000       3 0.208  0    
+## 4  2000       4 0      0.208
+## 5  2001       1 0.800  0    
+## 6  2001       2 0.652  0.800</code></pre>
+<p>The 2 tables above show how important ordering is, especially when you want to know the value before and after a row: doing wrong once, and your column will be broken.</p>
+<p>Now we understand, that when we’re faced with a data of scrambled, and full of missing rows and we want to find its <code>lag</code> or <code>lead</code>, we can:</p>
+<ol style="list-style-type: decimal">
+<li>Rearrange them,</li>
+<li>Fill the incomeplete rows, and</li>
+<li>Finally find their <code>lead</code> and <code>lag</code></li>
+</ol>
+<p>Now let’s get back to our main quest. We will apply those functions to determine that a row is considered as duplicate or not. After separating of which one is duplicate and which one is not, we will filter them to show only the non-duplicate ones.</p>
+<pre class="r"><code>data_mod &lt;- data %&gt;% 
+  mutate(
+    Final = ifelse(bidder == lead(bidder,1) &amp;
+                     auctionid == lead(auctionid,1) &amp;
+                     bidtime == lead(bidtime,1), 0, 1))
+
+data_mod &lt;- data_mod %&gt;% 
+  filter(Final == 1 | is.na(Final)) # NA will be returned in the last row of data</code></pre>
+<p>Fortunately we can use only <code>lead</code> one to know which of them is a duplicate. But for knowledge purposes, we can use <code>lag</code> also. In this condition, we don’t need to have each bidder’s biggest amount of bid in a day, so we can take only the first time they bid. This can be used if the data we have is prone to be accidentally inputted (like filling forms or quizzes).</p>
+<pre class="r"><code>data_mod2 &lt;- data %&gt;%
+  mutate(
+    Final = ifelse(bidder == lag(bidder,1) &amp;
+                     auctionid == lag(auctionid,1) &amp;
+                     bidtime == lag(bidtime,1), 0, 1))
+
+data_mod2 &lt;- data_mod2 %&gt;% 
+  filter(Final == 1 | is.na(Final)) # NA will be returned in the first row of data</code></pre>
+<p>The difference of them can be seen below. If we focus on the 5th row, we can see that the amount of bid is different. Because it happens that carloss8055 was bidding more than one time a day. It’s highest amount is placed in 4th column, and it’s lowest one in 5th.</p>
+<pre class="r"><code>merge &lt;- cbind(data_mod[,1:4],data_mod2[,4])
+colnames(merge)[4] &lt;- &quot;bid_lead&quot;
+colnames(merge)[5] &lt;- &quot;bid_lag&quot;
+
+head(merge)</code></pre>
+<pre><code>##    auctionid bidtime      bidder bid_lead bid_lag
+## 1 1638843936       0      doc213      800     800
+## 2 1638843936       0   kona-java      500     500
+## 3 1638843936       3        zmxu      600     600
+## 4 1638843936       5 carloss8055     1500    1500
+## 5 1638843936       6 carloss8055     1625    1550
+## 6 1638843936       6     jdrinaz     1600    1600</code></pre>
+<p>Because we want to get the highest bid of each bidder in each day, we will use <code>data_mod</code>, that took only the last one and remove the row before that because considered as a dup.</p>
+</div>
+<div id="the-difference-of-raw-and-edited-data" class="section level1">
+<h1>The Difference of Raw and Edited Data</h1>
+<p>At last, we will see the differencess of the data when we don’t filter it and when we do. First we will see first 8 of both data, then making a plot to make it more clear.</p>
+<pre class="r"><code>head(data[,1:5], 8)</code></pre>
+<pre><code>##    auctionid bidtime            bidder  bid               item
+## 1 1638843936       0            doc213  800 Cartier wristwatch
+## 2 1638843936       0         kona-java  500 Cartier wristwatch
+## 3 1638843936       3              zmxu  600 Cartier wristwatch
+## 4 1638843936       5       carloss8055 1500 Cartier wristwatch
+## 5 1638843936       6       carloss8055 1550 Cartier wristwatch
+## 6 1638843936       6       carloss8055 1625 Cartier wristwatch
+## 7 1638843936       6           jdrinaz 1600 Cartier wristwatch
+## 8 1638844284       1 dre_313@yahoo.com  225 Cartier wristwatch</code></pre>
+<pre class="r"><code>head(data_mod[,1:5], 8)</code></pre>
+<pre><code>##    auctionid bidtime            bidder  bid               item
+## 1 1638843936       0            doc213  800 Cartier wristwatch
+## 2 1638843936       0         kona-java  500 Cartier wristwatch
+## 3 1638843936       3              zmxu  600 Cartier wristwatch
+## 4 1638843936       5       carloss8055 1500 Cartier wristwatch
+## 5 1638843936       6       carloss8055 1625 Cartier wristwatch
+## 6 1638843936       6           jdrinaz 1600 Cartier wristwatch
+## 7 1638844284       1 dre_313@yahoo.com  225 Cartier wristwatch
+## 8 1638844284       1         njbirdmom  500 Cartier wristwatch</code></pre>
+<p>Some rows has been deleted, like now we don’t have a row consists of carloss8055 bidding an item (Cartier wristwatch with auctionid 1638843936) for 1550, because after that carloss8055 was bidding again at higher price in the same day. Now, our modified data is not as much as the original one (it’s around the half of the original data).</p>
+<pre class="r"><code>data_agg &lt;- data %&gt;% 
+  group_by(auctionid, bidtime) %&gt;% 
+  summarise(tot_bidder = n()) %&gt;% 
+  mutate(Type = &quot;Raw&quot;) %&gt;% 
+  as.data.frame()
+
+data_mod_agg &lt;- data_mod %&gt;% 
+  group_by(auctionid, bidtime) %&gt;% 
+  summarise(tot_bidder = n()) %&gt;% 
+  mutate(Type = &quot;Edited&quot;) %&gt;% 
+  as.data.frame()
+
+data_combined &lt;- rbind(data_agg, data_mod_agg) %&gt;% 
+  mutate(Type = as.factor(Type))
+
+ggplot(data_combined, aes(x = bidtime, y = tot_bidder, group = Type)) + 
+  geom_bin2d(position = &quot;dodge&quot;, aes(colour = Type)) +
+  labs(x = &quot;bid time&quot;, y = &quot;total bidder&quot;, title = &quot;Original and Edited Data Comparison&quot;)</code></pre>
+<p><img src="/blog/2019-01-13-handling-duplicate-data_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Using only <code>lag</code> and <code>lead</code>, we can see that the impact they’re given to the data is massive. And the edited data is considered more related to the real life scenario than the raw one, and we can easily say that we reach our objective with this.</p>
+</div>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/data-manipulation">Data Manipulation</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/capstone-ml">Capstone Ml</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/dplyr">dplyr</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/time-series-prediction-with-lstm/"
+                class="button big previous">Time Series Prediction with LSTM</a></li>
+    
+
+    
+        <li><a href="/blog/textclean/"
+                class="button big next">Text Preprocessing using textclean</a></li>
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>Algoritma Technical Blog</h2>
+        <p>We're a group of people who teach data science to individuals, trains companies and their employees to better profit from data. We care about the development of data science and a sense of community that connects our alumni and team with one another. To learn more about our approach to data science problems, feel free to hop over to our blog.</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Recent Posts</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/self-organizing-maps/">Self-Organizing Maps</a>
+              </h3>
+              
+              <time class="published" datetime='2019-04-26'>
+                April 26, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">View more posts</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+    <p class="copyright">
+      
+        &copy; 2019
+        
+          Algoritma Technical Blog
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

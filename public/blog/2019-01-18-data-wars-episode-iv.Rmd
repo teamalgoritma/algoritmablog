@@ -1,0 +1,416 @@
+---
+title: 'Data Wars: Episode IV'
+author: R. Dimas Bagas Herlambang
+date: '2019-01-18'
+slug: data-wars-episode-iv
+categories:
+  - R
+tags:
+  - Data Manipulation
+  - dplyr
+  - tidyverse
+description: 'A New Hope in Data Manipulation using R'
+featured: 'tidyverse.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  fig.align = "center",
+  out.width = "100%",
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Data wrangling sometimes could become very tedious. No matter what language do you prefer: R, python, or even SQL, the process of preprocessing your dataset is generally very time consuming. But, this is not the case if you know how to properly use packages included in [**`tidyverse`**](https://tidyverse.org){target="_blank"}.
+
+The term of `tidyverse` is actually referring to a set of packages that you'll find very helpful in any data analysis tasks; many of them are already popular among R users, like [**`dplyr`**](https://dplyr.tidyverse.org){target="_blank"}, [**`ggplot2`**](https://ggplot2.tidyverse.org){target="_blank"}, and [**`lubridate`**](https://lubridate.tidyverse.org){target="_blank"}. These packages are intended to work side-by-side; they share the same API style, and sharing a common data representation format. But another things that often missed is that the `tidyverse` itself is also a package! The `tidyverse` package is intended to make your environment set-up process faster; you only need to install `tidyverse` library to install the bundled packages, and just load the `tidyverse` library to load all the core packages.
+
+In this articles (or maybe I should say, in this _episode_), I will cover the basic usage of core packages in `tidyverse`, using (of course) [**`starwars`**](https://dplyr.tidyverse.org/reference/starwars.html){target="_blank"} dataset which included along with `dplyr` library.
+
+There will be several sequels, and even prequels, for data wrangling using R and `tidyverse` tutorial--or to put it simple, **data wars** :grin:--so stay tuned!
+
+## Enter the `tidyverse`
+
+As I mentioned before, you can install all of the included packages just by installing `tidyverse`. So let's start by installing the package first:
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+If you are in an interactive session, you could see which packages are installed along with `tidyverse`. Just to make sure, let's load the library:
+
+```{r}
+library(tidyverse)
+```
+
+When importing the library, it give you messages about which packages that are attached to your session. But it only give you information about the core packages that fully loaded to your session, while actually `tidyverse` also attaching some great libraries in the background. You can see them all through `sessionInfo()`:
+
+```{r}
+sessionInfo()
+```
+
+As you can see, it actually loads many packages in the background. Don't worry, I will not cover all of them in this article; But I will cover them for sure in later sequels and prequels :grin:. If you really curious about those packages, I suggest you to checkout the detailed list at the `tidyverse` [official documentations](https://tidyverse.tidyverse.org){target="_blank"}.
+
+## Use the standard data representation: `tibble`
+
+The first step in learning the _tidy_ data wrangling is to be familiar with its standard data representation. Before I explain it in detail, let me give you a quick example by printing the `iris` dataset:
+
+```{r}
+head(iris)
+```
+
+and compare the print output with `starwars` dataset from `dplyr`:
+
+```{r}
+starwars
+```
+
+There are sooo many differences between the two outputs that I could elaborate more, but let's focus on several important points:
+
+* When printing `iris` dataset, I had to call it through `head()` to avoid printing the whole dataset. This is not the case for `starwars` dataset
+* Base print output is just _as-is_, not giving some useful information
+* If you see the details in `starwars`' print output, it is showing that it can store a more complex object, like `list` in this case
+
+Why they behave differently? The answer lies in their class:
+
+```{r}
+class(iris)
+
+class(starwars)
+```
+
+The `starwars` dataset class is showing that it's actually a `tibble`; which often referred as `tbl` or `tbl_*` when related to a specific data class. A `tibble` is a little bit different than your usual `data.frame`. I already outlined the main differences above, but in additition to that, it should be noted that `tibble` is the main data representation across the `tidyverse`; and also some extension that adopting the _tidy_ principle, e.g., `tbl_ts` from [**`tsibble`**](https://pkg.earo.me/tsibble/){target="_blank"} for tidy time series data representation.
+
+There are so many other advantages if you use `tibble`. For example, if you want to subset just one column, a simple `data.frame` will failed you again:
+
+```{r}
+iris[, "Species"]
+```
+
+It will drop its "table" representation and convert the data into a `vector`, instead of a `data.frame` with one column. But this is not the case with `tibble`:
+
+```{r}
+iris_tbl <- as_tibble(iris)
+
+iris_tbl[, "Species"]
+```
+
+Why this is justified as a more _tidy_ way? because if you recall the R's standard way to access a specific part from an object is actually using `$`:
+
+```{r}
+iris_tbl$Species
+```
+
+which gives you the exact results.
+
+So my concluding notes are:
+
+* Use `tibble` format whenever it's possible. I rarely found any situation that using `tbl` or `tbl_*` object is not acceptable, because it is still inheriting the standard `data.frame` class.
+* When working a specific case, e.g., time series dataset, or big data, always look if there are any tidy representation for the data; see [**`tsibble`**](https://pkg.earo.me/tsibble/){target="_blank"} and [**`sparklyr`**](https://spark.rstudio.com/s){target="_blank"} for example.
+
+## Easier data manipulation with `dplyr`
+
+The `dplyr` package is probably the most important part of `tidyverse`. It brings so many convenient utilities for data manipulation, particularly for some basic tasks; yet sometimes, could be troublesome if you only use base R functionalities.
+
+Among many advanced features inside `dplyr`, I suggest you to start with the cores data manipulation functions:
+
+* [**`select()`**](https://dplyr.tidyverse.org/reference/select.html){target="_blank"}: for _selecting_ a subset of data by column
+* [**`filter()`**](https://dplyr.tidyverse.org/reference/filter.html){target="_blank"}: for _filtering_ a subset of data by row using condition
+* [**`arrange()`**](https://dplyr.tidyverse.org/reference/arrange.html){target="_blank"}: for re-_arranging_ the rows order
+* [**`mutate()`**](https://dplyr.tidyverse.org/reference/mutate.html){target="_blank"}: for _mutating_ (:confused:) a new or existing variables
+
+As implied by my description, most of `dplyr` functions could be described by its names; except `mutate`, which is very likely to be confusing at the first time.
+
+Those function can be naturally combined with the core aggregation functions:
+
+* [**`group_by()`**](https://dplyr.tidyverse.org/reference/group_by.html){target="_blank"}: for specifying that following operations should be done _by group(s)_
+* [**`summarise()`**](https://dplyr.tidyverse.org/reference/summarise.html){target="_blank"}: for obtaining the _summarise_ of the data by the specified group(s).
+
+These functions probably would cover most of your data wrangling tasks; and if done in a proper _tidy_ way, then you'll find that data wrangling process will be easier. Generally, most of these workflow could be combined through a pipeline using [**`%>%`** (pipe) operator](https://magrittr.tidyverse.org/reference/pipe.html){target="_blank"} to make it tidier.
+
+Let's try out these features using `starwars` dataset. The first step--and I think the most important step--that we should do is setting our output goal. For this tutorial, let's try to find out how the height and mass differ across homeworld and gender for human species. So we will transform the dataset from:
+
+```{r}
+starwars
+```
+
+into this format:
+
+```{r, echo=1:2}
+# the output goal:
+
+starwars %>%
+  select(name, species, homeworld, gender, mass, height) %>%
+  filter(species == "Human") %>%
+  mutate(bmi = mass / height * 100) %>%
+  group_by(homeworld, gender) %>%
+  summarise(
+    mass = mean(mass, na.rm = TRUE),
+    height = mean(height, na.rm = TRUE),
+    bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  arrange(desc(bmi))
+```
+
+## Column subsetting using `select()`
+
+`select()` is probably the first function you will call in every data manipulation tasks. By using `select()`, you can narrow down the number variables to fewer variables--which are what you truly need.
+
+The `select()` usage (and also every core functions in `dplyr`) is very straighforward. You just need to pass the dataset and select the column name you want to _select_:
+
+```{r}
+select(starwars, name)
+```
+
+It's very easy right? Before we continue to our objective, there are some tips you need to consider.
+
+### Chaining operation using `%>%`
+
+When we doing a complex data manipulation using `dplyr`, I suggest to use `%>%` operator to make our code tidier:
+
+```{r}
+starwars %>%
+  select(name)
+```
+
+This is because `%>%` operator could help you to make a chaining operation. The pipe operator will pass the results from its left-hand side, to the first parameter in the function of its right-hand side. So you could make a chaining operation like this:
+
+```{r, eval=FALSE}
+starwars %>%
+  select(name) %>%
+  anotherfuns(<arguments>) %>%
+  anotherfuns(<arguments>) %>%
+  <continue the chain as long as necessary> %>%
+  anotherfuns(<arguments>)
+```
+
+So as long as `anotherfuns` you chained could accept the previous result as its first argument, you can chaining the operation as long as you want.
+
+### Checking the variables using `glimpse()`
+
+Now back to our objective. Remember that we want to make a summary of height and mass of human species across homeworld and gender. So we actually need only those few variables to go on. Still, remembering the name of those variables could be frustating sometimes, so I suggest to use `glimpse()` function before you jump into variable selection:
+
+```{r}
+glimpse(starwars)
+```
+
+The `glimpse()` function is practically the simplified version of `str()`; but it only print the most general information like the variable names, class, etc. Another alternative is to use the base `colnames()`, but it doesn't provide additional information like `glimpse()`, so I suggest to use the later.
+
+From `glimpse()` output, now we have the list of variable names and can be sure that we have to select `species`, `homeworld`, `gender`, `mass`, `height`:
+
+```{r}
+starwars %>%
+  select(name, species, homeworld, gender, mass, height)
+```
+
+Now the dataset looks a lot simpler :grin:
+
+## Filtering specific observation using `filter()`
+
+You already see that a simple column selection could help you in starting the data wrangling process. But row/observation selection is sometimes a compulsory step rather than just a _helper_ step. For example, you want to exclude or include specific observations which inheriting some specific traits. If you recall our objective, and to be more specific at "for human species", then we are absolutely need to filter our dataset to only containing human species.
+
+As aforementioned, `filter()` function is also very easy to use: just pass the dataset object as the first argument, then you can pass the condition(s) as the following argument(s).
+
+To declare the condition, the most common way is to use the base condition testing:
+
+* `==` and `!=` for testing equal, and not equal condition
+* `>` or `>=` for testing greater than, and greater than or equal
+* `<` or `<=` for testing less than, and less than or equal
+
+Let's try to filter observation with `mass` less than or equal to `50` from `starwars` dataset:
+
+```{r}
+filter(starwars, mass <= 50)
+```
+
+It might be looks very simple, but let's dive deeper on how condition testing works to see its full potential.
+
+### Behind the scene of condition testing
+
+Before I explain the details, let's take a look at the first 5 `mass` value from `starwars`:
+
+```{r}
+head(starwars$mass)
+```
+
+If we test the condition of `<= 50` to above data, we will actually get this output:
+
+```{r}
+head(starwars$mass) <= 50
+```
+
+So basically filtering condition is picking up rows with the `TRUE` value; and it will discard the rest. Based on this mechanism, we could also use other helper functions to test a condition, e.g., when we want to see rows with `NA` values, we can use `is.na()` function:
+
+```{r}
+filter(starwars, is.na(mass))
+```
+
+or if we want to keep observations with non-`NA` value, then we could create a negation using `!`:
+
+```{r}
+filter(starwars, !is.na(mass))
+```
+
+### Quick-check on conditions availability
+
+Just like when we check the variables using `glimpse()`, we also need to check our variables to make sure about any available options to be filtered. For our case, we already know that we want to get only human observations, but straighly jump into `filter()` is very unwise:
+
+```{r}
+starwars %>%
+  select(name, species, homeworld, gender, mass, height) %>%
+  filter(species == "human")
+```
+
+It seems like there is no `"human"` species, but actually it's just because we specified a wrong condition. For categorical variable like `species`, I really suggest you to check it using `unique()` first:
+
+```{r}
+unique(starwars$species)
+```
+
+Which shows that it's actually `"Human"`. For numerical variables, you can use `summary()` to help you quick-check the value range:
+
+```{r}
+summary(starwars$height)
+```
+
+After we quick-check the values within our variable of interest, it's safe now to call `filter()` function:
+
+```{r}
+starwars %>%
+  select(name, species, homeworld, gender, mass, height) %>%
+  filter(species == "Human")
+```
+
+## Manipulating variables using `mutate()`
+
+When I mentioned `mutate()` terms, most of you that are not familiar with `dplyr` probably not sure on its meaning. This function is basically helping us to manipulating the variables inside our dataframe. For example, you could change the units of `mass` and `height` index:
+
+```{r}
+mutate(starwars, mass = mass * 100, height = height / 100)
+```
+
+But it doesn't limited to manipulating the existing variables; you could also make a new variable using this function. Say, we want to add Body Mass Index (BMI) to our current analysis, we could create it using `mutate()`:
+
+```{r}
+starwars %>%
+  select(name, species, homeworld, gender, mass, height) %>%
+  filter(species == "Human") %>%
+  mutate(bmi = mass / height * 100)
+```
+
+This function is very versatile, so play around with your creativity here :sunglasses:
+
+## Data aggregation using `group_by` and `summarise`
+
+We are reaching the final parts! Let's recall the part of our objective that we haven't done yet: "across the homeworld and gender". This particular phrase is indicating that we want each of our observation to representing its `homeworld` and `gender` instead of each character's `name` like what we currently have. We can achieve this using `group_by()` and `summarise()` function.
+
+To declare a group, you just need to specify the name of variables that you want to set as group identifier:
+
+```{r}
+starwars %>%
+  select(name, species, homeworld, gender, mass, height) %>%
+  filter(species == "Human") %>%
+  mutate(bmi = mass / height * 100) %>%
+  group_by(homeworld, gender)
+```
+
+Then the `tibble` will automatically give you information about which group is active.
+
+Note that the order of specified groups is also matters. The function will process the group operation from the right-most variable. So the best practice here to set the order from major to minor group:
+
+```{r, eval=FALSE}
+... %>%
+  group_by(<major group>, <minor group>, <definitely the minorest group>) %>%
+  ...
+```
+
+After we set the group, we can use `summarise()` to do the aggregation. This function is almost identic to how mutate works, but the output will be aggregated value by the group we specified; note that if we don't specify any group, then it will aggregate the value to one observation that representing our dataset.
+
+Let's try to take the `mean` of `height`, `mass`, and `bmi` variables:
+
+```{r}
+starwars %>%
+  select(name, species, homeworld, gender, mass, height) %>%
+  filter(species == "Human") %>%
+  mutate(bmi = mass / height * 100) %>%
+  group_by(homeworld, gender) %>%
+  summarise(
+    mass = mean(mass, na.rm = TRUE), # use na.rm since there are
+    height = mean(height, na.rm = TRUE), # some missing values
+    bmi = mean(bmi, na.rm = TRUE)
+  )
+```
+
+When we done with group operations, don't forget to set the group declaration to off. The most straighforward ways to do this is by passing the result to `ungroup()`:
+
+```{r}
+starwars %>%
+  select(name, species, homeworld, gender, mass, height) %>%
+  filter(species == "Human") %>%
+  mutate(bmi = mass / height * 100) %>%
+  group_by(homeworld, gender) %>%
+  summarise(
+    mass = mean(mass, na.rm = TRUE),
+    height = mean(height, na.rm = TRUE),
+    bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup()
+```
+
+## Re-ordering observation using `arrange()`
+
+Our last results actually enough for showing the summary of `mass` and `height` across `homeworld` and `gender`. But it doesn't give us some basic informations, like, which homeworld-gender combination has the lowest or higher `bmi`.
+
+Fortunately, `dplyr` provided `arrange()` function for this specific task. By default, this function will arrange the specified variable in ascending mode:
+
+```{r}
+starwars %>%
+  select(name, species, homeworld, gender, mass, height) %>%
+  filter(species == "Human") %>%
+  mutate(bmi = mass / height * 100) %>%
+  group_by(homeworld, gender) %>%
+  summarise(
+    mass = mean(mass, na.rm = TRUE),
+    height = mean(height, na.rm = TRUE),
+    bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  arrange(bmi)
+```
+
+And if you want descending sorting, you just need to wrap the variable using `desc()`:
+
+```{r}
+starwars %>%
+  select(name, species, homeworld, gender, mass, height) %>%
+  filter(species == "Human") %>%
+  mutate(bmi = mass / height * 100) %>%
+  group_by(homeworld, gender) %>%
+  summarise(
+    mass = mean(mass, na.rm = TRUE),
+    height = mean(height, na.rm = TRUE),
+    bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  arrange(desc(bmi))
+```
+
+Now we know that the females from Naboo have the lowest mean BMI, while the males from Bestine have the highest mean BMI :grin:
+
+## Concluding remarks
+
+In this article, you already see how easy--and tidy!--it is to do data wrangling tasks using `tibble` and `dplyr`. But we just scratched the surface of `tidyverse`; there are so many package and functionalities available for us to explore!
+
+For the next episode, we will try more realistic cases, and see how `tidyverse` packages could help us in a more complex data wrangling tasks. So stay tuned on this series! :sunglasses:
+
+Here is a `tidyverse` logo for you:
+
+```{r, echo=FALSE}
+tidyverse_logo()
+```

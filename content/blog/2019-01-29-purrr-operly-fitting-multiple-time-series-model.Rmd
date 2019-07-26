@@ -1,0 +1,545 @@
+---
+title: Purrr-operly Fitting Multiple Time Series Model
+author: R. Dimas Bagas Herlambang
+date: '2019-01-29'
+slug: purrr-operly-fitting-multiple-time-series-model
+categories:
+  - R
+tags:
+  - forecast
+  - purrr
+  - tidyverse
+  - time series
+description: ''
+featured: 'tidyverse.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+```{r setup-knitr, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.asp = 4,
+  fig.align = "center",
+  out.width = "100%",
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using `purrr` interface.
+
+> **TL;DR**: you can find the distraction-free script in [here](https://github.com/bagasbgy/blog/tree/master/content/post/2019-01-29-purrr-operly-fitting-multiple-time-series-models/R/fit.R){target="_blank"}, and read some of my concluding remarks for a quick summary :grin:
+
+## Preface
+
+When it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit--from basic to advanced--univariate time series models: [`forecast`](https://github.com/robjhyndman/forecast){target="_blank"} package. This package is authored by [Prof. Rob. J. Hyndman](https://robjhyndman.com/){target="_blank"} from Monash University. If you are interested in time series and forecasting, but new to the `forecast` package, I really recommend you to checkout his [Forecasting: Principles and Practice](https://otexts.com/fpp2/){target="_blank"} book to get you started; its online version is totally free!
+
+Back then when I'm working with some econometrics cases, I was saved a lot by this package. Well, who can resist to use `auto.arima()` ? (I actually agree with you on this [Iffa](https://niffadf.netlify.com/){target="_blank"}, just too "Bagas" to admit :v:). I'm also found its source code very helpful if you need to edit the algorithms to suit your need.
+
+Yet, this package still have some limitation when you need to handle multiple time series object simultaneously; it doesn't have that kind of built-in support (yet!). I was very curious back then. First, I found a solution proposed by [Earo Wang](https://earo.me){target="_blank"}. She released the [`hts`](http://pkg.earo.me/hts/){target="_blank"} (hierarchical time series) package, which give some workaround on this case using aggregration approach. But somehow I found the package are less versatile than `forecast` on fitting complex univariate models; well, it doesn't built for that purpose at the first place.
+
+Then I finally found an article that inspired me to write this post: [Pur(r)rify Your Carets](https://rsangole.netlify.com/post/pur-r-ify-your-carets/){target="_blank"} by Rahul Sangole. He cleverly hack his model selection routines using [`purrr`](http://purrr.tidyverse.org){target="_blank"}. Basically, he explained a workflow to use functional programming approach to fit a combination of multiple data transformation, and multiple model.
+
+This kind of approach actually already implemented in [`sweep`](https://business-science.github.io/sweep/){target="_blank"} package for time series and forecasting. But unfortunately, after seeing the package now "orphaned" (doesn't have an official maintainer), I decided to not include the package in this tutorial; don't worry, it doesn't affecting the workflow that much.
+
+In this article, I will explain how to a-`purrr`-opriately fit multiple time series using functional programming. If you happen to be new to `purrr`, I really recommend you to read this [`purrr`-fect tutorial by Jennifer Bryan](https://jennybc.github.io/purrr-tutorial/){target="_blank"}; and if you confused with my piping flow, then I suggest you to read my [Data Wars series](/post/2019/01/18/data-wars-episode-iv/){target="_blank"} first :grin:
+
+## Libraries used
+
+For this tutorial, we will use some time series, data wrangling, and statistical modeling packages. Among them, the core packages that we will use are:
+
+* `forecast`: for time series modeling and forecasting
+* `yardstick`: for measuring forecast performance
+* `recipes`: for data preprocess
+* `purrr`: for functional programming
+* `dplyr`: for general data wrangling
+* `lubridate`: for working with dates
+
+In addition to that, there are also some some package that I recommend to use for easier workflow:
+
+* `magrittr`: for various pipe operators
+* `timetk`: for creating future time index for our forecast results
+* `tidyquant`: for some ggplot aesthetics
+
+Note that I don't import `timetk` and `tidyquant` in the following chunk, since we only use their one or two functions. Also some packages are already included in their bigger packages; e.g., `dplyr` and `purrr` are already included in `tidyverse`, and `recipes` and `yardstick` are already included in `tidymodels`, so we only need to import the bigger packages:
+
+```{r setup-libs}
+# import libs
+library(forecast)
+library(lubridate)
+library(magrittr)
+library(tidymodels)
+library(tidyverse)
+```
+
+## Hourly Energy Consumption dataset from PJM
+
+For this tutorial, we will use Hourly Energy Consumption dataset provided by PJM, and could be accessed from [Kaggle dataset](https://www.kaggle.com/robikscube/hourly-energy-consumption/home){target="_blank"}, which kindly shared by Rob Mulla. The data contains the hourly power consumption estimated by each electricity provider.
+
+The dataset is actually need more cleaning before we can use it for time series analyses and forecasting. The version I use in this tutorial is already going through some cleaning and adjustment. If you are interested in the cleaning process, or simply want to reproduce the results using the same dataset, you can check the script from this post folder in my [blog repository](https://github.com/bagasbgy/blog){target="_blank"} (to be exact, in file [`data.R`](https://github.com/bagasbgy/blog/tree/master/content/post/2019-01-29-purrr-operly-fitting-multiple-time-series-models/R/data.R){target="_blank"} inside the `R` folder).
+
+Let's start by importing the dataset:
+
+```{r data-import}
+# import dataset
+pjm <- read_csv("data_input/pjm.csv")
+
+pjm
+```
+
+The data contain `datetime`, `provider`, and `cons` columns. The dates are ranging from `r min(pjm$datetime)` to `r max(pjm$datetime)`. Here's some example data from the last month:
+
+```{r data-plot}
+# quick plot
+pjm %>%
+  filter(datetime >= max(datetime) - hours(24 * 7 * 4)) %>%
+  ggplot(aes(x = datetime, y = cons)) +
+    geom_line() +
+    labs(x = NULL, y = NULL) +
+    facet_wrap(~ provider, scale = "free", ncol = 1) +
+    tidyquant::theme_tq()
+```
+
+### The scenario
+
+To help us benchmark multiple models, we will need to split some portion of our data for validation. The strategy here is to cut the last 4 weeks--approximately 1 month--as our test dataset. Then, we will cut again some (bigger) portion as the train dataset, say, 4 weeks times 3--approximately 3 months. This strategy is just the simplified version of [Rolling Forecasting Origin](https://robjhyndman.com/hyndsight/tscv/){target="_blank"}, with only having one pair of train and test sample. Of course, you can experiment with the lengths; will definitely cover more on this in one of my future posts, stay tuned!
+
+So the first step here is to get the start and end date of the train and test sample. The most straighforward way is to define the train and test size, then recursively get the start and end index for each:
+
+```{r data-split-indices}
+# train-val-test size
+test_size <- 24 * 7 * 4
+train_size <- 24 * 7 * 4 * 3
+
+# get the min-max of the time index for each sample
+test_end <- max(pjm$datetime)
+test_start <- test_end - hours(test_size) + hours(1)
+
+train_end <- test_start - hours(1)
+train_start <- train_end - hours(train_size) + hours(1)
+```
+
+To make it more handy, we can combine the start and end indices into a date interval:
+
+```{r data-split-interval}
+# get the interval of each samples
+intrain <- interval(train_start, train_end)
+intest <- interval(test_start, test_end)
+
+intrain
+
+intest
+```
+
+I really recommend this splitting approach, since you can use the date interval for many things while still keeping the true data.
+
+For example, we can use the intervals to visualize the train and test series:
+
+```{r data-split-plot}
+# plot the train and test
+pjm %>%
+  mutate(sample = case_when(
+    datetime %within% intrain ~ "train",
+    datetime %within% intest ~ "test"
+  )) %>%
+  drop_na() %>%
+  mutate(sample = factor(sample, levels = c("train", "test"))) %>%
+  ggplot(aes(x = datetime, y = cons, colour = sample)) +
+    geom_line() +
+    labs(x = NULL, y = NULL, colour = NULL) +
+    facet_wrap(~ provider, scale = "free", ncol = 1) +
+    tidyquant::theme_tq() +
+    tidyquant::scale_colour_tq()
+```
+
+## Data preprocess using `recipes`
+
+Data preprocessing is a very crucial step in time series model fitting. In this tutorial, we will use `recipes` package for data preprocessing.
+
+Since recipe package work columnwise, we need to convert our data into a wide format first:
+
+```{r data-recipes-wide}
+# convert to wide format
+pjm %<>%
+  spread(provider, cons)
+
+pjm
+```
+
+Then we could start to define the preprocess `recipe()`, and `bake()` our data based on the defined recipe:
+
+```{r data-recipes-bake}
+# recipes: square root, center, scale
+rec <- recipe(~ ., filter(pjm, datetime %within% intrain)) %>%
+  step_sqrt(all_numeric()) %>%
+  step_center(all_numeric()) %>%
+  step_scale(all_numeric()) %>%
+  prep()
+
+# preview the bake results
+pjm <- bake(rec, pjm)
+
+pjm
+```
+
+**Note**: Don't forget to do the preprocess based on the data in train sample only, since it's similar to the actual scenario where we only have the "train" data.
+
+If we use `recipes` package, the next steps is to create a revert back function:
+
+```{r data-recipes-revert}
+# revert back function
+rec_revert <- function(vector, rec, varname) {
+
+  # store recipe values
+  rec_center <- rec$steps[[2]]$means[varname]
+  rec_scale <- rec$steps[[3]]$sds[varname]
+
+  # convert back based on the recipe
+  results <- (vector * rec_scale + rec_center) ^ 2
+
+  # add additional adjustment if necessary
+  results <- round(results)
+
+  # return the results
+  results
+
+}
+```
+
+This revert back function would be very handy if we want to convert back the data to its original form.
+
+Now we can convert our data into the long format again:
+
+```{r data-recipes-end}
+# convert back to long format
+pjm %<>%
+  gather(provider, cons, -datetime)
+  
+pjm
+```
+
+## Nested model fitting and forecasting
+
+In functional programming using `purrr`, we need to convert our `tbl` into a nested `tbl`. You can think a nested data like a _table inside a table_, which could be controlled using a key indicator; in other words, we can have `tbl` for each `provider` and `samples`. Using this format, the fitting and forecasting process would be very versatile, yet we can still convert the results as long as we have a proper key like `provider`.
+
+Let's start by converting our `tbl` into a nested `tbl`. First, we need to add sample indicator so it could be recognized as a key when we `nest()` the data:
+
+```{r nest-sample-ind}
+# adjust by sample
+pjm %<>%
+  mutate(sample = case_when(
+    datetime %within% intrain ~ "train",
+    datetime %within% intest ~ "test"
+  )) %>%
+  drop_na()
+  
+pjm
+```
+
+Then, we could start to `nest()` the the data by `provider` and `sample`, and `spread()` the `tbl` based on `sample` key:
+
+```{r nest-init}
+# nest the train data
+pjm %<>%
+  group_by(provider, sample) %>%
+  nest(.key = "data") %>%
+  spread(sample, data)
+
+pjm
+```
+
+### Preparing the data model list
+
+For data and model combination, we could start by defining some options for data representation. Recall that our series have a relatively high frequency, so we could consider two option of data representation here: a `ts` object with daily seasonality, and an `msts` with daily and weekly seasonality.
+
+To incorporate them into our nested data, we need to create another nested data frame containing the data representation name, and the accompanying function for converting the data into the specified data representation.
+
+Let's start with making a named list containing the transformation functions:
+
+```{r nest-data-model-prep}
+# data funs list
+data_funs <- list(
+  ts = function(x) ts(x$cons, frequency = 24),
+  msts = function(x) msts(x$cons, seasonal.periods = c(24, 24 * 7))
+)
+
+data_funs
+```
+
+Then we could convert the `list` into a `tbl` using `enframe()`. Note that we should also give a key--which is the `provider` in our case--so we could use `left_join()` later. The trick here is to use `rep()` function:
+
+```{r nest-data-model-nest}
+# convert to nested
+data_funs %<>%
+  rep(length(unique(pjm$provider))) %>%
+  enframe("data_fun_name", "data_fun") %>%
+  mutate(provider =
+    sort(rep(unique(pjm$provider), length(unique(.$data_fun_name))))
+  )
+
+data_funs
+```
+
+Then the last steps here is to join the nested function with our nested data:
+
+```{r nest-data-model-join}
+# combine with models
+pjm %<>%
+  left_join(data_funs)
+
+pjm
+```
+
+### Preparing the time series model list
+
+Similar to when we create the data representation list, we could also make some time series models as a nested list.
+
+Again, let's start by making a list of models. For this tutorial, let's consider to use `auto.arima()`, `ets()`, `stlm()`, and `tbats()`. We need to make some functions to call those model, and store them inside a list:
+
+```{r nest-model-prep}
+# models list
+models <- list(
+  auto.arima = function(x) auto.arima(x),
+  ets = function(x) ets(x),
+  stlm = function(x) stlm(x),
+  tbats = function(x) tbats(x, use.box.cox = FALSE)
+)
+
+models
+```
+
+Then we can convert it into a nested format like previous example:
+
+```{r nest-model-nest}
+# convert to nested
+models %<>%
+  rep(length(unique(pjm$provider))) %>%
+  enframe("model_name", "model") %>%
+  mutate(provider =
+    sort(rep(unique(pjm$provider), length(unique(.$model_name))))
+  )
+
+models
+```
+
+And finally, we can join the result into our nested data. **Note** that we could also apply some rule here. For example, if I don't want to have `ets()` and `auto.arima()` for data with `msts` class--since they are not suitable for multiple seasonality time series--we can use filter to remove them out:
+
+```{r nest-model-join}
+# combine with models
+pjm %<>%
+  left_join(models) %>%
+  filter(
+    !(model_name == "ets" & data_fun_name == "msts"),
+    !(model_name == "auto.arima" & data_fun_name == "msts")
+  )
+```
+
+Here's our data with the full combination:
+
+```{r nest-ready}
+pjm
+```
+
+### Execute the nested fitting
+
+To execute the model fitting, we need to wrap up the needed arguments as a `list` using `map()` function. Then, we could call the function using `invoke_map()`. We need to do this for data transformation using the function inside `data_fun`, then continue to fit the model with the same process using the function inside `model`.
+
+See the code in the chunk below for the implementation of the process:
+
+```{r nest-test-fit}
+# invoke nested fitting
+pjm %<>%
+  mutate(
+    params = map(train, ~ list(x = .x)),
+    data = invoke_map(data_fun, params),
+    params = map(data, ~ list(x = .x)),
+    fitted = invoke_map(model, params)
+  ) %>%
+  select(-data, -params)
+  
+pjm
+```
+
+Now the next step is to measure the test error. First, we need to `forecast()` into the test dataset, and then pipe it into the error measurement using one of function provided in `yardstick`. For this example, let's use Root Mean Squared-Error (we use `rmse_vec` for simple vector calculation) as an error measurement:
+
+```{r nest-test-error}
+# calculate test errors
+pjm %<>%
+  mutate(error =
+    map(fitted, ~ forecast(.x, h = 24 * 7 * 4)) %>%
+    map2_dbl(test, ~ rmse_vec(truth = .y$cons, estimate = .x$mean))
+  ) %>%
+  arrange(provider, error)
+
+pjm %>%
+  select(provider, ends_with("_name"), error)
+```
+
+### Unnesting the result
+
+Beside measuring the error, we can also compare the forecast results to the real test series through graphical analysis. But to do that, we need to make a `tbl` containing our forecast to the test dataset, then do some spread-gather tricks to make a set of keys that unique for each data representations, models, and also one for the forecast itself. If we get to that format, we could conveniently `unnest()` the data into a proper long format
+
+Let's start with creating the forecast first:
+
+```{r nest-test-forecast}
+pjm_test <- pjm %>%
+  mutate(
+    forecast =
+      map(fitted, ~ forecast(.x, h = 24 * 7 * 4)) %>%
+      map2(test, ~ tibble(
+        datetime = .y$datetime,
+        cons = as.vector(.x$mean)
+      )),
+    key = paste(data_fun_name, model_name, sep = "-")
+  )
+  
+pjm_test
+```
+
+Then do some spread-gather to create a proper key:
+
+```{r nest-test-keys}
+pjm_test %<>%
+  select(provider, key, actual = test, forecast) %>%
+  spread(key, forecast) %>%
+  gather(key, value, -provider)
+
+pjm_test
+```
+
+The last but not least, `unnest()` the series data, and apply the revert back function:
+
+```{r nest-test-unnest}
+pjm_test %<>%
+  unnest(value) %>%
+  mutate(cons = rec_revert(cons, rec, provider))
+  
+pjm_test
+```
+
+With the resulting `tbl`, we can compare the forecast and actual data on test like this:
+
+```{r nest-test-plot}
+# plot forecast on test
+pjm_test %>%
+  ggplot(aes(x = datetime, y = cons, colour = key)) +
+    geom_line() +
+    labs(x = NULL, y = NULL, colour = NULL) +
+    facet_wrap(~ provider, scale = "free", ncol = 1) +
+    tidyquant::theme_tq() +
+    tidyquant::scale_colour_tq()
+```
+
+### Automate the model selection
+
+As you can see from the plot results, it is hard to decide which model we want to use based on graphical comparation. Then the most straighforward solution is to use the model with the least error.
+
+It is very simple to do the model selection, we only need some basic `dplyr` grammars to `filter()` the model with lowest error:
+
+```{r nest-test-filter}
+# filter by lowest test error
+pjm %<>%
+  select(-fitted) %>% # remove unused
+  group_by(provider) %>%
+  filter(error == min(error)) %>%
+  ungroup()
+
+pjm
+```
+
+### Perform the final forecast
+
+After we have the final model, then finally we can proceed to the final forecast. For the final forecast, we can do the same process as in model fitting, but this time we will use train and test data as our new "full data".
+
+Now let's start by recombine the train and test dataset:
+
+```{r nest-full-prep}
+# recombine samples
+pjm %<>%
+  mutate(fulldata = map2(train, test, ~ bind_rows(.x, .y))) %>%
+  select(provider, fulldata, everything(), -train, -test)
+
+pjm
+```
+
+Then do the same nested fitting as in previous example:
+
+```{r nest-full-fit}
+# invoke nested fitting for full data
+pjm %<>%
+  mutate(
+    params = map(fulldata, ~ list(x = .x)),
+    data = invoke_map(data_fun, params),
+    params = map(data, ~ list(x = .x)),
+    fitted = invoke_map(model, params)
+  ) %>%
+  select(-data, -params)
+```
+
+Next, let's make a `tbl` containing each of our forecast results, and convert our nested data to a proper long format:
+
+```{r nest-full-forecast}
+# get forecast
+pjm %<>%
+  mutate(forecast =
+    map(fitted, ~ forecast(.x, h = 24 * 7 * 4)) %>%
+    map2(fulldata, ~ tibble(
+      datetime = timetk::tk_make_future_timeseries(.y$datetime, 24 * 7 * 4),
+      cons = as.vector(.x$mean)
+    ))
+  )
+
+pjm
+```
+
+Finally, we can `unnest()` the data to get the result:
+
+```{r nest-full-unnest}
+# unnest actual and forecast
+pjm %<>%
+  select(provider, actual = fulldata, forecast) %>%
+  gather(key, value, -provider) %>%
+  unnest(value) %>%
+  mutate(cons = rec_revert(cons, rec, provider))
+  
+pjm
+```
+
+There you go, the forecast results for each `provider` in a proper long format :grimacing:
+
+You can proceed to plot the forecast:
+
+```{r nest-full-plot}
+pjm %>%
+  ggplot(aes(x = datetime, y = cons, colour = key)) +
+    geom_line() +
+    labs(x = NULL, y = NULL, colour = NULL) +
+    facet_wrap(~ provider, scale = "free", ncol = 1) +
+    tidyquant::theme_tq() +
+    tidyquant::scale_colour_tq()
+```
+
+## Concluding remarks
+
+Fitting multiple time series models using `purrr` is somehow a little bit complicated, but on the other hand, very flexible. Actually, it also could be easily extended into a more complex scenario, such as incorporating multiple preprocess `recipes` as another model combination, or applying more complex rule in automating the fitting. Despite of that, I do understand that for someone new to `purrr`, it would be very hard to follow the workflow; to be honest, even me spending around 80% of writing this post thinking about the easiest way to explain the process narratively. But I really hope that the codes above enough to explain the basic workflow for functional programming in time series :smile:
+
+If you want to tryout yourself, you can checkout this post folder in my [blog repository](https://github.com/bagasbgy/blog){target="_blank"}, and use the distraction-free version of the codes above inside the [`fit.R`](https://github.com/bagasbgy/blog/tree/master/content/posts/2019-01-29-purrr-operly-fitting-multiple-time-series-models/R/fit.R){target="_blank"} script, which located inside the `R` folder. I really recommend you to use your own dataset, so you could understand better about the workflow! :grin:
+
+If you find any difficulties in trying this example, please let me know in the comment so I can help you :ok_hand:
+
+Ok, as always, here's a `tidyverse` logo for you:
+
+```{r tidyverse-logo, echo=FALSE}
+tidyverse_logo()
+```
+
+**Session:**
+
+```{r session}
+# session info
+sessionInfo()
+```

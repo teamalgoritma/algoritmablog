@@ -1,0 +1,226 @@
+---
+title: Nested Dataframe
+author: David
+date: '2019-01-10'
+slug: nested-dataframe
+categories:
+  - R
+tags:
+  - Data Manipulation
+  - tidyverse
+  - Capstone Ml
+description: ''
+featured: 'Nested.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+# 1. Setup
+## Libraries and Setup
+We'll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
+
+```{r setup}
+options(scipen = 9999)
+rm(list=ls())
+```
+
+You will need to use `install.packages()` to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the `library()` function:
+```{r message=FALSE}
+library(tidyverse)
+library(caret)
+```
+
+# 2. Nested Dataframe
+You’ll learn how to use `purrr`, `caret` and `dplyr` to quickly create some of dataset + model combinations, store data & model objects neatly in one tibble, and post process programatically. These tools enable succinct functional programming in which a lot gets done with just a few lines of code. The data to be used is loan.csv which can be downloaded here [link here](https://drive.google.com/file/d/1cxHMOPZwKDZ-mUI-fUyRJdlr_2q_Pdh6/view?usp=sharing). In this article we will predict the `default` variable which has a yes or no value.
+```{r}
+loan <- read.csv("data_input/loan.csv")
+glimpse(loan)
+
+loan <- loan %>%
+  head(-10)
+
+test <- loan %>% 
+  tail(10) %>% 
+  select(-default)
+```
+The loan data will be divided into test data and loan data. Test data will be used when testing the model that has been made, while the data loan will be used to model the classification.
+
+## 2.1 Single Data Frame x Multiple Model
+Before creating a nested dataframe, we must prepare a model that will be used first. The model to be used must be used as a function to make it easier when used in the `map ()` function that comes from the `purrr` package. besides that we can set the parameters that will be used in the function. In the chunk below 2 models are created, namely the decision tree and random forest using the `caret` package.
+```{r}
+#create Random forest function
+RandomForestModel <- function(X, Y){
+    ctrl <- trainControl(
+        method = "cv",
+        number = 3
+    )
+    train(
+        x = X,
+        y = Y,
+        trContrl = ctrl,
+        method = 'rf'
+    )
+}
+
+#create decision tree function
+RpartModel <- function(X, Y) {
+    ctrl <- trainControl(
+        method = "repeatedcv",
+        number = 5
+    )
+    train(
+        x = X,
+        y = Y,
+        method = 'rpart2',
+        trControl = ctrl,
+        tuneGrid = data.frame(maxdepth=c(2,3,4,5)),
+        preProc = c('center', 'scale')
+    )
+}
+```
+
+After making a model in the form of a function, then making the model into a dataframe.
+```{r}
+model_list <- list(rpart = RpartModel,
+                   rforest = RandomForestModel) %>%
+    enframe(name = 'modelName',value = 'model')
+model_list
+```
+`model_list` produces 2 columns, namely `modelName`, and `model`. `ModelName` is the name of the model, and the `model` contains the functions of the model.
+Next the dataframe to be used replicates as many models as you want to use. The loan dataset  will be replicates as much as the model used by `rep ()` function.
+
+```{r}
+nmodel <- length(model_list) #get length of model_list
+
+nested.loan <- list(loan) %>% 
+  rep(nmodel) %>% 
+  enframe(name = "Id", value = "rawdata")
+nested.loan
+```
+`nested.loan` has 2 columns, namely `Id` and `rawdata` which contain the loan dataframe. Then rawdata will be separated into train.y which contains the `default` variable and train.x contains the others.
+```{r}
+nested.loan <- nested.loan %>% 
+  mutate(train.x = map(rawdata, ~select(.x, -default)),
+         train.y = map(rawdata, ~.x$default))
+nested.loan
+```
+The next step is to join `nested.loan` with` model_list` using `bind_cols ()`
+
+```{r}
+nested.loan <- nested.loan %>% 
+  bind_cols(model_list)
+nested.loan
+
+```
+
+The model we have created can be used with the function `invoke_map ()` which functions to combine functions and lists as parameters.
+```{r}
+nested.loan <- nested.loan %>% 
+  mutate(parm = map2(train.x, train.y, ~list(.x, .y)),
+         model = invoke_map(model,parm))
+nested.loan
+```
+To see how well the model has been made, it can be seen from the Accuracy of each model.
+```{r}
+nested.loan <- nested.loan %>% 
+  mutate(Accuracy = map_dbl(model, ~max(.x$results$Accuracy))) %>% 
+  arrange(desc(Accuracy))
+nested.loan
+```
+From the above results it can be seen that the random forest model produces an accuracy of 0.75 and the decission tree is 0.74. Next, we will do predict to the test data that has been made using an existing model. the data test must replicate as many models as used and then join the `nested.loan` data using `left_join()`
+```{r}
+nested.loan <- test %>% 
+  list() %>% 
+  rep(nrow(nested.loan)) %>% 
+  enframe(name = "Id",value = "test.x") %>% 
+  left_join(nested.loan, by = "Id")
+nested.loan
+```
+
+Now we create a `pred` variable that contains results from predict
+
+```{r}
+nested.loan <- nested.loan %>% 
+  mutate(pred = map2(model, test.x, ~predict(.x, .y))) %>% 
+  select(Id,modelName,Accuracy,pred)
+glimpse(nested.loan$pred)
+```
+
+## 2.2 Multiple Data Frame x Single Model
+Now we will split loan data by `checking_balance` variable which has 4 levels namely `< 0 DM`, `> 200 DM`, `1 - 200 DM`, and `unknown`  
+```{r}
+nested.split <- loan %>%
+  group_by(checking_balance) %>% 
+  nest(.key = "rawdata") %>% 
+  mutate(train.x = map(rawdata, ~select(.x, -default)),
+         train.y = map(rawdata, ~.x$default))
+nested.split
+```
+
+The model that will be used is random forest
+```{r message=FALSE, warning=FALSE}
+nested.rf <- nested.split %>% 
+  mutate(param = map2(train.x, train.y, ~list(.x, .y)),
+         model = invoke_map(RandomForestModel,param))
+nested.rf
+```
+To see how well the model is made, we can see the accuracy obtained from the model we made.
+```{r warning=FALSE}
+nested.rf <- nested.rf %>% 
+  mutate(Accuracy = map_dbl(model, ~max(.x$results$Accuracy)))
+nested.rf
+```
+
+## 2.3 Multiple Data Frame x Multiple Model
+To run multi models against multi data, we must repeat data as much as the model that will be used. `nested.split` is a data loan that is divided based on the` checking_balance` variable which contains 4 levels while the model used is 2, namely random forest and decision tree, the amount of data is 8 (4 X 2).
+```{r}
+#replicates nested.split as much the model will be used
+nested.multi <- nested.split %>% 
+  list() %>%
+  rep(nmodel) %>%
+  bind_rows()
+
+#replicates model_list as much the data frame
+model.multi <- model_list %>% 
+  list() %>% 
+  rep(nrow(nested.split)) %>% 
+  bind_rows() %>% 
+  arrange(modelName)
+
+#join nested.multi and model.multi
+nested.multi <- nested.multi %>% 
+  bind_cols(model.multi)
+nested.multi
+```
+Now we can modeling each data category with each model
+```{r message=F, warning=F}
+nested.multi <- nested.multi %>% 
+  mutate(param = map2(train.x, train.y, ~list(.x, .y)),
+         model = invoke_map(model,param))
+nested.multi
+```
+
+```{r}
+nested.multi$model[[1]]$finalModel
+```
+
+
+And we can see the accuracy each model
+```{r}
+nested.multi <- nested.multi %>% 
+  mutate(Accuracy = map_dbl(model, ~max(.x$results$Accuracy)))
+
+
+
+```
+
+
+```{r}
+library(lime)
+
+model_result <- lime(x = nested.multi$train.x[[1]],nested.multi$model[[1]])
+model_result$bin_continuous
+```
+

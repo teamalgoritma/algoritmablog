@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>APC on Algoritma Technical Blog</title>
+    <link>/tags/apc/</link>
+    <description>Recent content in APC on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/apc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Age-Period-Cohort (APC) Analysis</title>
+      <link>/blog/age-period-cohort-apc-analysis/</link>
+      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/age-period-cohort-apc-analysis/</guid>
+      <description>Background Disclaimer The following coursebook is produced by the team at Algoritma for its Data Science Academy internal training. The coursebook is intended for a restricted audience only, i.e. the individuals and organizations having received this coursebook directly from the training organization. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
+Libraries and Setup You will need install the package to do APC analysis if it&amp;rsquo;s not already downloaded onto your machine.</description>
+    </item>
+    
+  </channel>
+</rss>

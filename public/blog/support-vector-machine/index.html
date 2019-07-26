@@ -1,0 +1,1230 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "blog",
+        "name" : "Support Vector Machine",
+        "headline" : "Support Vector Machine",
+        "description" : "Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.\nSo how does SVM find the right hyperplane?",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2018",
+        "datePublished": "2018-02-07 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2018-02-07 00:00:00 \x2b0000 UTC",
+        "url" : "\/blog\/support-vector-machine\/",
+        "wordCount" : "2176",
+        "keywords" : [ "SVM","Machine Learning","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Support Vector Machine</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.55.4" />
+        
+
+
+        
+            <meta name="author" content="Efa Hazna Latiefah">
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Support Vector Machine"/>
+<meta name="twitter:description" content="Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.
+So how does SVM find the right hyperplane?"/>
+<meta name="twitter:site" content="@teamalgoritma"/>
+
+        <meta property="og:title" content="Support Vector Machine" />
+<meta property="og:description" content="Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.
+So how does SVM find the right hyperplane?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/support-vector-machine/" />
+<meta property="article:published_time" content="2018-02-07T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-02-07T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="Support Vector Machine">
+<meta itemprop="description" content="Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.
+So how does SVM find the right hyperplane?">
+
+
+<meta itemprop="datePublished" content="2018-02-07T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-02-07T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2176">
+
+
+
+<meta itemprop="keywords" content="SVM,Machine Learning," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+
+
+      <link rel="stylesheet" href="/css/pojoaque.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="/js/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/blog/">
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/self-organizing-maps/">Self-Organizing Maps</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-04-26'>
+                                    April 26, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fsupport-vector-machine%2f&amp;text=Support%20Vector%20Machine&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fsupport-vector-machine%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fsupport-vector-machine%2f&amp;title=Support%20Vector%20Machine" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/support-vector-machine/">Support Vector Machine</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2018-02-07'>
+            February 7, 2018</time>
+        <span class="author">Efa Hazna Latiefah</span>
+        
+            <p>11 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fsupport-vector-machine%2f&amp;text=Support%20Vector%20Machine&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fsupport-vector-machine%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fsupport-vector-machine%2f&amp;title=Support%20Vector%20Machine" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </section>
+  
+
+  
+
+  <div id="content">
+    
+
+<h2 id="support-vector-machine-svm">Support Vector Machine (SVM)</h2>
+
+<p>Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.</p>
+
+<p>So how does SVM find the right hyperplane?. Let me give you example to understand how it works.</p>
+
+<p><strong>Identify the right hyper-plane (Scenario-1)</strong></p>
+
+<blockquote>
+<p>Which line do you think separates the data?</p>
+</blockquote>
+
+<p><img src="/img/gambar1.jpg" style="display: block; margin: auto;" /></p>
+
+<blockquote>
+<p>And obviously the line B is the one that segregates the two classes better.</p>
+</blockquote>
+
+<p><strong>Identify the right hyper-plane (Scenario-2)</strong></p>
+
+<p>Check the line that you think best separates the data. Obviously all three of them seem   to separates the data, but one is the best?</p>
+
+<p><img src="/img/gambar2.jpg" style="display: block; margin: auto;" /></p>
+
+<p>And SVM would choose the line C as the best separator. What this line does that the     other ones don&rsquo;t do, it maximizes the distance to the nearest point and it does this     relative to both classes. It&rsquo;s a line that maximizes the distance to the nearest points   in either class, that distance is often called margin.</p>
+
+<p><strong>Identify the right hyper-plane (Scenario-3)</strong></p>
+
+<p><img src="/img/gambar3.jpg" style="display: block; margin: auto;" /></p>
+
+<p>SVM selects the hyper-plane which classifies the classes accurately prior to maximizing   margin.So For SVM , you are triying to classify correctly and subject to that         constraint, you maximize the margin. Here, hyper-plane B has a classification error and A   has classified all correctly. Therefore, the right hyper-plane is A.</p>
+
+<p><strong>Identify the right hyper-plane (Scenario-4)</strong></p>
+
+<p>So sometimes for SVM, it seems impossible to do right job. For example, you might have   a data set just like this. In which clearly no decision surface exist that would   separate the two classes, you can think of the point down here as an outlier</p>
+
+<p><img src="/img/gambar4.jpg" style="display: block; margin: auto;" /></p>
+
+<p>SVM has a feature to ignore outliers and find the hyper-plane that has maximum margin. Hence, we can say, SVM is robust to outliers.</p>
+
+<p><img src="/img/gambar5.jpg" style="display: block; margin: auto;" /></p>
+
+<h3 id="the-kernel-trick">The Kernel Trick</h3>
+
+<p>In the scenario below, we can&rsquo;t have linear hyper-plane between the two classes, so how does SVM classify these two classes? Till now, we have only looked at the linear hyper-plane.</p>
+
+<p><img src="/img/gambar6.jpg" style="display: block; margin: auto;" /></p>
+
+<p>SVM can solve this problem Easily! It solves this problem by introducing additional feature. Here, we will add a new feature z=x^2+y^2. Now, let&rsquo;s plot the data points on axis x and z.</p>
+
+<p><img src="/img/gambar7.jpg" style="display: block; margin: auto;" /></p>
+
+<p>When we look at the hyper-plane in original input space it looks like a circle.</p>
+
+<p><img src="/img/gambar10.jpg" style="display: block; margin: auto;" /></p>
+
+<p>SVM has a technique called the kernel trick. These are functions which takes low dimensional input space and transform it to a higher dimensional space i.e. it converts not separable problem to separable problem, these functions are called kernels.</p>
+
+<p>In R, there are 4 various options available with kernel. They are linear, radial, polynomial and sigmoid.</p>
+
+<h3 id="parameters-in-svm">Parameters in SVM</h3>
+
+<p>Parameters in SVM are kernel, c (cost function) and gamma. C is a parameter that controls tradeoff between smooth decision boundary and classifying training points correctly. Small C makes the cost of misclassificaiton low (&ldquo;soft margin&rdquo;), thus allowing more of them for the sake of wider cushion and conversely Large C makes the cost of misclassification high (&lsquo;hard margin&rdquo;), thus forcing the algorithm to explain the input data stricter and potentially overfit. In the other side, gamma parameter  defines how far the influence of a single training example reaches, if gamma has a low value, then that means that every point has a far reach, and conversely high values means that each training example only has a close reach.</p>
+
+<h3 id="strengths-and-weaknesses-of-svm">Strengths and Weaknesses of SVM</h3>
+
+<p><strong>Strengths</strong></p>
+
+<ol>
+<li>Tradeoff between classifier complexity and error can be controlled explicitly</li>
+<li>SVMs work very well in practice, even with very small training</li>
+<li>It uses a subset of training points in the decision function (called support vectors), so it is also memory efficient</li>
+</ol>
+
+<p><strong>Weaknesses</strong></p>
+
+<p>Need to choose a &ldquo;good&rdquo; kernel function</p>
+
+<h3 id="how-to-determine-the-optimal-parameters">How to determine the optimal parameters?</h3>
+
+<p>there&rsquo;s no way to figure out which kernel would do the best for a particular problem. The only way to choose the best kernel is to actually try out all possible kernels, and choose the one that does the best empirically. However, we can still look at some differences between various kernel functions, to have some rules of thumb. When data is not linearly separable the first choice is always a Radial kernels because the Radial kernel have the properties that tend to make Radial kernel better in general, for most problems.They are:</p>
+
+<ol>
+<li>Translation invariance: The radial kernel is the only non-linear kernel that is translation invariant,</li>
+<li>Radial kernel is a function of the Euclidean distance between the points, whereas all other kernels are functions of inner product of the points.</li>
+<li>Normalized: A kernel is said to be normalized if K(x,x)=1 for all x. This is true for only RBF kernel in the above list.</li>
+</ol>
+
+<p>In order to find the optimum values of C and gamma parameter, we can use grid Search along with Cross Validation. In R , you can use tune.svm for finding the best model.</p>
+
+<h2 id="svm-in-r">SVM in R</h2>
+
+<p>The e1071 package in R is used to create Support Vector Machines with ease.</p>
+
+<h3 id="svm-for-classification">SVM for Classification</h3>
+
+<p>Let&rsquo;s apply what we learn above to do classification using 1000 past records of bank loans, each with a variable <code>default</code> that indicates whether the applicant did default on the loan.</p>
+
+<pre><code class="language-r">loans &lt;- read.csv(&quot;data_input/loan.csv&quot;)
+colnames(loans)
+</code></pre>
+
+<pre><code>##  [1] &quot;checking_balance&quot;     &quot;months_loan_duration&quot; &quot;credit_history&quot;      
+##  [4] &quot;purpose&quot;              &quot;amount&quot;               &quot;savings_balance&quot;     
+##  [7] &quot;employment_duration&quot;  &quot;percent_of_income&quot;    &quot;years_at_residence&quot;  
+## [10] &quot;age&quot;                  &quot;other_credit&quot;         &quot;housing&quot;             
+## [13] &quot;existing_loans_count&quot; &quot;job&quot;                  &quot;dependents&quot;          
+## [16] &quot;phone&quot;                &quot;default&quot;
+</code></pre>
+
+<pre><code class="language-r">set.seed(10)
+# select 900 values randomly from 1:1000
+rand.vec &lt;- sample(1:1000,900)
+loans.train &lt;- loans[rand.vec, ] 
+loans.test &lt;- loans[-rand.vec, ]
+</code></pre>
+
+<pre><code class="language-r">library(e1071)
+</code></pre>
+
+<pre><code>## Warning: package 'e1071' was built under R version 3.5.3
+</code></pre>
+
+<pre><code class="language-r">library(gmodels)
+modelsvm1&lt;-svm(default~., data=loans.train, kernel=&quot;linear&quot;)
+modelsvm2&lt;-svm(default~., data=loans.train, kernel=&quot;radial&quot;)
+
+preds1&lt;-predict(modelsvm1,loans.test[,-17])
+preds2&lt;-predict(modelsvm2,loans.test[,-17])
+CrossTable(preds1,loans.test$default)
+</code></pre>
+
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## | Chi-square contribution |
+## |           N / Row Total |
+## |           N / Col Total |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  100 
+## 
+##  
+##              | loans.test$default 
+##       preds1 |        no |       yes | Row Total | 
+## -------------|-----------|-----------|-----------|
+##           no |        61 |        12 |        73 | 
+##              |     1.115 |     3.016 |           | 
+##              |     0.836 |     0.164 |     0.730 | 
+##              |     0.836 |     0.444 |           | 
+##              |     0.610 |     0.120 |           | 
+## -------------|-----------|-----------|-----------|
+##          yes |        12 |        15 |        27 | 
+##              |     3.016 |     8.154 |           | 
+##              |     0.444 |     0.556 |     0.270 | 
+##              |     0.164 |     0.556 |           | 
+##              |     0.120 |     0.150 |           | 
+## -------------|-----------|-----------|-----------|
+## Column Total |        73 |        27 |       100 | 
+##              |     0.730 |     0.270 |           | 
+## -------------|-----------|-----------|-----------|
+## 
+## 
+</code></pre>
+
+<pre><code class="language-r">CrossTable(preds2,loans.test$default)
+</code></pre>
+
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## | Chi-square contribution |
+## |           N / Row Total |
+## |           N / Col Total |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  100 
+## 
+##  
+##              | loans.test$default 
+##       preds2 |        no |       yes | Row Total | 
+## -------------|-----------|-----------|-----------|
+##           no |        69 |        17 |        86 | 
+##              |     0.616 |     1.666 |           | 
+##              |     0.802 |     0.198 |     0.860 | 
+##              |     0.945 |     0.630 |           | 
+##              |     0.690 |     0.170 |           | 
+## -------------|-----------|-----------|-----------|
+##          yes |         4 |        10 |        14 | 
+##              |     3.786 |    10.235 |           | 
+##              |     0.286 |     0.714 |     0.140 | 
+##              |     0.055 |     0.370 |           | 
+##              |     0.040 |     0.100 |           | 
+## -------------|-----------|-----------|-----------|
+## Column Total |        73 |        27 |       100 | 
+##              |     0.730 |     0.270 |           | 
+## -------------|-----------|-----------|-----------|
+## 
+## 
+</code></pre>
+
+<p>the svm radial kernel perform better with the 79% accuracy. Let&rsquo;s tune the c and gamma parameter using &lsquo;tune.svm()&rsquo; function.</p>
+
+<pre><code class="language-r">svmmodel&lt;-tune.svm(default~., data = loans.test, kernel=&quot;radial&quot;,gamma =seq(0.01,0.1,len=10), cost=seq(5,50,len=10),tunecontrol=tune.control(cross=5))
+summary(svmmodel)
+</code></pre>
+
+<pre><code>## 
+## Parameter tuning of 'svm':
+## 
+## - sampling method: 5-fold cross validation 
+## 
+## - best parameters:
+##  gamma cost
+##   0.03    5
+## 
+## - best performance: 0.27 
+## 
+## - Detailed performance results:
+##     gamma cost error dispersion
+## 1    0.01    5  0.32 0.07582875
+## 2    0.02    5  0.28 0.08366600
+## 3    0.03    5  0.27 0.07582875
+## 4    0.04    5  0.28 0.07582875
+## 5    0.05    5  0.28 0.07582875
+## 6    0.06    5  0.29 0.08215838
+## 7    0.07    5  0.33 0.10954451
+## 8    0.08    5  0.33 0.10954451
+## 9    0.09    5  0.33 0.07582875
+## 10   0.10    5  0.32 0.04472136
+## 11   0.01   10  0.29 0.08215838
+## 12   0.02   10  0.28 0.08366600
+## 13   0.03   10  0.28 0.08366600
+## 14   0.04   10  0.32 0.10368221
+## 15   0.05   10  0.34 0.06519202
+## 16   0.06   10  0.35 0.05000000
+## 17   0.07   10  0.37 0.05700877
+## 18   0.08   10  0.37 0.08366600
+## 19   0.09   10  0.35 0.06123724
+## 20   0.10   10  0.34 0.05477226
+## 21   0.01   15  0.27 0.07582875
+## 22   0.02   15  0.27 0.07582875
+## 23   0.03   15  0.32 0.09082951
+## 24   0.04   15  0.34 0.06519202
+## 25   0.05   15  0.34 0.04183300
+## 26   0.06   15  0.35 0.05000000
+## 27   0.07   15  0.36 0.04183300
+## 28   0.08   15  0.37 0.08366600
+## 29   0.09   15  0.35 0.06123724
+## 30   0.10   15  0.34 0.05477226
+## 31   0.01   20  0.27 0.07582875
+## 32   0.02   20  0.30 0.07905694
+## 33   0.03   20  0.37 0.07582875
+## 34   0.04   20  0.36 0.06519202
+## 35   0.05   20  0.36 0.06519202
+## 36   0.06   20  0.35 0.05000000
+## 37   0.07   20  0.36 0.04183300
+## 38   0.08   20  0.37 0.08366600
+## 39   0.09   20  0.35 0.06123724
+## 40   0.10   20  0.34 0.05477226
+## 41   0.01   25  0.27 0.07582875
+## 42   0.02   25  0.32 0.08366600
+## 43   0.03   25  0.36 0.06519202
+## 44   0.04   25  0.37 0.05700877
+## 45   0.05   25  0.36 0.06519202
+## 46   0.06   25  0.35 0.05000000
+## 47   0.07   25  0.36 0.04183300
+## 48   0.08   25  0.37 0.08366600
+## 49   0.09   25  0.35 0.06123724
+## 50   0.10   25  0.34 0.05477226
+## 51   0.01   30  0.28 0.05700877
+## 52   0.02   30  0.32 0.10368221
+## 53   0.03   30  0.38 0.05700877
+## 54   0.04   30  0.37 0.05700877
+## 55   0.05   30  0.36 0.06519202
+## 56   0.06   30  0.35 0.05000000
+## 57   0.07   30  0.36 0.04183300
+## 58   0.08   30  0.37 0.08366600
+## 59   0.09   30  0.35 0.06123724
+## 60   0.10   30  0.34 0.05477226
+## 61   0.01   35  0.28 0.05700877
+## 62   0.02   35  0.35 0.10000000
+## 63   0.03   35  0.37 0.04472136
+## 64   0.04   35  0.37 0.05700877
+## 65   0.05   35  0.36 0.06519202
+## 66   0.06   35  0.35 0.05000000
+## 67   0.07   35  0.36 0.04183300
+## 68   0.08   35  0.37 0.08366600
+## 69   0.09   35  0.35 0.06123724
+## 70   0.10   35  0.34 0.05477226
+## 71   0.01   40  0.28 0.05700877
+## 72   0.02   40  0.37 0.05700877
+## 73   0.03   40  0.37 0.04472136
+## 74   0.04   40  0.37 0.05700877
+## 75   0.05   40  0.36 0.06519202
+## 76   0.06   40  0.35 0.05000000
+## 77   0.07   40  0.36 0.04183300
+## 78   0.08   40  0.37 0.08366600
+## 79   0.09   40  0.35 0.06123724
+## 80   0.10   40  0.34 0.05477226
+## 81   0.01   45  0.28 0.05700877
+## 82   0.02   45  0.37 0.05700877
+## 83   0.03   45  0.37 0.04472136
+## 84   0.04   45  0.37 0.05700877
+## 85   0.05   45  0.36 0.06519202
+## 86   0.06   45  0.35 0.05000000
+## 87   0.07   45  0.36 0.04183300
+## 88   0.08   45  0.37 0.08366600
+## 89   0.09   45  0.35 0.06123724
+## 90   0.10   45  0.34 0.05477226
+## 91   0.01   50  0.29 0.06519202
+## 92   0.02   50  0.37 0.05700877
+## 93   0.03   50  0.37 0.04472136
+## 94   0.04   50  0.37 0.05700877
+## 95   0.05   50  0.36 0.06519202
+## 96   0.06   50  0.35 0.05000000
+## 97   0.07   50  0.36 0.04183300
+## 98   0.08   50  0.37 0.08366600
+## 99   0.09   50  0.35 0.06123724
+## 100  0.10   50  0.34 0.05477226
+</code></pre>
+
+<p>The methods above give gamma= 0.03 and c=5 as optimal paramters. lets apply this result to our svm model to know wether the model would perform better or not.</p>
+
+<pre><code class="language-r">svmmodelrad&lt;-svm(default~., data=loans.train, kernel=&quot;radial&quot;, gamma=0.03,cost=5)
+predsrad&lt;-predict(svmmodelrad,loans.test[,-17])
+
+CrossTable(predsrad,loans.test$default)
+</code></pre>
+
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## | Chi-square contribution |
+## |           N / Row Total |
+## |           N / Col Total |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  100 
+## 
+##  
+##              | loans.test$default 
+##     predsrad |        no |       yes | Row Total | 
+## -------------|-----------|-----------|-----------|
+##           no |        62 |        10 |        72 | 
+##              |     1.695 |     4.584 |           | 
+##              |     0.861 |     0.139 |     0.720 | 
+##              |     0.849 |     0.370 |           | 
+##              |     0.620 |     0.100 |           | 
+## -------------|-----------|-----------|-----------|
+##          yes |        11 |        17 |        28 | 
+##              |     4.360 |    11.788 |           | 
+##              |     0.393 |     0.607 |     0.280 | 
+##              |     0.151 |     0.630 |           | 
+##              |     0.110 |     0.170 |           | 
+## -------------|-----------|-----------|-----------|
+## Column Total |        73 |        27 |       100 | 
+##              |     0.730 |     0.270 |           | 
+## -------------|-----------|-----------|-----------|
+## 
+## 
+</code></pre>
+
+<p>Although the tune method doesn&rsquo;t give the higher accuracy, but it reduce the number of false negatives.</p>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/svm">SVM</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/machine-learning">Machine Learning</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+
+    
+        <li><a href="/blog/causal-inference-and-bayesian-network/"
+                class="button big next">Causal Inference and Bayesian Network</a></li>
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>Algoritma Technical Blog</h2>
+        <p>We're a group of people who teach data science to individuals, trains companies and their employees to better profit from data. We care about the development of data science and a sense of community that connects our alumni and team with one another. To learn more about our approach to data science problems, feel free to hop over to our blog.</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Recent Posts</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/self-organizing-maps/">Self-Organizing Maps</a>
+              </h3>
+              
+              <time class="published" datetime='2019-04-26'>
+                April 26, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">View more posts</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+    <p class="copyright">
+      
+        &copy; 2019
+        
+          Algoritma Technical Blog
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

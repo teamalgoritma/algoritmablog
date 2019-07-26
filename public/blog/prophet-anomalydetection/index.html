@@ -1,0 +1,1528 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "blog",
+        "name" : "Facebook `prophet` and Twitter\x27s `AnomalyDetection` R Packages",
+        "headline" : "Facebook `prophet` and Twitter\x27s `AnomalyDetection` R Packages",
+        "description" : "Anomaly detection\rBackground\rAbout\rAnomaly detection(outlier detection) is the identification of data points, items, observations or events that do not conform to the expected pattern of a given group. These anomalies occur very infrequently but may signify a large and significant threat such as cyber intrusions or fraud. Anomaly detection is heavily used in behavioral analysis and other forms of analysis in order to aid in learning about the detection, identification and prediction of the occurrence of these anomalies.",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2018",
+        "datePublished": "2018-05-30 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2018-05-30 00:00:00 \x2b0000 UTC",
+        "url" : "\/blog\/prophet-anomalydetection\/",
+        "wordCount" : "5526",
+        "keywords" : [ "Anomaly Detection","prophet","twitter","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Facebook `prophet` and Twitter&#39;s `AnomalyDetection` R Packages</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.55.4" />
+        
+
+
+        
+            <meta name="author" content="Steven Surya Tanujaya">
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Facebook `prophet` and Twitter&#39;s `AnomalyDetection` R Packages"/>
+<meta name="twitter:description" content="Anomaly detectionBackgroundAboutAnomaly detection(outlier detection) is the identification of data points, items, observations or events that do not conform to the expected pattern of a given group. These anomalies occur very infrequently but may signify a large and significant threat such as cyber intrusions or fraud. Anomaly detection is heavily used in behavioral analysis and other forms of analysis in order to aid in learning about the detection, identification and prediction of the occurrence of these anomalies."/>
+<meta name="twitter:site" content="@teamalgoritma"/>
+
+        <meta property="og:title" content="Facebook `prophet` and Twitter&#39;s `AnomalyDetection` R Packages" />
+<meta property="og:description" content="Anomaly detectionBackgroundAboutAnomaly detection(outlier detection) is the identification of data points, items, observations or events that do not conform to the expected pattern of a given group. These anomalies occur very infrequently but may signify a large and significant threat such as cyber intrusions or fraud. Anomaly detection is heavily used in behavioral analysis and other forms of analysis in order to aid in learning about the detection, identification and prediction of the occurrence of these anomalies." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/prophet-anomalydetection/" />
+<meta property="article:published_time" content="2018-05-30T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-05-30T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="Facebook `prophet` and Twitter&#39;s `AnomalyDetection` R Packages">
+<meta itemprop="description" content="Anomaly detectionBackgroundAboutAnomaly detection(outlier detection) is the identification of data points, items, observations or events that do not conform to the expected pattern of a given group. These anomalies occur very infrequently but may signify a large and significant threat such as cyber intrusions or fraud. Anomaly detection is heavily used in behavioral analysis and other forms of analysis in order to aid in learning about the detection, identification and prediction of the occurrence of these anomalies.">
+
+
+<meta itemprop="datePublished" content="2018-05-30T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-05-30T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="5526">
+
+
+
+<meta itemprop="keywords" content="Anomaly Detection,prophet,twitter," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+
+
+      <link rel="stylesheet" href="/css/pojoaque.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="/js/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/blog/">
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/self-organizing-maps/">Self-Organizing Maps</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-04-26'>
+                                    April 26, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fprophet-anomalydetection%2f&amp;text=Facebook%20%60prophet%60%20and%20Twitter%27s%20%60AnomalyDetection%60%20R%20Packages&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fprophet-anomalydetection%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fprophet-anomalydetection%2f&amp;title=Facebook%20%60prophet%60%20and%20Twitter%27s%20%60AnomalyDetection%60%20R%20Packages" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/prophet-anomalydetection/">Facebook `prophet` and Twitter&#39;s `AnomalyDetection` R Packages</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2018-05-30'>
+            May 30, 2018</time>
+        <span class="author">Steven Surya Tanujaya</span>
+        
+            <p>26 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fprophet-anomalydetection%2f&amp;text=Facebook%20%60prophet%60%20and%20Twitter%27s%20%60AnomalyDetection%60%20R%20Packages&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fprophet-anomalydetection%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fprophet-anomalydetection%2f&amp;title=Facebook%20%60prophet%60%20and%20Twitter%27s%20%60AnomalyDetection%60%20R%20Packages" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </section>
+  
+
+  
+
+  <div id="content">
+    
+
+
+<div id="anomaly-detection" class="section level1">
+<h1>Anomaly detection</h1>
+<div id="background" class="section level2 tabset">
+<h2>Background</h2>
+<div id="about" class="section level3">
+<h3>About</h3>
+<p>Anomaly detection(outlier detection) is the identification of data points, items, observations or events that do not conform to the expected pattern of a given group. These anomalies occur very infrequently but may signify a large and significant threat such as cyber intrusions or fraud. Anomaly detection is heavily used in behavioral analysis and other forms of analysis in order to aid in learning about the detection, identification and prediction of the occurrence of these anomalies.</p>
+<p>Anomalies in Big Data can potentially result in losses to the business - in both revenue, as well as in long term reputation. Since anomaly/outlier/fraud detection is not always easy to do (especially for a big data-set or observations), we need to know the way to identify it easily and precisely. This module would discuss about anomaly detection package in R that has been developed by twitter.</p>
+</div>
+<div id="installing-packages" class="section level3">
+<h3>Installing packages</h3>
+<p>As the prior, please install the following packages:</p>
+<pre class="r"><code># Installing packages used in the module; just please remove the &quot;#&quot;  mark below and run the code: 
+
+#install.packages(&quot;devtools&quot;)
+#devtools::install_github(&quot;twitter/AnomalyDetection&quot;)</code></pre>
+</div>
+<div id="initial-configurations" class="section level3">
+<h3>Initial configurations</h3>
+<pre class="r"><code># Initial configurations to clear the workspace and set to print numeric values 
+options(scipen = 9999)
+rm(list=ls())
+
+# load the necessary libraries
+library(ggplot2)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.3</code></pre>
+</div>
+</div>
+<div id="mathematical-background-optional" class="section level2">
+<h2>Mathematical background [Optional]</h2>
+<div id="anomaly-detection-technique" class="section level3">
+<h3>Anomaly detection technique</h3>
+<p><img src="/img/Introduction.png" style="display: block; margin: auto;" /></p>
+<p>In this chapter, we want to discuss some technique that mostly used in anomaly detection. In the terms of anomaly detection, Grubbs test and ESD are the most widely used existing techniques. Basically, these techniques employ statistical hypothesis testing, for a given significance level to determine whether a datum is anomalous.</p>
+<p>In other words, the test is used to evaluate the rejection of the null hypothesis (<span class="math inline">\(H_0\)</span>):“The data has no outliers”, for a pre-specified level of significance, in favor of the alternative hypothesis (<span class="math inline">\(H_1\)</span>):“The data has at most <em>k</em> outliers”. We will not discuss further about <a href="http://www.real-statistics.com/students-t-distribution/identifying-outliers-using-t-distribution/grubbs-test/">Grubbs test</a> (You can find it in the link if you want to know), but we want to focus on ESD.</p>
+<p><span class="math inline">\(*\)</span>)<strong>Remark:</strong> “Rule of thumb: three-sigma rule”
+the <span class="math inline">\(3\sigma\)</span> “rule” is commonly used to detect anomalies in a given data set. Specifically, data points with values more than 3 times the sample standard deviation are deemed anomalous. The rule can potentially be used for capturing large global anomalies, but it is ill-suited for detecting seasonal anomalies. This is exemplified by <strong>Figure 2</strong>, wherein the seasonal anomalies that could not be captured using the <span class="math inline">\(3\sigma\)</span> “rule” are annotated with circles.</p>
+<p><img src="/img/3-sigma.png" style="display: block; margin: auto;" /></p>
+</div>
+<div id="esd-extreme-studentized-deviate-test" class="section level3">
+<h3>ESD (Extreme Studentized Deviate) test</h3>
+<p>The Extreme Studentized Deviate test (ESD) (and its generalized version) can be used to detect multiple anomalies in the given time series. It is just only requires an upper bound on the number of anomalies (<span class="math inline">\(k\)</span>) to be specified. In the worst case, the number of anomalies can be at most 49.9% of the total number of data points in the given time series.</p>
+<p><span class="math inline">\(*\)</span>)<strong>Remark I:</strong> In practice, twitter’s observation is based on production data, has been that the number of anomalies is typically less than 1% in the context of application metrics and less than 5% in the context of system metrics.</p>
+<p>ESD computes the following test statistic for the <span class="math inline">\(k\)</span> most extreme values in the data set. Let’s say we have data set called <span class="math inline">\(S\)</span> with <span class="math inline">\(n\)</span> elements(greater than k). So, we generate <span class="math inline">\(k\)</span> test statistics, let’s say: <span class="math inline">\(G_1, G_2, ., G_k\)</span> where each <span class="math inline">\(G_j\)</span> is a two-tailed test statistic(Grubbs’s statistic), defined as follows:<br />
++ <span class="math inline">\(S_1 = S\)</span><br />
++ <span class="math inline">\(\bar{x}_j\)</span> is the sample mean of <span class="math inline">\(S_j\)</span> and <span class="math inline">\(s_j\)</span> is the standard deviation of <span class="math inline">\(S_j\)</span><br />
++ <span class="math inline">\(G_j=\frac{max\{|x - \bar{x}_j|:x\in S_j\}}{s_j}\)</span><br />
++ <span class="math inline">\(S_{j+1} = S_j - \{x_j\}\)</span> where <span class="math inline">\(x_j\)</span> is the element in <span class="math inline">\(S_j\)</span> such that <span class="math inline">\(|x_j-\bar{x}_j|\)</span> is maximized.<br />
++ <span class="math inline">\(\lambda_j = \frac{(n-j)t_{p,n-j-1}}{\sqrt{(n-j-1+t_{p,n-j-1}^2)(n-j+1)}}\)</span> is a critical value for some <span class="math inline">\(j=1,2,...,k\)</span></p>
+<p>Essentially you run <span class="math inline">\(k\)</span> separate Grubbs’ tests, testing whether <span class="math inline">\(G_j &gt; \lambda_j\)</span>. Now let r be the largest value of <span class="math inline">\(j \le k\)</span> such that <span class="math inline">\(G_j &gt; \lambda_j\)</span>. Then we conclude there are <span class="math inline">\(r\)</span> outliers, namely <span class="math inline">\(x_1, ., x_r\)</span>. If <span class="math inline">\(r = 0\)</span> there are no outliers.</p>
+<p><strong>Note that if <span class="math inline">\(G_j &gt; \lambda_j\)</span> and <span class="math inline">\(h &lt; j\)</span>, then both <span class="math inline">\(x_h\)</span> and <span class="math inline">\(x_j\)</span> are outliers even if <span class="math inline">\(G_h \le \lambda_h\)</span>.</strong><br />
+In practice, <span class="math inline">\(G_j\)</span> may swing above and below <span class="math inline">\(\lambda_j\)</span> multiple times before permanently becoming less then <span class="math inline">\(\lambda_j\)</span>.</p>
+<p><span class="math inline">\(*\)</span>)<strong>Note:</strong> Remember that statistic <span class="math inline">\(\bar{x}\)</span> (sample <strong>mean</strong>) and <span class="math inline">\(S\)</span> (sample standard deviation) can be distorted even by a single anomaly (it is sensitive against anomaly). This is why in ESD, <span class="math inline">\(\bar{x}\)</span> is used as a component of test-statistic. On the other hand, sample <strong>median</strong> is robust against that kind of distortion and can tolerate up to 50% of the data being anomalous.</p>
+<p><span class="math inline">\(*\)</span>)<strong>Remark II:</strong> the sample mean is said to have a breakdown point of <span class="math inline">\(0\)</span>, while the sample median is said to have a breakdown point of <span class="math inline">\(0.5\)</span>.For a univariate data set <span class="math inline">\(X_1, X_2, ..., X_n\)</span>, MAD is defined as the median of the absolute deviations from the sample median. Formally,<br />
+<span class="math inline">\(MAD=median_i|X_i-median_j(X_j)|\)</span><br />
+Unlike standard deviation, MAD is robust against anomalies in the input data. Furthermore, MAD can be used to estimate standard deviation by scaling MAD by a constant factor <span class="math inline">\(b\)</span>.<br />
+<span class="math inline">\(\hat{\sigma}=b.MAD\)</span><br />
+where b = 1.4826 is used for normally distributed data(irrespective of non-normality introduced by outliers). When another underlying distribution is assumed, <a href="https://dipot.ulb.ac.be/dspace/bitstream/2013/139499/1/Leys_MAD_final-libre.pdf">Leyes et al.</a> suggest <span class="math inline">\(b = \frac{1}{Q(0.75)}\)</span>, where <span class="math inline">\(Q(0.75)\)</span> is the 0.75 quantile of the underlying distribution.</p>
+<p>###S-ESD (Seasonal-ESD)
+Basically, S-ESD just apply modified STL<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> (Seasonal and Trend decomposition using LOESS) decomposition to extract the residual of the input time-series then apply the ESD to detect the anomalies. This two step process allows S-ESD to detect <strong>both</strong> global anomalies that extend beyond the expected seasonal minimum and maximum and local anomalies that would otherwise be masked by the seasonality.</p>
+<p>The S-ESD algorithm is as follows:</p>
+<p><img src="/img/S-ESD_algorithm.png" style="display: block; margin: auto;" /></p>
+<p><span class="math inline">\(R_X=X-S_X-\tilde{X}\)</span><br />
+where <span class="math inline">\(X\)</span> is the raw time series, <span class="math inline">\(S_X\)</span> is the seasonal component
+as determined by STL, and <span class="math inline">\(\tilde{X}\)</span> is the median of the raw
+time series.</p>
+<p><img src="/img/STL-T-removal.png" style="display: block; margin: auto;" />
+<strong>Figure 3: STL with trend removal</strong></p>
+<p><img src="/img/STL-Med-removal.png" style="display: block; margin: auto;" />
+<strong>Figure 4: STL with median removal</strong></p>
+<p>Replacing the trend with the median eliminates the spurious anomalies in the residual component as exemplified by <strong>Figure 4</strong>. From the figure we note that the region highlighted with a green rectangle does not have any spurious anomalies, unlike the corresponding region in <strong>Figure 3</strong>.</p>
+<p>####Global &amp; local anomaly
+S-ESD can detect local anomalies that would otherwise be masked by seasonal data. These local anomalies are bound between the seasonal minimum and maximum and may not not appear to be anomalous from a global perspective. However,
+they are indeed anomalous and it is important to detect these as they represent a deviation from the historical pattern.
+<img src="g&amp;l-anomalies.png" alt="Figure 5: Global and local anomalies that is exposed by S-ESD" /></p>
+<p>####S-ESD limitations
+Although S-ESD can be used for detection of both global and local anomalies, S-ESD does not fare well when applied to data sets that have a high percentage of anomalies. This is exemplified by <strong>Figure 6</strong> (in section 2.4:S-H-ESD as a comparison between S-ESD and S-H-ESD) wherein S-ESD does not capture the anomalies corresponding to the region highlighted by the red rectangle.</p>
+<p>As we know earlier in <strong>note</strong> part of subsection 2.2: ESD, a single large value can inflate both the mean and the standard deviation. This makes ESD conservative in tagging anomalies and results in a large number of false negatives. So, the application of robust statistics as a further refinement of S-ESD is needed.</p>
+<p>###S-H-ESD (Seasonal-Hybrid-ESD)
+Seasonal Hybrid ESD (S-H-ESD) builds upon the S-ESD algorithm described in the previous subsection. In particular, S-H-ESD uses the robust statistical techniques and metrics to enable a more consistent measure of central tendency of a time series with a high percentage of anomalies. For example, let us consider the time series shown in <strong>Figure 6</strong>:</p>
+<p><img src="/img/S-ESD_test.png" style="display: block; margin: auto;" /></p>
+<p><strong>Figure 6: Anomalies detected via S-ESD: 1.11% anomalies (<span class="math inline">\(\alpha=0.05\)</span>)</strong></p>
+<p>,and here is S-H-ESD result as comparison:</p>
+<p><img src="/img/S-H-ESD_test.png" style="display: block; margin: auto;" /></p>
+<p><strong>Figure 7: Anomalies detected via S-H-ESD: 29.68% anomalies (<span class="math inline">\(\alpha=0.05\)</span>)</strong></p>
+<p>From the graph we observe that the seasonal component is apparent in the middle region of the time series; however, a significantly large portion of the time series is anomalous. This can inflate the mean and standard deviation, resulting in true anomalies being mislabeled as not anomalous and consequently yielding a high number of false negatives.</p>
+<p><img src="/img/comparison_table.png" style="display: block; margin: auto;" /></p>
+<p><strong>Figure 8: Comparison Mean vs. Median and Standard-deviation vs. Median-absolute-deviation</strong></p>
+<p>We addressed the above by replacing the mean and standard deviation used in ESD with more robust statistical measures during the calculation of the test statistic; in particular, we use the median and MAD, as these metrics exhibit a higher breakdown point (discussed earlier in ‘Remark II’ part in Section 2.2:ESD).</p>
+<p><strong>Figure 8</strong> lists the aforementioned metrics for the time series in <strong>Figure 6</strong> and <strong>Figure 7</strong>. The anomalies induce a small difference between the mean and median (<span class="math inline">\(\approx 1.2\%\)</span>), however the standard deviation is more than two times the median absolute deviation. This results in S-ESD detecting only <span class="math inline">\(1.11\%\)</span> of the data as “anomalous”, whereas S-H-ESD correctly detects <span class="math inline">\(29.68\%\)</span> of the input time series as anomalous - contrast the two graphs shown in <strong>Figure 7</strong>.
+Note that using the median and MAD requires sorting the data and consequently the run time of S-H-ESD is higher than that of S-ESD. Therefore, in cases where the time series under consideration is large but with a relatively low anomaly count, it is advisable to use S-ESD.</p>
+<p>##Anomaly detection: twitter’s R package
+### Introduction
+<code>AnomalyDetection</code> is R package that was developed by Arun Kejariwal and others at Twitter, is so far the best in terms of the quality and the ease of use. It employs an algorithm referred to as Seasonal Hybrid ESD (S-H-ESD), which can detect both global as well as local anomalies in the time series data by taking seasonality and trend into account. The Twitter’s team needed something robust and practical to monitor their traffics and detect anomalies so they built this in R.</p>
+</div>
+<div id="r-package-anomalydetection" class="section level3">
+<h3>R package: AnomalyDetection</h3>
+<p>The package contains two functions: <code>AnomalyDetectionTs</code> and <code>AnomalyDetectionVec</code>. Basically both have same purpose and relatively same syntax but just differs in usage.</p>
+<p>For the timeseries anomaly detection you can use <code>AnomalyDetectionTs</code> function in this package (timeseries here means the data that contains 2 columns, one for the timestamp and the other is observation data), just like the following:</p>
+<pre class="r"><code>library(AnomalyDetection)
+data(raw_data)
+head(raw_data)</code></pre>
+<pre><code>##             timestamp   count
+## 1 1980-09-25 14:01:00 182.478
+## 2 1980-09-25 14:02:00 176.231
+## 3 1980-09-25 14:03:00 183.917
+## 4 1980-09-25 14:04:00 177.798
+## 5 1980-09-25 14:05:00 165.469
+## 6 1980-09-25 14:06:00 181.878</code></pre>
+<pre class="r"><code>res = AnomalyDetectionTs(raw_data, max_anoms=0.02, direction=&#39;both&#39;, plot=TRUE)</code></pre>
+<p>For the vector that is not considered as a timeseries object or you don’t want to considered it as timeseries object, you also can use <code>AnomalyDetectionVec</code> function in this package as following:</p>
+<pre class="r"><code>AnomalyDetectionVec(raw_data$count, max_anoms=0.02, period=1440, direction=&#39;both&#39;, plot=TRUE)$plot</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+Observe that both have the same result, but the second one just plot the result without any label in x-axis. So, the plot is just represents the vector’s elements sequentially.</p>
+<p>you can also estimate the expected value of each anomaly value that you observed, by adding argument: <code>e_value</code> and set its value by “TRUE”.</p>
+<pre class="r"><code>Anom&lt;-AnomalyDetectionTs(raw_data, max_anoms=0.02, direction=&#39;both&#39;, plot=TRUE,e_value=TRUE)
+head(Anom$`anoms`)</code></pre>
+<pre><code>##             timestamp    anoms expected_value
+## 1 1980-09-25 16:05:00  21.3510            129
+## 2 1980-09-29 06:40:00 193.1036             97
+## 3 1980-09-29 21:44:00 148.1740             96
+## 4 1980-09-30 17:46:00  52.7478            117
+## 5 1980-09-30 17:48:00  49.6582            107
+## 6 1980-09-30 17:50:00  35.6067            104</code></pre>
+<p>We would use this package to improve our performance in making timeseries prediction later on.</p>
+</div>
+</div>
+</div>
+<div id="prophet" class="section level1">
+<h1>Prophet</h1>
+<div id="background-introduction" class="section level2">
+<h2>Background &amp; Introduction</h2>
+<p>Forecasting is a common data science task that helps organizations with capacity planning, goal setting, and anomaly detection. Automatic forecasting has a long history, with many methods tailored to specific types of timeseries (Tashman &amp; Leach 1991, De Gooijer &amp; Hyndman 2006).
+Despite its importance, there are serious challenges associated with producing reliable and high quality forecasts, the two main themes are :<br />
+1. Automatic forecasting (provided by packages in R) are ‘brittle’ and inflexible to assumptions.<br />
+2. Not many analysts can produce high quality forecast.</p>
+<p><code>prophet</code> is a ‘tool’ for forecasting designed to overcome some of those problems, as not all forecasting problems can be solved with same procedures. <code>prophet</code> is designed to focus on forecast problems that have these characteristics.
+1. Hourly, daily, or weekly observations with at least a few months (preferably a year) of history<br />
+2. Strong <strong>multiple “human-scale” seasonalities</strong>: day of week and time of year
+important holidays that occur at irregular intervals that are known in advance (e.g. the Super Bowl)<br />
+3. A reasonable number of <strong>missing observations</strong> or <strong>large outliers</strong><br />
+4. <strong>Historical trend changes</strong>, for instance due to product launches or logging changes trends that are non-linear growth curves, where a trend hits a natural limit or saturates</p>
+<p>To make <code>prophet</code> suits various business cases, it combines automatic forecasting with analyst-in-the-loop forecasts for special cases.</p>
+<p><img src="/img/prophetmodelling.png" style="display: block; margin: auto;" /></p>
+<div id="mathematical-background-optional-1" class="section level3">
+<h3>Mathematical background [Optional]</h3>
+<p><code>prophet</code> uses a decomposable time series model ( <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/for.3980090203">Harvey &amp; Peters 1990</a>) with three main model components: trend, seasonality, and holidays. They are combined in the following equation:<br />
+<span class="math inline">\(y(t) = g(t) + s(t) + h(t) + \epsilon_t\)</span>.<br />
+Here,
+<span class="math inline">\(g(t)\)</span> is the <strong>trend</strong> function which models non-periodic changes in the value of the time series
+<span class="math inline">\(s(t)\)</span> represents *<strong>period</strong>ic changes (e.g., weekly and yearly seasonality)
+<span class="math inline">\(h(t)\)</span> represents the effects of <strong>holidays</strong> which occur on potentially irregular schedules overone or more days.
+The <strong>error</strong> term <span class="math inline">\(\epsilon_t\)</span> represents any idiosyncratic changes which are not accommodated by the model</p>
+<p>The procedure is a generalized additive regression model (GAM) with time as the regressor (independent variable) and some linear and non-linear function of time as components. Seasonality is an additive component, similar to additive exponential smoothing.</p>
+<p>Advantages of using Generalized Additive Model for forecasting:<br />
+1. It decomposes easily and accommodates new components as necessary, for instance when a new source of seasonality is identified.<br />
+Thus, the model is flexible to have multiple seasonalities, specific trend assumptions or additional parameters, and piecewise trends.<br />
+2. Fit very quickly, either using backfitting or L-BFGS (Byrd et al. 1995) (we prefer the latter) so that the user can interactively change the model parameters.<br />
+3. As we do forecasting by regression ( unlike usual time-series forecasting models ), the data need not to be regularly spaced and missing values are allowed.</p>
+<div id="trend-function" class="section level4">
+<h4>Trend Function</h4>
+<p>For growth forecasting, the core component of the data generating process is a model for how the population has grown and how it is expected to continue growing.
+There are mainly two trend models that are implemented in <code>prophet</code> :</p>
+<ol style="list-style-type: decimal">
+<li><p>Logistic growth trend<br />
+This model is used when growth is similar to population growth. The general equation to this model is<br />
+<span class="math inline">\(g(t)= \frac{C}{1+exp(-k(t-m)}\)</span><br />
+with <span class="math inline">\(C\)</span> is the carrying capacity, <span class="math inline">\(k\)</span> is the growth rate, <span class="math inline">\(m\)</span> is an offset parameter.<br />
+If the carrying capacity is changing over time, we can change <span class="math inline">\(C\)</span> into <span class="math inline">\(C(t)\)</span>.<br />
+If there are trend change in the data we can alter the value of <span class="math inline">\(k\)</span> overtime by sepcifying the changepoints and rate adjustments.<br />
+Suppose there are N changepoints, then we define the vector <span class="math inline">\(s\)</span> which contains N elements of changepoint time and vector <span class="math inline">\(\delta\)</span> which contains N elements of change of rate that corresponds to changepoint time in vector <span class="math inline">\(s\)</span>.<br />
+Next, define function <span class="math inline">\(a(t)= 1\)</span> if <span class="math inline">\(t \geq s_j\)</span>, and <span class="math inline">\(a(t)=0\)</span> otherwise.
+Then the trend will be <span class="math inline">\(k+a(t)^T\delta\)</span>
+The piecewise equation will be<br />
+<span class="math inline">\(g(t)=\frac{C(t)}{1+exp(-(k+a(t)^T\delta)(t-(m+a(t)^T\delta)))}\)</span></p></li>
+<li><p>Linear Trend with Changepoints<br />
+The model is :<br />
+<span class="math inline">\(g(t)=(k+a(t)^T\delta)t+(m+a(t)^T\gamma)\)</span><br />
+with <span class="math inline">\(k\)</span> is the growth rate, <span class="math inline">\(\delta\)</span> is the rate of adjustment, <span class="math inline">\(m\)</span> is an offset parameter, and <span class="math inline">\(\gamma\)</span> is additional parameter to make the function continuous.</p></li>
+<li><p>Automatic Changepoint Selection and Trend Forecast Uncertainty using Laplace.</p></li>
+</ol>
+</div>
+<div id="about-seasonality" class="section level4">
+<h4>About seasonality</h4>
+<p>The yearly seasonal component modeled using Fourier series.<br />
+The weekly seasonal component using dummy variables.</p>
+</div>
+<div id="holidays-and-events" class="section level4">
+<h4>‘Holidays’ and ‘Events’</h4>
+<p>A user-provided list of important holidays. We assign the dates of holidays and, if neccesary, parameter of change in each of holiday.</p>
+</div>
+</div>
+</div>
+<div id="implementation" class="section level2">
+<h2>Implementation</h2>
+<p>First, we install and load the packages needed.</p>
+<pre class="r"><code>library(prophet)</code></pre>
+<pre><code>## Warning: package &#39;prophet&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Loading required package: Rcpp</code></pre>
+<pre><code>## Warning: package &#39;Rcpp&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Loading required package: rlang</code></pre>
+<pre><code>## Warning: package &#39;rlang&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(forecast)</code></pre>
+<pre><code>## Warning: package &#39;forecast&#39; was built under R version 3.5.3</code></pre>
+<div id="fnb-data" class="section level3">
+<h3>FnB data</h3>
+<p>We will try applying <code>prophet</code> for forecasting income of food outlet.</p>
+<pre class="r"><code>library(readr)</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>data &lt;- read_rds(&quot;data_input/ReceiptDetail.RDS&quot;)
+#read_csv make data class as tibble, we need to convert to data frame.
+data &lt;- as.data.frame(data)
+#we need to omit some NAs too
+data&lt;-na.omit(data)
+head(data)</code></pre>
+<pre><code>##      Transaction Date Receipt Number  Item ID  Item Group Major Group
+## 1 2018-02-01 10:01:36       A0000001 10100188 NOODLE DISH        FOOD
+## 2 2018-01-03 09:24:16       A0000001 11400018     TOPPING     TOPPING
+## 3 2017-12-25 09:57:59       A0000001 10600003      COFFEE   BEVERAGES
+## 4 2017-12-15 09:59:14       A0000001 10100140 NOODLE DISH        FOOD
+## 5 2018-01-03 09:24:16       A0000001 11400052     TOPPING     TOPPING
+## 6 2018-01-03 09:24:16       A0000001 11500034      DRINKS   BEVERAGES
+##   Quantity PriceUSD TotalUSD Payment Type Sales Type Outlet
+## 1        1     6.96     6.96         CASH    DINE IN   E 03
+## 2        1     5.48     5.48         CASH    DINE IN   A 16
+## 3        1     5.85     5.85   NON - CASH    DINE IN   E 39
+## 4        1     4.86     4.86         CASH    DINE IN   E 31
+## 5        1     5.48     5.48         CASH    DINE IN   A 16
+## 6        1     2.51     2.51         CASH    DINE IN   A 16</code></pre>
+</div>
+<div id="preprocessing" class="section level3">
+<h3>Preprocessing</h3>
+<pre class="r"><code>str(data)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    7619928 obs. of  11 variables:
+##  $ Transaction Date: POSIXct, format: &quot;2018-02-01 10:01:36&quot; &quot;2018-01-03 09:24:16&quot; ...
+##  $ Receipt Number  : chr  &quot;A0000001&quot; &quot;A0000001&quot; &quot;A0000001&quot; &quot;A0000001&quot; ...
+##  $ Item ID         : num  10100188 11400018 10600003 10100140 11400052 ...
+##  $ Item Group      : chr  &quot;NOODLE DISH&quot; &quot;TOPPING&quot; &quot;COFFEE&quot; &quot;NOODLE DISH&quot; ...
+##  $ Major Group     : chr  &quot;FOOD&quot; &quot;TOPPING&quot; &quot;BEVERAGES&quot; &quot;FOOD&quot; ...
+##  $ Quantity        : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ PriceUSD        : num  6.96 5.48 5.85 4.86 5.48 2.51 4.86 7.45 4.36 4.49 ...
+##  $ TotalUSD        : num  6.96 5.48 5.85 4.86 5.48 2.51 4.86 7.45 4.36 4.49 ...
+##  $ Payment Type    : chr  &quot;CASH&quot; &quot;CASH&quot; &quot;NON - CASH&quot; &quot;CASH&quot; ...
+##  $ Sales Type      : chr  &quot;DINE IN&quot; &quot;DINE IN&quot; &quot;DINE IN&quot; &quot;DINE IN&quot; ...
+##  $ Outlet          : chr  &quot;E 03&quot; &quot;A 16&quot; &quot;E 39&quot; &quot;E 31&quot; ...
+##  - attr(*, &quot;problems&quot;)=Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;: 11 obs. of  5 variables:
+##   ..$ row     : int  5596622 5596699 5954030 5955938 5956212 5956995 5958815 5960217 5962413 5965272 ...
+##   ..$ col     : chr  &quot;Quantity&quot; &quot;Quantity&quot; &quot;Quantity&quot; &quot;Quantity&quot; ...
+##   ..$ expected: chr  &quot;a double&quot; &quot;a double&quot; &quot;a double&quot; &quot;a double&quot; ...
+##   ..$ actual  : chr  &quot;OTHER&quot; &quot;OTHER&quot; &quot;OTHER&quot; &quot;OTHER&quot; ...
+##   ..$ file    : chr  &quot;&#39;data_input/ReceiptDetail - Final.csv&#39;&quot; &quot;&#39;data_input/ReceiptDetail - Final.csv&#39;&quot; &quot;&#39;data_input/ReceiptDetail - Final.csv&#39;&quot; &quot;&#39;data_input/ReceiptDetail - Final.csv&#39;&quot; ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   `Transaction Date` = col_datetime(format = &quot;&quot;),
+##   ..   `Receipt Number` = col_character(),
+##   ..   `Item ID` = col_double(),
+##   ..   `Item Group` = col_character(),
+##   ..   `Major Group` = col_character(),
+##   ..   Quantity = col_double(),
+##   ..   PriceUSD = col_double(),
+##   ..   TotalUSD = col_double(),
+##   ..   `Payment Type` = col_character(),
+##   ..   `Sales Type` = col_character(),
+##   ..   Outlet = col_character()
+##   .. )
+##  - attr(*, &quot;na.action&quot;)= &#39;omit&#39; Named int  2478 2479 2482 2505 4594 4595 4605 6526 6530 6532 ...
+##   ..- attr(*, &quot;names&quot;)= chr  &quot;2478&quot; &quot;2479&quot; &quot;2482&quot; &quot;2505&quot; ...</code></pre>
+<p>Note that receipt number is of little use.</p>
+<pre class="r"><code>data=data[,-3]
+head(data)</code></pre>
+<pre><code>##      Transaction Date Receipt Number  Item Group Major Group Quantity
+## 1 2018-02-01 10:01:36       A0000001 NOODLE DISH        FOOD        1
+## 2 2018-01-03 09:24:16       A0000001     TOPPING     TOPPING        1
+## 3 2017-12-25 09:57:59       A0000001      COFFEE   BEVERAGES        1
+## 4 2017-12-15 09:59:14       A0000001 NOODLE DISH        FOOD        1
+## 5 2018-01-03 09:24:16       A0000001     TOPPING     TOPPING        1
+## 6 2018-01-03 09:24:16       A0000001      DRINKS   BEVERAGES        1
+##   PriceUSD TotalUSD Payment Type Sales Type Outlet
+## 1     6.96     6.96         CASH    DINE IN   E 03
+## 2     5.48     5.48         CASH    DINE IN   A 16
+## 3     5.85     5.85   NON - CASH    DINE IN   E 39
+## 4     4.86     4.86         CASH    DINE IN   E 31
+## 5     5.48     5.48         CASH    DINE IN   A 16
+## 6     2.51     2.51         CASH    DINE IN   A 16</code></pre>
+<p>There are also some other things to do : Outlet, Sales Type, and Payment Type be converted to factor</p>
+<pre class="r"><code>data$Outlet&lt;-as.factor(data$Outlet)
+data$`Payment Type`&lt;-as.factor(data$`Payment Type`)
+data$`Sales Type`&lt;-as.factor(data$`Sales Type`)</code></pre>
+</div>
+<div id="timeseries" class="section level3">
+<h3>Timeseries</h3>
+<p>Goal : finding trend in daily TotalUSD</p>
+<pre class="r"><code>sales.ts &lt;- aggregate(data$TotalUSD, by=list(format(data$`Transaction Date`,&#39;%Y-%m-%d&#39;),data$Outlet), FUN=sum)
+names(sales.ts)&lt;-c(&quot;date&quot;,&quot;Outlet&quot;,&quot;sumUSD&quot;)
+sales.ts$date&lt;-as.Date(sales.ts$date,&quot;%Y-%m-%d&quot;)
+sales.ts&lt;-sales.ts[order(sales.ts$date),]
+levels(as.factor(sales.ts$date))</code></pre>
+<pre><code>##  [1] &quot;2014-01-01&quot; &quot;2017-12-01&quot; &quot;2017-12-02&quot; &quot;2017-12-03&quot; &quot;2017-12-04&quot;
+##  [6] &quot;2017-12-05&quot; &quot;2017-12-06&quot; &quot;2017-12-07&quot; &quot;2017-12-08&quot; &quot;2017-12-09&quot;
+## [11] &quot;2017-12-10&quot; &quot;2017-12-11&quot; &quot;2017-12-12&quot; &quot;2017-12-13&quot; &quot;2017-12-14&quot;
+## [16] &quot;2017-12-15&quot; &quot;2017-12-16&quot; &quot;2017-12-17&quot; &quot;2017-12-18&quot; &quot;2017-12-19&quot;
+## [21] &quot;2017-12-20&quot; &quot;2017-12-21&quot; &quot;2017-12-22&quot; &quot;2017-12-23&quot; &quot;2017-12-24&quot;
+## [26] &quot;2017-12-25&quot; &quot;2017-12-26&quot; &quot;2017-12-27&quot; &quot;2017-12-28&quot; &quot;2017-12-29&quot;
+## [31] &quot;2017-12-30&quot; &quot;2017-12-31&quot; &quot;2018-01-01&quot; &quot;2018-01-02&quot; &quot;2018-01-03&quot;
+## [36] &quot;2018-01-04&quot; &quot;2018-01-05&quot; &quot;2018-01-06&quot; &quot;2018-01-07&quot; &quot;2018-01-08&quot;
+## [41] &quot;2018-01-09&quot; &quot;2018-01-10&quot; &quot;2018-01-11&quot; &quot;2018-01-12&quot; &quot;2018-01-13&quot;
+## [46] &quot;2018-01-14&quot; &quot;2018-01-15&quot; &quot;2018-01-16&quot; &quot;2018-01-17&quot; &quot;2018-01-18&quot;
+## [51] &quot;2018-01-19&quot; &quot;2018-01-20&quot; &quot;2018-01-21&quot; &quot;2018-01-22&quot; &quot;2018-01-23&quot;
+## [56] &quot;2018-01-24&quot; &quot;2018-01-25&quot; &quot;2018-01-26&quot; &quot;2018-01-27&quot; &quot;2018-01-28&quot;
+## [61] &quot;2018-01-29&quot; &quot;2018-01-30&quot; &quot;2018-01-31&quot; &quot;2018-02-01&quot; &quot;2018-02-02&quot;
+## [66] &quot;2018-02-03&quot; &quot;2018-02-04&quot; &quot;2018-02-05&quot; &quot;2018-02-06&quot; &quot;2018-02-07&quot;
+## [71] &quot;2018-02-08&quot; &quot;2018-02-09&quot; &quot;2018-02-10&quot; &quot;2018-02-11&quot; &quot;2018-02-12&quot;
+## [76] &quot;2018-02-13&quot; &quot;2018-02-14&quot; &quot;2018-02-15&quot; &quot;2018-02-16&quot; &quot;2018-02-17&quot;
+## [81] &quot;2018-02-18&quot; &quot;2018-02-19&quot; &quot;2018-02-20&quot; &quot;2018-02-21&quot; &quot;2018-02-22&quot;
+## [86] &quot;2018-02-23&quot; &quot;2018-02-24&quot; &quot;2018-02-25&quot; &quot;2018-02-26&quot; &quot;2018-02-27&quot;
+## [91] &quot;2018-02-28&quot; &quot;2018-03-01&quot;</code></pre>
+<pre class="r"><code>head(sales.ts)</code></pre>
+<pre><code>##            date Outlet   sumUSD
+## 4010 2014-01-01   E 17   635.66
+## 1    2017-12-01   A 01 13555.15
+## 91   2017-12-01   A 02 17507.88
+## 244  2017-12-01   A 05 13078.56
+## 335  2017-12-01   A 06  5860.34
+## 425  2017-12-01   A 07  3836.90</code></pre>
+<p>the “2014-01-01” datas are suspicious, and I want to inspect those.</p>
+<pre class="r"><code>head(data[as.Date(data$&#39;Transaction Date&#39;)==&#39;2014-01-01&#39;,])</code></pre>
+<pre><code>##            Transaction Date Receipt Number Item Group Major Group Quantity
+## 1863135 2014-01-01 00:01:40       A0017027     DRINKS   BEVERAGES        1
+## 1863204 2014-01-01 00:01:40       A0017027  RICE DISH        FOOD        1
+## 1863279 2014-01-01 00:15:40       A0017028  MEAT DISH        FOOD        1
+## 1863282 2014-01-01 00:15:40       A0017028     DRINKS   BEVERAGES        2
+## 1863285 2014-01-01 00:15:40       A0017028  RICE DISH        FOOD        1
+## 1863302 2014-01-01 00:15:40       A0017028  RICE DISH        FOOD        1
+##         PriceUSD TotalUSD Payment Type Sales Type Outlet
+## 1863135     4.36     4.36         CASH    DINE IN   E 17
+## 1863204     5.60     5.60         CASH    DINE IN   E 17
+## 1863279     6.34     6.34         CASH    DINE IN   E 17
+## 1863282     4.36     8.73         CASH    DINE IN   E 17
+## 1863285     8.44     8.44         CASH    DINE IN   E 17
+## 1863302     5.60     5.60         CASH    DINE IN   E 17</code></pre>
+<pre class="r"><code>tail(data[as.Date(data$&#39;Transaction Date&#39;)==&#39;2014-01-01&#39;,])</code></pre>
+<pre><code>##            Transaction Date Receipt Number Item Group Major Group Quantity
+## 1867141 2014-01-01 01:34:21       A0017055    TOPPING     TOPPING        1
+## 1867152 2014-01-01 01:34:21       A0017055  SIDE DISH        FOOD        1
+## 1867158 2014-01-01 01:34:21       A0017055     DRINKS   BEVERAGES        1
+## 1867162 2014-01-01 01:34:21       A0017055    TOPPING     TOPPING        1
+## 1867293 2014-01-01 01:36:19       A0017056     DRINKS   BEVERAGES        1
+## 1867346 2014-01-01 01:36:19       A0017056      JUICE   BEVERAGES        1
+##         PriceUSD TotalUSD Payment Type Sales Type Outlet
+## 1867141     2.51     2.51         CASH    DINE IN   E 17
+## 1867152     7.58     7.58         CASH    DINE IN   E 17
+## 1867158     2.51     2.51         CASH    DINE IN   E 17
+## 1867162     2.51     2.51         CASH    DINE IN   E 17
+## 1867293     4.61     4.61         CASH    DINE IN   E 17
+## 1867346     4.74     4.74         CASH    DINE IN   E 17</code></pre>
+<pre class="r"><code>dim(data[as.Date(data$&#39;Transaction Date&#39;)==&#39;2014-01-01&#39;,])[1]</code></pre>
+<pre><code>## [1] 123</code></pre>
+<p>It has values like normal and come from E17. I want to know how many transactions are from Outlet E 17.</p>
+<pre class="r"><code>dim(data[data$Outlet==&#39;E 17&#39;,])[1]</code></pre>
+<pre><code>## [1] 81286</code></pre>
+<p>So, there are 123 transactions from E17 that have anomaly date, but the rest of transaction from E17 have normal date.
+As the 2014-01-01 data ruin the timeseries I will omit them.</p>
+<pre class="r"><code>sales.ts&lt;-sales.ts[sales.ts$date!=&quot;2014-01-01&quot;,]
+head(sales.ts)</code></pre>
+<pre><code>##           date Outlet   sumUSD
+## 1   2017-12-01   A 01 13555.15
+## 91  2017-12-01   A 02 17507.88
+## 244 2017-12-01   A 05 13078.56
+## 335 2017-12-01   A 06  5860.34
+## 425 2017-12-01   A 07  3836.90
+## 515 2017-12-01   A 08 27609.08</code></pre>
+<p>I want to forecast Outlet with highest revenue.</p>
+<pre class="r"><code>aggregate(sales.ts$sumUSD, by=list(sales.ts$Outlet), FUN=sum)</code></pre>
+<pre class="r"><code>head(aggregate(sales.ts$sumUSD, by=list(sales.ts$Outlet), FUN=sum))</code></pre>
+<pre><code>##   Group.1          x
+## 1    A 01  775453.87
+## 2    A 02  723346.73
+## 3    A 03  411554.89
+## 4    A 04   88132.85
+## 5    A 05 1116566.90
+## 6    A 06  298083.67</code></pre>
+<pre class="r"><code>max(aggregate(sales.ts$sumUSD, by=list(sales.ts$Outlet), FUN=sum)[,2])</code></pre>
+<pre><code>## [1] 1260641</code></pre>
+<p>The outlet with Highest revenue is OUtlet A08</p>
+<pre class="r"><code>sales_A08&lt;-sales.ts[sales.ts$Outlet==&quot;A 08&quot;,]
+sales_A08 &lt;- sales_A08[,-2]
+head(sales_A08)</code></pre>
+<pre><code>##           date   sumUSD
+## 515 2017-12-01 27609.08
+## 516 2017-12-02 25471.00
+## 517 2017-12-03 25842.49
+## 518 2017-12-04 10949.66
+## 519 2017-12-05 13652.35
+## 520 2017-12-06 13495.48</code></pre>
+<pre class="r"><code>plot(sales_A08,type=&quot;l&quot;)</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+<div id="r-package-prophet" class="section level3">
+<h3>R package: ‘Prophet’</h3>
+<p>Assume that the TotalUSD growth has linear trend (instead of logistic growth)</p>
+<pre class="r"><code>library(prophet)
+# To use Prophet we have to change the column name that represent the time into &quot;ds&quot; and the column that represent data into &quot;y&quot;.
+names(sales_A08)=c(&quot;ds&quot;,&quot;y&quot;)
+# As holidays are supossedly affecting income (hypothetically positively) we define the dates of holiday, with name of holiday in &quot;holiday&quot; column and dates in &quot;ds&quot; column.
+
+#Holidays must be inputed manually per date.
+holiday&lt;-data.frame(holiday=c(&quot;Natal&quot;,&quot;Tahun Baru&quot;),ds=c(&quot;2017-12-25&quot;,&quot;2018-01-01&quot;))
+A08_prophet&lt;-prophet(sales_A08,holidays = holiday)</code></pre>
+<pre><code>## Disabling yearly seasonality. Run prophet with yearly.seasonality=TRUE to override this.</code></pre>
+<pre><code>## Disabling daily seasonality. Run prophet with daily.seasonality=TRUE to override this.</code></pre>
+<pre class="r"><code>#Setting dataframe that contains the date of future prediction. Periods=30 means we will forecast 30 days ahead. (as the data are daily)
+future&lt;-make_future_dataframe(A08_prophet,periods=30)
+head(future)</code></pre>
+<pre><code>##           ds
+## 1 2017-12-01
+## 2 2017-12-02
+## 3 2017-12-03
+## 4 2017-12-04
+## 5 2017-12-05
+## 6 2017-12-06</code></pre>
+<pre class="r"><code>A08_prophet_forecast&lt;-predict(A08_prophet,future)
+head(A08_prophet_forecast)</code></pre>
+<pre><code>##           ds    trend additive_terms additive_terms_lower
+## 1 2017-12-01 17882.54       -64.0631             -64.0631
+## 2 2017-12-02 17775.75      6493.0698            6493.0698
+## 3 2017-12-03 17668.96      8965.5455            8965.5455
+## 4 2017-12-04 17562.17     -4903.4666           -4903.4666
+## 5 2017-12-05 17455.38     -2983.3840           -2983.3840
+## 6 2017-12-06 17348.59     -3790.2766           -3790.2766
+##   additive_terms_upper holidays holidays_lower holidays_upper Natal
+## 1             -64.0631        0              0              0     0
+## 2            6493.0698        0              0              0     0
+## 3            8965.5455        0              0              0     0
+## 4           -4903.4666        0              0              0     0
+## 5           -2983.3840        0              0              0     0
+## 6           -3790.2766        0              0              0     0
+##   Natal_lower Natal_upper Tahun Baru Tahun Baru_lower Tahun Baru_upper
+## 1           0           0          0                0                0
+## 2           0           0          0                0                0
+## 3           0           0          0                0                0
+## 4           0           0          0                0                0
+## 5           0           0          0                0                0
+## 6           0           0          0                0                0
+##       weekly weekly_lower weekly_upper multiplicative_terms
+## 1   -64.0631     -64.0631     -64.0631                    0
+## 2  6493.0698    6493.0698    6493.0698                    0
+## 3  8965.5455    8965.5455    8965.5455                    0
+## 4 -4903.4666   -4903.4666   -4903.4666                    0
+## 5 -2983.3840   -2983.3840   -2983.3840                    0
+## 6 -3790.2766   -3790.2766   -3790.2766                    0
+##   multiplicative_terms_lower multiplicative_terms_upper yhat_lower
+## 1                          0                          0   15212.53
+## 2                          0                          0   21369.56
+## 3                          0                          0   23804.43
+## 4                          0                          0    9882.68
+## 5                          0                          0   11760.49
+## 6                          0                          0   10732.70
+##   yhat_upper trend_lower trend_upper     yhat
+## 1   20457.90    17882.54    17882.54 17818.48
+## 2   26920.99    17775.75    17775.75 24268.82
+## 3   29525.22    17668.96    17668.96 26634.50
+## 4   15434.59    17562.17    17562.17 12658.70
+## 5   17387.11    17455.38    17455.38 14471.99
+## 6   16300.26    17348.59    17348.59 13558.31</code></pre>
+<pre class="r"><code>plot(A08_prophet,A08_prophet_forecast)</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>prophet_plot_components(A08_prophet,A08_prophet_forecast,uncertainty = TRUE)</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+<div id="other-models" class="section level3">
+<h3>Other models</h3>
+<div id="auto-arima" class="section level4">
+<h4>Auto ARIMA</h4>
+<pre class="r"><code>library(forecast)
+A08_arima&lt;-auto.arima(sales_A08$y)
+plot(forecast(A08_arima,h=60))</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>Auto ARIMA seems could not detect the rather downward trend and detected quite unfit seasonality.</p>
+</div>
+<div id="ets-exponential-smoothing" class="section level4">
+<h4>ETS (Exponential smoothing)</h4>
+<pre class="r"><code>A08_ts&lt;-msts(sales_A08,seasonal.periods = c(7,365),ts.frequency = 7)
+A08_ets&lt;-ets(A08_ts[,2],model=&quot;ZZA&quot;)
+plot(A08_ets)</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<pre class="r"><code>plot(forecast(A08_ets,h=30))</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-34-2.png" width="672" /></p>
+<p>ETS seems good but still cannot detect downtrend</p>
+</div>
+<div id="holt-winters" class="section level4">
+<h4>Holt-Winters</h4>
+<pre class="r"><code>A08_hw&lt;-HoltWinters(A08_ts[,2])
+A08_hwf&lt;-forecast(A08_hw,h=30)
+plot(A08_hwf)</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p>Forecast using Holt-Winters can detect downtrend but the prediction is not as detailed as in <code>prophet</code>.</p>
+</div>
+</div>
+<div id="experimenting-with-uncomplete-data-optional" class="section level3">
+<h3>Experimenting with uncomplete data [Optional]</h3>
+<p>We will try deleting 10 data from sales_A08 at random</p>
+<pre class="r"><code>sales_A08_new &lt;- sales_A08
+sales_A08_new$y[sample(nrow(sales_A08_new), 10)]&lt;-NA
+plot(sales_A08_new,type=&quot;l&quot;)</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<pre class="r"><code>A08_new_prophet&lt;-prophet(sales_A08_new,holidays = holiday)</code></pre>
+<pre><code>## Disabling yearly seasonality. Run prophet with yearly.seasonality=TRUE to override this.</code></pre>
+<pre><code>## Disabling daily seasonality. Run prophet with daily.seasonality=TRUE to override this.</code></pre>
+<pre class="r"><code>A08_new_prophet_forecast&lt;-predict(A08_new_prophet,future)
+head(A08_new_prophet_forecast)</code></pre>
+<pre><code>##           ds    trend additive_terms additive_terms_lower
+## 1 2017-12-01 17711.73      -19.64392            -19.64392
+## 2 2017-12-02 17612.25     6404.94403           6404.94403
+## 3 2017-12-03 17512.77     8999.58987           8999.58987
+## 4 2017-12-04 17413.29    -4926.29924          -4926.29924
+## 5 2017-12-05 17313.82    -2948.59082          -2948.59082
+## 6 2017-12-06 17214.34    -3758.08629          -3758.08629
+##   additive_terms_upper holidays holidays_lower holidays_upper Natal
+## 1            -19.64392        0              0              0     0
+## 2           6404.94403        0              0              0     0
+## 3           8999.58987        0              0              0     0
+## 4          -4926.29924        0              0              0     0
+## 5          -2948.59082        0              0              0     0
+## 6          -3758.08629        0              0              0     0
+##   Natal_lower Natal_upper Tahun Baru Tahun Baru_lower Tahun Baru_upper
+## 1           0           0          0                0                0
+## 2           0           0          0                0                0
+## 3           0           0          0                0                0
+## 4           0           0          0                0                0
+## 5           0           0          0                0                0
+## 6           0           0          0                0                0
+##        weekly weekly_lower weekly_upper multiplicative_terms
+## 1   -19.64392    -19.64392    -19.64392                    0
+## 2  6404.94403   6404.94403   6404.94403                    0
+## 3  8999.58987   8999.58987   8999.58987                    0
+## 4 -4926.29924  -4926.29924  -4926.29924                    0
+## 5 -2948.59082  -2948.59082  -2948.59082                    0
+## 6 -3758.08629  -3758.08629  -3758.08629                    0
+##   multiplicative_terms_lower multiplicative_terms_upper yhat_lower
+## 1                          0                          0  14902.791
+## 2                          0                          0  21098.729
+## 3                          0                          0  23821.354
+## 4                          0                          0   9323.703
+## 5                          0                          0  11331.417
+## 6                          0                          0  10623.787
+##   yhat_upper trend_lower trend_upper     yhat
+## 1   20445.07    17711.73    17711.73 17692.08
+## 2   26824.38    17612.25    17612.25 24017.19
+## 3   29416.64    17512.77    17512.77 26512.36
+## 4   15420.22    17413.29    17413.29 12486.99
+## 5   16979.36    17313.82    17313.82 14365.22
+## 6   16200.80    17214.34    17214.34 13456.25</code></pre>
+<pre class="r"><code>plot(A08_new_prophet,A08_new_prophet_forecast)</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p>This shows that <code>prophet</code> is quite robust on working on data with 11% missing values (at least for this dataset).</p>
+</div>
+</div>
+</div>
+<div id="colaborate-both" class="section level1">
+<h1>Colaborate both</h1>
+<p>In this part, we gonna colaborate the usage of <code>AnomalyDetection</code> and <code>prophet</code> packages to make a good prediction for ‘total FnB’s outlet turnover’. Remember that in previous section, we assume that the anomaly occur in the holiday which are Chistmas and New-year. This assumption is reasonable but in the purpose of finding the best prediction, we need to consider the other anomaly day that maybe undetected. In this case, we need to assign the “Holidays” arguments by the anomalous dates (in 5% significance level) which are detected by <code>AnomalyDetection</code> package and using <code>prophet</code> package after that.</p>
+<pre class="r"><code>sales_A08$ds&lt;-as.POSIXct(sales_A08$ds)
+holiday_new&lt;-AnomalyDetectionTs(sales_A08,max_anoms = 0.1,direction = &quot;both&quot;,alpha = 0.05)$`anoms`</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<pre class="r"><code>holiday_new&lt;-holiday_new[c(&quot;anoms&quot;,&quot;timestamp&quot;)]
+names(holiday_new)&lt;-c(&#39;holiday&#39;,&#39;ds&#39;)
+holiday_new[,c(1:2)]&lt;-lapply(holiday_new[,c(1:2)],as.factor)
+holiday_new$ds&lt;-as.Date(holiday_new$ds)
+sales_A08$ds&lt;-as.Date(sales_A08$ds)
+
+A08_AD_prophet&lt;-prophet(sales_A08,holidays = holiday_new)</code></pre>
+<pre><code>## Disabling yearly seasonality. Run prophet with yearly.seasonality=TRUE to override this.</code></pre>
+<pre><code>## Disabling daily seasonality. Run prophet with daily.seasonality=TRUE to override this.</code></pre>
+<pre class="r"><code>A08_AD_prophet_forecast&lt;-predict(A08_AD_prophet,future)
+head(A08_AD_prophet_forecast)</code></pre>
+<pre><code>##           ds    trend 20960.05 20960.05_lower 20960.05_upper 20996.32
+## 1 2017-12-01 17398.17        0              0              0        0
+## 2 2017-12-02 17291.26        0              0              0        0
+## 3 2017-12-03 17184.35        0              0              0        0
+## 4 2017-12-04 17077.45        0              0              0        0
+## 5 2017-12-05 16970.54        0              0              0        0
+## 6 2017-12-06 16863.63        0              0              0        0
+##   20996.32_lower 20996.32_upper 24340.94 24340.94_lower 24340.94_upper
+## 1              0              0        0              0              0
+## 2              0              0        0              0              0
+## 3              0              0        0              0              0
+## 4              0              0        0              0              0
+## 5              0              0        0              0              0
+## 6              0              0        0              0              0
+##   27609.08 27609.08_lower 27609.08_upper 31456.99 31456.99_lower
+## 1 11697.12       11697.12       11697.12        0              0
+## 2     0.00           0.00           0.00        0              0
+## 3     0.00           0.00           0.00        0              0
+## 4     0.00           0.00           0.00        0              0
+## 5     0.00           0.00           0.00        0              0
+## 6     0.00           0.00           0.00        0              0
+##   31456.99_upper additive_terms additive_terms_lower additive_terms_upper
+## 1              0      10211.643            10211.643            10211.643
+## 2              0       6863.990             6863.990             6863.990
+## 3              0       9333.941             9333.941             9333.941
+## 4              0      -4559.566            -4559.566            -4559.566
+## 5              0      -3365.116            -3365.116            -3365.116
+## 6              0      -3437.318            -3437.318            -3437.318
+##   holidays holidays_lower holidays_upper    weekly weekly_lower
+## 1 11697.12       11697.12       11697.12 -1485.475    -1485.475
+## 2     0.00           0.00           0.00  6863.990     6863.990
+## 3     0.00           0.00           0.00  9333.941     9333.941
+## 4     0.00           0.00           0.00 -4559.566    -4559.566
+## 5     0.00           0.00           0.00 -3365.116    -3365.116
+## 6     0.00           0.00           0.00 -3437.318    -3437.318
+##   weekly_upper multiplicative_terms multiplicative_terms_lower
+## 1    -1485.475                    0                          0
+## 2     6863.990                    0                          0
+## 3     9333.941                    0                          0
+## 4    -4559.566                    0                          0
+## 5    -3365.116                    0                          0
+## 6    -3437.318                    0                          0
+##   multiplicative_terms_upper yhat_lower yhat_upper trend_lower trend_upper
+## 1                          0   26239.97   28948.01    17398.17    17398.17
+## 2                          0   22699.04   25457.77    17291.26    17291.26
+## 3                          0   25254.66   27901.53    17184.35    17184.35
+## 4                          0   11209.71   13841.43    17077.45    17077.45
+## 5                          0   12119.04   14914.31    16970.54    16970.54
+## 6                          0   12100.01   14699.74    16863.63    16863.63
+##       yhat
+## 1 27609.81
+## 2 24155.25
+## 3 26518.29
+## 4 12517.88
+## 5 13605.42
+## 6 13426.31</code></pre>
+<pre class="r"><code>plot(A08_AD_prophet,A08_AD_prophet_forecast)</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-38-2.png" width="672" />
+Now, recall the previous <code>prophet</code> prediction result:</p>
+<pre class="r"><code>plot(A08_prophet,A08_prophet_forecast)</code></pre>
+<p><img src="/blog/2018-05-30-prophet-anomalydetection_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+We observe that by collaborating the two packages, the prediction interval(the blue highlight) is smaller means it is more precise than without using <code>AnomalyDetection</code> package. The prediction line is also more fit to the data (by observation).</p>
+</div>
+<div id="final-words" class="section level1">
+<h1>Final words</h1>
+<p>We conclude that:</p>
+<ul>
+<li>Detecting anomalies using <code>AnomalyDetection</code> package allow us to find global and local anomalies (that usually hard to find manually)in easy way. Moreover it is also able to ‘fix’ the anomalies value using the expected value.</li>
+<li>Visually, forecast using <code>prophet</code> yields more satisfying result compared to some other methods such as ETS, Auto-ARIMA, and Holt-Winters. However to produce suitable and more likely-to-be-true forecast, user should need some knowledge about the data itself such as on which date in history data that data behaves unusually (can be obtained from <code>AnomalyDetection</code> package)and how is the trend of growth should be, whether linear or logistic growth, whether it has changing rate of growth or rather stagnant.</li>
+<li>Collaborate both method give us better and more fit prediction model (rather than ETS, Auto-ARIMA and Holt-Winters model)</li>
+</ul>
+<p>#References
+1. <a href="https://research.fb.com/prophet-forecasting-at-scale/" class="uri">https://research.fb.com/prophet-forecasting-at-scale/</a>
+2. <a href="https://peerj.com/preprints/3190v2.pdf" class="uri">https://peerj.com/preprints/3190v2.pdf</a>
+3. <a href="https://arxiv.org/pdf/1704.07706.pdf" class="uri">https://arxiv.org/pdf/1704.07706.pdf</a>
+4. <a href="https://github.com/twitter/AnomalyDetection" class="uri">https://github.com/twitter/AnomalyDetection</a>
+5. <a href="https://blog.exploratory.io/introduction-to-anomaly-detection-in-r-with-exploratory-a0507d40385d" class="uri">https://blog.exploratory.io/introduction-to-anomaly-detection-in-r-with-exploratory-a0507d40385d</a>
+6. <a href="http://www.real-statistics.com/students-t-distribution/identifying-outliers-using-t-distribution/generalized-extreme-studentized-deviate-test/" class="uri">http://www.real-statistics.com/students-t-distribution/identifying-outliers-using-t-distribution/generalized-extreme-studentized-deviate-test/</a></p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://anomaly.io/seasonal-trend-decomposition-in-r/">About decomposition time series in R</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/anomaly-detection">Anomaly Detection</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/prophet">prophet</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/twitter">twitter</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/support-vector-machine/"
+                class="button big previous">Support Vector Machine</a></li>
+    
+
+    
+        <li><a href="/blog/causal-inference-and-bayesian-network/"
+                class="button big next">Causal Inference and Bayesian Network</a></li>
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>Algoritma Technical Blog</h2>
+        <p>We're a group of people who teach data science to individuals, trains companies and their employees to better profit from data. We care about the development of data science and a sense of community that connects our alumni and team with one another. To learn more about our approach to data science problems, feel free to hop over to our blog.</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Recent Posts</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/self-organizing-maps/">Self-Organizing Maps</a>
+              </h3>
+              
+              <time class="published" datetime='2019-04-26'>
+                April 26, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">View more posts</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+    <p class="copyright">
+      
+        &copy; 2019
+        
+          Algoritma Technical Blog
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

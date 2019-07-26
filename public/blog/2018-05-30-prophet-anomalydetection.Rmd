@@ -1,0 +1,462 @@
+---
+title: Facebook `prophet` and Twitter's `AnomalyDetection` R Packages
+author: Steven Surya Tanujaya
+date: '2018-05-30'
+slug: prophet-anomalydetection
+categories:
+  - R
+tags:
+  - Anomaly Detection
+  - prophet
+  - twitter
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Anomaly detection
+
+## Background {.tabset}
+### About
+Anomaly detection(outlier detection) is the identification of data points, items, observations or events that do not conform to the expected pattern of a given group. These anomalies occur very infrequently but may signify a large and significant threat such as cyber intrusions or fraud. Anomaly detection is heavily used in behavioral analysis and other forms of analysis in order to aid in learning about the detection, identification and prediction of the occurrence of these anomalies.
+
+Anomalies in Big Data can potentially result in losses to the business - in both revenue, as well as in long term reputation. Since anomaly/outlier/fraud detection is not always easy to do (especially for a big data-set or observations), we need to know the way to identify it easily and precisely. This module would discuss about anomaly detection package in R that has been developed by twitter.  
+
+### Installing packages
+As the prior, please install the following packages:
+
+```{r}
+# Installing packages used in the module; just please remove the "#"  mark below and run the code: 
+
+#install.packages("devtools")
+#devtools::install_github("twitter/AnomalyDetection")
+```
+
+### Initial configurations
+```{r}
+# Initial configurations to clear the workspace and set to print numeric values 
+options(scipen = 9999)
+rm(list=ls())
+
+# load the necessary libraries
+library(ggplot2)
+```
+
+## Mathematical background [Optional]
+### Anomaly detection technique
+
+```{r echo=FALSE, fig.align='center'}
+knitr::include_graphics('/img/Introduction.png')
+```
+
+In this chapter, we want to discuss some technique that mostly used in anomaly detection. In the terms of anomaly detection, Grubbs test and ESD are the most widely used existing techniques. Basically, these techniques employ statistical hypothesis testing, for a given significance level to determine whether a datum is anomalous.
+
+In other words, the test is used to evaluate the rejection of the null hypothesis ($H_0$):"The data has no outliers", for a pre-specified level of significance, in favor of the alternative hypothesis ($H_1$):"The data has at most *k* outliers". We will not discuss further about [Grubbs test](http://www.real-statistics.com/students-t-distribution/identifying-outliers-using-t-distribution/grubbs-test/) (You can find it in the link if you want to know), but we want to focus on ESD.
+
+$*$)**Remark:** "Rule of thumb: three-sigma rule"
+the $3\sigma$ "rule" is commonly used to detect anomalies in a given data set. Specifically, data points with values more than 3 times the sample standard deviation are deemed anomalous. The rule can potentially be used for capturing large global anomalies, but it is ill-suited for detecting seasonal anomalies. This is exemplified by **Figure 2**, wherein the seasonal anomalies that could not be captured using the $3\sigma$ "rule" are annotated with circles.
+
+```{r echo=FALSE, fig.align='center'}
+knitr::include_graphics('/img/3-sigma.png')
+```
+
+
+### ESD (Extreme Studentized Deviate) test
+The Extreme Studentized Deviate test (ESD) (and its generalized version) can be used to detect multiple anomalies in the given time series. It is just only requires an upper bound on the number of anomalies ($k$) to be specified. In the worst case, the number of anomalies can be at most 49.9% of the total number of data points in the given time series. 
+
+$*$)**Remark I:** In practice, twitter's observation is based on production data, has been that the number of anomalies is typically less than 1% in the context of application metrics and less than 5% in the context of system metrics.   
+
+ESD computes the following test statistic for the $k$ most extreme values in the data set. Let's say we have data set called $S$  with $n$ elements(greater than k). So, we generate $k$ test statistics, let's say: $G_1, G_2, ., G_k$ where each $G_j$ is a two-tailed test statistic(Grubbs's statistic), defined as follows:   
++ $S_1 = S$   
++ $\bar{x}_j$ is the sample mean of $S_j$ and $s_j$ is the standard deviation of $S_j$   
++ $G_j=\frac{max\{|x - \bar{x}_j|:x\in S_j\}}{s_j}$   
++ $S_{j+1} = S_j - \{x_j\}$ where $x_j$ is the element  in $S_j$ such that $|x_j-\bar{x}_j|$ is maximized.   
++ $\lambda_j = \frac{(n-j)t_{p,n-j-1}}{\sqrt{(n-j-1+t_{p,n-j-1}^2)(n-j+1)}}$ is a critical value for some $j=1,2,...,k$
+
+Essentially you run $k$ separate Grubbs' tests, testing whether $G_j > \lambda_j$. Now let r be the largest value of $j \le k$ such that $G_j > \lambda_j$. Then we conclude there are $r$ outliers, namely $x_1, ., x_r$. If $r = 0$ there are no outliers.
+
+**Note that if $G_j > \lambda_j$ and $h < j$, then both $x_h$ and $x_j$ are outliers even if $G_h \le \lambda_h$.**   
+In practice, $G_j$ may swing above and below $\lambda_j$ multiple times before permanently becoming less then $\lambda_j$.
+
+$*$)**Note:** Remember that statistic $\bar{x}$ (sample **mean**) and $S$ (sample standard deviation) can be distorted even by a single anomaly (it is sensitive against anomaly). This is why in ESD, $\bar{x}$ is used as a component of test-statistic. On the other hand, sample **median** is robust against that kind of distortion and can tolerate up to 50% of the data being anomalous.
+
+$*$)**Remark II:**  the sample mean is said to have a breakdown point of $0$, while the sample median is said to have a breakdown point of $0.5$.For a univariate data set $X_1, X_2, ..., X_n$, MAD is defined as the median of the absolute deviations from the sample median. Formally,   
+$MAD=median_i|X_i-median_j(X_j)|$   
+Unlike standard deviation, MAD is robust against anomalies in the input data. Furthermore, MAD can be used to estimate standard deviation by scaling MAD by a constant factor $b$.   
+$\hat{\sigma}=b.MAD$   
+where b = 1.4826 is used for normally distributed data(irrespective of non-normality introduced by outliers). When another underlying distribution is assumed, [Leyes et al.](https://dipot.ulb.ac.be/dspace/bitstream/2013/139499/1/Leys_MAD_final-libre.pdf) suggest $b = \frac{1}{Q(0.75)}$, where $Q(0.75)$ is the 0.75 quantile of the underlying distribution. 
+
+###S-ESD (Seasonal-ESD)
+Basically, S-ESD just apply modified STL[^1] (Seasonal and Trend decomposition using LOESS) decomposition to extract the residual of the input time-series then apply the ESD to detect the anomalies. This two step process allows S-ESD to detect **both** global anomalies that extend beyond the expected seasonal minimum and maximum and local anomalies that would otherwise be masked by the seasonality.
+
+The S-ESD algorithm is as follows:   
+
+```{r echo=FALSE, fig.align='center'}
+knitr::include_graphics('/img/S-ESD_algorithm.png')
+```
+
+$R_X=X-S_X-\tilde{X}$   
+where $X$ is the raw time series, $S_X$ is the seasonal component
+as determined by STL, and $\tilde{X}$ is the median of the raw
+time series.   
+
+
+```{r echo=FALSE, fig.align='center'}
+knitr::include_graphics('/img/STL-T-removal.png')
+```
+**Figure 3: STL with trend removal**
+
+
+```{r echo=FALSE, fig.align='center'}
+knitr::include_graphics('/img/STL-Med-removal.png')
+```
+**Figure 4: STL with median removal**
+
+Replacing the trend with the median eliminates the spurious anomalies in the residual component as exemplified by **Figure 4**. From the figure we note that the region highlighted with a green rectangle does not have any spurious anomalies, unlike the corresponding region in **Figure 3**.
+
+####Global & local anomaly
+S-ESD can detect local anomalies that would otherwise be masked by seasonal data. These local anomalies are bound between the seasonal minimum and maximum and may not not appear to be anomalous from a global perspective. However,
+they are indeed anomalous and it is important to detect these as they represent a deviation from the historical pattern.
+![Figure 5: Global and local anomalies that is exposed by S-ESD](g&l-anomalies.png)
+
+####S-ESD limitations
+Although S-ESD can be used for detection of both global and local anomalies, S-ESD does not fare well when applied to data sets that have a high percentage of anomalies. This is exemplified by **Figure 6** (in section 2.4:S-H-ESD as a comparison between S-ESD and S-H-ESD) wherein S-ESD does not capture the anomalies corresponding to the region highlighted by the red rectangle.
+
+As we know earlier in **note** part of subsection 2.2: ESD, a single large value can inflate both the mean and the standard deviation. This makes ESD conservative in tagging anomalies and results in a large number of false negatives. So, the application of robust statistics as a further refinement of S-ESD is needed.
+
+[^1]: [About decomposition time series in R](https://anomaly.io/seasonal-trend-decomposition-in-r/)
+
+###S-H-ESD (Seasonal-Hybrid-ESD)
+Seasonal Hybrid ESD (S-H-ESD) builds upon the S-ESD algorithm described in the previous subsection. In particular, S-H-ESD uses the robust statistical techniques and metrics to enable a more consistent measure of central tendency of a time series with a high percentage of anomalies. For example, let us consider the time series shown in **Figure 6**: 
+
+```{r echo=FALSE, fig.align='center'}
+knitr::include_graphics('/img/S-ESD_test.png')
+```
+
+**Figure 6: Anomalies detected via S-ESD: 1.11% anomalies ($\alpha=0.05$)**  
+
+,and here is S-H-ESD result as comparison:   
+
+```{r echo=FALSE, fig.align='center'}
+knitr::include_graphics('/img/S-H-ESD_test.png')
+```
+
+**Figure 7: Anomalies detected via S-H-ESD: 29.68% anomalies ($\alpha=0.05$)**
+
+From the graph we observe that the seasonal component is apparent in the middle region of the time series; however, a significantly large portion of the time series is anomalous. This can inflate the mean and standard deviation, resulting in true anomalies being mislabeled as not anomalous and consequently yielding a high number of false negatives.
+
+```{r echo=FALSE, fig.align='center'}
+knitr::include_graphics('/img/comparison_table.png')
+```
+
+**Figure 8: Comparison Mean vs. Median and Standard-deviation vs. Median-absolute-deviation**
+
+We addressed the above by replacing the mean and standard deviation used in ESD with more robust statistical measures during the calculation of the test statistic; in particular, we use the median and MAD, as these metrics exhibit a higher breakdown point (discussed earlier in 'Remark II' part in Section 2.2:ESD).
+
+**Figure 8** lists the aforementioned metrics for the time series in **Figure 6** and **Figure 7**. The anomalies induce a small difference between the mean and median ($\approx 1.2\%$), however the standard deviation is more than two times the median absolute deviation. This results in S-ESD detecting only $1.11\%$ of the data as "anomalous", whereas S-H-ESD correctly detects $29.68\%$ of the input time series as anomalous - contrast the two graphs shown in **Figure 7**.
+Note that using the median and MAD requires sorting the data and consequently the run time of S-H-ESD is higher than that of S-ESD. Therefore, in cases where the time series under consideration is large but with a relatively low anomaly count, it is advisable to use S-ESD.
+
+##Anomaly detection: twitter's R package
+### Introduction
+`AnomalyDetection` is R package that was developed by Arun Kejariwal and others at Twitter, is so far the best in terms of the quality and the ease of use. It employs an algorithm referred to as Seasonal Hybrid ESD (S-H-ESD), which can detect both global as well as local anomalies in the time series data by taking seasonality and trend into account. The Twitter's team needed something robust and practical to monitor their traffics and detect anomalies so they built this in R.
+
+### R package: AnomalyDetection
+
+The package contains two functions: `AnomalyDetectionTs` and `AnomalyDetectionVec`. Basically both have same purpose and relatively same syntax but just differs in usage.
+
+For the timeseries anomaly detection you can use `AnomalyDetectionTs` function in this package (timeseries here means the data that contains 2 columns, one for the timestamp and the other is observation data), just like the following:
+```{r}
+library(AnomalyDetection)
+data(raw_data)
+head(raw_data)
+res = AnomalyDetectionTs(raw_data, max_anoms=0.02, direction='both', plot=TRUE)
+```
+
+For the vector that is not considered as a timeseries object or you don't want to considered it as timeseries object, you also can use `AnomalyDetectionVec` function in this package as following:
+```{r}
+AnomalyDetectionVec(raw_data$count, max_anoms=0.02, period=1440, direction='both', plot=TRUE)$plot
+```
+Observe that both have the same result, but the second one just plot the result without any label in x-axis. So, the plot is just represents the vector's elements sequentially.
+
+you can also estimate the expected value of each anomaly value that you observed, by adding argument: `e_value` and set its value by "TRUE".
+
+```{r}
+Anom<-AnomalyDetectionTs(raw_data, max_anoms=0.02, direction='both', plot=TRUE,e_value=TRUE)
+head(Anom$`anoms`)
+```
+We would use this package to improve our performance in making timeseries prediction later on.  
+
+# Prophet
+
+## Background & Introduction
+Forecasting is a common data science task that helps organizations with capacity planning, goal setting, and anomaly detection. Automatic forecasting has a long history, with many methods tailored to specific types of timeseries (Tashman & Leach 1991, De Gooijer & Hyndman 2006).
+Despite its importance, there are serious challenges associated with producing reliable and high quality forecasts, the two main themes are :   
+1. Automatic forecasting (provided by packages in R) are 'brittle' and inflexible to assumptions.   
+2. Not many analysts can produce high quality forecast.
+
+`prophet` is a 'tool' for forecasting designed to overcome some of those problems, as not all forecasting problems can be solved with same procedures. `prophet` is designed to focus on forecast problems that have these characteristics.
+1. Hourly, daily, or weekly observations with at least a few months (preferably a year) of history   
+2. Strong **multiple "human-scale" seasonalities**: day of week and time of year
+important holidays that occur at irregular intervals that are known in advance (e.g. the Super Bowl)   
+3. A reasonable number of **missing observations** or **large outliers**   
+4. **Historical trend changes**, for instance due to product launches or logging changes trends that are non-linear growth curves, where a trend hits a natural limit or saturates   
+
+To make `prophet` suits various business cases, it combines automatic forecasting with analyst-in-the-loop forecasts for special cases.
+
+```{r echo=FALSE, fig.align='center'}
+knitr::include_graphics('/img/prophetmodelling.png')
+```
+
+### Mathematical background [Optional]
+`prophet` uses a decomposable time series model ( [Harvey & Peters 1990](https://onlinelibrary.wiley.com/doi/pdf/10.1002/for.3980090203)) with three main model components: trend, seasonality, and holidays. They are combined in the following equation:  
+$y(t) = g(t) + s(t) + h(t) + \epsilon_t$.   
+Here,
+$g(t)$ is the **trend** function which models non-periodic changes in the value of the time series
+$s(t)$ represents ***period**ic changes (e.g., weekly and yearly seasonality)
+$h(t)$ represents the effects of **holidays** which occur on potentially irregular schedules overone or more days. 
+The **error** term $\epsilon_t$ represents any idiosyncratic changes which are not accommodated by the model
+
+The procedure is a generalized additive regression model (GAM) with time as the regressor (independent variable) and some linear and non-linear function of time as components. Seasonality is an additive component, similar to additive exponential smoothing.
+
+Advantages of using Generalized Additive Model for forecasting:  
+1. It decomposes easily and accommodates new components as necessary, for instance when a new source of seasonality is identified.  
+Thus, the model is flexible to have multiple seasonalities, specific trend assumptions or additional parameters, and piecewise trends.  
+2. Fit very quickly, either using backfitting or L-BFGS (Byrd et al. 1995) (we prefer the latter) so that the user can interactively change the model parameters.  
+3. As we do forecasting by regression ( unlike usual time-series forecasting models ), the data need not to be regularly spaced and missing values are allowed.  
+
+#### Trend Function
+For growth forecasting, the core component of the data generating process is a model for how the population has grown and how it is expected to continue growing.
+There are mainly two trend models that are implemented in `prophet` :
+
+1. Logistic growth trend  
+This model is used when growth is similar to population growth. The general equation to this model is  
+$g(t)= \frac{C}{1+exp(-k(t-m)}$  
+with $C$ is the carrying capacity, $k$ is the growth rate, $m$ is an offset parameter.  
+If the carrying capacity is changing over time, we can change $C$ into $C(t)$.  
+If there are trend change in the data we can alter the value of $k$ overtime by sepcifying the changepoints and rate adjustments.  
+Suppose there are N changepoints, then we define the vector $s$ which contains N elements of changepoint time and vector $\delta$ which contains N elements of change of rate that corresponds to changepoint time in vector $s$.  
+Next, define function $a(t)= 1$ if  $t \geq s_j$, and $a(t)=0$ otherwise.
+Then the trend will be $k+a(t)^T\delta$
+The piecewise equation will be   
+$g(t)=\frac{C(t)}{1+exp(-(k+a(t)^T\delta)(t-(m+a(t)^T\delta)))}$
+
+2. Linear Trend with Changepoints  
+The model is :  
+$g(t)=(k+a(t)^T\delta)t+(m+a(t)^T\gamma)$  
+with $k$ is the growth rate, $\delta$ is the rate of adjustment, $m$ is an offset parameter, and $\gamma$ is additional parameter to make the function continuous.
+
+3. Automatic Changepoint Selection and Trend Forecast Uncertainty using Laplace.
+
+
+#### About seasonality
+The yearly seasonal component modeled using Fourier series.  
+The weekly seasonal component using dummy variables.
+
+#### 'Holidays' and 'Events'
+A user-provided list of important holidays. We assign the dates of holidays and, if neccesary,  parameter of change in each of holiday.
+
+## Implementation
+First, we install and load the packages needed.
+```{r}
+library(prophet)
+library(forecast)
+```
+
+### FnB data
+We will try applying `prophet` for forecasting income of food outlet. 
+```{r}
+library(readr)
+data <- read_rds("data_input/ReceiptDetail.RDS")
+#read_csv make data class as tibble, we need to convert to data frame.
+data <- as.data.frame(data)
+#we need to omit some NAs too
+data<-na.omit(data)
+head(data)
+```
+
+### Preprocessing 
+
+```{r}
+str(data)
+```
+Note that receipt number is of little use.  
+
+```{r}
+data=data[,-3]
+head(data)
+```
+There are also some other things to do : Outlet, Sales Type, and Payment Type be converted to factor
+```{r}
+data$Outlet<-as.factor(data$Outlet)
+data$`Payment Type`<-as.factor(data$`Payment Type`)
+data$`Sales Type`<-as.factor(data$`Sales Type`)
+```
+
+### Timeseries
+Goal : finding trend in daily TotalUSD 
+
+```{r}
+sales.ts <- aggregate(data$TotalUSD, by=list(format(data$`Transaction Date`,'%Y-%m-%d'),data$Outlet), FUN=sum)
+names(sales.ts)<-c("date","Outlet","sumUSD")
+sales.ts$date<-as.Date(sales.ts$date,"%Y-%m-%d")
+sales.ts<-sales.ts[order(sales.ts$date),]
+levels(as.factor(sales.ts$date))
+head(sales.ts)
+```
+
+the "2014-01-01" datas are suspicious, and I want to inspect those.
+```{r}
+head(data[as.Date(data$'Transaction Date')=='2014-01-01',])
+tail(data[as.Date(data$'Transaction Date')=='2014-01-01',])
+dim(data[as.Date(data$'Transaction Date')=='2014-01-01',])[1]
+```
+It has values like normal and come from E17. I want to know how many transactions are from Outlet E 17.
+```{r}
+dim(data[data$Outlet=='E 17',])[1]
+```
+So, there are 123 transactions from E17 that have anomaly date, but the rest of transaction from E17 have normal date.
+As the 2014-01-01 data ruin the timeseries I will omit them.
+```{r}
+sales.ts<-sales.ts[sales.ts$date!="2014-01-01",]
+head(sales.ts)
+```
+
+I want to forecast Outlet with highest revenue.
+```{r eval=F}
+aggregate(sales.ts$sumUSD, by=list(sales.ts$Outlet), FUN=sum)
+```
+```{r}
+head(aggregate(sales.ts$sumUSD, by=list(sales.ts$Outlet), FUN=sum))
+max(aggregate(sales.ts$sumUSD, by=list(sales.ts$Outlet), FUN=sum)[,2])
+```
+The outlet with Highest revenue is OUtlet A08
+```{r}
+sales_A08<-sales.ts[sales.ts$Outlet=="A 08",]
+sales_A08 <- sales_A08[,-2]
+head(sales_A08)
+```
+```{r}
+plot(sales_A08,type="l")
+```
+
+### R package: 'Prophet'
+Assume that the TotalUSD growth has linear trend (instead of logistic growth)
+```{r}
+library(prophet)
+# To use Prophet we have to change the column name that represent the time into "ds" and the column that represent data into "y".
+names(sales_A08)=c("ds","y")
+# As holidays are supossedly affecting income (hypothetically positively) we define the dates of holiday, with name of holiday in "holiday" column and dates in "ds" column.
+
+#Holidays must be inputed manually per date.
+holiday<-data.frame(holiday=c("Natal","Tahun Baru"),ds=c("2017-12-25","2018-01-01"))
+A08_prophet<-prophet(sales_A08,holidays = holiday)
+```
+
+
+```{r}
+#Setting dataframe that contains the date of future prediction. Periods=30 means we will forecast 30 days ahead. (as the data are daily)
+future<-make_future_dataframe(A08_prophet,periods=30)
+head(future)
+```
+
+```{r}
+A08_prophet_forecast<-predict(A08_prophet,future)
+head(A08_prophet_forecast)
+```
+```{r}
+plot(A08_prophet,A08_prophet_forecast)
+```
+```{r}
+library(dplyr)
+prophet_plot_components(A08_prophet,A08_prophet_forecast,uncertainty = TRUE)
+```
+
+### Other models
+#### Auto ARIMA
+```{r}
+library(forecast)
+A08_arima<-auto.arima(sales_A08$y)
+plot(forecast(A08_arima,h=60))
+```
+   
+Auto ARIMA seems could not detect the rather downward trend and detected quite unfit seasonality.
+
+#### ETS (Exponential smoothing)
+```{r}
+A08_ts<-msts(sales_A08,seasonal.periods = c(7,365),ts.frequency = 7)
+A08_ets<-ets(A08_ts[,2],model="ZZA")
+plot(A08_ets)
+plot(forecast(A08_ets,h=30))
+```
+   
+ETS seems good but still cannot detect downtrend
+
+#### Holt-Winters
+```{r}
+A08_hw<-HoltWinters(A08_ts[,2])
+A08_hwf<-forecast(A08_hw,h=30)
+plot(A08_hwf)
+```
+   
+Forecast using Holt-Winters can detect downtrend but the prediction is not as detailed as in `prophet`.
+
+### Experimenting with uncomplete data [Optional]
+We will try deleting 10 data from sales_A08 at random
+```{r}
+sales_A08_new <- sales_A08
+sales_A08_new$y[sample(nrow(sales_A08_new), 10)]<-NA
+plot(sales_A08_new,type="l")
+```
+
+```{r}
+A08_new_prophet<-prophet(sales_A08_new,holidays = holiday)
+A08_new_prophet_forecast<-predict(A08_new_prophet,future)
+head(A08_new_prophet_forecast)
+plot(A08_new_prophet,A08_new_prophet_forecast)
+```
+   
+This shows that `prophet` is quite robust on working on data with 11% missing values (at least for this dataset).
+
+# Colaborate both
+In this part, we gonna colaborate the usage of `AnomalyDetection` and `prophet` packages to make a good prediction for 'total FnB's outlet turnover'. Remember that in previous section, we assume that the anomaly occur in the holiday which are Chistmas and New-year. This assumption is reasonable but in the purpose of finding the best prediction, we need to consider the other anomaly day that maybe undetected. In this case, we need to assign the "Holidays" arguments by the anomalous dates (in 5% significance level) which are detected by `AnomalyDetection` package and using `prophet` package after that.
+```{r}
+sales_A08$ds<-as.POSIXct(sales_A08$ds)
+holiday_new<-AnomalyDetectionTs(sales_A08,max_anoms = 0.1,direction = "both",alpha = 0.05)$`anoms`
+holiday_new<-holiday_new[c("anoms","timestamp")]
+names(holiday_new)<-c('holiday','ds')
+holiday_new[,c(1:2)]<-lapply(holiday_new[,c(1:2)],as.factor)
+holiday_new$ds<-as.Date(holiday_new$ds)
+sales_A08$ds<-as.Date(sales_A08$ds)
+
+A08_AD_prophet<-prophet(sales_A08,holidays = holiday_new)
+A08_AD_prophet_forecast<-predict(A08_AD_prophet,future)
+head(A08_AD_prophet_forecast)
+plot(A08_AD_prophet,A08_AD_prophet_forecast)
+```
+Now, recall the previous `prophet` prediction result:
+```{r}
+plot(A08_prophet,A08_prophet_forecast)
+```
+ We observe that by collaborating the two packages, the prediction interval(the blue highlight) is smaller means it is more precise than without using `AnomalyDetection` package. The prediction line is also more fit to the data (by observation). 
+
+# Final words
+
+We conclude that:   
+
++ Detecting anomalies using `AnomalyDetection` package allow us to find global and local anomalies (that usually hard to find manually)in easy way. Moreover it is also able to 'fix' the anomalies value using the expected value. 
++ Visually, forecast using `prophet` yields more satisfying result compared to some other methods such as ETS, Auto-ARIMA, and Holt-Winters. However to produce suitable and more likely-to-be-true forecast, user should need some knowledge about the data itself such as on which date in history data that data behaves unusually (can be obtained from `AnomalyDetection` package)and how is the trend of growth should be, whether linear or logistic growth, whether it has changing rate of growth or rather stagnant.
++ Collaborate both method give us better and more fit prediction model (rather than ETS, Auto-ARIMA and Holt-Winters model)
+
+#References
+1. https://research.fb.com/prophet-forecasting-at-scale/
+2. https://peerj.com/preprints/3190v2.pdf
+3. https://arxiv.org/pdf/1704.07706.pdf
+4. https://github.com/twitter/AnomalyDetection
+5. https://blog.exploratory.io/introduction-to-anomaly-detection-in-r-with-exploratory-a0507d40385d
+6. http://www.real-statistics.com/students-t-distribution/identifying-outliers-using-t-distribution/generalized-extreme-studentized-deviate-test/

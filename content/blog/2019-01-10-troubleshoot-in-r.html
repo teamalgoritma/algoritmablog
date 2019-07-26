@@ -1,0 +1,85 @@
+---
+title: Troubleshoot in R
+author: Shelloren
+date: '2019-01-10'
+slug: troubleshoot-in-r
+categories:
+  - R
+tags:
+  - Capstone Ml
+  - Data Manipulation
+  - Troubleshoot
+description: ''
+featured: 'TIR.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>When you start coding in R you probably get a lot of errors, and trying to decipher an error can be a time-consuming task. You might need to Google or maybe you asked for help to your friends/mentor and they find out you’ve forgot a closing bracket!.</p>
+<p>You just learnt about the importance of it just few hours ago, <em>“You’re supposed to know this stuff”</em>. You might be frustrated and blame yourself when you make very basic mistakes, but this is something every one goes through.</p>
+<p>This is the beginner curse: to become better, you need to practice writing code. This article will help you so you can troubleshoot your own error in better way.</p>
+<div id="learning-objectives" class="section level2">
+<h2>Learning objectives</h2>
+<ul>
+<li>Understand basic error that beginner usually encounter</li>
+<li>Learn to solve an error in your code</li>
+</ul>
+</div>
+</div>
+<div id="know-your-error" class="section level1">
+<h1>Know your error!</h1>
+<p>Pay attention to your code line for a mark’s!</p>
+<p>Example of error code in line:
+<img src="/img/errorinline.png" style="display: block; margin: auto;" /></p>
+<p>Before running, it’s very convenient to know exactly on which line you made a mistake. Read the error message in the console, an error will appear after you run a wrong code.</p>
+<p>Example of error code in console:
+<img src="/img/errormessageinconsole.png" style="display: block; margin: auto;" /></p>
+<p>The most common error in RStudio is Syntax errors. You’be forgotten a comma, opened a bracket, but haven’t closed it, misspelled character by mistake or something else R doesn’t understand. Those are usually picked up by R and you will get error messages reminding you to proof-read your code and fix them.</p>
+<p>Here some error that newbie in R probably encounters:</p>
+<ul>
+<li><p><strong>‘could not find function’</strong>. This error happen when an R package is not loaded properly or due to missing object like misspelling of the functions or data set name. Example below show eror massage that R can’t find function because we misspelled a function called ‘boxplot’ with ‘boxsplot’.</p></li>
+<li><p><strong>‘Error in if’</strong>. It generally means the logical statement in “if (xxx) { …” is not yielding a logical value. Most of these have missing value where TRUE/FALSE is needed, meaning that the variable in xxx has NA in it.</p></li>
+<li><p><strong>‘object not found’</strong>. This error occurs when the particular object used in the code is empty.</p></li>
+<li><strong>‘cannot open the connection’</strong>. There can be a reasons we are getting this error:
+<ul>
+<li>A file/connection can’t be opened because R can’t find it (mostly due to an error in the path).</li>
+<li>Failure in .onLoad() because a package can’t find a system dependency.</li>
+</ul></li>
+<li><p><strong>“subscript out of bounds”</strong>. This error is likely to occur when one is using nested loops incorrectly in the code.</p></li>
+<li><p><strong>‘non-numeric argument to a binary operator’</strong>. This is a simple error to decipher. This happen when we mix different vector value in calculation, for the example : numeric x characters.</p></li>
+<li><p><strong>“replacement has”</strong>. This error occurs when one tries to assign a vector of values to a subset of an existing object and the lengths do not match up.</p>
+<p>R is case sensitive, so be mind of capital letter in your code too. Try to capitalize the use of <a href="https://support.rstudio.com/hc/en-us/articles/205273297-Code-Completion">complition engine</a> by R-bloggers and for more in-depth of the topic read the article by <a href="https://www.r-bloggers.com/common-r-programming-errors-faced-by-beginners/" title="Common R Programming Errors Faced by Beginners">R-bloggers</a> that listed more beginner error. If you can’t pinpoint the correct way to code what you need, there are many places to find help.</p></li>
+</ul>
+</div>
+<div id="troubleshoot-the-error" class="section level1">
+<h1>Troubleshoot the Error!</h1>
+<p>R is an open source language, R is backed by a large community of users and resources for help. Our Getting Help with R Knowledge Base article points to some of the more well-known resources to help solve your R related problem.</p>
+<ul>
+<li><p><strong>Read the Documentation</strong></p>
+<p>R’s built-in help utility provides detailed descriptions of R topics, functions, and their arguments. To show these help files, <strong>use the Help pane within RStudio</strong>. Alternatively, to access this help from the console for a particular R topic or function, enter the following commands in console: <code>?help or ?(package) or ?(function)</code>.</p>
+<p>If your error has to do with a specific Library, it is quite possible that there is some concept you may not know about that is the hidden cause of your error. Look at the examples and understand how you might differ from that.</p></li>
+<li><p><strong>Google it!</strong></p>
+<p>Usually for an inexperienced coder, the trouble with tackling projects with an infinite number of methods is that you don’t necessarily know what the language can or can’t do. But <strong>plugging all error message into Google isn’t going to help!</strong> Why? Because you’ve left a bunch of assumptions in there that only you are going to use.</p>
+<p>Google searches should be simple, but broad enough to bring you the anticipated results. Sadly, sometimes the problem was that we didn’t even know how to get to the level of correct specificity. I Suggested that you to “search to find better search terms.”</p>
+<p>So <em>if</em> you have an error code, Google that. If that doesn’t work, Google the error message. If that doesn’t work, Google the library you’re using and the least is syntax would be my general guide, in descending order of usefulness with other keywords.</p></li>
+<li><p><strong>Reproduce the Error</strong></p>
+<p><strong>Start a whole new project and make it very small so that you can isolate your Error.</strong> Copy over the bare minimum code from your existing project that you will reproduce the Error, or just try to code it up from scratch without all the extra fluff your main project has.</p>
+<p>If you cannot reproduce the error, you will have found a clue as to what is going on with error in your code. If you CAN reproduce the Error, great! because it would help you with the next step.</p></li>
+<li><p><strong>Asking for Help</strong></p>
+<p>Post your error in forum. <strong>Github, Stackoverflow, Reddit, Twitter, Slack/Discord communities</strong> or you may also <strong>ask for help from R and RStudio users on community.rstudio.com</strong>. Ask the question in sensible way, <a href="https://stackoverflow.com/help/how-to-ask">Stackoverflow</a> make a good article about how to improve your chance to get an answer and be sure to include a reproducible example of your issue. For rule of thumb you post your ‘sessionInfo()’,</p></li>
+</ul>
+<p><img src="/img/sessioninfo.png" style="display: block; margin: auto;" /></p>
+<p>and when you having trouble applying an operation to some R object, but want to avoid the potential hassle of transferring files and code to another person’s computer, make a reproducible example and/or use ‘dput()’ to efficiently convey the problematic object. For the example i tried to applied it in my <em>cd</em> object. ‘dput()’ will write an ASCII text representation of an R object to a file or connection, or to recreate the object.</p>
+<p><img src="/img/dputconsole.png" style="display: block; margin: auto;" /></p>
+<p>You should post your minimally reproducible sample. Try reprex package torender bits of code that you have problem with. Learn more about <a href="https://reprex.tidyverse.org/articles/articles/magic-reprex">reprex</a> as a way to show your problematic code and it will help go a long way for people to figure out what is going on.</p>
+</div>
+<div id="be-better-at-writing-a-code" class="section level1">
+<h1>Be better at writing a code!</h1>
+<p>This article by <a href="https://ourcodingclub.github.io/2017/04/25/etiquette.html" title="Coding Ettiquette">Coding Club</a> can be your guideline of writing better line of code that “neat-er” and make it easier to troubleshoot.</p>
+</div>

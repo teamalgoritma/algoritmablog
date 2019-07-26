@@ -1,0 +1,1116 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "blog",
+        "name" : "K-Means",
+        "headline" : "K-Means",
+        "description" : "Analisis cluster k-means dengan R",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2019",
+        "datePublished": "2019-06-04 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2019-06-04 00:00:00 \x2b0000 UTC",
+        "url" : "\/blog\/k-means\/",
+        "wordCount" : "1047",
+        "keywords" : [ "Clustering","Unsupervised","Blog" ]
+    }
+    </script>
+        
+            
+                <title>K-Means</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.55.4" />
+        
+
+
+        
+            <meta name="author" content="Ahmad Husain Abdullah">
+        
+        
+            <meta name="description" content="Analisis cluster k-means dengan R">
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="K-Means"/>
+<meta name="twitter:description" content="Analisis cluster k-means dengan R"/>
+<meta name="twitter:site" content="@teamalgoritma"/>
+
+        <meta property="og:title" content="K-Means" />
+<meta property="og:description" content="Analisis cluster k-means dengan R" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/k-means/" />
+<meta property="article:published_time" content="2019-06-04T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-06-04T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="K-Means">
+<meta itemprop="description" content="Analisis cluster k-means dengan R">
+
+
+<meta itemprop="datePublished" content="2019-06-04T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-06-04T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1047">
+
+
+
+<meta itemprop="keywords" content="Clustering,Unsupervised," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+
+
+      <link rel="stylesheet" href="/css/pojoaque.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="/js/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/blog/">
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/k-means/">K-Means</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-06-04'>
+                                    June 4, 2019</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/k-means/" class="image featured">
+            <img src="/img/2019/062019/06/pic01.jpg" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/purrr-operly-fitting-multiple-time-series-model/">Purrr-operly Fitting Multiple Time Series Model</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-01-29'>
+                                    January 29, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/data-wars-episode-iv/">Data Wars: Episode IV</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-01-18'>
+                                    June 4, 2019</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+
+
+        
+        
+        
+
+        <a href="/blog/data-wars-episode-iv/" class="image featured">
+            <img src="/img//tidyverse.png" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fk-means%2f&amp;text=K-Means&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fk-means%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fk-means%2f&amp;title=K-Means" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/k-means/">K-Means</a></h2>
+        
+        
+            <p>Analisis cluster k-means dengan R</p>
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2019-06-04'>
+            June 4, 2019</time>
+        <span class="author">Ahmad Husain Abdullah</span>
+        
+            <p>5 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2fk-means%2f&amp;text=K-Means&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2fk-means%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2fk-means%2f&amp;title=K-Means" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </section>
+  
+
+  
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/k-means/" class="image featured">
+            <img src="/img/2019/06/pic01.jpg" alt="">
+        </a>
+    
+
+
+  <div id="content">
+    
+
+
+<div id="analisis-klaster" class="section level1">
+<h1>Analisis Klaster</h1>
+<p>Analisis klaster / <em>cluster analysis</em> adalah suatu analisis statistik yang bertujuan memisahkan objek kedalam beberapa kelompok sifat berbeda antar kelompok yang satu dengan yang lain. Dalam analisis ini tiap kelompoknya nanti bersifat homogen antar anggota kelompoknya.</p>
+<div id="k-means" class="section level2">
+<h2>K-Means</h2>
+<p>‘K’ artinya kita akan membentuk banyak klaster sebanyak K kelompok. K-means ini merupakan metode yang paling sederhana dan banyak digunakan untuk memisahkan dataset kedalam ‘k’ kelompok.</p>
+<p><span class="math inline">\(p = 12,5\)</span></p>
+</div>
+<div id="load-package" class="section level2">
+<h2>Load Package</h2>
+<pre class="r"><code>library(tidyverse)  
+library(cluster)    # Algoritma klastering
+library(factoextra) # Algoritma klastering dan visualisasi</code></pre>
+</div>
+<div id="data-preparation" class="section level2">
+<h2>Data Preparation</h2>
+<p>Untuk melakukan analisis klaster dengan R, biasanya kriteria data yang harus dipersiapkan adalah sebagai berikut:</p>
+<ul>
+<li><em>Row</em> atau baris sebagai nilai observasi, dan <em>coloumn</em> tau kolom sebagai variabel.</li>
+<li>Jika terdapat <em>data missing</em> harus di hilangkan terlebih dahulu.</li>
+<li>Data harus di standarisasi supaya satuan tiap variabel sama. Ketika nanti dilakukan profilisasi tiap klasternya data dikembalikan ke satuan semula.</li>
+</ul>
+<p>Nah kali ini akan digunakan data <code>USArrest</code> yang berisi data statistik penangkapan per 100.000 data penduduk untuk kasus <em>assault</em>, <em>murder</em>, dan <em>rape</em> pada tiap 50 negara bagian di US pada tahun 1973.</p>
+<pre class="r"><code>dataclus &lt;- USArrests
+str(dataclus)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    50 obs. of  4 variables:
+##  $ Murder  : num  13.2 10 8.1 8.8 9 7.9 3.3 5.9 15.4 17.4 ...
+##  $ Assault : int  236 263 294 190 276 204 110 238 335 211 ...
+##  $ UrbanPop: int  58 48 80 50 91 78 77 72 80 60 ...
+##  $ Rape    : num  21.2 44.5 31 19.5 40.6 38.7 11.1 15.8 31.9 25.8 ...</code></pre>
+<pre class="r"><code>head(dataclus)</code></pre>
+<pre><code>##            Murder Assault UrbanPop Rape
+## Alabama      13.2     236       58 21.2
+## Alaska       10.0     263       48 44.5
+## Arizona       8.1     294       80 31.0
+## Arkansas      8.8     190       50 19.5
+## California    9.0     276       91 40.6
+## Colorado      7.9     204       78 38.7</code></pre>
+<pre class="r"><code>dataclus1 &lt;- na.omit(dataclus) #untuk menghilangkan data missing
+summary(dataclus1)</code></pre>
+<pre><code>##      Murder          Assault         UrbanPop          Rape      
+##  Min.   : 0.800   Min.   : 45.0   Min.   :32.00   Min.   : 7.30  
+##  1st Qu.: 4.075   1st Qu.:109.0   1st Qu.:54.50   1st Qu.:15.07  
+##  Median : 7.250   Median :159.0   Median :66.00   Median :20.10  
+##  Mean   : 7.788   Mean   :170.8   Mean   :65.54   Mean   :21.23  
+##  3rd Qu.:11.250   3rd Qu.:249.0   3rd Qu.:77.75   3rd Qu.:26.18  
+##  Max.   :17.400   Max.   :337.0   Max.   :91.00   Max.   :46.00</code></pre>
+<pre class="r"><code>datafix &lt;- scale(dataclus1) #standarisasi data</code></pre>
+</div>
+<div id="mencari-k-optimal-klaster" class="section level2">
+<h2>Mencari K Optimal Klaster</h2>
+<p>Pada K-means ini ada pertimbangan untuk dapat menentukan banyak k kelompok yang paling optimal. Pendekatan metode yang paling populer untuk membantu menentukan banyak k optimal adalah:</p>
+<ul>
+<li>Metode <em>Elbow</em></li>
+<li>Metode <em>Silhoette</em></li>
+<li>Gap Statistic</li>
+</ul>
+<pre class="r"><code>fviz_nbclust(datafix, kmeans, method = &quot;wss&quot;) # metode elbow</code></pre>
+<p><img src="/blog/2019-06-04-k-means_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>metode <em>elbow</em> menggunakan nilai total wss (<em>whitin sum square</em>) sebagai penentu k optimalnya. Dari gambar keluaran diatas, garis mengalami patahan yang membentuk <em>elbow</em> atau siku pada saat k = 4. Maka dengan menggunakan metode ini diperoleh k optimal pada saat berada di k = 4. Untuk menjadi pembanding, dilakukan uji yang lainnya.</p>
+<pre class="r"><code>fviz_nbclust(datafix, kmeans, method = &quot;silhouette&quot;) # metode silhouette</code></pre>
+<p><img src="/blog/2019-06-04-k-means_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Pendekatan rata-rata nilai metode <em>silhoutte</em> untuk menduga kualitas dari klaster yang terbentuk. Semakin tinggi nilai rata-rata nya maka akan semakin baik. Berdasarkan hasil keluaran diatas dipeoleh banyak klaster optimal yang terbentuk pada k = 2. Sedangkan opsi keduanya pada k = 4. Karena nilai rata-rata <em>ilhoutte</em> pada k = 2 dan k = 4 merupakan yang tertinggi dari yang lain.</p>
+<pre class="r"><code>set.seed(123)
+gap_stat &lt;- clusGap(datafix, FUN = kmeans, nstart = 25,
+                    K.max = 10, B = 50) # metode gap statistic
+fviz_gap_stat(gap_stat)</code></pre>
+<p><img src="/blog/2019-06-04-k-means_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Nilai B adalah jumlah banyaknya sampel. diperoleh hasil k = 4 adalah yang optimal untuk membentuk klaster. Sehingga jika dibandingkan dengan metode sebelumnya maka dapat ditarik keputusan nilai k yang optimal untuk membentuk klaster adalah 4.</p>
+</div>
+<div id="eksekusi-k-means" class="section level2">
+<h2>Eksekusi K-Means</h2>
+<pre class="r"><code>final &lt;- kmeans(datafix, 4, nstart = 25)
+print(final)</code></pre>
+<pre><code>## K-means clustering with 4 clusters of sizes 8, 16, 13, 13
+## 
+## Cluster means:
+##       Murder    Assault   UrbanPop        Rape
+## 1  1.4118898  0.8743346 -0.8145211  0.01927104
+## 2 -0.4894375 -0.3826001  0.5758298 -0.26165379
+## 3  0.6950701  1.0394414  0.7226370  1.27693964
+## 4 -0.9615407 -1.1066010 -0.9301069 -0.96676331
+## 
+## Clustering vector:
+##        Alabama         Alaska        Arizona       Arkansas     California 
+##              1              3              3              1              3 
+##       Colorado    Connecticut       Delaware        Florida        Georgia 
+##              3              2              2              3              1 
+##         Hawaii          Idaho       Illinois        Indiana           Iowa 
+##              2              4              3              2              4 
+##         Kansas       Kentucky      Louisiana          Maine       Maryland 
+##              2              4              1              4              3 
+##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
+##              2              3              4              1              3 
+##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+##              4              4              3              4              2 
+##     New Mexico       New York North Carolina   North Dakota           Ohio 
+##              3              3              1              4              2 
+##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
+##              2              2              2              2              1 
+##   South Dakota      Tennessee          Texas           Utah        Vermont 
+##              4              1              3              2              4 
+##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
+##              2              2              4              4              2 
+## 
+## Within cluster sum of squares by cluster:
+## [1]  8.316061 16.212213 19.922437 11.952463
+##  (between_SS / total_SS =  71.2 %)
+## 
+## Available components:
+## 
+## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;    
+## [5] &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
+## [9] &quot;ifault&quot;</code></pre>
+<p>argumen <code>nstart</code> erupakan banyak random set yang akan dipilih. sesuai dengan beberapa referensi terdahulu nilai <code>nstart</code> yang kerap digunakan yaitu 25. Kemudian dari keluaran hasil k-means dengan k = 4 terbentuk klaster 1 sebanyak 13 negara bagian, klaster 2 sebanyak 16 negara bagian, klaster 3 sebanyak 13 negara bagian dan klaster 4 sebanyak 8 negara bagian. Untuk merepresentasikan karakteristik tiap klaster kita dapat menggunakan acuan nilai <em>means</em> tiap kelompok yang terbentuk. Namun sebelumnya kita perlu mengembalikan data yang tadi distandarisasi kedalam bentuk semula, berikut adalah perintahnya:</p>
+<pre class="r"><code>fviz_cluster(final, data = datafix)</code></pre>
+<p><img src="/blog/2019-06-04-k-means_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>USArrests %&gt;%
+  mutate(Cluster = final$cluster) %&gt;%
+  group_by(Cluster) %&gt;%
+  summarise_all(&quot;mean&quot;)</code></pre>
+<pre><code>## # A tibble: 4 x 5
+##   Cluster Murder Assault UrbanPop  Rape
+##     &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1       1  13.9    244.      53.8  21.4
+## 2       2   5.66   139.      73.9  18.8
+## 3       3  10.8    257.      76    33.2
+## 4       4   3.6     78.5     52.1  12.2</code></pre>
+<p>Berdasarkan hasil diatas, maka dapat dilakukan profilisasi tiap kelompok yang terbentuk. Dimana pada klaster 1 merupakan daerah negara bagian yang memiliki tingkat pembunuhannya, penyerangan, dan pemerkosaan paling rendah dari klaster yg lain dengan nilai sebesar. Sedangkan klaster 3 menjadi yang tertinggi dalam hal kasus penyerangan dan pemerkosaannya. Kemudian pada klaster 4 merupakan negara bagian dengan kasus pembunuhan tertinggi.</p>
+<p>Yap. sekian postingan kali ini. Mohon dikoreksi jika ada yang kurang tepat. kan masih sama-sama belajar hihi. Semoga sukses kawan semua!</p>
+<hr />
+<p><strong>Referensi</strong></p>
+<p>[1] <a href="https://uc-r.github.io/kmeans_clustering" class="uri">https://uc-r.github.io/kmeans_clustering</a>
+[2] <a href="https://prayudho.wordpress.com/2008/12/30/analisis-cluster/" class="uri">https://prayudho.wordpress.com/2008/12/30/analisis-cluster/</a></p>
+</div>
+</div>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/clustering">Clustering</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/unsupervised">Unsupervised</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/purrr-operly-fitting-multiple-time-series-model/"
+                class="button big previous">Purrr-operly Fitting Multiple Time Series Model</a></li>
+    
+
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>Algoritma Technical Blog</h2>
+        <p>We're a group of people who teach data science to individuals, trains companies and their employees to better profit from data. We care about the development of data science and a sense of community that connects our alumni and team with one another. To learn more about our approach to data science problems, feel free to hop over to our blog.</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Recent Posts</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/k-means/">K-Means</a>
+              </h3>
+              
+              <time class="published" datetime='2019-06-04'>
+                June 4, 2019
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/k-means/" class="image featured">
+            <img src="/img/2019/062019/06/pic01.jpg" alt="">
+        </a>
+    
+
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/purrr-operly-fitting-multiple-time-series-model/">Purrr-operly Fitting Multiple Time Series Model</a>
+              </h3>
+              
+              <time class="published" datetime='2019-01-29'>
+                January 29, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/data-wars-episode-iv/">Data Wars: Episode IV</a>
+              </h3>
+              
+              <time class="published" datetime='2019-01-18'>
+                January 18, 2019
+              </time>
+            </header>
+            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+
+
+        
+        
+        
+
+        <a href="/blog/data-wars-episode-iv/" class="image featured">
+            <img src="/date/tidyverse.png" alt="">
+        </a>
+    
+
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">View more posts</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+    <p class="copyright">
+      
+        &copy; 2019
+        
+          Algoritma Technical Blog
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

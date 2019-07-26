@@ -1,0 +1,434 @@
+---
+title: Time Series Prediction with LSTM
+author: Ahmad Husain
+date: '2019-01-11'
+slug: time-series-prediction-with-lstm
+categories:
+  - R
+tags:
+  - time series
+  - forecast
+  - LSTM
+  - deep learning
+  - RNN
+  - Capstone Ml
+description: ''
+featured: 'LSTM_TS.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+# Time Series Forecasting using LSTM
+
+Time series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing.
+A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle. In other words, they can retain state from one iteration to the next by using their own output as input for the next step. A simple recurrent neural network works well only for a short-term memory. We will see that it suffers from a fundamental problem (vanishing /exploding gradient) if we have a longer time dependency. The Long Short - Term Memory (LSTM) is a RNN architecture that developed to overcome the vanishing gradient problem. There are some good explanation about the concept of LSTM: check out the blog made by [Christopher Olah, 2015](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) and the one made by [Michael Nguyen, 2018](https://towardsdatascience.com/illustrated-guide-to-recurrent-neural-networks-79e5eb8049c9) for Understanding the intuition of LSTM Networks.
+
+# LSTM for Univariate TS
+
+## Library Setup
+
+You will need to use `install.packages()` to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the `library()` function:
+
+```{r setup, message=F, warning=F}
+rm(list = ls())
+library(tidyverse)
+library(lubridate)
+library(timeSeries)
+library(magrittr)
+library(keras)
+library(tidyquant)
+library(forecast)
+library(plotly)
+library(recipes)
+use_condaenv("tensorflow")
+```
+
+## Overview the Data
+
+Several measures indicate the relative living standard for citizens living in a given region. One such measure is the crime rate occurrences, which itself is a product of many other social indicators such as income distribution, level of education, etc. We will analyze a period of criminal activities using time-series approach (we try to model without factoring in any social indicator metrics), to see if we could gain usable information/pattern that can be utilized to project criminal rates with sufficient accuracy. 
+
+```{r}
+crimedata <- read.csv("data_input/crime.csv") %>% 
+  mutate(Date = ymd_hms(Date)) %>% 
+  select(Date,Arrest)
+```
+
+```{r}
+rmarkdown::paged_table(crimedata)
+```
+
+
+quick checking the time series plot.
+
+```{r fig.height=7, fig.width=10}
+ggplotly(crimedata %>%
+  ggplot(aes(x = Date, y = Arrest)) +
+  geom_line() +
+  labs(x = "", y = "") +
+  theme_tq())
+```
+
+```{r fig.height=5, fig.width=10}
+ggplotly(
+  crimedata %>%
+  tail(24*7) %>% 
+  ggplot(aes(x = Date, y = Arrest)) +
+  geom_line() +
+  labs(x = "", y = "", title = "") +
+  theme_tq()
+)
+```
+
+
+## Preprocessing
+
+In this article, we'll be splitting data into 3 parts, training, validation, and testing. Training dataset will be used to adjusting weight and bias when training the model. Validation dataset used to adjust hyperparameter in the model (set optimizer, learning rate, etc) While the testing dataset is used as evaluator of the model we made.
+
+```{r}
+train_size <- 24 * 7 * 4 # 1 month periode as training
+val_size <- 24 * 7  # 1 week next as validation
+test_size <-  24 * 7 # the last week as testing
+```
+
+### Data Splitting
+
+In supervised time series model, we can phrase the concept like regression model. Means, if given the number of arrest this month, what is the number of arrest next month? we can simply convert the single column (arrest) data into two column dataset. the first containing this recent births (t) and the second column containing next month (t+1) the number of arrest to be predicted. With this concept, we'll know some term to adjust the number of previous time to use as input variables to predict the next time period:
+
+- Lookback: 
+
+>Lookback is a parameter to define the number of previous time to use as input variable to predict the next preiod.
+
+a sample dataset with this formulation looks as follow:
+
+```{r}
+
+#intuition lookback = 1, 2, & 3.
+
+var1 <- crimedata[1:10,"Arrest"]
+var2 <- crimedata[2:11, "Arrest"]
+var3 <- crimedata[3:12, "Arrest"]
+y <- crimedata[4:13, "Arrest"]
+
+cbind(var1, var2, var3, y) %>% 
+  as.tibble() %>% 
+    rename("t-3" = var1,
+         "t-2" = var2 ,
+         "t-1" = var3,
+         "y" = y)
+
+```
+
+- Timesteps:
+
+>Timesteps is parameter to define the length of a sample of feature that would be considered as a sequence of signal for the target.
+
+See also the explanation from [Herlambang (2019)](https://kerasgenerator.bagasbgy.com/articles/timeseries.html), about illustration how lookback and timesteps is works. 
+
+```{r}
+
+lookback <- 24 * 7
+timesteps <- 1
+
+```
+
+### Normalize the Data
+
+The LSTM works better if the input data has been centered and scaled. This can be donw using `recipes` packages.
+
+```{r}
+
+recipe_obj <- recipe(Arrest ~ ., crimedata)
+recipe_obj %<>% 
+  step_sqrt(Arrest) %>% 
+  step_center(Arrest) %>% 
+  step_scale(Arrest) %>%
+  prep()
+
+```
+
+```{r}
+#bake the recipe
+arrest_normalize <- recipes::bake(recipe_obj, crimedata)
+
+#keep the center and scale value
+center_history <- recipe_obj$steps[[2]]$means["Arrest"]
+scale_history <- recipe_obj$steps[[3]]$sds["Arrest"]
+c("center" = center_history, "scale" = scale_history)
+```
+
+
+## Build Matrix
+
+
+```{r}
+arrest_lag <- arrest_normalize %>%
+  mutate(arrest_lag = dplyr::lag(Arrest, n = lookback)) %>% 
+  dplyr::filter(!is.na(arrest_lag))
+```
+
+```{r}
+# cut the data for test dataset
+data_test <- arrest_lag %>% tail(test_size)
+arrest_lag <- arrest_lag %>% head(length(.) - test_size)
+
+# cut the data for validation dataset
+data_val <- arrest_lag %>% tail(val_size)
+arrest_lag <- arrest_lag %>% head(length(.) - val_size)
+
+# subset for train dataset
+data_train <- arrest_lag %>% tail(train_size)
+
+# remove processed data since it is unused
+rm(arrest_lag)
+```
+
+we have to provide the input batch in 3-dimensional array of the form [sample_batchsize, timesteps, target] from the current [sample_batchsize, target], where:
+
+- `sample`: Number of observations in each batch, also known as the batch size.
+- `timesteps`: Separate time steps for a given observations. In this example the timesteps = 1
+- `target`: For a univariate case, like in this example, the target feature = 1.
+
+```{r}
+# train x and y
+data_train_x <- data_train %>%
+  select(arrest_lag) %>% 
+  data.matrix() %>% 
+  array(dim = c(length(.), timesteps, ncol(.)))
+
+data_train_y <- data_train %>%
+  select(Arrest) %>% 
+  data.matrix() %>% 
+  array(dim = c(length(.), ncol(.)))
+
+# val x and y
+data_val_x <- data_val %>%
+  select(arrest_lag) %>%
+  data.matrix() %>% 
+  array(dim = c(length(.), timesteps, ncol(.)))
+
+data_val_y <- data_val %>%
+  select(Arrest) %>% 
+  data.matrix() %>% 
+  array(dim = c(length(.), ncol(.)))
+
+
+# test x and y
+data_test_x <- data_test %>%
+  select(arrest_lag) %>% 
+  data.matrix() %>% 
+  array(dim = c(length(.), timesteps, ncol(.)))
+
+data_test_y <- data_test %>%
+  select(Arrest) %>% 
+  data.matrix() %>% 
+  array(dim = c(length(.), ncol(.)))
+
+
+```
+
+## Build the Architecture
+
+`Loss function` used to measure the effectiveness of our model in making predictions on each epoch (iteration) seen from the error gap between the prediction and the actual. in this case we specified mse as the loss function and RMSprop as the optimization algorithm.
+
+
+```{r}
+# layer lstm 1 settings
+unit_lstm1 <- 64
+dropout_lstm1 <- 0.01
+recurrent_dropout_lstm1 <- 0.01
+
+# layer lstm 2 settings
+unit_lstm2 <- 32
+dropout_lstm2 <- 0.01
+recurrent_dropout_lstm2 <- 0.01
+
+
+# initiate model sequence
+model <- keras_model_sequential()
+
+# model architecture
+model %>%
+
+  # lstm1
+  layer_lstm(
+    name = "lstm1",
+    units = unit_lstm1,
+    input_shape = c(timesteps, 1),
+    dropout = dropout_lstm1,
+    recurrent_dropout = recurrent_dropout_lstm1,
+    return_sequences = TRUE
+  ) %>%
+
+  # lstm2
+  layer_lstm(
+    name = "lstm2",
+    units = unit_lstm2,
+    dropout = dropout_lstm2,
+    recurrent_dropout = recurrent_dropout_lstm2,
+    return_sequences = FALSE
+  ) %>%
+  
+
+  # output layer
+  layer_dense(
+    name = "output",
+    units = 1
+  )
+
+
+# compile the model
+model %>%
+  compile(
+    optimizer = "rmsprop",
+    loss = "mse"
+  )
+
+# model summary
+summary(model)
+
+```
+
+
+## Train the Model
+
+
+- `epoch:` there are many iterations during the training model (update weight). we can evaluate the performance chart of the model, if the curve still tends to go down, then there is the possibility that if added to the number of epochs it will improve the performance of the model.
+
+- `batch_size:` number of samples partitioned at each epoch.
+
+
+```{r}
+# model fit settings
+epochs <- 30
+batch_size <- 24
+
+# fit the model
+history <- model %>% fit(
+  x = data_train_x,
+  y = data_train_y,
+  validation_data = list(data_val_x, data_val_y),
+  batch_size = batch_size,
+  epochs = epochs,
+  shuffle = FALSE,
+  verbose = 0
+)
+```
+
+## Evaluate the Model
+
+```{r}
+# evaluate on train dataset
+model %>% evaluate(
+  x = data_train_x,
+  y = data_train_y
+)
+```
+
+```{r}
+# evaluate on val dataset
+model %>% evaluate(
+  x = data_val_x,
+  y = data_val_y
+)
+```
+
+
+```{r}
+# evaluate on test dataset
+model %>% evaluate(
+  x = data_test_x,
+  y = data_test_y
+)
+```
+
+## Forecasting
+
+```{r}
+# predict on train
+data_train_pred <- predict(model, data_train_x) %>%
+  as.vector() %>% {(. * scale_history + center_history) ^ 2} %>%
+  round(digits = 3)
+
+# predict on validation
+data_val_pred <- predict(model, data_val_x) %>%
+  as.vector() %>% {(. * scale_history + center_history) ^ 2} %>%
+  round(digits = 3)
+
+# predict on test
+data_test_pred <- predict(model, data_test_x) %>%
+  as.vector() %>% {(. * scale_history + center_history) ^ 2} %>%
+  round(digits = 3)
+
+```
+
+
+## Forecasting Plot
+
+```{r}
+# combine with original datasets
+data_pred <- crimedata %>%
+  rename(Actual = Arrest) %>%
+  left_join(
+    tibble(
+      Date = data_train$Date,
+      Train = data_train_pred
+    )
+  ) %>%
+  left_join(
+    tibble(
+      Date = data_val$Date,
+      Validation = data_val_pred
+    )
+  ) %>%
+  left_join(
+    tibble(
+      Date = data_test$Date,
+      Test = data_test_pred
+    )
+  )
+```
+
+```{r warning=FALSE, message=FALSE, fig.height=5, fig.width=10}
+# plot prediction
+  data_pred %>%
+  tail(round(test_size * 4)) %>%
+  gather(
+    key = key, value = value,
+    Actual, Train, Validation, Test
+  ) %>%
+  mutate(
+    key = key %>% factor(levels = c(
+      "Actual", "Train", "Validation", "Test"
+    ))
+  ) %>%
+  ggplot(aes(x = Date, y = value, colour = key)) +
+    geom_line() +
+    labs(
+      title = "Actual vs Prediction",
+      x = "", y = "", colour = ""
+    ) +
+    theme_tq() +
+    scale_colour_manual(
+      values = c(
+        "Actual" = "black",
+        "Train" = "green",
+        "Validation" = "red",
+        "Test" = "blue"
+      )
+    ) + theme_tq()
+```
+
+
+
+----------------------
+
+# References
+
+1. Chollet, F & Allaire, J.J (2017). Time Series Forecasting with Recurrent Neural Networks. Retrieved from: https://blogs.rstudio.com/tensorflow/posts/2017-12-20-time-series-forecasting-with-recurrent-neural-networks/.
+2. Wanjohi, Richard (2018). Timeseries Forecasting using LSTM in R. Retrieved from: http://rwanjohi.rbind.io/2018/04/05/time-series-forecasting-using-lstm-in-r/.
+3. Markin, Andrey (2018). LTSM time series forecasting with Keras. Retrieved from https://rpubs.com/andreasme/keras-lstm-notebook.
+4. Herlambang, R.D.B (2019). Data Generator for Time Series Models. Retrieved from https://kerasgenerator.bagasbgy.com/articles/timeseries.html.
+5. Hyndman, R. J. (2019). Time series data library. Retrieved from https://datamarket.com/data/list/?q=provider:tsdl
+

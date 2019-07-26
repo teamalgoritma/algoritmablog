@@ -1,0 +1,115 @@
+---
+title: K-Means
+author: Ahmad Husain Abdullah
+date: '2019-06-04'
+slug: k-means
+categories:
+  - R
+tags: []
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+---
+
+# Analisis Klaster
+
+Analisis klaster / *cluster analysis* adalah suatu analisis statistik yang bertujuan memisahkan objek kedalam beberapa kelompok sifat berbeda antar kelompok yang satu dengan yang lain. Dalam analisis ini tiap kelompoknya nanti bersifat homogen antar anggota kelompoknya.
+
+## K-Means
+
+'K' artinya kita akan membentuk banyak klaster sebanyak K kelompok. K-means ini merupakan metode yang paling sederhana dan banyak digunakan untuk memisahkan dataset kedalam 'k' kelompok. 
+
+tes rumus:
+
+$\alpha = 12,5$
+
+## Load Package
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)  
+library(cluster)    # Algoritma klastering
+library(factoextra) # Algoritma klastering dan visualisasi
+```
+
+## Data Preparation
+
+Untuk melakukan analisis klaster dengan R, biasanya kriteria data yang harus dipersiapkan adalah sebagai berikut:
+
+- *Row* atau baris sebagai nilai observasi, dan *coloumn* tau kolom sebagai variabel.
+- Jika terdapat *data missing* harus di hilangkan terlebih dahulu.
+- Data harus di standarisasi supaya satuan tiap variabel sama. Ketika nanti dilakukan profilisasi tiap klasternya data dikembalikan ke satuan semula.
+
+Nah kali ini akan digunakan data `USArrest` yang berisi data statistik penangkapan per 100.000 data penduduk untuk kasus *assault*, *murder*, dan *rape* pada tiap 50 negara bagian di US pada tahun 1973. 
+
+```{r}
+dataclus <- USArrests
+str(dataclus)
+head(dataclus)
+dataclus1 <- na.omit(dataclus) #untuk menghilangkan data missing
+summary(dataclus1)
+datafix <- scale(dataclus1) #standarisasi data
+```
+
+## Mencari K Optimal Klaster
+
+Pada K-means ini ada pertimbangan untuk dapat menentukan banyak k kelompok yang paling optimal. Pendekatan metode yang paling populer untuk membantu menentukan banyak k optimal adalah:
+
+- Metode *Elbow*
+- Metode *Silhoette*
+- Gap Statistic
+
+```{r fig.align='center'}
+fviz_nbclust(datafix, kmeans, method = "wss") # metode elbow
+```
+
+metode *elbow* menggunakan nilai total wss (*whitin sum square*) sebagai penentu k optimalnya. Dari gambar keluaran diatas, garis mengalami patahan yang membentuk *elbow* atau siku pada saat k = 4. Maka dengan menggunakan metode ini diperoleh k optimal pada saat berada di k = 4. Untuk menjadi pembanding, dilakukan uji yang lainnya.
+
+```{r fig.align='center'}
+fviz_nbclust(datafix, kmeans, method = "silhouette") # metode silhouette
+```
+
+Pendekatan rata-rata nilai metode *silhoutte* untuk menduga kualitas dari klaster yang terbentuk. Semakin tinggi nilai rata-rata nya maka akan semakin baik. Berdasarkan hasil keluaran diatas dipeoleh banyak klaster optimal yang terbentuk pada k = 2. Sedangkan opsi keduanya pada k = 4. Karena nilai rata-rata *ilhoutte* pada k = 2 dan k = 4 merupakan yang tertinggi dari yang lain.
+
+```{r fig.align='center'}
+set.seed(123)
+gap_stat <- clusGap(datafix, FUN = kmeans, nstart = 25,
+                    K.max = 10, B = 50) # metode gap statistic
+fviz_gap_stat(gap_stat)
+```
+
+Nilai B adalah jumlah banyaknya sampel. diperoleh hasil k = 4 adalah yang optimal untuk membentuk klaster. Sehingga jika dibandingkan dengan metode sebelumnya maka dapat ditarik keputusan nilai k yang optimal untuk membentuk klaster adalah 4.
+
+## Eksekusi K-Means
+
+```{r}
+final <- kmeans(datafix, 4, nstart = 25)
+print(final)
+```
+
+argumen `nstart` erupakan banyak random set yang akan dipilih. sesuai dengan beberapa referensi terdahulu nilai `nstart` yang kerap digunakan yaitu 25. Kemudian dari keluaran hasil k-means dengan k = 4 terbentuk klaster 1 sebanyak 13 negara bagian, klaster 2 sebanyak 16 negara bagian, klaster 3 sebanyak 13 negara bagian dan klaster 4 sebanyak 8 negara bagian. Untuk merepresentasikan karakteristik tiap klaster kita dapat menggunakan acuan nilai *means* tiap kelompok yang terbentuk. Namun sebelumnya kita perlu mengembalikan data yang tadi distandarisasi kedalam bentuk semula, berikut adalah perintahnya:
+
+```{r fig.align='center'}
+fviz_cluster(final, data = datafix)
+```
+
+```{r}
+USArrests %>%
+  mutate(Cluster = final$cluster) %>%
+  group_by(Cluster) %>%
+  summarise_all("mean")
+```
+
+Berdasarkan hasil diatas, maka dapat dilakukan profilisasi tiap kelompok yang terbentuk. Dimana pada klaster 1 merupakan daerah negara bagian yang memiliki tingkat pembunuhannya, penyerangan, dan pemerkosaan paling rendah dari klaster yg lain dengan nilai sebesar. Sedangkan klaster 3 menjadi yang tertinggi dalam hal kasus penyerangan dan pemerkosaannya. Kemudian pada klaster 4 merupakan negara bagian dengan kasus pembunuhan tertinggi.
+
+
+Yap. sekian postingan kali ini. Mohon dikoreksi jika ada yang kurang tepat. kan masih sama-sama belajar hihi. Semoga sukses kawan semua!
+
+------------
+
+**Referensi**
+
+[1] https://uc-r.github.io/kmeans_clustering
+[2] https://prayudho.wordpress.com/2008/12/30/analisis-cluster/
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NLP on Algoritma Technical Blog</title>
+    <link>/tags/nlp/</link>
+    <description>Recent content in NLP on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Text Preprocessing using textclean</title>
+      <link>/blog/textclean/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/textclean/</guid>
+      <description>Take tweet from twitter using rtweet packageFunction used for take tweet from twitter is search_tweets(). There are several parameter usually used in that function: - Topic : topic you will find at twitter - n : how many tweet that you want to take - include_rts : logical. If FALSE tweet taken didn’t contain retweet - lang : spesified language. If you want take tweet in english you can addargument lang = “en” You can use this code below to try taking tweets from twitter by removing the command</description>
+    </item>
+    
+    <item>
+      <title>Text Cleaning Bahasa Indonesia-based Twitter Data</title>
+      <link>/blog/text-cleaning-bahasa/</link>
+      <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/text-cleaning-bahasa/</guid>
+      <description>Social media has become a very popular spot for data mining these last years. But when we talk about social data, we actually also talk about unstructured data, and in order to derive any meaningful insight from it, we have to know how to work with it in its unstructured form (or in this case, unstructured text information).
+Before the data we gather can be used for further analysis, the very first step to do is to clean the data.</description>
+    </item>
+    
+  </channel>
+</rss>

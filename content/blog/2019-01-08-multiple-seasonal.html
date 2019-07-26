@@ -1,0 +1,126 @@
+---
+title: Forecasting Time Series with Multiple Seasonal
+author: Ajeng Prastiwi
+date: '2019-01-08'
+slug: multiple-seasonal
+categories:
+  - R
+tags:
+  - forecast
+  - time series
+  - multiple seasonal
+  - tbats
+  - Capstone Ml
+description: ''
+featured: 'Multiple_Seasonality.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Time Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle. This article presents the perfomance of STL (Seasonal and Trend decomposition using Loess) with multiple seasonal periods and compares it with TBATS (Trigonometric Seasonal, Box-Cox Transformation, ARMA residuals, Trend and Seasonality).</p>
+<div id="stl-with-multiple-seasonal-periods" class="section level2">
+<h2>STL with Multiple Seasonal Periods</h2>
+<p>In this case, we’re going to predict the value of hourly power consumption data comes from PJM’s website and are in megawatts(Mw). PJM Interconnection LLC (PJM) is a regional transmission organization (RTO) in the United States. It is part of the Eastern Interconnection grid operating an electric transmission system serving all or parts of Delaware, Illinois, Indiana, Kentucky, Maryland, Michigan, New Jersey, North Carolina, Ohio, Pennsylvania, Tennessee, Virginia, West Virginia, and the District of Columbia. <a href="https://www.kaggle.com/robikscube/hourly-energy-consumption/home">The data contains the hourly power consumption estimated by each electricity provider.</a> dataset.</p>
+<pre class="r"><code>#load the package
+library(lubridate)
+library(dplyr)
+library(forecast)
+library(ggplot2)
+library(scales)</code></pre>
+<pre class="r"><code>#import data
+pjm&lt;- read.csv(&quot;data_input/pjm.csv&quot;) %&gt;% filter(provider == &quot;AEP&quot;)
+str(pjm)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    45336 obs. of  3 variables:
+##  $ datetime: Factor w/ 45336 levels &quot;2013-06-01T00:00:00Z&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ provider: Factor w/ 8 levels &quot;AEP&quot;,&quot;COMED&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ cons    : num  13477 12699 12274 11904 11862 ...</code></pre>
+<p>After you have read the time series data into R, the next step is to store the data in a time series object in R, so that you can use R many functions for analysing time series data. To store the data in a time series object, we can use the ts() function in R. Sometimes the time series data set that you have may have been collected at regular intervals that were less than one year, for example, monthly or quarterly. In this case, you can specify the number of times that data was collected per hour by using the frequency parameter in the ts() function. Because our each row representing a data within hourly interval, you can set frequency=24, and we will only used AEP provider.</p>
+<pre class="r"><code>pjm$datetime &lt;- ymd_hms(pjm$datetime)
+ts_train&lt;-pjm$cons %&gt;% ts(freq= 24)</code></pre>
+<p>To estimate the trend component and seasonal component of a seasonal time series, we can use the <em>decompose()</em> function in R. This function estimates the trend, seasonal, and irregular components of a time series. Now let’s inspect the <code>seasonal</code> and <code>trend</code> component.</p>
+<pre class="r"><code>ts_train %&gt;% 
+  tail(24*7*4) %&gt;% 
+  decompose() %&gt;% 
+  autoplot()</code></pre>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Decomposing a time series means separating it into it’s constituent components.</p>
+<ol style="list-style-type: decimal">
+<li><p>The first panel from top is the original, <em>observed</em> time series. Note that a series with multiplicative effects can often be transformed into one with additive effect through a log transformation.</p></li>
+<li><p>The second panel plots the <em>seasonal</em> component. with the figure being computed by taking the average for each time unit over all periods and then centering it around the mean.</p></li>
+<li><p>The third panel plots the <em>trend</em> component,We see that the estimated trend component shows a pattern. This pattern in trend might be sourced from uncaptured extra seasonality from higher natural period in this case,so it can be considered as multi-seasonal data. To solve this complex seasonality, we need to convert the data into <code>msts()</code> object which accept multiple frequency setting.</p></li>
+<li><p>The bottom-most panel the <em>error</em> component, which is determined by removing the trend and seasonal figure.<br />
+To deal with such series, we will use the msts class which handles multiple seasonality time series. This allows you to specify all of the frequencies that might be relevant. It is also flexible enough to handle non-integer frequencies.</p></li>
+</ol>
+<pre class="r"><code>msts_cons&lt;-pjm$cons %&gt;% msts( seasonal.periods = c(24, 24*7))
+msts_cons  %&gt;% head(  24 *7 *4 ) %&gt;% mstl() %&gt;% autoplot()    </code></pre>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Now we can see a clearer trend and could confirm the daily and weekly seasonality for the data. Before we’re going to modelling our data, we’re going to split our data become data train and data test.</p>
+<pre class="r"><code>msts_train &lt;- head(msts_cons, length(msts_cons) - 24*7)
+msts_test &lt;- tail(msts_cons,  24*7)
+
+#subset to more recent period
+msts_train &lt;- tail(msts_train, 24*7*4*3)
+autoplot(msts_train)</code></pre>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>We will make prediction for 7 days and plot them. In modelling the log transformation, we can use lambda = 0 in stlm() setting.</p>
+<pre class="r"><code>stlm_model &lt;- msts_train %&gt;%
+  stlm(lambda = 0) %&gt;% 
+  forecast(h = 24*7) 
+plot(stlm_model)</code></pre>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+</div>
+<div id="tbats-models" class="section level1">
+<h1>TBATS Models</h1>
+<p>A TBATS model differs from dynamic harmonic regression in that the seasonality is allowed to change slowly over time in a TBATS model, while harmonic regression terms force the seasonal patterns to repeat periodically without changing. One drawback of TBATS models, however, is that they can be slow to estimate, especially with long time series. One advantage of the TBATS model is the seasonality is allowed to change slowly over time.</p>
+<pre class="r"><code>tbats_mod &lt;- msts_train %&gt;%
+            log() %&gt;% 
+            tbats(use.box.cox = FALSE, 
+                  use.trend = TRUE, 
+                  use.damped.trend = TRUE)
+tbats_model &lt;-  forecast(tbats_mod,h=24*7) 
+
+plot(tbats_model)   </code></pre>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Let’s check the accuracy for each model and define MAPE (Mean Absolute Percentage Error) for evaluation of our forecast.</p>
+<pre class="r"><code>result&lt;-rbind(accuracy(as.vector(stlm_model$mean) , msts_test), 
+       accuracy(as.vector(exp(tbats_model$mean)) , msts_test)) 
+rownames(result) &lt;- c(&quot;stlm_model&quot;,&quot;tbats_model&quot;)
+result</code></pre>
+<pre><code>##                     ME      RMSE      MAE       MPE     MAPE      ACF1
+## stlm_model   -635.3479  804.1672  659.328 -4.253355 4.390121 0.9500028
+## tbats_model -1068.3784 1235.7878 1068.378 -7.138406 7.138406 0.9499511
+##             Theil&#39;s U
+## stlm_model   1.351431
+## tbats_model  2.110427</code></pre>
+<p>Both models have a different perfomance, the LSTM model presenting some advantages over the TBATS model. So we can then compare with the plot.</p>
+<pre class="r"><code>accuracyData &lt;- data.frame(datetime= pjm$datetime %&gt;% tail(24*7),
+  actual = as.vector(msts_test) ,
+  stlmForecast = as.vector(stlm_model$mean) ,
+  tbatsForecast = as.vector(exp(tbats_model$mean))
+)</code></pre>
+<pre class="r"><code>accuracyData %&gt;% 
+ ggplot() +
+  geom_line(aes(x = (pjm$datetime %&gt;% tail(24*7)), y = (pjm$cons %&gt;% tail(24*7)), colour = &quot;actual&quot;))+
+  geom_line(aes(x = (pjm$datetime %&gt;% tail(24*7)), y = stlm_model$mean, colour = &quot;stlm&quot;))+
+  geom_line(aes(x = (pjm$datetime %&gt;% tail(24*7)), y = exp(tbats_model$mean),   colour = &quot;tbats &quot;))+ 
+  scale_y_continuous(labels = comma)+
+  labs(
+    title = &quot;Hourly Energy Consumption in Megawatts&quot;,
+    x = &quot;Date&quot;,
+    y = &quot;&quot;,
+    colour = &quot;&quot;
+  )</code></pre>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>The aim of this post was presented a multi-seasonal data. This series has two types of seasonality, daily and weekly. STLM and TBATS models are used for series with multi-seasonal data.The forecast from stlm() showing a better perfomance.</p>
+<p>#References</p>
+<p>De Livera, A. M., Hyndman, R. J., &amp; Snyder, R. D. (2011). Forecasting time series with complex seasonal patterns using exponential smoothing. J American Statistical Association, 106(496), 15131527.
+<a href="https://robjhyndman.com/publications/complex-seasonality/" class="uri">https://robjhyndman.com/publications/complex-seasonality/</a></p>
+<p>Mulla, Rob. (2018). Hourly Energy Consumption. Retrieved from <a href="https://www.kaggle.com/robikscube/hourly-energy-consumption/home" class="uri">https://www.kaggle.com/robikscube/hourly-energy-consumption/home</a></p>
+</div>

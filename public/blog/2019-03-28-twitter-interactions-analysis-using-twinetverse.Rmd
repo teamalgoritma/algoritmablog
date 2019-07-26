@@ -1,0 +1,369 @@
+---
+title: Twitter Interactions Analysis using Twinetverse
+author: Tanesya
+date: '2019-03-28'
+slug: twitter-interactions-analysis-using-twinetverse
+categories:
+  - R
+tags:
+  - twitter
+  - twinetverse
+  - graph
+  - network analysis
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction 
+
+The goal of the `twinetverse` is to provide everything one might need to view Twitter **interactions**, from data collection to visualisation.  This could be a powerful tool for social media analysis, since it could help visualizing how users communicate with one another on a given topic or how information spreads throughout the Twitter network. 
+
+On this article, we're going to briefly explore the `twinetverse`, with creating a graph that link users to the users they **retweet** to fundamentally visualise how information spreads throughout Twitter. 
+
+
+# Packages
+
+The *twinetverse* package is available on *Github*
+
+```{r message=FALSE, eval=FALSE,warning=FALSE}
+# install.packages("devtools")
+devtools::install_github("JohnCoene/twinetverse") # github
+```
+
+The `twinetverse` includes three packages:
+  
+- `rtweet` (Kearney 2018) : wraps the Twitter API, thereby giving R users easy access to tweets. fills the very **first** step in visualising Twitter interactions. 
+- `graphTweets` (Coene 2019a) : extract nodes and edges from tweets collected with rtweet, fills the **second** step in visualising Twitter interactions, building the graphs from the collected data.
+- `sigmajs` (Coene 2019b) : visualise the networks we have built using `graphTweets`, is the **last** piece of the puzzle, visualising the graphs we have built. 
+
+Within the context of visualising Twitter interactions, each of the packages listed above fill in a specific need and a distinct step of the process, 1) collecting the data, 2) building the graphs and finally 3) visualising the graphs of said interactions.
+
+The packages are pipe ( %>% ) friendly, therefore making it easy to go from building a graph to visualising it.
+
+```{r message=FALSE, warning=FALSE}
+library(twinetverse)
+library(tidyverse)
+```
+
+# Prerequisites
+
+## API Authorization
+
+All users must be authorized to interact with Twitter’s APIs. To access the API, you will need to create a Twitter Developer Account here: https://developer.twitter.com/en/apps.  
+
+After created one, you can now create an "app" to get keys and access tokens for use in the `rtweet` package. The set up process is rather simple, but if you need further explanation, you can head over rtweet's official website [here](https://rtweet.info/articles/auth.html).
+
+Notes on filling "app" application:  
+1. Website, simply put a valid website, you can link to your Twitter profile if you do not have one, i.e.: https://twitter.com/jdatap  
+2. Callback URL, this is important, in there put the following: `http://127.0.0.1:1410`, **exactly as is**.
+
+## Create & Save Token
+
+You’re now setup with an app, take note of the crendentials of your app under “Keys and Access Tokens”, as you will need it to create your token and fetch tweets:  
+
+```{r, eval=FALSE}
+mytoken <- create_token(
+  "My Application Name",
+  consumer_key = "XxxxXxXXxXx",
+  consumer_secret = "XxxxXxXXxXx",
+  access_token = "XxxxXxXXxXx",
+  access_secret = "XxxxXxXXxXx"
+)
+```
+
+Ideally, also save it. There is no need to re-create a token everytime you want to download data. 
+
+```{r eval=FALSE}
+saveRDS(mytoken, file = "mytoken.rds")
+```
+
+# Retweets Analysis
+
+There are several types of graphs that the `twinetverse`, through `graphTweets`, allows us to build. On this article, our focus will be on the **Retweets** type, in which will help us understand **how information spreads** throughout the Twitter network.
+
+## Collect
+
+We'll start with collecting our tweets. I'm gonna use the hashtag #TheyAreUs, which was trending on Twitter nowadays after the the Christchurch twin mosque shootings, as our example.
+
+```{r}
+# export API token
+mytoken <- readRDS("data_input/mytoken.rds")
+
+tweets <- search_tweets("#TheyAreUs filter:retweets", n = 1000, include_rts = TRUE)
+```
+
+_**Note**_:  
+_If you want to skip the API authorization process and prefer to practice on existing twitter data, you can also export the twitter data csv on this directory:_
+
+```{r, eval=FALSE}
+# tweets <- read_csv("data_input/tweets.csv")
+```
+
+The `search_tweets` function takes a few arguments. Above, we fetch 1000 tweets about "#TheyAreUs", and since we want to focus on re-tweets, we also ensured the tweets we collect include re-tweets.
+
+Each row a is a tweet, `rtweet` returns quite a lot of variables (88), we’ll only look at a select few.
+
+```{r}
+names(tweets)
+```
+
+## Build
+
+A network consists of nodes and edges: this is just what `graphTweets` returns.  
+
+In this graph, each node is a user who is connected to other users who he/she retweeted. Functions in `graphTweets` are meant to be run in a specific order:  
+
+- Extract *edges*  
+- Extract the *nodes*
+
+```{r}
+net <- tweets %>% 
+  gt_edges(source = screen_name, target = retweet_screen_name) %>% # get edges
+  gt_nodes() # get nodes
+```
+
+We called `gt_edges` on our tweets data frame, passing a few bare column names. The source of the tweets (the user posting the tweets) will also be **the source of our edges** so we pass `source = screen_name`, then the target of these edges will be users whom they retweeted, which is given by the API as `retweet_screen_name`; this will be **target of our edges**.
+
+The object returned is of an unfamiliar class.
+
+```{r}
+class(net)
+```
+
+To extracts the results from graphTweets run `gt_collect`, this will work at any point in the chain of pipes (%>%).
+
+```{r}
+net <- net %>% 
+  gt_collect()
+
+class(net)
+```
+
+## Visualise
+
+We can visualise the network with `sigmajs`. Then again, it’s very easy and follows the same idea as `graphTweets`; we pipe our nodes and edges through. Before we do so, for the sake of clarity, let’s unpack our network using the `%<-%` from the Zeallot package (Teetor 2018), imported by the `twinetverse`.
+
+```{r}
+c(edges, nodes) %<-% net
+```
+
+Note: You can always unpack the network with `edges <- net$edges` and `nodes <- net$nodes` if you are not comfortable with the above.
+
+Let’s take a look at the edges.
+
+```{r}
+head(edges)
+```
+
+Edges simply consist of source and target, as explained earlier on, source essentially corresponds to `screen_name` passed in `gt_edges`, it is the user who posted the tweet. In contrast, target includes includes the users whom they retweeted on that tweet. The `n` variable indicates how many tweets connect the source to the target.
+
+Now let’s take a look at the nodes:
+
+```{r}
+head(nodes)
+```
+
+In the nodes data frame, the column `n` is the number of times the node appears (whether as *source* or as *target*), while the nodes column are the Twitter handles of both the authors of the tweets and those who retweeted the tweets. 
+
+Below we rename a few columns, to meet `sigmajs` naming convention.  
+  
+1. We add ids to our nodes, this can be a string and thus simply corresponds to our `nodes` column.  
+2. We essentially rename `n` to `size` as this is what sigmajs understands.  
+3. We add ids to our edges as `sigmajs` requires each edge to have a unique id.  
+
+`sigmajs` has a specific but sensible naming convention as well as basic minimal requirements:  
+
+- Nodes must at least include `id`, and `size`.  
+- Edges must at least include `id`, `source`, and `target`.  
+
+Now, the `twinetverse` comes with helper functions to prepare the nodes and edges build from graphTweets for use in sigmajs (these are the only functions the ’verse provides).
+
+```{r}
+nodes <- nodes2sg(nodes)
+edges <- edges2sg(edges)
+```
+
+Let’s visualise that, we must initialise every `sigmajs` graph with the `sigmajs` function, then we add our nodes with `sg_nodes`, passing the column names we mentioned previously, `id`, and `size` to meet sigmajs’ minimum requirements.*In sigmajs, at the exception of the function called sigmajs, all start with `sg_`*
+
+`sigmajs` actually allows us to build graphs using only nodes or edges. Contrary to `graphTweets` rules, we have to run `sigmajs` functions in the correct order; first the `nodes`, then the `edges`.
+
+Let's begin with map our nodes:
+
+```{r}
+sigmajs() %>% 
+  sg_nodes(nodes, id, size) 
+```
+
+Then, let's add the edges:
+
+```{r}
+sigmajs() %>% 
+  sg_nodes(nodes, id, size) %>% 
+  sg_edges(edges, id, source, target)
+```
+
+Each disk/point on the graph is a twitter user, they are connected when one has retweeted the other in their tweet.
+
+Now above graph doesn't look really informative, but `sigmajs` is highly customisable. We're going to beautify that a bit, starting with add appropriate layout to the graph. The layout we're going to use on the following code is taken from one of igraph’s layout algorithms.
+
+We'll also add labels that will display on hover by simply passing the `label` column to `sg_nodes`.
+
+```{r}
+sigmajs() %>% 
+  sg_nodes(nodes, id, label, size) %>% 
+  sg_edges(edges, id, source, target) %>% 
+  sg_layout(layout = igraph::layout_components)
+```
+
+Looks a lot better, isn't it? Next, we color the nodes by cluster with `sg_cluster`
+
+```{r}
+sigmajs() %>% 
+  sg_nodes(nodes, id, label, size) %>% 
+  sg_edges(edges, id, source, target) %>% 
+  sg_layout(layout = igraph::layout_components) %>% 
+  sg_cluster(
+    colors = c(
+      "#60dd8e",
+      "#3f9f7f",
+      "#188a8d",
+      "#17577e",
+      "#141163"
+      )
+  ) %>% 
+  sg_settings(
+    minNodeSize = 1,
+    maxNodeSize = 2.5,
+    edgeColor = "default",
+    defaultEdgeColor = "#d3d3d3"
+  )
+```
+
+From above visualisation, we can learn about each cluster of "interactions" and how a certain user be the highest influence among #TheyAreUs campaign.
+
+# [Optional]: Dynamic Edges  
+
+We’ve been visualising Twitter interactions in a static manner, but they are dynamic when you think of it. Twitter conversations happen over time, thus far, we’ve just been drawing all encompassing snapshots. So let’s take into account the time factor to make a where the edges appear at different time steps.  
+
+Let's use the same tweets data:
+
+```{r}
+tweets <- read_csv("data_input/tweets_twinet.csv")
+```
+
+## Build
+
+Now onto building the graph.
+
+```{r}
+net <- tweets %>% 
+  gt_edges(screen_name, mentions_screen_name, created_at) %>% 
+  gt_nodes() %>% 
+  gt_dyn() %>% 
+  gt_collect()
+```
+
+Quite a few things differ from previous graphs we have built.
+
+1. We pass `created_at` in `gt_edges`. This in effect adds the `created_at` column to our edges, so that we know the created time of post in which the edge appears.  
+2. We use `gt_dyn` which stands for dynamic, to essentially compute the time at which edges and nodes should appear on the graph.
+
+## Visualise
+
+Like what we've done earlier, first we need to unpack both edges and nodes:
+
+```{r}
+c(edges, nodes) %<-% net # unpack
+
+nodes <- nodes2sg(nodes)
+```
+
+Notice that after we unpacked them, we have only prepared our `nodes` for the `sigmajs` visualisation. This is because we have to perform another preparation to our `edges` for it to be dynamically appear on the graph.
+  
+The way this works in `sigmajs` is by specifying the delay in milliseconds before each respective edge should be added. Therefore, we need to transform the date to milliseconds and rescale them to be within a reasonable range: we don’t want the edges to actually take 15 hours to appear on the graph.  
+1. We change the date time column (POSIXct actually) to a numeric, which gives the number of milliseconds.  
+2. We rescale between 0 and 1 then multiply by 10,000 (milliseconds) so that the edges are added over 10 seconds.
+
+```{r}
+edges <- edges %>% 
+  mutate(
+    id = 1:n(),
+    created_at = as.numeric(created_at),
+    created_at = (created_at - min(created_at)) / (max(created_at) - min(created_at)),
+    created_at = created_at * 10000
+  ) %>% 
+  select(id, source, target, created_at)
+```
+
+
+Now, the actual visualisation, as mentioned at the begining to the chapter, we’ll plot the nodes then add edges dynamically. Let’s break it down step by step.
+
+First, we plot the nodes.  
+
+```{r}
+sigmajs() %>% 
+  sg_nodes(nodes, id, size, label) 
+```
+
+We’ll add the layout as it looks a bit messy with nodes randomly scattered across the canvas. We’ll have to compute the layout differently this time, we cannot simply use `sg_layout` as it requires both nodes and edges and we only have nodes on the graph (since edges are to be added later on, dynamically); instead we use `sg_get_layout`.  
+
+```{r}
+nodes <- sg_get_layout(nodes, edges, layout = igraph::layout_components)
+head(nodes)
+```
+
+Notice that `sg_get_layout`computes the coordinates of the nodes (x and y) and adds them to our nodes dataframe.  
+
+Now we can simply pass the coordinates x and y to `sg_nodes`.
+
+```{r}
+sigmajs() %>% 
+  sg_nodes(nodes, id, size, label, x, y) 
+```
+
+Now we have something that looks like a graph, except it’s missing edges. Let’s add them.
+
+We add the edges almost exactly as we did before, we use `sg_add_edges` instead of `sg_edges`. Other than the function name, the only difference is that we pass `created_at` as delay. We also set `cumsum=FALSE`, otherwise the function computes the cumulative sum on the delay, which is, here, our `created_at` column, and does not require counting the cumulative sum.  
+
+```{r}
+sigmajs() %>% 
+     sg_nodes(nodes, id, size, label, x, y) %>%
+     sg_add_edges(edges, created_at, id, source, target, cumsum = FALSE, refresh=TRUE) 
+```
+
+Now the edges appear dynamically. However, as the animation is triggered when the page is loaded, `sigmajs` provides an easy workaround: we can add a button for the user to trigger the animation themself.
+
+The button is added with sg_button to which we pass a label (Add edges) and the event (`add_edges`) the button will trigger. The name of the event corresponds to the function it essentially triggers minus the starting `sg_`. In our case add_edges triggers `sg_add_edges`. Many events can be triggered by the button, they are listed on sigmajs [official website](http://sigmajs.john-coene.com/articles/buttons.html).  
+
+Lastly, to make our graph more pleasant to look at, we'll add colors to our nodes and edges through `sg_settings`.
+
+```{r}
+sigmajs() %>% 
+  sg_nodes(nodes, id, size, label, x, y) %>%
+  sg_add_edges(edges, created_at, id, source, target, cumsum = FALSE, refresh = TRUE) %>% 
+  sg_button("add_edges", "Add edges") %>% 
+  sg_settings(
+    defaultNodeColor = "#127ba3",
+    edgeColor = "default",
+    defaultEdgeColor = "#d3d3d3",
+    minNodeSize = 1,
+    maxNodeSize = 4,
+    minEdgeSize = 0.3,
+    maxEdgeSize = 0.3
+  )
+```
+
+Now even more intersting, from our dynamic graph, we can see which user spread the campaign earliest than the others.
+
+# Sources & References
+  
+- twinetbook: https://twinetbook.john-coene.com/    
+- rtweet official: https://rtweet.info/  

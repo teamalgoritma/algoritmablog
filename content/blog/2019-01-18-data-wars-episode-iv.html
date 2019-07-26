@@ -1,0 +1,650 @@
+---
+author: R. Dimas Bagas Herlambang
+categories:
+- R
+date: "2019-01-18"
+description: A New Hope in Data Manipulation using R
+featured: tidyverse.png
+featuredalt: ""
+featuredpath: date
+linktitle: ""
+slug: data-wars-episode-iv
+tags:
+- Data Manipulation
+- dplyr
+- tidyverse
+title: 'Data Wars: Episode IV'
+type: post
+---
+
+
+
+<p>Data wrangling sometimes could become very tedious. No matter what language do you prefer: R, python, or even SQL, the process of preprocessing your dataset is generally very time consuming. But, this is not the case if you know how to properly use packages included in <a href="https://tidyverse.org" target="_blank"><strong><code>tidyverse</code></strong></a>.</p>
+<p>The term of <code>tidyverse</code> is actually referring to a set of packages that you’ll find very helpful in any data analysis tasks; many of them are already popular among R users, like <a href="https://dplyr.tidyverse.org" target="_blank"><strong><code>dplyr</code></strong></a>, <a href="https://ggplot2.tidyverse.org" target="_blank"><strong><code>ggplot2</code></strong></a>, and <a href="https://lubridate.tidyverse.org" target="_blank"><strong><code>lubridate</code></strong></a>. These packages are intended to work side-by-side; they share the same API style, and sharing a common data representation format. But another things that often missed is that the <code>tidyverse</code> itself is also a package! The <code>tidyverse</code> package is intended to make your environment set-up process faster; you only need to install <code>tidyverse</code> library to install the bundled packages, and just load the <code>tidyverse</code> library to load all the core packages.</p>
+<p>In this articles (or maybe I should say, in this <em>episode</em>), I will cover the basic usage of core packages in <code>tidyverse</code>, using (of course) <a href="https://dplyr.tidyverse.org/reference/starwars.html" target="_blank"><strong><code>starwars</code></strong></a> dataset which included along with <code>dplyr</code> library.</p>
+<p>There will be several sequels, and even prequels, for data wrangling using R and <code>tidyverse</code> tutorial–or to put it simple, <strong>data wars</strong> :grin:–so stay tuned!</p>
+<div id="enter-the-tidyverse" class="section level2">
+<h2>Enter the <code>tidyverse</code></h2>
+<p>As I mentioned before, you can install all of the included packages just by installing <code>tidyverse</code>. So let’s start by installing the package first:</p>
+<pre class="r"><code>install.packages(&quot;tidyverse&quot;)</code></pre>
+<p>If you are in an interactive session, you could see which packages are installed along with <code>tidyverse</code>. Just to make sure, let’s load the library:</p>
+<pre class="r"><code>library(tidyverse)
+#&gt; -- Attaching packages --------------------------- tidyverse 1.2.1 --
+#&gt; v ggplot2 3.1.0       v purrr   0.2.5  
+#&gt; v tibble  2.0.1       v dplyr   0.8.0.1
+#&gt; v tidyr   0.8.2       v stringr 1.3.1  
+#&gt; v readr   1.1.1       v forcats 0.3.0
+#&gt; Warning: package &#39;dplyr&#39; was built under R version 3.5.3
+#&gt; -- Conflicts ------------------------------ tidyverse_conflicts() --
+#&gt; x dplyr::filter() masks stats::filter()
+#&gt; x dplyr::lag()    masks stats::lag()</code></pre>
+<p>When importing the library, it give you messages about which packages that are attached to your session. But it only give you information about the core packages that fully loaded to your session, while actually <code>tidyverse</code> also attaching some great libraries in the background. You can see them all through <code>sessionInfo()</code>:</p>
+<pre class="r"><code>sessionInfo()
+#&gt; R version 3.5.2 (2018-12-20)
+#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
+#&gt; Running under: Windows 10 x64 (build 17763)
+#&gt; 
+#&gt; Matrix products: default
+#&gt; 
+#&gt; locale:
+#&gt; [1] LC_COLLATE=English_Indonesia.1252  LC_CTYPE=English_Indonesia.1252   
+#&gt; [3] LC_MONETARY=English_Indonesia.1252 LC_NUMERIC=C                      
+#&gt; [5] LC_TIME=English_Indonesia.1252    
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
+#&gt; 
+#&gt; other attached packages:
+#&gt; [1] forcats_0.3.0   stringr_1.3.1   dplyr_0.8.0.1   purrr_0.2.5    
+#&gt; [5] readr_1.1.1     tidyr_0.8.2     tibble_2.0.1    ggplot2_3.1.0  
+#&gt; [9] tidyverse_1.2.1
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] Rcpp_1.0.0       cellranger_1.1.0 plyr_1.8.4       pillar_1.3.1    
+#&gt;  [5] compiler_3.5.2   tools_3.5.2      digest_0.6.18    lubridate_1.7.4 
+#&gt;  [9] jsonlite_1.6     evaluate_0.13    nlme_3.1-137     gtable_0.2.0    
+#&gt; [13] lattice_0.20-38  pkgconfig_2.0.2  rlang_0.3.1      cli_1.1.0       
+#&gt; [17] rstudioapi_0.9.0 yaml_2.2.0       haven_2.1.0      blogdown_0.11   
+#&gt; [21] xfun_0.6         withr_2.1.2      xml2_1.2.0       httr_1.4.0      
+#&gt; [25] knitr_1.21       hms_0.4.2        generics_0.0.2   grid_3.5.2      
+#&gt; [29] tidyselect_0.2.5 glue_1.3.1       R6_2.4.0         readxl_1.2.0    
+#&gt; [33] rmarkdown_1.11   bookdown_0.9     modelr_0.1.2     magrittr_1.5    
+#&gt; [37] backports_1.1.4  scales_1.0.0     htmltools_0.3.6  rvest_0.3.2     
+#&gt; [41] assertthat_0.2.1 colorspace_1.4-0 stringi_1.2.4    lazyeval_0.2.1  
+#&gt; [45] munsell_0.5.0    broom_0.5.1      crayon_1.3.4</code></pre>
+<p>As you can see, it actually loads many packages in the background. Don’t worry, I will not cover all of them in this article; But I will cover them for sure in later sequels and prequels :grin:. If you really curious about those packages, I suggest you to checkout the detailed list at the <code>tidyverse</code> <a href="https://tidyverse.tidyverse.org" target="_blank">official documentations</a>.</p>
+</div>
+<div id="use-the-standard-data-representation-tibble" class="section level2">
+<h2>Use the standard data representation: <code>tibble</code></h2>
+<p>The first step in learning the <em>tidy</em> data wrangling is to be familiar with its standard data representation. Before I explain it in detail, let me give you a quick example by printing the <code>iris</code> dataset:</p>
+<pre class="r"><code>head(iris)
+#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#&gt; 1          5.1         3.5          1.4         0.2  setosa
+#&gt; 2          4.9         3.0          1.4         0.2  setosa
+#&gt; 3          4.7         3.2          1.3         0.2  setosa
+#&gt; 4          4.6         3.1          1.5         0.2  setosa
+#&gt; 5          5.0         3.6          1.4         0.2  setosa
+#&gt; 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>and compare the print output with <code>starwars</code> dataset from <code>dplyr</code>:</p>
+<pre class="r"><code>starwars
+#&gt; # A tibble: 87 x 13
+#&gt;    name  height  mass hair_color skin_color eye_color birth_year gender
+#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+#&gt;  1 Luke~    172    77 blond      fair       blue            19   male  
+#&gt;  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   &lt;NA&gt;  
+#&gt;  3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   &lt;NA&gt;  
+#&gt;  4 Dart~    202   136 none       white      yellow          41.9 male  
+#&gt;  5 Leia~    150    49 brown      light      brown           19   female
+#&gt;  6 Owen~    178   120 brown, gr~ light      blue            52   male  
+#&gt;  7 Beru~    165    75 brown      light      blue            47   female
+#&gt;  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   &lt;NA&gt;  
+#&gt;  9 Bigg~    183    84 black      light      brown           24   male  
+#&gt; 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  
+#&gt; # ... with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;,
+#&gt; #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>There are sooo many differences between the two outputs that I could elaborate more, but let’s focus on several important points:</p>
+<ul>
+<li>When printing <code>iris</code> dataset, I had to call it through <code>head()</code> to avoid printing the whole dataset. This is not the case for <code>starwars</code> dataset</li>
+<li>Base print output is just <em>as-is</em>, not giving some useful information</li>
+<li>If you see the details in <code>starwars</code>’ print output, it is showing that it can store a more complex object, like <code>list</code> in this case</li>
+</ul>
+<p>Why they behave differently? The answer lies in their class:</p>
+<pre class="r"><code>class(iris)
+#&gt; [1] &quot;data.frame&quot;
+
+class(starwars)
+#&gt; [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<p>The <code>starwars</code> dataset class is showing that it’s actually a <code>tibble</code>; which often referred as <code>tbl</code> or <code>tbl_*</code> when related to a specific data class. A <code>tibble</code> is a little bit different than your usual <code>data.frame</code>. I already outlined the main differences above, but in additition to that, it should be noted that <code>tibble</code> is the main data representation across the <code>tidyverse</code>; and also some extension that adopting the <em>tidy</em> principle, e.g., <code>tbl_ts</code> from <a href="https://pkg.earo.me/tsibble/" target="_blank"><strong><code>tsibble</code></strong></a> for tidy time series data representation.</p>
+<p>There are so many other advantages if you use <code>tibble</code>. For example, if you want to subset just one column, a simple <code>data.frame</code> will failed you again:</p>
+<pre class="r"><code>iris[, &quot;Species&quot;]
+#&gt;   [1] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;   [7] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [13] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [19] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [25] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [31] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [37] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [43] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [49] setosa     setosa     versicolor versicolor versicolor versicolor
+#&gt;  [55] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [61] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [67] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [73] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [79] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [85] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [91] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [97] versicolor versicolor versicolor versicolor virginica  virginica 
+#&gt; [103] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [109] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [115] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [121] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [127] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [133] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [139] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [145] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; Levels: setosa versicolor virginica</code></pre>
+<p>It will drop its “table” representation and convert the data into a <code>vector</code>, instead of a <code>data.frame</code> with one column. But this is not the case with <code>tibble</code>:</p>
+<pre class="r"><code>iris_tbl &lt;- as_tibble(iris)
+
+iris_tbl[, &quot;Species&quot;]
+#&gt; # A tibble: 150 x 1
+#&gt;    Species
+#&gt;    &lt;fct&gt;  
+#&gt;  1 setosa 
+#&gt;  2 setosa 
+#&gt;  3 setosa 
+#&gt;  4 setosa 
+#&gt;  5 setosa 
+#&gt;  6 setosa 
+#&gt;  7 setosa 
+#&gt;  8 setosa 
+#&gt;  9 setosa 
+#&gt; 10 setosa 
+#&gt; # ... with 140 more rows</code></pre>
+<p>Why this is justified as a more <em>tidy</em> way? because if you recall the R’s standard way to access a specific part from an object is actually using <code>$</code>:</p>
+<pre class="r"><code>iris_tbl$Species
+#&gt;   [1] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;   [7] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [13] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [19] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [25] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [31] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [37] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [43] setosa     setosa     setosa     setosa     setosa     setosa    
+#&gt;  [49] setosa     setosa     versicolor versicolor versicolor versicolor
+#&gt;  [55] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [61] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [67] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [73] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [79] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [85] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [91] versicolor versicolor versicolor versicolor versicolor versicolor
+#&gt;  [97] versicolor versicolor versicolor versicolor virginica  virginica 
+#&gt; [103] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [109] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [115] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [121] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [127] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [133] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [139] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; [145] virginica  virginica  virginica  virginica  virginica  virginica 
+#&gt; Levels: setosa versicolor virginica</code></pre>
+<p>which gives you the exact results.</p>
+<p>So my concluding notes are:</p>
+<ul>
+<li>Use <code>tibble</code> format whenever it’s possible. I rarely found any situation that using <code>tbl</code> or <code>tbl_*</code> object is not acceptable, because it is still inheriting the standard <code>data.frame</code> class.</li>
+<li>When working a specific case, e.g., time series dataset, or big data, always look if there are any tidy representation for the data; see <a href="https://pkg.earo.me/tsibble/" target="_blank"><strong><code>tsibble</code></strong></a> and <a href="https://spark.rstudio.com/s" target="_blank"><strong><code>sparklyr</code></strong></a> for example.</li>
+</ul>
+</div>
+<div id="easier-data-manipulation-with-dplyr" class="section level2">
+<h2>Easier data manipulation with <code>dplyr</code></h2>
+<p>The <code>dplyr</code> package is probably the most important part of <code>tidyverse</code>. It brings so many convenient utilities for data manipulation, particularly for some basic tasks; yet sometimes, could be troublesome if you only use base R functionalities.</p>
+<p>Among many advanced features inside <code>dplyr</code>, I suggest you to start with the cores data manipulation functions:</p>
+<ul>
+<li><a href="https://dplyr.tidyverse.org/reference/select.html" target="_blank"><strong><code>select()</code></strong></a>: for <em>selecting</em> a subset of data by column</li>
+<li><a href="https://dplyr.tidyverse.org/reference/filter.html" target="_blank"><strong><code>filter()</code></strong></a>: for <em>filtering</em> a subset of data by row using condition</li>
+<li><a href="https://dplyr.tidyverse.org/reference/arrange.html" target="_blank"><strong><code>arrange()</code></strong></a>: for re-<em>arranging</em> the rows order</li>
+<li><a href="https://dplyr.tidyverse.org/reference/mutate.html" target="_blank"><strong><code>mutate()</code></strong></a>: for <em>mutating</em> (:confused:) a new or existing variables</li>
+</ul>
+<p>As implied by my description, most of <code>dplyr</code> functions could be described by its names; except <code>mutate</code>, which is very likely to be confusing at the first time.</p>
+<p>Those function can be naturally combined with the core aggregation functions:</p>
+<ul>
+<li><a href="https://dplyr.tidyverse.org/reference/group_by.html" target="_blank"><strong><code>group_by()</code></strong></a>: for specifying that following operations should be done <em>by group(s)</em></li>
+<li><a href="https://dplyr.tidyverse.org/reference/summarise.html" target="_blank"><strong><code>summarise()</code></strong></a>: for obtaining the <em>summarise</em> of the data by the specified group(s).</li>
+</ul>
+<p>These functions probably would cover most of your data wrangling tasks; and if done in a proper <em>tidy</em> way, then you’ll find that data wrangling process will be easier. Generally, most of these workflow could be combined through a pipeline using <a href="https://magrittr.tidyverse.org/reference/pipe.html" target="_blank"><strong><code>%&gt;%</code></strong> (pipe) operator</a> to make it tidier.</p>
+<p>Let’s try out these features using <code>starwars</code> dataset. The first step–and I think the most important step–that we should do is setting our output goal. For this tutorial, let’s try to find out how the height and mass differ across homeworld and gender for human species. So we will transform the dataset from:</p>
+<pre class="r"><code>starwars
+#&gt; # A tibble: 87 x 13
+#&gt;    name  height  mass hair_color skin_color eye_color birth_year gender
+#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+#&gt;  1 Luke~    172    77 blond      fair       blue            19   male  
+#&gt;  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   &lt;NA&gt;  
+#&gt;  3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   &lt;NA&gt;  
+#&gt;  4 Dart~    202   136 none       white      yellow          41.9 male  
+#&gt;  5 Leia~    150    49 brown      light      brown           19   female
+#&gt;  6 Owen~    178   120 brown, gr~ light      blue            52   male  
+#&gt;  7 Beru~    165    75 brown      light      blue            47   female
+#&gt;  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   &lt;NA&gt;  
+#&gt;  9 Bigg~    183    84 black      light      brown           24   male  
+#&gt; 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  
+#&gt; # ... with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;,
+#&gt; #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>into this format:</p>
+<pre class="r"><code># the output goal:
+
+#&gt; # A tibble: 21 x 5
+#&gt;    homeworld    gender  mass height   bmi
+#&gt;    &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 Bestine IV   male   110     180   61.1
+#&gt;  2 Tatooine     male   100.    184.  54.0
+#&gt;  3 &lt;NA&gt;         male    89     193   46.1
+#&gt;  4 Tatooine     female  75     164   45.5
+#&gt;  5 Bespin       male    79     175   45.1
+#&gt;  6 Naboo        male    80     178.  45.0
+#&gt;  7 Corellia     male    78.5   175   44.9
+#&gt;  8 Haruun Kal   male    84     188   44.7
+#&gt;  9 Socorro      male    79     177   44.6
+#&gt; 10 Concord Dawn male    79     183   43.2
+#&gt; # ... with 11 more rows</code></pre>
+</div>
+<div id="column-subsetting-using-select" class="section level2">
+<h2>Column subsetting using <code>select()</code></h2>
+<p><code>select()</code> is probably the first function you will call in every data manipulation tasks. By using <code>select()</code>, you can narrow down the number variables to fewer variables–which are what you truly need.</p>
+<p>The <code>select()</code> usage (and also every core functions in <code>dplyr</code>) is very straighforward. You just need to pass the dataset and select the column name you want to <em>select</em>:</p>
+<pre class="r"><code>select(starwars, name)
+#&gt; # A tibble: 87 x 1
+#&gt;    name              
+#&gt;    &lt;chr&gt;             
+#&gt;  1 Luke Skywalker    
+#&gt;  2 C-3PO             
+#&gt;  3 R2-D2             
+#&gt;  4 Darth Vader       
+#&gt;  5 Leia Organa       
+#&gt;  6 Owen Lars         
+#&gt;  7 Beru Whitesun lars
+#&gt;  8 R5-D4             
+#&gt;  9 Biggs Darklighter 
+#&gt; 10 Obi-Wan Kenobi    
+#&gt; # ... with 77 more rows</code></pre>
+<p>It’s very easy right? Before we continue to our objective, there are some tips you need to consider.</p>
+<div id="chaining-operation-using" class="section level3">
+<h3>Chaining operation using <code>%&gt;%</code></h3>
+<p>When we doing a complex data manipulation using <code>dplyr</code>, I suggest to use <code>%&gt;%</code> operator to make our code tidier:</p>
+<pre class="r"><code>starwars %&gt;%
+  select(name)
+#&gt; # A tibble: 87 x 1
+#&gt;    name              
+#&gt;    &lt;chr&gt;             
+#&gt;  1 Luke Skywalker    
+#&gt;  2 C-3PO             
+#&gt;  3 R2-D2             
+#&gt;  4 Darth Vader       
+#&gt;  5 Leia Organa       
+#&gt;  6 Owen Lars         
+#&gt;  7 Beru Whitesun lars
+#&gt;  8 R5-D4             
+#&gt;  9 Biggs Darklighter 
+#&gt; 10 Obi-Wan Kenobi    
+#&gt; # ... with 77 more rows</code></pre>
+<p>This is because <code>%&gt;%</code> operator could help you to make a chaining operation. The pipe operator will pass the results from its left-hand side, to the first parameter in the function of its right-hand side. So you could make a chaining operation like this:</p>
+<pre class="r"><code>starwars %&gt;%
+  select(name) %&gt;%
+  anotherfuns(&lt;arguments&gt;) %&gt;%
+  anotherfuns(&lt;arguments&gt;) %&gt;%
+  &lt;continue the chain as long as necessary&gt; %&gt;%
+  anotherfuns(&lt;arguments&gt;)</code></pre>
+<p>So as long as <code>anotherfuns</code> you chained could accept the previous result as its first argument, you can chaining the operation as long as you want.</p>
+</div>
+<div id="checking-the-variables-using-glimpse" class="section level3">
+<h3>Checking the variables using <code>glimpse()</code></h3>
+<p>Now back to our objective. Remember that we want to make a summary of height and mass of human species across homeworld and gender. So we actually need only those few variables to go on. Still, remembering the name of those variables could be frustating sometimes, so I suggest to use <code>glimpse()</code> function before you jump into variable selection:</p>
+<pre class="r"><code>glimpse(starwars)
+#&gt; Observations: 87
+#&gt; Variables: 13
+#&gt; $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, ...
+#&gt; $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188...
+#&gt; $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 8...
+#&gt; $ hair_color &lt;chr&gt; &quot;blond&quot;, NA, NA, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;b...
+#&gt; $ skin_color &lt;chr&gt; &quot;fair&quot;, &quot;gold&quot;, &quot;white, blue&quot;, &quot;white&quot;, &quot;light&quot;, &quot;l...
+#&gt; $ eye_color  &lt;chr&gt; &quot;blue&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;yellow&quot;, &quot;brown&quot;, &quot;blue&quot;,...
+#&gt; $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0...
+#&gt; $ gender     &lt;chr&gt; &quot;male&quot;, NA, NA, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;,...
+#&gt; $ homeworld  &lt;chr&gt; &quot;Tatooine&quot;, &quot;Tatooine&quot;, &quot;Naboo&quot;, &quot;Tatooine&quot;, &quot;Alder...
+#&gt; $ species    &lt;chr&gt; &quot;Human&quot;, &quot;Droid&quot;, &quot;Droid&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Human...
+#&gt; $ films      &lt;list&gt; [&lt;&quot;Revenge of the Sith&quot;, &quot;Return of the Jedi&quot;, &quot;Th...
+#&gt; $ vehicles   &lt;list&gt; [&lt;&quot;Snowspeeder&quot;, &quot;Imperial Speeder Bike&quot;&gt;, &lt;&gt;, &lt;&gt;,...
+#&gt; $ starships  &lt;list&gt; [&lt;&quot;X-wing&quot;, &quot;Imperial shuttle&quot;&gt;, &lt;&gt;, &lt;&gt;, &quot;TIE Adva...</code></pre>
+<p>The <code>glimpse()</code> function is practically the simplified version of <code>str()</code>; but it only print the most general information like the variable names, class, etc. Another alternative is to use the base <code>colnames()</code>, but it doesn’t provide additional information like <code>glimpse()</code>, so I suggest to use the later.</p>
+<p>From <code>glimpse()</code> output, now we have the list of variable names and can be sure that we have to select <code>species</code>, <code>homeworld</code>, <code>gender</code>, <code>mass</code>, <code>height</code>:</p>
+<pre class="r"><code>starwars %&gt;%
+  select(name, species, homeworld, gender, mass, height)
+#&gt; # A tibble: 87 x 6
+#&gt;    name               species homeworld gender  mass height
+#&gt;    &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt;  &lt;int&gt;
+#&gt;  1 Luke Skywalker     Human   Tatooine  male      77    172
+#&gt;  2 C-3PO              Droid   Tatooine  &lt;NA&gt;      75    167
+#&gt;  3 R2-D2              Droid   Naboo     &lt;NA&gt;      32     96
+#&gt;  4 Darth Vader        Human   Tatooine  male     136    202
+#&gt;  5 Leia Organa        Human   Alderaan  female    49    150
+#&gt;  6 Owen Lars          Human   Tatooine  male     120    178
+#&gt;  7 Beru Whitesun lars Human   Tatooine  female    75    165
+#&gt;  8 R5-D4              Droid   Tatooine  &lt;NA&gt;      32     97
+#&gt;  9 Biggs Darklighter  Human   Tatooine  male      84    183
+#&gt; 10 Obi-Wan Kenobi     Human   Stewjon   male      77    182
+#&gt; # ... with 77 more rows</code></pre>
+<p>Now the dataset looks a lot simpler :grin:</p>
+</div>
+</div>
+<div id="filtering-specific-observation-using-filter" class="section level2">
+<h2>Filtering specific observation using <code>filter()</code></h2>
+<p>You already see that a simple column selection could help you in starting the data wrangling process. But row/observation selection is sometimes a compulsory step rather than just a <em>helper</em> step. For example, you want to exclude or include specific observations which inheriting some specific traits. If you recall our objective, and to be more specific at “for human species”, then we are absolutely need to filter our dataset to only containing human species.</p>
+<p>As aforementioned, <code>filter()</code> function is also very easy to use: just pass the dataset object as the first argument, then you can pass the condition(s) as the following argument(s).</p>
+<p>To declare the condition, the most common way is to use the base condition testing:</p>
+<ul>
+<li><code>==</code> and <code>!=</code> for testing equal, and not equal condition</li>
+<li><code>&gt;</code> or <code>&gt;=</code> for testing greater than, and greater than or equal</li>
+<li><code>&lt;</code> or <code>&lt;=</code> for testing less than, and less than or equal</li>
+</ul>
+<p>Let’s try to filter observation with <code>mass</code> less than or equal to <code>50</code> from <code>starwars</code> dataset:</p>
+<pre class="r"><code>filter(starwars, mass &lt;= 50)
+#&gt; # A tibble: 13 x 13
+#&gt;    name  height  mass hair_color skin_color eye_color birth_year gender
+#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+#&gt;  1 R2-D2     96    32 &lt;NA&gt;       white, bl~ red               33 &lt;NA&gt;  
+#&gt;  2 Leia~    150    49 brown      light      brown             19 female
+#&gt;  3 R5-D4     97    32 &lt;NA&gt;       white, red red               NA &lt;NA&gt;  
+#&gt;  4 Yoda      66    17 white      green      brown            896 male  
+#&gt;  5 Wick~     88    20 brown      brown      brown              8 male  
+#&gt;  6 Sebu~    112    40 none       grey, red  orange            NA male  
+#&gt;  7 Dud ~     94    45 none       blue, grey yellow            NA male  
+#&gt;  8 Adi ~    184    50 none       dark       blue              NA female
+#&gt;  9 Barr~    166    50 black      yellow     blue              40 female
+#&gt; 10 Ratt~     79    15 none       grey, blue unknown           NA male  
+#&gt; 11 Wat ~    193    48 none       green, gr~ unknown           NA male  
+#&gt; 12 Sly ~    178    48 none       pale       white             NA female
+#&gt; 13 Padm~    165    45 brown      light      brown             46 female
+#&gt; # ... with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#&gt; #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>It might be looks very simple, but let’s dive deeper on how condition testing works to see its full potential.</p>
+<div id="behind-the-scene-of-condition-testing" class="section level3">
+<h3>Behind the scene of condition testing</h3>
+<p>Before I explain the details, let’s take a look at the first 5 <code>mass</code> value from <code>starwars</code>:</p>
+<pre class="r"><code>head(starwars$mass)
+#&gt; [1]  77  75  32 136  49 120</code></pre>
+<p>If we test the condition of <code>&lt;= 50</code> to above data, we will actually get this output:</p>
+<pre class="r"><code>head(starwars$mass) &lt;= 50
+#&gt; [1] FALSE FALSE  TRUE FALSE  TRUE FALSE</code></pre>
+<p>So basically filtering condition is picking up rows with the <code>TRUE</code> value; and it will discard the rest. Based on this mechanism, we could also use other helper functions to test a condition, e.g., when we want to see rows with <code>NA</code> values, we can use <code>is.na()</code> function:</p>
+<pre class="r"><code>filter(starwars, is.na(mass))
+#&gt; # A tibble: 28 x 13
+#&gt;    name  height  mass hair_color skin_color eye_color birth_year gender
+#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+#&gt;  1 Wilh~    180    NA auburn, g~ fair       blue              64 male  
+#&gt;  2 Mon ~    150    NA auburn     fair       blue              48 female
+#&gt;  3 Arve~     NA    NA brown      fair       brown             NA male  
+#&gt;  4 Fini~    170    NA blond      fair       blue              91 male  
+#&gt;  5 Rugo~    206    NA none       green      orange            NA male  
+#&gt;  6 Ric ~    183    NA brown      fair       blue              NA male  
+#&gt;  7 Watto    137    NA black      blue, grey yellow            NA male  
+#&gt;  8 Quar~    183    NA black      dark       brown             62 male  
+#&gt;  9 Shmi~    163    NA black      fair       brown             72 female
+#&gt; 10 Bib ~    180    NA none       pale       pink              NA male  
+#&gt; # ... with 18 more rows, and 5 more variables: homeworld &lt;chr&gt;,
+#&gt; #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>or if we want to keep observations with non-<code>NA</code> value, then we could create a negation using <code>!</code>:</p>
+<pre class="r"><code>filter(starwars, !is.na(mass))
+#&gt; # A tibble: 59 x 13
+#&gt;    name  height  mass hair_color skin_color eye_color birth_year gender
+#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+#&gt;  1 Luke~    172    77 blond      fair       blue            19   male  
+#&gt;  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   &lt;NA&gt;  
+#&gt;  3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   &lt;NA&gt;  
+#&gt;  4 Dart~    202   136 none       white      yellow          41.9 male  
+#&gt;  5 Leia~    150    49 brown      light      brown           19   female
+#&gt;  6 Owen~    178   120 brown, gr~ light      blue            52   male  
+#&gt;  7 Beru~    165    75 brown      light      blue            47   female
+#&gt;  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   &lt;NA&gt;  
+#&gt;  9 Bigg~    183    84 black      light      brown           24   male  
+#&gt; 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  
+#&gt; # ... with 49 more rows, and 5 more variables: homeworld &lt;chr&gt;,
+#&gt; #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div id="quick-check-on-conditions-availability" class="section level3">
+<h3>Quick-check on conditions availability</h3>
+<p>Just like when we check the variables using <code>glimpse()</code>, we also need to check our variables to make sure about any available options to be filtered. For our case, we already know that we want to get only human observations, but straighly jump into <code>filter()</code> is very unwise:</p>
+<pre class="r"><code>starwars %&gt;%
+  select(name, species, homeworld, gender, mass, height) %&gt;%
+  filter(species == &quot;human&quot;)
+#&gt; # A tibble: 0 x 6
+#&gt; # ... with 6 variables: name &lt;chr&gt;, species &lt;chr&gt;, homeworld &lt;chr&gt;,
+#&gt; #   gender &lt;chr&gt;, mass &lt;dbl&gt;, height &lt;int&gt;</code></pre>
+<p>It seems like there is no <code>"human"</code> species, but actually it’s just because we specified a wrong condition. For categorical variable like <code>species</code>, I really suggest you to check it using <code>unique()</code> first:</p>
+<pre class="r"><code>unique(starwars$species)
+#&gt;  [1] &quot;Human&quot;          &quot;Droid&quot;          &quot;Wookiee&quot;        &quot;Rodian&quot;        
+#&gt;  [5] &quot;Hutt&quot;           &quot;Yoda&#39;s species&quot; &quot;Trandoshan&quot;     &quot;Mon Calamari&quot;  
+#&gt;  [9] &quot;Ewok&quot;           &quot;Sullustan&quot;      &quot;Neimodian&quot;      &quot;Gungan&quot;        
+#&gt; [13] NA               &quot;Toydarian&quot;      &quot;Dug&quot;            &quot;Zabrak&quot;        
+#&gt; [17] &quot;Twi&#39;lek&quot;        &quot;Vulptereen&quot;     &quot;Xexto&quot;          &quot;Toong&quot;         
+#&gt; [21] &quot;Cerean&quot;         &quot;Nautolan&quot;       &quot;Tholothian&quot;     &quot;Iktotchi&quot;      
+#&gt; [25] &quot;Quermian&quot;       &quot;Kel Dor&quot;        &quot;Chagrian&quot;       &quot;Geonosian&quot;     
+#&gt; [29] &quot;Mirialan&quot;       &quot;Clawdite&quot;       &quot;Besalisk&quot;       &quot;Kaminoan&quot;      
+#&gt; [33] &quot;Aleena&quot;         &quot;Skakoan&quot;        &quot;Muun&quot;           &quot;Togruta&quot;       
+#&gt; [37] &quot;Kaleesh&quot;        &quot;Pau&#39;an&quot;</code></pre>
+<p>Which shows that it’s actually <code>"Human"</code>. For numerical variables, you can use <code>summary()</code> to help you quick-check the value range:</p>
+<pre class="r"><code>summary(starwars$height)
+#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+#&gt;    66.0   167.0   180.0   174.4   191.0   264.0       6</code></pre>
+<p>After we quick-check the values within our variable of interest, it’s safe now to call <code>filter()</code> function:</p>
+<pre class="r"><code>starwars %&gt;%
+  select(name, species, homeworld, gender, mass, height) %&gt;%
+  filter(species == &quot;Human&quot;)
+#&gt; # A tibble: 35 x 6
+#&gt;    name               species homeworld gender  mass height
+#&gt;    &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt;  &lt;int&gt;
+#&gt;  1 Luke Skywalker     Human   Tatooine  male      77    172
+#&gt;  2 Darth Vader        Human   Tatooine  male     136    202
+#&gt;  3 Leia Organa        Human   Alderaan  female    49    150
+#&gt;  4 Owen Lars          Human   Tatooine  male     120    178
+#&gt;  5 Beru Whitesun lars Human   Tatooine  female    75    165
+#&gt;  6 Biggs Darklighter  Human   Tatooine  male      84    183
+#&gt;  7 Obi-Wan Kenobi     Human   Stewjon   male      77    182
+#&gt;  8 Anakin Skywalker   Human   Tatooine  male      84    188
+#&gt;  9 Wilhuff Tarkin     Human   Eriadu    male      NA    180
+#&gt; 10 Han Solo           Human   Corellia  male      80    180
+#&gt; # ... with 25 more rows</code></pre>
+</div>
+</div>
+<div id="manipulating-variables-using-mutate" class="section level2">
+<h2>Manipulating variables using <code>mutate()</code></h2>
+<p>When I mentioned <code>mutate()</code> terms, most of you that are not familiar with <code>dplyr</code> probably not sure on its meaning. This function is basically helping us to manipulating the variables inside our dataframe. For example, you could change the units of <code>mass</code> and <code>height</code> index:</p>
+<pre class="r"><code>mutate(starwars, mass = mass * 100, height = height / 100)
+#&gt; # A tibble: 87 x 13
+#&gt;    name  height  mass hair_color skin_color eye_color birth_year gender
+#&gt;    &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+#&gt;  1 Luke~   1.72  7700 blond      fair       blue            19   male  
+#&gt;  2 C-3PO   1.67  7500 &lt;NA&gt;       gold       yellow         112   &lt;NA&gt;  
+#&gt;  3 R2-D2   0.96  3200 &lt;NA&gt;       white, bl~ red             33   &lt;NA&gt;  
+#&gt;  4 Dart~   2.02 13600 none       white      yellow          41.9 male  
+#&gt;  5 Leia~   1.5   4900 brown      light      brown           19   female
+#&gt;  6 Owen~   1.78 12000 brown, gr~ light      blue            52   male  
+#&gt;  7 Beru~   1.65  7500 brown      light      blue            47   female
+#&gt;  8 R5-D4   0.97  3200 &lt;NA&gt;       white, red red             NA   &lt;NA&gt;  
+#&gt;  9 Bigg~   1.83  8400 black      light      brown           24   male  
+#&gt; 10 Obi-~   1.82  7700 auburn, w~ fair       blue-gray       57   male  
+#&gt; # ... with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;,
+#&gt; #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>But it doesn’t limited to manipulating the existing variables; you could also make a new variable using this function. Say, we want to add Body Mass Index (BMI) to our current analysis, we could create it using <code>mutate()</code>:</p>
+<pre class="r"><code>starwars %&gt;%
+  select(name, species, homeworld, gender, mass, height) %&gt;%
+  filter(species == &quot;Human&quot;) %&gt;%
+  mutate(bmi = mass / height * 100)
+#&gt; # A tibble: 35 x 7
+#&gt;    name               species homeworld gender  mass height   bmi
+#&gt;    &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt;  &lt;int&gt; &lt;dbl&gt;
+#&gt;  1 Luke Skywalker     Human   Tatooine  male      77    172  44.8
+#&gt;  2 Darth Vader        Human   Tatooine  male     136    202  67.3
+#&gt;  3 Leia Organa        Human   Alderaan  female    49    150  32.7
+#&gt;  4 Owen Lars          Human   Tatooine  male     120    178  67.4
+#&gt;  5 Beru Whitesun lars Human   Tatooine  female    75    165  45.5
+#&gt;  6 Biggs Darklighter  Human   Tatooine  male      84    183  45.9
+#&gt;  7 Obi-Wan Kenobi     Human   Stewjon   male      77    182  42.3
+#&gt;  8 Anakin Skywalker   Human   Tatooine  male      84    188  44.7
+#&gt;  9 Wilhuff Tarkin     Human   Eriadu    male      NA    180  NA  
+#&gt; 10 Han Solo           Human   Corellia  male      80    180  44.4
+#&gt; # ... with 25 more rows</code></pre>
+<p>This function is very versatile, so play around with your creativity here :sunglasses:</p>
+</div>
+<div id="data-aggregation-using-group_by-and-summarise" class="section level2">
+<h2>Data aggregation using <code>group_by</code> and <code>summarise</code></h2>
+<p>We are reaching the final parts! Let’s recall the part of our objective that we haven’t done yet: “across the homeworld and gender”. This particular phrase is indicating that we want each of our observation to representing its <code>homeworld</code> and <code>gender</code> instead of each character’s <code>name</code> like what we currently have. We can achieve this using <code>group_by()</code> and <code>summarise()</code> function.</p>
+<p>To declare a group, you just need to specify the name of variables that you want to set as group identifier:</p>
+<pre class="r"><code>starwars %&gt;%
+  select(name, species, homeworld, gender, mass, height) %&gt;%
+  filter(species == &quot;Human&quot;) %&gt;%
+  mutate(bmi = mass / height * 100) %&gt;%
+  group_by(homeworld, gender)
+#&gt; # A tibble: 35 x 7
+#&gt; # Groups:   homeworld, gender [21]
+#&gt;    name               species homeworld gender  mass height   bmi
+#&gt;    &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt;  &lt;int&gt; &lt;dbl&gt;
+#&gt;  1 Luke Skywalker     Human   Tatooine  male      77    172  44.8
+#&gt;  2 Darth Vader        Human   Tatooine  male     136    202  67.3
+#&gt;  3 Leia Organa        Human   Alderaan  female    49    150  32.7
+#&gt;  4 Owen Lars          Human   Tatooine  male     120    178  67.4
+#&gt;  5 Beru Whitesun lars Human   Tatooine  female    75    165  45.5
+#&gt;  6 Biggs Darklighter  Human   Tatooine  male      84    183  45.9
+#&gt;  7 Obi-Wan Kenobi     Human   Stewjon   male      77    182  42.3
+#&gt;  8 Anakin Skywalker   Human   Tatooine  male      84    188  44.7
+#&gt;  9 Wilhuff Tarkin     Human   Eriadu    male      NA    180  NA  
+#&gt; 10 Han Solo           Human   Corellia  male      80    180  44.4
+#&gt; # ... with 25 more rows</code></pre>
+<p>Then the <code>tibble</code> will automatically give you information about which group is active.</p>
+<p>Note that the order of specified groups is also matters. The function will process the group operation from the right-most variable. So the best practice here to set the order from major to minor group:</p>
+<pre class="r"><code>... %&gt;%
+  group_by(&lt;major group&gt;, &lt;minor group&gt;, &lt;definitely the minorest group&gt;) %&gt;%
+  ...</code></pre>
+<p>After we set the group, we can use <code>summarise()</code> to do the aggregation. This function is almost identic to how mutate works, but the output will be aggregated value by the group we specified; note that if we don’t specify any group, then it will aggregate the value to one observation that representing our dataset.</p>
+<p>Let’s try to take the <code>mean</code> of <code>height</code>, <code>mass</code>, and <code>bmi</code> variables:</p>
+<pre class="r"><code>starwars %&gt;%
+  select(name, species, homeworld, gender, mass, height) %&gt;%
+  filter(species == &quot;Human&quot;) %&gt;%
+  mutate(bmi = mass / height * 100) %&gt;%
+  group_by(homeworld, gender) %&gt;%
+  summarise(
+    mass = mean(mass, na.rm = TRUE), # use na.rm since there are
+    height = mean(height, na.rm = TRUE), # some missing values
+    bmi = mean(bmi, na.rm = TRUE)
+  )
+#&gt; # A tibble: 21 x 5
+#&gt; # Groups:   homeworld [16]
+#&gt;    homeworld    gender  mass height   bmi
+#&gt;    &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 &lt;NA&gt;         female NaN     NaN  NaN  
+#&gt;  2 &lt;NA&gt;         male    89     193   46.1
+#&gt;  3 Alderaan     female  49     150   32.7
+#&gt;  4 Alderaan     male    79     190.  42.0
+#&gt;  5 Bespin       male    79     175   45.1
+#&gt;  6 Bestine IV   male   110     180   61.1
+#&gt;  7 Chandrila    female NaN     150  NaN  
+#&gt;  8 Concord Dawn male    79     183   43.2
+#&gt;  9 Corellia     male    78.5   175   44.9
+#&gt; 10 Coruscant    female NaN     167  NaN  
+#&gt; # ... with 11 more rows</code></pre>
+<p>When we done with group operations, don’t forget to set the group declaration to off. The most straighforward ways to do this is by passing the result to <code>ungroup()</code>:</p>
+<pre class="r"><code>starwars %&gt;%
+  select(name, species, homeworld, gender, mass, height) %&gt;%
+  filter(species == &quot;Human&quot;) %&gt;%
+  mutate(bmi = mass / height * 100) %&gt;%
+  group_by(homeworld, gender) %&gt;%
+  summarise(
+    mass = mean(mass, na.rm = TRUE),
+    height = mean(height, na.rm = TRUE),
+    bmi = mean(bmi, na.rm = TRUE)
+  ) %&gt;%
+  ungroup()
+#&gt; # A tibble: 21 x 5
+#&gt;    homeworld    gender  mass height   bmi
+#&gt;    &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 &lt;NA&gt;         female NaN     NaN  NaN  
+#&gt;  2 &lt;NA&gt;         male    89     193   46.1
+#&gt;  3 Alderaan     female  49     150   32.7
+#&gt;  4 Alderaan     male    79     190.  42.0
+#&gt;  5 Bespin       male    79     175   45.1
+#&gt;  6 Bestine IV   male   110     180   61.1
+#&gt;  7 Chandrila    female NaN     150  NaN  
+#&gt;  8 Concord Dawn male    79     183   43.2
+#&gt;  9 Corellia     male    78.5   175   44.9
+#&gt; 10 Coruscant    female NaN     167  NaN  
+#&gt; # ... with 11 more rows</code></pre>
+</div>
+<div id="re-ordering-observation-using-arrange" class="section level2">
+<h2>Re-ordering observation using <code>arrange()</code></h2>
+<p>Our last results actually enough for showing the summary of <code>mass</code> and <code>height</code> across <code>homeworld</code> and <code>gender</code>. But it doesn’t give us some basic informations, like, which homeworld-gender combination has the lowest or higher <code>bmi</code>.</p>
+<p>Fortunately, <code>dplyr</code> provided <code>arrange()</code> function for this specific task. By default, this function will arrange the specified variable in ascending mode:</p>
+<pre class="r"><code>starwars %&gt;%
+  select(name, species, homeworld, gender, mass, height) %&gt;%
+  filter(species == &quot;Human&quot;) %&gt;%
+  mutate(bmi = mass / height * 100) %&gt;%
+  group_by(homeworld, gender) %&gt;%
+  summarise(
+    mass = mean(mass, na.rm = TRUE),
+    height = mean(height, na.rm = TRUE),
+    bmi = mean(bmi, na.rm = TRUE)
+  ) %&gt;%
+  ungroup() %&gt;%
+  arrange(bmi)
+#&gt; # A tibble: 21 x 5
+#&gt;    homeworld    gender  mass height   bmi
+#&gt;    &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 Naboo        female  45     162.  27.3
+#&gt;  2 Alderaan     female  49     150   32.7
+#&gt;  3 Serenno      male    80     193   41.5
+#&gt;  4 Alderaan     male    79     190.  42.0
+#&gt;  5 Stewjon      male    77     182   42.3
+#&gt;  6 Kamino       male    78.2   183   42.7
+#&gt;  7 Concord Dawn male    79     183   43.2
+#&gt;  8 Socorro      male    79     177   44.6
+#&gt;  9 Haruun Kal   male    84     188   44.7
+#&gt; 10 Corellia     male    78.5   175   44.9
+#&gt; # ... with 11 more rows</code></pre>
+<p>And if you want descending sorting, you just need to wrap the variable using <code>desc()</code>:</p>
+<pre class="r"><code>starwars %&gt;%
+  select(name, species, homeworld, gender, mass, height) %&gt;%
+  filter(species == &quot;Human&quot;) %&gt;%
+  mutate(bmi = mass / height * 100) %&gt;%
+  group_by(homeworld, gender) %&gt;%
+  summarise(
+    mass = mean(mass, na.rm = TRUE),
+    height = mean(height, na.rm = TRUE),
+    bmi = mean(bmi, na.rm = TRUE)
+  ) %&gt;%
+  ungroup() %&gt;%
+  arrange(desc(bmi))
+#&gt; # A tibble: 21 x 5
+#&gt;    homeworld    gender  mass height   bmi
+#&gt;    &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 Bestine IV   male   110     180   61.1
+#&gt;  2 Tatooine     male   100.    184.  54.0
+#&gt;  3 &lt;NA&gt;         male    89     193   46.1
+#&gt;  4 Tatooine     female  75     164   45.5
+#&gt;  5 Bespin       male    79     175   45.1
+#&gt;  6 Naboo        male    80     178.  45.0
+#&gt;  7 Corellia     male    78.5   175   44.9
+#&gt;  8 Haruun Kal   male    84     188   44.7
+#&gt;  9 Socorro      male    79     177   44.6
+#&gt; 10 Concord Dawn male    79     183   43.2
+#&gt; # ... with 11 more rows</code></pre>
+<p>Now we know that the females from Naboo have the lowest mean BMI, while the males from Bestine have the highest mean BMI :grin:</p>
+</div>
+<div id="concluding-remarks" class="section level2">
+<h2>Concluding remarks</h2>
+<p>In this article, you already see how easy–and tidy!–it is to do data wrangling tasks using <code>tibble</code> and <code>dplyr</code>. But we just scratched the surface of <code>tidyverse</code>; there are so many package and functionalities available for us to explore!</p>
+<p>For the next episode, we will try more realistic cases, and see how <code>tidyverse</code> packages could help us in a more complex data wrangling tasks. So stay tuned on this series! :sunglasses:</p>
+<p>Here is a <code>tidyverse</code> logo for you:</p>
+<pre><code>#&gt; * __  _    __   .    o           *  . 
+#&gt;  / /_(_)__/ /_ ___  _____ _______ ___ 
+#&gt; / __/ / _  / // / |/ / -_) __(_-&lt;/ -_)
+#&gt; \__/_/\_,_/\_, /|___/\__/_/ /___/\__/ 
+#&gt;      *  . /___/      o      .       *</code></pre>
+</div>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unsupervised on Algoritma Technical Blog</title>
+    <link>/tags/unsupervised/</link>
+    <description>Recent content in Unsupervised on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/unsupervised/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>K-Means</title>
+      <link>/blog/k-means/</link>
+      <pubDate>Tue, 04 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/k-means/</guid>
+      <description>Analisis KlasterAnalisis klaster / cluster analysis adalah suatu analisis statistik yang bertujuan memisahkan objek kedalam beberapa kelompok sifat berbeda antar kelompok yang satu dengan yang lain. Dalam analisis ini tiap kelompoknya nanti bersifat homogen antar anggota kelompoknya.
+K-Means‘K’ artinya kita akan membentuk banyak klaster sebanyak K kelompok. K-means ini merupakan metode yang paling sederhana dan banyak digunakan untuk memisahkan dataset kedalam ‘k’ kelompok.
+\(p = 12,5\)
+Load Packagelibrary(tidyverse) library(cluster) # Algoritma klasteringlibrary(factoextra) # Algoritma klastering dan visualisasiData PreparationUntuk melakukan analisis klaster dengan R, biasanya kriteria data yang harus dipersiapkan adalah sebagai berikut:</description>
+    </item>
+    
+  </channel>
+</rss>

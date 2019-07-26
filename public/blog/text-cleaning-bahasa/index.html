@@ -1,0 +1,1133 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "blog",
+        "name" : "Text Cleaning Bahasa Indonesia-based Twitter Data",
+        "headline" : "Text Cleaning Bahasa Indonesia-based Twitter Data",
+        "description" : "Social media has become a very popular spot for data mining these last years. But when we talk about social data, we actually also talk about unstructured data, and in order to derive any meaningful insight from it, we have to know how to work with it in its unstructured form (or in this case, unstructured text information).\nBefore the data we gather can be used for further analysis, the very first step to do is to clean the data.",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2019",
+        "datePublished": "2019-01-05 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2019-01-05 00:00:00 \x2b0000 UTC",
+        "url" : "\/blog\/text-cleaning-bahasa\/",
+        "wordCount" : "2635",
+        "keywords" : [ "textclean","NLP","text preprocessiong","Capstone Ml","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Text Cleaning Bahasa Indonesia-based Twitter Data</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.55.4" />
+        
+
+
+        
+            <meta name="author" content="Team Algoritma">
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Text Cleaning Bahasa Indonesia-based Twitter Data"/>
+<meta name="twitter:description" content="Social media has become a very popular spot for data mining these last years. But when we talk about social data, we actually also talk about unstructured data, and in order to derive any meaningful insight from it, we have to know how to work with it in its unstructured form (or in this case, unstructured text information).
+Before the data we gather can be used for further analysis, the very first step to do is to clean the data."/>
+<meta name="twitter:site" content="@teamalgoritma"/>
+
+        <meta property="og:title" content="Text Cleaning Bahasa Indonesia-based Twitter Data" />
+<meta property="og:description" content="Social media has become a very popular spot for data mining these last years. But when we talk about social data, we actually also talk about unstructured data, and in order to derive any meaningful insight from it, we have to know how to work with it in its unstructured form (or in this case, unstructured text information).
+Before the data we gather can be used for further analysis, the very first step to do is to clean the data." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/text-cleaning-bahasa/" />
+<meta property="article:published_time" content="2019-01-05T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-01-05T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="Text Cleaning Bahasa Indonesia-based Twitter Data">
+<meta itemprop="description" content="Social media has become a very popular spot for data mining these last years. But when we talk about social data, we actually also talk about unstructured data, and in order to derive any meaningful insight from it, we have to know how to work with it in its unstructured form (or in this case, unstructured text information).
+Before the data we gather can be used for further analysis, the very first step to do is to clean the data.">
+
+
+<meta itemprop="datePublished" content="2019-01-05T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-01-05T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2635">
+
+
+
+<meta itemprop="keywords" content="textclean,NLP,text preprocessiong,Capstone Ml," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+        
+
+
+  
+    
+    <link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+  
+
+
+      
+
+
+      <link rel="stylesheet" href="/css/pojoaque.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="/js/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/blog/">
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/">
+                            <h3>
+                                <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/self-organizing-maps/">Self-Organizing Maps</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-04-26'>
+                                    April 26, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-03-28'>
+                                    March 28, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2ftext-cleaning-bahasa%2f&amp;text=Text%20Cleaning%20Bahasa%20Indonesia-based%20Twitter%20Data&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2ftext-cleaning-bahasa%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2ftext-cleaning-bahasa%2f&amp;title=Text%20Cleaning%20Bahasa%20Indonesia-based%20Twitter%20Data" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/text-cleaning-bahasa/">Text Cleaning Bahasa Indonesia-based Twitter Data</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2019-01-05'>
+            January 5, 2019</time>
+        <span class="author">Team Algoritma</span>
+        
+            <p>13 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="//twitter.com/share?url=%2fblog%2ftext-cleaning-bahasa%2f&amp;text=Text%20Cleaning%20Bahasa%20Indonesia-based%20Twitter%20Data&amp;via=teamalgoritma" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="//www.facebook.com/sharer/sharer.php?u=%2fblog%2ftext-cleaning-bahasa%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="//www.linkedin.com/shareArticle?url=%2fblog%2ftext-cleaning-bahasa%2f&amp;title=Text%20Cleaning%20Bahasa%20Indonesia-based%20Twitter%20Data" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </section>
+  
+
+  
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/text-cleaning-bahasa/" class="image featured">
+            <img src="/img/2019/01/textclean.png" alt="">
+        </a>
+    
+
+
+  <div id="content">
+    
+
+
+<p>Social media has become a very popular spot for data mining these last years. But when we talk about social data, we actually also talk about unstructured data, and in order to derive any meaningful insight from it, we have to know how to work with it in its unstructured form (or in this case, unstructured text information).</p>
+<p>Before the data we gather can be used for further analysis, the very first step to do is to clean the data. Most of the Tweet that we extract could be highly unstructured and noisy. Since it is an informal communication, we may find a lot of typos, usage of slang words, or presence of unwanted content like URLS, stopwords, emojis, etc..</p>
+<p>Now, this process can even be more challenging when you work with non-English tweet text.</p>
+<p>As one of the most populated countries in the world, it’s not really surprising to find that Indonesia is now the fifth-largest country in terms of Twitter Users. However, being language-specific, to process or analyze data in Indonesian topics could be pretty tricky since most text mining libraries only available for English (or some other major language) text processing.</p>
+<p>In this article, we are going to discuss more about possible noise elements from Bahasa Indonesia-based text and how we could perform a simple cleaning process using <code>textclean</code> package in R.</p>
+<p>We would also perform a mild analysis to acknowledge public opinion towards a certain topic by creating a word cloud from the most frequent used keywords of the Twitter data we gathered. For that, we would use other packages such as <code>katadasaR</code> and <code>tokenizers</code>.</p>
+<p>Please be noted that this article only focus on cleaning text data in general, if you are interested to know more about Bahasa Indonesia text analysis algorithm or NLP, please refer to this <a href="https://medium.com/curahan-rekanalar/karena-data-gak-mungkin-bohong-a17ff90cef87">link</a>.</p>
+<div id="packages-installation" class="section level2">
+<h2>Packages Installation</h2>
+<p>There are actually many ways to perform text-cleaning process in R. We can find bunch of powerful packages that is actively developed by R text analysis community (<code>tm</code> or <code>quanteda</code> are ones amongst them). But in this article, we primarily make use of the <code>textclean</code> package for the following tutorial.</p>
+<p>R’s <code>textclean</code> is a collection of tools to clean and normalize text. <code>textclean</code> differs from another packages in that it is designed to handle all of the common cleaning and normalization tasks with a single, consistent, pre-configured toolset (note that textclean uses many of these terrific packages as a backend). This means that the researcher spends less time on munging, leading to quicker analysis.<a href="https://github.com/trinker/textclean#check-text">*</a></p>
+<p>Another essential package that we use is <code>katadasaR</code>. It provides a function to retrieve word stem for Bahasa Indonesia text using Nazief and Andriani’s algorithm.<a href="https://github.com/nurandi/katadasaR">*</a>. This package is currenly under development,so we have to install it by using <code>devtools::install_github()</code> functions.</p>
+<p>Now, before we start, you might need to install and/or load the packages:</p>
+<pre class="r"><code>library(textclean)
+library(katadasaR)
+library(tokenizers)
+library(wordcloud)
+library(dplyr)</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.3</code></pre>
+<p>Here, we have extracted some Tweets to analyze Indonesians opinions towards <strong>BPJS Kesehatan</strong>, Indonesian national health care insurance:</p>
+<p><img src="/img/bpjstwit.png" width="80%" /></p>
+<pre class="r"><code>tweets &lt;- read.csv(&quot;data_input/bpjs.csv&quot;)
+tweets &lt;- tweets$text %&gt;% 
+  as.character()
+head(tweets)</code></pre>
+<pre><code>## [1] &quot;\&quot;Agenda aksi yang dihapus, misalnya soal outsourcing, mencegah defisit BPJS, menghapus memastikan ketersediaan obat di fasilitas pelayanan kesehatan, baik di rumah sakit maupun di Puskesmas dan banyak lagi yang lain.  #PrabowoGalauVisiMisi&quot;                                                                                  
+## [2] &quot;\&quot;Agenda aksi yang dihapus, misalnya soal outsourcing, mencegah defisit BPJS, menghapus memastikan ketersediaan obat di fasilitas pelayanan kesehatan, baik di rumah sakit maupun di Puskesmas dan banyak lagi yang lain.  #PrabowoGalauVisiMisi&quot;                                                                                  
+## [3] &quot;\&quot;Kalo surat keterangan sehat bisa pake bpjs mba?\&quot;\n\n\&quot;Oh ngga mba, soalnya kan ini sehat ya. Jadi ga discover bpjs\&quot;\n\nHmm, sakit bayar, sehat pun bayar ya. Kehidupan jaman sqarang .-.&quot;                                                                                                                                      
+## [4] &quot;@_dickyekas @siqoqon @wayoek @afathngantuk @elisa_jkt @willypps Bukan cuma itu maaf sya bilang bayar BPJS itu sangat murah. Saya kelas 1 bayar 80k, sedangkan saat saya operasi tumor payudara, endoskopi dan bebebrapa kali perawatan sakit lambung itu semua 0 rupiah. Bisa ngitung ga kalau sya bayar sendiri habis brapa? Hehe&quot;
+## [5] &quot;@Ahmaddaud8 @mynameisndy Sebenernya itu masalah di RS-nya.\n\nKalau dapat RS bagus, perlakuan untuk pasien BPJS, asuransi swasta, ataupun yang reguler itu sama kok.\n\nPernah gitu soalnya, ngalamin sendiri pas sakit ataupun nganterin keluarga.&quot;                                                                               
+## [6] &quot;@alterrrego_ Apa mungkin, karena udah era bpjs gini orang jadi lupa ya sama upaya promosi sama prevensi kesehatan? Jadi nganggepnya gapapa kalau sakit kan ada bpjs, jadi mereka ngerasa posyandu yang pada dasarnya emang kenceng di promosi dan prevensi jadi kaya dilupain gitu&quot;</code></pre>
+</div>
+<div id="text-cleaning-process" class="section level2">
+<h2>Text Cleaning Process</h2>
+<p>As mentioned before, <code>textclean</code> provides a lot of powerful tools that makes our cleaning process a lot, lot easier. Take for example, the <code>check_text</code> function which scans text variables and give potential problems as the output.</p>
+<p>But since we’re not working with English-based text, some of the tools in this package become less relevant to our process. If you’re working with English-based text and want to learn more about other features of <code>textclean</code> that is not mentioned in this article, or just curious on how you could maximize the use of this package, you should jump to this learnR page.</p>
+<div id="text-subbing" class="section level3">
+<h3>Text Subbing</h3>
+<p>The <code>sub()</code> function (short for substitute) in R searches for a pattern in text and replaces this pattern with replacement text. You use <code>sub()</code> to substitute text for text, and you use its cousin <code>gsub()</code> to substitute all occurrences of a pattern. (The g in <code>gsub()</code> stands for global.)</p>
+<p>Another common type of problem that can be solved with text substitution is removing substrings. Removing substrings is the same as replacing the substring with empty text (that is, nothing at all).<a href="https://www.dummies.com/programming/r/how-to-substitute-text-in-r/">*</a></p>
+<pre class="r"><code>tweets[3]</code></pre>
+<pre><code>## [1] &quot;\&quot;Kalo surat keterangan sehat bisa pake bpjs mba?\&quot;\n\n\&quot;Oh ngga mba, soalnya kan ini sehat ya. Jadi ga discover bpjs\&quot;\n\nHmm, sakit bayar, sehat pun bayar ya. Kehidupan jaman sqarang .-.&quot;</code></pre>
+<pre class="r"><code>tweets &lt;- gsub( &quot;\n&quot;,&quot; &quot;,tweets)</code></pre>
+<pre class="r"><code>tweets[3]</code></pre>
+<pre><code>## [1] &quot;\&quot;Kalo surat keterangan sehat bisa pake bpjs mba?\&quot;  \&quot;Oh ngga mba, soalnya kan ini sehat ya. Jadi ga discover bpjs\&quot;  Hmm, sakit bayar, sehat pun bayar ya. Kehidupan jaman sqarang .-.&quot;</code></pre>
+</div>
+<div id="text-replacement" class="section level3">
+<h3>Text Replacement</h3>
+<div id="replace-html-urls" class="section level4">
+<h4>Replace HTML &amp; URLs</h4>
+<p>To pre-process text with <code>textclean</code> is kinda cool since it provides several functions that allow us to replace substrings within text with other substrings that let us to analyze the data easier.</p>
+<p>Let’s start by removing the HTML &amp; URLs on our Twitter data:</p>
+<p><img src="/img/twithtml.png" width="80%" /></p>
+<pre class="r"><code># print original text data on index [199]
+tweets[199]</code></pre>
+<pre><code>## [1] &quot;Yap, karena BPJS almarhum bapak dlu bisa bertahan cuci darah. Kalau gak ada udah jual ini itu. Sekarang, masih bayar BPJS, meski gak kepake krn ga sakit. Tp itu langkah yg bagus buat ngurangin rasio gini, ketimpangan. https://t.co/h2R6QrxQh0&quot;</code></pre>
+<pre class="r"><code>tweets &lt;- tweets %&gt;% 
+  replace_html() %&gt;% # replace html with blank 
+  replace_url()   # replace URLs with blank</code></pre>
+<pre class="r"><code># print replaced text data on index [199]
+tweets[199]</code></pre>
+<pre><code>## [1] &quot;Yap, karena BPJS almarhum bapak dlu bisa bertahan cuci darah. Kalau gak ada udah jual ini itu. Sekarang, masih bayar BPJS, meski gak kepake krn ga sakit. Tp itu langkah yg bagus buat ngurangin rasio gini, ketimpangan. &quot;</code></pre>
+<p>That’s it! Pretty simple isn’t it? You don’t have to create even have to define specific <a href="link%20ke%20artikel%20regex">regex</a> to specify certain condition.</p>
+</div>
+<div id="replace-emoticons-and-emojis" class="section level4">
+<h4>Replace Emoticons and Emojis</h4>
+<p>It’ll also be the same when you manage to on handle tweets with emoticons or emojis. But, note that in some cases, rather than strip the emojis from our text data, the function would rather change them to html format.</p>
+<p>So, if you consider this as part of noises, you might also need to perform <code>replace_html</code> function after converting the emojis as well.</p>
+<p><img src="/img/twitemoji.png" width="80%" /></p>
+<pre class="r"><code># print original tweet in index [198]
+tweets[198]</code></pre>
+<pre><code>## [1] &quot;Yang pada ngejelekin BPJS pasti ga pernah ngerasain bayar ratusan juta buat rumah sakit dan harus ada saat itu juga.. Tawain aja ÐŸ&quot;</code></pre>
+<pre class="r"><code># print original tweet with converted emoji in index [198]
+replace_emoji(tweets[198])</code></pre>
+<pre><code>## [1] &quot;Yang pada ngejelekin BPJS pasti ga pernah ngerasain bayar ratusan juta buat rumah sakit dan harus ada saat itu juga.. Tawain aja &lt;c3&gt;&lt;90&gt;&lt;c5&gt;&lt;b8&gt;&quot;</code></pre>
+<pre class="r"><code># print tweet with converted html in index [198]
+replace_html(replace_emoji(tweets[198]))</code></pre>
+<pre><code>## [1] &quot;Yang pada ngejelekin BPJS pasti ga pernah ngerasain bayar ratusan juta buat rumah sakit dan harus ada saat itu juga.. Tawain aja     &quot;</code></pre>
+<pre class="r"><code># perform the replacement task to whole text variable
+tweets &lt;- tweets %&gt;% 
+    replace_emoji(.) %&gt;% 
+    replace_html(.)</code></pre>
+</div>
+<div id="replace-mentions-hashtags" class="section level4">
+<h4>Replace Mentions &amp; Hashtags</h4>
+<p>Somehow, not all of these text replacement tools seem to work perfectly. For example when we try to replace mentions using <code>replace_tag()</code> function, it shows that not all mentions been replaced as we expect.</p>
+<p>Here’s some of the example:</p>
+<p><img src="/img/twitmention.png" width="80%" /></p>
+<pre class="r"><code># print original text data on index [4:5]
+tweets [4:5]</code></pre>
+<pre><code>## [1] &quot;@_dickyekas @siqoqon @wayoek @afathngantuk @elisa_jkt @willypps Bukan cuma itu maaf sya bilang bayar BPJS itu sangat murah. Saya kelas 1 bayar 80k, sedangkan saat saya operasi tumor payudara, endoskopi dan bebebrapa kali perawatan sakit lambung itu semua 0 rupiah. Bisa ngitung ga kalau sya bayar sendiri habis brapa? Hehe&quot;
+## [2] &quot;@Ahmaddaud8 @mynameisndy Sebenernya itu masalah di RS-nya. Kalau dapat RS bagus, perlakuan untuk pasien BPJS, asuransi swasta, ataupun yang reguler itu sama kok. Pernah gitu soalnya, ngalamin sendiri pas sakit ataupun nganterin keluarga.&quot;</code></pre>
+<pre class="r"><code># print replaced text data on index [4:5]
+replace_tag(tweets[4:5])</code></pre>
+<pre><code>## [1] &quot;      Bukan cuma itu maaf sya bilang bayar BPJS itu sangat murah. Saya kelas 1 bayar 80k, sedangkan saat saya operasi tumor payudara, endoskopi dan bebebrapa kali perawatan sakit lambung itu semua 0 rupiah. Bisa ngitung ga kalau sya bayar sendiri habis brapa? Hehe&quot;
+## [2] &quot;@Ahmaddaud8  Sebenernya itu masalah di RS-nya. Kalau dapat RS bagus, perlakuan untuk pasien BPJS, asuransi swasta, ataupun yang reguler itu sama kok. Pernah gitu soalnya, ngalamin sendiri pas sakit ataupun nganterin keluarga.&quot;</code></pre>
+<p>In cases like these, we might also need to specify our own pattern to meet our desired condition:</p>
+<pre class="r"><code>tweets &lt;- tweets %&gt;% 
+  replace_tag(tweets, pattern = &quot;@([A-Za-z0-9_]+)&quot;,replacement=&quot;&quot;) %&gt;%  # remove mentions
+  replace_hash(tweets, pattern = &quot;#([A-Za-z0-9_]+)&quot;,replacement=&quot;&quot;)      # remove hashtags
+
+# print replaced text data on index [4:5]
+tweets[4:5]</code></pre>
+<pre><code>## [1] &quot;      Bukan cuma itu maaf sya bilang bayar BPJS itu sangat murah. Saya kelas 1 bayar 80k, sedangkan saat saya operasi tumor payudara, endoskopi dan bebebrapa kali perawatan sakit lambung itu semua 0 rupiah. Bisa ngitung ga kalau sya bayar sendiri habis brapa? Hehe&quot;
+## [2] &quot;  Sebenernya itu masalah di RS-nya. Kalau dapat RS bagus, perlakuan untuk pasien BPJS, asuransi swasta, ataupun yang reguler itu sama kok. Pernah gitu soalnya, ngalamin sendiri pas sakit ataupun nganterin keluarga.&quot;</code></pre>
+</div>
+<div id="replace-slang-words" class="section level4">
+<h4>Replace Slang Words</h4>
+<p>Twitter, like other social media data, comprises of a majority of slang word. To avoid biases in our analysis, words like these should be transformed into standard words.</p>
+<p>The <code>replace_internet_slang</code> from <code>textclean</code> has its own library for English text slang words. But, since new terms and acronyms can go viral overnight, we might also need to adjust the lexicon. Well don’t worry, the <code>replace_internet_slang</code> tool allows us to add our own lexicon, and this also makes it possible for us to put other language’s lexicon, such as Bahasa Indonesia to the function.</p>
+<pre class="r"><code># print original tweet at index [100]
+tweets[100]</code></pre>
+<pre><code>## [1] &quot;BPJS itu sistem syariah. subsidi silang, Tolong menolong. yg sehat membantu yg sakit, membantu masyarakat lain yg butuh fasilitas kesehatan.. Yg sehat yaa doanya sehat terus.&quot;</code></pre>
+<pre class="r"><code># import Indonesian lexicon
+spell.lex &lt;- read.csv(&quot;data_input/colloquial-indonesian-lexicon.csv&quot;)
+
+# replace internet slang
+tweets &lt;- replace_internet_slang(tweets, slang = paste0(&quot;\\b&quot;,
+                                                        spell.lex$slang, &quot;\\b&quot;),
+                                 replacement = spell.lex$formal, ignore.case = TRUE)</code></pre>
+<pre class="r"><code># print tweet after replacement at index [100]
+tweets[100]</code></pre>
+<pre><code>## [1] &quot;BPJS itu sistem syariah. subsidi silang, Tolong menolong. yang sehat membantu yang sakit, membantu masyarakat lain yang butuh fasilitas kesehatan.. yang sehat ya doanya sehat terus.&quot;</code></pre>
+</div>
+</div>
+<div id="text-stripping" class="section level3">
+<h3>Text Stripping</h3>
+<p>Often it is useful to remove all non relevant symbols and case from a text (letters, spaces, and apostrophes are retained). The strip function accomplishes this. The <code>char.keep</code> argument allows the user to retain characters.</p>
+<pre class="r"><code>tweets[16]</code></pre>
+<pre><code>## [1] &quot; Semua diwajibkan pakai BPJS... Giliran sakit dilempar sana sini oleh pihak rumah sakit..&quot;</code></pre>
+<pre class="r"><code>tweets &lt;- strip(tweets)</code></pre>
+<pre class="r"><code>tweets[16]</code></pre>
+<pre><code>## [1] &quot;semua diwajibkan pakai bpjs giliran sakit dilempar sana sini oleh pihak rumah sakit&quot;</code></pre>
+</div>
+</div>
+<div id="section" class="section level2">
+<h2>——————————————————————————</h2>
+<p>*We found some Twitter users tend to copy and paste some news headline regarding BPJS without throwing any sentiments. So before we go on to the next step, what we need to do is to use <code>distinct</code> from <code>dplyr</code> package to remove duplicated tweets.</p>
+<p>To see if the data has no duplicate text, we can investigate the data using <code>unique()</code> function.*</p>
+<pre class="r"><code>tweets &lt;- tweets %&gt;% 
+  as.data.frame() %&gt;% 
+  distinct()
+
+# number of tweet rows after duplicated text removed
+nrow(tweets)</code></pre>
+<pre><code>## [1] 108</code></pre>
+</div>
+<div id="section-1" class="section level2">
+<h2>——————————————————————————</h2>
+</div>
+<div id="stemming-tokenizing-and-word-cloud-creation" class="section level2">
+<h2>Stemming, Tokenizing, and Word Cloud creation</h2>
+<div id="bahasa-indonesia-text-stemming" class="section level3">
+<h3>Bahasa Indonesia Text Stemming</h3>
+<p><a href="https://en.wikipedia.org/wiki/Stemming">Stemming</a> refers to the process of reducing inflected (or sometimes derived) words to their word stem, base or root form-generally a written word form. For example, “<em>writing</em>”,“<em>writer</em>”, all reduce to the stem “<em>write</em>.” Or, for example in <a href="https://github.com/sastrawi/sastrawi/wiki/Stemming-Bahasa-Indonesia">Bahasa Indonesia</a> it will be “<em>membenarkan</em>”,“<em>pembenaran</em>”, which all has <em>benar</em> as the root word.</p>
+<p>In order to reduce the vocabulary and focus more on the sense or sentiment of our Twitter data, it is also essential to remove those affixes. <code>katadasaR</code> provides a function to retrieve word stem (a.k.a. word stemming) for Bahasa Indonesia using <a href="https://liyantanto.wordpress.com/2011/06/28/stemming-bahasa-indonesia-dengan-algoritma-nazief-dan-andriani/">Nazief and Andriani</a>’s algorithm. It consists of set of features to remove prefixes, suffixes or both, but still unable for infixes removal.</p>
+<pre class="r"><code># example for katadasaR usage
+katadasaR(&quot;membenarkan&quot;)</code></pre>
+<pre><code>## [1] &quot;benar&quot;</code></pre>
+<p>Let’s apply this to our whole text data:</p>
+<pre class="r"><code>tweets &lt;- as.character(tweets$.)
+# before stemming
+tweets[46]</code></pre>
+<pre><code>## [1] &quot;manfaatnya terasa banget samaku apalagi pas aku sakit parah tiap bulan pasti dilarikan ke rs jadi biaya rumah sakit ku tertolong karena bpjs walau ada beberapa prosedur yang harus dilewati&quot;</code></pre>
+<pre class="r"><code>stemming &lt;- function(x){
+  paste(lapply(x,katadasar),collapse = &quot; &quot;)}
+
+tweets &lt;- lapply(tokenize_words(tweets[]), stemming)
+
+# after stemming
+tweets[46]</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;manfaat rasa banget sama apalagi pas aku sakit parah tiap bulan pasti larik ke rs jadi biaya rumah sakit ku tolong karena bpjs walau ada beberapa prosedur yang harus lewat&quot;</code></pre>
+<p>We can see from the output, the affixes are gone after using the stemming function based on <code>katadasaR</code> package.</p>
+</div>
+<div id="tokenize-stopwords-removal" class="section level3">
+<h3>Tokenize &amp; Stopwords Removal</h3>
+<p>After that, we use <code>tokenizer</code> package to make the documents into discrete words.</p>
+<pre class="r"><code>library(tokenizers)
+tweets &lt;- tokenize_words(tweets)
+head(tweets,3)</code></pre>
+<pre><code>## [[1]]
+##  [1] &quot;agenda&quot;      &quot;aksi&quot;        &quot;yang&quot;        &quot;hapus&quot;       &quot;misal&quot;      
+##  [6] &quot;soal&quot;        &quot;outsourcing&quot; &quot;cegah&quot;       &quot;defisit&quot;     &quot;bpjs&quot;       
+## [11] &quot;hapus&quot;       &quot;mastik&quot;      &quot;sedia&quot;       &quot;obat&quot;        &quot;di&quot;         
+## [16] &quot;fasilitas&quot;   &quot;ayan&quot;        &quot;sehat&quot;       &quot;baik&quot;        &quot;di&quot;         
+## [21] &quot;rumah&quot;       &quot;sakit&quot;       &quot;maupun&quot;      &quot;di&quot;          &quot;puskesmas&quot;  
+## [26] &quot;dan&quot;         &quot;banyak&quot;      &quot;lagi&quot;        &quot;yang&quot;        &quot;lain&quot;       
+## 
+## [[2]]
+##  [1] &quot;kalo&quot;     &quot;surat&quot;    &quot;terang&quot;   &quot;sehat&quot;    &quot;bisa&quot;     &quot;pakai&quot;   
+##  [7] &quot;bpjs&quot;     &quot;mbak&quot;     &quot;oh&quot;       &quot;enggak&quot;   &quot;mbak&quot;     &quot;soal&quot;    
+## [13] &quot;kan&quot;      &quot;ini&quot;      &quot;sehat&quot;    &quot;ya&quot;       &quot;jadi&quot;     &quot;enggak&quot;  
+## [19] &quot;discover&quot; &quot;bpjs&quot;     &quot;hmm&quot;      &quot;sakit&quot;    &quot;bayar&quot;    &quot;sehat&quot;   
+## [25] &quot;pun&quot;      &quot;bayar&quot;    &quot;ya&quot;       &quot;hidup&quot;    &quot;jam&quot;      &quot;sqarang&quot; 
+## 
+## [[3]]
+##  [1] &quot;bukan&quot;     &quot;cuma&quot;      &quot;itu&quot;       &quot;maaf&quot;      &quot;saya&quot;     
+##  [6] &quot;bilang&quot;    &quot;bayar&quot;     &quot;bpjs&quot;      &quot;itu&quot;       &quot;sangat&quot;   
+## [11] &quot;murah&quot;     &quot;saya&quot;      &quot;kelas&quot;     &quot;bayar&quot;     &quot;k&quot;        
+## [16] &quot;sedang&quot;    &quot;saat&quot;      &quot;saya&quot;      &quot;operasi&quot;   &quot;tumor&quot;    
+## [21] &quot;payudara&quot;  &quot;endoskopi&quot; &quot;dan&quot;       &quot;bebebrapa&quot; &quot;kali&quot;     
+## [26] &quot;awat&quot;      &quot;sakit&quot;     &quot;lambung&quot;   &quot;itu&quot;       &quot;semua&quot;    
+## [31] &quot;rupiah&quot;    &quot;bisa&quot;      &quot;ngitung&quot;   &quot;enggak&quot;    &quot;kalau&quot;    
+## [36] &quot;saya&quot;      &quot;bayar&quot;     &quot;sendiri&quot;   &quot;habis&quot;     &quot;berapa&quot;   
+## [41] &quot;hehe&quot;</code></pre>
+<p>The output of this process, we suceed to breaks the text into discrete words called token.</p>
+<pre class="r"><code>library(stopwords)
+myStopwords &lt;- readLines(&quot;data_input/stopword_list_id_2.txt&quot;)
+tweets &lt;- as.character(tweets)
+tweets &lt;- tokenize_words(tweets, stopwords = myStopwords)
+head(tweets, 3)</code></pre>
+<pre><code>## [[1]]
+##  [1] &quot;c&quot;           &quot;agenda&quot;      &quot;aksi&quot;        &quot;hapus&quot;       &quot;outsourcing&quot;
+##  [6] &quot;cegah&quot;       &quot;defisit&quot;     &quot;bpjs&quot;        &quot;hapus&quot;       &quot;mastik&quot;     
+## [11] &quot;sedia&quot;       &quot;obat&quot;        &quot;fasilitas&quot;   &quot;ayan&quot;        &quot;sehat&quot;      
+## [16] &quot;rumah&quot;       &quot;sakit&quot;       &quot;puskesmas&quot;  
+## 
+## [[2]]
+##  [1] &quot;c&quot;        &quot;kalo&quot;     &quot;surat&quot;    &quot;terang&quot;   &quot;sehat&quot;    &quot;pakai&quot;   
+##  [7] &quot;bpjs&quot;     &quot;mbak&quot;     &quot;oh&quot;       &quot;mbak&quot;     &quot;sehat&quot;    &quot;discover&quot;
+## [13] &quot;bpjs&quot;     &quot;hmm&quot;      &quot;sakit&quot;    &quot;bayar&quot;    &quot;sehat&quot;    &quot;bayar&quot;   
+## [19] &quot;hidup&quot;    &quot;jam&quot;      &quot;sqarang&quot; 
+## 
+## [[3]]
+##  [1] &quot;c&quot;         &quot;maaf&quot;      &quot;bilang&quot;    &quot;bayar&quot;     &quot;bpjs&quot;     
+##  [6] &quot;murah&quot;     &quot;kelas&quot;     &quot;bayar&quot;     &quot;k&quot;         &quot;operasi&quot;  
+## [11] &quot;tumor&quot;     &quot;payudara&quot;  &quot;endoskopi&quot; &quot;bebebrapa&quot; &quot;kali&quot;     
+## [16] &quot;awat&quot;      &quot;sakit&quot;     &quot;lambung&quot;   &quot;rupiah&quot;    &quot;ngitung&quot;  
+## [21] &quot;bayar&quot;     &quot;habis&quot;     &quot;hehe&quot;</code></pre>
+</div>
+<div id="final-wordcloud" class="section level3">
+<h3>Final Wordcloud</h3>
+<pre class="r"><code>class(tweets)</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<pre class="r"><code>tweets &lt;- as.character(tweets)
+library(wordcloud)
+wordcloud(tweets)</code></pre>
+<pre><code>## Loading required namespace: tm</code></pre>
+<p><img src="/blog/2019-01-05-text-cleaning-bahasa_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+</div>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/textclean">textclean</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/nlp">NLP</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/text-preprocessiong">text preprocessiong</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/capstone-ml">Capstone Ml</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/causal-inference-and-bayesian-network/"
+                class="button big previous">Causal Inference and Bayesian Network</a></li>
+    
+
+    
+        <li><a href="/blog/multiple-seasonal/"
+                class="button big next">Forecasting Time Series with Multiple Seasonal</a></li>
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>Algoritma Technical Blog</h2>
+        <p>We're a group of people who teach data science to individuals, trains companies and their employees to better profit from data. We care about the development of data science and a sense of community that connects our alumni and team with one another. To learn more about our approach to data science problems, feel free to hop over to our blog.</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Recent Posts</h3>
+      </header>
+      <div class="posts-container">
+        
+
+        
+          
+        
+
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/self-organizing-maps/">Self-Organizing Maps</a>
+              </h3>
+              
+              <time class="published" datetime='2019-04-26'>
+                April 26, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/age-period-cohort-apc-analysis/">Age-Period-Cohort (APC) Analysis</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="/blog/twitter-interactions-analysis-using-twinetverse/">Twitter Interactions Analysis using Twinetverse</a>
+              </h3>
+              
+              <time class="published" datetime='2019-03-28'>
+                March 28, 2019
+              </time>
+            </header>
+            
+
+          </article>
+        
+      </div>
+
+      
+        <a href=
+          
+            /blog/
+          
+        class="button">View more posts</a>
+      
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    
+      <ul class="icons">
+        
+          
+    <li><a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fa fa-rss"></a></li>
+
+
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+    <p class="copyright">
+      
+        &copy; 2019
+        
+          Algoritma Technical Blog
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

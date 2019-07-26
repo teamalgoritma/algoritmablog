@@ -1,0 +1,310 @@
+---
+title: Text Cleaning Bahasa Indonesia-based Twitter Data
+author: Team Algoritma
+date: '2019-01-05'
+slug: text-cleaning-bahasa
+categories:
+  - R
+tags:
+  - textclean
+  - NLP
+  - text preprocessiong
+  - Capstone Ml
+description: ''
+featured: 'textclean.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Social media has become a very popular spot for data mining these last years. But when we talk about social data, we actually also talk about unstructured data, and in order to derive any meaningful insight from it, we have to know how to work with it in its unstructured form (or in this case, unstructured text information).
+
+Before the data we gather can be used for further analysis, the very first step to do is to clean the data. Most of the Tweet that we extract could be highly unstructured and noisy. Since it is an informal communication, we may find a lot of typos, usage of slang words, or presence of unwanted content like URLS, stopwords, emojis, etc..
+
+Now, this process can even be more challenging when you work with non-English tweet text. 
+
+As one of the most populated countries in the world, it's not really surprising to find that Indonesia is now the fifth-largest country in terms of Twitter Users. However, being language-specific, to process or analyze data in Indonesian topics could be pretty tricky since most text mining libraries only available for English (or some other major language) text processing.
+
+In this article, we are going to discuss more about possible noise elements from Bahasa Indonesia-based text and how we could perform a simple cleaning process using `textclean` package in R. 
+
+We would also perform a mild analysis to acknowledge public opinion towards a certain topic by creating a word cloud from the most frequent used keywords of the Twitter data we gathered. For that, we would use other packages such as `katadasaR` and `tokenizers`.
+
+Please be noted that this article only focus on cleaning text data in general, if you are interested to know more about Bahasa Indonesia text analysis algorithm or NLP, please refer to this [link](https://medium.com/curahan-rekanalar/karena-data-gak-mungkin-bohong-a17ff90cef87).
+
+## Packages Installation 
+
+There are actually many ways to perform text-cleaning process in R. We can find bunch of powerful packages that is actively developed by R text analysis community (`tm` or `quanteda` are ones amongst them). But in this article, we primarily make use of the `textclean` package for the following tutorial.
+
+R's `textclean` is a collection of tools to clean and normalize text. `textclean` differs from another packages in that it is designed to handle all of the common cleaning and normalization tasks with a single, consistent, pre-configured toolset (note that textclean uses many of these terrific packages as a backend). This means that the researcher spends less time on munging, leading to quicker analysis.[*](https://github.com/trinker/textclean#check-text)
+
+Another essential package that we use is `katadasaR`. It provides a function to retrieve word stem for Bahasa Indonesia text using Nazief and Andriani's algorithm.[*](https://github.com/nurandi/katadasaR). This package is currenly under development,so we have to install it by using `devtools::install_github()` functions.
+
+Now, before we start, you might need to install and/or load the packages:
+
+```{r message=FALSE}
+library(textclean)
+library(katadasaR)
+library(tokenizers)
+library(wordcloud)
+library(dplyr)
+```
+
+Here, we have extracted some Tweets to analyze Indonesians opinions towards **BPJS Kesehatan**, Indonesian national health care insurance:
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('/img/bpjstwit.png')
+```
+
+```{r}
+tweets <- read.csv("data_input/bpjs.csv")
+tweets <- tweets$text %>% 
+  as.character()
+head(tweets)
+```
+
+## Text Cleaning Process
+
+As mentioned before, `textclean` provides a lot of powerful tools that makes our cleaning process a lot, lot easier. Take for example, the `check_text` function which scans text variables and give potential problems as the output. 
+
+But since we're not working with English-based text, some of the tools in this package become less relevant to our process. If you're working with English-based text and want to learn more about other features of `textclean` that is not mentioned in this article, or just curious on how you could maximize the use of this package, you should jump to this learnR page.
+
+
+### Text Subbing
+
+The `sub()` function (short for substitute) in R searches for a pattern in text and replaces this pattern with replacement text. You use `sub()` to substitute text for text, and you use its cousin `gsub()` to substitute all occurrences of a pattern. (The g in `gsub()` stands for global.)
+
+Another common type of problem that can be solved with text substitution is removing substrings. Removing substrings is the same as replacing the substring with empty text (that is, nothing at all).[*](https://www.dummies.com/programming/r/how-to-substitute-text-in-r/)
+
+```{r}
+tweets[3]
+```
+
+```{r}
+tweets <- gsub( "\n"," ",tweets)
+```
+
+```{r}
+tweets[3]
+```
+
+
+### Text Replacement
+
+#### Replace HTML & URLs
+
+To pre-process text with `textclean` is kinda cool since it provides several functions that allow us to replace substrings within text with other substrings that let us to analyze the data easier.
+
+Let's start by removing the HTML & URLs on our Twitter data:
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('/img/twithtml.png')
+```
+
+
+```{r}
+# print original text data on index [199]
+tweets[199]
+```
+```{r}
+tweets <- tweets %>% 
+  replace_html() %>% # replace html with blank 
+  replace_url()   # replace URLs with blank
+```
+```{r}
+# print replaced text data on index [199]
+tweets[199]
+```
+
+That's it! Pretty simple isn't it? You don't have to create  even have to define specific [regex](link ke artikel regex) to specify certain condition. 
+
+#### Replace Emoticons and Emojis
+
+It'll also be the same when you manage to on handle tweets with emoticons or emojis. But, note that in some cases, rather than strip the emojis from our text data, the function would rather change them to html format.
+
+So, if you consider this as part of noises, you might also need to perform `replace_html` function after converting the emojis as well.
+
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('/img/twitemoji.png')
+```
+
+```{r}
+# print original tweet in index [198]
+tweets[198]
+```
+```{r}
+# print original tweet with converted emoji in index [198]
+replace_emoji(tweets[198])
+```
+```{r}
+# print tweet with converted html in index [198]
+replace_html(replace_emoji(tweets[198]))
+```
+```{r}
+# perform the replacement task to whole text variable
+tweets <- tweets %>% 
+    replace_emoji(.) %>% 
+    replace_html(.)
+```
+
+#### Replace Mentions & Hashtags
+
+Somehow, not all of these text replacement tools seem to work perfectly. For example when we try to replace mentions using `replace_tag()` function, it shows that not all mentions been replaced as we expect.
+
+Here's some of the example:
+
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('/img/twitmention.png')
+```
+
+
+```{r}
+# print original text data on index [4:5]
+tweets [4:5]
+```
+```{r}
+# print replaced text data on index [4:5]
+replace_tag(tweets[4:5])
+
+```
+
+In cases like these, we might also need to specify our own pattern to meet our desired condition:
+
+```{r}
+tweets <- tweets %>% 
+  replace_tag(tweets, pattern = "@([A-Za-z0-9_]+)",replacement="") %>%  # remove mentions
+  replace_hash(tweets, pattern = "#([A-Za-z0-9_]+)",replacement="")      # remove hashtags
+
+# print replaced text data on index [4:5]
+tweets[4:5]
+```
+
+#### Replace Slang Words
+
+Twitter, like other social media data, comprises of a majority of slang word. To avoid biases in our analysis, words like these should be transformed into standard words.
+
+The `replace_internet_slang` from `textclean` has its own library for English text slang words. But, since new terms and acronyms can go viral overnight, we might also need to adjust the lexicon. Well don't worry, the `replace_internet_slang` tool allows us to add our own lexicon, and this also makes it possible for us to put other language's lexicon, such as Bahasa Indonesia to the function.
+
+```{r}
+# print original tweet at index [100]
+tweets[100]
+```
+
+```{r}
+# import Indonesian lexicon
+spell.lex <- read.csv("data_input/colloquial-indonesian-lexicon.csv")
+
+# replace internet slang
+tweets <- replace_internet_slang(tweets, slang = paste0("\\b",
+                                                        spell.lex$slang, "\\b"),
+                                 replacement = spell.lex$formal, ignore.case = TRUE)
+```
+
+```{r}
+# print tweet after replacement at index [100]
+tweets[100]
+```
+
+### Text Stripping
+
+Often it is useful to remove all non relevant symbols and case from a text (letters, spaces, and apostrophes are retained). The strip function accomplishes this. The `char.keep` argument allows the user to retain characters.
+
+```{r}
+tweets[16]
+```
+
+```{r}
+tweets <- strip(tweets)
+```
+
+```{r}
+tweets[16]
+```
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+*We found some Twitter users tend to copy and paste some news headline regarding BPJS without throwing any sentiments. So before we go on to the next step, what we need to do is to use `distinct` from `dplyr` package to remove duplicated tweets.
+
+To see if the data has no duplicate text, we can investigate the data using `unique()` function.*
+
+```{r}
+tweets <- tweets %>% 
+  as.data.frame() %>% 
+  distinct()
+
+# number of tweet rows after duplicated text removed
+nrow(tweets)
+
+```
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+## Stemming, Tokenizing, and Word Cloud creation
+
+### Bahasa Indonesia Text Stemming
+
+[Stemming](https://en.wikipedia.org/wiki/Stemming) refers to the process of reducing inflected (or sometimes derived) words to their word stem, base or root form-generally a written word form. For example, "*writing*","*writer*", all reduce to the stem "*write*." Or, for example in [Bahasa Indonesia](https://github.com/sastrawi/sastrawi/wiki/Stemming-Bahasa-Indonesia) it will be "*membenarkan*","*pembenaran*", which all has *benar* as the root word.
+
+In order to reduce the vocabulary and focus more on the sense or sentiment of our Twitter data, it is also essential to remove those affixes. `katadasaR` provides a function to retrieve word stem (a.k.a. word stemming) for Bahasa Indonesia using [Nazief and Andriani](https://liyantanto.wordpress.com/2011/06/28/stemming-bahasa-indonesia-dengan-algoritma-nazief-dan-andriani/)'s algorithm. It consists of set of features to remove prefixes, suffixes or both, but still unable for infixes removal. 
+
+```{r}
+# example for katadasaR usage
+katadasaR("membenarkan")
+```
+
+Let's apply this to our whole text data:
+
+```{r}
+tweets <- as.character(tweets$.)
+# before stemming
+tweets[46]
+```
+```{r}
+
+
+stemming <- function(x){
+  paste(lapply(x,katadasar),collapse = " ")}
+
+tweets <- lapply(tokenize_words(tweets[]), stemming)
+
+# after stemming
+tweets[46]
+```
+
+We can see from the output, the affixes are gone after using the stemming function based on `katadasaR` package.
+
+### Tokenize & Stopwords Removal
+
+After that, we use `tokenizer` package to make the documents into discrete words.
+```{r}
+library(tokenizers)
+tweets <- tokenize_words(tweets)
+head(tweets,3)
+```
+
+The output of this process, we suceed to breaks the text into discrete words called token. 
+```{r warning=FALSE}
+library(stopwords)
+myStopwords <- readLines("data_input/stopword_list_id_2.txt")
+tweets <- as.character(tweets)
+tweets <- tokenize_words(tweets, stopwords = myStopwords)
+head(tweets, 3)
+```
+
+### Final Wordcloud
+
+```{r warning=FALSE}
+class(tweets)
+tweets <- as.character(tweets)
+library(wordcloud)
+wordcloud(tweets)
+```
+
