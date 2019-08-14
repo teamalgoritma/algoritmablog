@@ -57,8 +57,8 @@ canonifyURLs = true
   # files by adding the value, "default".
   # customCSS            = ["default", "/path/to/file"]
   # customJS             = ["default", "/path/to/file"]
-  customCSS            = ["default"]
-  customJS             = ["default"]
+  customCSS            = ["default", "/css/monokai-sublime.css"]
+  customJS             = ["default", "/js/bootstrap.min.js"]
 
   # options for highlight.js (version, additional languages, and theme)
   disable_highlight = false # set to true to disable Highlight
