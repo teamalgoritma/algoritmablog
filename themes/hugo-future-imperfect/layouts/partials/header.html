@@ -71,16 +71,16 @@
 {{ if (not .Params.disable_highlight) }}
   {{ $highTheme := .Site.Params.highlightjsTheme }}
     {{ with .Site.Params.highlightjsVersion }}
-    <link href='{{ $.Site.Params.highlightjsCDN | default "//cdn.bootcss.com" }}/highlight.js/{{ . }}/styles/{{ $highTheme }}.min.css' rel='stylesheet' type='text/css' />
+      <link rel="stylesheet" href="{{"css/monokai-sublime.css" | absURL}}" rel="stylesheet" id="theme-stylesheet">
+      <script src="{{ "js/highlight.pack.js" | absURL }}"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
   {{ end }}
 {{ end }}
 
       {{ template "_internal/google_analytics.html" . }}
 
 
-      <link rel="stylesheet" href="{{"css/monokai-sublime.css" | absURL}}" rel="stylesheet" id="theme-stylesheet">
-      <script src="{{ "js/highlight.pack.js" | absURL }}"></script>
-      <script>hljs.initHighlightingOnLoad();</script>
+
     
 
     </head>
