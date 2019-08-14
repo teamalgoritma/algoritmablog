@@ -1,4 +1,4 @@
-baseurl = ""
+baseurl = "http://algotech.netlify.com"
 languageCode = "en-us"
 title = "Algoritma Technical Blog"
 theme = "hugo-future-imperfect"
