@@ -13,7 +13,7 @@
         "articleSection" : "blog",
         "name" : "Nested Dataframe",
         "headline" : "Nested Dataframe",
-        "description" : "1. Setup\rLibraries and Setup\rWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.\noptions(scipen = 9999)\rrm(list=ls())\rYou will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:\nlibrary(tidyverse)\r## Warning: package \x26#39;ggplot2\x26#39; was built under R version 3.5.3\r## Warning: package \x26#39;tibble\x26#39; was built under R version 3.",
+        "description" : "1. Setup\rLibraries and Setup\rWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.\nYou will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:\nlibrary(tidyverse)\rlibrary(caret)\r\r\r2. Nested Dataframe\rYou’ll learn how to use purrr, caret and dplyr to quickly create some of dataset \x2b model combinations, store data \x26amp; model objects neatly in one tibble, and post process programatically.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -24,7 +24,7 @@
         "datePublished": "2019-01-10 00:00:00 \x2b0000 UTC",
         "dateModified" : "2019-01-10 00:00:00 \x2b0000 UTC",
         "url" : "\/blog\/nested-dataframe\/",
-        "wordCount" : "2234",
+        "wordCount" : "2107",
         "keywords" : [ "Data Manipulation","tidyverse","Capstone Ml","Blog" ]
     }
     </script>
@@ -52,14 +52,14 @@
         <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Nested Dataframe"/>
 <meta name="twitter:description" content="1. SetupLibraries and SetupWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
-options(scipen = 9999)rm(list=ls())You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
-library(tidyverse)## Warning: package &#39;ggplot2&#39; was built under R version 3.5.3## Warning: package &#39;tibble&#39; was built under R version 3."/>
+You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
+library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to use purrr, caret and dplyr to quickly create some of dataset &#43; model combinations, store data &amp; model objects neatly in one tibble, and post process programatically."/>
 <meta name="twitter:site" content="@teamalgoritma"/>
 
         <meta property="og:title" content="Nested Dataframe" />
 <meta property="og:description" content="1. SetupLibraries and SetupWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
-options(scipen = 9999)rm(list=ls())You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
-library(tidyverse)## Warning: package &#39;ggplot2&#39; was built under R version 3.5.3## Warning: package &#39;tibble&#39; was built under R version 3." />
+You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
+library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to use purrr, caret and dplyr to quickly create some of dataset &#43; model combinations, store data &amp; model objects neatly in one tibble, and post process programatically." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/nested-dataframe/" />
 <meta property="article:published_time" content="2019-01-10T00:00:00&#43;00:00"/>
@@ -72,13 +72,13 @@ library(tidyverse)## Warning: package &#39;ggplot2&#39; was built under R versi
         
 <meta itemprop="name" content="Nested Dataframe">
 <meta itemprop="description" content="1. SetupLibraries and SetupWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
-options(scipen = 9999)rm(list=ls())You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
-library(tidyverse)## Warning: package &#39;ggplot2&#39; was built under R version 3.5.3## Warning: package &#39;tibble&#39; was built under R version 3.">
+You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
+library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to use purrr, caret and dplyr to quickly create some of dataset &#43; model combinations, store data &amp; model objects neatly in one tibble, and post process programatically.">
 
 
 <meta itemprop="datePublished" content="2019-01-10T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-01-10T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2234">
+<meta itemprop="wordCount" content="2107">
 
 
 
@@ -363,7 +363,7 @@ library(tidyverse)## Warning: package &#39;ggplot2&#39; was built under R versi
             January 10, 2019</time>
         <span class="author">David</span>
         
-            <p>11 minute read</p>
+            <p>10 minute read</p>
         
         
     </div>
@@ -463,19 +463,9 @@ library(tidyverse)## Warning: package &#39;ggplot2&#39; was built under R versi
 <div id="libraries-and-setup" class="section level2">
 <h2>Libraries and Setup</h2>
 <p>We’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.</p>
-<pre class="r"><code>options(scipen = 9999)
-rm(list=ls())</code></pre>
 <p>You will need to use <code>install.packages()</code> to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the <code>library()</code> function:</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Warning: package &#39;readr&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Warning: package &#39;forcats&#39; was built under R version 3.5.3</code></pre>
-<pre class="r"><code>library(caret)</code></pre>
-<pre><code>## Warning: package &#39;caret&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(tidyverse)
+library(caret)</code></pre>
 </div>
 </div>
 <div id="nested-dataframe" class="section level1">
@@ -483,25 +473,25 @@ rm(list=ls())</code></pre>
 <p>You’ll learn how to use <code>purrr</code>, <code>caret</code> and <code>dplyr</code> to quickly create some of dataset + model combinations, store data &amp; model objects neatly in one tibble, and post process programatically. These tools enable succinct functional programming in which a lot gets done with just a few lines of code. The data to be used is loan.csv which can be downloaded here <a href="https://drive.google.com/file/d/1cxHMOPZwKDZ-mUI-fUyRJdlr_2q_Pdh6/view?usp=sharing">link here</a>. In this article we will predict the <code>default</code> variable which has a yes or no value.</p>
 <pre class="r"><code>loan &lt;- read.csv(&quot;data_input/loan.csv&quot;)
 glimpse(loan)</code></pre>
-<pre><code>## Observations: 1,000
-## Variables: 17
-## $ checking_balance     &lt;fct&gt; &lt; 0 DM, 1 - 200 DM, unknown, &lt; 0 DM, &lt; 0 ...
-## $ months_loan_duration &lt;int&gt; 6, 48, 12, 42, 24, 36, 24, 36, 12, 30, 12...
-## $ credit_history       &lt;fct&gt; critical, good, critical, good, poor, goo...
-## $ purpose              &lt;fct&gt; furniture/appliances, furniture/appliance...
-## $ amount               &lt;int&gt; 1169, 5951, 2096, 7882, 4870, 9055, 2835,...
-## $ savings_balance      &lt;fct&gt; unknown, &lt; 100 DM, &lt; 100 DM, &lt; 100 DM, &lt; ...
-## $ employment_duration  &lt;fct&gt; &gt; 7 years, 1 - 4 years, 4 - 7 years, 4 - ...
-## $ percent_of_income    &lt;int&gt; 4, 2, 2, 2, 3, 2, 3, 2, 2, 4, 3, 3, 1, 4,...
-## $ years_at_residence   &lt;int&gt; 4, 2, 3, 4, 4, 4, 4, 2, 4, 2, 1, 4, 1, 4,...
-## $ age                  &lt;int&gt; 67, 22, 49, 45, 53, 35, 53, 35, 61, 28, 2...
-## $ other_credit         &lt;fct&gt; none, none, none, none, none, none, none,...
-## $ housing              &lt;fct&gt; own, own, own, other, other, other, own, ...
-## $ existing_loans_count &lt;int&gt; 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2,...
-## $ job                  &lt;fct&gt; skilled, skilled, unskilled, skilled, ski...
-## $ dependents           &lt;int&gt; 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1,...
-## $ phone                &lt;fct&gt; yes, no, no, no, no, yes, no, yes, no, no...
-## $ default              &lt;fct&gt; no, yes, no, no, yes, no, no, no, no, yes...</code></pre>
+<pre><code>#&gt; Observations: 1,000
+#&gt; Variables: 17
+#&gt; $ checking_balance     &lt;fct&gt; &lt; 0 DM, 1 - 200 DM, unknown, &lt; 0 DM, &lt; 0 ...
+#&gt; $ months_loan_duration &lt;int&gt; 6, 48, 12, 42, 24, 36, 24, 36, 12, 30, 12...
+#&gt; $ credit_history       &lt;fct&gt; critical, good, critical, good, poor, goo...
+#&gt; $ purpose              &lt;fct&gt; furniture/appliances, furniture/appliance...
+#&gt; $ amount               &lt;int&gt; 1169, 5951, 2096, 7882, 4870, 9055, 2835,...
+#&gt; $ savings_balance      &lt;fct&gt; unknown, &lt; 100 DM, &lt; 100 DM, &lt; 100 DM, &lt; ...
+#&gt; $ employment_duration  &lt;fct&gt; &gt; 7 years, 1 - 4 years, 4 - 7 years, 4 - ...
+#&gt; $ percent_of_income    &lt;int&gt; 4, 2, 2, 2, 3, 2, 3, 2, 2, 4, 3, 3, 1, 4,...
+#&gt; $ years_at_residence   &lt;int&gt; 4, 2, 3, 4, 4, 4, 4, 2, 4, 2, 1, 4, 1, 4,...
+#&gt; $ age                  &lt;int&gt; 67, 22, 49, 45, 53, 35, 53, 35, 61, 28, 2...
+#&gt; $ other_credit         &lt;fct&gt; none, none, none, none, none, none, none,...
+#&gt; $ housing              &lt;fct&gt; own, own, own, other, other, other, own, ...
+#&gt; $ existing_loans_count &lt;int&gt; 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2,...
+#&gt; $ job                  &lt;fct&gt; skilled, skilled, unskilled, skilled, ski...
+#&gt; $ dependents           &lt;int&gt; 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1,...
+#&gt; $ phone                &lt;fct&gt; yes, no, no, no, no, yes, no, yes, no, no...
+#&gt; $ default              &lt;fct&gt; no, yes, no, no, yes, no, no, no, no, yes...</code></pre>
 <pre class="r"><code>loan &lt;- loan %&gt;%
   head(-10)
 
@@ -546,11 +536,11 @@ RpartModel &lt;- function(X, Y) {
                    rforest = RandomForestModel) %&gt;%
     enframe(name = &#39;modelName&#39;,value = &#39;model&#39;)
 model_list</code></pre>
-<pre><code>## # A tibble: 2 x 2
-##   modelName model 
-##   &lt;chr&gt;     &lt;list&gt;
-## 1 rpart     &lt;fn&gt;  
-## 2 rforest   &lt;fn&gt;</code></pre>
+<pre><code>#&gt; # A tibble: 2 x 2
+#&gt;   modelName model 
+#&gt;   &lt;chr&gt;     &lt;list&gt;
+#&gt; 1 rpart     &lt;fn&gt;  
+#&gt; 2 rforest   &lt;fn&gt;</code></pre>
 <p><code>model_list</code> produces 2 columns, namely <code>modelName</code>, and <code>model</code>. <code>ModelName</code> is the name of the model, and the <code>model</code> contains the functions of the model.
 Next the dataframe to be used replicates as many models as you want to use. The loan dataset will be replicates as much as the model used by <code>rep ()</code> function.</p>
 <pre class="r"><code>nmodel &lt;- length(model_list) #get length of model_list
@@ -559,50 +549,50 @@ nested.loan &lt;- list(loan) %&gt;%
   rep(nmodel) %&gt;% 
   enframe(name = &quot;Id&quot;, value = &quot;rawdata&quot;)
 nested.loan</code></pre>
-<pre><code>## # A tibble: 2 x 2
-##      Id rawdata             
-##   &lt;int&gt; &lt;list&gt;              
-## 1     1 &lt;df[,17] [990 x 17]&gt;
-## 2     2 &lt;df[,17] [990 x 17]&gt;</code></pre>
+<pre><code>#&gt; # A tibble: 2 x 2
+#&gt;      Id rawdata             
+#&gt;   &lt;int&gt; &lt;list&gt;              
+#&gt; 1     1 &lt;df[,17] [990 x 17]&gt;
+#&gt; 2     2 &lt;df[,17] [990 x 17]&gt;</code></pre>
 <p><code>nested.loan</code> has 2 columns, namely <code>Id</code> and <code>rawdata</code> which contain the loan dataframe. Then rawdata will be separated into train.y which contains the <code>default</code> variable and train.x contains the others.</p>
 <pre class="r"><code>nested.loan &lt;- nested.loan %&gt;% 
   mutate(train.x = map(rawdata, ~select(.x, -default)),
          train.y = map(rawdata, ~.x$default))
 nested.loan</code></pre>
-<pre><code>## # A tibble: 2 x 4
-##      Id rawdata              train.x              train.y    
-##   &lt;int&gt; &lt;list&gt;               &lt;list&gt;               &lt;list&gt;     
-## 1     1 &lt;df[,17] [990 x 17]&gt; &lt;df[,16] [990 x 16]&gt; &lt;fct [990]&gt;
-## 2     2 &lt;df[,17] [990 x 17]&gt; &lt;df[,16] [990 x 16]&gt; &lt;fct [990]&gt;</code></pre>
+<pre><code>#&gt; # A tibble: 2 x 4
+#&gt;      Id rawdata              train.x              train.y    
+#&gt;   &lt;int&gt; &lt;list&gt;               &lt;list&gt;               &lt;list&gt;     
+#&gt; 1     1 &lt;df[,17] [990 x 17]&gt; &lt;df[,16] [990 x 16]&gt; &lt;fct [990]&gt;
+#&gt; 2     2 &lt;df[,17] [990 x 17]&gt; &lt;df[,16] [990 x 16]&gt; &lt;fct [990]&gt;</code></pre>
 <p>The next step is to join <code>nested.loan</code> with<code>model_list</code> using <code>bind_cols ()</code></p>
 <pre class="r"><code>nested.loan &lt;- nested.loan %&gt;% 
   bind_cols(model_list)
 nested.loan</code></pre>
-<pre><code>## # A tibble: 2 x 6
-##      Id rawdata             train.x             train.y     modelName model
-##   &lt;int&gt; &lt;list&gt;              &lt;list&gt;              &lt;list&gt;      &lt;chr&gt;     &lt;lis&gt;
-## 1     1 &lt;df[,17] [990 x 17~ &lt;df[,16] [990 x 16~ &lt;fct [990]&gt; rpart     &lt;fn&gt; 
-## 2     2 &lt;df[,17] [990 x 17~ &lt;df[,16] [990 x 16~ &lt;fct [990]&gt; rforest   &lt;fn&gt;</code></pre>
+<pre><code>#&gt; # A tibble: 2 x 6
+#&gt;      Id rawdata             train.x             train.y     modelName model
+#&gt;   &lt;int&gt; &lt;list&gt;              &lt;list&gt;              &lt;list&gt;      &lt;chr&gt;     &lt;lis&gt;
+#&gt; 1     1 &lt;df[,17] [990 x 17~ &lt;df[,16] [990 x 16~ &lt;fct [990]&gt; rpart     &lt;fn&gt; 
+#&gt; 2     2 &lt;df[,17] [990 x 17~ &lt;df[,16] [990 x 16~ &lt;fct [990]&gt; rforest   &lt;fn&gt;</code></pre>
 <p>The model we have created can be used with the function <code>invoke_map ()</code> which functions to combine functions and lists as parameters.</p>
 <pre class="r"><code>nested.loan &lt;- nested.loan %&gt;% 
   mutate(parm = map2(train.x, train.y, ~list(.x, .y)),
          model = invoke_map(model,parm))
 nested.loan</code></pre>
-<pre><code>## # A tibble: 2 x 7
-##      Id rawdata         train.x         train.y    modelName model  parm   
-##   &lt;int&gt; &lt;list&gt;          &lt;list&gt;          &lt;list&gt;     &lt;chr&gt;     &lt;list&gt; &lt;list&gt; 
-## 1     1 &lt;df[,17] [990 ~ &lt;df[,16] [990 ~ &lt;fct [990~ rpart     &lt;trai~ &lt;list ~
-## 2     2 &lt;df[,17] [990 ~ &lt;df[,16] [990 ~ &lt;fct [990~ rforest   &lt;trai~ &lt;list ~</code></pre>
+<pre><code>#&gt; # A tibble: 2 x 7
+#&gt;      Id rawdata         train.x         train.y    modelName model  parm   
+#&gt;   &lt;int&gt; &lt;list&gt;          &lt;list&gt;          &lt;list&gt;     &lt;chr&gt;     &lt;list&gt; &lt;list&gt; 
+#&gt; 1     1 &lt;df[,17] [990 ~ &lt;df[,16] [990 ~ &lt;fct [990~ rpart     &lt;trai~ &lt;list ~
+#&gt; 2     2 &lt;df[,17] [990 ~ &lt;df[,16] [990 ~ &lt;fct [990~ rforest   &lt;trai~ &lt;list ~</code></pre>
 <p>To see how well the model has been made, it can be seen from the Accuracy of each model.</p>
 <pre class="r"><code>nested.loan &lt;- nested.loan %&gt;% 
   mutate(Accuracy = map_dbl(model, ~max(.x$results$Accuracy))) %&gt;% 
   arrange(desc(Accuracy))
 nested.loan</code></pre>
-<pre><code>## # A tibble: 2 x 8
-##      Id rawdata      train.x      train.y   modelName model parm   Accuracy
-##   &lt;int&gt; &lt;list&gt;       &lt;list&gt;       &lt;list&gt;    &lt;chr&gt;     &lt;lis&gt; &lt;list&gt;    &lt;dbl&gt;
-## 1     2 &lt;df[,17] [9~ &lt;df[,16] [9~ &lt;fct [99~ rforest   &lt;tra~ &lt;list~    0.748
-## 2     1 &lt;df[,17] [9~ &lt;df[,16] [9~ &lt;fct [99~ rpart     &lt;tra~ &lt;list~    0.744</code></pre>
+<pre><code>#&gt; # A tibble: 2 x 8
+#&gt;      Id rawdata      train.x      train.y   modelName model parm   Accuracy
+#&gt;   &lt;int&gt; &lt;list&gt;       &lt;list&gt;       &lt;list&gt;    &lt;chr&gt;     &lt;lis&gt; &lt;list&gt;    &lt;dbl&gt;
+#&gt; 1     2 &lt;df[,17] [9~ &lt;df[,16] [9~ &lt;fct [99~ rforest   &lt;tra~ &lt;list~    0.759
+#&gt; 2     1 &lt;df[,17] [9~ &lt;df[,16] [9~ &lt;fct [99~ rpart     &lt;tra~ &lt;list~    0.738</code></pre>
 <p>From the above results it can be seen that the random forest model produces an accuracy of 0.75 and the decission tree is 0.74. Next, we will do predict to the test data that has been made using an existing model. the data test must replicate as many models as used and then join the <code>nested.loan</code> data using <code>left_join()</code></p>
 <pre class="r"><code>nested.loan &lt;- test %&gt;% 
   list() %&gt;% 
@@ -610,19 +600,19 @@ nested.loan</code></pre>
   enframe(name = &quot;Id&quot;,value = &quot;test.x&quot;) %&gt;% 
   left_join(nested.loan, by = &quot;Id&quot;)
 nested.loan</code></pre>
-<pre><code>## # A tibble: 2 x 9
-##      Id test.x   rawdata   train.x   train.y modelName model parm  Accuracy
-##   &lt;int&gt; &lt;list&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;  &lt;chr&gt;     &lt;lis&gt; &lt;lis&gt;    &lt;dbl&gt;
-## 1     1 &lt;df[,16~ &lt;df[,17]~ &lt;df[,16]~ &lt;fct [~ rpart     &lt;tra~ &lt;lis~    0.744
-## 2     2 &lt;df[,16~ &lt;df[,17]~ &lt;df[,16]~ &lt;fct [~ rforest   &lt;tra~ &lt;lis~    0.748</code></pre>
+<pre><code>#&gt; # A tibble: 2 x 9
+#&gt;      Id test.x   rawdata   train.x   train.y modelName model parm  Accuracy
+#&gt;   &lt;int&gt; &lt;list&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;  &lt;chr&gt;     &lt;lis&gt; &lt;lis&gt;    &lt;dbl&gt;
+#&gt; 1     1 &lt;df[,16~ &lt;df[,17]~ &lt;df[,16]~ &lt;fct [~ rpart     &lt;tra~ &lt;lis~    0.738
+#&gt; 2     2 &lt;df[,16~ &lt;df[,17]~ &lt;df[,16]~ &lt;fct [~ rforest   &lt;tra~ &lt;lis~    0.759</code></pre>
 <p>Now we create a <code>pred</code> variable that contains results from predict</p>
 <pre class="r"><code>nested.loan &lt;- nested.loan %&gt;% 
   mutate(pred = map2(model, test.x, ~predict(.x, .y))) %&gt;% 
   select(Id,modelName,Accuracy,pred)
 glimpse(nested.loan$pred)</code></pre>
-<pre><code>## List of 2
-##  $ : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 2 1 1 2 1 1 1 1 2 2
-##  $ : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 2 2 1 2 1 1 1 1 1 1</code></pre>
+<pre><code>#&gt; List of 2
+#&gt;  $ : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 2 1 1 2 1 1 1 1 2 2
+#&gt;  $ : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 2 2 1 2 1 1 1 1 1 1</code></pre>
 </div>
 <div id="multiple-data-frame-x-single-model" class="section level2">
 <h2>2.2 Multiple Data Frame x Single Model</h2>
@@ -633,36 +623,36 @@ glimpse(nested.loan$pred)</code></pre>
   mutate(train.x = map(rawdata, ~select(.x, -default)),
          train.y = map(rawdata, ~.x$default))
 nested.split</code></pre>
-<pre><code>## # A tibble: 4 x 4
-##   checking_balance rawdata             train.x             train.y    
-##   &lt;fct&gt;            &lt;list&gt;              &lt;list&gt;              &lt;list&gt;     
-## 1 &lt; 0 DM           &lt;tibble [270 x 16]&gt; &lt;tibble [270 x 15]&gt; &lt;fct [270]&gt;
-## 2 1 - 200 DM       &lt;tibble [268 x 16]&gt; &lt;tibble [268 x 15]&gt; &lt;fct [268]&gt;
-## 3 unknown          &lt;tibble [389 x 16]&gt; &lt;tibble [389 x 15]&gt; &lt;fct [389]&gt;
-## 4 &gt; 200 DM         &lt;tibble [63 x 16]&gt;  &lt;tibble [63 x 15]&gt;  &lt;fct [63]&gt;</code></pre>
+<pre><code>#&gt; # A tibble: 4 x 4
+#&gt;   checking_balance rawdata             train.x             train.y    
+#&gt;   &lt;fct&gt;            &lt;list&gt;              &lt;list&gt;              &lt;list&gt;     
+#&gt; 1 &lt; 0 DM           &lt;tibble [270 x 16]&gt; &lt;tibble [270 x 15]&gt; &lt;fct [270]&gt;
+#&gt; 2 1 - 200 DM       &lt;tibble [268 x 16]&gt; &lt;tibble [268 x 15]&gt; &lt;fct [268]&gt;
+#&gt; 3 unknown          &lt;tibble [389 x 16]&gt; &lt;tibble [389 x 15]&gt; &lt;fct [389]&gt;
+#&gt; 4 &gt; 200 DM         &lt;tibble [63 x 16]&gt;  &lt;tibble [63 x 15]&gt;  &lt;fct [63]&gt;</code></pre>
 <p>The model that will be used is random forest</p>
 <pre class="r"><code>nested.rf &lt;- nested.split %&gt;% 
   mutate(param = map2(train.x, train.y, ~list(.x, .y)),
          model = invoke_map(RandomForestModel,param))
 nested.rf</code></pre>
-<pre><code>## # A tibble: 4 x 6
-##   checking_balance rawdata         train.x        train.y   param    model 
-##   &lt;fct&gt;            &lt;list&gt;          &lt;list&gt;         &lt;list&gt;    &lt;list&gt;   &lt;list&gt;
-## 1 &lt; 0 DM           &lt;tibble [270 x~ &lt;tibble [270 ~ &lt;fct [27~ &lt;list [~ &lt;trai~
-## 2 1 - 200 DM       &lt;tibble [268 x~ &lt;tibble [268 ~ &lt;fct [26~ &lt;list [~ &lt;trai~
-## 3 unknown          &lt;tibble [389 x~ &lt;tibble [389 ~ &lt;fct [38~ &lt;list [~ &lt;trai~
-## 4 &gt; 200 DM         &lt;tibble [63 x ~ &lt;tibble [63 x~ &lt;fct [63~ &lt;list [~ &lt;trai~</code></pre>
+<pre><code>#&gt; # A tibble: 4 x 6
+#&gt;   checking_balance rawdata         train.x        train.y   param    model 
+#&gt;   &lt;fct&gt;            &lt;list&gt;          &lt;list&gt;         &lt;list&gt;    &lt;list&gt;   &lt;list&gt;
+#&gt; 1 &lt; 0 DM           &lt;tibble [270 x~ &lt;tibble [270 ~ &lt;fct [27~ &lt;list [~ &lt;trai~
+#&gt; 2 1 - 200 DM       &lt;tibble [268 x~ &lt;tibble [268 ~ &lt;fct [26~ &lt;list [~ &lt;trai~
+#&gt; 3 unknown          &lt;tibble [389 x~ &lt;tibble [389 ~ &lt;fct [38~ &lt;list [~ &lt;trai~
+#&gt; 4 &gt; 200 DM         &lt;tibble [63 x ~ &lt;tibble [63 x~ &lt;fct [63~ &lt;list [~ &lt;trai~</code></pre>
 <p>To see how well the model is made, we can see the accuracy obtained from the model we made.</p>
 <pre class="r"><code>nested.rf &lt;- nested.rf %&gt;% 
   mutate(Accuracy = map_dbl(model, ~max(.x$results$Accuracy)))
 nested.rf</code></pre>
-<pre><code>## # A tibble: 4 x 7
-##   checking_balance rawdata      train.x      train.y  param  model Accuracy
-##   &lt;fct&gt;            &lt;list&gt;       &lt;list&gt;       &lt;list&gt;   &lt;list&gt; &lt;lis&gt;    &lt;dbl&gt;
-## 1 &lt; 0 DM           &lt;tibble [27~ &lt;tibble [27~ &lt;fct [2~ &lt;list~ &lt;tra~    0.631
-## 2 1 - 200 DM       &lt;tibble [26~ &lt;tibble [26~ &lt;fct [2~ &lt;list~ &lt;tra~    0.667
-## 3 unknown          &lt;tibble [38~ &lt;tibble [38~ &lt;fct [3~ &lt;list~ &lt;tra~    0.882
-## 4 &gt; 200 DM         &lt;tibble [63~ &lt;tibble [63~ &lt;fct [6~ &lt;list~ &lt;tra~    0.780</code></pre>
+<pre><code>#&gt; # A tibble: 4 x 7
+#&gt;   checking_balance rawdata      train.x      train.y  param  model Accuracy
+#&gt;   &lt;fct&gt;            &lt;list&gt;       &lt;list&gt;       &lt;list&gt;   &lt;list&gt; &lt;lis&gt;    &lt;dbl&gt;
+#&gt; 1 &lt; 0 DM           &lt;tibble [27~ &lt;tibble [27~ &lt;fct [2~ &lt;list~ &lt;tra~    0.645
+#&gt; 2 1 - 200 DM       &lt;tibble [26~ &lt;tibble [26~ &lt;fct [2~ &lt;list~ &lt;tra~    0.662
+#&gt; 3 unknown          &lt;tibble [38~ &lt;tibble [38~ &lt;fct [3~ &lt;list~ &lt;tra~    0.882
+#&gt; 4 &gt; 200 DM         &lt;tibble [63~ &lt;tibble [63~ &lt;fct [6~ &lt;list~ &lt;tra~    0.773</code></pre>
 </div>
 <div id="multiple-data-frame-x-multiple-model" class="section level2">
 <h2>2.3 Multiple Data Frame x Multiple Model</h2>
@@ -684,61 +674,54 @@ model.multi &lt;- model_list %&gt;%
 nested.multi &lt;- nested.multi %&gt;% 
   bind_cols(model.multi)
 nested.multi</code></pre>
-<pre><code>## # A tibble: 8 x 6
-##   checking_balance rawdata         train.x        train.y   modelName model
-##   &lt;fct&gt;            &lt;list&gt;          &lt;list&gt;         &lt;list&gt;    &lt;chr&gt;     &lt;lis&gt;
-## 1 &lt; 0 DM           &lt;tibble [270 x~ &lt;tibble [270 ~ &lt;fct [27~ rforest   &lt;fn&gt; 
-## 2 1 - 200 DM       &lt;tibble [268 x~ &lt;tibble [268 ~ &lt;fct [26~ rforest   &lt;fn&gt; 
-## 3 unknown          &lt;tibble [389 x~ &lt;tibble [389 ~ &lt;fct [38~ rforest   &lt;fn&gt; 
-## 4 &gt; 200 DM         &lt;tibble [63 x ~ &lt;tibble [63 x~ &lt;fct [63~ rforest   &lt;fn&gt; 
-## 5 &lt; 0 DM           &lt;tibble [270 x~ &lt;tibble [270 ~ &lt;fct [27~ rpart     &lt;fn&gt; 
-## 6 1 - 200 DM       &lt;tibble [268 x~ &lt;tibble [268 ~ &lt;fct [26~ rpart     &lt;fn&gt; 
-## 7 unknown          &lt;tibble [389 x~ &lt;tibble [389 ~ &lt;fct [38~ rpart     &lt;fn&gt; 
-## 8 &gt; 200 DM         &lt;tibble [63 x ~ &lt;tibble [63 x~ &lt;fct [63~ rpart     &lt;fn&gt;</code></pre>
+<pre><code>#&gt; # A tibble: 8 x 6
+#&gt;   checking_balance rawdata         train.x        train.y   modelName model
+#&gt;   &lt;fct&gt;            &lt;list&gt;          &lt;list&gt;         &lt;list&gt;    &lt;chr&gt;     &lt;lis&gt;
+#&gt; 1 &lt; 0 DM           &lt;tibble [270 x~ &lt;tibble [270 ~ &lt;fct [27~ rforest   &lt;fn&gt; 
+#&gt; 2 1 - 200 DM       &lt;tibble [268 x~ &lt;tibble [268 ~ &lt;fct [26~ rforest   &lt;fn&gt; 
+#&gt; 3 unknown          &lt;tibble [389 x~ &lt;tibble [389 ~ &lt;fct [38~ rforest   &lt;fn&gt; 
+#&gt; 4 &gt; 200 DM         &lt;tibble [63 x ~ &lt;tibble [63 x~ &lt;fct [63~ rforest   &lt;fn&gt; 
+#&gt; 5 &lt; 0 DM           &lt;tibble [270 x~ &lt;tibble [270 ~ &lt;fct [27~ rpart     &lt;fn&gt; 
+#&gt; 6 1 - 200 DM       &lt;tibble [268 x~ &lt;tibble [268 ~ &lt;fct [26~ rpart     &lt;fn&gt; 
+#&gt; 7 unknown          &lt;tibble [389 x~ &lt;tibble [389 ~ &lt;fct [38~ rpart     &lt;fn&gt; 
+#&gt; 8 &gt; 200 DM         &lt;tibble [63 x ~ &lt;tibble [63 x~ &lt;fct [63~ rpart     &lt;fn&gt;</code></pre>
 <p>Now we can modeling each data category with each model</p>
 <pre class="r"><code>nested.multi &lt;- nested.multi %&gt;% 
   mutate(param = map2(train.x, train.y, ~list(.x, .y)),
          model = invoke_map(model,param))
 nested.multi</code></pre>
-<pre><code>## # A tibble: 8 x 7
-##   checking_balance rawdata     train.x     train.y   modelName model param 
-##   &lt;fct&gt;            &lt;list&gt;      &lt;list&gt;      &lt;list&gt;    &lt;chr&gt;     &lt;lis&gt; &lt;list&gt;
-## 1 &lt; 0 DM           &lt;tibble [2~ &lt;tibble [2~ &lt;fct [27~ rforest   &lt;tra~ &lt;list~
-## 2 1 - 200 DM       &lt;tibble [2~ &lt;tibble [2~ &lt;fct [26~ rforest   &lt;tra~ &lt;list~
-## 3 unknown          &lt;tibble [3~ &lt;tibble [3~ &lt;fct [38~ rforest   &lt;tra~ &lt;list~
-## 4 &gt; 200 DM         &lt;tibble [6~ &lt;tibble [6~ &lt;fct [63~ rforest   &lt;tra~ &lt;list~
-## 5 &lt; 0 DM           &lt;tibble [2~ &lt;tibble [2~ &lt;fct [27~ rpart     &lt;tra~ &lt;list~
-## 6 1 - 200 DM       &lt;tibble [2~ &lt;tibble [2~ &lt;fct [26~ rpart     &lt;tra~ &lt;list~
-## 7 unknown          &lt;tibble [3~ &lt;tibble [3~ &lt;fct [38~ rpart     &lt;tra~ &lt;list~
-## 8 &gt; 200 DM         &lt;tibble [6~ &lt;tibble [6~ &lt;fct [63~ rpart     &lt;tra~ &lt;list~</code></pre>
+<pre><code>#&gt; # A tibble: 8 x 7
+#&gt;   checking_balance rawdata     train.x     train.y   modelName model param 
+#&gt;   &lt;fct&gt;            &lt;list&gt;      &lt;list&gt;      &lt;list&gt;    &lt;chr&gt;     &lt;lis&gt; &lt;list&gt;
+#&gt; 1 &lt; 0 DM           &lt;tibble [2~ &lt;tibble [2~ &lt;fct [27~ rforest   &lt;tra~ &lt;list~
+#&gt; 2 1 - 200 DM       &lt;tibble [2~ &lt;tibble [2~ &lt;fct [26~ rforest   &lt;tra~ &lt;list~
+#&gt; 3 unknown          &lt;tibble [3~ &lt;tibble [3~ &lt;fct [38~ rforest   &lt;tra~ &lt;list~
+#&gt; 4 &gt; 200 DM         &lt;tibble [6~ &lt;tibble [6~ &lt;fct [63~ rforest   &lt;tra~ &lt;list~
+#&gt; 5 &lt; 0 DM           &lt;tibble [2~ &lt;tibble [2~ &lt;fct [27~ rpart     &lt;tra~ &lt;list~
+#&gt; 6 1 - 200 DM       &lt;tibble [2~ &lt;tibble [2~ &lt;fct [26~ rpart     &lt;tra~ &lt;list~
+#&gt; 7 unknown          &lt;tibble [3~ &lt;tibble [3~ &lt;fct [38~ rpart     &lt;tra~ &lt;list~
+#&gt; 8 &gt; 200 DM         &lt;tibble [6~ &lt;tibble [6~ &lt;fct [63~ rpart     &lt;tra~ &lt;list~</code></pre>
 <pre class="r"><code>nested.multi$model[[1]]$finalModel</code></pre>
-<pre><code>## 
-## Call:
-##  randomForest(x = x, y = y, mtry = param$mtry, trContrl = ..1) 
-##                Type of random forest: classification
-##                      Number of trees: 500
-## No. of variables tried at each split: 2
-## 
-##         OOB estimate of  error rate: 37.78%
-## Confusion matrix:
-##     no yes class.error
-## no  84  52   0.3823529
-## yes 50  84   0.3731343</code></pre>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt;  randomForest(x = x, y = y, mtry = param$mtry, trContrl = ..1) 
+#&gt;                Type of random forest: classification
+#&gt;                      Number of trees: 500
+#&gt; No. of variables tried at each split: 8
+#&gt; 
+#&gt;         OOB estimate of  error rate: 37.78%
+#&gt; Confusion matrix:
+#&gt;     no yes class.error
+#&gt; no  85  51    0.375000
+#&gt; yes 51  83    0.380597</code></pre>
 <p>And we can see the accuracy each model</p>
 <pre class="r"><code>nested.multi &lt;- nested.multi %&gt;% 
   mutate(Accuracy = map_dbl(model, ~max(.x$results$Accuracy)))</code></pre>
-<pre class="r"><code>library(lime)</code></pre>
-<pre><code>## Warning: package &#39;lime&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;lime&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     explain</code></pre>
-<pre class="r"><code>model_result &lt;- lime(x = nested.multi$train.x[[1]],nested.multi$model[[1]])</code></pre>
-<pre><code>## Warning: dependents does not contain enough variance to use quantile
-## binning. Using standard binning instead.</code></pre>
-<pre class="r"><code>model_result$bin_continuous</code></pre>
-<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>library(lime)
+
+model_result &lt;- lime(x = nested.multi$train.x[[1]],nested.multi$model[[1]])
+model_result$bin_continuous</code></pre>
+<pre><code>#&gt; [1] TRUE</code></pre>
 </div>
 </div>
 

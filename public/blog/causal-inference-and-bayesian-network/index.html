@@ -598,7 +598,7 @@ After gathering some data, we know that:
 plot(disease.dag)
 </code></pre>
 
-<p><img src="/blog/2018-07-26-causal-inference-and-bayesian-network_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="/blog/2018-07-26-causal-inference-and-bayesian-network_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 <p>Now we are going to make the Bayesian Network model</p>
 
@@ -616,21 +616,21 @@ plist &lt;- compileCPT(list(node.D, node.T1, node.T2))
 plist
 </code></pre>
 
-<pre><code>## CPTspec with probabilities:
-##  P( D )
-##  P( T1 | D )
-##  P( T2 | D )
+<pre><code>#&gt; CPTspec with probabilities:
+#&gt;  P( D )
+#&gt;  P( T1 | D )
+#&gt;  P( T2 | D )
 </code></pre>
 
 <pre><code class="language-r">#kind of prop table
 plist$D
 </code></pre>
 
-<pre><code>## D
-##  yes   no 
-## 0.01 0.99 
-## attr(,&quot;class&quot;)
-## [1] &quot;parray&quot; &quot;array&quot;
+<pre><code>#&gt; D
+#&gt;  yes   no 
+#&gt; 0.01 0.99 
+#&gt; attr(,&quot;class&quot;)
+#&gt; [1] &quot;parray&quot; &quot;array&quot;
 </code></pre>
 
 <pre><code class="language-r"># create network
@@ -638,15 +638,15 @@ bn.disease &lt;- grain(plist)
 summary(bn.disease)
 </code></pre>
 
-<pre><code>## Independence network: Compiled: FALSE Propagated: FALSE 
-##  Nodes : chr [1:3] &quot;D&quot; &quot;T1&quot; &quot;T2&quot;
+<pre><code>#&gt; Independence network: Compiled: FALSE Propagated: FALSE 
+#&gt;  Nodes : chr [1:3] &quot;D&quot; &quot;T1&quot; &quot;T2&quot;
 </code></pre>
 
 <pre><code class="language-r">bn.disease
 </code></pre>
 
-<pre><code>## Independence network: Compiled: FALSE Propagated: FALSE 
-##   Nodes: chr [1:3] &quot;D&quot; &quot;T1&quot; &quot;T2&quot;
+<pre><code>#&gt; Independence network: Compiled: FALSE Propagated: FALSE 
+#&gt;   Nodes: chr [1:3] &quot;D&quot; &quot;T1&quot; &quot;T2&quot;
 </code></pre>
 
 <pre><code class="language-r">#We can gain the probability of events using query
@@ -655,60 +655,60 @@ summary(bn.disease)
 querygrain(bn.disease, nodes=c(&quot;D&quot;, &quot;T1&quot;, &quot;T2&quot;), type=&quot;marginal&quot;)
 </code></pre>
 
-<pre><code>## $D
-## D
-##  yes   no 
-## 0.01 0.99 
-## 
-## $T1
-## T1
-##    yes     no 
-## 0.1575 0.8425 
-## 
-## $T2
-## T2
-##    yes     no 
-## 0.2075 0.7925
+<pre><code>#&gt; $D
+#&gt; D
+#&gt;  yes   no 
+#&gt; 0.01 0.99 
+#&gt; 
+#&gt; $T1
+#&gt; T1
+#&gt;    yes     no 
+#&gt; 0.1575 0.8425 
+#&gt; 
+#&gt; $T2
+#&gt; T2
+#&gt;    yes     no 
+#&gt; 0.2075 0.7925
 </code></pre>
 
 <pre><code class="language-r">#or
 querygrain(bn.disease, nodes=c(&quot;D&quot;, &quot;T1&quot;, &quot;T2&quot;))
 </code></pre>
 
-<pre><code>## $D
-## D
-##  yes   no 
-## 0.01 0.99 
-## 
-## $T1
-## T1
-##    yes     no 
-## 0.1575 0.8425 
-## 
-## $T2
-## T2
-##    yes     no 
-## 0.2075 0.7925
+<pre><code>#&gt; $D
+#&gt; D
+#&gt;  yes   no 
+#&gt; 0.01 0.99 
+#&gt; 
+#&gt; $T1
+#&gt; T1
+#&gt;    yes     no 
+#&gt; 0.1575 0.8425 
+#&gt; 
+#&gt; $T2
+#&gt; T2
+#&gt;    yes     no 
+#&gt; 0.2075 0.7925
 </code></pre>
 
 <pre><code class="language-r"># or if we want to see joint probability (probability of 2 or more events happening), for example P(D,T1)
 querygrain(bn.disease, nodes=c(&quot;D&quot;, &quot;T1&quot;), type=&quot;joint&quot;)
 </code></pre>
 
-<pre><code>##      T1
-## D        yes     no
-##   yes 0.0090 0.0010
-##   no  0.1485 0.8415
+<pre><code>#&gt;      T1
+#&gt; D        yes     no
+#&gt;   yes 0.0090 0.0010
+#&gt;   no  0.1485 0.8415
 </code></pre>
 
 <pre><code class="language-r"># or if we want to see conditional probability of T1 given D
 querygrain(bn.disease, nodes=c(&quot;T1&quot;,&quot;D&quot;), type=&quot;conditional&quot;)
 </code></pre>
 
-<pre><code>##      T1
-## D      yes   no
-##   yes 0.90 0.10
-##   no  0.15 0.85
+<pre><code>#&gt;      T1
+#&gt; D      yes   no
+#&gt;   yes 0.90 0.10
+#&gt;   no  0.15 0.85
 </code></pre>
 
 <h2 id="cad-dataset">CAD Dataset</h2>
@@ -719,21 +719,21 @@ querygrain(bn.disease, nodes=c(&quot;T1&quot;,&quot;D&quot;), type=&quot;conditi
 str(cad1)
 </code></pre>
 
-<pre><code>## 'data.frame':    236 obs. of  14 variables:
-##  $ Sex        : Factor w/ 2 levels &quot;Female&quot;,&quot;Male&quot;: 2 2 1 2 2 2 2 2 1 2 ...
-##  $ AngPec     : Factor w/ 3 levels &quot;Atypical&quot;,&quot;None&quot;,..: 2 1 2 2 2 2 2 2 2 1 ...
-##  $ AMI        : Factor w/ 2 levels &quot;Definite&quot;,&quot;NotCertain&quot;: 2 2 1 2 2 2 2 2 2 2 ...
-##  $ QWave      : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 2 2 1 1 ...
-##  $ QWavecode  : Factor w/ 2 levels &quot;Nonusable&quot;,&quot;Usable&quot;: 2 2 2 2 2 2 2 2 1 2 ...
-##  $ STcode     : Factor w/ 2 levels &quot;Nonusable&quot;,&quot;Usable&quot;: 2 2 2 1 1 1 1 1 1 2 ...
-##  $ STchange   : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 2 ...
-##  $ SuffHeartF : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Hypertrophi: Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Hyperchol  : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Smoker     : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Inherit    : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Heartfail  : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ CAD        : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+<pre><code>#&gt; 'data.frame':    236 obs. of  14 variables:
+#&gt;  $ Sex        : Factor w/ 2 levels &quot;Female&quot;,&quot;Male&quot;: 2 2 1 2 2 2 2 2 1 2 ...
+#&gt;  $ AngPec     : Factor w/ 3 levels &quot;Atypical&quot;,&quot;None&quot;,..: 2 1 2 2 2 2 2 2 2 1 ...
+#&gt;  $ AMI        : Factor w/ 2 levels &quot;Definite&quot;,&quot;NotCertain&quot;: 2 2 1 2 2 2 2 2 2 2 ...
+#&gt;  $ QWave      : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 2 2 1 1 ...
+#&gt;  $ QWavecode  : Factor w/ 2 levels &quot;Nonusable&quot;,&quot;Usable&quot;: 2 2 2 2 2 2 2 2 1 2 ...
+#&gt;  $ STcode     : Factor w/ 2 levels &quot;Nonusable&quot;,&quot;Usable&quot;: 2 2 2 1 1 1 1 1 1 2 ...
+#&gt;  $ STchange   : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 2 ...
+#&gt;  $ SuffHeartF : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ Hypertrophi: Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ Hyperchol  : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ Smoker     : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ Inherit    : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ Heartfail  : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ CAD        : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
 </code></pre>
 
 <p>We are going to focus on<code>CAD</code> variable, which represent whether a person has CAD.
@@ -748,7 +748,7 @@ dag.cad &lt;- dag(~ CAD:Smoker:Inherit:Hyperchol +
 plot(dag.cad)
 </code></pre>
 
-<p><img src="/blog/2018-07-26-causal-inference-and-bayesian-network_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="/blog/2018-07-26-causal-inference-and-bayesian-network_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 <pre><code class="language-r"># smooth is a small positive number to avoid zero entries in the CPTs
 # (cf. Additive smoothing, http://en.wikipedia.org/wiki/Additive_smoothing)
@@ -757,10 +757,10 @@ bn.cad &lt;- grain(dag.cad, data = cad1, smooth = 0.1)
 querygrain(bn.cad, nodes=c(&quot;CAD&quot;, &quot;Smoker&quot;), type=&quot;conditional&quot;) 
 </code></pre>
 
-<pre><code>##       CAD
-## Smoker        No       Yes
-##    No  0.7172084 0.2827916
-##    Yes 0.4933771 0.5066229
+<pre><code>#&gt;       CAD
+#&gt; Smoker        No       Yes
+#&gt;    No  0.7172084 0.2827916
+#&gt;    Yes 0.4933771 0.5066229
 </code></pre>
 
 <pre><code class="language-r"># add some evidence and see how things get affected.
@@ -769,10 +769,10 @@ bn.cad.1 &lt;- setFinding(bn.cad, nodes=c(&quot;Smoker&quot;,&quot;Hyperchol&quo
 querygrain(bn.cad.1, nodes=c(&quot;CAD&quot;), type=&quot;marginal&quot;) 
 </code></pre>
 
-<pre><code>## $CAD
-## CAD
-##        No       Yes 
-## 0.6551764 0.3448236
+<pre><code>#&gt; $CAD
+#&gt; CAD
+#&gt;        No       Yes 
+#&gt; 0.6551764 0.3448236
 </code></pre>
 
 <h2 id="weaknesses-of-bayesian-network">Weaknesses of Bayesian Network</h2>

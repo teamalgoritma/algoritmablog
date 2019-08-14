@@ -19,6 +19,19 @@ linktitle: ''
 type: post
 ---
 
+```{r setup, include=FALSE}
+# clean up the environment
+rm(list = ls())
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+```
+
 # Introduction
 Time Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle. This article presents the perfomance of STL (Seasonal and Trend decomposition using Loess) with multiple seasonal periods and compares it with TBATS (Trigonometric Seasonal, Box-Cox Transformation, ARMA residuals, Trend and Seasonality).
 

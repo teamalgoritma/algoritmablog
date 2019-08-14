@@ -21,9 +21,17 @@ type: post
 ## Libraries and Setup
 We'll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
 
-```{r setup}
-options(scipen = 9999)
-rm(list=ls())
+```{r setup, include=FALSE}
+# clean up the environment
+rm(list = ls())
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
 ```
 
 You will need to use `install.packages()` to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the `library()` function:

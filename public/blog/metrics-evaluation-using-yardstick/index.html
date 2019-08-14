@@ -24,7 +24,7 @@
         "datePublished": "2019-01-10 00:00:00 \x2b0000 UTC",
         "dateModified" : "2019-01-10 00:00:00 \x2b0000 UTC",
         "url" : "\/blog\/metrics-evaluation-using-yardstick\/",
-        "wordCount" : "866",
+        "wordCount" : "869",
         "keywords" : [ "metrics evaluation","yardstick","accuracy","recall","precision","Capstone Ml","dplyr","Blog" ]
     }
     </script>
@@ -72,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2019-01-10T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-01-10T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="866">
+<meta itemprop="wordCount" content="869">
 
 
 
@@ -458,6 +458,8 @@
 </div>
 <div id="installation" class="section level1">
 <h1>Installation</h1>
+<pre class="r"><code>library(tidyverse)
+library(dplyr)</code></pre>
 <p>To install <code>yardstick</code> package, you can run:</p>
 <pre class="r"><code>install.packages(&quot;yardstick&quot;)
 
@@ -470,103 +472,104 @@ devtools::install_github(&quot;tidymodels/yardstick&quot;)</code></pre>
 <pre class="r"><code>library(yardstick)</code></pre>
 <p>We will demonstrate the data for evaluating used <code>two_class_example</code>. Take a look the data:</p>
 <pre class="r"><code>head(two_class_example)</code></pre>
-<pre><code>##    truth      Class1       Class2 predicted
-## 1 Class2 0.003589243 0.9964107574    Class2
-## 2 Class1 0.678621054 0.3213789460    Class1
-## 3 Class2 0.110893522 0.8891064779    Class2
-## 4 Class1 0.735161703 0.2648382969    Class1
-## 5 Class2 0.016239960 0.9837600397    Class2
-## 6 Class1 0.999275071 0.0007249286    Class1</code></pre>
+<pre><code>#&gt;    truth      Class1       Class2 predicted
+#&gt; 1 Class2 0.003589243 0.9964107574    Class2
+#&gt; 2 Class1 0.678621054 0.3213789460    Class1
+#&gt; 3 Class2 0.110893522 0.8891064779    Class2
+#&gt; 4 Class1 0.735161703 0.2648382969    Class1
+#&gt; 5 Class2 0.016239960 0.9837600397    Class2
+#&gt; 6 Class1 0.999275071 0.0007249286    Class1</code></pre>
 <p>Check structure from the data:</p>
 <pre class="r"><code>str(two_class_example)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    500 obs. of  4 variables:
-##  $ truth    : Factor w/ 2 levels &quot;Class1&quot;,&quot;Class2&quot;: 2 1 2 1 2 1 1 1 2 2 ...
-##  $ Class1   : num  0.00359 0.67862 0.11089 0.73516 0.01624 ...
-##  $ Class2   : num  0.996 0.321 0.889 0.265 0.984 ...
-##  $ predicted: Factor w/ 2 levels &quot;Class1&quot;,&quot;Class2&quot;: 2 1 2 1 2 1 1 1 2 2 ...</code></pre>
+<pre><code>#&gt; &#39;data.frame&#39;:    500 obs. of  4 variables:
+#&gt;  $ truth    : Factor w/ 2 levels &quot;Class1&quot;,&quot;Class2&quot;: 2 1 2 1 2 1 1 1 2 2 ...
+#&gt;  $ Class1   : num  0.00359 0.67862 0.11089 0.73516 0.01624 ...
+#&gt;  $ Class2   : num  0.996 0.321 0.889 0.265 0.984 ...
+#&gt;  $ predicted: Factor w/ 2 levels &quot;Class1&quot;,&quot;Class2&quot;: 2 1 2 1 2 1 1 1 2 2 ...</code></pre>
 <p>These data are a test set form a model built from two classes (<code>Class1</code> and <code>Class2</code>). There are columns for the true (<code>truth</code>), prediction (<code>predicted</code>) and columns for each probability for each class.</p>
 <p>To evaluate the prediction, we can use Accuracy, Recall and Precision (recall course materials Classification in Machine Learning 1 &amp; 2). Remember when we’re doing this in <code>caret</code> packages, we can use :</p>
 <pre class="r"><code># data is prediction value, and reference is truh value
 caret::confusionMatrix(data = two_class_example$predicted, reference = two_class_example$truth)</code></pre>
-<pre><code>## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction Class1 Class2
-##     Class1    227     50
-##     Class2     31    192
-##                                           
-##                Accuracy : 0.838           
-##                  95% CI : (0.8027, 0.8692)
-##     No Information Rate : 0.516           
-##     P-Value [Acc &gt; NIR] : &lt;2e-16          
-##                                           
-##                   Kappa : 0.6749          
-##  Mcnemar&#39;s Test P-Value : 0.0455          
-##                                           
-##             Sensitivity : 0.8798          
-##             Specificity : 0.7934          
-##          Pos Pred Value : 0.8195          
-##          Neg Pred Value : 0.8610          
-##              Prevalence : 0.5160          
-##          Detection Rate : 0.4540          
-##    Detection Prevalence : 0.5540          
-##       Balanced Accuracy : 0.8366          
-##                                           
-##        &#39;Positive&#39; Class : Class1          
-## </code></pre>
+<pre><code>#&gt; Confusion Matrix and Statistics
+#&gt; 
+#&gt;           Reference
+#&gt; Prediction Class1 Class2
+#&gt;     Class1    227     50
+#&gt;     Class2     31    192
+#&gt;                                           
+#&gt;                Accuracy : 0.838           
+#&gt;                  95% CI : (0.8027, 0.8692)
+#&gt;     No Information Rate : 0.516           
+#&gt;     P-Value [Acc &gt; NIR] : &lt;2e-16          
+#&gt;                                           
+#&gt;                   Kappa : 0.6749          
+#&gt;                                           
+#&gt;  Mcnemar&#39;s Test P-Value : 0.0455          
+#&gt;                                           
+#&gt;             Sensitivity : 0.8798          
+#&gt;             Specificity : 0.7934          
+#&gt;          Pos Pred Value : 0.8195          
+#&gt;          Neg Pred Value : 0.8610          
+#&gt;              Prevalence : 0.5160          
+#&gt;          Detection Rate : 0.4540          
+#&gt;    Detection Prevalence : 0.5540          
+#&gt;       Balanced Accuracy : 0.8366          
+#&gt;                                           
+#&gt;        &#39;Positive&#39; Class : Class1          
+#&gt; </code></pre>
 <p>In <code>yardstick</code> packages, we can customize what we want to show in our confusion matrix. By default, we don’t want customize the metrics it’ll give use accuracy and kap metrics:</p>
 <pre class="r"><code># 2 class only
 metrics(data = two_class_example, truth = truth, estimate = predicted)</code></pre>
-<pre><code>## # A tibble: 2 x 3
-##   .metric  .estimator .estimate
-##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy binary         0.838
-## 2 kap      binary         0.675</code></pre>
+<pre><code>#&gt; # A tibble: 2 x 3
+#&gt;   .metric  .estimator .estimate
+#&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+#&gt; 1 accuracy binary         0.838
+#&gt; 2 kap      binary         0.675</code></pre>
 <p>If we want to customize the metrics, we can create set of metrics that we want to show and then applied that to our data:</p>
 <pre class="r"><code># set metrics 
 multi_met &lt;- metric_set(accuracy, precision, recall, spec)
 
 two_class_example %&gt;% 
   multi_met(truth = truth, estimate = predicted)</code></pre>
-<pre><code>## # A tibble: 4 x 3
-##   .metric   .estimator .estimate
-##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy  binary         0.838
-## 2 precision binary         0.819
-## 3 recall    binary         0.880
-## 4 spec      binary         0.793</code></pre>
+<pre><code>#&gt; # A tibble: 4 x 3
+#&gt;   .metric   .estimator .estimate
+#&gt;   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
+#&gt; 1 accuracy  binary         0.838
+#&gt; 2 precision binary         0.819
+#&gt; 3 recall    binary         0.880
+#&gt; 4 spec      binary         0.793</code></pre>
 <p>If we have data with multi-class it’ll we very helpful because we can have accuracy, precision, recall and the others metrics from our prediction. We’ll use the <code>hpc_cv</code> data to demonstrate, the data column columns for the true class (obs), the class prediction (pred) and columns for each class probability (columns VF, F, M, and L). Additionally, a column for the resample indicator is included.</p>
 <pre class="r"><code>head(hpc_cv)</code></pre>
-<pre><code>##   obs pred        VF          F           M            L Resample
-## 1  VF   VF 0.9136340 0.07786694 0.008479147 1.991225e-05   Fold01
-## 2  VF   VF 0.9380672 0.05710623 0.004816447 1.011557e-05   Fold01
-## 3  VF   VF 0.9473710 0.04946767 0.003156287 4.999849e-06   Fold01
-## 4  VF   VF 0.9289077 0.06528949 0.005787179 1.564496e-05   Fold01
-## 5  VF   VF 0.9418764 0.05430830 0.003808013 7.294581e-06   Fold01
-## 6  VF   VF 0.9510978 0.04618223 0.002716177 3.841455e-06   Fold01</code></pre>
+<pre><code>#&gt;   obs pred        VF          F           M            L Resample
+#&gt; 1  VF   VF 0.9136340 0.07786694 0.008479147 1.991225e-05   Fold01
+#&gt; 2  VF   VF 0.9380672 0.05710623 0.004816447 1.011557e-05   Fold01
+#&gt; 3  VF   VF 0.9473710 0.04946767 0.003156287 4.999849e-06   Fold01
+#&gt; 4  VF   VF 0.9289077 0.06528949 0.005787179 1.564496e-05   Fold01
+#&gt; 5  VF   VF 0.9418764 0.05430830 0.003808013 7.294581e-06   Fold01
+#&gt; 6  VF   VF 0.9510978 0.04618223 0.002716177 3.841455e-06   Fold01</code></pre>
 <p>Let’s check what’s class for <code>obs</code> and <code>pred</code>:</p>
 <pre class="r"><code>levels(hpc_cv$obs)</code></pre>
-<pre><code>## [1] &quot;VF&quot; &quot;F&quot;  &quot;M&quot;  &quot;L&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;VF&quot; &quot;F&quot;  &quot;M&quot;  &quot;L&quot;</code></pre>
 <pre class="r"><code>levels(hpc_cv$pred)</code></pre>
-<pre><code>## [1] &quot;VF&quot; &quot;F&quot;  &quot;M&quot;  &quot;L&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;VF&quot; &quot;F&quot;  &quot;M&quot;  &quot;L&quot;</code></pre>
 <p>To get the accuracy, we can use:</p>
 <pre class="r"><code># multi-class
 metrics(data = hpc_cv, truth = obs, estimate = pred)</code></pre>
-<pre><code>## # A tibble: 2 x 3
-##   .metric  .estimator .estimate
-##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy multiclass     0.709
-## 2 kap      multiclass     0.508</code></pre>
+<pre><code>#&gt; # A tibble: 2 x 3
+#&gt;   .metric  .estimator .estimate
+#&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+#&gt; 1 accuracy multiclass     0.709
+#&gt; 2 kap      multiclass     0.508</code></pre>
 <p>We can use the <code>multi_met</code> that we’ve created above, and we define the truth column and prediction column.</p>
 <pre class="r"><code>hpc_cv %&gt;% 
   multi_met(truth = obs, estimate = pred)</code></pre>
-<pre><code>## # A tibble: 4 x 3
-##   .metric   .estimator .estimate
-##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy  multiclass     0.709
-## 2 precision macro          0.631
-## 3 recall    macro          0.560
-## 4 spec      macro          0.879</code></pre>
+<pre><code>#&gt; # A tibble: 4 x 3
+#&gt;   .metric   .estimator .estimate
+#&gt;   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
+#&gt; 1 accuracy  multiclass     0.709
+#&gt; 2 precision macro          0.631
+#&gt; 3 recall    macro          0.560
+#&gt; 4 spec      macro          0.879</code></pre>
 </div>
 <div id="annotation" class="section level1">
 <h1>Annotation</h1>

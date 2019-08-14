@@ -22,6 +22,19 @@ But do we actually know how to explain "cause"?
 Do we jump to conclusion of causal relationship often too quickly?  
 Can association between factors that we call mathematically "correlation" tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn't mean it affects each other.
 
+```{r setup, include=FALSE}
+# clean up the environment
+rm(list = ls())
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+```
+
 ```{r echo=FALSE, fig.align='center'}
 knitr::include_graphics('/img/correlation.jpg')
 ```

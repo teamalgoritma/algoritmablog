@@ -20,6 +20,20 @@ linktitle: ''
 type: post
 ---
 
+
+```{r setup, include=FALSE}
+# clean up the environment
+rm(list = ls())
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+```
+
 # Take tweet from twitter using rtweet package
 
 Function used for take tweet from twitter is search_tweets(). There are several parameter usually used in that function: <br /> 

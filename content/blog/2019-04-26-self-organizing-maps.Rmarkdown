@@ -18,11 +18,18 @@ type: post
 ---
 
 ```{r setup, include=FALSE}
-library(rmdformats)
-knitr::opts_chunk$set(echo = TRUE)
+# clean up the environment
+rm(list = ls())
 
-library(dplyr)
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
 ```
+
 
 # Introduction SOM
 
@@ -73,6 +80,8 @@ On this article, we used `kohonen` package for making a SOM algorithm. Since we 
  
 ```{r, message=FALSE}
 library(kohonen)
+library(rmdformats)
+library(dplyr)
 ```
 
 In this article, we want to use `ads data` from xyz company that make an ads on Facebook. 
@@ -133,7 +142,7 @@ ads.model <- som(ads.train, ads.grid, rlen = 500, keep.data = TRUE,
 From that summary of `ads.model` we know that our som grid has 10x10 dimension. 
 
 # Unsupervised SOM
-## Visualize of SOM {.tabset .tabset-fade .tabset-pills}
+## Visualize of SOM
 
 Before visualize SOM model, let's explore list of SOM model. If we want to know that our data position in maps, we look it in `unit.classif`. Each values represent the node number to which this application belong. For example, in first value of application, 1 means that in first application has been claaified into 1 particular nodes. 
 ```{r, eval=FALSE}

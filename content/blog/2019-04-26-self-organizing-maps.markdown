@@ -19,6 +19,7 @@ type: post
 
 
 
+
 # Introduction SOM
 
 Self-Organizing Maps first introduce by Teuvo Kohonen. According to the `Wiki`, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.[^1] SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations.[^2] SOM also represent clustering concept by grouping the similar features together. So, SOM can use to cluster high-dimensional data sets by doing dimensionality reduction and visualize it using maps.
@@ -65,10 +66,8 @@ On this article, we used `kohonen` package for making a SOM algorithm. Since we 
 
 ```r
 library(kohonen)
-```
-
-```
-## Warning: package 'kohonen' was built under R version 3.5.3
+library(rmdformats)
+library(dplyr)
 ```
 
 In this article, we want to use `ads data` from xyz company that make an ads on Facebook. 
@@ -81,19 +80,19 @@ ads <- read.csv("data_input/KAG_conversion_data.csv") %>%
 ```
 
 ```
-## Observations: 1,143
-## Variables: 11
-## $ ad_id               <int> 708746, 708749, 708771, 708815, 708818, 70...
-## $ xyz_campaign_id     <int> 916, 916, 916, 916, 916, 916, 916, 916, 91...
-## $ fb_campaign_id      <int> 103916, 103917, 103920, 103928, 103928, 10...
-## $ age                 <fct> 30-34, 30-34, 30-34, 30-34, 30-34, 30-34, ...
-## $ gender              <fct> M, M, M, M, M, M, M, M, M, M, M, M, M, M, ...
-## $ interest            <int> 15, 16, 20, 28, 28, 29, 15, 16, 27, 28, 31...
-## $ Impressions         <int> 7350, 17861, 693, 4259, 4133, 1915, 15615,...
-## $ Clicks              <int> 1, 2, 0, 1, 1, 0, 3, 1, 1, 3, 0, 0, 0, 0, ...
-## $ Spent               <dbl> 1.43, 1.82, 0.00, 1.25, 1.29, 0.00, 4.77, ...
-## $ Total_Conversion    <int> 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-## $ Approved_Conversion <int> 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, ...
+#> Observations: 1,143
+#> Variables: 11
+#> $ ad_id               <int> 708746, 708749, 708771, 708815, 708818, 70...
+#> $ xyz_campaign_id     <int> 916, 916, 916, 916, 916, 916, 916, 916, 91...
+#> $ fb_campaign_id      <int> 103916, 103917, 103920, 103928, 103928, 10...
+#> $ age                 <fct> 30-34, 30-34, 30-34, 30-34, 30-34, 30-34, ...
+#> $ gender              <fct> M, M, M, M, M, M, M, M, M, M, M, M, M, M, ...
+#> $ interest            <int> 15, 16, 20, 28, 28, 29, 15, 16, 27, 28, 31...
+#> $ Impressions         <int> 7350, 17861, 693, 4259, 4133, 1915, 15615,...
+#> $ Clicks              <int> 1, 2, 0, 1, 1, 0, 3, 1, 1, 3, 0, 0, 0, 0, ...
+#> $ Spent               <dbl> 1.43, 1.82, 0.00, 1.25, 1.29, 0.00, 4.77, ...
+#> $ Total_Conversion    <int> 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+#> $ Approved_Conversion <int> 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, ...
 ```
 
 ```r
@@ -105,19 +104,19 @@ ads <- ads %>%
 ```
 
 ```
-## Observations: 1,143
-## Variables: 11
-## $ ad_id               <fct> 708746, 708749, 708771, 708815, 708818, 70...
-## $ xyz_campaign_id     <fct> 916, 916, 916, 916, 916, 916, 916, 916, 91...
-## $ fb_campaign_id      <fct> 103916, 103917, 103920, 103928, 103928, 10...
-## $ age                 <fct> 30-34, 30-34, 30-34, 30-34, 30-34, 30-34, ...
-## $ gender              <fct> M, M, M, M, M, M, M, M, M, M, M, M, M, M, ...
-## $ interest            <int> 15, 16, 20, 28, 28, 29, 15, 16, 27, 28, 31...
-## $ Impressions         <int> 7350, 17861, 693, 4259, 4133, 1915, 15615,...
-## $ Clicks              <int> 1, 2, 0, 1, 1, 0, 3, 1, 1, 3, 0, 0, 0, 0, ...
-## $ Spent               <dbl> 1.43, 1.82, 0.00, 1.25, 1.29, 0.00, 4.77, ...
-## $ Total_Conversion    <int> 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-## $ Approved_Conversion <int> 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, ...
+#> Observations: 1,143
+#> Variables: 11
+#> $ ad_id               <fct> 708746, 708749, 708771, 708815, 708818, 70...
+#> $ xyz_campaign_id     <fct> 916, 916, 916, 916, 916, 916, 916, 916, 91...
+#> $ fb_campaign_id      <fct> 103916, 103917, 103920, 103928, 103928, 10...
+#> $ age                 <fct> 30-34, 30-34, 30-34, 30-34, 30-34, 30-34, ...
+#> $ gender              <fct> M, M, M, M, M, M, M, M, M, M, M, M, M, M, ...
+#> $ interest            <int> 15, 16, 20, 28, 28, 29, 15, 16, 27, 28, 31...
+#> $ Impressions         <int> 7350, 17861, 693, 4259, 4133, 1915, 15615,...
+#> $ Clicks              <int> 1, 2, 0, 1, 1, 0, 3, 1, 1, 3, 0, 0, 0, 0, ...
+#> $ Spent               <dbl> 1.43, 1.82, 0.00, 1.25, 1.29, 0.00, 4.77, ...
+#> $ Total_Conversion    <int> 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+#> $ Approved_Conversion <int> 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, ...
 ```
 
 ```r
@@ -125,7 +124,7 @@ levels(ads$xyz_campaign_id)
 ```
 
 ```
-## [1] "916"  "936"  "1178"
+#> [1] "916"  "936"  "1178"
 ```
  - `ad_id` : an unique ID of each ad
  - `xyz_campaign_id` : an ID associated with each ad campaign of XYZ company
@@ -172,7 +171,7 @@ ads.model <- som(ads.train, ads.grid, rlen = 500, keep.data = TRUE,
 From that summary of `ads.model` we know that our som grid has 10x10 dimension. 
 
 # Unsupervised SOM
-## Visualize of SOM {.tabset .tabset-fade .tabset-pills}
+## Visualize of SOM
 
 Before visualize SOM model, let's explore list of SOM model. If we want to know that our data position in maps, we look it in `unit.classif`. Each values represent the node number to which this application belong. For example, in first value of application, 1 means that in first application has been claaified into 1 particular nodes. 
 
@@ -187,7 +186,7 @@ And we can see the classification of each nodes by codes plot and we can see the
 plot(ads.model, type = "mapping", pchs = 19, shape = "round")
 ```
 
-<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-8-1.png" width="960" />
+<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;" />
 
 
 
@@ -196,69 +195,69 @@ head(data.frame(ads.train), 20)
 ```
 
 ```
-##       interest Impressions     Clicks      Spent Total_Conversion
-## 1  -0.65918365  -0.5735416 -0.5693235 -0.5745204       -0.1908387
-## 2  -0.62208084  -0.5399346 -0.5517465 -0.5700329       -0.1908387
-## 3  -0.47366957  -0.5948262 -0.5869005 -0.5909745       -0.4138741
-## 4  -0.17684703  -0.5834245 -0.5693235 -0.5765915       -0.4138741
-## 5  -0.17684703  -0.5838274 -0.5693235 -0.5761313       -0.4138741
-## 6  -0.13974421  -0.5909191 -0.5869005 -0.5909745       -0.4138741
-## 7  -0.65918365  -0.5471158 -0.5341694 -0.5360891       -0.4138741
-## 8  -0.62208084  -0.5620281 -0.5693235 -0.5763614       -0.4138741
-## 9  -0.21394984  -0.5895122 -0.5693235 -0.5737149       -0.4138741
-## 10 -0.17684703  -0.5666610 -0.5341694 -0.5546144       -0.4138741
-## 11 -0.06553857  -0.5931284 -0.5869005 -0.5909745       -0.4138741
-## 12 -0.95600620  -0.5946919 -0.5869005 -0.5909745       -0.4138741
-## 13 -0.62208084  -0.5806812 -0.5869005 -0.5909745       -0.4138741
-## 14 -0.62208084  -0.5806717 -0.5869005 -0.5909745       -0.4138741
-## 15 -0.47366957  -0.5501405 -0.4638613 -0.4726890       -0.4138741
-## 16 -0.17684703  -0.5930740 -0.5869005 -0.5909745       -0.4138741
-## 17 -0.10264139  -0.5896721 -0.5693235 -0.5844158       -0.4138741
-## 18 -0.06553857  -0.5937679 -0.5869005 -0.5909745       -0.4138741
-## 19 -0.65918365  -0.5822479 -0.5693235 -0.5715287       -0.4138741
-## 20 -0.62208084  -0.5298151 -0.5165924 -0.5377000       -0.1908387
-##    Approved_Conversion    genderF   genderM      age1       age2
-## 1           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-## 2          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-## 3          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-## 4          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-## 5           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-## 6           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-## 7          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-## 8           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-## 9          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-## 10         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-## 11         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-## 12         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-## 13         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-## 14         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-## 15          0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-## 16          0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-## 17         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-## 18          0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-## 19         -0.54324835 -0.9643282 0.9643282 -0.770469  1.8988717
-## 20          0.03222233 -0.9643282 0.9643282 -0.770469  1.8988717
-##          age3       age4
-## 1  -0.4742188 -0.5410454
-## 2  -0.4742188 -0.5410454
-## 3  -0.4742188 -0.5410454
-## 4  -0.4742188 -0.5410454
-## 5  -0.4742188 -0.5410454
-## 6  -0.4742188 -0.5410454
-## 7  -0.4742188 -0.5410454
-## 8  -0.4742188 -0.5410454
-## 9  -0.4742188 -0.5410454
-## 10 -0.4742188 -0.5410454
-## 11 -0.4742188 -0.5410454
-## 12 -0.4742188 -0.5410454
-## 13 -0.4742188 -0.5410454
-## 14 -0.4742188 -0.5410454
-## 15 -0.4742188 -0.5410454
-## 16 -0.4742188 -0.5410454
-## 17 -0.4742188 -0.5410454
-## 18 -0.4742188 -0.5410454
-## 19 -0.4742188 -0.5410454
-## 20 -0.4742188 -0.5410454
+#>       interest Impressions     Clicks      Spent Total_Conversion
+#> 1  -0.65918365  -0.5735416 -0.5693235 -0.5745204       -0.1908387
+#> 2  -0.62208084  -0.5399346 -0.5517465 -0.5700329       -0.1908387
+#> 3  -0.47366957  -0.5948262 -0.5869005 -0.5909745       -0.4138741
+#> 4  -0.17684703  -0.5834245 -0.5693235 -0.5765915       -0.4138741
+#> 5  -0.17684703  -0.5838274 -0.5693235 -0.5761313       -0.4138741
+#> 6  -0.13974421  -0.5909191 -0.5869005 -0.5909745       -0.4138741
+#> 7  -0.65918365  -0.5471158 -0.5341694 -0.5360891       -0.4138741
+#> 8  -0.62208084  -0.5620281 -0.5693235 -0.5763614       -0.4138741
+#> 9  -0.21394984  -0.5895122 -0.5693235 -0.5737149       -0.4138741
+#> 10 -0.17684703  -0.5666610 -0.5341694 -0.5546144       -0.4138741
+#> 11 -0.06553857  -0.5931284 -0.5869005 -0.5909745       -0.4138741
+#> 12 -0.95600620  -0.5946919 -0.5869005 -0.5909745       -0.4138741
+#> 13 -0.62208084  -0.5806812 -0.5869005 -0.5909745       -0.4138741
+#> 14 -0.62208084  -0.5806717 -0.5869005 -0.5909745       -0.4138741
+#> 15 -0.47366957  -0.5501405 -0.4638613 -0.4726890       -0.4138741
+#> 16 -0.17684703  -0.5930740 -0.5869005 -0.5909745       -0.4138741
+#> 17 -0.10264139  -0.5896721 -0.5693235 -0.5844158       -0.4138741
+#> 18 -0.06553857  -0.5937679 -0.5869005 -0.5909745       -0.4138741
+#> 19 -0.65918365  -0.5822479 -0.5693235 -0.5715287       -0.4138741
+#> 20 -0.62208084  -0.5298151 -0.5165924 -0.5377000       -0.1908387
+#>    Approved_Conversion    genderF   genderM      age1       age2
+#> 1           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 2          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 3          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 4          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 5           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 6           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 7          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 8           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 9          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 10         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 11         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 12         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 13         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 14         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 15          0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 16          0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 17         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 18          0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
+#> 19         -0.54324835 -0.9643282 0.9643282 -0.770469  1.8988717
+#> 20          0.03222233 -0.9643282 0.9643282 -0.770469  1.8988717
+#>          age3       age4
+#> 1  -0.4742188 -0.5410454
+#> 2  -0.4742188 -0.5410454
+#> 3  -0.4742188 -0.5410454
+#> 4  -0.4742188 -0.5410454
+#> 5  -0.4742188 -0.5410454
+#> 6  -0.4742188 -0.5410454
+#> 7  -0.4742188 -0.5410454
+#> 8  -0.4742188 -0.5410454
+#> 9  -0.4742188 -0.5410454
+#> 10 -0.4742188 -0.5410454
+#> 11 -0.4742188 -0.5410454
+#> 12 -0.4742188 -0.5410454
+#> 13 -0.4742188 -0.5410454
+#> 14 -0.4742188 -0.5410454
+#> 15 -0.4742188 -0.5410454
+#> 16 -0.4742188 -0.5410454
+#> 17 -0.4742188 -0.5410454
+#> 18 -0.4742188 -0.5410454
+#> 19 -0.4742188 -0.5410454
+#> 20 -0.4742188 -0.5410454
 ```
 
 
@@ -266,7 +265,7 @@ head(data.frame(ads.train), 20)
 plot(ads.model, type = "codes", main = "Codes Plot", palette.name = rainbow)
 ```
 
-<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-10-1.png" width="1920" />
+<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-10-1.png" width="1920" style="display: block; margin: auto;" />
 
 At the first node, we can say that the input data entered on the first node is characterized from the major variable tat have gender M and age range of 30-34. For the second node there is characterized of major variables that have gender M and age range 30-34. Here we can conclude that the node will have neighbors that have similar characteristics to it, that is, like nodes 1 and 2 that are close together because they have gender M and an age range of 30-34 that same.  
 
@@ -278,7 +277,7 @@ As the SOM training iterations progress, the distance from each node’s weights
 plot(ads.model, type = "changes")
 ```
 
-<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" />
 
 ### Node Counts
 
@@ -289,7 +288,7 @@ The Kohonen packages allows us to visualise the count of how many samples are ma
 plot(ads.model, type = "counts")
 ```
 
-<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-12-1.png" width="1920" />
+<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-12-1.png" width="1920" style="display: block; margin: auto;" />
 
 Nodes that colored by red mean nodes that have the least number of input values, such as in the second nodes. If the color nodes are brighter indicating the nodes have a lot of input values, such as in the 31 nodes. For nodes that have gray colors, that means the nodes do not have input values at all.
 
@@ -302,7 +301,7 @@ If we want to see nodes that have the closest or farthest neighbours, we can plo
 plot(ads.model, type = "dist.neighbours")
 ```
 
-<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-13-1.png" width="1920" />
+<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-13-1.png" width="1920" style="display: block; margin: auto;" />
 
 
 ### Heatmaps
@@ -320,7 +319,7 @@ heatmap.som <- function(model){
 heatmap.som(ads.model)
 ```
 
-<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-1.png" width="1920" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-2.png" width="1920" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-3.png" width="1920" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-4.png" width="1920" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-5.png" width="1920" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-6.png" width="1920" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-7.png" width="1920" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-8.png" width="1920" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-9.png" width="1920" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-10.png" width="1920" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-11.png" width="1920" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-12.png" width="1920" />
+<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-1.png" width="1920" style="display: block; margin: auto;" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-2.png" width="1920" style="display: block; margin: auto;" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-3.png" width="1920" style="display: block; margin: auto;" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-4.png" width="1920" style="display: block; margin: auto;" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-5.png" width="1920" style="display: block; margin: auto;" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-6.png" width="1920" style="display: block; margin: auto;" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-7.png" width="1920" style="display: block; margin: auto;" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-8.png" width="1920" style="display: block; margin: auto;" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-9.png" width="1920" style="display: block; margin: auto;" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-10.png" width="1920" style="display: block; margin: auto;" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-11.png" width="1920" style="display: block; margin: auto;" /><img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-14-12.png" width="1920" style="display: block; margin: auto;" />
 
 From the heatmap that is formed, we can know which nodes have the characteristics of each variable whose value is high and the value is low.
 
@@ -332,26 +331,11 @@ Then we want to try to clustering every observation that we have without looking
 
 ```r
 library(factoextra)
-```
-
-```
-## Loading required package: ggplot2
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.5.3
-```
-
-```
-## Welcome! Related Books: `Practical Guide To Cluster Analysis in R` at https://goo.gl/13EFCZ
-```
-
-```r
 set.seed(100)
 fviz_nbclust(ads.model$codes[[1]], kmeans, method = "wss")
 ```
 
-<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-15-1.png" width="1920" />
+<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-15-1.png" width="1920" style="display: block; margin: auto;" />
 
 ```r
 set.seed(100)
@@ -367,7 +351,7 @@ plot(ads.model, type = "codes", bgcol = rainbow(9)[clust$cluster], main = "Clust
 add.cluster.boundaries(ads.model, clust$cluster)
 ```
 
-<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-16-1.png" width="1920" />
+<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-16-1.png" width="1920" style="display: block; margin: auto;" />
 At this part, to do the profiling of the clusters that we made, we do not need to look at the descriptive results of the cluster or look deeper into the data, we only need to look at the cluster map above.
 
 The characteristics for each cluster :
@@ -387,28 +371,28 @@ tail(ads.cluster, 10)
 ```
 
 ```
-##      xyz_campaign_id interest Impressions Clicks  Spent Total_Conversion
-## 1134            1178      104      558666    110 162.64               14
-## 1135            1178      105     1118200    235 333.75               11
-## 1136            1178      106      107100     23  33.71                1
-## 1137            1178      107      877769    160 232.59               13
-## 1138            1178      108      212508     33  47.69                4
-## 1139            1178      109     1129773    252 358.19               13
-## 1140            1178      110      637549    120 173.88                3
-## 1141            1178      111      151531     28  40.29                2
-## 1142            1178      113      790253    135 198.71                8
-## 1143            1178      114      513161    114 165.61                5
-##      Approved_Conversion genderF genderM age1 age2 age3 age4 cluster
-## 1134                   5       1       0    0    0    0    1       3
-## 1135                   4       1       0    0    0    0    1       3
-## 1136                   0       1       0    0    0    0    1       5
-## 1137                   4       1       0    0    0    0    1       3
-## 1138                   1       1       0    0    0    0    1       5
-## 1139                   2       1       0    0    0    0    1       3
-## 1140                   0       1       0    0    0    0    1       5
-## 1141                   0       1       0    0    0    0    1       5
-## 1142                   2       1       0    0    0    0    1       3
-## 1143                   2       1       0    0    0    0    1       3
+#>      xyz_campaign_id interest Impressions Clicks  Spent Total_Conversion
+#> 1134            1178      104      558666    110 162.64               14
+#> 1135            1178      105     1118200    235 333.75               11
+#> 1136            1178      106      107100     23  33.71                1
+#> 1137            1178      107      877769    160 232.59               13
+#> 1138            1178      108      212508     33  47.69                4
+#> 1139            1178      109     1129773    252 358.19               13
+#> 1140            1178      110      637549    120 173.88                3
+#> 1141            1178      111      151531     28  40.29                2
+#> 1142            1178      113      790253    135 198.71                8
+#> 1143            1178      114      513161    114 165.61                5
+#>      Approved_Conversion genderF genderM age1 age2 age3 age4 cluster
+#> 1134                   5       1       0    0    0    0    1       3
+#> 1135                   4       1       0    0    0    0    1       3
+#> 1136                   0       1       0    0    0    0    1       5
+#> 1137                   4       1       0    0    0    0    1       3
+#> 1138                   1       1       0    0    0    0    1       5
+#> 1139                   2       1       0    0    0    0    1       3
+#> 1140                   0       1       0    0    0    0    1       5
+#> 1141                   0       1       0    0    0    0    1       5
+#> 1142                   2       1       0    0    0    0    1       3
+#> 1143                   2       1       0    0    0    0    1       3
 ```
 
 
@@ -447,7 +431,7 @@ class <- xyf(trainX, classvec2classmat(train.label), ads.grid, rlen = 500)
 plot(class, type = "changes")
 ```
 
-<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" />
 ## Predict
 
 ```r
@@ -456,11 +440,11 @@ table(Predict = pred$predictions[[2]], Actual = test.label)
 ```
 
 ```
-##        Actual
-## Predict 916 936 1178
-##    916   14   0    0
-##    936    0 101    0
-##    1178   0   0  114
+#>        Actual
+#> Predict 916 936 1178
+#>    916   14   0    0
+#>    936    0 101    0
+#>    1178   0   0  114
 ```
 ## Cluster Boundaries
 
@@ -469,7 +453,7 @@ plot(ads.model, type = "codes", bgcol = rainbow(9)[clust$cluster], main = "Clust
 add.cluster.boundaries(ads.model, clust$cluster)
 ```
 
-<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-22-1.png" width="1920" />
+<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-22-1.png" width="1920" style="display: block; margin: auto;" />
 
 
 
@@ -481,7 +465,7 @@ plot(class, type = "codes", main = c("Unsupervised SOM", "Supervised SOM"),
 add.cluster.boundaries(class, c.class$cluster)
 ```
 
-<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-23-1.png" width="1920" />
+<img src="/blog/2019-04-26-self-organizing-maps_files/figure-html/unnamed-chunk-23-1.png" width="1920" style="display: block; margin: auto;" />
 
 From the results of SOM clustering using unsupervised and supervised, we can conclude that for xyz_campaign_id 916 more interested in the ads displayed are Male and Female aged 30-49 and they are interested in existing ads and then make payments after seeing the ads.
 For xyz_campaign_id 936, those who see the ads is Male and Female in ranging age from 30-39 and they are only interested in the ads that are displayed but to make payments after seeing the ads are small.

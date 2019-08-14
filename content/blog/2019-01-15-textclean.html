@@ -32,7 +32,6 @@ type: post
 argument lang = “en” <br />
 You can use this code below to try taking tweets from twitter by removing the command</p>
 <pre class="r"><code>library(rtweet)</code></pre>
-<pre><code>## Warning: package &#39;rtweet&#39; was built under R version 3.5.3</code></pre>
 <div id="additional-subset-content-text-from-tweets-and-save-that-to-csv-file" class="section level2">
 <h2>[Additional] Subset content text from tweets and save that to csv file</h2>
 <pre class="r"><code>tweets &lt;- read.csv(&quot;data_input/tweets.csv&quot;)</code></pre>
@@ -41,17 +40,9 @@ You can use this code below to try taking tweets from twitter by removing the co
 <div id="remove-duplicate-tweet-using-dplyr-package" class="section level1">
 <h1>Remove duplicate tweet using dplyr package</h1>
 <p>Function used for retain only unique/distinct rows from input data frame is distinct()</p>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>tweets_proces &lt;- tweets %&gt;%
+<pre class="r"><code>library(dplyr)
+
+tweets_proces &lt;- tweets %&gt;%
   distinct(text)</code></pre>
 </div>
 <div id="text-processing-cleaning-text-using-textclean-package" class="section level1">
@@ -61,413 +52,413 @@ You can use this code below to try taking tweets from twitter by removing the co
 <pre class="r"><code>library(textclean)
 
 check_text(tweets_proces$text)</code></pre>
-<pre><code>## 
-## =============
-## NON CHARACTER
-## =============
-## 
-## The text variable is not a character column (likely `factor`):
-## 
-## 
-## *Suggestion: Consider using `as.character` or `stringsAsFactors = FALSE` when reading in
-##              Also, consider rerunning `check_text` after fixing
-## 
-## 
-## ===========
-## CONTRACTION
-## ===========
-## 
-## The following observations contain contractions:
-## 
-## 34, 49, 51, 62, 74, 75, 94
-## 
-## This issue affected the following text:
-## 
-## 34: @comcastcares The data I sent was to help you tho. You guys don&#39;t seem the most competent and I don&#39;t blame ya. I sent you my findings to a big issue thats been going on with the entire east coast and how you can potentially fix it since the problem is on YOUR end.
-## 49: Yeah given what we now know about big data it&#39;s rational to consider everything from this angle https://t.co/iV9mBNA9E4
-## 51: @cmsTweets1 @alastairtanner @ninadicara @zoereed23 @katiedrax @JessicaArmitag6 4 While I agree that it&#39;s interesting research, I disagree with her saying that SCA will solve the problem of inference in big data. New methods are important when they do things old ones can&#39;t, but don&#39;t replace thinking. https://t.co/S7AZsyjEiv makes this arg better than me
-## 62: Great article highlighting the issue of misinterpreting #ArtificialIntelligence #AI. 80% of people don&#39;t trust #AI with money, how do we change these perceptions? @Forbes https://t.co/AjwyYr3CRp
-## 74: @idiotpoopface Ah yeah story bosses aren&#39;t a big trouble at all I&#39;ve been doing the data battles so that&#39;s where the finisher thing get&#39;s annoying. And yeah I was doing Zexion when I tweeted that so that&#39;s why I was so pissed off about it haha
-## 75: We&#39;re big fans of Google Data Studio https://t.co/D4Yx2O6cpT
-## 94: @twlldun @jamesrbuk @dlknowles @alexhern @PreachyPreach Next time they&#39;ll have better data on winnable seats etc, and a big campaigning advantage on most if not all fronts. So it&#39;s doable. But we don&#39;t know what state the country will be in, what state the NHS will be in, or who&#39;ll be leading the tories.
-## 
-## *Suggestion: Consider running `replace_contraction`
-## 
-## 
-## =====
-## DIGIT
-## =====
-## 
-## The following observations contain digits/numbers:
-## 
-## 1, 3, 5, 6, 7, 8, 11, 12, 15, 16...[truncated]...
-## 
-## This issue affected the following text:
-## 
-## 1: Looking to hire Big Data Scientists or Analysts? Publish your job posts on Datafloq, starting at $99 - https://t.co/P94dN1kWLt
-## ...[truncated]...
-## 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
-## Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
-## ...[truncated]...
-## 5: Welcome to big data and, AI (artificial intelligence) era https://t.co/BHtrD3lji2
-## ...[truncated]...
-## 6: And every AI company facing similar problems: we need All the big data! https://t.co/49ViEp37se
-## ...[truncated]...
-## 7: How to Fix Bias in Big Data and Artificial Intelligence - What can big corporations and https://t.co/jVG8gWXlEq #machine-learning
-## ...[truncated]...
-## 8: Democrats aren’t buying Big Tech’s latest privacy proposal - The Verge https://t.co/vbGxfHcr4s
-## ...[truncated]...
-## 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
-## ...[truncated]...
-## 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
-## ...[truncated]...
-## 15: &quot;Singapore Internet of Things (IoT) Market to 2023 - Rising Demand for Big Data Analytics and Cloud Services&quot; https://t.co/mECiySQNUa
-## ...[truncated]...
-## 16: #BigQ2019: Batman — rethink or die - https://t.co/GOSfjUBVQT Read more here: https://t.co/8bpyrxfHBZ #Batman… https://t.co/3ul551ywta
-## ...[truncated]...
-## 
-## *Suggestion: Consider using `replace_number`
-## 
-## 
-## ========
-## EMOTICON
-## ========
-## 
-## The following observations contain emoticons:
-## 
-## 1, 3, 5, 6, 7, 8, 10, 11, 12, 15...[truncated]...
-## 
-## This issue affected the following text:
-## 
-## 1: Looking to hire Big Data Scientists or Analysts? Publish your job posts on Datafloq, starting at $99 - https://t.co/P94dN1kWLt
-## ...[truncated]...
-## 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
-## Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
-## ...[truncated]...
-## 5: Welcome to big data and, AI (artificial intelligence) era https://t.co/BHtrD3lji2
-## ...[truncated]...
-## 6: And every AI company facing similar problems: we need All the big data! https://t.co/49ViEp37se
-## ...[truncated]...
-## 7: How to Fix Bias in Big Data and Artificial Intelligence - What can big corporations and https://t.co/jVG8gWXlEq #machine-learning
-## ...[truncated]...
-## 8: Democrats aren’t buying Big Tech’s latest privacy proposal - The Verge https://t.co/vbGxfHcr4s
-## ...[truncated]...
-## 10: In the kickoff meeting of my new project ExtremeEarth which will develop deep learning algorithms and big linked geospatial data systems using the Hopsworks data and AI platform, and apply it to two use cases: Food Security and Polar Operations. Follow @ExtremeEarth_EU for more!
-## ...[truncated]...
-## 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
-## ...[truncated]...
-## 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
-## ...[truncated]...
-## 15: &quot;Singapore Internet of Things (IoT) Market to 2023 - Rising Demand for Big Data Analytics and Cloud Services&quot; https://t.co/mECiySQNUa
-## ...[truncated]...
-## 
-## *Suggestion: Consider using `replace_emoticons`
-## 
-## 
-## ====
-## HASH
-## ====
-## 
-## The following observations contain Twitter style hash tags (e.g., #rstats):
-## 
-## 3, 7, 9, 11, 16, 18, 20, 22, 24, 25...[truncated]...
-## 
-## This issue affected the following text:
-## 
-## 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
-## Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
-## ...[truncated]...
-## 7: How to Fix Bias in Big Data and Artificial Intelligence - What can big corporations and https://t.co/jVG8gWXlEq #machine-learning
-## ...[truncated]...
-## 9: @Just_DaveA cybersecurity is a math battle powered by big data, analytics and automation, only works with good integration #CSSIE @PaloAltoNtwksUK
-## ...[truncated]...
-## 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
-## ...[truncated]...
-## 16: #BigQ2019: Batman — rethink or die - https://t.co/GOSfjUBVQT Read more here: https://t.co/8bpyrxfHBZ #Batman… https://t.co/3ul551ywta
-## ...[truncated]...
-## 18: Why Marketing Needs Quality Data before Batman and Predictive Analytics - https://t.co/41tdq79F8j #Batman
-## ...[truncated]...
-## 20: #BigData can give surprising advantages to #BusinessIntelligence and real-time analytics. #hadoop #BinaryInformatics
-## https://t.co/ZZRJXbtrZ2
-## ...[truncated]...
-## 22: However, #fintech +big data=major new risks. Exploitation of behavioural biases, governance(boards not understanding algorithms), more fin exclusion/ discrimination etc see FIC paper &#39;Fintech: beware of geeks bearing gifts?&#39; #MHPOpenBanking  https://t.co/A8gdoewrBa
-## ...[truncated]...
-## 24: Farfetch is looking for: Data Engineer - Big Data
-## https://t.co/QZy8KFlsiC #job
-## ...[truncated]...
-## 25: Big Data value for the public and private sector - Statistics Netherlands
-## Read more here: https://t.co/wNW3OmcxHJ
-## 
-## #BigData #DataScience #MachineLearning #DeepLearning #NLP #Robots #AI #IoT #Finserv
-## ...[truncated]...
-## 
-## *Suggestion: Consider using `qdapRegex::ex_tag&#39; (to capture meta-data) and/or replace_hash
-## 
-## 
-## ====
-## HTML
-## ====
-## 
-## The following observations contain HTML markup:
-## 
-## 3, 17, 38, 43, 55, 70, 78, 80, 87, 92...[truncated]...
-## 
-## This issue affected the following text:
-## 
-## 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
-## Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
-## ...[truncated]...
-## 17: The Amazing Ways Toyota Is Using Artificial Intelligence, Batman &amp;amp; Robots via @forbes https://t.co/8LvSaCZuXH
-## ...[truncated]...
-## 38: Come and join @bcsberkshire tonight @UTCReading for a fantastic talk on &#39;Reading Buses &amp;amp; Big Data&#39; given by @johnbickerton :-) #rdguk https://t.co/BYKeJUcpLE
-## ...[truncated]...
-## 43: @tanjorean @DeepakVisva @thewire_in @BJP4India @INCIndia Well the difference is that while @thewire_in pretends to be neutral unlike @OpIndia_com who are pretty vocal about leaning right. Also wire hire experts in hit jobs &amp;amp; do data manipulation for propaganda while latter is sort of crowd sourced. Big difference that !
-## ...[truncated]...
-## 55: From Amazon&lt;U+0001F449&gt; Central limit theory applies, so limited value from more (BIG) data and effort should go on understanding products (could also read patients) on longitudinal basis
-##  https://t.co/6fCZDjP4JB
-## ...[truncated]...
-## 70: A big thank you to the 1,961 Fellows who completed the 2018 RACS Workforce Census. The census provides support for RACS workforce advocacy across Australia &amp;amp; New Zealand.
-## 
-## While current census data is being analysed, review previous reports: https://t.co/F1O7Ta8O6G https://t.co/NUQij3TGDS
-## ...[truncated]...
-## 78: Thanks @kojouharov for the AI &amp;amp; Machine Learning Cheat Sheet  https://t.co/tYgkPBzoto ##ai #machinelearning #cheatsheets
-## ...[truncated]...
-## 80: talk on #cybersecurity this morning w/ ex-hacker &amp;amp; founder of @Pushfor John Safa who offers a view on how the digital and data landscape is changing: 
-## ‘I believe there will be a big hack this year of a cloud company.’
-## ‘The new black gold is data’ 
-## Fascinating (and a bit worrying) https://t.co/zIfIH3qzLm
-## ...[truncated]...
-## 87: Today you can learn about different implementations of AI semantics and Big Data technologies. Join the LIVE webinars: Smart Agriculture Innovation Hub @ 12 pm &lt;U+27A1&gt;&lt;U+FE0F&gt; https://t.co/bgkCEPHy4e #INSPIREhackathon #AI #BigData #OpenData  #hackathon #agriculture #smartagriculture https://t.co/vzvij0Kv1H
-## ...[truncated]...
-## 92: The Amazing Ways Toyota Is Using Artificial Intelligence, Big Data &amp;amp; Robots via @forbes https://t.co/lPIJAiTfSc
-## ...[truncated]...
-## 
-## *Suggestion: Consider running `replace_html`
-## 
-## 
-## ==========
-## INCOMPLETE
-## ==========
-## 
-## The following observations contain incomplete sentences (e.g., uses ending punctuation like &#39;...&#39;):
-## 
-## 11, 41, 44, 66, 82
-## 
-## This issue affected the following text:
-## 
-## 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
-## 41: I am looking for a key person to join our team to grow and enhance our unique and proprietary software tool in the area of big data and Google Analytics... #bigdata #googleanalytics #dataquality https://t.co/Z3u2ajrQWE
-## 44: Weirdly, this was the first thing that popped into my head when I saw this challenge start picking up momentum. Big Data paints with a broad AF brush... https://t.co/OJ6iExMsRK
-## 66: Have you ever wondered why you prefer (if you have an option) to go to a large (or a speciality) hospital for treatment of any disease that may require some special... https://t.co/2RYGMi50km
-## 82: New #job: Freelance Big Data Engineer Location: Frankfurt am Main .. https://t.co/3kSOcuPMv8 #jobs #hiring
-## 
-## *Suggestion: Consider using `replace_incomplete`
-## 
-## 
-## ==========
-## NO ENDMARK
-## ==========
-## 
-## The following observations contain elements with missing ending punctuation:
-## 
-## 1, 2, 3, 5, 6, 7, 8, 9, 11, 12...[truncated]...
-## 
-## This issue affected the following text:
-## 
-## 1: Looking to hire Big Data Scientists or Analysts? Publish your job posts on Datafloq, starting at $99 - https://t.co/P94dN1kWLt
-## ...[truncated]...
-## 2: “IoT and Big Data are two sides of the same coin but both need a clear purpose. Those offering connected devices should have a firm agenda on what data is collected, for what purposes it is used and for how long it is retained.” Sarah-Jayne Gratton (@grattongirl)
-## ...[truncated]...
-## 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
-## Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
-## ...[truncated]...
-## 5: Welcome to big data and, AI (artificial intelligence) era https://t.co/BHtrD3lji2
-## ...[truncated]...
-## 6: And every AI company facing similar problems: we need All the big data! https://t.co/49ViEp37se
-## ...[truncated]...
-## 7: How to Fix Bias in Big Data and Artificial Intelligence - What can big corporations and https://t.co/jVG8gWXlEq #machine-learning
-## ...[truncated]...
-## 8: Democrats aren’t buying Big Tech’s latest privacy proposal - The Verge https://t.co/vbGxfHcr4s
-## ...[truncated]...
-## 9: @Just_DaveA cybersecurity is a math battle powered by big data, analytics and automation, only works with good integration #CSSIE @PaloAltoNtwksUK
-## ...[truncated]...
-## 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
-## ...[truncated]...
-## 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
-## ...[truncated]...
-## 
-## *Suggestion: Consider cleaning the raw text or running `add_missing_endmark`
-## 
-## 
-## ====================
-## NO SPACE AFTER COMMA
-## ====================
-## 
-## The following observations contain commas with no space afterwards:
-## 
-## 3, 21, 47, 70
-## 
-## This issue affected the following text:
-## 
-## 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
-## Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
-## 21: None of the big data guys,like googs,zucks n jacks do these things for harmless fun.Big bucks always. https://t.co/o0Ox8Vn2xo
-## 47: Hi Everyone,
-## 
-## Here is my video series on &quot;Architecting Big Data Solutions on AWS&quot;. Please subscribe to my channel and the playlist. I have created 30+ videos on this topic and I will be adding more every week. This video series wil…https://t.co/f1rpMMFfAw https://t.co/Mmr2sLRVu5
-## 70: A big thank you to the 1,961 Fellows who completed the 2018 RACS Workforce Census. The census provides support for RACS workforce advocacy across Australia &amp;amp; New Zealand.
-## 
-## While current census data is being analysed, review previous reports: https://t.co/F1O7Ta8O6G https://t.co/NUQij3TGDS
-## 
-## *Suggestion: Consider running `add_comma_space`
-## 
-## 
-## =========
-## NON ASCII
-## =========
-## 
-## The following observations contain non-ASCII text:
-## 
-## 2, 3, 8, 12, 14, 16, 20, 23, 24, 25...[truncated]...
-## 
-## This issue affected the following text:
-## 
-## 2: “IoT and Big Data are two sides of the same coin but both need a clear purpose. Those offering connected devices should have a firm agenda on what data is collected, for what purposes it is used and for how long it is retained.” Sarah-Jayne Gratton (@grattongirl)
-## ...[truncated]...
-## 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
-## Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
-## ...[truncated]...
-## 8: Democrats aren’t buying Big Tech’s latest privacy proposal - The Verge https://t.co/vbGxfHcr4s
-## ...[truncated]...
-## 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
-## ...[truncated]...
-## 14: @osipuka @AdvBarryRoux Apparently, but no big corporate can ever be trusted, all the big networks are cutting data prices drastically this year. I pray and hope it’s true.
-## ...[truncated]...
-## 16: #BigQ2019: Batman — rethink or die - https://t.co/GOSfjUBVQT Read more here: https://t.co/8bpyrxfHBZ #Batman… https://t.co/3ul551ywta
-## ...[truncated]...
-## 20: #BigData can give surprising advantages to #BusinessIntelligence and real-time analytics. #hadoop #BinaryInformatics
-## https://t.co/ZZRJXbtrZ2
-## ...[truncated]...
-## 23: Big Data Engineer – Azure SQL or SQL Server: De Facto IT LtdEast London, South East https://t.co/pMo69ALjwP - Joblift Dover
-## ...[truncated]...
-## 24: Farfetch is looking for: Data Engineer - Big Data
-## https://t.co/QZy8KFlsiC #job
-## ...[truncated]...
-## 25: Big Data value for the public and private sector - Statistics Netherlands
-## Read more here: https://t.co/wNW3OmcxHJ
-## 
-## #BigData #DataScience #MachineLearning #DeepLearning #NLP #Robots #AI #IoT #Finserv
-## ...[truncated]...
-## 
-## *Suggestion: Consider running `replace_non_ascii`
-## 
-## 
-## ==================
-## NON SPLIT SENTENCE
-## ==================
-## 
-## The following observations contain unsplit sentences (more than one sentence per element):
-## 
-## 1, 2, 3, 4, 6, 10, 11, 12, 14, 20...[truncated]...
-## 
-## This issue affected the following text:
-## 
-## 1: Looking to hire Big Data Scientists or Analysts? Publish your job posts on Datafloq, starting at $99 - https://t.co/P94dN1kWLt
-## ...[truncated]...
-## 2: “IoT and Big Data are two sides of the same coin but both need a clear purpose. Those offering connected devices should have a firm agenda on what data is collected, for what purposes it is used and for how long it is retained.” Sarah-Jayne Gratton (@grattongirl)
-## ...[truncated]...
-## 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
-## Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
-## ...[truncated]...
-## 4: @SeanDhadialla Completely agree. It is the buzzword of the moment. In the same way IoT and Big Data have been talked about in the past few years as doing/assisting in agriculture in the past few years.
-## ...[truncated]...
-## 6: And every AI company facing similar problems: we need All the big data! https://t.co/49ViEp37se
-## ...[truncated]...
-## 10: In the kickoff meeting of my new project ExtremeEarth which will develop deep learning algorithms and big linked geospatial data systems using the Hopsworks data and AI platform, and apply it to two use cases: Food Security and Polar Operations. Follow @ExtremeEarth_EU for more!
-## ...[truncated]...
-## 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
-## ...[truncated]...
-## 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
-## ...[truncated]...
-## 14: @osipuka @AdvBarryRoux Apparently, but no big corporate can ever be trusted, all the big networks are cutting data prices drastically this year. I pray and hope it’s true.
-## ...[truncated]...
-## 20: #BigData can give surprising advantages to #BusinessIntelligence and real-time analytics. #hadoop #BinaryInformatics
-## https://t.co/ZZRJXbtrZ2
-## ...[truncated]...
-## 
-## *Suggestion: Consider running `textshape::split_sentence`
-## 
-## 
-## ===
-## TAG
-## ===
-## 
-## The following observations contain Twitter style handle tags (e.g., @trinker):
-## 
-## 2, 14, 17, 32, 34, 38, 43, 51, 52, 54...[truncated]...
-## 
-## This issue affected the following text:
-## 
-## 2: “IoT and Big Data are two sides of the same coin but both need a clear purpose. Those offering connected devices should have a firm agenda on what data is collected, for what purposes it is used and for how long it is retained.” Sarah-Jayne Gratton (@grattongirl)
-## ...[truncated]...
-## 14: @osipuka @AdvBarryRoux Apparently, but no big corporate can ever be trusted, all the big networks are cutting data prices drastically this year. I pray and hope it’s true.
-## ...[truncated]...
-## 17: The Amazing Ways Toyota Is Using Artificial Intelligence, Batman &amp;amp; Robots via @forbes https://t.co/8LvSaCZuXH
-## ...[truncated]...
-## 32: @j_bindra #SparkANewThink #TOSBchat A.1 The big trends for 2019 will be the 1)5G
-## 2)Power of 3 ;where these will be combined effectively Big Data+IOT+AI  - AR and VR and more evolved user cases for blockchain
-## 3) GDPR and data protection and ownership will become global
-## 4) Chat bots
-## ...[truncated]...
-## 34: @comcastcares The data I sent was to help you tho. You guys don&#39;t seem the most competent and I don&#39;t blame ya. I sent you my findings to a big issue thats been going on with the entire east coast and how you can potentially fix it since the problem is on YOUR end.
-## ...[truncated]...
-## 38: Come and join @bcsberkshire tonight @UTCReading for a fantastic talk on &#39;Reading Buses &amp;amp; Big Data&#39; given by @johnbickerton :-) #rdguk https://t.co/BYKeJUcpLE
-## ...[truncated]...
-## 43: @tanjorean @DeepakVisva @thewire_in @BJP4India @INCIndia Well the difference is that while @thewire_in pretends to be neutral unlike @OpIndia_com who are pretty vocal about leaning right. Also wire hire experts in hit jobs &amp;amp; do data manipulation for propaganda while latter is sort of crowd sourced. Big difference that !
-## ...[truncated]...
-## 51: @cmsTweets1 @alastairtanner @ninadicara @zoereed23 @katiedrax @JessicaArmitag6 4 While I agree that it&#39;s interesting research, I disagree with her saying that SCA will solve the problem of inference in big data. New methods are important when they do things old ones can&#39;t, but don&#39;t replace thinking. https://t.co/S7AZsyjEiv makes this arg better than me
-## ...[truncated]...
-## 52: @cmsTweets1 @alastairtanner @ninadicara @zoereed23 @katiedrax @JessicaArmitag6 3 e.g. many data scientists argue that ML will solve problems of CI etc in big data when they can do worse than logistic regression + good epidemiological thinking - bias, confounding, validity problems cannot be soled by data driven approaches.
-## ...[truncated]...
-## 54: The Open Group - Big Data Capabilities in OT-IT | @scoopit https://t.co/w58Xd2LMtq
-## ...[truncated]...
-## 
-## *Suggestion: Consider using `qdapRegex::ex_tag&#39; (to capture meta-data) and/or `replace_tag`
-## 
-## 
-## ===
-## URL
-## ===
-## 
-## The following observations contain URLs:
-## 
-## 1, 3, 5, 6, 7, 8, 11, 12, 15, 16...[truncated]...
-## 
-## This issue affected the following text:
-## 
-## 1: Looking to hire Big Data Scientists or Analysts? Publish your job posts on Datafloq, starting at $99 - https://t.co/P94dN1kWLt
-## ...[truncated]...
-## 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
-## Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
-## ...[truncated]...
-## 5: Welcome to big data and, AI (artificial intelligence) era https://t.co/BHtrD3lji2
-## ...[truncated]...
-## 6: And every AI company facing similar problems: we need All the big data! https://t.co/49ViEp37se
-## ...[truncated]...
-## 7: How to Fix Bias in Big Data and Artificial Intelligence - What can big corporations and https://t.co/jVG8gWXlEq #machine-learning
-## ...[truncated]...
-## 8: Democrats aren’t buying Big Tech’s latest privacy proposal - The Verge https://t.co/vbGxfHcr4s
-## ...[truncated]...
-## 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
-## ...[truncated]...
-## 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
-## ...[truncated]...
-## 15: &quot;Singapore Internet of Things (IoT) Market to 2023 - Rising Demand for Big Data Analytics and Cloud Services&quot; https://t.co/mECiySQNUa
-## ...[truncated]...
-## 16: #BigQ2019: Batman — rethink or die - https://t.co/GOSfjUBVQT Read more here: https://t.co/8bpyrxfHBZ #Batman… https://t.co/3ul551ywta
-## ...[truncated]...
-## 
-## *Suggestion: Consider using `replace_url`</code></pre>
+<pre><code>#&gt; 
+#&gt; =============
+#&gt; NON CHARACTER
+#&gt; =============
+#&gt; 
+#&gt; The text variable is not a character column (likely `factor`):
+#&gt; 
+#&gt; 
+#&gt; *Suggestion: Consider using `as.character` or `stringsAsFactors = FALSE` when reading in
+#&gt;              Also, consider rerunning `check_text` after fixing
+#&gt; 
+#&gt; 
+#&gt; ===========
+#&gt; CONTRACTION
+#&gt; ===========
+#&gt; 
+#&gt; The following observations contain contractions:
+#&gt; 
+#&gt; 34, 49, 51, 62, 74, 75, 94
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 34: @comcastcares The data I sent was to help you tho. You guys don&#39;t seem the most competent and I don&#39;t blame ya. I sent you my findings to a big issue thats been going on with the entire east coast and how you can potentially fix it since the problem is on YOUR end.
+#&gt; 49: Yeah given what we now know about big data it&#39;s rational to consider everything from this angle https://t.co/iV9mBNA9E4
+#&gt; 51: @cmsTweets1 @alastairtanner @ninadicara @zoereed23 @katiedrax @JessicaArmitag6 4 While I agree that it&#39;s interesting research, I disagree with her saying that SCA will solve the problem of inference in big data. New methods are important when they do things old ones can&#39;t, but don&#39;t replace thinking. https://t.co/S7AZsyjEiv makes this arg better than me
+#&gt; 62: Great article highlighting the issue of misinterpreting #ArtificialIntelligence #AI. 80% of people don&#39;t trust #AI with money, how do we change these perceptions? @Forbes https://t.co/AjwyYr3CRp
+#&gt; 74: @idiotpoopface Ah yeah story bosses aren&#39;t a big trouble at all I&#39;ve been doing the data battles so that&#39;s where the finisher thing get&#39;s annoying. And yeah I was doing Zexion when I tweeted that so that&#39;s why I was so pissed off about it haha
+#&gt; 75: We&#39;re big fans of Google Data Studio https://t.co/D4Yx2O6cpT
+#&gt; 94: @twlldun @jamesrbuk @dlknowles @alexhern @PreachyPreach Next time they&#39;ll have better data on winnable seats etc, and a big campaigning advantage on most if not all fronts. So it&#39;s doable. But we don&#39;t know what state the country will be in, what state the NHS will be in, or who&#39;ll be leading the tories.
+#&gt; 
+#&gt; *Suggestion: Consider running `replace_contraction`
+#&gt; 
+#&gt; 
+#&gt; =====
+#&gt; DIGIT
+#&gt; =====
+#&gt; 
+#&gt; The following observations contain digits/numbers:
+#&gt; 
+#&gt; 1, 3, 5, 6, 7, 8, 11, 12, 15, 16...[truncated]...
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 1: Looking to hire Big Data Scientists or Analysts? Publish your job posts on Datafloq, starting at $99 - https://t.co/P94dN1kWLt
+#&gt; ...[truncated]...
+#&gt; 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
+#&gt; Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
+#&gt; ...[truncated]...
+#&gt; 5: Welcome to big data and, AI (artificial intelligence) era https://t.co/BHtrD3lji2
+#&gt; ...[truncated]...
+#&gt; 6: And every AI company facing similar problems: we need All the big data! https://t.co/49ViEp37se
+#&gt; ...[truncated]...
+#&gt; 7: How to Fix Bias in Big Data and Artificial Intelligence - What can big corporations and https://t.co/jVG8gWXlEq #machine-learning
+#&gt; ...[truncated]...
+#&gt; 8: Democrats aren’t buying Big Tech’s latest privacy proposal - The Verge https://t.co/vbGxfHcr4s
+#&gt; ...[truncated]...
+#&gt; 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
+#&gt; ...[truncated]...
+#&gt; 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
+#&gt; ...[truncated]...
+#&gt; 15: &quot;Singapore Internet of Things (IoT) Market to 2023 - Rising Demand for Big Data Analytics and Cloud Services&quot; https://t.co/mECiySQNUa
+#&gt; ...[truncated]...
+#&gt; 16: #BigQ2019: Batman — rethink or die - https://t.co/GOSfjUBVQT Read more here: https://t.co/8bpyrxfHBZ #Batman… https://t.co/3ul551ywta
+#&gt; ...[truncated]...
+#&gt; 
+#&gt; *Suggestion: Consider using `replace_number`
+#&gt; 
+#&gt; 
+#&gt; ========
+#&gt; EMOTICON
+#&gt; ========
+#&gt; 
+#&gt; The following observations contain emoticons:
+#&gt; 
+#&gt; 1, 3, 5, 6, 7, 8, 10, 11, 12, 15...[truncated]...
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 1: Looking to hire Big Data Scientists or Analysts? Publish your job posts on Datafloq, starting at $99 - https://t.co/P94dN1kWLt
+#&gt; ...[truncated]...
+#&gt; 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
+#&gt; Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
+#&gt; ...[truncated]...
+#&gt; 5: Welcome to big data and, AI (artificial intelligence) era https://t.co/BHtrD3lji2
+#&gt; ...[truncated]...
+#&gt; 6: And every AI company facing similar problems: we need All the big data! https://t.co/49ViEp37se
+#&gt; ...[truncated]...
+#&gt; 7: How to Fix Bias in Big Data and Artificial Intelligence - What can big corporations and https://t.co/jVG8gWXlEq #machine-learning
+#&gt; ...[truncated]...
+#&gt; 8: Democrats aren’t buying Big Tech’s latest privacy proposal - The Verge https://t.co/vbGxfHcr4s
+#&gt; ...[truncated]...
+#&gt; 10: In the kickoff meeting of my new project ExtremeEarth which will develop deep learning algorithms and big linked geospatial data systems using the Hopsworks data and AI platform, and apply it to two use cases: Food Security and Polar Operations. Follow @ExtremeEarth_EU for more!
+#&gt; ...[truncated]...
+#&gt; 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
+#&gt; ...[truncated]...
+#&gt; 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
+#&gt; ...[truncated]...
+#&gt; 15: &quot;Singapore Internet of Things (IoT) Market to 2023 - Rising Demand for Big Data Analytics and Cloud Services&quot; https://t.co/mECiySQNUa
+#&gt; ...[truncated]...
+#&gt; 
+#&gt; *Suggestion: Consider using `replace_emoticons`
+#&gt; 
+#&gt; 
+#&gt; ====
+#&gt; HASH
+#&gt; ====
+#&gt; 
+#&gt; The following observations contain Twitter style hash tags (e.g., #rstats):
+#&gt; 
+#&gt; 3, 7, 9, 11, 16, 18, 20, 22, 24, 25...[truncated]...
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
+#&gt; Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
+#&gt; ...[truncated]...
+#&gt; 7: How to Fix Bias in Big Data and Artificial Intelligence - What can big corporations and https://t.co/jVG8gWXlEq #machine-learning
+#&gt; ...[truncated]...
+#&gt; 9: @Just_DaveA cybersecurity is a math battle powered by big data, analytics and automation, only works with good integration #CSSIE @PaloAltoNtwksUK
+#&gt; ...[truncated]...
+#&gt; 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
+#&gt; ...[truncated]...
+#&gt; 16: #BigQ2019: Batman — rethink or die - https://t.co/GOSfjUBVQT Read more here: https://t.co/8bpyrxfHBZ #Batman… https://t.co/3ul551ywta
+#&gt; ...[truncated]...
+#&gt; 18: Why Marketing Needs Quality Data before Batman and Predictive Analytics - https://t.co/41tdq79F8j #Batman
+#&gt; ...[truncated]...
+#&gt; 20: #BigData can give surprising advantages to #BusinessIntelligence and real-time analytics. #hadoop #BinaryInformatics
+#&gt; https://t.co/ZZRJXbtrZ2
+#&gt; ...[truncated]...
+#&gt; 22: However, #fintech +big data=major new risks. Exploitation of behavioural biases, governance(boards not understanding algorithms), more fin exclusion/ discrimination etc see FIC paper &#39;Fintech: beware of geeks bearing gifts?&#39; #MHPOpenBanking  https://t.co/A8gdoewrBa
+#&gt; ...[truncated]...
+#&gt; 24: Farfetch is looking for: Data Engineer - Big Data
+#&gt; https://t.co/QZy8KFlsiC #job
+#&gt; ...[truncated]...
+#&gt; 25: Big Data value for the public and private sector - Statistics Netherlands
+#&gt; Read more here: https://t.co/wNW3OmcxHJ
+#&gt; 
+#&gt; #BigData #DataScience #MachineLearning #DeepLearning #NLP #Robots #AI #IoT #Finserv
+#&gt; ...[truncated]...
+#&gt; 
+#&gt; *Suggestion: Consider using `qdapRegex::ex_tag&#39; (to capture meta-data) and/or replace_hash
+#&gt; 
+#&gt; 
+#&gt; ====
+#&gt; HTML
+#&gt; ====
+#&gt; 
+#&gt; The following observations contain HTML markup:
+#&gt; 
+#&gt; 3, 17, 38, 43, 55, 70, 78, 80, 87, 92...[truncated]...
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
+#&gt; Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
+#&gt; ...[truncated]...
+#&gt; 17: The Amazing Ways Toyota Is Using Artificial Intelligence, Batman &amp;amp; Robots via @forbes https://t.co/8LvSaCZuXH
+#&gt; ...[truncated]...
+#&gt; 38: Come and join @bcsberkshire tonight @UTCReading for a fantastic talk on &#39;Reading Buses &amp;amp; Big Data&#39; given by @johnbickerton :-) #rdguk https://t.co/BYKeJUcpLE
+#&gt; ...[truncated]...
+#&gt; 43: @tanjorean @DeepakVisva @thewire_in @BJP4India @INCIndia Well the difference is that while @thewire_in pretends to be neutral unlike @OpIndia_com who are pretty vocal about leaning right. Also wire hire experts in hit jobs &amp;amp; do data manipulation for propaganda while latter is sort of crowd sourced. Big difference that !
+#&gt; ...[truncated]...
+#&gt; 55: From Amazon&lt;U+0001F449&gt; Central limit theory applies, so limited value from more (BIG) data and effort should go on understanding products (could also read patients) on longitudinal basis
+#&gt;  https://t.co/6fCZDjP4JB
+#&gt; ...[truncated]...
+#&gt; 70: A big thank you to the 1,961 Fellows who completed the 2018 RACS Workforce Census. The census provides support for RACS workforce advocacy across Australia &amp;amp; New Zealand.
+#&gt; 
+#&gt; While current census data is being analysed, review previous reports: https://t.co/F1O7Ta8O6G https://t.co/NUQij3TGDS
+#&gt; ...[truncated]...
+#&gt; 78: Thanks @kojouharov for the AI &amp;amp; Machine Learning Cheat Sheet  https://t.co/tYgkPBzoto ##ai #machinelearning #cheatsheets
+#&gt; ...[truncated]...
+#&gt; 80: talk on #cybersecurity this morning w/ ex-hacker &amp;amp; founder of @Pushfor John Safa who offers a view on how the digital and data landscape is changing: 
+#&gt; ‘I believe there will be a big hack this year of a cloud company.’
+#&gt; ‘The new black gold is data’ 
+#&gt; Fascinating (and a bit worrying) https://t.co/zIfIH3qzLm
+#&gt; ...[truncated]...
+#&gt; 87: Today you can learn about different implementations of AI semantics and Big Data technologies. Join the LIVE webinars: Smart Agriculture Innovation Hub @ 12 pm &lt;U+27A1&gt;&lt;U+FE0F&gt; https://t.co/bgkCEPHy4e #INSPIREhackathon #AI #BigData #OpenData  #hackathon #agriculture #smartagriculture https://t.co/vzvij0Kv1H
+#&gt; ...[truncated]...
+#&gt; 92: The Amazing Ways Toyota Is Using Artificial Intelligence, Big Data &amp;amp; Robots via @forbes https://t.co/lPIJAiTfSc
+#&gt; ...[truncated]...
+#&gt; 
+#&gt; *Suggestion: Consider running `replace_html`
+#&gt; 
+#&gt; 
+#&gt; ==========
+#&gt; INCOMPLETE
+#&gt; ==========
+#&gt; 
+#&gt; The following observations contain incomplete sentences (e.g., uses ending punctuation like &#39;...&#39;):
+#&gt; 
+#&gt; 11, 41, 44, 66, 82
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
+#&gt; 41: I am looking for a key person to join our team to grow and enhance our unique and proprietary software tool in the area of big data and Google Analytics... #bigdata #googleanalytics #dataquality https://t.co/Z3u2ajrQWE
+#&gt; 44: Weirdly, this was the first thing that popped into my head when I saw this challenge start picking up momentum. Big Data paints with a broad AF brush... https://t.co/OJ6iExMsRK
+#&gt; 66: Have you ever wondered why you prefer (if you have an option) to go to a large (or a speciality) hospital for treatment of any disease that may require some special... https://t.co/2RYGMi50km
+#&gt; 82: New #job: Freelance Big Data Engineer Location: Frankfurt am Main .. https://t.co/3kSOcuPMv8 #jobs #hiring
+#&gt; 
+#&gt; *Suggestion: Consider using `replace_incomplete`
+#&gt; 
+#&gt; 
+#&gt; ==========
+#&gt; NO ENDMARK
+#&gt; ==========
+#&gt; 
+#&gt; The following observations contain elements with missing ending punctuation:
+#&gt; 
+#&gt; 1, 2, 3, 5, 6, 7, 8, 9, 11, 12...[truncated]...
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 1: Looking to hire Big Data Scientists or Analysts? Publish your job posts on Datafloq, starting at $99 - https://t.co/P94dN1kWLt
+#&gt; ...[truncated]...
+#&gt; 2: “IoT and Big Data are two sides of the same coin but both need a clear purpose. Those offering connected devices should have a firm agenda on what data is collected, for what purposes it is used and for how long it is retained.” Sarah-Jayne Gratton (@grattongirl)
+#&gt; ...[truncated]...
+#&gt; 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
+#&gt; Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
+#&gt; ...[truncated]...
+#&gt; 5: Welcome to big data and, AI (artificial intelligence) era https://t.co/BHtrD3lji2
+#&gt; ...[truncated]...
+#&gt; 6: And every AI company facing similar problems: we need All the big data! https://t.co/49ViEp37se
+#&gt; ...[truncated]...
+#&gt; 7: How to Fix Bias in Big Data and Artificial Intelligence - What can big corporations and https://t.co/jVG8gWXlEq #machine-learning
+#&gt; ...[truncated]...
+#&gt; 8: Democrats aren’t buying Big Tech’s latest privacy proposal - The Verge https://t.co/vbGxfHcr4s
+#&gt; ...[truncated]...
+#&gt; 9: @Just_DaveA cybersecurity is a math battle powered by big data, analytics and automation, only works with good integration #CSSIE @PaloAltoNtwksUK
+#&gt; ...[truncated]...
+#&gt; 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
+#&gt; ...[truncated]...
+#&gt; 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
+#&gt; ...[truncated]...
+#&gt; 
+#&gt; *Suggestion: Consider cleaning the raw text or running `add_missing_endmark`
+#&gt; 
+#&gt; 
+#&gt; ====================
+#&gt; NO SPACE AFTER COMMA
+#&gt; ====================
+#&gt; 
+#&gt; The following observations contain commas with no space afterwards:
+#&gt; 
+#&gt; 3, 21, 47, 70
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
+#&gt; Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
+#&gt; 21: None of the big data guys,like googs,zucks n jacks do these things for harmless fun.Big bucks always. https://t.co/o0Ox8Vn2xo
+#&gt; 47: Hi Everyone,
+#&gt; 
+#&gt; Here is my video series on &quot;Architecting Big Data Solutions on AWS&quot;. Please subscribe to my channel and the playlist. I have created 30+ videos on this topic and I will be adding more every week. This video series wil…https://t.co/f1rpMMFfAw https://t.co/Mmr2sLRVu5
+#&gt; 70: A big thank you to the 1,961 Fellows who completed the 2018 RACS Workforce Census. The census provides support for RACS workforce advocacy across Australia &amp;amp; New Zealand.
+#&gt; 
+#&gt; While current census data is being analysed, review previous reports: https://t.co/F1O7Ta8O6G https://t.co/NUQij3TGDS
+#&gt; 
+#&gt; *Suggestion: Consider running `add_comma_space`
+#&gt; 
+#&gt; 
+#&gt; =========
+#&gt; NON ASCII
+#&gt; =========
+#&gt; 
+#&gt; The following observations contain non-ASCII text:
+#&gt; 
+#&gt; 2, 3, 8, 12, 14, 16, 20, 23, 24, 25...[truncated]...
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 2: “IoT and Big Data are two sides of the same coin but both need a clear purpose. Those offering connected devices should have a firm agenda on what data is collected, for what purposes it is used and for how long it is retained.” Sarah-Jayne Gratton (@grattongirl)
+#&gt; ...[truncated]...
+#&gt; 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
+#&gt; Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
+#&gt; ...[truncated]...
+#&gt; 8: Democrats aren’t buying Big Tech’s latest privacy proposal - The Verge https://t.co/vbGxfHcr4s
+#&gt; ...[truncated]...
+#&gt; 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
+#&gt; ...[truncated]...
+#&gt; 14: @osipuka @AdvBarryRoux Apparently, but no big corporate can ever be trusted, all the big networks are cutting data prices drastically this year. I pray and hope it’s true.
+#&gt; ...[truncated]...
+#&gt; 16: #BigQ2019: Batman — rethink or die - https://t.co/GOSfjUBVQT Read more here: https://t.co/8bpyrxfHBZ #Batman… https://t.co/3ul551ywta
+#&gt; ...[truncated]...
+#&gt; 20: #BigData can give surprising advantages to #BusinessIntelligence and real-time analytics. #hadoop #BinaryInformatics
+#&gt; https://t.co/ZZRJXbtrZ2
+#&gt; ...[truncated]...
+#&gt; 23: Big Data Engineer – Azure SQL or SQL Server: De Facto IT LtdEast London, South East https://t.co/pMo69ALjwP - Joblift Dover
+#&gt; ...[truncated]...
+#&gt; 24: Farfetch is looking for: Data Engineer - Big Data
+#&gt; https://t.co/QZy8KFlsiC #job
+#&gt; ...[truncated]...
+#&gt; 25: Big Data value for the public and private sector - Statistics Netherlands
+#&gt; Read more here: https://t.co/wNW3OmcxHJ
+#&gt; 
+#&gt; #BigData #DataScience #MachineLearning #DeepLearning #NLP #Robots #AI #IoT #Finserv
+#&gt; ...[truncated]...
+#&gt; 
+#&gt; *Suggestion: Consider running `replace_non_ascii`
+#&gt; 
+#&gt; 
+#&gt; ==================
+#&gt; NON SPLIT SENTENCE
+#&gt; ==================
+#&gt; 
+#&gt; The following observations contain unsplit sentences (more than one sentence per element):
+#&gt; 
+#&gt; 1, 2, 3, 4, 6, 10, 11, 12, 14, 20...[truncated]...
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 1: Looking to hire Big Data Scientists or Analysts? Publish your job posts on Datafloq, starting at $99 - https://t.co/P94dN1kWLt
+#&gt; ...[truncated]...
+#&gt; 2: “IoT and Big Data are two sides of the same coin but both need a clear purpose. Those offering connected devices should have a firm agenda on what data is collected, for what purposes it is used and for how long it is retained.” Sarah-Jayne Gratton (@grattongirl)
+#&gt; ...[truncated]...
+#&gt; 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
+#&gt; Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
+#&gt; ...[truncated]...
+#&gt; 4: @SeanDhadialla Completely agree. It is the buzzword of the moment. In the same way IoT and Big Data have been talked about in the past few years as doing/assisting in agriculture in the past few years.
+#&gt; ...[truncated]...
+#&gt; 6: And every AI company facing similar problems: we need All the big data! https://t.co/49ViEp37se
+#&gt; ...[truncated]...
+#&gt; 10: In the kickoff meeting of my new project ExtremeEarth which will develop deep learning algorithms and big linked geospatial data systems using the Hopsworks data and AI platform, and apply it to two use cases: Food Security and Polar Operations. Follow @ExtremeEarth_EU for more!
+#&gt; ...[truncated]...
+#&gt; 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
+#&gt; ...[truncated]...
+#&gt; 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
+#&gt; ...[truncated]...
+#&gt; 14: @osipuka @AdvBarryRoux Apparently, but no big corporate can ever be trusted, all the big networks are cutting data prices drastically this year. I pray and hope it’s true.
+#&gt; ...[truncated]...
+#&gt; 20: #BigData can give surprising advantages to #BusinessIntelligence and real-time analytics. #hadoop #BinaryInformatics
+#&gt; https://t.co/ZZRJXbtrZ2
+#&gt; ...[truncated]...
+#&gt; 
+#&gt; *Suggestion: Consider running `textshape::split_sentence`
+#&gt; 
+#&gt; 
+#&gt; ===
+#&gt; TAG
+#&gt; ===
+#&gt; 
+#&gt; The following observations contain Twitter style handle tags (e.g., @trinker):
+#&gt; 
+#&gt; 2, 14, 17, 32, 34, 38, 43, 51, 52, 54...[truncated]...
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 2: “IoT and Big Data are two sides of the same coin but both need a clear purpose. Those offering connected devices should have a firm agenda on what data is collected, for what purposes it is used and for how long it is retained.” Sarah-Jayne Gratton (@grattongirl)
+#&gt; ...[truncated]...
+#&gt; 14: @osipuka @AdvBarryRoux Apparently, but no big corporate can ever be trusted, all the big networks are cutting data prices drastically this year. I pray and hope it’s true.
+#&gt; ...[truncated]...
+#&gt; 17: The Amazing Ways Toyota Is Using Artificial Intelligence, Batman &amp;amp; Robots via @forbes https://t.co/8LvSaCZuXH
+#&gt; ...[truncated]...
+#&gt; 32: @j_bindra #SparkANewThink #TOSBchat A.1 The big trends for 2019 will be the 1)5G
+#&gt; 2)Power of 3 ;where these will be combined effectively Big Data+IOT+AI  - AR and VR and more evolved user cases for blockchain
+#&gt; 3) GDPR and data protection and ownership will become global
+#&gt; 4) Chat bots
+#&gt; ...[truncated]...
+#&gt; 34: @comcastcares The data I sent was to help you tho. You guys don&#39;t seem the most competent and I don&#39;t blame ya. I sent you my findings to a big issue thats been going on with the entire east coast and how you can potentially fix it since the problem is on YOUR end.
+#&gt; ...[truncated]...
+#&gt; 38: Come and join @bcsberkshire tonight @UTCReading for a fantastic talk on &#39;Reading Buses &amp;amp; Big Data&#39; given by @johnbickerton :-) #rdguk https://t.co/BYKeJUcpLE
+#&gt; ...[truncated]...
+#&gt; 43: @tanjorean @DeepakVisva @thewire_in @BJP4India @INCIndia Well the difference is that while @thewire_in pretends to be neutral unlike @OpIndia_com who are pretty vocal about leaning right. Also wire hire experts in hit jobs &amp;amp; do data manipulation for propaganda while latter is sort of crowd sourced. Big difference that !
+#&gt; ...[truncated]...
+#&gt; 51: @cmsTweets1 @alastairtanner @ninadicara @zoereed23 @katiedrax @JessicaArmitag6 4 While I agree that it&#39;s interesting research, I disagree with her saying that SCA will solve the problem of inference in big data. New methods are important when they do things old ones can&#39;t, but don&#39;t replace thinking. https://t.co/S7AZsyjEiv makes this arg better than me
+#&gt; ...[truncated]...
+#&gt; 52: @cmsTweets1 @alastairtanner @ninadicara @zoereed23 @katiedrax @JessicaArmitag6 3 e.g. many data scientists argue that ML will solve problems of CI etc in big data when they can do worse than logistic regression + good epidemiological thinking - bias, confounding, validity problems cannot be soled by data driven approaches.
+#&gt; ...[truncated]...
+#&gt; 54: The Open Group - Big Data Capabilities in OT-IT | @scoopit https://t.co/w58Xd2LMtq
+#&gt; ...[truncated]...
+#&gt; 
+#&gt; *Suggestion: Consider using `qdapRegex::ex_tag&#39; (to capture meta-data) and/or `replace_tag`
+#&gt; 
+#&gt; 
+#&gt; ===
+#&gt; URL
+#&gt; ===
+#&gt; 
+#&gt; The following observations contain URLs:
+#&gt; 
+#&gt; 1, 3, 5, 6, 7, 8, 11, 12, 15, 16...[truncated]...
+#&gt; 
+#&gt; This issue affected the following text:
+#&gt; 
+#&gt; 1: Looking to hire Big Data Scientists or Analysts? Publish your job posts on Datafloq, starting at $99 - https://t.co/P94dN1kWLt
+#&gt; ...[truncated]...
+#&gt; 3: #IIMA programme,&#39;Big Data Analytics&#39; will help the participants to understand various issues, challenges &amp;amp; best practices in implementing #bigdata #analytic solutions in organisations.
+#&gt; Application closing: February 4, 2019. Learn more here: https://t.co/iOqc3mDqrY https://t.co/wXpf1ATdgc
+#&gt; ...[truncated]...
+#&gt; 5: Welcome to big data and, AI (artificial intelligence) era https://t.co/BHtrD3lji2
+#&gt; ...[truncated]...
+#&gt; 6: And every AI company facing similar problems: we need All the big data! https://t.co/49ViEp37se
+#&gt; ...[truncated]...
+#&gt; 7: How to Fix Bias in Big Data and Artificial Intelligence - What can big corporations and https://t.co/jVG8gWXlEq #machine-learning
+#&gt; ...[truncated]...
+#&gt; 8: Democrats aren’t buying Big Tech’s latest privacy proposal - The Verge https://t.co/vbGxfHcr4s
+#&gt; ...[truncated]...
+#&gt; 11: Big news (for me!) - I am looking for a key person to join our small team to grow our unique software tool in the area of big data and Google Analytics... *https://t.co/xRKsQA5sH3* Feel free to DM me also @brianCiifton #bigdata #googleanalytics #dataquality #verifieddata https://t.co/RuB7QZwVZ4
+#&gt; ...[truncated]...
+#&gt; 12: Business Intelligence Analyst: Employer Analytics is the engine that powers an enterprise obsessed with data. We move fast, iterating quickly on big business problems. We work smart, applying technology to unlock insights and provide outsized value to… https://t.co/LxAFL5v30R https://t.co/O2Jdbt3d14
+#&gt; ...[truncated]...
+#&gt; 15: &quot;Singapore Internet of Things (IoT) Market to 2023 - Rising Demand for Big Data Analytics and Cloud Services&quot; https://t.co/mECiySQNUa
+#&gt; ...[truncated]...
+#&gt; 16: #BigQ2019: Batman — rethink or die - https://t.co/GOSfjUBVQT Read more here: https://t.co/8bpyrxfHBZ #Batman… https://t.co/3ul551ywta
+#&gt; ...[truncated]...
+#&gt; 
+#&gt; *Suggestion: Consider using `replace_url`</code></pre>
 </div>
 <div id="drop-empty-rows-and-na-text-rows-then-change-class-to-character" class="section level2">
 <h2>Drop empty rows and NA text rows, then change class to character</h2>

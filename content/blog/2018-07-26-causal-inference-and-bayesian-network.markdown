@@ -22,6 +22,8 @@ But do we actually know how to explain "cause"?
 Do we jump to conclusion of causal relationship often too quickly?  
 Can association between factors that we call mathematically "correlation" tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn't mean it affects each other.
 
+
+
 <img src="/img/correlation.jpg" style="display: block; margin: auto;" />
 
 Sometimes we tend to quickly "judge" consequences of action, whether  it is strong or weak, such as "the new rule causes riot", "the president's opinion affected public perception of him", or "chemical X has been linked to cancer".   
@@ -178,7 +180,7 @@ disease.dag<-dag(~D:T1:T2)
 plot(disease.dag)
 ```
 
-<img src="/blog/2018-07-26-causal-inference-and-bayesian-network_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="/blog/2018-07-26-causal-inference-and-bayesian-network_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
 
 Now we are going to make the Bayesian Network model
 
@@ -198,10 +200,10 @@ plist
 ```
 
 ```
-## CPTspec with probabilities:
-##  P( D )
-##  P( T1 | D )
-##  P( T2 | D )
+#> CPTspec with probabilities:
+#>  P( D )
+#>  P( T1 | D )
+#>  P( T2 | D )
 ```
 
 
@@ -211,11 +213,11 @@ plist$D
 ```
 
 ```
-## D
-##  yes   no 
-## 0.01 0.99 
-## attr(,"class")
-## [1] "parray" "array"
+#> D
+#>  yes   no 
+#> 0.01 0.99 
+#> attr(,"class")
+#> [1] "parray" "array"
 ```
 
 ```r
@@ -225,8 +227,8 @@ summary(bn.disease)
 ```
 
 ```
-## Independence network: Compiled: FALSE Propagated: FALSE 
-##  Nodes : chr [1:3] "D" "T1" "T2"
+#> Independence network: Compiled: FALSE Propagated: FALSE 
+#>  Nodes : chr [1:3] "D" "T1" "T2"
 ```
 
 ```r
@@ -234,8 +236,8 @@ bn.disease
 ```
 
 ```
-## Independence network: Compiled: FALSE Propagated: FALSE 
-##   Nodes: chr [1:3] "D" "T1" "T2"
+#> Independence network: Compiled: FALSE Propagated: FALSE 
+#>   Nodes: chr [1:3] "D" "T1" "T2"
 ```
 
 ```r
@@ -246,20 +248,20 @@ querygrain(bn.disease, nodes=c("D", "T1", "T2"), type="marginal")
 ```
 
 ```
-## $D
-## D
-##  yes   no 
-## 0.01 0.99 
-## 
-## $T1
-## T1
-##    yes     no 
-## 0.1575 0.8425 
-## 
-## $T2
-## T2
-##    yes     no 
-## 0.2075 0.7925
+#> $D
+#> D
+#>  yes   no 
+#> 0.01 0.99 
+#> 
+#> $T1
+#> T1
+#>    yes     no 
+#> 0.1575 0.8425 
+#> 
+#> $T2
+#> T2
+#>    yes     no 
+#> 0.2075 0.7925
 ```
 
 ```r
@@ -268,20 +270,20 @@ querygrain(bn.disease, nodes=c("D", "T1", "T2"))
 ```
 
 ```
-## $D
-## D
-##  yes   no 
-## 0.01 0.99 
-## 
-## $T1
-## T1
-##    yes     no 
-## 0.1575 0.8425 
-## 
-## $T2
-## T2
-##    yes     no 
-## 0.2075 0.7925
+#> $D
+#> D
+#>  yes   no 
+#> 0.01 0.99 
+#> 
+#> $T1
+#> T1
+#>    yes     no 
+#> 0.1575 0.8425 
+#> 
+#> $T2
+#> T2
+#>    yes     no 
+#> 0.2075 0.7925
 ```
 
 
@@ -291,10 +293,10 @@ querygrain(bn.disease, nodes=c("D", "T1"), type="joint")
 ```
 
 ```
-##      T1
-## D        yes     no
-##   yes 0.0090 0.0010
-##   no  0.1485 0.8415
+#>      T1
+#> D        yes     no
+#>   yes 0.0090 0.0010
+#>   no  0.1485 0.8415
 ```
 
 ```r
@@ -303,10 +305,10 @@ querygrain(bn.disease, nodes=c("T1","D"), type="conditional")
 ```
 
 ```
-##      T1
-## D      yes   no
-##   yes 0.90 0.10
-##   no  0.15 0.85
+#>      T1
+#> D      yes   no
+#>   yes 0.90 0.10
+#>   no  0.15 0.85
 ```
 
 ## CAD Dataset
@@ -318,21 +320,21 @@ str(cad1)
 ```
 
 ```
-## 'data.frame':	236 obs. of  14 variables:
-##  $ Sex        : Factor w/ 2 levels "Female","Male": 2 2 1 2 2 2 2 2 1 2 ...
-##  $ AngPec     : Factor w/ 3 levels "Atypical","None",..: 2 1 2 2 2 2 2 2 2 1 ...
-##  $ AMI        : Factor w/ 2 levels "Definite","NotCertain": 2 2 1 2 2 2 2 2 2 2 ...
-##  $ QWave      : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 2 2 1 1 ...
-##  $ QWavecode  : Factor w/ 2 levels "Nonusable","Usable": 2 2 2 2 2 2 2 2 1 2 ...
-##  $ STcode     : Factor w/ 2 levels "Nonusable","Usable": 2 2 2 1 1 1 1 1 1 2 ...
-##  $ STchange   : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 2 ...
-##  $ SuffHeartF : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Hypertrophi: Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Hyperchol  : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Smoker     : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Inherit    : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Heartfail  : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ CAD        : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
+#> 'data.frame':	236 obs. of  14 variables:
+#>  $ Sex        : Factor w/ 2 levels "Female","Male": 2 2 1 2 2 2 2 2 1 2 ...
+#>  $ AngPec     : Factor w/ 3 levels "Atypical","None",..: 2 1 2 2 2 2 2 2 2 1 ...
+#>  $ AMI        : Factor w/ 2 levels "Definite","NotCertain": 2 2 1 2 2 2 2 2 2 2 ...
+#>  $ QWave      : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 2 2 1 1 ...
+#>  $ QWavecode  : Factor w/ 2 levels "Nonusable","Usable": 2 2 2 2 2 2 2 2 1 2 ...
+#>  $ STcode     : Factor w/ 2 levels "Nonusable","Usable": 2 2 2 1 1 1 1 1 1 2 ...
+#>  $ STchange   : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 2 ...
+#>  $ SuffHeartF : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
+#>  $ Hypertrophi: Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
+#>  $ Hyperchol  : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
+#>  $ Smoker     : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
+#>  $ Inherit    : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
+#>  $ Heartfail  : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
+#>  $ CAD        : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
 ```
 
 We are going to focus on`CAD` variable, which represent whether a person has CAD.
@@ -348,7 +350,7 @@ dag.cad <- dag(~ CAD:Smoker:Inherit:Hyperchol +
 plot(dag.cad)
 ```
 
-<img src="/blog/2018-07-26-causal-inference-and-bayesian-network_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="/blog/2018-07-26-causal-inference-and-bayesian-network_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" />
 
 ```r
 # smooth is a small positive number to avoid zero entries in the CPTs
@@ -359,10 +361,10 @@ querygrain(bn.cad, nodes=c("CAD", "Smoker"), type="conditional")
 ```
 
 ```
-##       CAD
-## Smoker        No       Yes
-##    No  0.7172084 0.2827916
-##    Yes 0.4933771 0.5066229
+#>       CAD
+#> Smoker        No       Yes
+#>    No  0.7172084 0.2827916
+#>    Yes 0.4933771 0.5066229
 ```
 
 
@@ -374,10 +376,10 @@ querygrain(bn.cad.1, nodes=c("CAD"), type="marginal")
 ```
 
 ```
-## $CAD
-## CAD
-##        No       Yes 
-## 0.6551764 0.3448236
+#> $CAD
+#> CAD
+#>        No       Yes 
+#> 0.6551764 0.3448236
 ```
 
 ## Weaknesses of Bayesian Network

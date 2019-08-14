@@ -22,10 +22,18 @@ type: post
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(dplyr)
+# clean up the environment
+rm(list = ls())
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
 ```
+
 
 # Motivation
 
@@ -34,6 +42,12 @@ Evaluating your machine learning algorithms is important part in your project. C
 
 
 # Installation
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
 
 To install `yardstick` package, you can run: 
 ```{r eval=FALSE}
@@ -49,6 +63,7 @@ After installation, we can called the library before used it:
 ```{r warning=FALSE, message=FALSE}
 library(yardstick)
 ```
+
 We will demonstrate the data for evaluating used `two_class_example`. Take a look the data:
 ```{r}
 head(two_class_example)

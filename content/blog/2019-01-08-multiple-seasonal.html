@@ -36,10 +36,10 @@ library(scales)</code></pre>
 <pre class="r"><code>#import data
 pjm&lt;- read.csv(&quot;data_input/pjm.csv&quot;) %&gt;% filter(provider == &quot;AEP&quot;)
 str(pjm)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    45336 obs. of  3 variables:
-##  $ datetime: Factor w/ 45336 levels &quot;2013-06-01T00:00:00Z&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
-##  $ provider: Factor w/ 8 levels &quot;AEP&quot;,&quot;COMED&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ cons    : num  13477 12699 12274 11904 11862 ...</code></pre>
+<pre><code>#&gt; &#39;data.frame&#39;:    45336 obs. of  3 variables:
+#&gt;  $ datetime: Factor w/ 45336 levels &quot;2013-06-01T00:00:00Z&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+#&gt;  $ provider: Factor w/ 8 levels &quot;AEP&quot;,&quot;COMED&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ cons    : num  13477 12699 12274 11904 11862 ...</code></pre>
 <p>After you have read the time series data into R, the next step is to store the data in a time series object in R, so that you can use R many functions for analysing time series data. To store the data in a time series object, we can use the ts() function in R. Sometimes the time series data set that you have may have been collected at regular intervals that were less than one year, for example, monthly or quarterly. In this case, you can specify the number of times that data was collected per hour by using the frequency parameter in the ts() function. Because our each row representing a data within hourly interval, you can set frequency=24, and we will only used AEP provider.</p>
 <pre class="r"><code>pjm$datetime &lt;- ymd_hms(pjm$datetime)
 ts_train&lt;-pjm$cons %&gt;% ts(freq= 24)</code></pre>
@@ -48,7 +48,7 @@ ts_train&lt;-pjm$cons %&gt;% ts(freq= 24)</code></pre>
   tail(24*7*4) %&gt;% 
   decompose() %&gt;% 
   autoplot()</code></pre>
-<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Decomposing a time series means separating it into it’s constituent components.</p>
 <ol style="list-style-type: decimal">
 <li><p>The first panel from top is the original, <em>observed</em> time series. Note that a series with multiplicative effects can often be transformed into one with additive effect through a log transformation.</p></li>
@@ -59,7 +59,7 @@ To deal with such series, we will use the msts class which handles multiple seas
 </ol>
 <pre class="r"><code>msts_cons&lt;-pjm$cons %&gt;% msts( seasonal.periods = c(24, 24*7))
 msts_cons  %&gt;% head(  24 *7 *4 ) %&gt;% mstl() %&gt;% autoplot()    </code></pre>
-<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now we can see a clearer trend and could confirm the daily and weekly seasonality for the data. Before we’re going to modelling our data, we’re going to split our data become data train and data test.</p>
 <pre class="r"><code>msts_train &lt;- head(msts_cons, length(msts_cons) - 24*7)
 msts_test &lt;- tail(msts_cons,  24*7)
@@ -67,13 +67,13 @@ msts_test &lt;- tail(msts_cons,  24*7)
 #subset to more recent period
 msts_train &lt;- tail(msts_train, 24*7*4*3)
 autoplot(msts_train)</code></pre>
-<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We will make prediction for 7 days and plot them. In modelling the log transformation, we can use lambda = 0 in stlm() setting.</p>
 <pre class="r"><code>stlm_model &lt;- msts_train %&gt;%
   stlm(lambda = 0) %&gt;% 
   forecast(h = 24*7) 
 plot(stlm_model)</code></pre>
-<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="tbats-models" class="section level1">
@@ -87,18 +87,18 @@ plot(stlm_model)</code></pre>
 tbats_model &lt;-  forecast(tbats_mod,h=24*7) 
 
 plot(tbats_model)   </code></pre>
-<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Let’s check the accuracy for each model and define MAPE (Mean Absolute Percentage Error) for evaluation of our forecast.</p>
 <pre class="r"><code>result&lt;-rbind(accuracy(as.vector(stlm_model$mean) , msts_test), 
        accuracy(as.vector(exp(tbats_model$mean)) , msts_test)) 
 rownames(result) &lt;- c(&quot;stlm_model&quot;,&quot;tbats_model&quot;)
 result</code></pre>
-<pre><code>##                     ME      RMSE      MAE       MPE     MAPE      ACF1
-## stlm_model   -635.3479  804.1672  659.328 -4.253355 4.390121 0.9500028
-## tbats_model -1068.3784 1235.7878 1068.378 -7.138406 7.138406 0.9499511
-##             Theil&#39;s U
-## stlm_model   1.351431
-## tbats_model  2.110427</code></pre>
+<pre><code>#&gt;                     ME      RMSE      MAE       MPE     MAPE      ACF1
+#&gt; stlm_model   -635.3479  804.1672  659.328 -4.253355 4.390121 0.9500028
+#&gt; tbats_model -1068.3784 1235.7878 1068.378 -7.138406 7.138406 0.9499511
+#&gt;             Theil&#39;s U
+#&gt; stlm_model   1.351431
+#&gt; tbats_model  2.110427</code></pre>
 <p>Both models have a different perfomance, the LSTM model presenting some advantages over the TBATS model. So we can then compare with the plot.</p>
 <pre class="r"><code>accuracyData &lt;- data.frame(datetime= pjm$datetime %&gt;% tail(24*7),
   actual = as.vector(msts_test) ,
@@ -117,7 +117,7 @@ result</code></pre>
     y = &quot;&quot;,
     colour = &quot;&quot;
   )</code></pre>
-<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="/blog/2019-01-08-multiple-seasonal_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The aim of this post was presented a multi-seasonal data. This series has two types of seasonality, daily and weekly. STLM and TBATS models are used for series with multi-seasonal data.The forecast from stlm() showing a better perfomance.</p>
 <p>#References</p>
 <p>De Livera, A. M., Hyndman, R. J., &amp; Snyder, R. D. (2011). Forecasting time series with complex seasonal patterns using exponential smoothing. J American Statistical Association, 106(496), 15131527.

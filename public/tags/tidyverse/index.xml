@@ -39,8 +39,8 @@ The term of tidyverse is actually referring to a set of packages that you’ll f
       
       <guid>/blog/nested-dataframe/</guid>
       <description>1. SetupLibraries and SetupWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
-options(scipen = 9999)rm(list=ls())You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
-library(tidyverse)## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 3.5.3## Warning: package &amp;#39;tibble&amp;#39; was built under R version 3.</description>
+You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
+library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to use purrr, caret and dplyr to quickly create some of dataset + model combinations, store data &amp;amp; model objects neatly in one tibble, and post process programatically.</description>
     </item>
     
   </channel>
