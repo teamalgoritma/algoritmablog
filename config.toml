@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = ""
 languageCode = "en-us"
 title = "Algoritma Technical Blog"
 theme = "hugo-future-imperfect"
@@ -110,7 +110,7 @@ canonifyURLs = true
 # Identifier prepends a Font Awesome icon to the menu item
 [[menu.main]]
   name = "Home"
-  url = "/"
+  url = "/blog/"
   identifier = "fa fa-home"
   weight = 1
 
