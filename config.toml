@@ -110,7 +110,7 @@ canonifyURLs = true
 # Identifier prepends a Font Awesome icon to the menu item
 [[menu.main]]
   name = "Home"
-  url = "/blog/"
+  url = "/"
   identifier = "fa fa-home"
   weight = 1
 
@@ -119,12 +119,6 @@ canonifyURLs = true
   url = "/about/"
   identifier = "fa fa-id-card-o"
   weight = 2
-
-[[menu.main]]
-  name = "Blog"
-  url = "/blog/"
-  identifier = "fa fa-newspaper-o"
-  weight = 3
 
 # Sets Social Media icons to appear and link to your account. Value should be your
 # username unless otherwise noted. These are the icons affected by socialAppearAtTop
