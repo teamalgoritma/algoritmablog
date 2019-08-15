@@ -256,11 +256,11 @@
 		}
 
 	code {
-		background: #f9f2f4;
+		background: #ffffff;
 		color: black;
 		border: solid 1px rgba(160, 160, 160, 0.3);
 		font-family: "Courier New", monospace;
-		margin: 0 0.25em;
+		margin: 0 0.1em;
 		padding: 2px 4px;
     font-size: 90%;
     border-radius: 4px;
