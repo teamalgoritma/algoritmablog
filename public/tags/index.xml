@@ -6,10 +6,46 @@
     <description>Recent content in Tags on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 18 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Geocoding</title>
+      <link>/tags/geocoding/</link>
+      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/geocoding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Leaflet</title>
+      <link>/tags/leaflet/</link>
+      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/leaflet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Map</title>
+      <link>/tags/map/</link>
+      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/map/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mapshaper</title>
+      <link>/tags/mapshaper/</link>
+      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/mapshaper/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Clustering</title>

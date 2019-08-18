@@ -104,7 +104,7 @@ canonifyURLs = true
 
 [params.postAmount]
 # Sets the number of recent posts to show in the sidebar. The default value is 5.
-    sidebar = 3
+    sidebar = 0
 
 # Sets the menu items in the navigation bar
 # Identifier prepends a Font Awesome icon to the menu item
