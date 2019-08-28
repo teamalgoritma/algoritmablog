@@ -58,6 +58,8 @@ library(tidyverse)
 library(ggplot2)
 library(leaflet)
 library(geojsonio)
+library(htmlwidgets)
+library(htmltools)
 ```
 
 First of all, we would like to download the data from [GADM] (https://gadm.org/download_country_v3.html). We will focus on **Indonesia**. In data retrieval, there are two ways we can do it: process the file as a Shapefile data type first, or directly process it using R with `.rds` data. We could also read the entire data using the `readOGR` function from the `rgdal` package, but we won't discuss that this time.
@@ -288,8 +290,8 @@ popup.cont  <- paste("<h2><b>", jakarta_hidran_sf$NAME_3, "</b></h2>",
 ```
 
 And finally, we will form a map with *tiles* provided by `CartoDB` using the `addProviderTiles` function. Then we set polygons and legends on the map. We also change the name of each element in the legend to make it more sensible.
-```{r}
-m %>% 
+```{r eval=FALSE}
+map1 <- m %>% 
   addProviderTiles(providers$CartoDB.DarkMatter) %>% 
   addPolygons(fillColor = ~pal(col),
               weight = 1,
@@ -305,12 +307,24 @@ m %>%
             title = "Hydrant Condition",
             labFormat = labelFormat(digits = 2),
             opacity = 1)
+
+map1
 ```
+
+```{r echo=FALSE, eval=FALSE}
+currentWD <- getwd()
+dir.create("static/leaflet")
+saveWidget(map1, "map1.html")
+setwd(currentWD)
+```
+
+<iframe seamless src="/img/map1.html" width="100%" height="500"></iframe>
+
 
 For the record, we can also arrange each part of the *legend* by adjusting the colors one by one (taken by using `inspect element`) and we can label it from there. If it is not done like this, then the text in the legend cannot be changed and is still shown in numeric form even though it has been given the `labels` parameter. Also, be aware that in order for the `colors` parameter to work, the `pal` parameter in `addLegend` must be removed.
 
-```{r}
-m %>% 
+```{r eval=FALSE}
+map2 <- m %>% 
   addProviderTiles(providers$CartoDB.DarkMatter) %>% 
   addPolygons(fillColor = ~pal(col),
               weight = 1,
@@ -327,7 +341,16 @@ m %>%
             title = "Hydrant Condition",
             labFormat = labelFormat(digits = 2),
             opacity = 1)
+map2
 ```
+
+```{r echo=FALSE, eval=FALSE}
+saveWidget(map2, "map2.html")
+setwd(currentWD)
+```
+
+<iframe seamless src="/img/map2.html" width="100%" height="500"></iframe>
+
 
 ## Additional Information
 

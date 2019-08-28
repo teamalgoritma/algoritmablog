@@ -17,7 +17,8 @@
       <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/creating-choropleth-with-mapshaper-and-r/</guid>
-      <description></description>
+      <description>Geospatial is one of the important things in data processing. With geospatial, we can provide information only with the help of maps so that information can be conveyed properly.
+There are many types of geospatial that we can do, such as Dot Map, Connection Map, Choropleth, Hexbin Map, and Bubble Map1. Each type of geospatial has its own function, and each of these types also requires different types of information/data.</description>
     </item>
     
     <item>
