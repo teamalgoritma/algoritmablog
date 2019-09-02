@@ -3,10 +3,11 @@
     {{ partial "navbar" . }}
     <!-- Main -->
     <div id="main">
-        {{ range first 4 (where .Site.Pages "Type" "post") }}
+        {{ range first 3 (where .Site.Pages "Type" "post") }}
             {{ .Render "content-list" }}
-
         {{ end }}
+        <a href="/blog/page/2/" class="button" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">View more posts</a>
     </div>
     {{ partial "sidebar" . }}
 {{ partial "footer" . }}
+
