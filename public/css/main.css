@@ -61,7 +61,7 @@
 		letter-spacing: 0.25em;
 		line-height: 2.5;
 		margin: -1em 1em 0;
-		text-transform: uppercase;
+		text-transform: inherit;
 	}
 
 	table {
