@@ -4,25 +4,60 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-10-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-10-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-10-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-10-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/blog/tidymodels/</loc>
+    <lastmod>2019-10-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/machine-learning/</loc>
+    <lastmod>2019-10-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/r/</loc>
+    <lastmod>2019-10-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-10-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tidymodels/</loc>
+    <lastmod>2019-10-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tidyverse/</loc>
+    <lastmod>2019-10-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -51,18 +86,6 @@
   
   <url>
     <loc>/tags/mapshaper/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2019-08-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -149,12 +172,6 @@
   
   <url>
     <loc>/tags/purrr/</loc>
-    <lastmod>2019-01-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/tidyverse/</loc>
     <lastmod>2019-01-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -327,12 +344,6 @@
   <url>
     <loc>/blog/causal-inference-and-bayesian-network/</loc>
     <lastmod>2018-07-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/machine-learning/</loc>
-    <lastmod>2018-02-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

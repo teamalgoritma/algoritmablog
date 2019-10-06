@@ -6,10 +6,19 @@
     <description>Recent content in Machine Learning on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 06 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introduction to tidymodels</title>
+      <link>/blog/tidymodels/</link>
+      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/tidymodels/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Support Vector Machine</title>

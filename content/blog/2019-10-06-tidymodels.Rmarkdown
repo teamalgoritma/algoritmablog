@@ -1,0 +1,590 @@
+---
+title: Introduction to tidymodels
+author: R. Dimas Bagas Herlambang
+date: '2019-10-06'
+slug: tidymodels
+categories:
+  - R
+tags:
+  - tidymodels
+  - tidyverse
+  - Machine Learning
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+```{r setup, include=FALSE}
+# clean up the environment
+rm(list = ls())
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+```
+
+The following presentation is produced by the team at [Algoritma](https://algorit.ma) for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
+
+# Outline
+
+## Why `tidymodels` Matters?
+
+* Things we think we're doing it right
+* Things we never think we could do it better
+
+## Setting the Cross-Validation Scheme using `rsample`
+
+* Rethinking: Why we need validation?
+* Tidy way to `rsample`-ing your dataset
+
+## Data Preprocess using `recipes`
+
+* Rethinking: How we should treat train and test?
+* Reproducible preprocess `recipes`
+
+## Model Fitting using `parsnip`
+
+* Rethinking: How many machine learning packages you used?
+* One vegeta.. I mean package to rule them all: `parsnip`
+
+## Model Evaluation using `yardstick`
+
+* Rethinking: How we measure the goodness of our model?
+* It's always good to bring your own `yardstick`
+
+
+# Why `tidymodels` Matters?
+
+## Things we think we're doing it right
+
+### Sample splitting
+
+```{r settings-libs}
+# import libs
+library(plotly)
+library(randomForest)
+library(ranger)
+library(tidyverse)
+library(tidymodels)
+```
+
+```{r datasets}
+# import additional libs
+library(lubridate)
+
+# prepare example datasets
+attrition <- read_csv("data_input/attrition.csv")
+```
+
+```{r}
+# set seed
+set.seed(100)
+
+# train rows
+in_train <- sample(1:nrow(attrition), nrow(attrition) * 0.8)
+
+# check target distribution in train
+prop.table(table(attrition$attrition[in_train]))
+
+# check target distribution in test
+prop.table(table(attrition$attrition[-in_train]))
+```
+
+
+### Numeric scaling
+
+```{r}
+# scale age in full dataset
+age_scaled <- scale(attrition$age)
+
+# check mean and standard deviation
+attr(age_scaled, "scaled:center")
+attr(age_scaled, "scaled:scale")
+
+# scale age in train dataset
+age_train_scaled <- scale(attrition$age[in_train])
+
+# check mean and standard deviation
+attr(age_train_scaled, "scaled:center")
+attr(age_train_scaled, "scaled:scale")
+
+# scale age in test dataset
+age_test_scaled <- scale(attrition$age[-in_train])
+
+# check mean and standard deviation
+attr(age_test_scaled, "scaled:center")
+attr(age_test_scaled, "scaled:scale")
+```
+
+## Things we never think we could do it better
+
+
+### How we see model performance
+
+```{r, echo=FALSE}
+caret::confusionMatrix(as.factor(sample(attrition$attrition)), as.factor(attrition$attrition), positive = "yes")
+```
+
+### How we use Receiver Operating Curve
+
+```{r, echo=FALSE}
+example_data <- recipe(attrition ~ ., data = attrition) %>% 
+  step_rm(employee_count, employee_number) %>%
+  step_nzv(all_predictors()) %>% 
+  step_string2factor(all_nominal(), -attrition) %>%
+  step_string2factor(attrition, levels = c("yes", "no")) %>%
+  prep(strings_as_factors = FALSE) %>% 
+  juice()
+
+logistic_reg(mode = "classification") %>% 
+  set_engine("glm") %>% 
+  fit(attrition ~ ., data = example_data) %>% 
+  predict(example_data, type = "prob") %>% 
+  bind_cols(example_data) %>% 
+  select(truth = attrition, .pred_yes) %>% 
+  roc_curve(truth, .pred_yes) %>% 
+  autoplot()
+```
+
+
+# Setting the Cross-Validation Scheme using `rsample`
+
+## Rethinking: Why we need validation?
+
+## Tidy way to `rsample`-ing your dataset
+
+
+[`rsample`](https://tidymodels.github.io/rsample/) is part of `tidymodels` that could help us in splitting or resampling or machine learning dataset.
+
+There are so many splitting and resampling approach provided by `rsample`--as you could see in its [full function references page](https://tidymodels.github.io/rsample/reference/index.html). In this introduction, we will use two most general function:
+
+* [`initial_split()`](https://tidymodels.github.io/rsample/reference/initial_split.html):
+    Simple train and test splitting.
+* [`vfold_cv()`](https://tidymodels.github.io/rsample/reference/vfold_cv.html):
+    k-fold splitting, with optional repetition argument.
+
+
+### Initial splitting
+
+Initial random sampling for splitting train and test could be done using `initial_split()`:
+
+```{r}
+# set seed
+set.seed(100)
+
+# create initial split
+splitted <- initial_split(attrition, prop = 0.8)
+
+# check train dataset
+training(splitted)
+
+# check test dataset
+testing(splitted)
+```
+
+---
+
+But sometimes, simple random sampling is not enough:
+
+```{r}
+# target distribution in full dataset
+prop.table(table(attrition$attrition))
+
+# target distribution in train dataset
+prop.table(table(training(splitted)$attrition))
+
+# target distribution in test dataset
+prop.table(table(testing(splitted)$attrition))
+```
+
+This is where we need `strata` argument to use stratified random sampling:
+
+```{r}
+# set seed
+set.seed(100)
+
+# create stratified initial split
+splitted <- initial_split(attrition, prop = 0.8, strata = "attrition")
+
+# target distribution in full dataset
+prop.table(table(attrition$attrition))
+
+# target distribution in train dataset
+prop.table(table(training(splitted)$attrition))
+
+# target distribution in test dataset
+prop.table(table(testing(splitted)$attrition))
+```
+
+
+### Cross-sectional resampling
+
+
+To use k-fold validation splits--and optionally, with repetition--we could use `vfold_cv()`:
+
+```{r}
+# set seed
+set.seed(100)
+
+# create k-fold splits with repetition
+resampled <- vfold_cv(attrition, v = 3, repeats = 2, strata = "attrition")
+
+# quick check
+resampled
+```
+
+Each train and test dataset are stored in `splits` column. We could use `analysis()` and `assessment()` to get the train and test dataset, consecutively:
+
+```{r}
+# check train dataset on an example split
+analysis(resampled$splits[[1]])
+
+# check test dataset on an example split
+assessment(resampled$splits[[1]])
+```
+
+# Data Preprocess using `recipes`
+
+## Rethinking: How do we should treat train and test?
+
+## Reproducible preprocess `recipes`
+
+
+[`recipes`](https://tidymodels.github.io/recipes/) is part of `tidymodels` that could help us in making a reproducible data preprocess.
+
+There are so many data preprocess approach provided by `recipes`--as you could see in its [full function references page](https://tidymodels.github.io/recipes/reference/index.html) . In this introduction, we will use several preprocess steps related to our example dataset.
+
+There are several steps that we could apply to our dataset--some are very fundamental and sometimes mandatory, but some are also tuneable:
+
+* [`step_rm()`](https://tidymodels.github.io/recipes/reference/step_rm.html) :
+    Manually remove unused columns.
+* [`step_nzv()`](https://tidymodels.github.io/recipes/reference/step_nzv.html) :
+    Automatically filter near-zero varianced columns.
+* [`step_string2factor()`](https://tidymodels.github.io/recipes/reference/step_string2factor.html) :
+    Manually convert to `factor` columns.
+* [`step_downsample()`](https://tidymodels.github.io/recipes/reference/step_downsample.html) :
+    Downsampling step to balancing target's class distribution (**tuneable**).
+* [`step_center()`](https://tidymodels.github.io/recipes/reference/step_center.html) :
+    Normalize the mean of `numeric` column(s) to zero (**tuneable**).
+* [`step_scale()`](https://tidymodels.github.io/recipes/reference/step_scale.html) :
+    Normalize the standard deviation of `numeric` column(s) to one (**tuneable**).
+* [`step_pca()`](https://tidymodels.github.io/recipes/reference/step_pca.html) :
+    Shrink `numeric` column(s) to several PCA components (**tuneable**).
+
+
+### Designing your first preprocess recipes
+
+1. Initiate a recipe using `recipe()`
+    + Define your formula in the first argument.
+    + Supply a template dataset in `data` argument.
+2. Pipe to every needed `step_*()`--always remember to put every step in proper consecutive manner.
+3. After finished with every needed `step_*()`, pipe to `prep()` function to train your recipe
+    + It will automatically convert all `character` columns to `factor`;
+    + If you used `step_string2factor()`, don't forget to specify `strings_as_factors = FALSE`
+    + It will train the recipe to the specified dataset in the `recipe()`'s `data` argument;
+    + If you want to train to other dataset, you can supply the new dataset to `training` argument, and set the `fresh` argument to `TRUE`
+
+Let's see an example of defining a recipe:
+
+```{r}
+# define preprocess recipe from train dataset
+rec <- recipe(attrition ~ ., data = training(splitted)) %>% 
+  step_rm(employee_count, employee_number) %>%
+  step_nzv(all_predictors()) %>% 
+  step_string2factor(all_nominal(), -attrition) %>%
+  step_string2factor(attrition, levels = c("yes", "no")) %>%
+  step_downsample(attrition, ratio = 1/1, seed = 100) %>%
+  step_center(all_numeric()) %>%
+  step_scale(all_numeric()) %>%
+  step_pca(all_numeric(), threshold = 0.85) %>%
+  prep(strings_as_factors = FALSE)
+
+# quick check
+rec
+```
+
+
+There are two ways of obtaining the result from our recipe:
+
+* [`juice()`](https://tidymodels.github.io/recipes/reference/juice.html) :
+    Extract preprocessed dataset from `prep()`-ed recipe. Normally, we will use this function to get preprocessed train dataset.
+
+* [`bake()`](https://tidymodels.github.io/recipes/reference/bake.html) :
+    Apply a recipe to new dataset. Normally, we use we will use this function to preprocess new dataset, such as test dataset, or prediction dataset.
+
+These are some example on how to get preprocessed train and test dataset:
+
+```{r}
+# get preprocessed train dataset
+data_train <- juice(rec)
+
+# quick check
+data_train
+
+# get preprocessed test dataset
+data_test <- bake(rec, testing(splitted))
+
+# quick check
+data_test
+```
+
+# Model Fitting using `parsnip`
+
+## Rethinking: How many machine learning packages you used?
+
+## One vegeta.. I mean package to rule them all: `parsnip`
+
+
+[`parsnip`](https://tidymodels.github.io/parsnip/)  is part of `tidymodels` that could help us in model fitting and prediction flows.
+
+There are so many models supported by `parsnip`--as you could see in its [full model list](https://tidymodels.github.io/parsnip/articles/articles/Models.html) . In this introduction, we will use random forest as an example model.
+
+There are two part of defining a model that should be noted:
+
+* **Defining model's specification**:
+    In this part, we need to define the model's specification, such as `mtry` and `trees` for random forest, through model specific functions. For example, you can use [`rand_forest()`](https://tidymodels.github.io/parsnip/reference/rand_forest.html)  to define a random forest specification. Make sure to check [full model list](https://tidymodels.github.io/parsnip/articles/articles/Models.html)  to see every model and its available arguments.
+
+* **Defining model's engine**:
+    In this part, we need to define the model's engine, which determines the package we will use to fit our model. This part could be done using [`set_engine()`](https://tidymodels.github.io/parsnip/reference/set_engine.html)  function. Note that in addition to defining which package we want to use as our engine, we could also passing package specific arguments to this function.
+
+This is an example of defining a random forest model using `randomForest::randomForest()` as our engine:
+
+```{r}
+# set-up model specification
+model_spec <- rand_forest(
+  mode = "classification",
+  mtry = ncol(data_train) - 2,
+  trees = 500,
+  min_n = 15
+)
+
+# set-up model engine
+model_engine <- set_engine(
+  object = model_spec,
+  engine = "randomForest"
+)
+
+# quick check
+model_engine
+```
+
+
+To fit our model, we have two options:
+
+* Formula interface
+* X-Y interface
+
+Note that some packages are behaving differently inside formula and x-y interface. For example, `randomForest::randomForest()` would convert all of our categorical variables into dummy variables in formula interface, but not in x-y interface.
+
+
+Fit using formula interface using `fit()` function:
+
+```{r}
+# fit the model
+model <- fit(
+  object = model_engine,
+  formula = attrition ~ .,
+  data = data_train
+)
+
+# quick check
+model
+```
+
+Or through x-y interface using `fit_xy()` function:
+
+```{r}
+# fit the model
+model <- fit_xy(
+  object = model_engine,
+  x = select(data_train, -attrition),
+  y = select(data_train, attrition)
+)
+
+# quick check
+model
+```
+
+In this workflow, it should be relatively easy to change the model engine.
+
+Let's try to fit a same model specification, but now using `ranger::ranger()`:
+
+```{r}
+# set-up other model engine
+model_engine <- set_engine(
+  object = model_spec,
+  engine = "ranger",
+  seed = 100,
+  num.threads = parallel::detectCores() / 2,
+  importance = "impurity"
+)
+
+# quick check
+model_engine
+```
+
+
+Now let's try to fit the model, and see the result:
+
+```{r}
+# fit the model
+model <- fit(
+  object = model_engine,
+  formula = attrition ~ .,
+  data = data_train
+)
+
+# quick check
+model
+```
+
+
+Notice that `ranger::ranger()` doesn't behave differently between `fit()` and `fit_xy()`:
+
+```{r}
+# fit the model
+model <- fit_xy(
+  object = model_engine,
+  x = select(data_train, -attrition),
+  y = select(data_train, attrition)
+)
+
+# quick check
+model
+```
+
+
+To get the prediction, we could use `predict()` as usual--but note that it would return a tidied `tibble` instead of a `vector`, as in `type = "class"` cases, or a raw `data.frame`, as in `type = "prob"` cases.
+
+In this way, the prediction results would be very convenient for further usage, such as simple recombining with the original dataset:
+
+```{r}
+# get prediction on test
+predicted <- data_test %>% 
+  bind_cols(predict(model, data_test)) %>% 
+  bind_cols(predict(model, data_test, type = "prob"))
+
+# quick check
+predicted %>% 
+  select(attrition, matches(".pred"))
+```
+
+# Model Evaluation using `yardstick`
+
+## Rethinking: How do we measure the goodness of our model?
+
+## It's always good to bring your own `yardstick`
+
+[`yardstick`](https://tidymodels.github.io/yardstick/)  is part of `tidymodels` that could help us in calculating model performance metrics.
+
+There are so many metrics available by `yardstick`--as you could see in its [full function references page](https://tidymodels.github.io/yardstick/reference/index.html) . In this introduction, we will calculate some model performance metrics for classification task as an example.
+
+
+There are two ways of calculating model performance metrics, which differ in its input and output:
+
+* `tibble` approach:
+    We pass a dataset containing the `truth` and `estimate` to the function, and it will return a `tibble` containing the results, e.g., [`precision()`](https://tidymodels.github.io/yardstick/reference/precision.html)  function.
+* `vector` approach:
+    We pass a vector as the `truth` and a vector as the `estimate` to the function, and it will return a `vector` which show the results, e.g., [`precision_vec()`](https://tidymodels.github.io/yardstick/reference/precision.html)  function.
+
+Note that some function, like [`conf_mat()`](https://tidymodels.github.io/yardstick/reference/conf_mat.html) , only accept `tibble` approach, since it is not returned a `vector` of length one.
+
+
+Let's start by reporting the confusion matrix:
+
+```{r}
+# show confusion matrix
+predicted %>% 
+  conf_mat(truth = attrition, estimate = .pred_class) %>% 
+  autoplot(type = "heatmap")
+```
+
+Now, to calculate the performance metrics, let's try to use the `tibble` approach--which also support `group_by`:
+
+```{r}
+# calculate accuracy
+predicted %>% 
+  accuracy(attrition, .pred_class)
+
+# calculate accuracy by group
+predicted %>% 
+  group_by(department) %>% 
+  accuracy(attrition, .pred_class) %>% 
+  ungroup()
+```
+
+Or using `vector` approach, which is more flexible in general:
+
+```{r}
+# metrics summary
+predicted %>% 
+  summarise(
+    accuracy = accuracy_vec(attrition, .pred_class),
+    sensitivity = sens_vec(attrition, .pred_class),
+    specificity = spec_vec(attrition, .pred_class),
+    precision = precision_vec(attrition, .pred_class)
+  )
+
+# metrics summary by group
+predicted %>% 
+  group_by(department) %>% 
+  summarise(
+    accuracy = accuracy_vec(attrition, .pred_class),
+    sensitivity = sens_vec(attrition, .pred_class),
+    specificity = spec_vec(attrition, .pred_class),
+    precision = precision_vec(attrition, .pred_class)
+  ) %>% 
+  ungroup()
+```
+
+
+Sometimes the model performance metrics could also improving the models final results. For example, through Receiver Operating Curve, we could assess the probability threshold effect to sensitivity and specificity:
+
+```{r}
+predicted %>% 
+  roc_curve(attrition, .pred_yes) %>% 
+  autoplot()
+```
+
+
+And, since it's returning a `tibble`, we could do further data wrangling to help us see it more clearly:
+
+```{r}
+# get roc curve data on test dataset
+pred_test_roc <- predicted %>%
+  roc_curve(attrition, .pred_yes)
+
+# quick check
+pred_test_roc
+```
+
+
+With some `ggplot2`:
+
+```{r}
+# tidying
+pred_test_roc <- pred_test_roc %>% 
+  mutate_if(~ is.numeric(.), ~ round(., 4)) %>% 
+  gather(metric, value, -.threshold)
+
+# plot sensitivity-specificity trade-off
+p <- ggplot(pred_test_roc, aes(x = .threshold, y = value)) +
+  geom_line(aes(colour = metric)) +
+  labs(x = "Probability Threshold to be Classified as Positive", y = "Value", colour = "Metrics") +
+  theme_minimal()
+```
+
+
+and `plotly` magic, it would be perfect:
+
+```{r}
+# convert to plotly
+ggplotly(p)
+```
