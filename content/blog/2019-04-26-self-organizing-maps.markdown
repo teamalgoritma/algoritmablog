@@ -9,6 +9,7 @@ tags:
   - SOM
   - Clustering
   - Unsupervised Learning
+  - Machine Learning
 description: ''
 featured: ''
 featuredalt: ''
@@ -22,7 +23,7 @@ type: post
 
 # Introduction SOM
 
-Self-Organizing Maps first introduce by Teuvo Kohonen. According to the `Wiki`, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.[^1] SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations.[^2] SOM also represent clustering concept by grouping the similar features together. So, SOM can use to cluster high-dimensional data sets by doing dimensionality reduction and visualize it using maps.
+Self-Organizing Maps first introduce by Teuvo Kohonen. According to the `Wiki`, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction. SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations. SOM also represent clustering concept by grouping the similar features together. So, SOM can use to cluster high-dimensional data sets by doing dimensionality reduction and visualize it using maps.
 
 <img src="/img/arsitektur.PNG" style="display: block; margin: auto;" />
 
@@ -484,8 +485,8 @@ For xyz_campaign_id 1178, which saw more ads for Female and aged 30-34 years.
  
  # Annotation
 
-[^1] [Wikipedia. Self-organizing Maps.](https://en.wikipedia.org/wiki/Self-organizing_map)
+[1] [Wikipedia. Self-organizing Maps.](https://en.wikipedia.org/wiki/Self-organizing_map)
 
-[^2] [Ralhan, A. 2018. _Self Organizing Maps_.](https://towardsdatascience.com/self-organizing-maps-ff5853a118d4)
+[2] [Ralhan, A. 2018. _Self Organizing Maps_.](https://towardsdatascience.com/self-organizing-maps-ff5853a118d4)
 
-[^3] [Lynn, Shane. Self-Organizing Maps for Customer Segementation using R.](https://www.shanelynn.ie/self-organising-maps-for-customer-segmentation-using-r/)
+[3] [Lynn, Shane. Self-Organizing Maps for Customer Segementation using R.](https://www.shanelynn.ie/self-organising-maps-for-customer-segmentation-using-r/)

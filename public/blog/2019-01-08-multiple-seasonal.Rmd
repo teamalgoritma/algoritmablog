@@ -11,6 +11,7 @@ tags:
   - multiple seasonal
   - tbats
   - Capstone Ml
+  - Machine Learning
 description: ''
 featured: 'Multiple_Seasonality.png'
 featuredalt: ''

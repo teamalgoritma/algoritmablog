@@ -10,6 +10,7 @@ tags:
   - purrr
   - tidyverse
   - time series
+  - Machine Learning
 description: ''
 featured: 'tidyverse.png'
 featuredalt: ''

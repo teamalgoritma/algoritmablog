@@ -21,6 +21,64 @@
     </item>
     
     <item>
+      <title>Self-Organizing Maps</title>
+      <link>/blog/self-organizing-maps/</link>
+      <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/self-organizing-maps/</guid>
+      <description>Introduction SOM Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction. SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations.</description>
+    </item>
+    
+    <item>
+      <title>Purrr-operly Fitting Multiple Time Series Model</title>
+      <link>/blog/purrr-operly-fitting-multiple-time-series-model/</link>
+      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
+      <description>In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
+TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
+    </item>
+    
+    <item>
+      <title>Time Series Prediction with LSTM</title>
+      <link>/blog/time-series-prediction-with-lstm/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/time-series-prediction-with-lstm/</guid>
+      <description>Time Series Forecasting using LSTMTime series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing.A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
+    </item>
+    
+    <item>
+      <title>Metrics Evaluation using `yardstick`</title>
+      <link>/blog/metrics-evaluation-using-yardstick/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/metrics-evaluation-using-yardstick/</guid>
+      <description>MotivationEvaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.</description>
+    </item>
+    
+    <item>
+      <title>Forecasting Time Series with Multiple Seasonal</title>
+      <link>/blog/multiple-seasonal/</link>
+      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/multiple-seasonal/</guid>
+      <description>IntroductionTime Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
+    </item>
+    
+    <item>
+      <title>Causal Inference and Bayesian Network</title>
+      <link>/blog/causal-inference-and-bayesian-network/</link>
+      <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/causal-inference-and-bayesian-network/</guid>
+      <description>Introduction Cause has been people&amp;rsquo;s curiosity for a long time, you can see that people often ask &amp;ldquo;Why&amp;rdquo; to things happening around them. But do we actually know how to explain &amp;ldquo;cause&amp;rdquo;?
+Do we jump to conclusion of causal relationship often too quickly?
+Can association between factors that we call mathematically &amp;ldquo;correlation&amp;rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&amp;rsquo;t mean it affects each other.</description>
+    </item>
+    
+    <item>
       <title>Support Vector Machine</title>
       <link>/blog/support-vector-machine/</link>
       <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>

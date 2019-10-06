@@ -12,6 +12,7 @@ tags:
   - deep learning
   - RNN
   - Capstone Ml
+  - Machine Learning
 description: ''
 featured: 'LSTM_TS.png'
 featuredalt: ''
