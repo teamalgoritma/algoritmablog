@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Visualization on Algoritma Technical Blog</title>
+    <link>/tags/data-visualization/</link>
+    <description>Recent content in Data Visualization on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Aug 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/data-visualization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Creating Choropleth with Mapshaper and R</title>
+      <link>/blog/creating-choropleth-with-mapshaper-and-r/</link>
+      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/creating-choropleth-with-mapshaper-and-r/</guid>
+      <description>Geospatial is one of the important things in data processing. With geospatial, we can provide information only with the help of maps so that information can be conveyed properly.
+There are many types of geospatial that we can do, such as Dot Map, Connection Map, Choropleth, Hexbin Map, and Bubble Map1. Each type of geospatial has its own function, and each of these types also requires different types of information/data.</description>
+    </item>
+    
+    <item>
+      <title>Twitter Interactions Analysis using Twinetverse</title>
+      <link>/blog/twitter-interactions-analysis-using-twinetverse/</link>
+      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/twitter-interactions-analysis-using-twinetverse/</guid>
+      <description>IntroductionThe goal of the twinetverse is to provide everything one might need to view Twitter interactions, from data collection to visualisation. This could be a powerful tool for social media analysis, since it could help visualizing how users communicate with one another on a given topic or how information spreads throughout the Twitter network.</description>
+    </item>
+    
+  </channel>
+</rss>

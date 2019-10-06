@@ -10,6 +10,7 @@ tags:
   - Mapshaper
   - Leaflet
   - Map
+  - Data Visualization
 description: ''
 featured: ''
 featuredalt: ''

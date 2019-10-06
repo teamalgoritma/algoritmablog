@@ -125,6 +125,12 @@ canonifyURLs = true
   url = "/tags/machine-learning/"
   identifier = "fa fa-cog"
   weight = 3  
+  
+[[menu.main]]
+  name = "Data Visualization"
+  url = "/tags/data-visualization/"
+  identifier = "fa fa-area-chart"
+  weight = 4  
 
 # Sets Social Media icons to appear and link to your account. Value should be your
 # username unless otherwise noted. These are the icons affected by socialAppearAtTop
