@@ -1364,11 +1364,6 @@
         margin: 0 0 13px;
         font-size: 1.1em;
         font-family: Georgia, Times, "Times New Roman", serif;
-        display: block;
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
     }
 
 		.post > .image.featured {
