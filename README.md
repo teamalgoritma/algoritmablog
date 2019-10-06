@@ -5,9 +5,9 @@
 ```
 blogdown::serve_site()
 ```
-<center>
-![](public/img/main/ss1.png){width=80%}
-</center>
+
+![](public/img/main/ss1.png)
+
 
 ***
 
@@ -89,9 +89,8 @@ type: post
 
 Create a new article by using `New Post` addins on your Rstudio (make sure you already installed *blogdown* packages first).
 
-<center>
-![](public/img/main/newpost.png){width=80%}
-</center>
+![](public/img/main/newpost.png)
+
 
 `Tags` are keywords or terms that describe your article. Here are some tags that already exist: 
 
