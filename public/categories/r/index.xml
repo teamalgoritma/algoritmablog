@@ -6,10 +6,21 @@
     <description>Recent content in R on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Poisson Regression and Negative Binomial Regression</title>
+      <link>/blog/poisson-regression-and-negative-binomial-regression/</link>
+      <pubDate>Tue, 22 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/poisson-regression-and-negative-binomial-regression/</guid>
+      <description>Introduction Regression analysis is a set of statistical processes for estimating the relationships among variables. It includes many techniques for modeling and analyzing several variables, when the focus is on the relationship between a dependent variable and one or more independent variables (or &amp;lsquo;predictors&amp;rsquo;).
+For example  Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
+ Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
+    </item>
     
     <item>
       <title>Introduction to tidymodels</title>
@@ -17,7 +28,8 @@
       <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/tidymodels/</guid>
-      <description></description>
+      <description>The following presentation is produced by the team at Algoritma for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
+Outline Why tidymodels Matters?  Things we think we&amp;rsquo;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?</description>
     </item>
     
     <item>
