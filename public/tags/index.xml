@@ -6,62 +6,35 @@
     <description>Recent content in Tags on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>APC</title>
-      <link>/tags/apc/</link>
-      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
+      <title>Machine Learning</title>
+      <link>/tags/machine-learning/</link>
+      <pubDate>Tue, 22 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/apc/</guid>
+      <guid>/tags/machine-learning/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Bayesian</title>
-      <link>/tags/bayesian/</link>
-      <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
+      <title>tidymodels</title>
+      <link>/tags/tidymodels/</link>
+      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/bayesian/</guid>
+      <guid>/tags/tidymodels/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Capstone Ml</title>
-      <link>/tags/capstone-ml/</link>
-      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      <title>tidyverse</title>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/capstone-ml/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Causal Inference</title>
-      <link>/tags/causal-inference/</link>
-      <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/causal-inference/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Clustering</title>
-      <link>/tags/clustering/</link>
-      <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/clustering/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Manipulation</title>
-      <link>/tags/data-manipulation/</link>
-      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/data-manipulation/</guid>
+      <guid>/tags/tidyverse/</guid>
       <description></description>
     </item>
     
@@ -84,29 +57,11 @@
     </item>
     
     <item>
-      <title>LSTM</title>
-      <link>/tags/lstm/</link>
-      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/lstm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Leaflet</title>
       <link>/tags/leaflet/</link>
       <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/leaflet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Machine Learning</title>
-      <link>/tags/machine-learning/</link>
-      <pubDate>Tue, 22 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/machine-learning/</guid>
       <description></description>
     </item>
     
@@ -129,20 +84,11 @@
     </item>
     
     <item>
-      <title>NLP</title>
-      <link>/tags/nlp/</link>
-      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Clustering</title>
+      <link>/tags/clustering/</link>
+      <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/nlp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>RNN</title>
-      <link>/tags/rnn/</link>
-      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/rnn/</guid>
+      <guid>/tags/clustering/</guid>
       <description></description>
     </item>
     
@@ -156,24 +102,6 @@
     </item>
     
     <item>
-      <title>SVM</title>
-      <link>/tags/svm/</link>
-      <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/svm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Troubleshoot</title>
-      <link>/tags/troubleshoot/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/troubleshoot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Unsupervised Learning</title>
       <link>/tags/unsupervised-learning/</link>
       <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
@@ -183,47 +111,11 @@
     </item>
     
     <item>
-      <title>accuracy</title>
-      <link>/tags/accuracy/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      <title>APC</title>
+      <link>/tags/apc/</link>
+      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/accuracy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>deep learning</title>
-      <link>/tags/deep-learning/</link>
-      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/deep-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dplyr</title>
-      <link>/tags/dplyr/</link>
-      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/dplyr/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>feature engineering</title>
-      <link>/tags/feature-engineering/</link>
-      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/feature-engineering/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>forecast</title>
-      <link>/tags/forecast/</link>
-      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/forecast/</guid>
+      <guid>/tags/apc/</guid>
       <description></description>
     </item>
     
@@ -237,101 +129,11 @@
     </item>
     
     <item>
-      <title>metrics evaluation</title>
-      <link>/tags/metrics-evaluation/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/metrics-evaluation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>multiple seasonal</title>
-      <link>/tags/multiple-seasonal/</link>
-      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/multiple-seasonal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>network analysis</title>
       <link>/tags/network-analysis/</link>
       <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/network-analysis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>precision</title>
-      <link>/tags/precision/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/precision/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>purrr</title>
-      <link>/tags/purrr/</link>
-      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/purrr/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>recall</title>
-      <link>/tags/recall/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/recall/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tbats</title>
-      <link>/tags/tbats/</link>
-      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tbats/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>text preprocessiong</title>
-      <link>/tags/text-preprocessiong/</link>
-      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/text-preprocessiong/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>textclean</title>
-      <link>/tags/textclean/</link>
-      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/textclean/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidymodels</title>
-      <link>/tags/tidymodels/</link>
-      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tidymodels/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidyverse</title>
-      <link>/tags/tidyverse/</link>
-      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tidyverse/</guid>
       <description></description>
     </item>
     
@@ -363,11 +165,209 @@
     </item>
     
     <item>
+      <title>forecast</title>
+      <link>/tags/forecast/</link>
+      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/forecast/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>purrr</title>
+      <link>/tags/purrr/</link>
+      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/purrr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Manipulation</title>
+      <link>/tags/data-manipulation/</link>
+      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/data-manipulation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dplyr</title>
+      <link>/tags/dplyr/</link>
+      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/dplyr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Capstone Ml</title>
+      <link>/tags/capstone-ml/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/capstone-ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NLP</title>
+      <link>/tags/nlp/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/nlp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>feature engineering</title>
+      <link>/tags/feature-engineering/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/feature-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>text preprocessiong</title>
+      <link>/tags/text-preprocessiong/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/text-preprocessiong/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>textclean</title>
+      <link>/tags/textclean/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/textclean/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LSTM</title>
+      <link>/tags/lstm/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/lstm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RNN</title>
+      <link>/tags/rnn/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rnn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>deep learning</title>
+      <link>/tags/deep-learning/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Troubleshoot</title>
+      <link>/tags/troubleshoot/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/troubleshoot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>accuracy</title>
+      <link>/tags/accuracy/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/accuracy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>metrics evaluation</title>
+      <link>/tags/metrics-evaluation/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/metrics-evaluation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>precision</title>
+      <link>/tags/precision/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/precision/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>recall</title>
+      <link>/tags/recall/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/recall/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>yardstick</title>
       <link>/tags/yardstick/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/yardstick/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>multiple seasonal</title>
+      <link>/tags/multiple-seasonal/</link>
+      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/multiple-seasonal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tbats</title>
+      <link>/tags/tbats/</link>
+      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tbats/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bayesian</title>
+      <link>/tags/bayesian/</link>
+      <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/bayesian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Causal Inference</title>
+      <link>/tags/causal-inference/</link>
+      <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/causal-inference/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SVM</title>
+      <link>/tags/svm/</link>
+      <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/svm/</guid>
       <description></description>
     </item>
     

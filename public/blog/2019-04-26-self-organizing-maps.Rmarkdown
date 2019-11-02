@@ -1,6 +1,7 @@
 ---
 title: Self-Organizing Maps
 author: 'Inayatus Sholikhah'
+github: https://github.com/inytss
 date: '2019-04-26'
 slug: self-organizing-maps
 categories:

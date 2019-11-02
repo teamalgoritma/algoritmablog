@@ -1,6 +1,7 @@
 ---
 title: Time Series Prediction with LSTM
 author: Ahmad Husain
+github: https://github.com/ahmadhusain
 date: '2019-01-11'
 slug: time-series-prediction-with-lstm
 categories:

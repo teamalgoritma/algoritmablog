@@ -1,6 +1,7 @@
 ---
 title: Twitter Interactions Analysis using Twinetverse
 author: Tanesya
+github: https://github.com/ttnsy
 date: '2019-03-28'
 slug: twitter-interactions-analysis-using-twinetverse
 categories:

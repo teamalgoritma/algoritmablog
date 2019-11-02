@@ -1,6 +1,7 @@
 ---
 title: 'Data Wars: Episode IV'
 author: R. Dimas Bagas Herlambang
+github: https://github.com/bagasbgy
 date: '2019-01-18'
 slug: data-wars-episode-iv
 categories:

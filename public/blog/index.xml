@@ -13,10 +13,10 @@
     
     <item>
       <title>Poisson Regression and Negative Binomial Regression</title>
-      <link>/blog/poisson-regression-and-negative-binomial-regression/</link>
+      <link>/blog/poisson-regression-and-neg-ative-binomial-regression/</link>
       <pubDate>Tue, 22 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/poisson-regression-and-negative-binomial-regression/</guid>
+      <guid>/blog/poisson-regression-and-neg-ative-binomial-regression/</guid>
       <description>Introduction Regression analysis is a set of statistical processes for estimating the relationships among variables. It includes many techniques for modeling and analyzing several variables, when the focus is on the relationship between a dependent variable and one or more independent variables (or &amp;lsquo;predictors&amp;rsquo;).
 For example  Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
  Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>

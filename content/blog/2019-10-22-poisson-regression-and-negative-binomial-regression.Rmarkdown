@@ -1,8 +1,9 @@
 ---
 title: Poisson Regression and Negative Binomial Regression
 author: Hafizah Ilma
+github: https://github.com/HafizahIlma
 date: '2019-10-22'
-slug: poisson-regression-and-negative-binomial-regression
+slug: poisson-regression-and-neg  ative-binomial-regression
 categories:
   - R
 tags:

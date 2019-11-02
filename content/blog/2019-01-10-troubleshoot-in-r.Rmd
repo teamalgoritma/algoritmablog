@@ -1,6 +1,7 @@
 ---
 title: Troubleshoot in R
 author: Shelloren
+github: https://github.com/AltruiMetavasi
 date: '2019-01-10'
 slug: troubleshoot-in-r
 categories:

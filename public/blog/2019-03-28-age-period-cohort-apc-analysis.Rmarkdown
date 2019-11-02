@@ -1,6 +1,7 @@
 ---
 title: Age-Period-Cohort (APC) Analysis
 author: Shelloren
+github: https://github.com/AltruiMetavasi
 date: '2019-03-28'
 slug: age-period-cohort-apc-analysis
 categories:

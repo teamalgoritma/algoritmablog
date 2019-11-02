@@ -8,14 +8,12 @@
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "/"
+             "@id": "\/"
         },
         "articleSection" : "blog",
         "name" : "Nested Dataframe",
         "headline" : "Nested Dataframe",
-        "description" : "1. SetupLibraries and SetupWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
-You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
-library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to use purrr, caret and dplyr to quickly create some of dataset + model combinations, store data &amp; model objects neatly in one tibble, and post process programatically.",
+        "description" : "1. Setup\rLibraries and Setup\rWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.\nYou will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:\nlibrary(tidyverse)\rlibrary(caret)\r\r\r2. Nested Dataframe\rYou’ll learn how to use purrr, caret and dplyr to quickly create some of dataset \x2b model combinations, store data \x26amp; model objects neatly in one tibble, and post process programatically.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -23,10 +21,10 @@ library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to us
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-01-10 00:00:00 &#43;0000 UTC",
-        "dateModified" : "2019-01-10 00:00:00 &#43;0000 UTC",
-        "url" : "/blog/nested-dataframe/",
-        "wordCount" : "2107",
+        "datePublished": "2019-01-10 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2019-01-10 00:00:00 \x2b0000 UTC",
+        "url" : "\/blog\/nested-dataframe\/",
+        "wordCount" : "2132",
         "keywords" : [ "Data Manipulation","tidyverse","Capstone Ml","Blog" ]
     }
     </script>
@@ -38,7 +36,7 @@ library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to us
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
 
 
@@ -80,7 +78,7 @@ library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to us
 
 <meta itemprop="datePublished" content="2019-01-10T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-01-10T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2107">
+<meta itemprop="wordCount" content="2132">
 
 
 
@@ -256,7 +254,7 @@ library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to us
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/poisson-regression-and-negative-binomial-regression/">Poisson Regression and Negative Binomial Regression</a></h3>
+                                <h3><a href="/blog/poisson-regression-and-neg-ative-binomial-regression/">Poisson Regression and Negative Binomial Regression</a></h3>
                                 
                                 <time class="published" datetime=
                                     '2019-10-22'>
@@ -405,9 +403,9 @@ library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to us
         <time class="published"
             datetime='2019-01-10'>
             January 10, 2019</time>
-        <span class="author">David</span>
+        <span class="author"><a href="https://github.com/david21">David</a></span>
         
-            <p>10 minute read</p>
+            <p>11 minute read</p>
         
         
     </div>
@@ -635,8 +633,8 @@ nested.loan</code></pre>
 <pre><code>#&gt; # A tibble: 2 x 8
 #&gt;      Id rawdata      train.x      train.y   modelName model parm   Accuracy
 #&gt;   &lt;int&gt; &lt;list&gt;       &lt;list&gt;       &lt;list&gt;    &lt;chr&gt;     &lt;lis&gt; &lt;list&gt;    &lt;dbl&gt;
-#&gt; 1     2 &lt;df[,17] [9~ &lt;df[,16] [9~ &lt;fct [99~ rforest   &lt;tra~ &lt;list~    0.759
-#&gt; 2     1 &lt;df[,17] [9~ &lt;df[,16] [9~ &lt;fct [99~ rpart     &lt;tra~ &lt;list~    0.738</code></pre>
+#&gt; 1     2 &lt;df[,17] [9~ &lt;df[,16] [9~ &lt;fct [99~ rforest   &lt;tra~ &lt;list~    0.751
+#&gt; 2     1 &lt;df[,17] [9~ &lt;df[,16] [9~ &lt;fct [99~ rpart     &lt;tra~ &lt;list~    0.743</code></pre>
 <p>From the above results it can be seen that the random forest model produces an accuracy of 0.75 and the decission tree is 0.74. Next, we will do predict to the test data that has been made using an existing model. the data test must replicate as many models as used and then join the <code>nested.loan</code> data using <code>left_join()</code></p>
 <pre class="r"><code>nested.loan &lt;- test %&gt;% 
   list() %&gt;% 
@@ -647,8 +645,8 @@ nested.loan</code></pre>
 <pre><code>#&gt; # A tibble: 2 x 9
 #&gt;      Id test.x   rawdata   train.x   train.y modelName model parm  Accuracy
 #&gt;   &lt;int&gt; &lt;list&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;  &lt;chr&gt;     &lt;lis&gt; &lt;lis&gt;    &lt;dbl&gt;
-#&gt; 1     1 &lt;df[,16~ &lt;df[,17]~ &lt;df[,16]~ &lt;fct [~ rpart     &lt;tra~ &lt;lis~    0.738
-#&gt; 2     2 &lt;df[,16~ &lt;df[,17]~ &lt;df[,16]~ &lt;fct [~ rforest   &lt;tra~ &lt;lis~    0.759</code></pre>
+#&gt; 1     1 &lt;df[,16~ &lt;df[,17]~ &lt;df[,16]~ &lt;fct [~ rpart     &lt;tra~ &lt;lis~    0.743
+#&gt; 2     2 &lt;df[,16~ &lt;df[,17]~ &lt;df[,16]~ &lt;fct [~ rforest   &lt;tra~ &lt;lis~    0.751</code></pre>
 <p>Now we create a <code>pred</code> variable that contains results from predict</p>
 <pre class="r"><code>nested.loan &lt;- nested.loan %&gt;% 
   mutate(pred = map2(model, test.x, ~predict(.x, .y))) %&gt;% 
@@ -668,35 +666,38 @@ glimpse(nested.loan$pred)</code></pre>
          train.y = map(rawdata, ~.x$default))
 nested.split</code></pre>
 <pre><code>#&gt; # A tibble: 4 x 4
-#&gt;   checking_balance rawdata             train.x             train.y    
-#&gt;   &lt;fct&gt;            &lt;list&gt;              &lt;list&gt;              &lt;list&gt;     
-#&gt; 1 &lt; 0 DM           &lt;tibble [270 x 16]&gt; &lt;tibble [270 x 15]&gt; &lt;fct [270]&gt;
-#&gt; 2 1 - 200 DM       &lt;tibble [268 x 16]&gt; &lt;tibble [268 x 15]&gt; &lt;fct [268]&gt;
-#&gt; 3 unknown          &lt;tibble [389 x 16]&gt; &lt;tibble [389 x 15]&gt; &lt;fct [389]&gt;
-#&gt; 4 &gt; 200 DM         &lt;tibble [63 x 16]&gt;  &lt;tibble [63 x 15]&gt;  &lt;fct [63]&gt;</code></pre>
+#&gt; # Groups:   checking_balance [4]
+#&gt;   checking_balance         rawdata train.x             train.y    
+#&gt;   &lt;fct&gt;            &lt;list&lt;df[,16]&gt;&gt; &lt;list&gt;              &lt;list&gt;     
+#&gt; 1 &lt; 0 DM                [270 x 16] &lt;tibble [270 x 15]&gt; &lt;fct [270]&gt;
+#&gt; 2 1 - 200 DM            [268 x 16] &lt;tibble [268 x 15]&gt; &lt;fct [268]&gt;
+#&gt; 3 unknown               [389 x 16] &lt;tibble [389 x 15]&gt; &lt;fct [389]&gt;
+#&gt; 4 &gt; 200 DM               [63 x 16] &lt;tibble [63 x 15]&gt;  &lt;fct [63]&gt;</code></pre>
 <p>The model that will be used is random forest</p>
 <pre class="r"><code>nested.rf &lt;- nested.split %&gt;% 
   mutate(param = map2(train.x, train.y, ~list(.x, .y)),
          model = invoke_map(RandomForestModel,param))
 nested.rf</code></pre>
 <pre><code>#&gt; # A tibble: 4 x 6
-#&gt;   checking_balance rawdata         train.x        train.y   param    model 
-#&gt;   &lt;fct&gt;            &lt;list&gt;          &lt;list&gt;         &lt;list&gt;    &lt;list&gt;   &lt;list&gt;
-#&gt; 1 &lt; 0 DM           &lt;tibble [270 x~ &lt;tibble [270 ~ &lt;fct [27~ &lt;list [~ &lt;trai~
-#&gt; 2 1 - 200 DM       &lt;tibble [268 x~ &lt;tibble [268 ~ &lt;fct [26~ &lt;list [~ &lt;trai~
-#&gt; 3 unknown          &lt;tibble [389 x~ &lt;tibble [389 ~ &lt;fct [38~ &lt;list [~ &lt;trai~
-#&gt; 4 &gt; 200 DM         &lt;tibble [63 x ~ &lt;tibble [63 x~ &lt;fct [63~ &lt;list [~ &lt;trai~</code></pre>
+#&gt; # Groups:   checking_balance [4]
+#&gt;   checking_balance        rawdata train.x         train.y   param    model 
+#&gt;   &lt;fct&gt;            &lt;list&lt;df[,16]&gt; &lt;list&gt;          &lt;list&gt;    &lt;list&gt;   &lt;list&gt;
+#&gt; 1 &lt; 0 DM               [270 x 16] &lt;tibble [270 x~ &lt;fct [27~ &lt;list [~ &lt;trai~
+#&gt; 2 1 - 200 DM           [268 x 16] &lt;tibble [268 x~ &lt;fct [26~ &lt;list [~ &lt;trai~
+#&gt; 3 unknown              [389 x 16] &lt;tibble [389 x~ &lt;fct [38~ &lt;list [~ &lt;trai~
+#&gt; 4 &gt; 200 DM              [63 x 16] &lt;tibble [63 x ~ &lt;fct [63~ &lt;list [~ &lt;trai~</code></pre>
 <p>To see how well the model is made, we can see the accuracy obtained from the model we made.</p>
 <pre class="r"><code>nested.rf &lt;- nested.rf %&gt;% 
   mutate(Accuracy = map_dbl(model, ~max(.x$results$Accuracy)))
 nested.rf</code></pre>
 <pre><code>#&gt; # A tibble: 4 x 7
-#&gt;   checking_balance rawdata      train.x      train.y  param  model Accuracy
-#&gt;   &lt;fct&gt;            &lt;list&gt;       &lt;list&gt;       &lt;list&gt;   &lt;list&gt; &lt;lis&gt;    &lt;dbl&gt;
-#&gt; 1 &lt; 0 DM           &lt;tibble [27~ &lt;tibble [27~ &lt;fct [2~ &lt;list~ &lt;tra~    0.645
-#&gt; 2 1 - 200 DM       &lt;tibble [26~ &lt;tibble [26~ &lt;fct [2~ &lt;list~ &lt;tra~    0.662
-#&gt; 3 unknown          &lt;tibble [38~ &lt;tibble [38~ &lt;fct [3~ &lt;list~ &lt;tra~    0.882
-#&gt; 4 &gt; 200 DM         &lt;tibble [63~ &lt;tibble [63~ &lt;fct [6~ &lt;list~ &lt;tra~    0.773</code></pre>
+#&gt; # Groups:   checking_balance [4]
+#&gt;   checking_balance      rawdata train.x     train.y   param  model Accuracy
+#&gt;   &lt;fct&gt;            &lt;list&lt;df[,1&gt; &lt;list&gt;      &lt;list&gt;    &lt;list&gt; &lt;lis&gt;    &lt;dbl&gt;
+#&gt; 1 &lt; 0 DM             [270 x 16] &lt;tibble [2~ &lt;fct [27~ &lt;list~ &lt;tra~    0.643
+#&gt; 2 1 - 200 DM         [268 x 16] &lt;tibble [2~ &lt;fct [26~ &lt;list~ &lt;tra~    0.676
+#&gt; 3 unknown            [389 x 16] &lt;tibble [3~ &lt;fct [38~ &lt;list~ &lt;tra~    0.874
+#&gt; 4 &gt; 200 DM            [63 x 16] &lt;tibble [6~ &lt;fct [63~ &lt;list~ &lt;tra~    0.774</code></pre>
 </div>
 <div id="multiple-data-frame-x-multiple-model" class="section level2">
 <h2>2.3 Multiple Data Frame x Multiple Model</h2>
@@ -719,6 +720,7 @@ nested.multi &lt;- nested.multi %&gt;%
   bind_cols(model.multi)
 nested.multi</code></pre>
 <pre><code>#&gt; # A tibble: 8 x 6
+#&gt; # Groups:   checking_balance [4]
 #&gt;   checking_balance rawdata         train.x        train.y   modelName model
 #&gt;   &lt;fct&gt;            &lt;list&gt;          &lt;list&gt;         &lt;list&gt;    &lt;chr&gt;     &lt;lis&gt;
 #&gt; 1 &lt; 0 DM           &lt;tibble [270 x~ &lt;tibble [270 ~ &lt;fct [27~ rforest   &lt;fn&gt; 
@@ -735,6 +737,7 @@ nested.multi</code></pre>
          model = invoke_map(model,param))
 nested.multi</code></pre>
 <pre><code>#&gt; # A tibble: 8 x 7
+#&gt; # Groups:   checking_balance [4]
 #&gt;   checking_balance rawdata     train.x     train.y   modelName model param 
 #&gt;   &lt;fct&gt;            &lt;list&gt;      &lt;list&gt;      &lt;list&gt;    &lt;chr&gt;     &lt;lis&gt; &lt;list&gt;
 #&gt; 1 &lt; 0 DM           &lt;tibble [2~ &lt;tibble [2~ &lt;fct [27~ rforest   &lt;tra~ &lt;list~
@@ -751,13 +754,13 @@ nested.multi</code></pre>
 #&gt;  randomForest(x = x, y = y, mtry = param$mtry, trContrl = ..1) 
 #&gt;                Type of random forest: classification
 #&gt;                      Number of trees: 500
-#&gt; No. of variables tried at each split: 8
+#&gt; No. of variables tried at each split: 2
 #&gt; 
-#&gt;         OOB estimate of  error rate: 37.78%
+#&gt;         OOB estimate of  error rate: 35.93%
 #&gt; Confusion matrix:
 #&gt;     no yes class.error
-#&gt; no  85  51    0.375000
-#&gt; yes 51  83    0.380597</code></pre>
+#&gt; no  91  45   0.3308824
+#&gt; yes 52  82   0.3880597</code></pre>
 <p>And we can see the accuracy each model</p>
 <pre class="r"><code>nested.multi &lt;- nested.multi %&gt;% 
   mutate(Accuracy = map_dbl(model, ~max(.x$results$Accuracy)))</code></pre>
