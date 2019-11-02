@@ -67,6 +67,7 @@ Use the following template:
 ```
 title: Creating Choropleth with Mapshaper and R
 author: Ardhito Utomo
+github: https://github.com/ardhitoutomo
 date: '2019-08-18'
 slug: creating-choropleth-with-mapshaper-and-r
 categories:
