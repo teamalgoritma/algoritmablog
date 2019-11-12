@@ -24,7 +24,7 @@
 {{ if .Site.Params.socialShareFacebook | default true}}
 
 <li>
-  <a href="//www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" target="_blank" class="share-btn facebook">
+  <a href="https://www.facebook.com/sharer.php?u={{ .Permalink | html }}" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -44,7 +44,7 @@
 <!-- LinkedIn -->
 {{ if .Site.Params.socialShareLinkedin | default true}}
 <li>
-  <a href="//www.linkedin.com/shareArticle?url={{ .Permalink }}&amp;title={{ .Title }}" target="_blank" class="share-btn linkedin">
+  <a href="//www.linkedin.com/shareArticle?url&amp;title={{ .Title }}" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
