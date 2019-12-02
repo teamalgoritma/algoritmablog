@@ -36,8 +36,8 @@
       
       <guid>/blog/poisson-regression-and-neg-ative-binomial-regression/</guid>
       <description>Introduction Regression analysis is a set of statistical processes for estimating the relationships among variables. It includes many techniques for modeling and analyzing several variables, when the focus is on the relationship between a dependent variable and one or more independent variables (or &amp;lsquo;predictors&amp;rsquo;).
-For example   Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
-  Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
+For example  Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
+ Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
     </item>
     
     <item>
@@ -47,7 +47,7 @@ For example   Find out the effect of land area and building area on house prices
       
       <guid>/blog/tidymodels/</guid>
       <description>The following presentation is produced by the team at Algoritma for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
-Outline Why tidymodels Matters?  Things we think we&#39;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?</description>
+Outline Why tidymodels Matters?  Things we think we&amp;rsquo;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?</description>
     </item>
     
     <item>
@@ -103,9 +103,9 @@ Outline Why tidymodels Matters?  Things we think we&#39;re doing it right Things
       <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>/blog/causal-inference-and-bayesian-network/</guid>
-      <description>Introduction Cause has been people&#39;s curiosity for a long time, you can see that people often ask &amp;ldquo;Why&amp;rdquo; to things happening around them. But do we actually know how to explain &amp;ldquo;cause&amp;rdquo;?
+      <description>Introduction Cause has been people&amp;rsquo;s curiosity for a long time, you can see that people often ask &amp;ldquo;Why&amp;rdquo; to things happening around them. But do we actually know how to explain &amp;ldquo;cause&amp;rdquo;?
 Do we jump to conclusion of causal relationship often too quickly?
-Can association between factors that we call mathematically &amp;ldquo;correlation&amp;rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&#39;t mean it affects each other.</description>
+Can association between factors that we call mathematically &amp;ldquo;correlation&amp;rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&amp;rsquo;t mean it affects each other.</description>
     </item>
     
     <item>
