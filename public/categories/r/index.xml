@@ -12,21 +12,21 @@
     
     
     <item>
+      <title>Bioinformatics: Decoding Nature&#39;s Code of Life</title>
+      <link>/blog/bio-intro/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/bio-intro/</guid>
+      <description>It is inarguable that Data Science gives a tremendous impact on today&amp;rsquo;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.</description>
+    </item>
+    
+    <item>
       <title>Interpreting Classification Model with LIME</title>
       <link>/blog/interpreting-classification-model-with-lime/</link>
       <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/interpreting-classification-model-with-lime/</guid>
-      <description>IntroductionOne of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning.</description>
-    </item>
-    
-    <item>
-      <title>Bioinformatics: Decoding Nature&#39;s Code of Life</title>
-      <link>/blog/biocode/</link>
-      <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/biocode/</guid>
-      <description>It is inarguable that Data Science gives a tremendous impact on today&amp;rsquo;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.</description>
+      <description>Introduction One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning.</description>
     </item>
     
     <item>

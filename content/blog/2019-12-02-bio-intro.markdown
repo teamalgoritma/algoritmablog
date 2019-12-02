@@ -1,9 +1,8 @@
 ---
 title: 'Bioinformatics: Decoding Nature''s Code of Life'
 author: Nabiilah Ardini Fauziyyah
-github: https://github.com/NabiilahArdini
-date: '2019-11-27'
-slug: biocode
+date: '2019-12-02'
+slug: bio-intro
 categories:
   - R
 tags:
@@ -18,6 +17,7 @@ featuredpath: ''
 linktitle: ''
 type: post
 ---
+
 
 
 It is inarguable that Data Science gives a tremendous impact on today's industry. Furthermore, it also accelerates the development of basic science research including *Biology*. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life. 
@@ -74,17 +74,17 @@ After knowing the relation between DNA and the measured characteristic traits (p
 
 Research on Bioinformatics has produced numerous amounts of data and is right now being stored and maintained in Biological Databases. The databases store different types of biological data. These are the most used databases for sequence data (genetic codes) today:
 
-* GenBank from [NCBI](www.ncbi.nlm.nih.gov)
+* GenBank from NCBI
 
-GenBank is an open-access sequence database, containing an annotated collection of all publicly available nucleotide sequences and their protein translations. This database is maintained by the National Center for Biotechnology Information (NCBI), a part of the National Institutes of Health in the United States. 
+[GenBank](www.ncbi.nlm.nih.gov) is an open-access sequence database, containing an annotated collection of all publicly available nucleotide sequences and their protein translations. This database is maintained by the National Center for Biotechnology Information (NCBI), a part of the National Institutes of Health in the United States. 
 
-* [ENA](www.ebi.ac.uk/ena)
+* ENA
 
-The European Nucleotide Archive (ENA) is a repository providing free and unrestricted access to annotated DNA and RNA sequences. The ENA is maintained by the European Bioinformatics Institute.
+The [European Nucleotide Archive](www.ebi.ac.uk/ena)) (ENA) is a repository providing free and unrestricted access to annotated DNA and RNA sequences. The ENA is maintained by the European Bioinformatics Institute.
 
-* [DDBJ](www.ddbj.nig.ac.jp)
+* DDBJ
 
-The DNA Data Bank of Japan (DDBJ) is a biological database that collects DNA sequences. It is located at the National Institute of Genetics (NIG) in the Shizuoka prefecture, Japan. 
+The DNA [Data Bank of Japan](www.ddbj.nig.ac.jp) (DDBJ) is a biological database that collects DNA sequences. It is located at the National Institute of Genetics (NIG) in the Shizuoka prefecture, Japan. 
 
 A joint effort to collect and disseminate databases containing DNA and RNA sequences between these three databases have been conducted through **The International Nucleotide Sequence Database Collaboration** (INSDC). It exchanges data on a daily basis thus these three databases contain the same data at any given time. Other databases related to protein structure and function are also available, such as [UNIPROT](www.uniprot.org) and [PDB](https://www.rcsb.org/). Data related to the metabolic pathway is also available in [KEGG](genome.jp/kegg/) database.
 
@@ -291,7 +291,7 @@ bcTree <- nj(bc_ident)
 plot(bcTree, main="Phylogenetic Tree of Biocellulose Producing Bacteria")
 ```
 
-<img src="/blog/2019-11-27-bioinformatics-decoding-nature-s-code-of-life_files/figure-html/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;" />
+<img src="/blog/2019-12-02-bio-intro_files/figure-html/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;" />
 
 We have known that the major producers of bacterial cellulose belong to the *Komagataeibacter* genus due to its higher biocelllose yield and purity. From the phylogenetic tree above, we know that sample 1 and sample 2 is within the cluster with many *Komagataeibacter xylinus* species. Sample 1 is especially closely related to *K. xylinus* strain NCIB 1166. Meanwhile, sample 3 did not included in any of the cluster containing Komagataeibacter bacteria and therefore might have a lower chance to produce high yield and high purity biocellulose. 
 

@@ -16,8 +16,8 @@ featured: ''
 featuredalt: ''
 featuredpath: ''
 linktitle: ''
+type: post
 ---
-
 
 ```{r setup, include=FALSE}
 # clean up the environment
