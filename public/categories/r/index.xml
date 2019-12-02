@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Bioinformatics: Decoding Nature&#39;s Code of Life</title>
+      <link>/blog/biocode/</link>
+      <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/biocode/</guid>
+      <description>It is inarguable that Data Science gives a tremendous impact on today&amp;rsquo;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.</description>
+    </item>
+    
+    <item>
       <title>Text Classification with LSTM</title>
       <link>/blog/text-lstm/</link>
       <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
