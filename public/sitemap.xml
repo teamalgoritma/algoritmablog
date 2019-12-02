@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>/blog/</loc>
+    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/capstone-ml/</loc>
     <lastmod>2019-12-02T00:00:00+00:00</lastmod>
   </url>
@@ -18,7 +23,7 @@
   </url>
   
   <url>
-    <loc>/post/interpreting-classification-model-with-lime/</loc>
+    <loc>/blog/interpreting-classification-model-with-lime/</loc>
     <lastmod>2019-12-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -29,11 +34,6 @@
   
   <url>
     <loc>/tags/machine-learning/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
     <lastmod>2019-12-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -69,11 +69,6 @@
   
   <url>
     <loc>/blog/biocode/</loc>
-    <lastmod>2019-11-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/blog/</loc>
     <lastmod>2019-11-27T00:00:00+00:00</lastmod>
   </url>
   
