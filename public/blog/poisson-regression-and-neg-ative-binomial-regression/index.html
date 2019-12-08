@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.59.1" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
 
 
@@ -62,14 +62,15 @@ For example  Find out the effect of land area and building area on house prices 
  Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/poisson-regression-and-neg-ative-binomial-regression/" />
-<meta property="article:published_time" content="2019-10-22T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-10-22T00:00:00+00:00" />
+<meta property="article:published_time" content="2019-10-22T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-10-22T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        <meta itemprop="name" content="Poisson Regression and Negative Binomial Regression">
+        
+<meta itemprop="name" content="Poisson Regression and Negative Binomial Regression">
 <meta itemprop="description" content="Introduction Regression analysis is a set of statistical processes for estimating the relationships among variables. It includes many techniques for modeling and analyzing several variables, when the focus is on the relationship between a dependent variable and one or more independent variables (or &lsquo;predictors&rsquo;).
 For example  Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
  Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?">
@@ -536,7 +537,7 @@ summary(modelols1)
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; 
 #&gt; Residual standard error: 0.5188 on 18 degrees of freedom
-#&gt; Multiple R-squared:  0.0212,	Adjusted R-squared:  -0.03318 
+#&gt; Multiple R-squared:  0.0212, Adjusted R-squared:  -0.03318 
 #&gt; F-statistic: 0.3898 on 1 and 18 DF,  p-value: 0.5403
 </code></pre>
 
@@ -880,8 +881,8 @@ testDispersion(resp, plot = F)
 </code></pre>
 
 <pre><code>#&gt; 
-#&gt; 	DHARMa nonparametric dispersion test via mean deviance residual
-#&gt; 	fitted vs. simulated-refitted
+#&gt;  DHARMa nonparametric dispersion test via mean deviance residual
+#&gt;  fitted vs. simulated-refitted
 #&gt; 
 #&gt; data:  resp
 #&gt; dispersion = 6.5899, p-value &lt; 2.2e-16
@@ -1003,8 +1004,8 @@ plot(resnb)
 </code></pre>
 
 <pre><code>#&gt; 
-#&gt; 	DHARMa nonparametric dispersion test via mean deviance residual
-#&gt; 	fitted vs. simulated-refitted
+#&gt;  DHARMa nonparametric dispersion test via mean deviance residual
+#&gt;  fitted vs. simulated-refitted
 #&gt; 
 #&gt; data:  resnb
 #&gt; dispersion = 1.0913, p-value = 0.216
@@ -1016,7 +1017,8 @@ plot(resnb)
 <h2 id="the-best-model-comparison">The Best Model Comparison</h2>
 
 <ul>
-<li><p><em>Comparison of AIC values</em></p>
+<li><em>Comparison of AIC values</em></li>
+</ul>
 
 <pre><code class="language-r">modelpois$aic 
 </code></pre>
@@ -1028,8 +1030,7 @@ plot(resnb)
 </code></pre>
 
 <pre><code>#&gt; [1] 1741.258
-</code></pre></li>
-</ul>
+</code></pre>
 
 <p>Compare the models, the Poisson Regression model and the Negative Binomial Regression model based on the AIC value. Then the Negative Binomial Regression model is the model with the smallest AIC value.</p>
 

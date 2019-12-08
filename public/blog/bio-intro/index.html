@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.59.1" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
 
 
@@ -58,14 +58,15 @@
 <meta property="og:description" content="It is inarguable that Data Science gives a tremendous impact on today&rsquo;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/bio-intro/" />
-<meta property="article:published_time" content="2019-12-02T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-12-02T00:00:00+00:00" />
+<meta property="article:published_time" content="2019-12-02T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-12-02T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        <meta itemprop="name" content="Bioinformatics: Decoding Nature&#39;s Code of Life">
+        
+<meta itemprop="name" content="Bioinformatics: Decoding Nature&#39;s Code of Life">
 <meta itemprop="description" content="It is inarguable that Data Science gives a tremendous impact on today&rsquo;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.">
 
 
@@ -646,8 +647,8 @@ myseq
 <li>DNAStringSet instances length shows how many DNA sequence we have</li>
 <li>width: the length of each DNA sequence</li>
 <li>seq: the DNA sequence</li>
-
-<li><p>names: the label for each DNA sequence</p>
+<li>names: the label for each DNA sequence</li>
+</ul>
 
 <pre><code class="language-r">names(myseq)
 </code></pre>
@@ -670,8 +671,7 @@ myseq
 #&gt; [16] &quot;Sample1&quot;                                   
 #&gt; [17] &quot;Sample2&quot;                                   
 #&gt; [18] &quot;Sample3&quot;
-</code></pre></li>
-</ul>
+</code></pre>
 
 <p>using <code>names()</code> function we can find out the labels from our DNAStringSet data. This data contain 18 DNA sequences containing <em>16S rRNA gene</em> that is widely used for sequence similarity analysis. 4 of them are from <em>Komagataeibacter xylinus</em> (with various strains) that are being widely developed for biocellulose industrial production. The last 3 unidentified sample is the DNA of our local potential superbugs. The other DNA sample act as comparations to analyze whether our sample resides within the same cluster of <em>Komagataeibacter xylinus</em> (meaning that it may also produce high yield of biocellulose) or not.</p>
 

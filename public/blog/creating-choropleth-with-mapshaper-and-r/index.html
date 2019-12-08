@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.59.1" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
 
 
@@ -60,14 +60,15 @@ There are many types of geospatial that we can do, such as Dot Map, Connection M
 There are many types of geospatial that we can do, such as Dot Map, Connection Map, Choropleth, Hexbin Map, and Bubble Map1. Each type of geospatial has its own function, and each of these types also requires different types of information/data." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/creating-choropleth-with-mapshaper-and-r/" />
-<meta property="article:published_time" content="2019-08-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-08-18T00:00:00+00:00" />
+<meta property="article:published_time" content="2019-08-18T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-08-18T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        <meta itemprop="name" content="Creating Choropleth with Mapshaper and R">
+        
+<meta itemprop="name" content="Creating Choropleth with Mapshaper and R">
 <meta itemprop="description" content="Geospatial is one of the important things in data processing. With geospatial, we can provide information only with the help of maps so that information can be conveyed properly.
 There are many types of geospatial that we can do, such as Dot Map, Connection Map, Choropleth, Hexbin Map, and Bubble Map1. Each type of geospatial has its own function, and each of these types also requires different types of information/data.">
 
@@ -695,14 +696,14 @@ head(hidran_mod)
 
 <ul>
 <li>The condition &ldquo;Lost&rdquo;/&ldquo;Hilang&rdquo; will be replaced by &ldquo;Damaged&rdquo;/&ldquo;Rusak&rdquo; due to the &ldquo;Hilang&rdquo; factor gives very little or no contribution to the data</li>
-
-<li><p>Conditions/&ldquo;kondisi&rdquo; will be added by region and location again so that the level from the original &ldquo;Rusak&rdquo; and &ldquo;Rusak&rdquo; from &ldquo;Hilang&rdquo; can be combined into one factor only</p>
+<li>Conditions/&ldquo;kondisi&rdquo; will be added by region and location again so that the level from the original &ldquo;Rusak&rdquo; and &ldquo;Rusak&rdquo; from &ldquo;Hilang&rdquo; can be combined into one factor only</li>
+</ul>
 
 <pre><code class="language-r">hidran_mod &lt;- hidran_mod %&gt;% 
-mutate(kondisi = ifelse(kondisi == &quot;Hilang&quot;, &quot;Rusak&quot;, paste(kondisi))) %&gt;% 
-group_by(wilayah, lokasi, kondisi) %&gt;% 
-summarise(jumlah = sum(jumlah)) %&gt;% 
-ungroup()
+  mutate(kondisi = ifelse(kondisi == &quot;Hilang&quot;, &quot;Rusak&quot;, paste(kondisi))) %&gt;% 
+  group_by(wilayah, lokasi, kondisi) %&gt;% 
+  summarise(jumlah = sum(jumlah)) %&gt;% 
+  ungroup()
 
 glimpse(hidran_mod)
 </code></pre>
@@ -713,8 +714,7 @@ glimpse(hidran_mod)
 #&gt; $ lokasi  &lt;chr&gt; &quot;Cengkareng&quot;, &quot;Cengkareng&quot;, &quot;Grogolpetamburan&quot;, &quot;Grogo...
 #&gt; $ kondisi &lt;chr&gt; &quot;Baik&quot;, &quot;Rusak&quot;, &quot;Baik&quot;, &quot;Rusak&quot;, &quot;Baik&quot;, &quot;Rusak&quot;, &quot;Ba...
 #&gt; $ jumlah  &lt;int&gt; 13, 1, 21, 4, 3, 3, 5, 2, 36, 7, 7, 7, 7, 7, 21, 10, 2...
-</code></pre></li>
-</ul>
+</code></pre>
 
 <h3 id="combining-data">Combining Data</h3>
 
@@ -727,25 +727,25 @@ glimpse(hidran_mod)
 <li>Use the <code>fill</code> function from <code>tidyr</code> to fill missing values <strong>except</strong> the <code>amount</code>/<code>jumlah</code> and <code>kondisi</code> column, in a downward direction. We do this because there are conditions when we have geometric data but do not have a <code>jumlah</code> for each <code>kondisi</code>, and vice versa. By doing this, we will get complete information on each column except <code>jumlah</code>, <code>geometry</code>, and <code>kondisi</code> only</li>
 <li>Fill in the value in the <code>geometry</code> column using looping function. Here the <code>lengths</code> function is used which returns whether a list has contents or not. If it is empty, it will be filled with a list above it (using the <code>list.take</code> function from the <code>rlist</code> library and taking the list to <code>[i-1]</code> or one row above)</li>
 <li>Replacing the value of <code>NA</code> in <code>jumlah</code> with <code>0</code></li>
-
-<li><p>Removes lines with <code>kondisi == NA</code></p>
+<li>Removes lines with <code>kondisi == NA</code></li>
+</ul>
 
 <pre><code class="language-r">jakarta_hidran &lt;- jakarta_json_mod %&gt;% 
-left_join(hidran_mod, by = c(&quot;NAME_2&quot; = &quot;wilayah&quot;, &quot;NAME_3&quot; = &quot;lokasi&quot;)) %&gt;% 
-complete(kondisi, NAME_3) %&gt;% 
-arrange(NAME_3, NAME_0) %&gt;% 
-tidyr::fill(-c(jumlah, kondisi), .direction = &quot;down&quot;) 
+  left_join(hidran_mod, by = c(&quot;NAME_2&quot; = &quot;wilayah&quot;, &quot;NAME_3&quot; = &quot;lokasi&quot;)) %&gt;% 
+  complete(kondisi, NAME_3) %&gt;% 
+  arrange(NAME_3, NAME_0) %&gt;% 
+  tidyr::fill(-c(jumlah, kondisi), .direction = &quot;down&quot;) 
 
 # Create a looping function to fill empty row in `geometri` column
 for (i in 1:nrow(jakarta_hidran)) {
-jakarta_hidran$geometry[i] &lt;- ifelse(!lengths(jakarta_hidran$geometry[i]), 
-                                rlist::list.take(jakarta_hidran$geometry[i-1], n = 1), 
-                                jakarta_hidran$geometry[i])
+  jakarta_hidran$geometry[i] &lt;- ifelse(!lengths(jakarta_hidran$geometry[i]), 
+                                    rlist::list.take(jakarta_hidran$geometry[i-1], n = 1), 
+                                    jakarta_hidran$geometry[i])
 }
 
 jakarta_hidran &lt;- jakarta_hidran %&gt;% 
-mutate(jumlah = replace_na(jumlah, replace = 0)) %&gt;% 
-na.omit()
+  mutate(jumlah = replace_na(jumlah, replace = 0)) %&gt;% 
+  na.omit()
 
 glimpse(jakarta_hidran)
 </code></pre>
@@ -764,8 +764,7 @@ glimpse(jakarta_hidran)
 #&gt; $ CC_3     &lt;fct&gt; 3172080, 3172080, 3173050, 3173050, 3174070, 3174070,...
 #&gt; $ jumlah   &lt;dbl&gt; 51, 12, 21, 10, 13, 1, 10, 16, 57, 9, 0, 0, 16, 1, 0,...
 #&gt; $ geometry &lt;MULTIPOLYGON&gt; MULTIPOLYGON (((106.9508 -6..., MULTIPOLYGON...
-</code></pre></li>
-</ul>
+</code></pre>
 
 <p>When we do a simple <code>leaflet</code> mapping using <code>jakarta_hidran</code> data, we get an error like this:</p>
 

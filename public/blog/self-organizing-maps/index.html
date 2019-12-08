@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.59.1" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
 
 
@@ -58,14 +58,15 @@
 <meta property="og:description" content="Introduction SOM Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction. SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/self-organizing-maps/" />
-<meta property="article:published_time" content="2019-04-26T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-04-26T00:00:00+00:00" />
+<meta property="article:published_time" content="2019-04-26T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-04-26T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        <meta itemprop="name" content="Self-Organizing Maps">
+        
+<meta itemprop="name" content="Self-Organizing Maps">
 <meta itemprop="description" content="Introduction SOM Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction. SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations.">
 
 
@@ -251,7 +252,7 @@
                                 
                                 <time class="published" datetime=
                                     '2019-12-02'>
-                                    December 2, 2019</time>
+                                    April 26, 2019</time>
                             </header>
                             
 
@@ -510,14 +511,13 @@
 <ul>
 <li><em>somgrid()</em> : initialized SOM node set</li>
 <li><em>som()</em> : making a SOM model, change the radius of neighbourhood, learning rate, and iteration</li>
-
-<li><p><em>plot.kohonen()</em> / <em>plot()</em> : visualisation of resulting SOM</p>
+<li><em>plot.kohonen()</em> / <em>plot()</em> : visualisation of resulting SOM</li>
+</ul>
 
 <pre><code class="language-r">library(kohonen)
 library(rmdformats)
 library(dplyr)
-</code></pre></li>
-</ul>
+</code></pre>
 
 <p>In this article, we want to use <code>ads data</code> from xyz company that make an ads on Facebook.</p>
 
@@ -783,8 +783,8 @@ At this part, to do the profiling of the clusters that we made, we do not need t
 <li>Cluster 3 (green light) : gender Female, gender Male,  age 45-49, interest high, impression middle, clicks middle</li>
 <li>Cluster 4 (green) : interest high, impression high, clicks high, spent high, gender Male, age 30-34, total conversion high, approved conversion high</li>
 <li>Cluster 5 (turqois) : gender Female, age 45-49, interest middle, clicks and spent low</li>
-
-<li><p>Cluster 6 (blue) : gender Female, age 30-34, interest high</p>
+<li>Cluster 6 (blue) : gender Female, age 30-34, interest high</li>
+</ul>
 
 <pre><code class="language-r"># know cluster each data
 ads.cluster &lt;- data.frame(ads.s, cluster = clust$cluster[ads.model$unit.classif])
@@ -813,8 +813,7 @@ tail(ads.cluster, 10)
 #&gt; 1141                   0       1       0    0    0    0    1       5
 #&gt; 1142                   2       1       0    0    0    0    1       3
 #&gt; 1143                   2       1       0    0    0    0    1       3
-</code></pre></li>
-</ul>
+</code></pre>
 
 <h1 id="supervised-som">Supervised SOM</h1>
 

@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.59.1" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
 
 
@@ -58,14 +58,15 @@
 <meta property="og:description" content="Introduction One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/interpreting-classification-model-with-lime/" />
-<meta property="article:published_time" content="2019-12-02T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-12-02T00:00:00+00:00" />
+<meta property="article:published_time" content="2019-12-02T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-12-02T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        <meta itemprop="name" content="Interpreting Classification Model with LIME">
+        
+<meta itemprop="name" content="Interpreting Classification Model with LIME">
 <meta itemprop="description" content="Introduction One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning.">
 
 
@@ -549,35 +550,34 @@ paged_table(attrition)
 <li>Transform <code>age</code> into 3 level factors: Young (less than 25), Middle Age (25-54), and Senior (more than 54)</li>
 <li>Transform <code>monthly_income</code> into 2 level factors: Below average and Above average)</li>
 <li>Adjust the level of <code>attrition</code>, with the first level will be the positive class (<code>attrition = yes</code>)</li>
-
-<li><p>Remove unnecessary variables</p>
+<li>Remove unnecessary variables</li>
+</ul>
 
 <pre><code class="language-r">df &lt;- attrition
 df$total_satisfaction &lt;- df %&gt;% 
-group_by(employee_number) %&gt;% 
-summarise(total_satisfaction = sum(environment_satisfaction, job_satisfaction, performance_rating,
-                              work_life_balance, job_involvement, relationship_satisfaction)) %&gt;% 
-pull(2)
+  group_by(employee_number) %&gt;% 
+  summarise(total_satisfaction = sum(environment_satisfaction, job_satisfaction, performance_rating,
+                                  work_life_balance, job_involvement, relationship_satisfaction)) %&gt;% 
+  pull(2)
 
 df &lt;- df %&gt;% 
-mutate(education = as.factor(case_when(education == 1 ~ &quot;Below College&quot;,
-                                     education == 2 ~ &quot;College&quot;,
-                                     education == 3 ~ &quot;Bachelor&quot;,
-                                     education == 4 ~ &quot;Master&quot;,
-                                     TRUE ~ &quot;Doctor&quot;)),
-     age = as.factor(case_when(age &lt;= 25 ~ &quot;Young&quot;,
-                               age &lt;= 54 ~ &quot;Middle Aged&quot;,
-                               TRUE ~ &quot;Senior&quot;)),
-     monthly_income = if_else(monthly_income &lt; median(monthly_income), &quot;Below Average&quot;, &quot;Above Average&quot;),
-     job_level = as.factor(job_level),
-     stock_option_level = as.factor(stock_option_level),
-     attrition = factor(attrition, levels = c(&quot;yes&quot;, &quot;no&quot;))) %&gt;% 
-select(-c(environment_satisfaction, job_satisfaction, performance_rating, employee_number,
-        work_life_balance, job_involvement, relationship_satisfaction))
+  mutate(education = as.factor(case_when(education == 1 ~ &quot;Below College&quot;,
+                                         education == 2 ~ &quot;College&quot;,
+                                         education == 3 ~ &quot;Bachelor&quot;,
+                                         education == 4 ~ &quot;Master&quot;,
+                                         TRUE ~ &quot;Doctor&quot;)),
+         age = as.factor(case_when(age &lt;= 25 ~ &quot;Young&quot;,
+                                   age &lt;= 54 ~ &quot;Middle Aged&quot;,
+                                   TRUE ~ &quot;Senior&quot;)),
+         monthly_income = if_else(monthly_income &lt; median(monthly_income), &quot;Below Average&quot;, &quot;Above Average&quot;),
+         job_level = as.factor(job_level),
+         stock_option_level = as.factor(stock_option_level),
+         attrition = factor(attrition, levels = c(&quot;yes&quot;, &quot;no&quot;))) %&gt;% 
+  select(-c(environment_satisfaction, job_satisfaction, performance_rating, employee_number,
+            work_life_balance, job_involvement, relationship_satisfaction))
 
 paged_table(df)
-</code></pre></li>
-</ul>
+</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
@@ -616,22 +616,21 @@ intrain
 <li>Downsample to prevent class imbalance</li>
 <li>Remove <code>over_18</code> variable since it only has 1 levels of factor</li>
 <li>Scaling all of the numeric variables</li>
-
-<li><p>Remove numeric variable with near zero variance</p>
+<li>Remove numeric variable with near zero variance</li>
+</ul>
 
 <pre><code class="language-r"># Preprocess Recipes
 rec &lt;- recipe(attrition ~ ., data = training(intrain)) %&gt;% 
-step_downsample(attrition) %&gt;% 
-step_rm(over_18) %&gt;% 
-step_scale(all_numeric()) %&gt;% 
-step_nzv(all_numeric()) %&gt;% 
-prep()
+  step_downsample(attrition) %&gt;% 
+  step_rm(over_18) %&gt;% 
+  step_scale(all_numeric()) %&gt;% 
+  step_nzv(all_numeric()) %&gt;% 
+  prep()
 
 # Create Data Train and Data Test
 data_train &lt;- juice(rec)
 data_test &lt;- bake(rec, testing(intrain))
-</code></pre></li>
-</ul>
+</code></pre>
 
 <p>For later implementation, we create a <code>rec_rev</code> to back transform our data that has already preprocessed with <code>recipes</code>.</p>
 
