@@ -1,4 +1,4 @@
-baseurl = ""
+baseurl = "https://algotech.netlify.com/"
 languageCode = "en-us"
 title = "Algoritma Technical Blog"
 theme = "hugo-future-imperfect"
@@ -143,3 +143,9 @@ canonifyURLs = true
   facebook         = "teamalgoritma"
   instagram        = "teamalgoritma"
   twitter          = "teamalgoritma"
+
+[params.search]
+  engine = 1
+
+[permalinks]
+  post = "/blog/:slug"
