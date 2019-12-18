@@ -18,41 +18,35 @@ type: post
 ---
 
 ```{r, echo=FALSE}
-# rm(list = ls())
-# 
-# knitr::opts_chunk$set(
-#   message = FALSE,
-#   warning = FALSE,
-#   fig.align = "center",
-#   comment = "#>"
-# )
+rm(list = ls())
+
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
 ```
 
-
-# An Introduction to Generative Adversarial Network (GAN)
-Prerequisites: 
-- CNN 
-- Keras
+In 2018 a  paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie's. This made Chritie's the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
 
 # Intro
-
-<!-- Motivations -->
-
-
 ```{r, echo=FALSE}
 knitr::include_graphics('/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg')
 ```
 
 >Is artificial intelligence set to become art’s next medium? - Chritie's
 
-In 2018 a  paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie's. This made Chritie's the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
+Prerequisites: 
+- CNN 
+- Keras
+
 
 As discovered by Ian Goodfellow[^ian_GAN] , GAN is consisted of **two** neural networks named Generator and Discriminator. The Generator was built to create fake images, while the discriminator was built to identify those fake images as fake. Essentially, it's not always have to be fake image. The GAN architecture can build any other type of data like sounds or videos. 
 
 ## Course Objective : 
-- Implement (not optimize) DC-GAN uising Keras
+- Implement (not optimize) DC-GAN using Keras
 
-<!-- Motivational Examples -->
 ## Motivational Examples
 Before we go into implementation of GAN, let's see how GAN(s) changes overtime. 
 

@@ -19,45 +19,39 @@ type: post
 
 
 
+In 2018 a  paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie's. This made Chritie's the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
 
-# An Introduction to Generative Adversarial Network (GAN)
+# Intro
+<img src="/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg" style="display: block; margin: auto;" />
+
+>Is artificial intelligence set to become art’s next medium? - Chritie's
+
 Prerequisites: 
 - CNN 
 - Keras
 
-# Intro
-
-<!-- Motivations -->
-
-
-![](/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg)<!-- -->
-
->Is artificial intelligence set to become art’s next medium? - Chritie's
-
-In 2018 a  paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie's. This made Chritie's the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
 
 As discovered by Ian Goodfellow[^ian_GAN] , GAN is consisted of **two** neural networks named Generator and Discriminator. The Generator was built to create fake images, while the discriminator was built to identify those fake images as fake. Essentially, it's not always have to be fake image. The GAN architecture can build any other type of data like sounds or videos. 
 
 ## Course Objective : 
-- Implement (not optimize) DC-GAN uising Keras
+- Implement (not optimize) DC-GAN using Keras
 
-<!-- Motivational Examples -->
 ## Motivational Examples
 Before we go into implementation of GAN, let's see how GAN(s) changes overtime. 
 
-![](/img/intro-to-gan/gan-tweet.PNG)<!-- -->
+<img src="/img/intro-to-gan/gan-tweet.PNG" style="display: block; margin: auto;" />
 
 Since it's first appearance in 2014, and with the rising of Computer Vision - CNN, GAN grew rapidly. It's now able to generate a stunning images, that even our eyes cannot distinguish whether it's real or fake! Current most state-of-the-art GAN are StyleGAN, and you can check it's result in [thispersondoesntexist.com](thispersondoesntexist.com). Let's see several types of GANs
 
 ### CGAN (Conditional GAN, 2014)
 ___
-![](/img/intro-to-gan/cgan.PNG)<!-- -->
+<img src="/img/intro-to-gan/cgan.PNG" style="display: block; margin: auto;" />
 ___
 GAN was originally created to be trainable with only **ONE** class. If you train your GAN with dog images, it can generate dog images. If you train your GAN with cat images, it can generate cat images. But, what if your GAN was trained into both cat and dog images ? It will generate a blurry animal. To overcome this, Mirza[^CGAN] created CGAN that can diffrentiate multiple output. 
 
 This work also make it possible to guide an image into something else like example below 
 ___
-![](/img/intro-to-gan/pose-guide.png)<!-- -->
+<img src="/img/intro-to-gan/pose-guide.png" style="display: block; margin: auto;" />
 <sub>*source: https://papers.nips.cc/paper/6644-pose-guided-person-image-generation.pdf*</sub>
 
 ___
@@ -67,24 +61,24 @@ In 2018, Zu[^CycleGAN] create a CycleGAN, A GAN that **Doesn't Generate Fake Ima
 
 Have you ever imagine a horse with zebra lines ? 
 
-![](/img/intro-to-gan/zebra-horse.gif)<!-- -->
+<img src="/img/intro-to-gan/zebra-horse.gif" style="display: block; margin: auto;" />
 
 Or, playing Fortnite with PUBG style?
 
-![](/img/intro-to-gan/fortnite-pubg.gif)<!-- -->
+<img src="/img/intro-to-gan/fortnite-pubg.gif" style="display: block; margin: auto;" />
 
 
 
 Unlike [Style Transfer](https://towardsdatascience.com/style-transfer-styling-images-with-convolutional-neural-networks-7d215b58f461), cycle gan is not limited by domain, wich means, you can do text-to-image style transfer!
 
-![](/img/intro-to-gan/text-image.png)<!-- -->
+<img src="/img/intro-to-gan/text-image.png" style="display: block; margin: auto;" />
 
 <sub>Sources: [Zebra-Horse](https://junyanz.github.io/CycleGAN/),[Fortnite-PUBG](https://towardsdatascience.com/turning-fortnite-into-pubg-with-deep-learning-cyclegan-2f9d339dcdb0), [text-image](https://arxiv.org/pdf/1808.04538.pdf) 
 </sub>
 
 ### SAGAN (Self Attention GAN, 2018)
 After Computer Vision takes over ML's attentions for years, eventually it face a saturation phase, where it's considered as State-of-the-art model for Image Classifiation, Detection, Segmentations, etc. There's nothing such a new architecture, everything is CNN. That's when NLP kicks in. Thanks for [Transformers](https://blog.scaleway.com/2019/building-a-machine-reading-comprehension-system-using-the-latest-advances-in-deep-learning-for-nlp/), NLP started to find a new hope, and generated a model called [Attention](https://medium.com/@joealato/attention-in-nlp-734c6fa9d983). This idea then inspired Zhang[^SAGAN] to create a Self Attention GAN that can help them focus on the context of the images. His model then considered as the state-of-the art GAN. But not for a long time.
-![](/img/intro-to-gan/sagan.png)<!-- -->
+<img src="/img/intro-to-gan/sagan.png" style="display: block; margin: auto;" />
 
 ### ProGAN (2018)
 
@@ -92,7 +86,7 @@ Training GAN is hard. Knowing that the Generator and Discriminator fighting each
 
 
 
-![](/img/intro-to-gan/progan.gif)<!-- -->
+<img src="/img/intro-to-gan/progan.gif" style="display: block; margin: auto;" />
 
 <sub>Source: [Medium](https://cdn-images-1.medium.com/max/1600/1*tUhgr3m54Qc80GU2BkaOiQ.gif)
 </sub>
@@ -103,7 +97,7 @@ In order to face that, Karras[^ProGAN] and his mates from NVIDIA started to buil
 In 2019, Brock[^BigGAN] and his teammates from Google Deepmind attempted to create a GAN that run on a large scale of TPU cluster. Hence the name, BigGAN. No one have ever tried to train GAN on such a large cluster of machine. Now you know the power of Google. 
 
 
-![](/img/intro-to-gan/big-gan.png)<!-- -->
+<img src="/img/intro-to-gan/big-gan.png" style="display: block; margin: auto;" />
 
 <sub>Source: Brock's Paper
 </sub>
@@ -119,7 +113,7 @@ Still from NVIDIA instead of continue creating more realistic images, Karras[^St
 
 
 
-![](/img/intro-to-gan/stylegan2.png)<!-- -->
+<img src="/img/intro-to-gan/stylegan2.png" style="display: block; margin: auto;" />
 
 
 <sub>Source: Karras's Paper
@@ -161,7 +155,7 @@ X_test = X_test[:, :, :, None]
 ```
 The Mnist images are 28x28x1 grayscale of handwritten digits. It contains 60000 set of train data and 10000 set of test data. If you haven't seen it before, here's what they looks like
 
-![](/img/intro-to-gan/mnist-reseachgate.png)<!-- -->
+<img src="/img/intro-to-gan/mnist-reseachgate.png" style="display: block; margin: auto;" />
 
 
 
@@ -182,7 +176,7 @@ This function will arrange several images into one frame so that it will be easi
 
 
 
-![](/img/intro-to-gan/mnist-reseachgate.png)<!-- -->
+<img src="/img/intro-to-gan/mnist-reseachgate.png" style="display: block; margin: auto;" />
 
 
 ```python
@@ -363,7 +357,7 @@ g_model, d_model = train_gan(X_train,y_train, batch, epochs, g_model, d_model)
 Here's how our model fake images after trained for each epoch
 
 
-![](/img/intro-to-gan/GAN-train.PNG)<!-- -->![](/img/intro-to-gan/GAN-train-2.PNG)<!-- -->
+<img src="/img/intro-to-gan/GAN-train.PNG" style="display: block; margin: auto;" /><img src="/img/intro-to-gan/GAN-train-2.PNG" style="display: block; margin: auto;" />
 
 
 ### Generate Images
@@ -390,7 +384,7 @@ plt.show()
 ```
 
 
-![](/img/intro-to-gan/generator-test.PNG)<!-- -->
+<img src="/img/intro-to-gan/generator-test.PNG" style="display: block; margin: auto;" />
 
 
 
@@ -430,7 +424,7 @@ plt.axis('off')
 plt.show()
 ```
 
-![](/img/intro-to-gan/discriminator-test.PNG)<!-- -->
+<img src="/img/intro-to-gan/discriminator-test.PNG" style="display: block; margin: auto;" />
 
 
 Congratulations! you now can generate realistic handwritten images using Generator and Discriminator simultaneuosly. What? you want to generate specific number? 
