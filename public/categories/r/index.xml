@@ -6,10 +6,21 @@
     <description>Recent content in R on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ridge and LASSO Regression</title>
+      <link>/blog/ridge-lasso/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/ridge-lasso/</guid>
+      <description>Overview Regression analysis is a way that can be used to determine the relationship between the predictor variable (x) and the target variable (y).
+Ordinary Least Squares (OLS) is the most common estimation method for linear models and it applies for good reasons. As long as your model meets the OLS assumptions for linear regression, you can rest easy knowing that you get the best estimate.
+But in the real world to meet OLS regression assumptions will be very difficult.</description>
+    </item>
     
     <item>
       <title>Bioinformatics: Decoding Nature&#39;s Code of Life</title>
