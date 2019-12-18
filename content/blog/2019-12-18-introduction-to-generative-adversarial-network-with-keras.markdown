@@ -18,6 +18,8 @@ type: post
 ---
 
 
+
+
 # An Introduction to Generative Adversarial Network (GAN)
 Prerequisites: 
 - CNN 
@@ -27,11 +29,6 @@ Prerequisites:
 
 <!-- Motivations -->
 
-
-
-```r
-knitr::include_graphics('/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg')
-```
 
 ![](/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg)<!-- -->
 
@@ -48,33 +45,18 @@ As discovered by Ian Goodfellow[^ian_GAN] , GAN is consisted of **two** neural n
 ## Motivational Examples
 Before we go into implementation of GAN, let's see how GAN(s) changes overtime. 
 
-
-```r
-knitr::include_graphics('/img/intro-to-gan/gan-tweet.PNG')
-```
-
 ![](/img/intro-to-gan/gan-tweet.PNG)<!-- -->
 
 Since it's first appearance in 2014, and with the rising of Computer Vision - CNN, GAN grew rapidly. It's now able to generate a stunning images, that even our eyes cannot distinguish whether it's real or fake! Current most state-of-the-art GAN are StyleGAN, and you can check it's result in [thispersondoesntexist.com](thispersondoesntexist.com). Let's see several types of GANs
 
 ### CGAN (Conditional GAN, 2014)
 ___
-
-```r
-knitr::include_graphics('/img/intro-to-gan/cgan.PNG')
-```
-
 ![](/img/intro-to-gan/cgan.PNG)<!-- -->
 ___
 GAN was originally created to be trainable with only **ONE** class. If you train your GAN with dog images, it can generate dog images. If you train your GAN with cat images, it can generate cat images. But, what if your GAN was trained into both cat and dog images ? It will generate a blurry animal. To overcome this, Mirza[^CGAN] created CGAN that can diffrentiate multiple output. 
 
 This work also make it possible to guide an image into something else like example below 
 ___
-
-```r
-knitr::include_graphics('/img/intro-to-gan/pose-guide.png')
-```
-
 ![](/img/intro-to-gan/pose-guide.png)<!-- -->
 <sub>*source: https://papers.nips.cc/paper/6644-pose-guided-person-image-generation.pdf*</sub>
 
@@ -85,30 +67,15 @@ In 2018, Zu[^CycleGAN] create a CycleGAN, A GAN that **Doesn't Generate Fake Ima
 
 Have you ever imagine a horse with zebra lines ? 
 
-
-```r
-knitr::include_graphics('/img/intro-to-gan/zebra-horse.gif')
-```
-
 ![](/img/intro-to-gan/zebra-horse.gif)<!-- -->
 
 Or, playing Fortnite with PUBG style?
-
-
-```r
-knitr::include_graphics('/img/intro-to-gan/fortnite-pubg.gif')
-```
 
 ![](/img/intro-to-gan/fortnite-pubg.gif)<!-- -->
 
 
 
 Unlike [Style Transfer](https://towardsdatascience.com/style-transfer-styling-images-with-convolutional-neural-networks-7d215b58f461), cycle gan is not limited by domain, wich means, you can do text-to-image style transfer!
-
-
-```r
-knitr::include_graphics('/img/intro-to-gan/text-image.png')
-```
 
 ![](/img/intro-to-gan/text-image.png)<!-- -->
 
@@ -117,11 +84,6 @@ knitr::include_graphics('/img/intro-to-gan/text-image.png')
 
 ### SAGAN (Self Attention GAN, 2018)
 After Computer Vision takes over ML's attentions for years, eventually it face a saturation phase, where it's considered as State-of-the-art model for Image Classifiation, Detection, Segmentations, etc. There's nothing such a new architecture, everything is CNN. That's when NLP kicks in. Thanks for [Transformers](https://blog.scaleway.com/2019/building-a-machine-reading-comprehension-system-using-the-latest-advances-in-deep-learning-for-nlp/), NLP started to find a new hope, and generated a model called [Attention](https://medium.com/@joealato/attention-in-nlp-734c6fa9d983). This idea then inspired Zhang[^SAGAN] to create a Self Attention GAN that can help them focus on the context of the images. His model then considered as the state-of-the art GAN. But not for a long time.
-
-```r
-knitr::include_graphics('/img/intro-to-gan/sagan.png')
-```
-
 ![](/img/intro-to-gan/sagan.png)<!-- -->
 
 ### ProGAN (2018)
@@ -129,11 +91,6 @@ knitr::include_graphics('/img/intro-to-gan/sagan.png')
 Training GAN is hard. Knowing that the Generator and Discriminator fighting each other, GAN losses somethimes become unstable and can jumped just after the model started to look converge. 
 
 
-
-
-```r
-knitr::include_graphics('/img/intro-to-gan/progan.gif')
-```
 
 ![](/img/intro-to-gan/progan.gif)<!-- -->
 
@@ -145,11 +102,6 @@ In order to face that, Karras[^ProGAN] and his mates from NVIDIA started to buil
 ### BigGAN (2019)
 In 2019, Brock[^BigGAN] and his teammates from Google Deepmind attempted to create a GAN that run on a large scale of TPU cluster. Hence the name, BigGAN. No one have ever tried to train GAN on such a large cluster of machine. Now you know the power of Google. 
 
-
-
-```r
-knitr::include_graphics('/img/intro-to-gan/big-gan.png')
-```
 
 ![](/img/intro-to-gan/big-gan.png)<!-- -->
 
@@ -166,11 +118,6 @@ Still from NVIDIA instead of continue creating more realistic images, Karras[^St
 
 
 
-
-
-```r
-knitr::include_graphics('/img/intro-to-gan/stylegan2.png')
-```
 
 ![](/img/intro-to-gan/stylegan2.png)<!-- -->
 
@@ -214,11 +161,6 @@ X_test = X_test[:, :, :, None]
 ```
 The Mnist images are 28x28x1 grayscale of handwritten digits. It contains 60000 set of train data and 10000 set of test data. If you haven't seen it before, here's what they looks like
 
-
-```r
-knitr::include_graphics('/img/intro-to-gan/mnist-reseachgate.png')
-```
-
 ![](/img/intro-to-gan/mnist-reseachgate.png)<!-- -->
 
 
@@ -239,11 +181,6 @@ So, in order to help you build the GAN, We prepared several helpful function. Yo
 This function will arrange several images into one frame so that it will be easier to see. This is the sample result:
 
 
-
-
-```r
-knitr::include_graphics('/img/intro-to-gan/mnist-reseachgate.png')
-```
 
 ![](/img/intro-to-gan/mnist-reseachgate.png)<!-- -->
 
@@ -426,18 +363,7 @@ g_model, d_model = train_gan(X_train,y_train, batch, epochs, g_model, d_model)
 Here's how our model fake images after trained for each epoch
 
 
-
-```r
-knitr::include_graphics('/img/intro-to-gan/GAN-train.PNG')
-```
-
-![](/img/intro-to-gan/GAN-train.PNG)<!-- -->
-
-```r
-knitr::include_graphics('/img/intro-to-gan/GAN-train-2.PNG')
-```
-
-![](/img/intro-to-gan/GAN-train-2.PNG)<!-- -->
+![](/img/intro-to-gan/GAN-train.PNG)<!-- -->![](/img/intro-to-gan/GAN-train-2.PNG)<!-- -->
 
 
 ### Generate Images
@@ -463,11 +389,6 @@ plt.axis('off')
 plt.show()
 ```
 
-
-
-```r
-knitr::include_graphics('/img/intro-to-gan/generator-test.PNG')
-```
 
 ![](/img/intro-to-gan/generator-test.PNG)<!-- -->
 
@@ -507,11 +428,6 @@ images = generate_best_images(g_model, d_model, 100)
 plt.imshow(images, cmap=plt.get_cmap('gray'))
 plt.axis('off')
 plt.show()
-```
-
-
-```r
-knitr::include_graphics('/img/intro-to-gan/discriminator-test.PNG')
 ```
 
 ![](/img/intro-to-gan/discriminator-test.PNG)<!-- -->
