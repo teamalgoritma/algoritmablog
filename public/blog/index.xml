@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Introduction to Generative Adversarial Network with Keras</title>
+      <link>/blog/introduction-to-generative-adversarial-network-with-keras/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/introduction-to-generative-adversarial-network-with-keras/</guid>
+      <description>An Introduction to Generative Adversarial Network (GAN) Prerequisites: - CNN - Keras
+Intro knitr::include_graphics(&#39;/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg&#39;)   Is artificial intelligence set to become art’s next medium? - Chritie&amp;rsquo;s
+ In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&amp;rsquo;s. This made Chritie&amp;rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ?</description>
+    </item>
+    
+    <item>
       <title>Ridge and LASSO Regression</title>
       <link>/blog/ridge-lasso/</link>
       <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>

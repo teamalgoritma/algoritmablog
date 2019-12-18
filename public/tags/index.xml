@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Adversarial</title>
+      <link>/tags/adversarial/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/adversarial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Bayesian</title>
       <link>/tags/bayesian/</link>
       <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
@@ -89,6 +98,15 @@
       <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/data-visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Generative Model</title>
+      <link>/tags/generative-model/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/generative-model/</guid>
       <description></description>
     </item>
     
@@ -230,7 +248,7 @@
     <item>
       <title>deep learning</title>
       <link>/tags/deep-learning/</link>
-      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/deep-learning/</guid>
       <description></description>

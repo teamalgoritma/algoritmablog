@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/introduction-to-generative-adversarial-network-with-keras/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/ridge-lasso/</loc>
     <lastmod>2019-12-18T00:00:00+00:00</lastmod>
   </url>
@@ -154,6 +159,12 @@
   </url>
   
   <url>
+    <loc>/tags/adversarial/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/</loc>
     <lastmod>2019-12-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -224,6 +235,12 @@
   </url>
   
   <url>
+    <loc>/tags/generative-model/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/geocoding/</loc>
     <lastmod>2019-08-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -268,6 +285,12 @@
   <url>
     <loc>/tags/nlp/</loc>
     <lastmod>2019-01-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/python/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -333,7 +356,7 @@
   
   <url>
     <loc>/tags/deep-learning/</loc>
-    <lastmod>2019-11-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

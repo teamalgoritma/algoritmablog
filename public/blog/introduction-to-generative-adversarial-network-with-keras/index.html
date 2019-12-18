@@ -1,0 +1,1241 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "/"
+        },
+        "articleSection" : "blog",
+        "name" : "Introduction to Generative Adversarial Network with Keras",
+        "headline" : "Introduction to Generative Adversarial Network with Keras",
+        "description" : "An Introduction to Generative Adversarial Network (GAN) Prerequisites: - CNN - Keras
+Intro knitr::include_graphics('/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg')   Is artificial intelligence set to become art’s next medium? - Chritie&rsquo;s
+ In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&rsquo;s. This made Chritie&rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ?",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2019",
+        "datePublished": "2019-12-18 00:00:00 &#43;0000 UTC",
+        "dateModified" : "2019-12-18 00:00:00 &#43;0000 UTC",
+        "url" : "/blog/introduction-to-generative-adversarial-network-with-keras/",
+        "wordCount" : "2141",
+        "keywords" : [ "deep learning","Adversarial","Generative Model","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Introduction to Generative Adversarial Network with Keras</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.54.0" />
+        
+
+
+        
+            <meta name="author" content="Iqbal Basyar">
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to Generative Adversarial Network with Keras"/>
+<meta name="twitter:description" content="An Introduction to Generative Adversarial Network (GAN) Prerequisites: - CNN - Keras
+Intro knitr::include_graphics(&#39;/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg&#39;)   Is artificial intelligence set to become art’s next medium? - Chritie&rsquo;s
+ In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&rsquo;s. This made Chritie&rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ?"/>
+<meta name="twitter:site" content="@teamalgoritma"/>
+
+        <meta property="og:title" content="Introduction to Generative Adversarial Network with Keras" />
+<meta property="og:description" content="An Introduction to Generative Adversarial Network (GAN) Prerequisites: - CNN - Keras
+Intro knitr::include_graphics(&#39;/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg&#39;)   Is artificial intelligence set to become art’s next medium? - Chritie&rsquo;s
+ In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&rsquo;s. This made Chritie&rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/introduction-to-generative-adversarial-network-with-keras/" />
+<meta property="article:published_time" content="2019-12-18T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-12-18T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="Introduction to Generative Adversarial Network with Keras">
+<meta itemprop="description" content="An Introduction to Generative Adversarial Network (GAN) Prerequisites: - CNN - Keras
+Intro knitr::include_graphics(&#39;/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg&#39;)   Is artificial intelligence set to become art’s next medium? - Chritie&rsquo;s
+ In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&rsquo;s. This made Chritie&rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ?">
+
+
+<meta itemprop="datePublished" content="2019-12-18T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-12-18T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2141">
+
+
+
+<meta itemprop="keywords" content="deep learning,Adversarial,Generative Model," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+                
+                    <link rel="stylesheet" href="/css/monokai-sublime.css">
+                
+            
+        
+
+
+  
+    
+      <link rel="stylesheet" href="/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="/js/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+  
+
+
+      
+
+
+
+
+
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about/">
+                            <i class="fa fa-id-card-o">&nbsp;</i>About
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/machine-learning/">
+                            <i class="fa fa-cog">&nbsp;</i>Machine Learning
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/data-visualization/">
+                            <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about/">
+                            <h3>
+                                <i class="fa fa-id-card-o">&nbsp;</i>About
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/machine-learning/">
+                            <h3>
+                                <i class="fa fa-cog">&nbsp;</i>Machine Learning
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/data-visualization/">
+                            <h3>
+                                <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/introduction-to-generative-adversarial-network-with-keras/">Introduction to Generative Adversarial Network with Keras</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-12-18'>
+                                    December 18, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/ridge-lasso/">Ridge and LASSO Regression</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-12-18'>
+                                    December 18, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/bio-intro/">Bioinformatics: Decoding Nature&#39;s Code of Life</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-12-02'>
+                                    December 2, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/interpreting-classification-model-with-lime/">Interpreting Classification Model with LIME</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-12-02'>
+                                    December 2, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/text-lstm/">Text Classification with LSTM</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-11-12'>
+                                    November 12, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="https://twitter.com/intent/tweet?text=Introduction%20to%20Generative%20Adversarial%20Network%20with%20Keras&amp;url=%2fblog%2fintroduction-to-generative-adversarial-network-with-keras%2f" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fintroduction-to-generative-adversarial-network-with-keras%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fintroduction-to-generative-adversarial-network-with-keras%2f&amp;title=Introduction%20to%20Generative%20Adversarial%20Network%20with%20Keras" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/introduction-to-generative-adversarial-network-with-keras/">Introduction to Generative Adversarial Network with Keras</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2019-12-18'>
+            December 18, 2019</time>
+        <span class="author"><a href="">Iqbal Basyar</a></span>
+        
+            <p>11 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="https://twitter.com/intent/tweet?text=Introduction%20to%20Generative%20Adversarial%20Network%20with%20Keras&amp;url=%2fblog%2fintroduction-to-generative-adversarial-network-with-keras%2f" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fintroduction-to-generative-adversarial-network-with-keras%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fintroduction-to-generative-adversarial-network-with-keras%2f&amp;title=Introduction%20to%20Generative%20Adversarial%20Network%20with%20Keras" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </section>
+  
+
+  
+
+  <div id="content">
+    
+
+<h1 id="an-introduction-to-generative-adversarial-network-gan">An Introduction to Generative Adversarial Network (GAN)</h1>
+
+<p>Prerequisites:
+- CNN
+- Keras</p>
+
+<h1 id="intro">Intro</h1>
+
+<!-- Motivations -->
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg" alt="" /><!-- --></p>
+
+<blockquote>
+<p>Is artificial intelligence set to become art’s next medium? - Chritie&rsquo;s</p>
+</blockquote>
+
+<p>In 2018 a  paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&rsquo;s. This made Chritie&rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?</p>
+
+<p>As discovered by Ian Goodfellow<sup class="footnote-ref" id="fnref:ian-GAN"><a href="#fn:ian-GAN">1</a></sup> , GAN is consisted of <strong>two</strong> neural networks named Generator and Discriminator. The Generator was built to create fake images, while the discriminator was built to identify those fake images as fake. Essentially, it&rsquo;s not always have to be fake image. The GAN architecture can build any other type of data like sounds or videos.</p>
+
+<h2 id="course-objective">Course Objective :</h2>
+
+<ul>
+<li>Implement (not optimize) DC-GAN uising Keras</li>
+</ul>
+
+<!-- Motivational Examples -->
+
+<h2 id="motivational-examples">Motivational Examples</h2>
+
+<p>Before we go into implementation of GAN, let&rsquo;s see how GAN(s) changes overtime.</p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/gan-tweet.PNG')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/gan-tweet.PNG" alt="" /><!-- --></p>
+
+<p>Since it&rsquo;s first appearance in 2014, and with the rising of Computer Vision - CNN, GAN grew rapidly. It&rsquo;s now able to generate a stunning images, that even our eyes cannot distinguish whether it&rsquo;s real or fake! Current most state-of-the-art GAN are StyleGAN, and you can check it&rsquo;s result in <a href="thispersondoesntexist.com">thispersondoesntexist.com</a>. Let&rsquo;s see several types of GANs</p>
+
+<h3 id="cgan-conditional-gan-2014">CGAN (Conditional GAN, 2014)</h3>
+
+<hr />
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/cgan.PNG')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/cgan.PNG" alt="" /><!-- --></p>
+
+<hr />
+
+<p>GAN was originally created to be trainable with only <strong>ONE</strong> class. If you train your GAN with dog images, it can generate dog images. If you train your GAN with cat images, it can generate cat images. But, what if your GAN was trained into both cat and dog images ? It will generate a blurry animal. To overcome this, Mirza<sup class="footnote-ref" id="fnref:CGAN"><a href="#fn:CGAN">2</a></sup> created CGAN that can diffrentiate multiple output.</p>
+
+<p>This work also make it possible to guide an image into something else like example below</p>
+
+<hr />
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/pose-guide.png')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/pose-guide.png" alt="" /><!-- -->
+<sub><em>source: <a href="https://papers.nips.cc/paper/6644-pose-guided-person-image-generation.pdf">https://papers.nips.cc/paper/6644-pose-guided-person-image-generation.pdf</a></em></sub></p>
+
+<hr />
+
+<h3 id="cyclegan-2018">CycleGAN, 2018</h3>
+
+<p>In 2018, Zu<sup class="footnote-ref" id="fnref:CycleGAN"><a href="#fn:CycleGAN">3</a></sup> create a CycleGAN, A GAN that <strong>Doesn&rsquo;t Generate Fake Images</strong>. Instead, it transfer styles between images.</p>
+
+<p>Have you ever imagine a horse with zebra lines ?</p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/zebra-horse.gif')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/zebra-horse.gif" alt="" /><!-- --></p>
+
+<p>Or, playing Fortnite with PUBG style?</p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/fortnite-pubg.gif')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/fortnite-pubg.gif" alt="" /><!-- --></p>
+
+<p>Unlike <a href="https://towardsdatascience.com/style-transfer-styling-images-with-convolutional-neural-networks-7d215b58f461">Style Transfer</a>, cycle gan is not limited by domain, wich means, you can do text-to-image style transfer!</p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/text-image.png')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/text-image.png" alt="" /><!-- --></p>
+
+<p><sub>Sources: <a href="https://junyanz.github.io/CycleGAN/">Zebra-Horse</a>,<a href="https://towardsdatascience.com/turning-fortnite-into-pubg-with-deep-learning-cyclegan-2f9d339dcdb0">Fortnite-PUBG</a>, <a href="https://arxiv.org/pdf/1808.04538.pdf">text-image</a>
+</sub></p>
+
+<h3 id="sagan-self-attention-gan-2018">SAGAN (Self Attention GAN, 2018)</h3>
+
+<p>After Computer Vision takes over ML&rsquo;s attentions for years, eventually it face a saturation phase, where it&rsquo;s considered as State-of-the-art model for Image Classifiation, Detection, Segmentations, etc. There&rsquo;s nothing such a new architecture, everything is CNN. That&rsquo;s when NLP kicks in. Thanks for <a href="https://blog.scaleway.com/2019/building-a-machine-reading-comprehension-system-using-the-latest-advances-in-deep-learning-for-nlp/">Transformers</a>, NLP started to find a new hope, and generated a model called <a href="https://medium.com/@joealato/attention-in-nlp-734c6fa9d983">Attention</a>. This idea then inspired Zhang<sup class="footnote-ref" id="fnref:SAGAN"><a href="#fn:SAGAN">4</a></sup> to create a Self Attention GAN that can help them focus on the context of the images. His model then considered as the state-of-the art GAN. But not for a long time.</p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/sagan.png')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/sagan.png" alt="" /><!-- --></p>
+
+<h3 id="progan-2018">ProGAN (2018)</h3>
+
+<p>Training GAN is hard. Knowing that the Generator and Discriminator fighting each other, GAN losses somethimes become unstable and can jumped just after the model started to look converge.</p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/progan.gif')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/progan.gif" alt="" /><!-- --></p>
+
+<p><sub>Source: <a href="https://cdn-images-1.medium.com/max/1600/1*tUhgr3m54Qc80GU2BkaOiQ.gif">Medium</a>
+</sub></p>
+
+<p>In order to face that, Karras<sup class="footnote-ref" id="fnref:ProGAN"><a href="#fn:ProGAN">5</a></sup> and his mates from NVIDIA started to build a GAN that gradually increasing it&rsquo;s size in order to maintain training stability. This method get a lot of compliment as it nominated as state-of-the-art.</p>
+
+<h3 id="biggan-2019">BigGAN (2019)</h3>
+
+<p>In 2019, Brock<sup class="footnote-ref" id="fnref:BigGAN"><a href="#fn:BigGAN">6</a></sup> and his teammates from Google Deepmind attempted to create a GAN that run on a large scale of TPU cluster. Hence the name, BigGAN. No one have ever tried to train GAN on such a large cluster of machine. Now you know the power of Google.</p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/big-gan.png')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/big-gan.png" alt="" /><!-- --></p>
+
+<p><sub>Source: Brock&rsquo;s Paper
+</sub></p>
+
+<p>Despite it&rsquo;s kind of meaningless name, this model really, really, made an improvement of GAN. It can generate very realistic images in large dimension (512x512). It&rsquo;s inception score also killed the previous state-of-the art models from 52.52 into 166.5.</p>
+
+<h3 id="stylegan">StyleGAN</h3>
+
+<p>GANs already reach its point wich it can generate a hyper-realistic images. But GAN it&rsquo;s such a meaningless if we can&rsquo;t generate another object from it.
+Still from NVIDIA instead of continue creating more realistic images, Karras<sup class="footnote-ref" id="fnref:StyleGAN"><a href="#fn:StyleGAN">7</a></sup> focused on making GAN that can be controlled over a style, hence the name StyleGAN. This mean you have big control of what image will you generate. Or more likely, How do you want the image to be.</p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/stylegan2.png')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/stylegan2.png" alt="" /><!-- --></p>
+
+<p><sub>Source: Karras&rsquo;s Paper
+</sub></p>
+
+<p><a href="https://www.youtube.com/watch?v=kSLJriaOumA">This video</a> from StyleGAN&rsquo;s creator might help you understand how it works.</p>
+
+<p>If you want to know more about GANs, there&rsquo;s a repository contains all(I really hope it is) paper that related to GAN
+<a href="https://github.com/hindupuravinash/the-gan-zoo">https://github.com/hindupuravinash/the-gan-zoo</a></p>
+
+<p>I think that&rsquo;s enough of some motivational intro. Now, let&rsquo;s build our GAN. In this case, DC-GAN.</p>
+
+<h1 id="implementation">Implementation</h1>
+
+<p>For the sake of easness, we will be using MNIST dataset that already brought by Keras. Let&rsquo;s first import our library</p>
+
+<pre><code class="language-python">import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+
+from tensorflow.keras.models import Sequential, load_model
+from tensorflow.keras.layers import Dense, Conv2D, Flatten, BatchNormalization, Dropout
+from tensorflow.keras.layers import Reshape, UpSampling2D, MaxPooling2D, Activation
+from tensorflow.keras.datasets import mnist, fashion_mnist
+from tensorflow.keras.optimizers import SGD, RMSprop
+from tensorflow.keras.utils import to_categorical
+
+from PIL import Image
+</code></pre>
+
+<p>After all the libary are imported, let&rsquo;s load our data.</p>
+
+<pre><code class="language-python">(X_train, y_train), (X_test, y_test) = mnist.load_data()
+#(X_train, y_train), (X_test, y_test) = fashion_mnist.load_data()
+
+X_train = (X_train.astype(np.float32) - 127.5)/127.5 # normalization
+X_train = X_train[:, :, :, None]
+X_test = X_test[:, :, :, None]
+</code></pre>
+
+<p>The Mnist images are 28x28x1 grayscale of handwritten digits. It contains 60000 set of train data and 10000 set of test data. If you haven&rsquo;t seen it before, here&rsquo;s what they looks like</p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/mnist-reseachgate.png')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/mnist-reseachgate.png" alt="" /><!-- --></p>
+
+<h2 id="gan-basic-concept">Gan Basic Concept</h2>
+
+<p>GAN is consisted of Generator and Discriminator. In DC-GAN, the Generator and Discriminator are convolutional neural network. Let&rsquo;s build a simple Generator and Discriminator, then combine them and finally train them.</p>
+
+<h2 id="helper-functions">Helper Functions</h2>
+
+<p>Some of you might not familiar in practicing with keras, especially building a non-API-ed models such as GAN. Building GAN (and other Deep Learning architecture as well) is like building a lego block. You build them piece-by-piece.
+&gt;There should be one—and preferably only one—obvious way to do it</p>
+
+<p>So, in order to help you build the GAN, We prepared several helpful function. You are not obligated to understand the codes, but We hope that you can figured out the big picture.</p>
+
+<h4 id="combine-images">Combine Images</h4>
+
+<p>This function will arrange several images into one frame so that it will be easier to see. This is the sample result:</p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/mnist-reseachgate.png')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/mnist-reseachgate.png" alt="" /><!-- --></p>
+
+<pre><code class="language-python">def combine_images(generated_images):
+    num = generated_images.shape[0]
+    width = int(np.sqrt(num))
+    height = int(np.ceil(float(num)/width))
+    shape = generated_images.shape[1:3]
+    image = np.zeros((height*shape[0], width*shape[1]),
+                     dtype=generated_images.dtype)
+    for index, img in enumerate(generated_images):
+        i = int(index/width)
+        j = index % width
+        image[i*shape[0]:(i+1)*shape[0], j*shape[1]:(j+1)*shape[1]] = \
+            img[:, :, 0]
+    return image
+</code></pre>
+
+<h4 id="generate-generator">Generate Generator</h4>
+
+<p>Generator are made of several layers. The key idea is to :
+1. Get input vector (often called &ldquo;z&rdquo;)
+2. Feature Mapping using Dense
+3. Reshape the vector into 2D
+4. Do convolutions
+5. Do uppersamplings
+6. Output the Images</p>
+
+<p>Process number 3-4 are often called &ldquo;transpose convolutions&rdquo; or &ldquo;deconvolutions&rdquo;.
+Please note that you can build your own Generator architecture.</p>
+
+<pre><code class="language-python">def generator_model():
+    model = Sequential([
+        Dense(1024, input_dim=100, activation='tanh'),
+        Dense(128*7*7), # This shape related to the reshape and output size
+        BatchNormalization(),
+        Activation('tanh'),
+        Reshape((7, 7, 128)),
+        UpSampling2D(size=(2, 2)),
+        Conv2D(64, (5, 5), padding='same', activation='tanh'),
+        UpSampling2D(size=(2, 2)),
+        Conv2D(1, (5, 5), padding='same', activation='tanh')
+    ])
+    return model
+
+generator_model().summary()
+</code></pre>
+
+<h3 id="discriminator">Discriminator</h3>
+
+<p>The Discriminator in GAN is basically a normal CNN that has to be trained to classify fake or real images. It supposed to work as :
+1. Get input image (the fake one, built by Generator)
+2. Do Convolutions
+3. Do subsamplings (or poolings)
+4. Reshape to 1D
+5. Classify using Dense
+6. Output the classification</p>
+
+<pre><code class="language-python">def discriminator_model():
+    model = Sequential([
+        Conv2D(64, (5, 5), input_shape=(28, 28, 1), padding='same', activation='tanh'),
+        MaxPooling2D(pool_size=(2, 2)),
+        Conv2D(128, (5, 5),activation='tanh'),
+        MaxPooling2D(pool_size=(2, 2)),
+        Flatten(),
+        Dense(1024, activation='tanh'),
+        Dense(1, activation='sigmoid')
+    ])
+    return model
+
+discriminator_model().summary()
+</code></pre>
+
+<h3 id="combining-generator-discriminator">Combining Generator + Discriminator</h3>
+
+<p>Now that we previously can create Generator and Discriminator, this function is merely combine both of them into one sequential. Generator first, followed by discriminator.</p>
+
+<pre><code class="language-python">def combine_model(g, d):
+    model = Sequential()
+    model.add(g)
+    model.add(d)
+    return model
+</code></pre>
+
+<p>But it&rsquo;s not over yet. The model is not ready for training. It must be compiled first. And to compile, we need several hyperparameters in order for them to train well :
+- optimizer (with learning rate)
+- loss function</p>
+
+<p>So, let&rsquo;s add the hyperparameters in training functions below.</p>
+
+<h3 id="training-function">Training Function</h3>
+
+<pre><code class="language-python">def train_gan(X_train, Y_train, batch_size, epochs, g, d, save_every=500, print_every=100):
+    
+    # Get the size of input (Z vector)
+    z_size = g.layers[0].input_shape[1]
+    
+    # Combine discriminator on generator
+    d.trainable = False # set Discriminator to be untrainable before merging
+    d_on_g = combine_model(g, d)    
+    dg_optim = RMSprop (lr=0.0005)
+    g_optim = RMSprop (lr=0.0005)
+    d_on_g.compile(loss='binary_crossentropy', optimizer=dg_optim)
+    
+    g.compile(loss='binary_crossentropy', optimizer=g_optim)
+    
+    # Set Discriminator to be trainable 
+    d.trainable = True
+    d_optim = RMSprop (lr=0.0005)
+    d.compile(loss='binary_crossentropy', optimizer=d_optim)
+    
+    print(&quot;Number of batches&quot;, int(X_train.shape[0]/batch_size))
+    
+    # Start training
+    for epoch in range(epochs):
+        print(&quot;\n-------------------------------\nEpoch :&quot;, epoch)        
+        
+        for index in range(int(X_train.shape[0]/batch_size)):
+            
+            # Randomly generate Z input
+            noise = np.random.uniform(-1, 1, size=(batch_size, z_size))
+            
+            # Generate fake image from Z 
+            generated_images = g.predict(noise, verbose=0)
+            
+            # Take train data (real image)
+            image_batch = X_train[index*batch_size:(index+1)*batch_size]
+            
+            if index % save_every == 0:
+                image = combine_images(generated_images)
+                image = image*127.5+127.5
+                # Image.fromarray(image.astype(np.uint8)).save(&quot;train_ep&quot;+
+                #     str(epoch)+&quot;_&quot;+str(index)+&quot;.png&quot;)
+                
+                plt.imshow(image, cmap=plt.get_cmap('gray'))
+                plt.axis('off')
+                plt.show()
+                
+            # Concatenate images to train Discriminator
+            X = np.concatenate((image_batch, generated_images))
+            y = [1] * batch_size + [0] * batch_size
+            
+            # Train Discriminator
+            d_loss = d.train_on_batch(X, y)           
+            
+            # Randomly generate z to train Generator
+            noise = np.random.uniform(-1, 1, (batch_size, z_size))
+            
+            # Set Discriminator to be untrainable before training the GAN (for generator)
+            d.trainable = False            
+            
+            # Train GAN (for the generator)
+            g_loss = d_on_g.train_on_batch(noise, [1] * batch_size)
+            
+            # Print loss
+            if index % print_every == 0: 
+                print(&quot;batch %d, g_loss : %f, d_loss : %f&quot; % (index, g_loss, d_loss))
+            
+            # Set Discriminator to be trainable
+            d.trainable = True       
+            
+        
+    return g, d
+</code></pre>
+
+<p>If you think that it&rsquo;s hard to understand those code, don&rsquo;t worry. Now let&rsquo;s move to the main part.</p>
+
+<h2 id="let-s-build-our-gan">Let&rsquo;s build our GAN</h2>
+
+<h3 id="initialize-model">Initialize Model</h3>
+
+<pre><code class="language-python">z_size = 100
+g_model = generator_model()
+d_model = discriminator_model()
+</code></pre>
+
+<h3 id="train-gan">Train GAN</h3>
+
+<pre><code class="language-python">batch = 225
+epochs = 15
+g_model, d_model = train_gan(X_train,y_train, batch, epochs, g_model, d_model)
+</code></pre>
+
+<p>Here&rsquo;s how our model fake images after trained for each epoch</p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/GAN-train.PNG')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/GAN-train.PNG" alt="" /><!-- --></p>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/GAN-train-2.PNG')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/GAN-train-2.PNG" alt="" /><!-- --></p>
+
+<h3 id="generate-images">Generate Images</h3>
+
+<p>Now that our model have the understanding of how to draw an mnist image, let&rsquo;s try to generate one.</p>
+
+<h4 id="generate-image-only-from-generator">Generate image only from generator</h4>
+
+<p>As we trained our GAN, we trained our Generator to generate fake images (in this case, handwritten digits). So, given an input of random z vector, our Generator is supposed to generate a handwritted images. Let&rsquo;s try make 100 of it!</p>
+
+<pre><code class="language-python">def generate_images(g, batch_size):
+    z_size = g.layers[0].input_shape[1]
+    noise = np.random.uniform(-1, 1, (batch_size, z_size))
+    generated_images = g.predict(noise, verbose=1)
+    image = combine_images(generated_images)
+    filename = &quot;generated_image.png&quot;
+    image = image*127.5+127.5
+    Image.fromarray(image.astype(np.uint8)).save(filename)
+    return image
+
+images = generate_images(g_model, 100)
+plt.imshow(images, cmap=plt.get_cmap('gray'))
+plt.axis('off')
+plt.show()
+</code></pre>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/generator-test.PNG')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/generator-test.PNG" alt="" /><!-- --></p>
+
+<h4 id="generate-images-from-generator-with-discriminator-check">Generate images from generator with discriminator check</h4>
+
+<p>Basically our Generator is capable enough to do the job. But is there any possible way to make the generated images looks more realistic?. You&rsquo;re right ! Pass them to the Discriminator. Previously, our Discriminator has the capability to classify fake images. So, let&rsquo;s use it as QA agent. If our fake image is classified as real, then, by concept, it should be more realistic than images that clasified as fake. Without furder ado, let&rsquo;s try it !</p>
+
+<pre><code class="language-python">def generate_best_images(g, d, batch_size):
+    z_size = g.layers[0].input_shape[1]
+    noise = np.random.uniform(-1, 1, (batch_size*20, z_size))
+
+    generated_images = g.predict(noise, verbose=1)
+    d_pret = d.predict(generated_images, verbose=1)
+
+    index = np.arange(0, batch_size*20)
+    index.resize((batch_size*20, 1))
+
+    pre_with_index = list(np.append(d_pret, index, axis=1))
+    pre_with_index.sort(key=lambda x: x[0], reverse=True)
+
+    nice_images = np.zeros((batch_size,) + generated_images.shape[1:3], dtype=np.float32)
+    nice_images = nice_images[:, :, :, None]
+
+    for i in range(batch_size):
+        idx = int(pre_with_index[i][1])
+        nice_images[i, :, :, 0] = generated_images[idx, :, :, 0]
+
+    image = combine_images(nice_images)
+    filename = &quot;generated_image_best.png&quot;
+    image = image*127.5+127.5
+    Image.fromarray(image.astype(np.uint8)).save(filename)
+    return image
+
+images = generate_best_images(g_model, d_model, 100)
+plt.imshow(images, cmap=plt.get_cmap('gray'))
+plt.axis('off')
+plt.show()
+</code></pre>
+
+<pre><code class="language-r">knitr::include_graphics('/img/intro-to-gan/discriminator-test.PNG')
+</code></pre>
+
+<p><img src="/img/intro-to-gan/discriminator-test.PNG" alt="" /><!-- --></p>
+
+<p>Congratulations! you now can generate realistic handwritten images using Generator and Discriminator simultaneuosly. What? you want to generate specific number?</p>
+
+<h2 id="latent-vector-operations">Latent Vector Operations</h2>
+
+<p>It was found that the z vector of specific class tends to have a similarity. It&rsquo;s later said that for a specific class, there should be a vector z that represent it. Now it&rsquo;s called Latent Vector. So, in order to create image of number &ldquo;1&rdquo;, you can easily do an average of z vector that generates &ldquo;1&rdquo;, use it as input of Generator, and Voila ! You will create a number &ldquo;1&rdquo; (conceptually).</p>
+
+<h2 id="refereces">Refereces:</h2>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:ian-GAN"><a href="https://arxiv.org/pdf/1406.2661.pdf">Goodfellow, Ian J. - Generative Adversarial Nets, 2014</a>
+ <a class="footnote-return" href="#fnref:ian-GAN"><sup>[return]</sup></a></li>
+<li id="fn:CGAN"><a href="https://arxiv.org/abs/1411.1784">Mirza, M. -  Conditional Generative Adversarial Nets, 2014</a>
+ <a class="footnote-return" href="#fnref:CGAN"><sup>[return]</sup></a></li>
+<li id="fn:CycleGAN"><a href="https://arxiv.org/abs/1703.10593v6">Zhu, JY. et al - Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks, 2018</a>
+ <a class="footnote-return" href="#fnref:CycleGAN"><sup>[return]</sup></a></li>
+<li id="fn:SAGAN"><a href="https://arxiv.org/abs/1805.08318v1">Zhang, Han - Self-Attention Generative Adversarial Network. 2018</a>
+ <a class="footnote-return" href="#fnref:SAGAN"><sup>[return]</sup></a></li>
+<li id="fn:ProGAN"><a href="https://arxiv.org/abs/1710.10196">Karras, Tero- Progressive Growing of GANs for Improved Quality Stability and Variation, 2018</a>
+ <a class="footnote-return" href="#fnref:ProGAN"><sup>[return]</sup></a></li>
+<li id="fn:BigGAN"><a href="https://arxiv.org/abs/1809.11096v2">Brock, Andrew - Large Scale GAN Training for High Fidelity Natural Image Synthesis, 2019</a>
+ <a class="footnote-return" href="#fnref:BigGAN"><sup>[return]</sup></a></li>
+<li id="fn:StyleGAN"><a href="https://arxiv.org/abs/1812.04948">Karras, Tero - A Style-Based Generator Architecture for Generative Adversarial Networks, 2019</a>
+ <a class="footnote-return" href="#fnref:StyleGAN"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/python">Python</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/deep-learning">deep learning</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/adversarial">Adversarial</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/generative-model">Generative Model</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-algotech-netlify-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/ridge-lasso/"
+                class="button big previous">Ridge and LASSO Regression</a></li>
+    
+
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>Algoritma Technical Blog</h2>
+        <p>We're a group of people who teach data science to individuals, trains companies and their employees to better profit from data. We care about the development of data science and a sense of community that connects our alumni and team with one another. To learn more about our approach to data science problems, feel free to hop over to our blog.</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    <p class="copyright">
+      
+        &copy; 2019
+        
+          Algoritma Technical Blog
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+        
+          <script src="/js/bootstrap.min.js"></script>
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+
