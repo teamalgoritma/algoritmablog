@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Algoritma Technical Blog</title>
@@ -17,9 +17,8 @@
       <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/introduction-to-generative-adversarial-network-with-keras/</guid>
-      <description>An Introduction to Generative Adversarial Network (GAN) Prerequisites: - CNN - Keras
-Intro knitr::include_graphics(&#39;/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg&#39;)   Is artificial intelligence set to become art’s next medium? - Chritie&amp;rsquo;s
- In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&amp;rsquo;s. This made Chritie&amp;rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ?</description>
+      <description>In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&#39;s. This made Chritie&#39;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
+Intro  Is artificial intelligence set to become art’s next medium? - Chritie&#39;s</description>
     </item>
     
     <item>
@@ -39,7 +38,7 @@ But in the real world to meet OLS regression assumptions will be very difficult.
       <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/bio-intro/</guid>
-      <description>It is inarguable that Data Science gives a tremendous impact on today&amp;rsquo;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.</description>
+      <description>It is inarguable that Data Science gives a tremendous impact on today&#39;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.</description>
     </item>
     
     <item>
@@ -67,8 +66,8 @@ But in the real world to meet OLS regression assumptions will be very difficult.
       
       <guid>/blog/poisson-regression-and-neg-ative-binomial-regression/</guid>
       <description>Introduction Regression analysis is a set of statistical processes for estimating the relationships among variables. It includes many techniques for modeling and analyzing several variables, when the focus is on the relationship between a dependent variable and one or more independent variables (or &amp;lsquo;predictors&amp;rsquo;).
-For example  Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
- Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
+For example   Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
+  Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
     </item>
     
     <item>
@@ -78,7 +77,7 @@ For example  Find out the effect of land area and building area on house prices 
       
       <guid>/blog/tidymodels/</guid>
       <description>The following presentation is produced by the team at Algoritma for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
-Outline Why tidymodels Matters?  Things we think we&amp;rsquo;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?</description>
+Outline Why tidymodels Matters?  Things we think we&#39;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?</description>
     </item>
     
     <item>
@@ -107,7 +106,7 @@ There are many types of geospatial that we can do, such as Dot Map, Connection M
       
       <guid>/blog/age-period-cohort-apc-analysis/</guid>
       <description>Background Disclaimer The following coursebook is produced by the team at Algoritma for its Data Science Academy internal training. The coursebook is intended for a restricted audience only, i.e. the individuals and organizations having received this coursebook directly from the training organization. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
-Libraries and Setup You will need install the package to do APC analysis if it&amp;rsquo;s not already downloaded onto your machine.</description>
+Libraries and Setup You will need install the package to do APC analysis if it&#39;s not already downloaded onto your machine.</description>
     </item>
     
     <item>
@@ -116,8 +115,7 @@ Libraries and Setup You will need install the package to do APC analysis if it&a
       <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/twitter-interactions-analysis-using-twinetverse/</guid>
-      <description>Introduction
-The goal of the twinetverse is to provide everything one might need to view Twitter interactions, from data collection to visualisation. This could be a powerful tool for social media analysis, since it could help visualizing how users communicate with one another on a given topic or how information spreads throughout the Twitter network.</description>
+      <description>IntroductionThe goal of the twinetverse is to provide everything one might need to view Twitter interactions, from data collection to visualisation. This could be a powerful tool for social media analysis, since it could help visualizing how users communicate with one another on a given topic or how information spreads throughout the Twitter network.</description>
     </item>
     
     <item>
@@ -127,11 +125,8 @@ The goal of the twinetverse is to provide everything one might need to view Twit
       
       <guid>/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
       <description>In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
-
-TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
-
-Preface
-When it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
+TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
     </item>
     
     <item>
@@ -150,9 +145,7 @@ The term of tidyverse is actually referring to a set of packages that you’ll f
       <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/textclean/</guid>
-      <description>Take tweet from twitter using rtweet package
-Function used for take tweet from twitter is search_tweets(). There are several parameter usually used in that function: - Topic : topic you will find at twitter - n : how many tweet that you want to take - include_rts : logical. If FALSE tweet taken didn’t contain retweet - lang : spesified language. If you want take tweet in english you can add
-argument lang = “en” You can use this code below to try taking tweets from twitter by removing the command</description>
+      <description>Take tweet from twitter using rtweet packageFunction used for take tweet from twitter is search_tweets(). There are several parameter usually used in that function: - Topic : topic you will find at twitter - n : how many tweet that you want to take - include_rts : logical. If FALSE tweet taken didn’t contain retweet - lang : spesified language. If you want take tweet in english you can addargument lang = “en” You can use this code below to try taking tweets from twitter by removing the command</description>
     </item>
     
     <item>
@@ -161,8 +154,7 @@ argument lang = “en” You can use this code below to try taking tweets from t
       <pubDate>Sun, 13 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/handling-duplicate-data/</guid>
-      <description>Reading Data and Basic Preprocessing
-Some data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.
+      <description>Reading Data and Basic PreprocessingSome data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.
 Making sure that there are no duplicated data is one of the aspect of understanding the data itself, because we can’t say that the model that are being made from the information full of duplicated data is relevant enough to be used in real-case scenario.</description>
     </item>
     
@@ -172,9 +164,7 @@ Making sure that there are no duplicated data is one of the aspect of understand
       <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/time-series-prediction-with-lstm/</guid>
-      <description>Time Series Forecasting using LSTM
-Time series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing.
-A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
+      <description>Time Series Forecasting using LSTMTime series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing.A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
     </item>
     
     <item>
@@ -183,8 +173,7 @@ A Recurrent Neural Network (RNN) deals with sequence problems because their conn
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/metrics-evaluation-using-yardstick/</guid>
-      <description>Motivation
-Evaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.</description>
+      <description>MotivationEvaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.</description>
     </item>
     
     <item>
@@ -193,16 +182,9 @@ Evaluating your machine learning algorithms is important part in your project. C
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/nested-dataframe/</guid>
-      <description>1. Setup
-Libraries and Setup
-We’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
+      <description>1. SetupLibraries and SetupWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
 You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
-library(tidyverse)
-library(caret)
-
-
-2. Nested Dataframe
-You’ll learn how to use purrr, caret and dplyr to quickly create some of dataset + model combinations, store data &amp;amp; model objects neatly in one tibble, and post process programatically.</description>
+library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to use purrr, caret and dplyr to quickly create some of dataset + model combinations, store data &amp;amp; model objects neatly in one tibble, and post process programatically.</description>
     </item>
     
     <item>
@@ -211,8 +193,7 @@ You’ll learn how to use purrr, caret and dplyr to quickly create some of datas
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/troubleshoot-in-r/</guid>
-      <description>Introduction
-When you start coding in R you probably get a lot of errors, and trying to decipher an error can be a time-consuming task. You might need to Google or maybe you asked for help to your friends/mentor and they find out you’ve forgot a closing bracket!.
+      <description>IntroductionWhen you start coding in R you probably get a lot of errors, and trying to decipher an error can be a time-consuming task. You might need to Google or maybe you asked for help to your friends/mentor and they find out you’ve forgot a closing bracket!.
 You just learnt about the importance of it just few hours ago, “You’re supposed to know this stuff”. You might be frustrated and blame yourself when you make very basic mistakes, but this is something every one goes through.</description>
     </item>
     
@@ -222,8 +203,7 @@ You just learnt about the importance of it just few hours ago, “You’re suppo
       <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/multiple-seasonal/</guid>
-      <description>Introduction
-Time Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
+      <description>IntroductionTime Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
     </item>
     
     <item>
@@ -242,9 +222,9 @@ Before the data we gather can be used for further analysis, the very first step 
       <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>/blog/causal-inference-and-bayesian-network/</guid>
-      <description>Introduction Cause has been people&amp;rsquo;s curiosity for a long time, you can see that people often ask &amp;ldquo;Why&amp;rdquo; to things happening around them. But do we actually know how to explain &amp;ldquo;cause&amp;rdquo;?
+      <description>Introduction Cause has been people&#39;s curiosity for a long time, you can see that people often ask &amp;ldquo;Why&amp;rdquo; to things happening around them. But do we actually know how to explain &amp;ldquo;cause&amp;rdquo;?
 Do we jump to conclusion of causal relationship often too quickly?
-Can association between factors that we call mathematically &amp;ldquo;correlation&amp;rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&amp;rsquo;t mean it affects each other.</description>
+Can association between factors that we call mathematically &amp;ldquo;correlation&amp;rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&#39;t mean it affects each other.</description>
     </item>
     
     <item>
@@ -263,7 +243,7 @@ So how does SVM find the right hyperplane?</description>
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item1/</guid>
-      <description> App 1 </description>
+      <description>App 1 </description>
     </item>
     
     <item>
@@ -272,7 +252,7 @@ So how does SVM find the right hyperplane?</description>
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item2/</guid>
-      <description> App 2 </description>
+      <description>App 2 </description>
     </item>
     
     <item>
@@ -281,7 +261,7 @@ So how does SVM find the right hyperplane?</description>
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item3/</guid>
-      <description> App 3 </description>
+      <description>App 3 </description>
     </item>
     
     <item>
@@ -290,7 +270,7 @@ So how does SVM find the right hyperplane?</description>
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item4/</guid>
-      <description> App 4 </description>
+      <description>App 4 </description>
     </item>
     
     <item>
@@ -299,9 +279,7 @@ So how does SVM find the right hyperplane?</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/blog/2019-10-22-poisson-regression-and-negative-binomial-regression/</guid>
-      <description>Poisson Regression and Negative Binomial Regression
-/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
-!function(a,b){&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return b(a)}:b(a)}(&#34;undefined&#34;!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l=&#34;1.11.3&#34;,m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:&#34;&#34;,length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0a?b:0);return this.pushStack(c=0&amp;&amp;bc?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for(&#34;boolean&#34;==typeof g&amp;&amp;(j=g,g=arguments[h]||{},h++),&#34;object&#34;==typeof g||m.isFunction(g)||(g={}),h===i&amp;&amp;(g=this,h--);ih;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&amp;&amp;(j&amp;&amp;c&amp;&amp;(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&amp;&amp;m.isArray(a)?a:[]):f=a&amp;&amp;m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&amp;&amp;(g[d]=c));return g},m.extend({expando:&#34;jQuery&#34;+(l+Math.random()).replace(/\D/g,&#34;&#34;),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return&#34;function&#34;===m.type(a)},isArray:Array.isArray||function(a){return&#34;array&#34;===m.type(a)},isWindow:function(a){return null!=a&amp;&amp;a==a.window},isNumeric:function(a){return!m.isArray(a)&amp;&amp;a-parseFloat(a)+1=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||&#34;object&#34;!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&amp;&amp;!j.call(a,&#34;constructor&#34;)&amp;&amp;!j.call(a.constructor.prototype,&#34;isPrototypeOf&#34;))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.</description>
+      <description>Poisson Regression and Negative Binomial Regression/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */!function(a,b){&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return b(a)}:b(a)}(&#34;undefined&#34;!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l=&#34;1.11.3&#34;,m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:&#34;&#34;,length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0a?b:0);return this.pushStack(c=0&amp;&amp;bc?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for(&#34;boolean&#34;==typeof g&amp;&amp;(j=g,g=arguments[h]||{},h++),&#34;object&#34;==typeof g||m.isFunction(g)||(g={}),h===i&amp;&amp;(g=this,h--);ih;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&amp;&amp;(j&amp;&amp;c&amp;&amp;(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&amp;&amp;m.isArray(a)?a:[]):f=a&amp;&amp;m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&amp;&amp;(g[d]=c));return g},m.extend({expando:&#34;jQuery&#34;+(l+Math.random()).replace(/\D/g,&#34;&#34;),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return&#34;function&#34;===m.type(a)},isArray:Array.isArray||function(a){return&#34;array&#34;===m.type(a)},isWindow:function(a){return null!=a&amp;&amp;a==a.window},isNumeric:function(a){return!m.isArray(a)&amp;&amp;a-parseFloat(a)+1=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||&#34;object&#34;!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&amp;&amp;!j.call(a,&#34;constructor&#34;)&amp;&amp;!j.call(a.constructor.prototype,&#34;isPrototypeOf&#34;))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.</description>
     </item>
     
   </channel>
