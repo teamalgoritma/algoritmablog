@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Algoritma Technical Blog</title>
@@ -17,9 +17,9 @@
       <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/introduction-to-generative-adversarial-network-with-keras/</guid>
-      <description>An Introduction to Generative Adversarial Network (GAN) Prerequisites:
- CNN Keras  Intro knitr::include_graphics(&amp;#39;/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg&amp;#39;) Is artificial intelligence set to become art’s next medium? - Chritie&#39;s
- In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&#39;s. This made Chritie&#39;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ?</description>
+      <description>An Introduction to Generative Adversarial Network (GAN) Prerequisites: - CNN - Keras
+Intro knitr::include_graphics(&#39;/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg&#39;)   Is artificial intelligence set to become art’s next medium? - Chritie&amp;rsquo;s
+ In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&amp;rsquo;s. This made Chritie&amp;rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ?</description>
     </item>
     
   </channel>

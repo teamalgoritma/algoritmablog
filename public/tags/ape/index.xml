@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ape on Algoritma Technical Blog</title>
@@ -17,7 +17,7 @@
       <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/bio-intro/</guid>
-      <description>It is inarguable that Data Science gives a tremendous impact on today&#39;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.</description>
+      <description>It is inarguable that Data Science gives a tremendous impact on today&amp;rsquo;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.</description>
     </item>
     
   </channel>
