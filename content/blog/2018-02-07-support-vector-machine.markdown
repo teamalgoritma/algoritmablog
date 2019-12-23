@@ -29,7 +29,7 @@ So how does SVM find the right hyperplane?. Let me give you example to understan
 
 > Which line do you think separates the data?
 
-<img src="/img/gambar1.jpg" style="display: block; margin: auto;" />
+<img src="/img/svm/gambar1.jpg" style="display: block; margin: auto;" />
 
 > And obviously the line B is the one that segregates the two classes better.
 
@@ -37,13 +37,13 @@ So how does SVM find the right hyperplane?. Let me give you example to understan
 
   Check the line that you think best separates the data. Obviously all three of them seem   to separates the data, but one is the best?
 
-<img src="/img/gambar2.jpg" style="display: block; margin: auto;" />
+<img src="/img/svm/gambar2.jpg" style="display: block; margin: auto;" />
 
   And SVM would choose the line C as the best separator. What this line does that the     other ones don't do, it maximizes the distance to the nearest point and it does this     relative to both classes. It's a line that maximizes the distance to the nearest points   in either class, that distance is often called margin.
 
 **Identify the right hyper-plane (Scenario-3)**
 
-<img src="/img/gambar3.jpg" style="display: block; margin: auto;" />
+<img src="/img/svm/gambar3.jpg" style="display: block; margin: auto;" />
 
 
   SVM selects the hyper-plane which classifies the classes accurately prior to maximizing   margin.So For SVM , you are triying to classify correctly and subject to that         constraint, you maximize the margin. Here, hyper-plane B has a classification error and A   has classified all correctly. Therefore, the right hyper-plane is A.
@@ -53,30 +53,30 @@ So how does SVM find the right hyperplane?. Let me give you example to understan
   So sometimes for SVM, it seems impossible to do right job. For example, you might have   a data set just like this. In which clearly no decision surface exist that would   separate the two classes, you can think of the point down here as an outlier
 
 
-<img src="/img/gambar4.jpg" style="display: block; margin: auto;" />
+<img src="/img/svm/gambar4.jpg" style="display: block; margin: auto;" />
 
 
 SVM has a feature to ignore outliers and find the hyper-plane that has maximum margin. Hence, we can say, SVM is robust to outliers.
 
 
-<img src="/img/gambar5.jpg" style="display: block; margin: auto;" />
+<img src="/img/svm/gambar5.jpg" style="display: block; margin: auto;" />
 
 ### The Kernel Trick
 
 In the scenario below, we can't have linear hyper-plane between the two classes, so how does SVM classify these two classes? Till now, we have only looked at the linear hyper-plane.
 
 
-<img src="/img/gambar6.jpg" style="display: block; margin: auto;" />
+<img src="/img/svm/gambar6.jpg" style="display: block; margin: auto;" />
 
 SVM can solve this problem Easily! It solves this problem by introducing additional feature. Here, we will add a new feature z=x^2+y^2. Now, let's plot the data points on axis x and z.
 
 
-<img src="/img/gambar7.jpg" style="display: block; margin: auto;" />
+<img src="/img/svm/gambar7.jpg" style="display: block; margin: auto;" />
 
 When we look at the hyper-plane in original input space it looks like a circle.
 
 
-<img src="/img/gambar10.jpg" style="display: block; margin: auto;" />
+<img src="/img/svm/gambar10.jpg" style="display: block; margin: auto;" />
 
 SVM has a technique called the kernel trick. These are functions which takes low dimensional input space and transform it to a higher dimensional space i.e. it converts not separable problem to separable problem, these functions are called kernels.
 

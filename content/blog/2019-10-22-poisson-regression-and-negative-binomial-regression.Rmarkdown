@@ -47,7 +47,7 @@ Regression analysis is a set of statistical processes for estimating the relatio
 ## Some Types of Regression 
 
 ```{r, echo=FALSE, fig.width=5, fig.height=3}
-knitr::include_graphics('/img/pic.png')
+knitr::include_graphics('/img/biomial-negatif/pic.png')
 ```
 
 

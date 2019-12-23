@@ -34,7 +34,7 @@ So how does SVM find the right hyperplane?. Let me give you example to understan
 > Which line do you think separates the data?
 
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/gambar1.jpg')
+knitr::include_graphics('/img/svm/gambar1.jpg')
 ```
 
 > And obviously the line B is the one that segregates the two classes better.
@@ -44,7 +44,7 @@ knitr::include_graphics('/img/gambar1.jpg')
   Check the line that you think best separates the data. Obviously all three of them seem   to separates the data, but one is the best?
 
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/gambar2.jpg')
+knitr::include_graphics('/img/svm/gambar2.jpg')
 ```
 
   And SVM would choose the line C as the best separator. What this line does that the     other ones don't do, it maximizes the distance to the nearest point and it does this     relative to both classes. It's a line that maximizes the distance to the nearest points   in either class, that distance is often called margin.
@@ -52,7 +52,7 @@ knitr::include_graphics('/img/gambar2.jpg')
 **Identify the right hyper-plane (Scenario-3)**
 
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/gambar3.jpg')
+knitr::include_graphics('/img/svm/gambar3.jpg')
 ```
 
 
@@ -64,7 +64,7 @@ knitr::include_graphics('/img/gambar3.jpg')
 
 
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/gambar4.jpg')
+knitr::include_graphics('/img/svm/gambar4.jpg')
 ```
 
 
@@ -72,7 +72,7 @@ SVM has a feature to ignore outliers and find the hyper-plane that has maximum m
 
 
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/gambar5.jpg')
+knitr::include_graphics('/img/svm/gambar5.jpg')
 ```
 
 ### The Kernel Trick
@@ -81,21 +81,21 @@ In the scenario below, we can't have linear hyper-plane between the two classes,
 
 
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/gambar6.jpg')
+knitr::include_graphics('/img/svm/gambar6.jpg')
 ```
 
 SVM can solve this problem Easily! It solves this problem by introducing additional feature. Here, we will add a new feature z=x^2+y^2. Now, let's plot the data points on axis x and z.
 
 
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/gambar7.jpg')
+knitr::include_graphics('/img/svm/gambar7.jpg')
 ```
 
 When we look at the hyper-plane in original input space it looks like a circle.
 
 
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/gambar10.jpg')
+knitr::include_graphics('/img/svm/gambar10.jpg')
 ```
 
 SVM has a technique called the kernel trick. These are functions which takes low dimensional input space and transform it to a higher dimensional space i.e. it converts not separable problem to separable problem, these functions are called kernels.

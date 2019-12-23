@@ -25,7 +25,7 @@ Can association between factors that we call mathematically "correlation" tell u
 
 
 
-<img src="/img/correlation.jpg" style="display: block; margin: auto;" />
+<img src="/img/causalinference/correlation.jpg" style="display: block; margin: auto;" />
 
 Sometimes we tend to quickly "judge" consequences of action, whether  it is strong or weak, such as "the new rule causes riot", "the president's opinion affected public perception of him", or "chemical X has been linked to cancer".   
 In recent years, diverse fields begin to use "evidence-based" decision - that knowledge of *outcomes*, gathered from scientific studies and other empirical sources, should inform our choices, and we expect that these *choices will cause the desired results*. But conducting ideal experiments are expensive and hard, and often we cannot make sure the experiments result will match reality.  
@@ -59,7 +59,7 @@ Think of it like you want to cook, but somebody call you and make you distracted
 5. Correlation *does not* imply causation.   
 Back to example in the introduction.  
 
-<img src="/img/correlation.jpg" style="display: block; margin: auto;" />
+<img src="/img/causalinference/correlation.jpg" style="display: block; margin: auto;" />
 
 Let's say that we believe in the power of correlation and believe that there might be causal relationship between number of divorce in Maine and margarine consumption. But then we still questions to answer :  
   i. In what direction the causation happens? Number of divorce affects margarine consumption or margarine consumption affects number of divorce?   
@@ -70,7 +70,7 @@ Aside from above example (spurious correlation), I will introduce you to Simpson
 
 See this example: 
 
-<img src="/img/simpson.jpg" style="display: block; margin: auto;" />
+<img src="/img/causalinference/simpson.jpg" style="display: block; margin: auto;" />
 
 If you see these table, and asked, which treatment was better, what will you answer? Without considering gender, drug treatment looks better but when we take gender into consideration non-drug treatment looks better.
 
@@ -80,7 +80,7 @@ Do-calculus is a mathematical approach to learn probabilistic relation in manipu
 
 Now, let's discuss some real debate regarding correlation. So there was a high correlation between smoking and lung cancer, and people thought smoking causes lung cancer. However, some people argued against this and think there may be some hidden factor (genetic traits maybe?) which contribute to person's tendency to smoking and his high probability developing a cancer.  
 
-<img src="/img/smoking_basic_causal_model.png" style="display: block; margin: auto;" />
+<img src="/img/causalinference/smoking_basic_causal_model.png" style="display: block; margin: auto;" />
 
 Randomized experiment can help resolve this. Make an experiment where people are forced to smoke and record how much of them develop lung cancer. But, this kind of experiment is illegal, so usually we resort to the mathematical "do-calculus".[^5]
 
@@ -93,7 +93,7 @@ Here you can see how things have far-impacting capability and it is based on dat
 ## Usage and Plus of Bayesian Network
 To give you motivation to learn this, I'm going to introduce what is the use of Bayesian Network.
 
-<img src="/img/use_bn.png" style="display: block; margin: auto;" />
+<img src="/img/causalinference/use_bn.png" style="display: block; margin: auto;" />
 
 So, Bayesian Network can be used for prediction, anomaly detection, decision making, etc.
 
@@ -123,7 +123,7 @@ If we want to say A causes B, we draw a graph like this: A->B
 It is a directed graph because we need to specify the direction of the line connecting, as A->B is different with A<-B.
 Acyclic means there is no cycle in the graph. For example look at this graph:  
 
-<img src="/img/graph_with_loops.png" style="display: block; margin: auto;" />
+<img src="/img/causalinference/graph_with_loops.png" style="display: block; margin: auto;" />
 
 In this cyclic graph , we have X causes Y causes Z causes X, which is nonsense. Thus, we must have acyclic graph.  
 
@@ -131,7 +131,7 @@ Note : X,Y,Z are called node, and the arrows are called arc/edge.
 
 ## Connections
 
-<img src="/img/graph.jpg" style="display: block; margin: auto;" />
+<img src="/img/causalinference/graph.jpg" style="display: block; margin: auto;" />
 
 Suppose we have the above DAG. We are going to learn some of important terms to explain the connections between the nodes.  
 - We see that A -> E. Here, we can say that A is the parent of E and E is the descendant of A.  

@@ -81,27 +81,27 @@ When we look at Shapefile data (`.shp`) that we have downloaded from GADM, we ca
 Because the information that we use is spread to several files at once with different extensions, we have to change it first to one file so that it is more easily accessed/processed in R. For this reason, we will process it first in [mapshaper](https://mapshaper.org/). After some processing and cleaning, we can extract the data in the form of `.json`.
 
 ```{r echo=FALSE}
-knitr::include_graphics('/img/0.png')
+knitr::include_graphics('/img/mapshaper/0.png')
 ```
 
 Mapshaper will receive some data and collect it at once. From all 5 extensions we from shapefiles, we can put everything except `.cpg`. We set everything up, we click on the *detect intersection path* section to confirm whether our data have any *intersection*/*contact point* or not, then we *import*.
 
 ```{r echo=FALSE}
-knitr::include_graphics('/img/1.png')
+knitr::include_graphics('/img/mapshaper/1.png')
 ```
 
 From the results we have imported, we can see that the `gadm36_IDN_3` data is the data that cuts across the district. In this data, it also happens that the map we get is a 'good' map, because there is no *meeting point*/*intersection*[^note_3].
 
 ```{r echo=FALSE}
-knitr::include_graphics('/img/2.png')
+knitr::include_graphics('/img/mapshaper/2.png')
 ```
 
 ```{r echo=FALSE}
-knitr::include_graphics('/img/2_intersection.png')
+knitr::include_graphics('/img/mapshaper/2_intersection.png')
 ```
 
 ```{r echo=FALSE}
-knitr::include_graphics('/img/2_intersection_zoom.png')
+knitr::include_graphics('/img/mapshaper/2_intersection_zoom.png')
 ```
 
 
@@ -117,7 +117,7 @@ filter 'NAME_1 == "Jakarta Raya"'
 ```
 
 ```{r echo=FALSE}
-knitr::include_graphics('/img/3_jakarta_kecamatan.png')
+knitr::include_graphics('/img/mapshaper/3_jakarta_kecamatan.png')
 ```
 
 
@@ -320,7 +320,7 @@ saveWidget(map1, "map1.html")
 setwd(currentWD)
 ```
 
-<iframe seamless src="/img/map1.html" width="100%" height="500"></iframe>
+<iframe seamless src="/img/mapshaper/map1.html" width="100%" height="500"></iframe>
 
 
 For the record, we can also arrange each part of the *legend* by adjusting the colors one by one (taken by using `inspect element`) and we can label it from there. If it is not done like this, then the text in the legend cannot be changed and is still shown in numeric form even though it has been given the `labels` parameter. Also, be aware that in order for the `colors` parameter to work, the `pal` parameter in `addLegend` must be removed.
@@ -351,7 +351,7 @@ saveWidget(map2, "map2.html")
 setwd(currentWD)
 ```
 
-<iframe seamless src="/img/map2.html" width="100%" height="500"></iframe>
+<iframe seamless src="/img/mapshaper/map2.html" width="100%" height="500"></iframe>
 
 
 ## Additional Information

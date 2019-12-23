@@ -70,19 +70,19 @@ When we look at Shapefile data (`.shp`) that we have downloaded from GADM, we ca
 
 Because the information that we use is spread to several files at once with different extensions, we have to change it first to one file so that it is more easily accessed/processed in R. For this reason, we will process it first in [mapshaper](https://mapshaper.org/). After some processing and cleaning, we can extract the data in the form of `.json`.
 
-<img src="/img/0.png" style="display: block; margin: auto;" />
+<img src="/img/mapshaper/0.png" style="display: block; margin: auto;" />
 
 Mapshaper will receive some data and collect it at once. From all 5 extensions we from shapefiles, we can put everything except `.cpg`. We set everything up, we click on the *detect intersection path* section to confirm whether our data have any *intersection*/*contact point* or not, then we *import*.
 
-<img src="/img/1.png" style="display: block; margin: auto;" />
+<img src="/img/mapshaper/1.png" style="display: block; margin: auto;" />
 
 From the results we have imported, we can see that the `gadm36_IDN_3` data is the data that cuts across the district. In this data, it also happens that the map we get is a 'good' map, because there is no *meeting point*/*intersection*[^note_3].
 
-<img src="/img/2.png" style="display: block; margin: auto;" />
+<img src="/img/mapshaper/2.png" style="display: block; margin: auto;" />
 
-<img src="/img/2_intersection.png" style="display: block; margin: auto;" />
+<img src="/img/mapshaper/2_intersection.png" style="display: block; margin: auto;" />
 
-<img src="/img/2_intersection_zoom.png" style="display: block; margin: auto;" />
+<img src="/img/mapshaper/2_intersection_zoom.png" style="display: block; margin: auto;" />
 
 
 After that, we would want to see all information about each area that we have from the data we have imported, by pressing the `i` button on the top right. We can see that there is information about the country (in the variable `NAME_0`), provinces (` NAME_1`), districts/cities (`NAME_2`), sub-districts (` NAME_3`), also villages (`NAME_4`) of each place. In addition, there are IDs for each section, but we will not use them here.
@@ -96,7 +96,7 @@ We will try to select only in the sub-district (`gadm36_IDN_3`) and we filter on
 filter 'NAME_1 == "Jakarta Raya"'
 ```
 
-<img src="/img/3_jakarta_kecamatan.png" style="display: block; margin: auto;" />
+<img src="/img/mapshaper/3_jakarta_kecamatan.png" style="display: block; margin: auto;" />
 
 
 After that, we will export the data as TopoJSON by clicking 'Export' at the top right.
@@ -421,7 +421,7 @@ map1
 
 
 
-<iframe seamless src="/img/map1.html" width="100%" height="500"></iframe>
+<iframe seamless src="/img/mapshaper/map1.html" width="100%" height="500"></iframe>
 
 
 For the record, we can also arrange each part of the *legend* by adjusting the colors one by one (taken by using `inspect element`) and we can label it from there. If it is not done like this, then the text in the legend cannot be changed and is still shown in numeric form even though it has been given the `labels` parameter. Also, be aware that in order for the `colors` parameter to work, the `pal` parameter in `addLegend` must be removed.
@@ -450,7 +450,7 @@ map2
 
 
 
-<iframe seamless src="/img/map2.html" width="100%" height="500"></iframe>
+<iframe seamless src="/img/mapshaper/map2.html" width="100%" height="500"></iframe>
 
 
 ## Additional Information

@@ -42,7 +42,7 @@ This graphic illustrates (Figure 1) what bias and variance are. Imagine the bull
 
 
 ```{r, echo=FALSE, fig.cap=paste(" Bias and Variance (source: Shenoy, Aditi, 2019, What is Bias, Variance and Bias-Variance Tradeoff?)")}
-knitr::include_graphics('/img/ridge_lasso_fig1.jpg')
+knitr::include_graphics('/img/ridge-lasso/ridge_lasso_fig1.jpg')
 ```
 
 
@@ -52,7 +52,7 @@ Now how this bias and variance is balanced to have a perfect model? Take a look 
 
 
 ```{r, echo=FALSE, fig.cap=paste("Bias Variance Tradeoff (source: Hsieh, Ben, 2012, Understanding the Bias-Variance Tradeoff in k means clustering)")}
-knitr::include_graphics('/img/ridge_lasso_fig2.png')
+knitr::include_graphics('/img/ridge-lasso/ridge_lasso_fig2.png')
 ```
 
 In the picture above, it can be seen based on the complexity of the model that has 2 possible errors, namely:
@@ -98,7 +98,7 @@ That's why if I want to predict house prices based on land area, but I only have
 
 
 ```{r echo=FALSE, fig.cap=paste("OLS Regression")}
-knitr::include_graphics('/img/ridge_lasso_ffff1.png')
+knitr::include_graphics('/img/ridge-lasso/ridge_lasso_ffff1.png')
 ```
 
 then the regression model (line) that I have is like figure 3.
@@ -106,7 +106,7 @@ then the regression model (line) that I have is like figure 3.
 But the problem is what if it turns out I have test data and its distribution is like the blue dot below?
 
 ```{r echo=FALSE, fig.cap=paste("Overfitting")}
-knitr::include_graphics('/img/ridge_lasso_ffff2.png')
+knitr::include_graphics('/img/ridge-lasso/ridge_lasso_ffff2.png')
 ```
 
 Figure 4 above shows that if we have a regression line in orange, and want to predict test data like the blue dot above, the estimator has a very large variance even though it has a small bias value, and The regression model formed is very good for the data train but bad for the test data. When the phenomenon occurs, the model built is subject to *overfitting* problems.
@@ -126,7 +126,7 @@ Ordinary Least Square (OLS) will create a model by minimizing the value of Sum S
 $$SSE + λ \sum_{i = 1}^{n} (\beta_{i})^2$$
 
 ```{r echo=FALSE, fig.cap=paste("Ridge Regression")}
-knitr::include_graphics('/img/ridge_lasso_ffff3.png')
+knitr::include_graphics('/img/ridge-lasso/ridge_lasso_ffff3.png')
 ```
 
 It can be seen that the main idea of Ridge Regression is to add a little bias to reduce the value of the variance estimator.
@@ -134,7 +134,7 @@ It can be seen that the main idea of Ridge Regression is to add a little bias to
 It can be seen that the greater the value of λ (lambda) the regression line will be more horizontal, so the coefficient value approaches 0.
 
 ```{r echo=FALSE, fig.cap=paste("Lambda Parameter")}
-knitr::include_graphics('/img/ridge_lasso_ffff5.png')
+knitr::include_graphics('/img/ridge-lasso/ridge_lasso_ffff5.png')
 ```
 
 **If λ = 0, the output is similar to simple linear regression.**

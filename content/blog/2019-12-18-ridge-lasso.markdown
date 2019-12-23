@@ -39,7 +39,7 @@ This graphic illustrates (Figure 1) what bias and variance are. Imagine the bull
 
 
 <div class="figure">
-<img src="/img/ridge_lasso_fig1.jpg" alt=" Bias and Variance (source: Shenoy, Aditi, 2019, What is Bias, Variance and Bias-Variance Tradeoff?)"  />
+<img src="/img/ridge-lasso/ridge_lasso_fig1.jpg" alt=" Bias and Variance (source: Shenoy, Aditi, 2019, What is Bias, Variance and Bias-Variance Tradeoff?)"  />
 <p class="caption">Figure 1:  Bias and Variance (source: Shenoy, Aditi, 2019, What is Bias, Variance and Bias-Variance Tradeoff?)</p>
 </div>
 
@@ -50,7 +50,7 @@ Now how this bias and variance is balanced to have a perfect model? Take a look 
 
 
 <div class="figure">
-<img src="/img/ridge_lasso_fig2.png" alt="Bias Variance Tradeoff (source: Hsieh, Ben, 2012, Understanding the Bias-Variance Tradeoff in k means clustering)"  />
+<img src="/img/ridge-lasso/ridge_lasso_fig2.png" alt="Bias Variance Tradeoff (source: Hsieh, Ben, 2012, Understanding the Bias-Variance Tradeoff in k means clustering)"  />
 <p class="caption">Figure 2: Bias Variance Tradeoff (source: Hsieh, Ben, 2012, Understanding the Bias-Variance Tradeoff in k means clustering)</p>
 </div>
 
@@ -97,7 +97,7 @@ That's why if I want to predict house prices based on land area, but I only have
 
 
 <div class="figure">
-<img src="/img/ridge_lasso_ffff1.png" alt="OLS Regression"  />
+<img src="/img/ridge-lasso/ridge_lasso_ffff1.png" alt="OLS Regression"  />
 <p class="caption">Figure 3: OLS Regression</p>
 </div>
 
@@ -106,7 +106,7 @@ then the regression model (line) that I have is like figure 3.
 But the problem is what if it turns out I have test data and its distribution is like the blue dot below?
 
 <div class="figure">
-<img src="/img/ridge_lasso_ffff2.png" alt="Overfitting"  />
+<img src="/img/ridge-lasso/ridge_lasso_ffff2.png" alt="Overfitting"  />
 <p class="caption">Figure 4: Overfitting</p>
 </div>
 
@@ -127,7 +127,7 @@ Ordinary Least Square (OLS) will create a model by minimizing the value of Sum S
 `$$SSE + λ \sum_{i = 1}^{n} (\beta_{i})^2$$`
 
 <div class="figure">
-<img src="/img/ridge_lasso_ffff3.png" alt="Ridge Regression"  />
+<img src="/img/ridge-lasso/ridge_lasso_ffff3.png" alt="Ridge Regression"  />
 <p class="caption">Figure 5: Ridge Regression</p>
 </div>
 
@@ -136,7 +136,7 @@ It can be seen that the main idea of Ridge Regression is to add a little bias to
 It can be seen that the greater the value of λ (lambda) the regression line will be more horizontal, so the coefficient value approaches 0.
 
 <div class="figure">
-<img src="/img/ridge_lasso_ffff5.png" alt="Lambda Parameter"  />
+<img src="/img/ridge-lasso/ridge_lasso_ffff5.png" alt="Lambda Parameter"  />
 <p class="caption">Figure 6: Lambda Parameter</p>
 </div>
 
@@ -166,12 +166,60 @@ The first thing to do is to prepare several libraries as below.
 
 ```r
 library(glmnet)  
+```
+
+```
+## Warning: package 'glmnet' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'Matrix' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'foreach' was built under R version 3.5.3
+```
+
+```r
 library(caret)  
+```
+
+```
+## Warning: package 'caret' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.5.3
+```
+
+```r
 library(dplyr)   
+```
+
+```
+## Warning: package 'dplyr' was built under R version 3.5.3
+```
+
+```r
 library(car)
+```
+
+```
+## Warning: package 'car' was built under R version 3.5.3
+```
+
+```r
 library(nnet)
 library(GGally)
 library(lmtest)
+```
+
+```
+## Warning: package 'lmtest' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'zoo' was built under R version 3.5.3
 ```
 
 
@@ -631,7 +679,7 @@ best_lambda_ridge
 ```
 
 ```
-## [1] 2.718588
+## [1] 1.707353
 ```
 
 ### Build Models Based on The Best Lambda
@@ -645,15 +693,15 @@ predict.glmnet(ridge_mod,  type = 'coefficients')
 ```
 ## 9 x 1 sparse Matrix of class "dgCMatrix"
 ##                       s0
-## (Intercept) 17.814918083
-## cyl         -0.391966995
-## disp        -0.005521471
-## hp          -0.013190561
-## drat         2.056880528
-## wt          -1.118842095
-## qsec         0.097422982
-## gear         1.319509903
-## carb        -0.903445784
+## (Intercept) 17.201163649
+## cyl         -0.354685636
+## disp        -0.004855094
+## hp          -0.013125376
+## drat         2.377336631
+## wt          -1.163291643
+## qsec         0.060788898
+## gear         1.415532975
+## carb        -1.065339475
 ```
 
 So the Ridge Regression model obtained is `$$mpg = 17.81 - 0.39cyl -0.005disp-0.01hp+2.05drat-1.12wt+0.09qseq+1.32gear-0.90carb$$` 
@@ -691,7 +739,7 @@ best_lambda_lasso
 ```
 
 ```
-## [1] 0.2104904
+## [1] 0.1668101
 ```
 
 ### Build Models Based The Best Lambda
@@ -711,15 +759,15 @@ predict.glmnet(lasso_mod, type = 'coefficients')
 ```
 ## 9 x 1 sparse Matrix of class "dgCMatrix"
 ##                      s0
-## (Intercept)  8.31078146
+## (Intercept)  7.37367761
 ## cyl          .         
 ## disp         .         
-## hp          -0.01200873
-## drat         4.06632822
-## wt          -1.00078830
+## hp          -0.01044739
+## drat         4.12926425
+## wt          -0.97081377
 ## qsec         .         
-## gear         1.96219164
-## carb        -1.79510368
+## gear         2.14674952
+## carb        -1.88455227
 ```
 
 From the results above it can be seen that the variables cyl, disp, and qseq have decreased coefficients to exactly 0. So the LASSO Regression model obtained is
@@ -781,7 +829,7 @@ mean((ridge_pred-ytrain)^2)
 ```
 
 ```
-## [1] 5.21749
+## [1] 4.920852
 ```
 
 ```r
@@ -791,7 +839,7 @@ mean((ridge_pred-ytest)^2)
 ```
 
 ```
-## [1] 6.466156
+## [1] 7.22441
 ```
 
 
@@ -802,7 +850,7 @@ mean((lasso_pred-ytrain)^2)
 ```
 
 ```
-## [1] 4.312505
+## [1] 4.269417
 ```
 
 ```r
@@ -812,7 +860,7 @@ mean((lasso_pred-ytest)^2)
 ```
 
 ```
-## [1] 12.92085
+## [1] 13.56875
 ```
 
 
@@ -829,14 +877,14 @@ predict_value
 
 ```
 ##                  y_actual  ols_pred ridge_pred lasso_pred stepwise_pred
-## Pontiac Firebird     19.2 17.829311   16.00819   17.18188      17.52899
-## Fiat X1-9            27.3 28.902655   27.38328   28.22596      28.88586
-## Porsche 914-2        26.0 31.136052   27.51776   29.31088      31.41857
-## Lotus Europa         30.4 27.691995   26.73016   26.99041      27.96911
-## Ford Pantera L       15.8 24.928066   18.78854   21.75843      24.89406
-## Ferrari Dino         19.7 16.325756   19.38780   17.19751      16.33122
-## Maserati Bora        15.0  9.759043   12.67783   10.55997      10.48615
-## Volvo 142E           21.4 25.508611   24.76779   25.19081      26.32918
+## Pontiac Firebird     19.2 17.829311   16.12641   17.20188      17.52899
+## Fiat X1-9            27.3 28.902655   27.72686   28.35547      28.88586
+## Porsche 914-2        26.0 31.136052   28.00826   29.60271      31.41857
+## Lotus Europa         30.4 27.691995   27.01435   27.25625      27.96911
+## Ford Pantera L       15.8 24.928066   19.23691   22.15912      24.89406
+## Ferrari Dino         19.7 16.325756   19.08362   17.23060      16.33122
+## Maserati Bora        15.0  9.759043   12.21058   10.68292      10.48615
+## Volvo 142E           21.4 25.508611   24.96332   25.32522      26.32918
 ```
 
 Based on the results that can be seen in the model that produces the closest prediction value `y_actual` is the **Ridge Regression** model.

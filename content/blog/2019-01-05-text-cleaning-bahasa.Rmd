@@ -66,7 +66,7 @@ library(dplyr)
 Here, we have extracted some Tweets to analyze Indonesians opinions towards **BPJS Kesehatan**, Indonesian national health care insurance:
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('/img/bpjstwit.png')
+knitr::include_graphics('/img/textclean/bpjstwit.png')
 ```
 
 ```{r}
@@ -111,7 +111,7 @@ To pre-process text with `textclean` is kinda cool since it provides several fun
 Let's start by removing the HTML & URLs on our Twitter data:
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('/img/twithtml.png')
+knitr::include_graphics('/img/textclean/twithtml.png')
 ```
 
 
@@ -139,7 +139,7 @@ So, if you consider this as part of noises, you might also need to perform `repl
 
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('/img/twitemoji.png')
+knitr::include_graphics('/img/textclean/twitemoji.png')
 ```
 
 ```{r}
@@ -169,7 +169,7 @@ Here's some of the example:
 
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('/img/twitmention.png')
+knitr::include_graphics('/img/textclean/twitmention.png')
 ```
 
 

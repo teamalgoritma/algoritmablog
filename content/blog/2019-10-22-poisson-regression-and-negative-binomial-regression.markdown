@@ -35,7 +35,7 @@ Regression analysis is a set of statistical processes for estimating the relatio
 
 ## Some Types of Regression 
 
-<img src="/img/pic.png" style="display: block; margin: auto;" />
+<img src="/img/biomial-negatif/pic.png" style="display: block; margin: auto;" />
 
 
 ## Why OLS is not Suitable for Discrete Data ?

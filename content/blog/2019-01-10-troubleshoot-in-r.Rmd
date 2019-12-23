@@ -50,7 +50,7 @@ This is the beginner curse: to become better, you need to practice writing code.
 
 Example of error code in line:
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/errorinline.png')
+knitr::include_graphics('/img/troubleshoot/errorinline.png')
 ```
 
 
@@ -59,7 +59,7 @@ knitr::include_graphics('/img/errorinline.png')
 
 Example of error code in console:
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/errormessageinconsole.png')
+knitr::include_graphics('/img/troubleshoot/errormessageinconsole.png')
 ``` 
 
   The most common error in RStudio is Syntax errors. You’be forgotten a comma, opened a bracket, but haven’t closed it, misspelled character by mistake or something else R doesn't understand. Those are usually picked up by R and you will get error messages reminding you to proof-read your code and fix them.
@@ -121,14 +121,14 @@ Here some error that newbie in R probably encounters:
   
   
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/sessioninfo.png')
+knitr::include_graphics('/img/troubleshoot/sessioninfo.png')
 ```
 
 
 and when you having trouble applying an operation to some R object, but want to avoid the potential hassle of transferring files and code to another person’s computer, make a reproducible example and/or use 'dput()' to efficiently convey the problematic object. For the example i tried to applied it in my *cd* object. 'dput()' will write an ASCII text representation of an R object to a file or connection, or to recreate the object.
 
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/dputconsole.png')
+knitr::include_graphics('/img/troubleshoot/dputconsole.png')
 ```
   
   You should post your minimally reproducible sample. Try reprex package torender bits of code that you have problem with. Learn more about [reprex](https://reprex.tidyverse.org/articles/articles/magic-reprex) as a way to show your problematic code and it will help go a long way for people to figure out what is going on.

@@ -36,7 +36,7 @@ knitr::opts_chunk$set(
 Before we further discuss the Long Short-Term Memory Model, we will first discuss the term of *Deep learning* where the main idea is on the Neural Network. So Neural Network is one branch of machine learning where the learning process imitates the way neurons in the human brain works. In Neural Network we know several terms, such as the input layer, hidden layer, and output layer. So the different betweetn Deep Learning and Neural Network architecture is the number of hidden layers specified. Simple Neural Network only has 1 hidden layer, whereas Deep Learning has more than 1 hidden layer.
 
 ```{r echo=FALSE, eval=TRUE, out.width='80%'}
-knitr::include_graphics('/img/dnn.png')
+knitr::include_graphics('/img/lstm-text/dnn.png')
 ```
 
 Nerual Network architecture can also be characterized based on the direction of signal in training process: *feed-forward* and *recurrent*. In this material, we will discuss more the *Recurrent Neural Network* architecture.
@@ -53,7 +53,7 @@ When doing backpropogation in simple neural network (1 hidden layer) we might no
 **Vanishing Gradient Descent**: the update value obtained will exponentially decrease when heading to the input layer. Here are the illustrations, which I took from: [Michael Nguyen's article](https://towardsdatascience.com/illustrated-guide-to-recurrent-neural-networks-79e5eb8049c9)
 
 ```{r echo=FALSE, eval = TRUE, out.width='35%'}
-knitr::include_graphics('/img/vg1.gif')
+knitr::include_graphics('/img/lstm-text/vg1.gif')
 ```
 
 Gradient descent aims to adjust weights that allow the model to '**learn**'. the nature of the gradient that is, the greater the value of the gradient in the current layer, will affect in the next layer getting bigger. and *vice versa*. This is the problem. When doing BP, each node will calculate the gradient value and update its weight according to the gradient effect on the previous layer. so if the previous layer is small, then adjusting the weights in the current layer will be small. it causes the gradient to shrink exponentially when it goes to the input layer. so that when in the input layer it fails to do the learning due to *vanishing gradient problems*. so the model **fails to learn** when a pass forward is made again to make predictions.
@@ -61,7 +61,7 @@ Gradient descent aims to adjust weights that allow the model to '**learn**'. the
 **Exploding Gradient Descent**: the update value obtained will exponentially increase when heading to the input layer. The characteristics of the model have an exploding gradient problem, which is when the cost function results are NaN. 
 
 ```{r echo=FALSE, eval = TRUE, out.width='80%'}
-knitr::include_graphics('/img/lossnan.png')
+knitr::include_graphics('/img/lstm-text/lossnan.png')
 ```
 
 Here is a link duscussion regarding to exploding grgadient descent: [nan loss when training NN](https://stackoverflow.com/questions/37232782/nan-loss-when-training-regression-network)
@@ -83,7 +83,7 @@ So what is RNN? RNN is a deep learning architecture model that is commonly used 
 The main idea of RNN is to utilize sequential information processing. RNN is called repetitive because it performs the same task for each successive element, with output depending on the previous calculation.
 
 ```{r echo=FALSE, eval = TRUE, out.width='60%'}
-knitr::include_graphics('/img/rnn.jpg')
+knitr::include_graphics('/img/lstm-text/rnn.jpg')
 ```
 
 The diagram above is the architecture of RNN after opening it unfolded. Suppose we have a sentence consisting of 10 words, it means that there will be 10 NN-layers formed separately. Each layer represents each word. The following are some explanations of the notation in the diagram above:
@@ -103,7 +103,7 @@ $S_t = f(U_{xt} + W_{St} − 1)$.
 For example case studies related to sentiment classification. Then the input will contain one-hot vectors of words, and the output is a sentiment class. So a feed-forward pass scheme is performed as:
 
 ```{r echo=FALSE, eval = TRUE, out.width='60%'}
-knitr::include_graphics('/img/forwardpass.PNG')
+knitr::include_graphics('/img/lstm-text/forwardpass.PNG')
 ```
 
 1. Each layer describes each word.
@@ -124,7 +124,7 @@ $\hat{y}_t=softmax(V.s_t)$
 The above process is often illustrated like:
 
 ```{r echo=FALSE, eval = TRUE, out.width='60%'}
-knitr::include_graphics('/img/rnn-network.png')
+knitr::include_graphics('/img/lstm-text/rnn-network.png')
 ```
 
 ### Backpropogation Through Time
@@ -132,7 +132,7 @@ knitr::include_graphics('/img/rnn-network.png')
 The purpose of the RNN model training is to find the parameters $U, V,$ and $W$ which produce minimum errors. The term BTT arises because the RNN architecture pays attention to the previous time series. So to calculate the gradient at the time step $t$, we must calculate the speech at step $t − 1, t − 2, t − 3$ until it is at time $t = 1$. If you are curious about how this algorithm works, I suggest to read more on this article: [Part 3: Backpropogarion & Vanishing Gradient](http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/).
 
 ```{r echo=FALSE, eval = TRUE, out.width='35%'}
-knitr::include_graphics('/img/btt.gif')
+knitr::include_graphics('/img/lstm-text/btt.gif')
 ```
 
 As mentioned in the previous chapter, the RNN model also has a vanishing gradient problem, because it cannot capture long-term dependencies. because the number of layers is too long, making the backprop process produces a gradient value that is getting smaller and even close to zero or is said to disappear when it arrives at the initial layers.
@@ -148,7 +148,7 @@ To overcome this problem, there is a development of RNN model namely **Long-Term
 Just like RNN, LSTM has a sequential model which is illustrated with a green box. if unfolded the architecture becomes as below:
 
 ```{r echo=FALSE, eval = TRUE, out.width='70%'}
-knitr::include_graphics('/img/lstm.jpg')
+knitr::include_graphics('/img/lstm-text/lstm.jpg')
 ```
 
 The difference between RNN and LSTM is that it has additional signal information that is given from one time step to the next time step which is commonly called "**cell memory**". LSTM is designed to overcome the problem of vanishing gradient, using the **gate mechanism**.
@@ -167,7 +167,7 @@ So the components in LSTM consist of:
 The following is the LSTM diagram at the t-time step.
 
 ```{r echo=FALSE, eval = TRUE, out.width='70%'}
-knitr::include_graphics('/img/lstmnet.png')
+knitr::include_graphics('/img/lstm-text/lstmnet.png')
 ```
 
 * $X_t$ = Input vector at the t-time.
@@ -429,7 +429,7 @@ tokendocs$word_index[1:4]
 Splitting data will be done into 3 parts, namely train, validation, and test. The proportion is 60% for trains and the remaining 40% is in partitions for data validation and testing.
 
 ```{r echo=FALSE, eval = TRUE, out.width='70%'}
-knitr::include_graphics('/img/split.PNG')
+knitr::include_graphics('/img/lstm-text/split.PNG')
 ```
 
 Data Train is the data that we will use to train the model. Data Validation for evaluating hyperparameter tuning in models (adjust hidden layers, optimizers, learning rates, etc.). While the test data as an evaluator of the model that we make on *unseen data*.

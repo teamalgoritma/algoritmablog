@@ -39,7 +39,7 @@ library(tokenizers)
 library(wordcloud)
 library(dplyr)</code></pre>
 <p>Here, we have extracted some Tweets to analyze Indonesians opinions towards <strong>BPJS Kesehatan</strong>, Indonesian national health care insurance:</p>
-<p><img src="/img/bpjstwit.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="/img/textclean/bpjstwit.png" width="80%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>tweets &lt;- read.csv(&quot;data_input/bpjs.csv&quot;)
 tweets &lt;- tweets$text %&gt;% 
   as.character()
@@ -71,7 +71,7 @@ head(tweets)</code></pre>
 <h4>Replace HTML &amp; URLs</h4>
 <p>To pre-process text with <code>textclean</code> is kinda cool since it provides several functions that allow us to replace substrings within text with other substrings that let us to analyze the data easier.</p>
 <p>Let’s start by removing the HTML &amp; URLs on our Twitter data:</p>
-<p><img src="/img/twithtml.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="/img/textclean/twithtml.png" width="80%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># print original text data on index [199]
 tweets[199]</code></pre>
 <pre><code>#&gt; [1] &quot;Yap, karena BPJS almarhum bapak dlu bisa bertahan cuci darah. Kalau gak ada udah jual ini itu. Sekarang, masih bayar BPJS, meski gak kepake krn ga sakit. Tp itu langkah yg bagus buat ngurangin rasio gini, ketimpangan. https://t.co/h2R6QrxQh0&quot;</code></pre>
@@ -87,7 +87,7 @@ tweets[199]</code></pre>
 <h4>Replace Emoticons and Emojis</h4>
 <p>It’ll also be the same when you manage to on handle tweets with emoticons or emojis. But, note that in some cases, rather than strip the emojis from our text data, the function would rather change them to html format.</p>
 <p>So, if you consider this as part of noises, you might also need to perform <code>replace_html</code> function after converting the emojis as well.</p>
-<p><img src="/img/twitemoji.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="/img/textclean/twitemoji.png" width="80%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># print original tweet in index [198]
 tweets[198]</code></pre>
 <pre><code>#&gt; [1] &quot;Yang pada ngejelekin BPJS pasti ga pernah ngerasain bayar ratusan juta buat rumah sakit dan harus ada saat itu juga.. Tawain aja ÐŸ&quot;</code></pre>
@@ -106,7 +106,7 @@ tweets &lt;- tweets %&gt;%
 <h4>Replace Mentions &amp; Hashtags</h4>
 <p>Somehow, not all of these text replacement tools seem to work perfectly. For example when we try to replace mentions using <code>replace_tag()</code> function, it shows that not all mentions been replaced as we expect.</p>
 <p>Here’s some of the example:</p>
-<p><img src="/img/twitmention.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="/img/textclean/twitmention.png" width="80%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># print original text data on index [4:5]
 tweets [4:5]</code></pre>
 <pre><code>#&gt; [1] &quot;@_dickyekas @siqoqon @wayoek @afathngantuk @elisa_jkt @willypps Bukan cuma itu maaf sya bilang bayar BPJS itu sangat murah. Saya kelas 1 bayar 80k, sedangkan saat saya operasi tumor payudara, endoskopi dan bebebrapa kali perawatan sakit lambung itu semua 0 rupiah. Bisa ngitung ga kalau sya bayar sendiri habis brapa? Hehe&quot;

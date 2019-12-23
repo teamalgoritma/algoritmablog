@@ -12,9 +12,9 @@ tags:
   - Unsupervised Learning
   - Machine Learning
 description: ''
-featured: ''
+featured: 'Algotech_Post_Self_Organizing_Map.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -38,7 +38,7 @@ knitr::opts_chunk$set(
 Self-Organizing Maps first introduce by Teuvo Kohonen. According to the `Wiki`, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction. SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations. SOM also represent clustering concept by grouping the similar features together. So, SOM can use to cluster high-dimensional data sets by doing dimensionality reduction and visualize it using maps.
 
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/arsitektur.PNG')
+knitr::include_graphics('/img/som/arsitektur.PNG')
 ```
 
 Each data point in the data set recognizes themselves by competeting for representation. SOM mapping steps starts from initializing the weight vectors. From there a sample vector is selected randomly and the map of weight vectors is searched to find which weight best represents that sample. Each weight vector has neighborhood weights that are close to it. The weight that is chosen is rewarded by being able to become more like that randomly selected sample vector. The neighbors of that weight are also rewarded by being able to become more like the chosen sample vector. This allows the map to grow and form different shapes. Most generally, they form square/rectangular/hexagonal/L shapes in 2D feature space.
@@ -57,7 +57,7 @@ SOM calculate the distance of each input vector by each weight of nodes. Distanc
  
  
 ```{r echo=FALSE, fig.align='center'}
-knitr::include_graphics('/img/som-training.png')
+knitr::include_graphics('/img/som/som-training.png')
 ```
  
 *Implementation use case for SOM algorithm :*
