@@ -38,7 +38,7 @@ This graphic illustrates (Figure 1) what bias and variance are. Imagine the bull
 - high bias and low variance.
 
 
-<div class="figure">
+<div class="figure" style="text-align: center">
 <img src="/img/ridge-lasso/ridge_lasso_fig1.jpg" alt=" Bias and Variance (source: Shenoy, Aditi, 2019, What is Bias, Variance and Bias-Variance Tradeoff?)"  />
 <p class="caption">Figure 1:  Bias and Variance (source: Shenoy, Aditi, 2019, What is Bias, Variance and Bias-Variance Tradeoff?)</p>
 </div>
@@ -49,7 +49,7 @@ Let’s say we have model which is very accurate, therefore the error of our mod
 Now how this bias and variance is balanced to have a perfect model? Take a look at the image below and try to understand.
 
 
-<div class="figure">
+<div class="figure" style="text-align: center">
 <img src="/img/ridge-lasso/ridge_lasso_fig2.png" alt="Bias Variance Tradeoff (source: Hsieh, Ben, 2012, Understanding the Bias-Variance Tradeoff in k means clustering)"  />
 <p class="caption">Figure 2: Bias Variance Tradeoff (source: Hsieh, Ben, 2012, Understanding the Bias-Variance Tradeoff in k means clustering)</p>
 </div>
@@ -96,7 +96,7 @@ Where the SSE formula is as follows:
 That's why if I want to predict house prices based on land area, but I only have 2 data train like Figure 3a below, 
 
 
-<div class="figure">
+<div class="figure" style="text-align: center">
 <img src="/img/ridge-lasso/ridge_lasso_ffff1.png" alt="OLS Regression"  />
 <p class="caption">Figure 3: OLS Regression</p>
 </div>
@@ -105,7 +105,7 @@ then the regression model (line) that I have is like figure 3.
 
 But the problem is what if it turns out I have test data and its distribution is like the blue dot below?
 
-<div class="figure">
+<div class="figure" style="text-align: center">
 <img src="/img/ridge-lasso/ridge_lasso_ffff2.png" alt="Overfitting"  />
 <p class="caption">Figure 4: Overfitting</p>
 </div>
@@ -126,7 +126,7 @@ Ordinary Least Square (OLS) will create a model by minimizing the value of Sum S
 
 `$$SSE + λ \sum_{i = 1}^{n} (\beta_{i})^2$$`
 
-<div class="figure">
+<div class="figure" style="text-align: center">
 <img src="/img/ridge-lasso/ridge_lasso_ffff3.png" alt="Ridge Regression"  />
 <p class="caption">Figure 5: Ridge Regression</p>
 </div>
@@ -135,7 +135,7 @@ It can be seen that the main idea of Ridge Regression is to add a little bias to
 
 It can be seen that the greater the value of λ (lambda) the regression line will be more horizontal, so the coefficient value approaches 0.
 
-<div class="figure">
+<div class="figure" style="text-align: center">
 <img src="/img/ridge-lasso/ridge_lasso_ffff5.png" alt="Lambda Parameter"  />
 <p class="caption">Figure 6: Lambda Parameter</p>
 </div>
@@ -166,60 +166,12 @@ The first thing to do is to prepare several libraries as below.
 
 ```r
 library(glmnet)  
-```
-
-```
-## Warning: package 'glmnet' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'Matrix' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'foreach' was built under R version 3.5.3
-```
-
-```r
 library(caret)  
-```
-
-```
-## Warning: package 'caret' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.5.3
-```
-
-```r
 library(dplyr)   
-```
-
-```
-## Warning: package 'dplyr' was built under R version 3.5.3
-```
-
-```r
 library(car)
-```
-
-```
-## Warning: package 'car' was built under R version 3.5.3
-```
-
-```r
 library(nnet)
 library(GGally)
 library(lmtest)
-```
-
-```
-## Warning: package 'lmtest' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'zoo' was built under R version 3.5.3
 ```
 
 
@@ -234,13 +186,13 @@ head(mtcars)
 ```
 
 ```
-##                    mpg cyl disp  hp drat    wt  qsec gear carb
-## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46    4    4
-## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02    4    4
-## Datsun 710        22.8   4  108  93 3.85 2.320 18.61    4    1
-## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44    3    1
-## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02    3    2
-## Valiant           18.1   6  225 105 2.76 3.460 20.22    3    1
+#>                    mpg cyl disp  hp drat    wt  qsec gear carb
+#> Mazda RX4         21.0   6  160 110 3.90 2.620 16.46    4    4
+#> Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02    4    4
+#> Datsun 710        22.8   4  108  93 3.85 2.320 18.61    4    1
+#> Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44    3    1
+#> Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02    3    2
+#> Valiant           18.1   6  225 105 2.76 3.460 20.22    3    1
 ```
 
 Now we will try to create an OLS model using `mtcars` data, which consists of 32 observations (rows) and 11 variables:
@@ -272,7 +224,7 @@ In this case, OLS Regression, Ridge Regression, and LASSO Regression will be app
 ggcorr(mtcars, label = T)
 ```
 
-<img src="/blog/2019-12-18-ridge-lasso_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="/blog/2019-12-18-ridge-lasso_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
 
 ### Data Partition
 
@@ -301,31 +253,31 @@ summary(ols)
 ```
 
 ```
-## 
-## Call:
-## lm(formula = mpg ~ ., data = train)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -4.3723 -1.1602 -0.1456  1.1948  4.1680 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)  
-## (Intercept) -5.42270   23.86133  -0.227   0.8233  
-## cyl          0.69631    1.17331   0.593   0.5617  
-## disp        -0.00103    0.01909  -0.054   0.9577  
-## hp          -0.01034    0.03028  -0.342   0.7374  
-## drat         5.36826    2.63249   2.039   0.0595 .
-## wt          -0.47565    2.34992  -0.202   0.8423  
-## qsec         0.01171    0.76250   0.015   0.9879  
-## gear         3.44056    3.01636   1.141   0.2719  
-## carb        -2.66168    1.25748  -2.117   0.0514 .
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 2.553 on 15 degrees of freedom
-## Multiple R-squared:  0.8886,	Adjusted R-squared:  0.8293 
-## F-statistic: 14.96 on 8 and 15 DF,  p-value: 0.000007346
+#> 
+#> Call:
+#> lm(formula = mpg ~ ., data = train)
+#> 
+#> Residuals:
+#>     Min      1Q  Median      3Q     Max 
+#> -4.3723 -1.1602 -0.1456  1.1948  4.1680 
+#> 
+#> Coefficients:
+#>             Estimate Std. Error t value Pr(>|t|)  
+#> (Intercept) -5.42270   23.86133  -0.227   0.8233  
+#> cyl          0.69631    1.17331   0.593   0.5617  
+#> disp        -0.00103    0.01909  -0.054   0.9577  
+#> hp          -0.01034    0.03028  -0.342   0.7374  
+#> drat         5.36826    2.63249   2.039   0.0595 .
+#> wt          -0.47565    2.34992  -0.202   0.8423  
+#> qsec         0.01171    0.76250   0.015   0.9879  
+#> gear         3.44056    3.01636   1.141   0.2719  
+#> carb        -2.66168    1.25748  -2.117   0.0514 .
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Residual standard error: 2.553 on 15 degrees of freedom
+#> Multiple R-squared:  0.8886,	Adjusted R-squared:  0.8293 
+#> F-statistic: 14.96 on 8 and 15 DF,  p-value: 0.000007346
 ```
 
 ### Assumption Checking of OLS Regression Model
@@ -353,10 +305,10 @@ cor.test(mtcars$mpg,mtcars$carb)[[3]])
 ```
 
 ```
-##                    [,1]               [,2]            [,3]         [,4]
-## [1,] 0.0000000006112687 0.0000000009380327 0.0000001787835 0.0000177624
-##                    [,5]       [,6]        [,7]        [,8]
-## [1,] 0.0000000001293959 0.01708199 0.005400948 0.001084446
+#>                    [,1]               [,2]            [,3]         [,4]
+#> [1,] 0.0000000006112687 0.0000000009380327 0.0000001787835 0.0000177624
+#>                    [,5]       [,6]        [,7]        [,8]
+#> [1,] 0.0000000001293959 0.01708199 0.005400948 0.001084446
 ```
 From the p-values above shows each predictor variable has a **significant correlation** on the target variable (mpg).
 
@@ -374,11 +326,11 @@ shapiro.test(ols$residuals)
 ```
 
 ```
-## 
-## 	Shapiro-Wilk normality test
-## 
-## data:  ols$residuals
-## W = 0.99087, p-value = 0.9979
+#> 
+#> 	Shapiro-Wilk normality test
+#> 
+#> data:  ols$residuals
+#> W = 0.99087, p-value = 0.9979
 ```
 
 Based on the above results obtained p-value (0.1709) > alpha (0.05) so that it was concluded that Residuals are normally distributed.
@@ -397,11 +349,11 @@ bptest(ols)
 ```
 
 ```
-## 
-## 	studentized Breusch-Pagan test
-## 
-## data:  ols
-## BP = 15.888, df = 8, p-value = 0.044
+#> 
+#> 	studentized Breusch-Pagan test
+#> 
+#> data:  ols
+#> BP = 15.888, df = 8, p-value = 0.044
 ```
 Based on the above results obtained p-value (0.0356) < alpha (0.05) so it can be concluded that resDistributed residuals are heterogenous
 
@@ -415,10 +367,10 @@ vif(ols)
 ```
 
 ```
-##       cyl      disp        hp      drat        wt      qsec      gear 
-## 14.649665 19.745238 11.505313  7.234090 18.973493  5.619677  8.146065 
-##      carb 
-##  8.646147
+#>       cyl      disp        hp      drat        wt      qsec      gear 
+#> 14.649665 19.745238 11.505313  7.234090 18.973493  5.619677  8.146065 
+#>      carb 
+#>  8.646147
 ```
 
 In the above output, there are 7 predictor variables that have a VIF value > 10. This indicates that the estimator model of the ols model has a **large variance (Overfitting Problem)**.
@@ -435,7 +387,7 @@ mean((ols_pred-ytrain)^2)
 ```
 
 ```
-## [1] 4.072081
+#> [1] 4.072081
 ```
 
 - Data Test
@@ -446,7 +398,7 @@ mean((ols_pred-ytest)^2)
 ```
 
 ```
-## [1] 22.15188
+#> [1] 22.15188
 ```
 
 As mentioned above, one way to overcome overfitting can be to reduce the dimensions using the Stepwise Regression method.
@@ -460,7 +412,7 @@ names(mtcars)
 ```
 
 ```
-## [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "gear" "carb"
+#> [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "gear" "carb"
 ```
 
 ```r
@@ -469,74 +421,74 @@ stepwise_mod <- step(lm.all, direction="backward")
 ```
 
 ```
-## Start:  AIC=51.7
-## mpg ~ cyl + disp + hp + drat + wt + qsec + gear + carb
-## 
-##        Df Sum of Sq     RSS    AIC
-## - qsec  1    0.0015  97.731 49.700
-## - disp  1    0.0190  97.749 49.704
-## - wt    1    0.2669  97.997 49.765
-## - hp    1    0.7599  98.490 49.886
-## - cyl   1    2.2946 100.025 50.257
-## - gear  1    8.4767 106.207 51.696
-## <none>               97.730 51.700
-## - drat  1   27.0937 124.824 55.572
-## - carb  1   29.1906 126.921 55.972
-## 
-## Step:  AIC=49.7
-## mpg ~ cyl + disp + hp + drat + wt + gear + carb
-## 
-##        Df Sum of Sq     RSS    AIC
-## - disp  1     0.027  97.759 47.707
-## - wt    1     0.404  98.135 47.799
-## - hp    1     0.777  98.509 47.890
-## - cyl   1     2.675 100.406 48.348
-## <none>               97.731 49.700
-## - gear  1     8.500 106.231 49.702
-## - drat  1    27.092 124.824 53.572
-## - carb  1    33.987 131.719 54.863
-## 
-## Step:  AIC=47.71
-## mpg ~ cyl + hp + drat + wt + gear + carb
-## 
-##        Df Sum of Sq     RSS    AIC
-## - hp    1     1.001  98.759 45.951
-## - wt    1     1.127  98.886 45.982
-## - cyl   1     2.948 100.707 46.420
-## <none>               97.759 47.707
-## - gear  1     8.716 106.475 47.757
-## - drat  1    27.829 125.588 51.719
-## - carb  1    37.084 134.843 53.425
-## 
-## Step:  AIC=45.95
-## mpg ~ cyl + drat + wt + gear + carb
-## 
-##        Df Sum of Sq     RSS    AIC
-## - wt    1     2.052 100.811 44.445
-## - cyl   1     2.122 100.881 44.461
-## <none>               98.759 45.951
-## - gear  1    17.906 116.666 47.950
-## - drat  1    27.261 126.020 49.801
-## - carb  1    47.357 146.116 53.352
-## 
-## Step:  AIC=44.44
-## mpg ~ cyl + drat + gear + carb
-## 
-##        Df Sum of Sq    RSS    AIC
-## - cyl   1     3.846 104.66 43.343
-## <none>              100.81 44.445
-## - gear  1    23.549 124.36 47.483
-## - drat  1    59.197 160.01 53.532
-## - carb  1   115.220 216.03 60.737
-## 
-## Step:  AIC=43.34
-## mpg ~ drat + gear + carb
-## 
-##        Df Sum of Sq    RSS    AIC
-## <none>              104.66 43.343
-## - gear  1    21.151 125.81 45.761
-## - drat  1    57.478 162.14 51.849
-## - carb  1   259.357 364.01 71.259
+#> Start:  AIC=51.7
+#> mpg ~ cyl + disp + hp + drat + wt + qsec + gear + carb
+#> 
+#>        Df Sum of Sq     RSS    AIC
+#> - qsec  1    0.0015  97.731 49.700
+#> - disp  1    0.0190  97.749 49.704
+#> - wt    1    0.2669  97.997 49.765
+#> - hp    1    0.7599  98.490 49.886
+#> - cyl   1    2.2946 100.025 50.257
+#> - gear  1    8.4767 106.207 51.696
+#> <none>               97.730 51.700
+#> - drat  1   27.0937 124.824 55.572
+#> - carb  1   29.1906 126.921 55.972
+#> 
+#> Step:  AIC=49.7
+#> mpg ~ cyl + disp + hp + drat + wt + gear + carb
+#> 
+#>        Df Sum of Sq     RSS    AIC
+#> - disp  1     0.027  97.759 47.707
+#> - wt    1     0.404  98.135 47.799
+#> - hp    1     0.777  98.509 47.890
+#> - cyl   1     2.675 100.406 48.348
+#> <none>               97.731 49.700
+#> - gear  1     8.500 106.231 49.702
+#> - drat  1    27.092 124.824 53.572
+#> - carb  1    33.987 131.719 54.863
+#> 
+#> Step:  AIC=47.71
+#> mpg ~ cyl + hp + drat + wt + gear + carb
+#> 
+#>        Df Sum of Sq     RSS    AIC
+#> - hp    1     1.001  98.759 45.951
+#> - wt    1     1.127  98.886 45.982
+#> - cyl   1     2.948 100.707 46.420
+#> <none>               97.759 47.707
+#> - gear  1     8.716 106.475 47.757
+#> - drat  1    27.829 125.588 51.719
+#> - carb  1    37.084 134.843 53.425
+#> 
+#> Step:  AIC=45.95
+#> mpg ~ cyl + drat + wt + gear + carb
+#> 
+#>        Df Sum of Sq     RSS    AIC
+#> - wt    1     2.052 100.811 44.445
+#> - cyl   1     2.122 100.881 44.461
+#> <none>               98.759 45.951
+#> - gear  1    17.906 116.666 47.950
+#> - drat  1    27.261 126.020 49.801
+#> - carb  1    47.357 146.116 53.352
+#> 
+#> Step:  AIC=44.44
+#> mpg ~ cyl + drat + gear + carb
+#> 
+#>        Df Sum of Sq    RSS    AIC
+#> - cyl   1     3.846 104.66 43.343
+#> <none>              100.81 44.445
+#> - gear  1    23.549 124.36 47.483
+#> - drat  1    59.197 160.01 53.532
+#> - carb  1   115.220 216.03 60.737
+#> 
+#> Step:  AIC=43.34
+#> mpg ~ drat + gear + carb
+#> 
+#>        Df Sum of Sq    RSS    AIC
+#> <none>              104.66 43.343
+#> - gear  1    21.151 125.81 45.761
+#> - drat  1    57.478 162.14 51.849
+#> - carb  1   259.357 364.01 71.259
 ```
 
 
@@ -545,26 +497,26 @@ summary(stepwise_mod)
 ```
 
 ```
-## 
-## Call:
-## lm(formula = mpg ~ drat + gear + carb, data = train)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -4.8838 -1.4587  0.0255  1.2761  4.2824 
-## 
-## Coefficients:
-##             Estimate Std. Error t value    Pr(>|t|)    
-## (Intercept)  -3.3923     3.6017  -0.942     0.35750    
-## drat          5.2265     1.5770   3.314     0.00346 ** 
-## gear          3.4169     1.6996   2.010     0.05806 .  
-## carb         -2.7135     0.3854  -7.040 0.000000792 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 2.288 on 20 degrees of freedom
-## Multiple R-squared:  0.8808,	Adjusted R-squared:  0.8629 
-## F-statistic: 49.24 on 3 and 20 DF,  p-value: 0.000000002032
+#> 
+#> Call:
+#> lm(formula = mpg ~ drat + gear + carb, data = train)
+#> 
+#> Residuals:
+#>     Min      1Q  Median      3Q     Max 
+#> -4.8838 -1.4587  0.0255  1.2761  4.2824 
+#> 
+#> Coefficients:
+#>             Estimate Std. Error t value    Pr(>|t|)    
+#> (Intercept)  -3.3923     3.6017  -0.942     0.35750    
+#> drat          5.2265     1.5770   3.314     0.00346 ** 
+#> gear          3.4169     1.6996   2.010     0.05806 .  
+#> carb         -2.7135     0.3854  -7.040 0.000000792 ***
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Residual standard error: 2.288 on 20 degrees of freedom
+#> Multiple R-squared:  0.8808,	Adjusted R-squared:  0.8629 
+#> F-statistic: 49.24 on 3 and 20 DF,  p-value: 0.000000002032
 ```
 
 
@@ -573,8 +525,8 @@ vif(stepwise_mod)
 ```
 
 ```
-##     drat     gear     carb 
-## 3.232190 3.220083 1.011370
+#>     drat     gear     carb 
+#> 3.232190 3.220083 1.011370
 ```
 
 
@@ -583,11 +535,11 @@ shapiro.test(stepwise_mod$residuals)
 ```
 
 ```
-## 
-## 	Shapiro-Wilk normality test
-## 
-## data:  stepwise_mod$residuals
-## W = 0.98755, p-value = 0.9869
+#> 
+#> 	Shapiro-Wilk normality test
+#> 
+#> data:  stepwise_mod$residuals
+#> W = 0.98755, p-value = 0.9869
 ```
 
 
@@ -596,11 +548,11 @@ bptest(stepwise_mod)
 ```
 
 ```
-## 
-## 	studentized Breusch-Pagan test
-## 
-## data:  stepwise_mod
-## BP = 7.1292, df = 3, p-value = 0.06789
+#> 
+#> 	studentized Breusch-Pagan test
+#> 
+#> data:  stepwise_mod
+#> BP = 7.1292, df = 3, p-value = 0.06789
 ```
 
 ## Ridge Regression Model
@@ -619,17 +571,17 @@ predict.glmnet(ridge_cv, s = 0, type = 'coefficients')
 ```
 
 ```
-## 9 x 1 sparse Matrix of class "dgCMatrix"
-##                        1
-## (Intercept) -5.105168916
-## cyl          0.675181160
-## disp        -0.001095199
-## hp          -0.009943070
-## drat         5.323214337
-## wt          -0.475257511
-## qsec         0.004891085
-## gear         3.456626642
-## carb        -2.660723992
+#> 9 x 1 sparse Matrix of class "dgCMatrix"
+#>                        1
+#> (Intercept) -5.105168916
+#> cyl          0.675181160
+#> disp        -0.001095199
+#> hp          -0.009943070
+#> drat         5.323214337
+#> wt          -0.475257511
+#> qsec         0.004891085
+#> gear         3.456626642
+#> carb        -2.660723992
 ```
 
 
@@ -638,10 +590,10 @@ ols$coefficients
 ```
 
 ```
-##  (Intercept)          cyl         disp           hp         drat 
-## -5.422701011  0.696306643 -0.001029893 -0.010342436  5.368257224 
-##           wt         qsec         gear         carb 
-## -0.475646420  0.011715279  3.440558813 -2.661675645
+#>  (Intercept)          cyl         disp           hp         drat 
+#> -5.422701011  0.696306643 -0.001029893 -0.010342436  5.368257224 
+#>           wt         qsec         gear         carb 
+#> -0.475646420  0.011715279  3.440558813 -2.661675645
 ```
 
 
@@ -666,7 +618,7 @@ ridge_cv <- cv.glmnet(xtrain, ytrain, alpha = 0, lambda = lambdas_to_try)
 plot(ridge_cv)
 ```
 
-<img src="/blog/2019-12-18-ridge-lasso_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="/blog/2019-12-18-ridge-lasso_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" />
 
 From the picture above it shows the best log (lambda) between about 0 to 2.5 because it has the smallest MSE value. On the x-axis (above) you can see all the numbers are 8. This shows the number of predictors used. No matter how much lambda is used, the predictor variable remains 8. This means that Ridge Regression cannot perform automatic feature selection.
 
@@ -679,7 +631,7 @@ best_lambda_ridge
 ```
 
 ```
-## [1] 1.707353
+#> [1] 1.707353
 ```
 
 ### Build Models Based on The Best Lambda
@@ -691,17 +643,17 @@ predict.glmnet(ridge_mod,  type = 'coefficients')
 ```
 
 ```
-## 9 x 1 sparse Matrix of class "dgCMatrix"
-##                       s0
-## (Intercept) 17.201163649
-## cyl         -0.354685636
-## disp        -0.004855094
-## hp          -0.013125376
-## drat         2.377336631
-## wt          -1.163291643
-## qsec         0.060788898
-## gear         1.415532975
-## carb        -1.065339475
+#> 9 x 1 sparse Matrix of class "dgCMatrix"
+#>                       s0
+#> (Intercept) 17.201163649
+#> cyl         -0.354685636
+#> disp        -0.004855094
+#> hp          -0.013125376
+#> drat         2.377336631
+#> wt          -1.163291643
+#> qsec         0.060788898
+#> gear         1.415532975
+#> carb        -1.065339475
 ```
 
 So the Ridge Regression model obtained is `$$mpg = 17.81 - 0.39cyl -0.005disp-0.01hp+2.05drat-1.12wt+0.09qseq+1.32gear-0.90carb$$` 
@@ -726,7 +678,7 @@ lasso_cv <- cv.glmnet(xtrain, ytrain, alpha = 1, lambda = lambdas_to_try)
 plot(lasso_cv)
 ```
 
-<img src="/blog/2019-12-18-ridge-lasso_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="/blog/2019-12-18-ridge-lasso_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" />
 
 From the picture above it shows the best log(lambda) between about -1 to 0, because it has the smallest MSE value. On the x-axis (above) has a different value, based on the best lambda it can be seen that the best predictor variable is 5. This shows that LASSO Regression can perform automatic feature selection.
 
@@ -739,7 +691,7 @@ best_lambda_lasso
 ```
 
 ```
-## [1] 0.1668101
+#> [1] 0.1668101
 ```
 
 ### Build Models Based The Best Lambda
@@ -757,17 +709,17 @@ predict.glmnet(lasso_mod, type = 'coefficients')
 ```
 
 ```
-## 9 x 1 sparse Matrix of class "dgCMatrix"
-##                      s0
-## (Intercept)  7.37367761
-## cyl          .         
-## disp         .         
-## hp          -0.01044739
-## drat         4.12926425
-## wt          -0.97081377
-## qsec         .         
-## gear         2.14674952
-## carb        -1.88455227
+#> 9 x 1 sparse Matrix of class "dgCMatrix"
+#>                      s0
+#> (Intercept)  7.37367761
+#> cyl          .         
+#> disp         .         
+#> hp          -0.01044739
+#> drat         4.12926425
+#> wt          -0.97081377
+#> qsec         .         
+#> gear         2.14674952
+#> carb        -1.88455227
 ```
 
 From the results above it can be seen that the variables cyl, disp, and qseq have decreased coefficients to exactly 0. So the LASSO Regression model obtained is
@@ -787,7 +739,7 @@ mean((ols_pred-ytrain)^2)
 ```
 
 ```
-## [1] 4.072081
+#> [1] 4.072081
 ```
 
 ```r
@@ -797,7 +749,7 @@ mean((ols_pred-ytest)^2)
 ```
 
 ```
-## [1] 22.15188
+#> [1] 22.15188
 ```
 
 
@@ -808,7 +760,7 @@ mean((back_pred-ytrain)^2)
 ```
 
 ```
-## [1] 4.360721
+#> [1] 4.360721
 ```
 
 ```r
@@ -818,7 +770,7 @@ mean((back_pred-ytest)^2)
 ```
 
 ```
-## [1] 22.41245
+#> [1] 22.41245
 ```
 
 
@@ -829,7 +781,7 @@ mean((ridge_pred-ytrain)^2)
 ```
 
 ```
-## [1] 4.920852
+#> [1] 4.920852
 ```
 
 ```r
@@ -839,7 +791,7 @@ mean((ridge_pred-ytest)^2)
 ```
 
 ```
-## [1] 7.22441
+#> [1] 7.22441
 ```
 
 
@@ -850,7 +802,7 @@ mean((lasso_pred-ytrain)^2)
 ```
 
 ```
-## [1] 4.269417
+#> [1] 4.269417
 ```
 
 ```r
@@ -860,7 +812,7 @@ mean((lasso_pred-ytest)^2)
 ```
 
 ```
-## [1] 13.56875
+#> [1] 13.56875
 ```
 
 
@@ -876,15 +828,15 @@ predict_value
 ```
 
 ```
-##                  y_actual  ols_pred ridge_pred lasso_pred stepwise_pred
-## Pontiac Firebird     19.2 17.829311   16.12641   17.20188      17.52899
-## Fiat X1-9            27.3 28.902655   27.72686   28.35547      28.88586
-## Porsche 914-2        26.0 31.136052   28.00826   29.60271      31.41857
-## Lotus Europa         30.4 27.691995   27.01435   27.25625      27.96911
-## Ford Pantera L       15.8 24.928066   19.23691   22.15912      24.89406
-## Ferrari Dino         19.7 16.325756   19.08362   17.23060      16.33122
-## Maserati Bora        15.0  9.759043   12.21058   10.68292      10.48615
-## Volvo 142E           21.4 25.508611   24.96332   25.32522      26.32918
+#>                  y_actual  ols_pred ridge_pred lasso_pred stepwise_pred
+#> Pontiac Firebird     19.2 17.829311   16.12641   17.20188      17.52899
+#> Fiat X1-9            27.3 28.902655   27.72686   28.35547      28.88586
+#> Porsche 914-2        26.0 31.136052   28.00826   29.60271      31.41857
+#> Lotus Europa         30.4 27.691995   27.01435   27.25625      27.96911
+#> Ford Pantera L       15.8 24.928066   19.23691   22.15912      24.89406
+#> Ferrari Dino         19.7 16.325756   19.08362   17.23060      16.33122
+#> Maserati Bora        15.0  9.759043   12.21058   10.68292      10.48615
+#> Volvo 142E           21.4 25.508611   24.96332   25.32522      26.32918
 ```
 
 Based on the results that can be seen in the model that produces the closest prediction value `y_actual` is the **Ridge Regression** model.

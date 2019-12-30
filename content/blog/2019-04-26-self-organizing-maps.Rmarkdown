@@ -80,7 +80,7 @@ On this article, we used `kohonen` package for making a SOM algorithm. Since we 
  - *som()* : making a SOM model, change the radius of neighbourhood, learning rate, and iteration
  - *plot.kohonen()* / *plot()* : visualisation of resulting SOM
  
-```{r, message=FALSE}
+```{r}
 library(kohonen)
 library(rmdformats)
 library(dplyr)

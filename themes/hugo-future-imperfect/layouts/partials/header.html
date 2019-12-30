@@ -71,7 +71,7 @@
 {{ if (not .Params.disable_highlight) }}
   {{ $highTheme := .Site.Params.highlightjsTheme }}
     {{ with .Site.Params.highlightjsVersion }}
-      <link rel="stylesheet" href="{{"css/monokai-sublime.css" | absURL}}" rel="stylesheet" id="theme-stylesheet">
+      <link rel="stylesheet" href="{{"css/night-owl.css" | absURL}}" rel="stylesheet" id="theme-stylesheet">
       <script src="{{ "js/highlight.pack.js" | absURL }}"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   {{ end }}
