@@ -12,9 +12,9 @@ tags:
   - msa
   - ape
 description: ''
-featured: ''
+featured: 'bioinfo.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
