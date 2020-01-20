@@ -12,9 +12,9 @@ tags:
   - tidymodels
   - lime
 description: ''
-featured: ''
+featured: 'lime.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -259,7 +259,7 @@ pred_test %>%
 #> # A tibble: 1 x 4
 #>   accuracy sensitivity precision specificity
 #>      <dbl>       <dbl>     <dbl>       <dbl>
-#> 1    0.778       0.766       0.4       0.780
+#> 1    0.744       0.745     0.357       0.744
 ```
 
 We've stated that we want to save as many employees as possible from turnover. Therefore, we want those who potentially would resign should be correctly predicted as many as possible. That's why we need to be concerned with the Sensitivity or Recall value of our model. Based on the model performance, 76% of employees who would resign are correctly predicted.
@@ -354,9 +354,9 @@ pred_test[1:4, ]
 #>   .pred_class true 
 #>   <fct>       <fct>
 #> 1 no          no   
-#> 2 no          no   
+#> 2 yes         yes  
 #> 3 no          no   
-#> 4 no          no
+#> 4 no          yes
 ```
 
 Below all of those label there is a bar plot, with y-axis shows each selected features while x-axis is the weight of each respective features. The color of each bar represent whether the features **support** or **contradict** if the observations labeled as **yes**. The interpretation is quite simple. For example, for observation 1, `over_time = no` has the biggest weight to contradict the attrition to be **yes**. This mean that the employee has no over time job and less likely to turnover. On the other hand, the `training_times_last_year <=2` support the likelihood to resign, suggesting that employee want more training for self-improvement.

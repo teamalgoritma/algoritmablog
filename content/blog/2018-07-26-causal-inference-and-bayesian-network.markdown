@@ -10,9 +10,9 @@ tags:
   - Causal Inference
   - Machine Learning
 description: ''
-featured: ''
+featured: 'bayesian.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---

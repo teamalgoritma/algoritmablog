@@ -10,7 +10,7 @@
              "@type": "WebPage",
              "@id": "\/"
         },
-        "articleSection" : "post",
+        "articleSection" : "blog",
         "name" : "Optimization and Hyper-Parameter Tuning with Genetic Algorithm",
         "headline" : "Optimization and Hyper-Parameter Tuning with Genetic Algorithm",
         "description" : "Introduction\rAbout\rOptimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance.",
@@ -24,7 +24,7 @@
         "datePublished": "2020-01-13 00:00:00 \x2b0000 UTC",
         "dateModified" : "2020-01-13 00:00:00 \x2b0000 UTC",
         "url" : "\/blog\/optimization-with-genetic-algorithm\/",
-        "wordCount" : "7437",
+        "wordCount" : "7713",
         "keywords" : [ "Genetic Algorithm","Optimization","Blog" ]
     }
     </script>
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.60.1" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
 
 
@@ -58,22 +58,26 @@
 <meta property="og:description" content="IntroductionAboutOptimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/optimization-with-genetic-algorithm/" />
-<meta property="article:published_time" content="2020-01-13T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-01-13T00:00:00+00:00" />
+<meta property="article:published_time" content="2020-01-13T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-01-13T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        <meta itemprop="name" content="Optimization and Hyper-Parameter Tuning with Genetic Algorithm">
+        
+<meta itemprop="name" content="Optimization and Hyper-Parameter Tuning with Genetic Algorithm">
 <meta itemprop="description" content="IntroductionAboutOptimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance.">
+
+
 <meta itemprop="datePublished" content="2020-01-13T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-01-13T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="7437">
+<meta itemprop="wordCount" content="7713">
 
 
 
 <meta itemprop="keywords" content="Genetic Algorithm,Optimization," />
+
         
 
         
@@ -126,7 +130,7 @@
     
 <header id="header">
     
-      <h1><a href="/">post</a></h1>
+      <h1><a href="/">blog</a></h1>
     
 
     <nav class="links">
@@ -242,18 +246,6 @@
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/post/">Post</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-01-13'>
-                                    January 13, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
                                 <h3><a href="/blog/introduction-to-generative-adversarial-network-with-keras/">Introduction to Generative Adversarial Network with Keras</a></h3>
                                 
                                 <time class="published" datetime=
@@ -309,6 +301,45 @@
 
         <a href="/blog/bio-intro/" class="image featured">
             <img src="/img/2019/12/bioinfo.png" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/interpreting-classification-model-with-lime/">Interpreting Classification Model with LIME</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-12-02'>
+                                    December 2, 2019</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/interpreting-classification-model-with-lime/" class="image featured">
+            <img src="/img/2019/12/lime.png" alt="">
         </a>
     
 
@@ -406,9 +437,9 @@
         <time class="published"
             datetime='2020-01-13'>
             January 13, 2020</time>
-        <span class="author"><a href="">Arga Adyatama</a></span>
+        <span class="author"><a href="https://github.com/Argaadya">Arga Adyatama</a></span>
         
-            <p>35 minute read</p>
+            <p>37 minute read</p>
         
         
     </div>
@@ -500,12 +531,34 @@
 <h2>Library and Setup</h2>
 <p>To use GA, you can install <code>GA</code> package using the <code>install.packages()</code> function.</p>
 <p>The following is the packages that will be used throughout the articles.</p>
-<pre class="r"><code>library(tidyverse)
-library(GA)
-library(ranger)
-library(tidymodels)
-library(caret)
-library(tictoc)</code></pre>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;forcats&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(GA)</code></pre>
+<pre><code>## Warning: package &#39;GA&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;foreach&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;iterators&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(ranger)</code></pre>
+<pre><code>## Warning: package &#39;ranger&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(tidymodels)</code></pre>
+<pre><code>## Warning: package &#39;tidymodels&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;broom&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;dials&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;infer&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;parsnip&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;recipes&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;rsample&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Warning: package &#39;yardstick&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(caret)</code></pre>
+<pre><code>## Warning: package &#39;caret&#39; was built under R version 3.5.3</code></pre>
+<pre class="r"><code>library(tictoc)</code></pre>
 </div>
 </div>
 <div id="optimization-problem" class="section level1">
@@ -548,9 +601,9 @@ Luca Scrucca
 </blockquote>
 <p>Genetic Algorithm is an optimization algorithm that use the concept of evolution by natural selection. Evolution by natural selection, as proposed by Darwin, is the mechanism on how many varieties of living things are adapting to their environment to survive, through 2 main principles: natural selection and random mutation. The genetic algorithm (GA) borrowed the concept and use it to gain optimal solutions by selecting the best or the fittest solution alongside the rare and random occurence of mutation.</p>
 <p>Suppose we have a non-convex function. If we use a derivative-based method such as gradient descend, it would potentially fall into local optima at <span class="math inline">\(x_1\)</span>. Genetic Algorithm can overcome the local optima, thus it can provide better solution. Combined with machine learning such as neural network, GA can create an arfiticial intelligence system that can play game, like <a href = "https://www.youtube.com/watch?v=aeWmdojEJf0"> Flappy Bird </a>
-<img src="/asset/nonconvex.png" width="50%" style="display: block; margin: auto;" /></p>
+<img src="/genetic-algo/nonconvex.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>The general flow of the algorithm is shown below:</p>
-<p><img src="/asset/ga_flow.png" width="30%" style="display: block; margin: auto;" /></p>
+<p><img src="/genetic-algo/ga_flow.png" width="30%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>There will be a population of randomly selected chromosomes or solutions.</li>
 <li>The fitness values or the objective function values from each solutions are calculated.</li>
@@ -575,22 +628,22 @@ parameter spaces.</li>
 <h2>Elements</h2>
 <p>There exist 3 main elements of GA: Population, Chromosomes, and Genes.</p>
 <p>Population is a group of individuals or solutions, mainly called chromosomes. A chromosomes consists of a sequence of genes, with each or multiple genes (depend on the encoding) represent a single decision variables that will be fitted on the objective functions.</p>
-<p><img src="/asset/ga_element.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="/genetic-algo/ga_element.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>A gene can be represented or encoded in various ways, including:</p>
 <ul>
 <li>Binary Encoding</li>
 </ul>
-<p><img src="/asset/ga3.png" /></p>
+<p><img src="/genetic-algo/ga3.png" /></p>
 <p>Binary encoding mean that our genes are encoded into binary number, this is the earliest and the most common form of GA encoding.</p>
 <ul>
 <li>Real-Valued Encoding</li>
 </ul>
-<p><img src="/asset/ga4.png" /></p>
+<p><img src="/genetic-algo/ga4.png" /></p>
 <p>Real-valued encoding mean that our genes are encoded in a floating point or decimal number. Real-valued encoding can be used to optimize a process parameter, since it consists of floating point number and are not suited for integer-based optimization.</p>
 <ul>
 <li>Permutation Encoding</li>
 </ul>
-<p><img src="/asset/ga5.png" /></p>
+<p><img src="/genetic-algo/ga5.png" /></p>
 <p>Permutation encoding mean that our genes are encoded into a sequence of number, each number is uniquely assigned to a gene so no 2 genes that will have the same number or value. This encoding is often used in a scheduling or routing problem, where each permutation represent one location or unique points.</p>
 </div>
 <div id="selection" class="section level2">
@@ -600,7 +653,7 @@ parameter spaces.</li>
 <li>Roulette Wheel Selection</li>
 </ul>
 <p>Parents will be selected randomly based on the fitness value. Higher fitness value mean higher chance to be chosen.</p>
-<p><img src="/asset/ga9.png" /></p>
+<p><img src="/genetic-algo/ga9.png" /></p>
 <ul>
 <li>Linear Ranking Selection</li>
 </ul>
@@ -621,12 +674,12 @@ parameter spaces.</li>
 <li>Single-point Crossover</li>
 </ul>
 <p>Split the parent based on a randomly generated single point. The first child would have gene from the first parent for the position 1 up to the point, while the rest is filled with genes from the second parent. The second child is opposite, position 1 up to the point is filled with genes from the second parent.</p>
-<p><img src="/asset/gabin_cross.png" /></p>
+<p><img src="/genetic-algo/gabin_cross.png" /></p>
 <ul>
 <li>Uniform Crossover</li>
 </ul>
 <p>Every gene is exchanged between the a pair of randomly selected chromosomes with a certain probability, called as the swapping probability. Usually, the swapping probability value is taken to be 0.5.</p>
-<p><img src="/asset/gabin_cross2.png" /></p>
+<p><img src="/genetic-algo/gabin_cross2.png" /></p>
 </div>
 <div id="real-valued" class="section level4">
 <h4>Real-Valued</h4>
@@ -637,7 +690,7 @@ parameter spaces.</li>
 <p><span class="math display">\[Child \ 1 = weight \ * x + (1-weight) \ * y\]</span>
 <span class="math display">\[Child \ 2 = weight \ * y + (2-weight) \ * x\]</span></p>
 <p>If the weight = 0.5 two offspring are identical</p>
-<p><img src="/asset/gareal_cross.png" /></p>
+<p><img src="/genetic-algo/gareal_cross.png" /></p>
 <ul>
 <li>Local Arithmetic Crossover</li>
 </ul>
@@ -650,7 +703,7 @@ parameter spaces.</li>
 </ul>
 <p>One-point crossover use only one random point as the marker where crossover should happen.</p>
 <div class="figure">
-<img src="/asset/ga6.png" alt="Nearchou, 2014" />
+<img src="/genetic-algo/ga6.png" alt="Nearchou, 2014" />
 <p class="caption">Nearchou, 2014</p>
 </div>
 <ul>
@@ -658,7 +711,7 @@ parameter spaces.</li>
 </ul>
 <p>A number of positions from the first parent is randomly selected and fill the remaining position from the second parent.</p>
 <div class="figure">
-<img src="/asset/pb_cross.png" alt="Nearchou, 2014" />
+<img src="/genetic-algo/pb_cross.png" alt="Nearchou, 2014" />
 <p class="caption">Nearchou, 2014</p>
 </div>
 </div>
@@ -672,7 +725,7 @@ parameter spaces.</li>
 <li>Random Mutation</li>
 </ul>
 <p>Genes are randomly flipped from 1 to 0 or vice versa with uniform probability for each gene, meaning that each gene has the same chance to mutate with mutation rate or mutation probability set by the user.</p>
-<p><img src="/asset/gabin_mutation.png" /></p>
+<p><img src="/genetic-algo/gabin_mutation.png" /></p>
 </div>
 <div id="real-valued-1" class="section level4">
 <h4>Real Valued</h4>
@@ -692,7 +745,7 @@ parameter spaces.</li>
 </ul>
 <p>Two adjacent genes are swapped randomly.</p>
 <div class="figure">
-<img src="/asset/ga10.png" alt="Nearchou, 2014" />
+<img src="/genetic-algo/ga10.png" alt="Nearchou, 2014" />
 <p class="caption">Nearchou, 2014</p>
 </div>
 <ul>
@@ -700,7 +753,7 @@ parameter spaces.</li>
 </ul>
 <p>Inverse mutation is done by inversing the sequence between two random points.</p>
 <div class="figure">
-<img src="/asset/ga13.png" alt="Nearchou, 2014" />
+<img src="/genetic-algo/ga13.png" alt="Nearchou, 2014" />
 <p class="caption">Nearchou, 2014</p>
 </div>
 </div>
@@ -713,7 +766,7 @@ parameter spaces.</li>
 <div id="illustration" class="section level2">
 <h2>Illustration</h2>
 <p>Let’s illustrate step-by-step how Genetic Algorithm works. Let’s say I have a set of item with respective point and weight (kg). I want to maximize the point, but the rules said that I can not bring items with total weight more than 15 kg. Whice items then should I choose in order to maximize my point?</p>
-<p><img src="/asset/step1.png" /></p>
+<p><img src="/genetic-algo/step1.png" /></p>
 <div id="define-encoding-and-fitness-function" class="section level3">
 <h3>Define Encoding and Fitness Function</h3>
 <p>Since the problem is about whether bring certain item or not, then the solution should consists a logical value of each item. If the value is <code>1</code> or <code>TRUE</code>, then I should bring those item, and if value is <code>0</code> or <code>FALSE</code>, then I should not bring the item. By this logic, the encoding for our genetic algorithm should be binary encoding because it consists only 2 values (1 or 0).</p>
@@ -733,12 +786,12 @@ parameter spaces.</li>
 <div id="initial-population" class="section level3">
 <h3>Initial Population</h3>
 <p>First, GA will randomly generate a population of solution. Here, we have a population of 4 solutions/indviduals. The binary value on each individuals are generated randomly.</p>
-<p><img src="/asset/step2.png" /></p>
+<p><img src="/genetic-algo/step2.png" /></p>
 </div>
 <div id="fitness-assignment" class="section level3">
 <h3>Fitness Assignment</h3>
 <p>Now we calculate the fitness value (total point) of each individuals based on the fitness function above. We can see that solution that violate the constraint (have total weight &gt; 15) will have worse fitness function.</p>
-<p><img src="/asset/step3.png" /></p>
+<p><img src="/genetic-algo/step3.png" /></p>
 </div>
 <div id="selection-1" class="section level3">
 <h3>Selection</h3>
@@ -749,20 +802,20 @@ parameter spaces.</li>
 <li>Calculate the probability of each individuals based on their rank. The sum of the rank is 10, so the probability of each solution is <span class="math inline">\(Rank_i/10\)</span>.</li>
 <li>Chose solution randomly based on the probability. Solution with higher fitness function will naturally has higher chance to be chosen.</li>
 </ul>
-<p><img src="/asset/step4.png" /></p>
+<p><img src="/genetic-algo/step4.png" /></p>
 <p>Let’s say for example, the first and second solution are chosen as the <code>parent</code></p>
-<p><img src="/asset/step5.png" /></p>
+<p><img src="/genetic-algo/step5.png" /></p>
 </div>
 <div id="crossover-1" class="section level3">
 <h3>Crossover</h3>
 <p>Crossover means exchanging genes between two <code>parents</code> two create new solution called <code>child</code> solution. We will use the single-point crossover here. A single point is chosen randomly.</p>
 <p>Let’s say the point is chosen to be between position 2 and 3. For the first child, it will have the first and second gene from the first parent, while the rest will be filled from the second parent. For the second child, it is the opposite, it will have the first and second gene from the second parent, while the rest will be filled from the first parent.</p>
-<p><img src="/asset/step6.png" /></p>
+<p><img src="/genetic-algo/step6.png" /></p>
 </div>
 <div id="mutation-1" class="section level3">
 <h3>Mutation</h3>
 <p>Mutation is the change of value in the gene. Here we use random mutation. It will randomly swap the value of gene. If the gene in position 3 have value of 1, it would be switched into 0 and vice versa. Mutation is rarely occur, its probability can be set manually, but generally people use mutation probability of 0.1.</p>
-<p><img src="/asset/step7.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="/genetic-algo/step7.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>The selection, crossover, and mutation process will be repeated by choosing different parent until the number of children are the same with the population size of the parent. If the parent have population size of 4, then we would have a children population of 4.</p>
 </div>
 <div id="check-stopping-criteria" class="section level3">
@@ -851,7 +904,7 @@ ga_knapsack &lt;- ga(type = &quot;binary&quot;, fitness = evalFunc, popSize = 10
                   maxiter = 100, 
                   run = 20, nBits = nrow(df_item_long), seed = 123)
 toc()</code></pre>
-<pre><code>## 0.37 sec elapsed</code></pre>
+<pre><code>## 0.95 sec elapsed</code></pre>
 <p>The iteration stop at iterations 22 since after 20 iterations no improvement in the <code>total weight</code>. The optimal solution can be seen at <code>Fitness function value</code> which is 10000 (10,000 kg).</p>
 <p>The <code>Solution</code> output is the solution that result in the optimal fitness value. We can choose one of them since they will result in the same fitness value. Let’s check one of them.</p>
 <pre class="r"><code>summary(ga_knapsack)</code></pre>
@@ -866,15 +919,17 @@ toc()</code></pre>
 ## Mutation probability  =  0.1 
 ## 
 ## GA results: 
-## Iterations             = 22 
+## Iterations             = 51 
 ## Fitness function value = 10000 
 ## Solutions = 
 ##      x1 x2 x3 x4 x5 x6 x7 x8 x9 x10  ...  x319 x320
-## [1,]  1  1  0  1  1  1  1  0  1   1          0    1
-## [2,]  1  1  0  1  1  1  1  0  1   1          1    1
-## [3,]  0  1  1  1  1  0  0  1  1   0          0    0
-## [4,]  1  1  0  1  1  1  1  0  1   1          1    1
-## [5,]  1  1  0  1  1  1  1  0  1   1          1    0</code></pre>
+## [1,]  0  1  0  1  0  1  1  1  1   0          1    0
+## [2,]  0  0  0  0  1  1  0  0  0   1          1    0
+## [3,]  0  1  0  1  0  1  1  1  1   0          1    0
+## [4,]  0  1  0  1  1  1  1  1  1   1          1    0
+## [5,]  0  0  1  0  0  1  1  0  1   1          1    0
+## [6,]  0  1  0  0  1  1  0  0  0   1          1    0
+## [7,]  0  1  0  1  1  1  1  1  1   1          1    0</code></pre>
 <p>The <strong>worst</strong> solution in the population has fitness value of 0 (those who has penalized because it passed the weight limit constrain), while the <strong>optimal</strong> solution has fitness value of 10000. From all of 100 chromosomes or solutions generated, the median of fitness value is 9572 while the mean is 6733.</p>
 <p>To check the summary, we use <code>summary()</code> function on GA object</p>
 <pre class="r"><code>summary(ga_knapsack)</code></pre>
@@ -889,19 +944,21 @@ toc()</code></pre>
 ## Mutation probability  =  0.1 
 ## 
 ## GA results: 
-## Iterations             = 22 
+## Iterations             = 51 
 ## Fitness function value = 10000 
 ## Solutions = 
 ##      x1 x2 x3 x4 x5 x6 x7 x8 x9 x10  ...  x319 x320
-## [1,]  1  1  0  1  1  1  1  0  1   1          0    1
-## [2,]  1  1  0  1  1  1  1  0  1   1          1    1
-## [3,]  0  1  1  1  1  0  0  1  1   0          0    0
-## [4,]  1  1  0  1  1  1  1  0  1   1          1    1
-## [5,]  1  1  0  1  1  1  1  0  1   1          1    0</code></pre>
+## [1,]  0  1  0  1  0  1  1  1  1   0          1    0
+## [2,]  0  0  0  0  1  1  0  0  0   1          1    0
+## [3,]  0  1  0  1  0  1  1  1  1   0          1    0
+## [4,]  0  1  0  1  1  1  1  1  1   1          1    0
+## [5,]  0  0  1  0  0  1  1  0  1   1          1    0
+## [6,]  0  1  0  0  1  1  0  0  0   1          1    0
+## [7,]  0  1  0  1  1  1  1  1  1   1          1    0</code></pre>
 <p>As we can see, there are several solutions for the problem, all of them have the same fitness value: 10000. Therefore, we have the flexibility to choose which solution we will pick. All optimal solution has no value greater than its constraint, which is also 10000.</p>
 <p>Let’s check the plot of fitness value progression using <code>plot()</code>.</p>
 <pre class="r"><code>plot(ga_knapsack)</code></pre>
-<p><img src="/post/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can see that the optimal solution (Best) is already achieved at iteration 3.</p>
 <p>Let’s choose one of the solution as our decision.</p>
 <pre class="r"><code>df_sol &lt;- df_item_long[ga_knapsack@solution[1, ] == 1, ]
@@ -914,7 +971,7 @@ df_sol &lt;- df_sol %&gt;%
 rmarkdown::paged_table(df_sol)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["item"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["freq"],"name":[3],"type":["int"],"align":["right"]},{"label":["total_weigth"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Bumper","2":"17","3":"21","4":"357"},{"1":"Chasis","2":"100","3":"32","4":"3200"},{"1":"Engine","2":"158","3":"33","4":"5214"},{"1":"Seat","2":"30","3":"30","4":"900"},{"1":"Tires","2":"7","3":"47","4":"329"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["item"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["freq"],"name":[3],"type":["int"],"align":["right"]},{"label":["total_weigth"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Bumper","2":"17","3":"26","4":"442"},{"1":"Chasis","2":"100","3":"29","4":"2900"},{"1":"Engine","2":"158","3":"34","4":"5372"},{"1":"Seat","2":"30","3":"34","4":"1020"},{"1":"Tires","2":"7","3":"38","4":"266"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Let’s check the total weight</p>
@@ -932,7 +989,7 @@ df_sol &lt;- df_sol %&gt;%
 rmarkdown::paged_table(df_sol)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["item"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["freq"],"name":[3],"type":["int"],"align":["right"]},{"label":["total_weigth"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Bumper","2":"17","3":"20","4":"340"},{"1":"Chasis","2":"100","3":"27","4":"2700"},{"1":"Engine","2":"158","3":"35","4":"5530"},{"1":"Seat","2":"30","3":"36","4":"1080"},{"1":"Tires","2":"7","3":"50","4":"350"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["item"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["freq"],"name":[3],"type":["int"],"align":["right"]},{"label":["total_weigth"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Bumper","2":"17","3":"26","4":"442"},{"1":"Chasis","2":"100","3":"29","4":"2900"},{"1":"Engine","2":"158","3":"34","4":"5372"},{"1":"Seat","2":"30","3":"34","4":"1020"},{"1":"Tires","2":"7","3":"38","4":"266"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>sum(df_sol$total_weigth)</code></pre>
@@ -946,27 +1003,27 @@ rmarkdown::paged_table(df_sol)</code></pre>
 <pre class="r"><code>cities &lt;- as.matrix(eurodist)
 
 head(cities)</code></pre>
-<pre><code>##           Athens Barcelona Brussels Calais Cherbourg Cologne Copenhagen Geneva
-## Athens         0      3313     2963   3175      3339    2762       3276   2610
-## Barcelona   3313         0     1318   1326      1294    1498       2218    803
-## Brussels    2963      1318        0    204       583     206        966    677
-## Calais      3175      1326      204      0       460     409       1136    747
-## Cherbourg   3339      1294      583    460         0     785       1545    853
-## Cologne     2762      1498      206    409       785       0        760   1662
-##           Gibraltar Hamburg Hook of Holland Lisbon Lyons Madrid Marseilles
-## Athens         4485    2977            3030   4532  2753   3949       2865
-## Barcelona      1172    2018            1490   1305   645    636        521
-## Brussels       2256     597             172   2084   690   1558       1011
-## Calais         2224     714             330   2052   739   1550       1059
-## Cherbourg      2047    1115             731   1827   789   1347       1101
-## Cologne        2436     460             269   2290   714   1764       1035
-##           Milan Munich Paris Rome Stockholm Vienna
-## Athens     2282   2179  3000  817      3927   1991
-## Barcelona  1014   1365  1033 1460      2868   1802
-## Brussels    925    747   285 1511      1616   1175
-## Calais     1077    977   280 1662      1786   1381
-## Cherbourg  1209   1160   340 1794      2196   1588
-## Cologne     911    583   465 1497      1403    937</code></pre>
+<pre><code>##           Athens Barcelona Brussels Calais Cherbourg Cologne Copenhagen
+## Athens         0      3313     2963   3175      3339    2762       3276
+## Barcelona   3313         0     1318   1326      1294    1498       2218
+## Brussels    2963      1318        0    204       583     206        966
+## Calais      3175      1326      204      0       460     409       1136
+## Cherbourg   3339      1294      583    460         0     785       1545
+## Cologne     2762      1498      206    409       785       0        760
+##           Geneva Gibraltar Hamburg Hook of Holland Lisbon Lyons Madrid
+## Athens      2610      4485    2977            3030   4532  2753   3949
+## Barcelona    803      1172    2018            1490   1305   645    636
+## Brussels     677      2256     597             172   2084   690   1558
+## Calais       747      2224     714             330   2052   739   1550
+## Cherbourg    853      2047    1115             731   1827   789   1347
+## Cologne     1662      2436     460             269   2290   714   1764
+##           Marseilles Milan Munich Paris Rome Stockholm Vienna
+## Athens          2865  2282   2179  3000  817      3927   1991
+## Barcelona        521  1014   1365  1033 1460      2868   1802
+## Brussels        1011   925    747   285 1511      1616   1175
+## Calais          1059  1077    977   280 1662      1786   1381
+## Cherbourg       1101  1209   1160   340 1794      2196   1588
+## Cologne         1035   911    583   465 1497      1403    937</code></pre>
 <p>Since the objective is to minimize the distance, the fitness value would be in negative.</p>
 <pre class="r"><code>tsp_fitness &lt;- function(x) {
   x &lt;- c(x, x[1])
@@ -995,17 +1052,17 @@ summary(ga_cities)</code></pre>
 ## Mutation probability  =  0.1 
 ## 
 ## GA results: 
-## Iterations             = 1739 
-## Fitness function value = -12919 
+## Iterations             = 1332 
+## Fitness function value = -12980 
 ## Solutions = 
 ##      x1 x2 x3 x4 x5 x6 x7 x8 x9 x10  ...  x20 x21
-## [1,] 15  2  9 12 14  5 18  4  3  11         8  13
-## [2,]  5 18  4  3 11  7 20 10  6  17        12  14
-## [3,]  1 21 17  6 10 20  7 11  3   4        16  19
-## [4,]  6 10 20  7 11  3  4 18  5  14        21  17
-## [5,]  1 19 16  8 13 15  2  9 12  14        17  21</code></pre>
+## [1,]  6 17 21  1 19 16  8 15  2  14        20  10
+## [2,]  1 21 17  6 10 20  7 11  3   4        16  19
+## [3,] 11  7 20 10  6 17 21  1 19  16         4   3
+## [4,] 20 10  6 17 21  1 19 16  8  15        11   7
+## [5,]  7 20 10  6 17 21  1 19 16   8         3  11</code></pre>
 <pre class="r"><code>toc()</code></pre>
-<pre><code>## 12.05 sec elapsed</code></pre>
+<pre><code>## 8.37 sec elapsed</code></pre>
 <p>We have 5 solutions/routes that has the minimal distance. Transform the information into readable route</p>
 <pre class="r"><code>route_optimal &lt;- ga_cities@solution
 
@@ -1014,11 +1071,11 @@ cities_name &lt;- names(cities[1 , ])
 cities_name &lt;- apply(route_optimal, 1, function(x) {cities_name[x]})
 
 apply(cities_name, 2, paste, collapse = &quot; &gt; &quot;)</code></pre>
-<pre><code>## [1] &quot;Marseilles &gt; Barcelona &gt; Gibraltar &gt; Lisbon &gt; Madrid &gt; Cherbourg &gt; Paris &gt; Calais &gt; Brussels &gt; Hook of Holland &gt; Copenhagen &gt; Stockholm &gt; Hamburg &gt; Cologne &gt; Munich &gt; Vienna &gt; Athens &gt; Rome &gt; Milan &gt; Geneva &gt; Lyons&quot;
-## [2] &quot;Cherbourg &gt; Paris &gt; Calais &gt; Brussels &gt; Hook of Holland &gt; Copenhagen &gt; Stockholm &gt; Hamburg &gt; Cologne &gt; Munich &gt; Vienna &gt; Athens &gt; Rome &gt; Milan &gt; Geneva &gt; Lyons &gt; Marseilles &gt; Barcelona &gt; Gibraltar &gt; Lisbon &gt; Madrid&quot;
-## [3] &quot;Athens &gt; Vienna &gt; Munich &gt; Cologne &gt; Hamburg &gt; Stockholm &gt; Copenhagen &gt; Hook of Holland &gt; Brussels &gt; Calais &gt; Paris &gt; Cherbourg &gt; Madrid &gt; Lisbon &gt; Gibraltar &gt; Barcelona &gt; Marseilles &gt; Lyons &gt; Geneva &gt; Milan &gt; Rome&quot;
-## [4] &quot;Cologne &gt; Hamburg &gt; Stockholm &gt; Copenhagen &gt; Hook of Holland &gt; Brussels &gt; Calais &gt; Paris &gt; Cherbourg &gt; Madrid &gt; Lisbon &gt; Gibraltar &gt; Barcelona &gt; Marseilles &gt; Lyons &gt; Geneva &gt; Milan &gt; Rome &gt; Athens &gt; Vienna &gt; Munich&quot;
-## [5] &quot;Athens &gt; Rome &gt; Milan &gt; Geneva &gt; Lyons &gt; Marseilles &gt; Barcelona &gt; Gibraltar &gt; Lisbon &gt; Madrid &gt; Cherbourg &gt; Paris &gt; Calais &gt; Brussels &gt; Hook of Holland &gt; Copenhagen &gt; Stockholm &gt; Hamburg &gt; Cologne &gt; Munich &gt; Vienna&quot;</code></pre>
+<pre><code>## [1] &quot;Cologne &gt; Munich &gt; Vienna &gt; Athens &gt; Rome &gt; Milan &gt; Geneva &gt; Marseilles &gt; Barcelona &gt; Madrid &gt; Gibraltar &gt; Lisbon &gt; Lyons &gt; Cherbourg &gt; Paris &gt; Calais &gt; Brussels &gt; Hook of Holland &gt; Copenhagen &gt; Stockholm &gt; Hamburg&quot;
+## [2] &quot;Athens &gt; Vienna &gt; Munich &gt; Cologne &gt; Hamburg &gt; Stockholm &gt; Copenhagen &gt; Hook of Holland &gt; Brussels &gt; Calais &gt; Paris &gt; Cherbourg &gt; Lyons &gt; Lisbon &gt; Gibraltar &gt; Madrid &gt; Barcelona &gt; Marseilles &gt; Geneva &gt; Milan &gt; Rome&quot;
+## [3] &quot;Hook of Holland &gt; Copenhagen &gt; Stockholm &gt; Hamburg &gt; Cologne &gt; Munich &gt; Vienna &gt; Athens &gt; Rome &gt; Milan &gt; Geneva &gt; Marseilles &gt; Barcelona &gt; Madrid &gt; Gibraltar &gt; Lisbon &gt; Lyons &gt; Cherbourg &gt; Paris &gt; Calais &gt; Brussels&quot;
+## [4] &quot;Stockholm &gt; Hamburg &gt; Cologne &gt; Munich &gt; Vienna &gt; Athens &gt; Rome &gt; Milan &gt; Geneva &gt; Marseilles &gt; Barcelona &gt; Madrid &gt; Gibraltar &gt; Lisbon &gt; Lyons &gt; Cherbourg &gt; Paris &gt; Calais &gt; Brussels &gt; Hook of Holland &gt; Copenhagen&quot;
+## [5] &quot;Copenhagen &gt; Stockholm &gt; Hamburg &gt; Cologne &gt; Munich &gt; Vienna &gt; Athens &gt; Rome &gt; Milan &gt; Geneva &gt; Marseilles &gt; Barcelona &gt; Madrid &gt; Gibraltar &gt; Lisbon &gt; Lyons &gt; Cherbourg &gt; Paris &gt; Calais &gt; Brussels &gt; Hook of Holland&quot;</code></pre>
 <p>Better representation for the route can be visualized through network or graph.</p>
 </div>
 <div id="production-scheduling" class="section level3">
@@ -1075,42 +1132,42 @@ summary(ga_schedule)</code></pre>
 ## Mutation probability  =  0.1 
 ## 
 ## GA results: 
-## Iterations             = 223 
+## Iterations             = 180 
 ## Fitness function value = -6 
 ## Solutions = 
 ##       x1 x2 x3 x4 x5 x6 x7 x8 x9 x10  ...  x27 x28
-## [1,]   1 27  8  2 23  3 16 20 12  15        14  22
-## [2,]  14 22 21  6 12 15 16 27  8   2        19   9
-## [3,]  14 22 21  6 12 15 16  1 27   3        18  11
-## [4,]  21  6 12 15 27  2 16  8 23   1        14  22
-## [5,]  21  6 12 15  1  3 23  8 27  16        18  11
-## [6,]  14 22 21 12  6 15 27  2 20   1        19   9
-## [7,]   9 19 14 22 21  6 12 15  7  28        11  18
-## [8,]  21  6 12 15  1 27  2 23  3  20        14  22
-## [9,]  21  6 12 15 16  1 27  3 20   8        14  22
-## [10,] 21  6 12 15  2 23 16 20 27   1        14  22
+## [1,]  22 14 11 18 24  4 15 12 21   6        19   9
+## [2,]  15 21 12  6 27 23  8  3 16   2        24   4
+## [3,]  15 12 21  6 23  1  8 27  3  16        24   4
+## [4,]  15 12 21  6 27 23  8 20  3  16        24   4
+## [5,]  11 18 24  4 15 12 21  6 27  20        22  14
+## [6,]  11 18 24  4 15 12 21  6 27  23        14  22
+## [7,]  14 22 11 18 24  4 15 12 21   6        19   9
+## [8,]  11 18 24  4 15 12 21  6 27  20        14  22
+## [9,]  19  9 14 22  6 15 12 21 23   8        24   4
+## [10,] 11 18 24  4 15 12 21  6  3  16        14  22
 ##  ...                                              
-## [55,] 21 12  6 15  1  3 27 16 20   8        14  22
-## [56,] 16  2 27 23  8  1  3 20 21   6        14  22</code></pre>
+## [51,] 11 18 24  4 15 12 21  6  8  20        22  14
+## [52,] 11 18 24  4 15 21 12  6  8  20        22  14</code></pre>
 <pre class="r"><code>toc()</code></pre>
-<pre><code>## 48.92 sec elapsed</code></pre>
+<pre><code>## 40.25 sec elapsed</code></pre>
 <p>We can plot the progression of the algorithm by using <code>plot()</code> function on the GA object.</p>
 <pre class="r"><code>plot(ga_schedule)</code></pre>
-<p><img src="/post/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The best or optimal solutions are obtained at least at the 102nd iteration and didn’t improve since then, so the algorithm stop after 100 iterations at 233nd iteration.</p>
 <p>Let’s put the optimal sequence to our data. The resulting data frame will be our production schedule. Since there are multiple solutions, let’s just look at the first two optimal solutions.</p>
 <p>The first solution:</p>
 <pre class="r"><code>rmarkdown::paged_table(df_car[ga_schedule@solution[1, ], ])</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X"],"name":[1],"type":["int"],"align":["right"]},{"label":["color"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"1","2":"White","_rn_":"1"},{"1":"27","2":"White","_rn_":"27"},{"1":"8","2":"White","_rn_":"8"},{"1":"2","2":"White","_rn_":"2"},{"1":"23","2":"White","_rn_":"23"},{"1":"3","2":"White","_rn_":"3"},{"1":"16","2":"White","_rn_":"16"},{"1":"20","2":"White","_rn_":"20"},{"1":"12","2":"Black","_rn_":"12"},{"1":"15","2":"Black","_rn_":"15"},{"1":"6","2":"Black","_rn_":"6"},{"1":"21","2":"Black","_rn_":"21"},{"1":"28","2":"Silver","_rn_":"28"},{"1":"13","2":"Silver","_rn_":"13"},{"1":"25","2":"Silver","_rn_":"25"},{"1":"5","2":"Silver","_rn_":"5"},{"1":"26","2":"Silver","_rn_":"26"},{"1":"7","2":"Silver","_rn_":"7"},{"1":"17","2":"Silver","_rn_":"17"},{"1":"10","2":"Silver","_rn_":"10"},{"1":"18","2":"Gray","_rn_":"18"},{"1":"24","2":"Gray","_rn_":"24"},{"1":"4","2":"Gray","_rn_":"4"},{"1":"11","2":"Gray","_rn_":"11"},{"1":"19","2":"Orange","_rn_":"19"},{"1":"9","2":"Orange","_rn_":"9"},{"1":"14","2":"Solid White","_rn_":"14"},{"1":"22","2":"Solid White","_rn_":"22"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X"],"name":[1],"type":["int"],"align":["right"]},{"label":["color"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"22","2":"Solid White","_rn_":"22"},{"1":"14","2":"Solid White","_rn_":"14"},{"1":"11","2":"Gray","_rn_":"11"},{"1":"18","2":"Gray","_rn_":"18"},{"1":"24","2":"Gray","_rn_":"24"},{"1":"4","2":"Gray","_rn_":"4"},{"1":"15","2":"Black","_rn_":"15"},{"1":"12","2":"Black","_rn_":"12"},{"1":"21","2":"Black","_rn_":"21"},{"1":"6","2":"Black","_rn_":"6"},{"1":"27","2":"White","_rn_":"27"},{"1":"8","2":"White","_rn_":"8"},{"1":"20","2":"White","_rn_":"20"},{"1":"3","2":"White","_rn_":"3"},{"1":"16","2":"White","_rn_":"16"},{"1":"1","2":"White","_rn_":"1"},{"1":"23","2":"White","_rn_":"23"},{"1":"2","2":"White","_rn_":"2"},{"1":"28","2":"Silver","_rn_":"28"},{"1":"13","2":"Silver","_rn_":"13"},{"1":"5","2":"Silver","_rn_":"5"},{"1":"25","2":"Silver","_rn_":"25"},{"1":"26","2":"Silver","_rn_":"26"},{"1":"17","2":"Silver","_rn_":"17"},{"1":"10","2":"Silver","_rn_":"10"},{"1":"7","2":"Silver","_rn_":"7"},{"1":"19","2":"Orange","_rn_":"19"},{"1":"9","2":"Orange","_rn_":"9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>The second solution:</p>
 <pre class="r"><code>rmarkdown::paged_table(df_car[ga_schedule@solution[2, ], ])</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X"],"name":[1],"type":["int"],"align":["right"]},{"label":["color"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"14","2":"Solid White","_rn_":"14"},{"1":"22","2":"Solid White","_rn_":"22"},{"1":"21","2":"Black","_rn_":"21"},{"1":"6","2":"Black","_rn_":"6"},{"1":"12","2":"Black","_rn_":"12"},{"1":"15","2":"Black","_rn_":"15"},{"1":"16","2":"White","_rn_":"16"},{"1":"27","2":"White","_rn_":"27"},{"1":"8","2":"White","_rn_":"8"},{"1":"2","2":"White","_rn_":"2"},{"1":"23","2":"White","_rn_":"23"},{"1":"1","2":"White","_rn_":"1"},{"1":"3","2":"White","_rn_":"3"},{"1":"20","2":"White","_rn_":"20"},{"1":"26","2":"Silver","_rn_":"26"},{"1":"10","2":"Silver","_rn_":"10"},{"1":"25","2":"Silver","_rn_":"25"},{"1":"28","2":"Silver","_rn_":"28"},{"1":"7","2":"Silver","_rn_":"7"},{"1":"13","2":"Silver","_rn_":"13"},{"1":"17","2":"Silver","_rn_":"17"},{"1":"5","2":"Silver","_rn_":"5"},{"1":"18","2":"Gray","_rn_":"18"},{"1":"4","2":"Gray","_rn_":"4"},{"1":"24","2":"Gray","_rn_":"24"},{"1":"11","2":"Gray","_rn_":"11"},{"1":"19","2":"Orange","_rn_":"19"},{"1":"9","2":"Orange","_rn_":"9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X"],"name":[1],"type":["int"],"align":["right"]},{"label":["color"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"15","2":"Black","_rn_":"15"},{"1":"21","2":"Black","_rn_":"21"},{"1":"12","2":"Black","_rn_":"12"},{"1":"6","2":"Black","_rn_":"6"},{"1":"27","2":"White","_rn_":"27"},{"1":"23","2":"White","_rn_":"23"},{"1":"8","2":"White","_rn_":"8"},{"1":"3","2":"White","_rn_":"3"},{"1":"16","2":"White","_rn_":"16"},{"1":"2","2":"White","_rn_":"2"},{"1":"20","2":"White","_rn_":"20"},{"1":"1","2":"White","_rn_":"1"},{"1":"25","2":"Silver","_rn_":"25"},{"1":"5","2":"Silver","_rn_":"5"},{"1":"13","2":"Silver","_rn_":"13"},{"1":"28","2":"Silver","_rn_":"28"},{"1":"26","2":"Silver","_rn_":"26"},{"1":"17","2":"Silver","_rn_":"17"},{"1":"10","2":"Silver","_rn_":"10"},{"1":"7","2":"Silver","_rn_":"7"},{"1":"19","2":"Orange","_rn_":"19"},{"1":"9","2":"Orange","_rn_":"9"},{"1":"14","2":"Solid White","_rn_":"14"},{"1":"22","2":"Solid White","_rn_":"22"},{"1":"11","2":"Gray","_rn_":"11"},{"1":"18","2":"Gray","_rn_":"18"},{"1":"24","2":"Gray","_rn_":"24"},{"1":"4","2":"Gray","_rn_":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Even though the first solution and the second solution has different sequence, the fitness function or the number of setup are the same, therefore both are optimal solutions and the decision to choose which one should be put into actual use is being handed to the decision maker, in these case, the production control staff.</p>
@@ -1242,17 +1299,17 @@ summary(ga_rf)</code></pre>
 ## Mutation probability  =  0.1 
 ## 
 ## GA results: 
-## Iterations             = 18 
+## Iterations             = 13 
 ## Fitness function value = 0.8805461 
 ## Solutions = 
 ##      x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12
-## [1,]  0  0  0  0  1  0  0  1  0   0   1   0
-## [2,]  0  0  0  0  0  0  0  1  0   0   1   0</code></pre>
+## [1,]  0  0  0  1  0  0  0  0  0   0   0   0
+## [2,]  0  0  0  1  0  0  0  0  0   0   0   1</code></pre>
 <pre class="r"><code>toc()</code></pre>
-<pre><code>## 557.2 sec elapsed</code></pre>
+<pre><code>## 307.86 sec elapsed</code></pre>
 <p>Let’s plot the progression of GA</p>
 <pre class="r"><code>plot(ga_rf)</code></pre>
-<p><img src="/post/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Let’s check each decision variables and the accuracy that is used as the fitness value.</p>
 <pre class="r"><code># Transform decision variables into data frame
 ga_rf_pop &lt;- as.data.frame(ga_rf@population)
@@ -1274,7 +1331,7 @@ rmarkdown::paged_table(
   )</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["mtry"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["min_n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["accuracy"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"18","3":"0.8805461"},{"1":"1","2":"26","3":"0.8771331"},{"1":"1","2":"27","3":"0.8737201"},{"1":"1","2":"82","3":"0.8668942"},{"1":"4","2":"18","3":"0.8600683"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["mtry"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["min_n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["accuracy"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"1","3":"0.8805461"},{"1":"3","2":"1","3":"0.8771331"},{"1":"2","2":"5","3":"0.8771331"},{"1":"6","2":"1","3":"0.8634812"},{"1":"10","2":"1","3":"0.8600683"},{"1":"17","2":"1","3":"0.8566553"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1286,7 +1343,7 @@ set.seed(123)
 ctrl &lt;- trainControl(method=&quot;repeatedcv&quot;, number=5, repeats=10)
 attrition_forest &lt;- train(attrition ~ ., data=data_train, method=&quot;rf&quot;, trControl = ctrl)
 toc()</code></pre>
-<pre><code>## 522.03 sec elapsed</code></pre>
+<pre><code>## 609.19 sec elapsed</code></pre>
 <pre class="r"><code>attrition_forest</code></pre>
 <pre><code>## Random Forest 
 ## 
@@ -1296,20 +1353,20 @@ toc()</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (5 fold, repeated 10 times) 
-## Summary of sample sizes: 1580, 1579, 1578, 1580, 1579, 1578, ... 
+## Summary of sample sizes: 1580, 1580, 1578, 1579, 1579, 1579, ... 
 ## Resampling results across tuning parameters:
 ## 
 ##   mtry  Accuracy   Kappa    
-##    2    0.9462064  0.8924131
-##   22    0.9587116  0.9174242
-##   42    0.9475654  0.8951309
+##    2    0.9584587  0.9169161
+##   22    0.9634243  0.9268477
+##   42    0.9579537  0.9159056
 ## 
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 22.</code></pre>
 <p>Let’s check the accuracy of the random forest model with <code>caret</code></p>
 <pre class="r"><code>pred_rf &lt;- predict(attrition_forest, newdata = data_test)
 accuracy_vec(truth = data_test$attrition, estimate = pred_rf)</code></pre>
-<pre><code>## [1] 0.8634812</code></pre>
+<pre><code>## [1] 0.8498294</code></pre>
 <p>The model performance by GA is better than those optimized with simple K-fold cross validation, even though GA require more time to compute. This trade-off of computation time vs performance should be considered.</p>
 </div>
 </div>
@@ -1408,6 +1465,9 @@ multi-objective ensemble classifiers. <em>Applications of Evolutionary Computati
 
 
 <ul class="actions pagination">
+    
+        <li><a href="/blog/introduction-to-generative-adversarial-network-with-keras/"
+                class="button big previous">Introduction to Generative Adversarial Network with Keras</a></li>
     
 
     

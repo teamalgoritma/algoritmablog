@@ -1,6 +1,7 @@
 ---
 title: Introduction to Generative Adversarial Network with Keras
 author: Iqbal Basyar
+github: https://github.com/iqbalbasyar
 date: '2019-12-18'
 slug: introduction-to-generative-adversarial-network-with-keras
 categories:

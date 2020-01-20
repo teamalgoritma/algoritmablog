@@ -1,0 +1,837 @@
+---
+title: Optimization and Hyper-Parameter Tuning with Genetic Algorithm
+author: Arga Adyatama
+github: https://github.com/Argaadya
+date: '2020-01-13'
+slug: optimization-with-genetic-algorithm
+categories:
+  - R
+tags:
+  - Genetic Algorithm
+  - Optimization
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      fig.align = "center")
+```
+
+# Introduction 
+
+## About
+
+Optimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance. Optimization algorithm can help us to get a better model performance. Genetic Algorithm (GA) is one of the widely used optimization algorithm.
+
+This article is an attempt to explain the mechanism behind one of the most effective algorithm for optimization problems: Genetic Algorithm (GA). There are many algorithm specifically created for optimization, such as the Particle Swarm Optimization (PSO), Simulated Annealing (SA), and Tabu Search. However, in many areas, GA can achieve the objective better than said methods. There are various derivative and variation of GA implementation, with perhaps the most famous one is the implementation of GA in multiobjective optimization problem, where we want to optimize two objective simultaneously, called Multi Objective Evolutionary Algorithm (MOEA). We will see how a general GA works and where it can be applied, either on business problems and on the data science field.
+
+## Objectives
+
+Learning Objective:
+
+* Learn the importance of optimization in business
+* Learn about cost function/objective function and decision variables
+* Learn the relationship between machine learning and optimization
+* Learn the principle and concepts of Genetic Algorithm
+* Learn the implementation of GA in business case and data science field
+
+## Library and Setup
+
+To use GA, you can install `GA` package using the `install.packages()` function.
+
+The following is the packages that will be used throughout the articles.
+
+```{r message=FALSE}
+library(tidyverse)
+library(GA)
+library(ranger)
+library(tidymodels)
+library(caret)
+library(tictoc)
+```
+
+# Optimization Problem 
+
+## Why Optimization is Important
+
+Say, we have 2 line of product, with product A has profit of USD 50 while product B has profit of USD 30. We want to maximize our profit, but we have limited resources. We only have 80 hours of work for a week, with product A take about 10 hours in making while product B is 4 hours in making. Both product shares the same materials and we have only 100 meters of fabric with each product A requires 2 meters of fabric while product B requires 4 meters of fabric. How do we decide what is the best number of product A and B to be produced? Such is the optimization problem (in these case, optimize the profit).
+
+What if we decide to randomly select the quantities of each products to be produced. We may don't have enough time to finish it. We may don't have enough materials, or the opposite could happen: we may have spare materials. 
+
+Another case, say we want to deliver our product the some warehouses. How do we decide which warehouse should we visit first or how do we decide what route should we take in order to minimize the delivery time?
+
+Optimization are important especially if we have limited resources. More importanly, optimization concern with profit and loss: choosing the wrong delivery route will result in late delivery, which may incur penalty cost or damaging our products along the way. That's why optimization is really important for business.
+
+## Objective Function and Decision Variables
+
+Every optimization problem always has 2 elements: objective function and decision variables. Objective function mean how do we formulate our goals, like how do we measure profit in order to maximize it, or how do we measure delivery time in order to minimize it. Inside the objective function there exist decision variables, what should be our decision that can result in maximal profit? We want to maximize our goals by choosing the right decision variables. In the previous example, the goal to maximize profit belong to the objective function, while the number of product A and product B to be produced belong to the decision variables.
+
+Some objective may have a constraint, like the number of workhours a week is only 80 hours or the number of materials available is only 100 meters. The constraint is important, since any solution that doesn't meet the constraint is an infeasible solution.
+
+## Machine Learning and Optimization
+
+Machine learning and optimization cannot be separated, they are related to each other, although the goal is different. Machine learning is concerned with prediction or classification based on several predictors, while optimization is concerned with finding the best objective value based on the choice of decision variables. However, the mechanism behind most of machine learning models are optimization. For example, the gradient descent method of Neural Network training model is an optimization method, one which goal is to find the lowest point and converge. Another example is the linear regression fitting, which minimize the sum of squared error (thus, the name Least Square method). 
+
+Machine learning can be improved by tuning the hyper-parameter with optimization, while at the same time optimization method also can be improved with machine learning models. For example, we can significantly reduce the MSE of Standard and Weighted K-NN Regression model by employing Genetic Algorithm[^1]. With multi-objective optimization, we can acquire an ensemble model that has balanced trade-off between runtime and model performance[^2].
+
+# Genetic Algorithm: Concepts 
+
+## Overview
+
+Let's first read this beautiful paragraph from *The Blind Watchmaker* by Richard Dawkins
+
+> "All appearances to the contrary, the only watchmaker in nature is the blind forces of physics, albeit deployed in very special way. A true watchmaker has foresight: he designs his cogs springs, and plans their interconnections, with a future purpose in his mind's eye. Natural selection, the blind, unconscious, automatic process which Darwin discovered, and which we now know is the explanation for the existence and apparently purposeful form of all life, has no purpose in mind. It has no mind and no mind's eye. It does not plan for the future. It has no vision, no foresight, no sight at all. If it can be said to play the role of watchmaker in nature, it is the blind watchmaker."
+> `r tufte::quote_footer(' Richard Dawkins')`
+
+Evolution by natural selection is first proposed by Charles Darwin through his book *On the Origin of Species by Means of Natural Selection, or the Preservation of Favoured Races in the Struggle for Life*. Despite the bold statement by Dawkins that natural selection has no purpose, the mechanism can be adapted to solve optimization problem. If in real biological world, natural selection work unpurposely by selecting the fittest individual that can survive and reproduce, thus spreading it's genes, the optimal or best solution in optimization problem can be acquired by selecting those with the **fittest** value, namely the value of objective function(s). This perhaps is the main difference between the actual natural selection and the one adopted for Genetic Algorithm.
+
+> "Genetic algorithms (GAs) are stochastic search algorithms inspired by the basic principles of biological evolution and natural selection. GAs simulate the evolution of living organisms, where the fittest individuals dominate over the weaker ones, by mimicking the biological mechanisms of evolution, such as selection, crossover and mutation." 
+> `r tufte::quote_footer(' Luca Scrucca')`
+
+Genetic Algorithm is an optimization algorithm that use the concept of evolution by natural selection. Evolution by natural selection, as proposed by Darwin, is the mechanism on how many varieties of living things are adapting to their environment to survive, through 2 main principles: natural selection and random mutation. The genetic algorithm (GA) borrowed the concept and use it to gain optimal solutions by selecting the best or the fittest solution alongside the rare and random occurence of mutation. 
+
+Suppose we have a non-convex function. If we use a derivative-based method such as gradient descend, it would potentially fall into local optima at $x_1$. Genetic Algorithm can overcome the local optima, thus it can provide better solution. Combined with machine learning such as neural network, GA can create an arfiticial intelligence system that can play game, like <a href = "https://www.youtube.com/watch?v=aeWmdojEJf0"> Flappy Bird </a>
+```{r out.width="50%", echo=FALSE, eval =TRUE}
+knitr::include_graphics("/genetic-algo/nonconvex.png")
+```
+
+The general flow of the algorithm is shown below:
+
+```{r out.width="30%", echo=FALSE, eval =TRUE}
+knitr::include_graphics("/genetic-algo/ga_flow.png")
+```
+
+1. There will be a population of randomly selected chromosomes or solutions. 
+2. The fitness values or the objective function values from each solutions are calculated. 
+3. From the population, two of the solutions will be chosen as **parent solutions**, either by tournament selection or any other selection methods. 
+4. The chosen solutions will be crossed to create new solutions, called **child solutions**. 
+5. The child solutions may change due to the random mutations (that has really low probability to happen). 
+6. In the end of the iteration, new population will be chosen from the **parent solutions** or the initial population and the **child solutions** based on the fitness values. 
+7. As long as the stopping criterion is not fulfilled, usually in term of number of iterations, the algorithm will continue to iterate.
+8. Best or optimal solutions are those with the optimal fitness value.
+
+There are several advantages of Genetic Algorithm:
+
+* Genetic Algorithm can escape local optima
+* Can handle complex problem with many decision variables and big solution space
+* It considers many points in the searching space simultaneously, not a single point, to deal with large
+parameter spaces. 
+* Can be parallelized since GA consists of multiple chromosomes/solutions
+* Support multi-objective optimization
+
+## Elements
+
+There exist 3 main elements of GA: Population, Chromosomes, and Genes.
+
+Population is a group of individuals or solutions, mainly called chromosomes. A chromosomes consists of a sequence of genes, with each or multiple genes (depend on the encoding) represent a single decision variables that will be fitted on the objective functions.
+
+```{r out.width="60%", echo=FALSE, eval =TRUE}
+knitr::include_graphics("/genetic-algo/ga_element.png")
+```
+
+A gene can be represented or encoded in various ways, including:
+
+* Binary Encoding
+
+![](/genetic-algo/ga3.png)
+
+Binary encoding mean that our genes are encoded into binary number, this is the earliest and the most common form of GA encoding.
+
+* Real-Valued Encoding
+
+![](/genetic-algo/ga4.png)
+
+Real-valued encoding mean that our genes are encoded in a floating point or decimal number. Real-valued encoding can be used to optimize a process parameter, since it consists of floating point number and are not suited for integer-based optimization.
+
+* Permutation Encoding
+
+![](/genetic-algo/ga5.png)
+
+Permutation encoding mean that our genes are encoded into a sequence of number, each number is uniquely assigned to a gene so no 2 genes that will have the same number or value. This encoding is often used in a scheduling or routing problem, where each permutation represent one location or unique points.
+
+## Selection
+
+Parents selections are done in order to select two solutions that will be used for crossover to create new solutions called **child solutions**. There are several methods to choose parents:
+
+* Roulette Wheel Selection
+
+Parents will be selected randomly based on the fitness value. Higher fitness value mean higher chance to be chosen.
+
+![](/genetic-algo/ga9.png)
+
+* Linear Ranking Selection
+
+Individuals are assigned subjective fitness based on the rank within the population. The individuals in the population are sorted from best to worst based on their fitness values. Each individual in the population is assigned a numerical rank based on fitness, and selection is based on this ranking rather than differences in fitness. 
+
+* Tournament Selection
+
+Tournament selection is done by selecting a set of chromosomes from population and make certain selection criterion. Tournament selection  is effective for GAs with that has big population because there is no need to sort the individuals inside the population.
+
+## Crossover and Mutation
+
+### Crossover
+
+Crossover is the process of mating between the two selected individuals, the process represents how genes are transferred to the offspring. There are several methods of crossover:
+
+#### Binary 
+
+* Single-point Crossover
+
+Split the parent based on a randomly generated single point. The first child would have gene from the first parent for the position 1 up to the point, while the rest is filled with genes from the second parent. The second child is opposite, position 1 up to the point is filled with genes from the second parent.
+
+![](/genetic-algo/gabin_cross.png)
+
+* Uniform Crossover
+
+Every gene is exchanged between the a pair of randomly selected chromosomes with a certain probability, called as the swapping probability. Usually, the swapping probability value is taken to be 0.5.
+
+![](/genetic-algo/gabin_cross2.png)
+
+#### Real-Valued
+
+* Whole Arithmetic Crossover
+
+Takes weighted sum of the two parental genes for each position. The weight is applied for all position. Let x = the value of the first parent and y = the value of the second parent for position/gene 1:
+
+$$Child \ 1 = weight \ * x + (1-weight) \ * y$$
+$$Child \ 2 = weight \ * y + (2-weight) \ * x$$
+
+If the weight = 0.5 two offspring are identical
+
+![](/genetic-algo/gareal_cross.png)
+
+* Local Arithmetic Crossover
+
+The local crossover is similar to the whole artihmetic crossover, but uses a random alpha for each position.
+
+#### Permutation
+
+* One-point crossover
+
+One-point crossover use only one random point as the marker where crossover should happen.
+
+![Nearchou, 2014](/genetic-algo/ga6.png)
+
+* Position-Based crossover
+
+A number of positions from the first parent is randomly selected and fill the remaining position from the second parent. 
+
+![Nearchou, 2014](/genetic-algo/pb_cross.png)
+
+### Mutation
+
+A mutation means change in one or several genes inside the chromosome. Just like in the natural world, mutation rarely occur, thus they have a little probability to happen, usually set at 0.01. There are some example of mutations:
+
+#### Binary
+
+* Random Mutation
+
+Genes are randomly flipped from 1 to 0 or vice versa with uniform probability for each gene, meaning that each gene has the same chance to mutate with mutation rate or mutation probability set by the user.
+
+![](/genetic-algo/gabin_mutation.png)
+
+#### Real Valued
+
+* Uniform Random Mutation
+
+Randomly mutate gene in a position with value from certain range with uniform distribution.
+
+* Non Uniform Random Mutation
+
+Select a random gene/position from a chromosome and assign a non-uniform random value to it.
+
+#### Permutation
+
+* Adjacent Exchange Mutation
+
+Two adjacent genes are swapped randomly.
+
+![Nearchou, 2014](/genetic-algo/ga10.png)
+
+* Inverse Mutation
+
+Inverse mutation is done by inversing the sequence between two random points.
+
+![Nearchou, 2014](/genetic-algo/ga13.png)
+
+## Application
+
+Genetic Algorithm can be applied in various business problem. Since the algorithm is all about optimization, as long as there is an objective/fitness function to optimize, GA can be applied. Some example including production scheduling, knapsack problem (how many/how much we can load things in our bag or truck to maximize the space or the weight load), traveling salesman problem, etc. GA can also be applied in data science field, especially when we do hyper-parameter tuning to optimize the model performance. Certain problem may have it's own unique parameter setting that can have better fitness value. For example, flowshop scheduling problem has been researched by Nearchou[^3]. Detailed overview and application of GA can be seen at Kramer's work[^4]
+
+## Illustration
+
+Let's illustrate step-by-step how Genetic Algorithm works. Let's say I have a set of item with respective point and weight (kg). I want to maximize the point, but the rules said that I can not bring items with total weight more than 15 kg. Whice items then should I choose in order to maximize my point?
+
+![](/genetic-algo/step1.png)
+
+### Define Encoding and Fitness Function
+
+Since the problem is about whether bring certain item or not, then the solution should consists a logical value of each item. If the value is `1` or `TRUE`, then I should bring those item, and if value is `0` or `FALSE`, then I should not bring the item. By this logic, the encoding for our genetic algorithm should be binary encoding because it consists only 2 values (1 or 0).
+
+The fitness function then, should be to maximize the total point.
+
+$$Maximize \ Total\ Point = \Sigma_{i=1}^{k} \ P_k \ * \ chosen_k $$
+
+* $Total\ Point$: The total point generated
+* $k$: Number of item
+* $P_k$: Point of item k
+* $chosen_k$: logical value of each item (1 or 0)
+
+Constrained to:
+
+$$Total\ Weight <= 15$$
+
+Since we have constraint, we need to incorporate the constraint into the fitness function. This is done to prevent an unfeasible solution (those that violate the constraint) to be chosen or selected as optimal value
+
+$$Maximize\ Total\ Point = \Sigma_{i=1}^{k} \ P_k \ chosen_k - 2 \ (total\ weight - 15)^2$$
+
+### Initial Population
+
+First, GA will randomly generate a population of solution. Here, we have a population of 4 solutions/indviduals. The binary value on each individuals are generated randomly.
+
+![](/genetic-algo/step2.png)
+
+### Fitness Assignment
+
+Now we calculate the fitness value (total point) of each individuals based on the fitness function above. We can see that solution that violate the constraint (have total weight > 15) will have worse fitness function.
+
+![](/genetic-algo/step3.png)
+
+### Selection
+
+Now we will choose which individuals are gonna be crossed in order to get a new solution. We will use linear rank selection to select the `parent` solutions. We will choose 2 solutions since crossover require 2 `parent` solutions.
+
+Linear ranking selection work as follows:
+
+* Give rank to each individuals. Bigger rank is assigned for bigger fitness function. Individual 2 with fitness function of 19 is the highest, so it will be given rank 4.
+* Calculate the probability of each individuals based on their rank. The sum of the rank is 10, so the probability of each solution is $Rank_i/10$.
+* Chose solution randomly based on the probability. Solution with higher fitness function will naturally has higher chance to be chosen.
+
+![](/genetic-algo/step4.png)
+
+Let's say for example, the first and second solution are chosen as the `parent`
+
+![](/genetic-algo/step5.png)
+
+### Crossover
+
+Crossover means exchanging genes between two `parents` two create new solution called `child` solution. We will use the single-point crossover here. A single point is chosen randomly.
+
+Let's say the point is chosen to be between position 2 and 3. For the first child, it will have the first and second gene from the first parent, while the rest will be filled from the second parent. For the second child, it is the opposite, it will have the first and second gene from the second parent, while the rest will be filled from the first parent. 
+
+![](/genetic-algo/step6.png)
+
+### Mutation
+
+Mutation is the change of value in the gene. Here we use random mutation. It will randomly swap the value of gene. If the gene in position 3 have value of 1, it would be switched into 0 and vice versa. Mutation is rarely occur, its probability can be set manually, but generally people use mutation probability of 0.1.
+
+```{r out.width="50%", echo=FALSE, eval =TRUE}
+knitr::include_graphics("/genetic-algo/step7.png")
+```
+
+The selection, crossover, and mutation process will be repeated by choosing different parent until the number of children are the same with the population size of the parent. If the parent have population size of 4, then we would have a children population of 4. 
+
+### Check Stopping Criteria
+
+After mutation is done, we would check if it is time to stop the algorithm. Have we reached iteration 100? Do in the last 10 iterations the optimal fitness value didn't change? If not, then the iteration would continue. After crossover and mutation, now we have parent population of 4 and children population of 4, so in total we now have 8 solutions. For the next iteration, we will only choose 4 individuals (in accordance with the initial population size) from the parent and the children. Generally, the individual with high fitness value will be chosen, so the next population will be better than the last one.
+
+# Genetic Algorithm with R
+
+Here we will illustrate how GA can work using the `GA` package[^5][^6] both on business problem and on machine learning hyper-parameter tuning.
+
+## Business Application 
+
+### Knapsack Problem
+
+Suppose we have several items to deliver into the distribution center. However, our truck can only load up to total of 10 tons or 10000 kg, so we need to choose which items to deliver and maximize the weight loaded. You can directly solve this problem using the **Knapsack Method**, but you can also use Genetic Algorithm. Here we will see how GA deal with a constrained problem (weight should not exceed 10 tons or 10000 kg).
+
+```{r}
+df_item <- data.frame(item = c("Tires", "Bumper", "Engine", "Chasis", "Seat"),
+                      freq = c(80,50,70,50,70),
+                      weight = c(7, 17, 158, 100, 30))
+
+rmarkdown::paged_table(df_item)
+```
+
+Each items have quantities and their respective weight.
+
+Let's create a new dataset with one observation correspond to only 1 item.
+
+```{r}
+df_item_long <- df_item[rep(rownames(df_item), df_item$freq), c("item","weight")]
+  
+rmarkdown::paged_table(head(df_item_long))
+```
+
+Let's set the objective function. 
+
+$$Total\ Weight = \Sigma_{i=1}^{k} \ W_k \ * \ n_k $$
+
+* $Total\ Weight$: The total weight (kg)
+* $k$: Number of unique item
+* $W_k$: Weight of item k
+* $n_k$: Number of item k that is chosen
+
+Constrained to:
+
+$$Total\ Weight <= 10000$$
+
+We will translate the objective function into `R function`.
+
+```{r}
+weightlimit <- 10000
+
+evalFunc <- function(x) {
+  # Subset only selected item based on the solution
+  df <- df_item_long[x == 1, ]
+  
+  # calculate the total weight
+  total_weight <- sum(df$weight)
+  
+  # Penalty if the total weight surpass the limit
+  total_weight <- if_else(total_weight > weightlimit, 0, total_weight)
+  
+  return(total_weight)
+}
+```
+
+Let's run the algorithm. We will use binary encoding since the decision variables are logical (TRUE or FALSE), with each bit represent a single logical value whether the item is selected.
+
+The parameter of the algorithm:
+
+* `type`: Type of the gene encoding, here we use "binary"
+* `fitness`: The fitness function that will be optimized
+* `nBits`: Number of bits generated for the decision variables
+* `pmutation`: probability of mutation, default 0.1
+* `pcrossover`: probability of crossover, default 0.8
+* `seed`: The value of random seed to get reproducible result
+* `elitism`: Number of best solution that will survive in each iteration, default is the top 5% of the population.
+* `maxiter`: Number of max iterations for the algorithm to run
+* `popSize`: Number of solutions in a population
+* `run`: Number of iteration before the algorithm stop if there is no improvement on the optimal fitness value
+* `parallel`: Will we use parallel computing? Can be logical value or the number of core used
+* `lower`: The lowest value of the permutation encoding
+* `upper`: The highest value of the permutation encoding
+* `keepBest`: A logical whether we save best solution in each generation in a separate slot
+
+There are several options that can be chosen for each of the GA process. For example, the default parent selection of GA for binary is linear rank selection. The detailed default methods used on each encoding can be found at here[^7]. 
+
+The `tic()` and `toc()` function is used to measure the computation time.
+
+Here we will run a genetic algorithm with binary encoding, the fitness function would be the `evalFunc()` we created earlier. The population size (`popSize`) is 100 with maximum iteration (`maxiter`) is also 100. The maximum run (`run`) with no improvement is 20, after that the algorithm would be stopped. The `seed` for reproducibility is set at 123. Since we use binary encoding, the parameter `nBits` control the number of bits generated. Since each bit would represent a decision for each item, the number of bits is equal to the number of row from the `df_item_long`.
+
+```{r}
+tic()
+library(GA)
+ga_knapsack <- ga(type = "binary", fitness = evalFunc, popSize = 100, 
+                  maxiter = 100, 
+                  run = 20, nBits = nrow(df_item_long), seed = 123)
+toc()
+```
+
+The iteration stop at iterations 22 since after 20 iterations no improvement in the `total weight`. The optimal solution can be seen at `Fitness function value` which is 10000 (10,000 kg). 
+
+The `Solution` output is the solution that result in the optimal fitness value. We can choose one of them since they will result in the same fitness value. Let's check one of them.
+
+```{r}
+summary(ga_knapsack)
+```
+
+The **worst** solution in the population has fitness value of 0 (those who has penalized because it passed the weight limit constrain), while the **optimal** solution has fitness value of 10000. From all of 100 chromosomes or solutions generated, the median of fitness value is 9572 while the mean is 6733.
+
+To check the summary, we use `summary()` function on GA object
+
+```{r}
+summary(ga_knapsack)
+```
+
+As we can see, there are several solutions for the problem, all of them have the same fitness value: 10000. Therefore, we have the flexibility to choose which solution we will pick. All optimal solution has no value greater than its constraint, which is also 10000.
+
+Let's check the plot of fitness value progression using `plot()`.
+
+```{r}
+plot(ga_knapsack)
+```
+
+We can see that the optimal solution (Best) is already achieved at iteration 3.
+
+Let's choose one of the solution as our decision. 
+
+```{r}
+df_sol <- df_item_long[ga_knapsack@solution[1, ] == 1, ]
+
+df_sol <- df_sol %>%  
+  group_by(item, weight) %>% 
+  summarise(freq = n()) %>% 
+  mutate(total_weigth = freq * weight)
+
+rmarkdown::paged_table(df_sol)
+```
+
+Let's check the total weight
+```{r}
+sum(df_sol$total_weigth)
+```
+
+The optimal fitness value is same with the constraint, so we can fully load the vehicle based on it's maximum capacity.
+
+Let's check the third solution
+```{r}
+df_sol <- df_item_long[ga_knapsack@solution[3, ] == 1, ]
+
+df_sol <- df_sol %>%  
+  group_by(item, weight) %>% 
+  summarise(freq = n()) %>% 
+  mutate(total_weigth = freq * weight)
+
+rmarkdown::paged_table(df_sol)
+```
+
+
+```{r}
+sum(df_sol$total_weigth)
+```
+
+Even though the first solution and the second solution has different decisions, the fitness function or the total weights are the same, therefore both are optimal solutions and the decision to choose which one should be put into actual use is being handed to the decision maker.
+
+### Traveling Salesman Problem
+
+The traveling salesperson problem (TSP) is one of the most widely discussed problems in combinatorial optimization. In its simplest form, consider a set of n cities with known symmetric intra-distances, the TSP involves finding an optimal route for visiting all the cities and return to the starting point such that the distance traveled is minimized. The set of feasible solutions is given by the total number of possible routes, which is equal to (n − 1)!/2. 
+
+Consider this `eurodist` dataset. It consists of 21 x 21 matrix of distance between cities. The total number of possible routes would be (21 - 1)!/2  = 1216451004088320000. Trying each one of them would take a great amount of time. Simple random search may fail to find the global optima. 
+
+```{r}
+cities <- as.matrix(eurodist)
+
+head(cities)
+```
+
+Since the objective is to minimize the distance, the fitness value would be in negative. 
+
+```{r}
+tsp_fitness <- function(x) {
+  x <- c(x, x[1])
+  
+  # create from-to matrix 
+  route <- embed(x, 2)[, 2:1]
+ 
+ # Calculate distance
+ distance <- -sum(cities[route])
+ return(distance)
+ }
+```
+
+Let's run the algorithm.
+
+```{r}
+tic()
+ga_cities <- ga(type = "permutation", fitness = tsp_fitness, monitor = F,
+         lower = 1, upper = nrow(cities), popSize = 100, maxiter = 5000, 
+         run = 500, seed = 123)
+summary(ga_cities)
+toc()
+```
+
+We have 5 solutions/routes that has the minimal distance. Transform the information into readable route
+
+```{r}
+route_optimal <- ga_cities@solution
+
+cities_name <- names(cities[1 , ])
+
+cities_name <- apply(route_optimal, 1, function(x) {cities_name[x]})
+
+apply(cities_name, 2, paste, collapse = " > ")
+```
+
+Better representation for the route can be visualized through network or graph.
+
+### Production Scheduling
+
+Supposed that we have various units of car to be produced at our manufacturing plant. There are 7 different types of product colors. If the following unit has different color than the previous car, there will changeover cost (cost incurred due to change in product types), such as the cost of material required to clean the equipment from the previous paint color. There are many way to optimize the color sequence, but we will use the simplest one in here for illustration. We want to minimize the number of setup, making the number of color switch or changover occur less, therefore the changeover cost can also be minimized.
+
+First we import the data. 
+
+```{r}
+df_car <- read.csv("data_input/car_data.csv")
+
+rmarkdown::paged_table(df_car)
+```
+
+The objective function will be:
+$$ S = 1 + \Sigma_{k=2}^{DT} \ S_k$$
+
+* $S$ = number of setup
+* $D_T$ = Number of car/unit to be produced
+* $k$ = The position of car in the sequence
+* $S_k$ = Is setup required? 1 if the next car ($K+1$) doesn't have the same color with the current $k^{th}$ car, 0 if the next car does
+
+We will translate the objective function into an R function of `min_setup`. The algorithm in `GA` package run in context of maximization, so in order to do a minimization problem, we will make our fitness value negative.
+
+```{r}
+min_setup <- function(x){
+  df <- df_car[x, ]
+  print(df)
+  S <- df %>% 
+  mutate(color_next = lead(color),
+         setup = if_else(color == color_next, 0, 1)) %>% 
+  head(nrow(df)-1) %>% 
+  pull("setup") %>% 
+  sum() + 1
+  S <- -S
+  return(S)
+}
+```
+
+Now we run the algorithm. Since the problem is a scheduling problem, we will encode our solutions with permutation encoding. We will stop the algorithm if the number of iteration has reached 1000 iterations or if in 100 iterations there is no improvement in the optimal fitness value.
+
+**IMPORTANT**
+\n
+The choice of population size and the number of iteration will greatly affect the performance of GA. If the population size is too little, there will be limited *gene pool* in our population so the the new solutions will not differ too much from the previous generations. If the number of iterations is too little, there will not be enough time for the algorithm to find new optimal solutions. `GA` package can be run with parallel computing.
+
+```{r}
+tic()
+ga_schedule <- ga(type = "permutation", fitness = min_setup, lower = 1, upper = nrow(df_car), 
+                  seed = 123, maxiter = 1000, popSize = 100, elitism = 50, monitor = F, 
+                  run = 100, parallel = T)
+
+summary(ga_schedule)
+toc()
+```
+
+We can plot the progression of the algorithm by using `plot()` function on the GA object.
+
+```{r}
+plot(ga_schedule)
+```
+
+The best or optimal solutions are obtained at least at the 102nd iteration and didn't improve since then, so the algorithm stop after 100 iterations at 233nd iteration. 
+
+Let's put the optimal sequence to our data. The resulting data frame will be our production schedule. Since there are multiple solutions, let's just look at the first two optimal solutions.
+
+The first solution:
+
+```{r}
+rmarkdown::paged_table(df_car[ga_schedule@solution[1, ], ])
+```
+
+The second solution:
+
+```{r}
+rmarkdown::paged_table(df_car[ga_schedule@solution[2, ], ])
+```
+
+Even though the first solution and the second solution has different sequence, the fitness function or the number of setup are the same, therefore both are optimal solutions and the decision to choose which one should be put into actual use is being handed to the decision maker, in these case, the production control staff.
+
+There are still many application of GA in various field, especially in manufacturing and engineering process. As long as there is a fitness function and decision variables, GA can be appllied toward the problem.
+
+## Hyper-Parameter Tuning on Machine Learning Model
+
+Now we will try to apply the genetic algorithm to tune and optimize our machine learning model. We will use the `attrition` dataset.
+
+### Import Data
+
+```{r}
+attrition <- read.csv("data_input/attrition.csv")
+
+attrition <- attrition %>% 
+  mutate(job_involvement = as.factor(job_involvement),
+         education = as.factor(education),
+         environment_satisfaction = as.factor(environment_satisfaction),
+         performance_rating = as.factor(performance_rating),
+         relationship_satisfaction = as.factor(relationship_satisfaction),
+         work_life_balance = as.factor(work_life_balance),
+         attrition = factor(attrition, levels = c("yes", "no")))
+
+rmarkdown::paged_table(attrition)
+```
+
+### Cross-Validation
+
+We split the data into training set and testing dataset, with 80% of the data will be used as the training set.
+
+```{r}
+set.seed(123)
+intrain <- initial_split(attrition, prop = 0.8, strata = "attrition")
+```
+
+### Data Preprocessing
+
+We will preprocess the data with the following step:
+
+* Upsample to increase the number of the minority class and prevent class imbalance
+* Scaling all of the numeric variables
+* Remove numeric variable with near zero variance
+* Use PCA to reduce dimensions with threshold of 90% information kept
+* Remove `over_18` variable since it only has 1 levels of factor
+
+```{r}
+rec <- recipe(attrition ~ ., data = training(intrain)) %>% 
+  step_upsample(attrition) %>% 
+  step_scale(all_numeric()) %>% 
+  step_nzv(all_numeric()) %>% 
+  step_pca(all_numeric(), threshold = 0.9) %>% 
+  step_rm(over_18) %>% 
+  prep()
+
+data_train <- juice(rec)
+data_test <- bake(rec, testing(intrain))
+```
+
+
+### Create Fitness Function
+
+We will train the model using `random forest`. We will optimize the `mtry` (number of nodes in each tree) and the `min_n` (minimum number of member on each tree in order to be splitted) value by maximizing the model accuracy on the testing dataset. Since the number of `mtry` and `min_n` is integer, we better use binary encoding instead of real-valued encoding. 
+
+We will set the range of `mtry` from 1 to 32. We will limit the range of `min_n` from 1 to 128. Let's check how many bits we need to cover those numbers.
+
+```{r}
+# max value of mtry = 32
+2^5
+
+# max value of min_n = 128
+2^7
+```
+
+So, we will need at least 12 bits of binary. If the converted value of bits for `mtry` or `min_n` is 0, we change it to 1.
+
+We will write the model as fitness function. We will maximize the accuracy of our model on the testing dataset.
+
+```{r}
+fit_function <- function(x){
+  a <- binary2decimal(x[1:5])
+  b <- binary2decimal(x[6:12])
+  
+  if (a == 0) {
+    a <- 1
+  }
+  if (b == 0) {
+    b <- 1
+  }
+  if (a > 17) {
+    a <- 17
+  }
+  
+#define model spec
+model_spec <- rand_forest(
+  mode = "classification",
+  mtry = a,
+  min_n = b,
+  trees = 500)
+
+#define model engine
+model_spec <- set_engine(model_spec,
+                         engine = "ranger",
+                         seed = 123,
+                         num.threads = parallel::detectCores(),
+                         importance = "impurity")
+
+#model fitting
+set.seed(123)
+model <- fit_xy(
+  object = model_spec,
+  x = select(data_train, -attrition),
+  y = select(data_train, attrition)
+)
+
+pred_test <- predict(model, new_data = data_test %>% select(-attrition))
+acc <- accuracy_vec(truth = data_test$attrition, estimate = pred_test$.pred_class)
+return(acc)
+}
+```
+
+### Run the Algorithm
+
+**IMPORTANT**
+\n
+Since some model require a lot of time to train, you may need to be extra careful on choosing the population size and the number of iteration. If you don't have a problem to run the GA on a long period of time, than you may choose bigger population size and number of iterations. Here I will set the population size to be only 100 and the maximum number of iteration is 100. You can use `parallel = TRUE` if you want faster computation with parallel computing.
+
+We will try to use tournament selection instead of the default linear rank selection.
+
+```{r}
+tic()
+ga_rf <- ga(type = "binary", fitness = fit_function, nBits = 12, seed = 123, 
+            popSize = 100, maxiter = 100, run = 10, parallel = T, 
+            selection = gabin_tourSelection)
+summary(ga_rf)
+toc()
+```
+
+Let's plot the progression of GA
+
+```{r}
+plot(ga_rf)
+```
+
+Let's check each decision variables and the accuracy that is used as the fitness value.
+
+```{r warning=FALSE, message=FALSE}
+# Transform decision variables into data frame
+ga_rf_pop <- as.data.frame(ga_rf@population)
+
+# Convert decision variables into mtry and min_n
+ga_mtry <- apply(ga_rf_pop[ , 1:5], 1, binary2decimal)
+ga_min_n <- apply(ga_rf_pop[ , 6:12], 1, binary2decimal)
+
+# Show the list of solutions in the final population
+rmarkdown::paged_table(
+  data.frame(mtry = ga_mtry,
+           min_n = ga_min_n,
+           accuracy = ga_rf@fitness) %>% 
+  mutate(mtry = ifelse(mtry == 0, 1, mtry),
+         min_n = ifelse(min_n == 0, 1, min_n),
+         mtry = ifelse(mtry > 17, 17, mtry)) %>% 
+  distinct() %>%
+  arrange(desc(accuracy))
+  )
+```
+
+### Compare with K-fold Cross Validation
+
+You may want to compare the computation time of GA with the required time for repeated K-fold cross-validation using the conventional `caret` package. We will use k = 5 and 10 repeats.
+
+```{r}
+tic()
+set.seed(123)
+ctrl <- trainControl(method="repeatedcv", number=5, repeats=10)
+attrition_forest <- train(attrition ~ ., data=data_train, method="rf", trControl = ctrl)
+toc()
+
+attrition_forest
+```
+
+Let's check the accuracy of the random forest model with `caret`
+
+```{r}
+pred_rf <- predict(attrition_forest, newdata = data_test)
+accuracy_vec(truth = data_test$attrition, estimate = pred_rf)
+```
+
+The model performance by GA is better than those optimized with simple K-fold cross validation, even though GA require more time to compute. This trade-off of computation time vs performance should be considered.
+
+# Conclusion
+
+Optimization problem is one of many concern in business, which may seek to maximize profit and minimize loss. Machine learning apply optimization on their method of training model to get the best possible result. 
+GA is an optimization algorithm that can be applied in various fields, including data science. If a data scientist can harness the benefit of GA, he can get more optimal model with better performance. The downside of GA is that it require time to compute since it belong to the group of search algorithm, where it explore possible solution efficiently compared to random search.
+
+# What's Next
+
+Research in evolutionary algorithm is still growing in recent years, some discussed the best crossover and mutation scheme, while the others improve the method. GA can also be applied for multi-objective optimization, where two or more conflicting objectives need to be optimized. Several method such as NSGA-II or SPEA2 is a popular GA method that can be used to do a multi-objective optimization. Many of new multi-objective or even many-objective (those with more than 3 objectives) evolutionary algorithms are derived from this two methods[^8]. One of the most interesting application of this is in manufacturing sector, especially for scheduling problem, where complex combinatorial optimization problem need to be solved since they have great impact toward productivity and cost[^9].
+
+# Reference
+
+[^1]: [Treiber, N. A., and O. Kramer. 2015. Evolutionary feature weighting for wind power prediction with nearest neighbor regression. *IEEE Congress on Evolutionary Computation (CEC)*, 332-337.](https://ieeexplore.ieee.org/abstract/document/7256910)
+[^2]: [Oehmcke, S., Heinermann, J., and Kramer, O. 2015. Analysis of diversity methods for evolutionary
+multi-objective ensemble classifiers. *Applications of Evolutionary Computation (EvoStar)*, 567–578.](https://www.researchgate.net/profile/Stefan_Oehmcke/publication/275041018_Analysis_of_Diversity_Methods_for_Evolutionary_Multi-Objective_Ensemble_Classifiers/links/55310b320cf27acb0de92550/Analysis-of-Diversity-Methods-for-Evolutionary-Multi-Objective-Ensemble-Classifiers.pdf)
+[^3]: [Nearchou, A. C. 2004. The Effect of Various Operators on The Genetic Search for Large Scheduling Problems. *International Journal of productions Economics*, 88, 191-203.](https://www.sciencedirect.com/science/article/abs/pii/S0925527303001841)
+[^4]: [Kramer, Oliver. 2017. *Genetic Algorithm Essentials*. Gewerbestrasse: Springer.](https://www.springer.com/gp/book/9783319521558)
+[^5]: [Scrucca, Luca. A quick tour of GA](http://luca-scr.github.io/GA/articles/GA.html)
+[^6]: [Scrucca, Luca. 2013. GA: A Package for Genetic Algorithms in R. *Journal of Statistical Software*, 3(4).](https://www.jstatsoft.org/article/view/v053i04/v53i04.pdf)
+[^7]: [GA Package: A Function For Setting Or Retrieving Defaults Genetic Operators](https://www.rdocumentation.org/packages/GA/versions/3.2/topics/gaControl)
+[^8]: [Chand, Shelvin and Markus Wagner. 2015. Evolutionary many-objective optimization: A quick-start guide. *Surveys in Operations Research and Management Science*, 20(2), 35-42.](https://www.sciencedirect.com/science/article/pii/S1876735415000148)
+[^9]: [Gen, M., & Lin, L. 2013. Multiobjective evolutionary algorithm for manufacturing scheduling problems: state-of-the-art survey. *Journal of Intelligent Manufacturing*, 25(5), 849–866.](https://lvk.cs.msu.su/~vbabernov/2019-o/m1/2013_LIN_Multiobjective%20evolutionary%20algorithm%20for%20manufacturing.pdf)
