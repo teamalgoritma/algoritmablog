@@ -1,4 +1,4 @@
-# Overview Algotech
+# :star2: Overview Algotech
 
 *Algotech* is a Website for technical blog Algoritma. To serve the website locally and to view a live version run the following command:
 
@@ -11,7 +11,7 @@ blogdown::serve_site()
 
 ***
 
-# Contributing Articles
+# :memo: Contributing Articles
 
 Want to contribute an article? Please follow the submission guidelines below:
 
@@ -21,7 +21,7 @@ Want to contribute an article? Please follow the submission guidelines below:
 
 If the project owner agrees with your work, they might merged your request into the original repository.
 
-## 1. Fork a Repo
+## 1. Fork a Repo 
 
 **Step-1**:
 
@@ -123,17 +123,13 @@ knitr::opts_chunk$set(
 
 ### Insert Images
 
-1. Save your images on `/public/img/` with a template `yourarticlename-imgname.png`.
-2. Embed the images with the following command, and options `echo = FALSE`.
+1. Create new folder *your topic article* on `/public/img/`.
+2. Save your images on `/public/img/ARTICLE-TOPIC` with a template `imgname.png`.
+3. Embed the images with the following command, and options `echo = FALSE`.
 
 ```
-knitr::include_graphics('/img/yourarticlename-imgname.png')
+knitr::include_graphics('/img/article-topic/imgname.png')
 ```
 
-## 3. Submit Pull Request
+## 3. Submit Pull Request! :grin:
 
-# Development Issues
-
-1. Customize css like Algoritma's code highlighting.
-2. Fixing Social Media share button.
-3. Fixing Search bar Menu.
