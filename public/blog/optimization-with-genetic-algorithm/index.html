@@ -24,7 +24,7 @@
         "datePublished": "2020-01-13 00:00:00 \x2b0000 UTC",
         "dateModified" : "2020-01-13 00:00:00 \x2b0000 UTC",
         "url" : "\/blog\/optimization-with-genetic-algorithm\/",
-        "wordCount" : "7713",
+        "wordCount" : "7705",
         "keywords" : [ "Genetic Algorithm","Optimization","Blog" ]
     }
     </script>
@@ -72,7 +72,7 @@
 
 <meta itemprop="datePublished" content="2020-01-13T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-01-13T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="7713">
+<meta itemprop="wordCount" content="7705">
 
 
 
@@ -601,9 +601,9 @@ Luca Scrucca
 </blockquote>
 <p>Genetic Algorithm is an optimization algorithm that use the concept of evolution by natural selection. Evolution by natural selection, as proposed by Darwin, is the mechanism on how many varieties of living things are adapting to their environment to survive, through 2 main principles: natural selection and random mutation. The genetic algorithm (GA) borrowed the concept and use it to gain optimal solutions by selecting the best or the fittest solution alongside the rare and random occurence of mutation.</p>
 <p>Suppose we have a non-convex function. If we use a derivative-based method such as gradient descend, it would potentially fall into local optima at <span class="math inline">\(x_1\)</span>. Genetic Algorithm can overcome the local optima, thus it can provide better solution. Combined with machine learning such as neural network, GA can create an arfiticial intelligence system that can play game, like <a href = "https://www.youtube.com/watch?v=aeWmdojEJf0"> Flappy Bird </a>
-<img src="/genetic-algo/nonconvex.png" width="50%" style="display: block; margin: auto;" /></p>
+<img src="/img/genetic-algo/nonconvex.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>The general flow of the algorithm is shown below:</p>
-<p><img src="/genetic-algo/ga_flow.png" width="30%" style="display: block; margin: auto;" /></p>
+<p><img src="/img/genetic-algo/ga_flow.png" width="30%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>There will be a population of randomly selected chromosomes or solutions.</li>
 <li>The fitness values or the objective function values from each solutions are calculated.</li>
@@ -628,22 +628,22 @@ parameter spaces.</li>
 <h2>Elements</h2>
 <p>There exist 3 main elements of GA: Population, Chromosomes, and Genes.</p>
 <p>Population is a group of individuals or solutions, mainly called chromosomes. A chromosomes consists of a sequence of genes, with each or multiple genes (depend on the encoding) represent a single decision variables that will be fitted on the objective functions.</p>
-<p><img src="/genetic-algo/ga_element.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="/img/genetic-algo/ga_element.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>A gene can be represented or encoded in various ways, including:</p>
 <ul>
 <li>Binary Encoding</li>
 </ul>
-<p><img src="/genetic-algo/ga3.png" /></p>
+<p><img src="/img/genetic-algo/ga3.png" style="display: block; margin: auto;" /></p>
 <p>Binary encoding mean that our genes are encoded into binary number, this is the earliest and the most common form of GA encoding.</p>
 <ul>
 <li>Real-Valued Encoding</li>
 </ul>
-<p><img src="/genetic-algo/ga4.png" /></p>
+<p><img src="/img/genetic-algo/ga4.png" style="display: block; margin: auto;" /></p>
 <p>Real-valued encoding mean that our genes are encoded in a floating point or decimal number. Real-valued encoding can be used to optimize a process parameter, since it consists of floating point number and are not suited for integer-based optimization.</p>
 <ul>
 <li>Permutation Encoding</li>
 </ul>
-<p><img src="/genetic-algo/ga5.png" /></p>
+<p><img src="/img/genetic-algo/ga5.png" style="display: block; margin: auto;" /></p>
 <p>Permutation encoding mean that our genes are encoded into a sequence of number, each number is uniquely assigned to a gene so no 2 genes that will have the same number or value. This encoding is often used in a scheduling or routing problem, where each permutation represent one location or unique points.</p>
 </div>
 <div id="selection" class="section level2">
@@ -653,7 +653,7 @@ parameter spaces.</li>
 <li>Roulette Wheel Selection</li>
 </ul>
 <p>Parents will be selected randomly based on the fitness value. Higher fitness value mean higher chance to be chosen.</p>
-<p><img src="/genetic-algo/ga9.png" /></p>
+<p><img src="/img/genetic-algo/ga9.png" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Linear Ranking Selection</li>
 </ul>
@@ -674,12 +674,12 @@ parameter spaces.</li>
 <li>Single-point Crossover</li>
 </ul>
 <p>Split the parent based on a randomly generated single point. The first child would have gene from the first parent for the position 1 up to the point, while the rest is filled with genes from the second parent. The second child is opposite, position 1 up to the point is filled with genes from the second parent.</p>
-<p><img src="/genetic-algo/gabin_cross.png" /></p>
+<p><img src="/img/genetic-algo/gabin_cross.png" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Uniform Crossover</li>
 </ul>
 <p>Every gene is exchanged between the a pair of randomly selected chromosomes with a certain probability, called as the swapping probability. Usually, the swapping probability value is taken to be 0.5.</p>
-<p><img src="/genetic-algo/gabin_cross2.png" /></p>
+<p><img src="/img/genetic-algo/gabin_cross2.png" style="display: block; margin: auto;" /></p>
 </div>
 <div id="real-valued" class="section level4">
 <h4>Real-Valued</h4>
@@ -690,7 +690,7 @@ parameter spaces.</li>
 <p><span class="math display">\[Child \ 1 = weight \ * x + (1-weight) \ * y\]</span>
 <span class="math display">\[Child \ 2 = weight \ * y + (2-weight) \ * x\]</span></p>
 <p>If the weight = 0.5 two offspring are identical</p>
-<p><img src="/genetic-algo/gareal_cross.png" /></p>
+<p><img src="/img/genetic-algo/gareal_cross.png" /></p>
 <ul>
 <li>Local Arithmetic Crossover</li>
 </ul>
@@ -702,18 +702,12 @@ parameter spaces.</li>
 <li>One-point crossover</li>
 </ul>
 <p>One-point crossover use only one random point as the marker where crossover should happen.</p>
-<div class="figure">
-<img src="/genetic-algo/ga6.png" alt="Nearchou, 2014" />
-<p class="caption">Nearchou, 2014</p>
-</div>
+<p><img src="/img/genetic-algo/ga6.png" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Position-Based crossover</li>
 </ul>
 <p>A number of positions from the first parent is randomly selected and fill the remaining position from the second parent.</p>
-<div class="figure">
-<img src="/genetic-algo/pb_cross.png" alt="Nearchou, 2014" />
-<p class="caption">Nearchou, 2014</p>
-</div>
+<p><img src="/img/genetic-algo/pb_cross.png" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="mutation" class="section level3">
@@ -725,7 +719,7 @@ parameter spaces.</li>
 <li>Random Mutation</li>
 </ul>
 <p>Genes are randomly flipped from 1 to 0 or vice versa with uniform probability for each gene, meaning that each gene has the same chance to mutate with mutation rate or mutation probability set by the user.</p>
-<p><img src="/genetic-algo/gabin_mutation.png" /></p>
+<p><img src="/img/genetic-algo/gabin_mutation.png" style="display: block; margin: auto;" /></p>
 </div>
 <div id="real-valued-1" class="section level4">
 <h4>Real Valued</h4>
@@ -744,18 +738,12 @@ parameter spaces.</li>
 <li>Adjacent Exchange Mutation</li>
 </ul>
 <p>Two adjacent genes are swapped randomly.</p>
-<div class="figure">
-<img src="/genetic-algo/ga10.png" alt="Nearchou, 2014" />
-<p class="caption">Nearchou, 2014</p>
-</div>
+<p><img src="/img/genetic-algo/ga10.png" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Inverse Mutation</li>
 </ul>
 <p>Inverse mutation is done by inversing the sequence between two random points.</p>
-<div class="figure">
-<img src="/genetic-algo/ga13.png" alt="Nearchou, 2014" />
-<p class="caption">Nearchou, 2014</p>
-</div>
+<p><img src="/img/genetic-algo/ga13.png" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -766,7 +754,7 @@ parameter spaces.</li>
 <div id="illustration" class="section level2">
 <h2>Illustration</h2>
 <p>Let’s illustrate step-by-step how Genetic Algorithm works. Let’s say I have a set of item with respective point and weight (kg). I want to maximize the point, but the rules said that I can not bring items with total weight more than 15 kg. Whice items then should I choose in order to maximize my point?</p>
-<p><img src="/genetic-algo/step1.png" /></p>
+<p><img src="/img/genetic-algo/step1.png" style="display: block; margin: auto;" /></p>
 <div id="define-encoding-and-fitness-function" class="section level3">
 <h3>Define Encoding and Fitness Function</h3>
 <p>Since the problem is about whether bring certain item or not, then the solution should consists a logical value of each item. If the value is <code>1</code> or <code>TRUE</code>, then I should bring those item, and if value is <code>0</code> or <code>FALSE</code>, then I should not bring the item. By this logic, the encoding for our genetic algorithm should be binary encoding because it consists only 2 values (1 or 0).</p>
@@ -786,12 +774,12 @@ parameter spaces.</li>
 <div id="initial-population" class="section level3">
 <h3>Initial Population</h3>
 <p>First, GA will randomly generate a population of solution. Here, we have a population of 4 solutions/indviduals. The binary value on each individuals are generated randomly.</p>
-<p><img src="/genetic-algo/step2.png" /></p>
+<p><img src="/img/genetic-algo/step2.png" style="display: block; margin: auto;" /></p>
 </div>
 <div id="fitness-assignment" class="section level3">
 <h3>Fitness Assignment</h3>
 <p>Now we calculate the fitness value (total point) of each individuals based on the fitness function above. We can see that solution that violate the constraint (have total weight &gt; 15) will have worse fitness function.</p>
-<p><img src="/genetic-algo/step3.png" /></p>
+<p><img src="/img/genetic-algo/step3.png" style="display: block; margin: auto;" /></p>
 </div>
 <div id="selection-1" class="section level3">
 <h3>Selection</h3>
@@ -802,20 +790,20 @@ parameter spaces.</li>
 <li>Calculate the probability of each individuals based on their rank. The sum of the rank is 10, so the probability of each solution is <span class="math inline">\(Rank_i/10\)</span>.</li>
 <li>Chose solution randomly based on the probability. Solution with higher fitness function will naturally has higher chance to be chosen.</li>
 </ul>
-<p><img src="/genetic-algo/step4.png" /></p>
+<p><img src="/img/genetic-algo/step4.png" style="display: block; margin: auto;" /></p>
 <p>Let’s say for example, the first and second solution are chosen as the <code>parent</code></p>
-<p><img src="/genetic-algo/step5.png" /></p>
+<p><img src="/img/genetic-algo/step5.png" style="display: block; margin: auto;" /></p>
 </div>
 <div id="crossover-1" class="section level3">
 <h3>Crossover</h3>
 <p>Crossover means exchanging genes between two <code>parents</code> two create new solution called <code>child</code> solution. We will use the single-point crossover here. A single point is chosen randomly.</p>
 <p>Let’s say the point is chosen to be between position 2 and 3. For the first child, it will have the first and second gene from the first parent, while the rest will be filled from the second parent. For the second child, it is the opposite, it will have the first and second gene from the second parent, while the rest will be filled from the first parent.</p>
-<p><img src="/genetic-algo/step6.png" /></p>
+<p><img src="/img/genetic-algo/step6.png" style="display: block; margin: auto;" /></p>
 </div>
 <div id="mutation-1" class="section level3">
 <h3>Mutation</h3>
 <p>Mutation is the change of value in the gene. Here we use random mutation. It will randomly swap the value of gene. If the gene in position 3 have value of 1, it would be switched into 0 and vice versa. Mutation is rarely occur, its probability can be set manually, but generally people use mutation probability of 0.1.</p>
-<p><img src="/genetic-algo/step7.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="/img/genetic-algo/step7.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>The selection, crossover, and mutation process will be repeated by choosing different parent until the number of children are the same with the population size of the parent. If the parent have population size of 4, then we would have a children population of 4.</p>
 </div>
 <div id="check-stopping-criteria" class="section level3">
@@ -904,7 +892,7 @@ ga_knapsack &lt;- ga(type = &quot;binary&quot;, fitness = evalFunc, popSize = 10
                   maxiter = 100, 
                   run = 20, nBits = nrow(df_item_long), seed = 123)
 toc()</code></pre>
-<pre><code>## 0.95 sec elapsed</code></pre>
+<pre><code>## 0.63 sec elapsed</code></pre>
 <p>The iteration stop at iterations 22 since after 20 iterations no improvement in the <code>total weight</code>. The optimal solution can be seen at <code>Fitness function value</code> which is 10000 (10,000 kg).</p>
 <p>The <code>Solution</code> output is the solution that result in the optimal fitness value. We can choose one of them since they will result in the same fitness value. Let’s check one of them.</p>
 <pre class="r"><code>summary(ga_knapsack)</code></pre>
@@ -958,7 +946,7 @@ toc()</code></pre>
 <p>As we can see, there are several solutions for the problem, all of them have the same fitness value: 10000. Therefore, we have the flexibility to choose which solution we will pick. All optimal solution has no value greater than its constraint, which is also 10000.</p>
 <p>Let’s check the plot of fitness value progression using <code>plot()</code>.</p>
 <pre class="r"><code>plot(ga_knapsack)</code></pre>
-<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can see that the optimal solution (Best) is already achieved at iteration 3.</p>
 <p>Let’s choose one of the solution as our decision.</p>
 <pre class="r"><code>df_sol &lt;- df_item_long[ga_knapsack@solution[1, ] == 1, ]
@@ -1062,7 +1050,7 @@ summary(ga_cities)</code></pre>
 ## [4,] 20 10  6 17 21  1 19 16  8  15        11   7
 ## [5,]  7 20 10  6 17 21  1 19 16   8         3  11</code></pre>
 <pre class="r"><code>toc()</code></pre>
-<pre><code>## 8.37 sec elapsed</code></pre>
+<pre><code>## 5.36 sec elapsed</code></pre>
 <p>We have 5 solutions/routes that has the minimal distance. Transform the information into readable route</p>
 <pre class="r"><code>route_optimal &lt;- ga_cities@solution
 
@@ -1150,10 +1138,10 @@ summary(ga_schedule)</code></pre>
 ## [51,] 11 18 24  4 15 12 21  6  8  20        22  14
 ## [52,] 11 18 24  4 15 21 12  6  8  20        22  14</code></pre>
 <pre class="r"><code>toc()</code></pre>
-<pre><code>## 40.25 sec elapsed</code></pre>
+<pre><code>## 38.25 sec elapsed</code></pre>
 <p>We can plot the progression of the algorithm by using <code>plot()</code> function on the GA object.</p>
 <pre class="r"><code>plot(ga_schedule)</code></pre>
-<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The best or optimal solutions are obtained at least at the 102nd iteration and didn’t improve since then, so the algorithm stop after 100 iterations at 233nd iteration.</p>
 <p>Let’s put the optimal sequence to our data. The resulting data frame will be our production schedule. Since there are multiple solutions, let’s just look at the first two optimal solutions.</p>
 <p>The first solution:</p>
@@ -1306,10 +1294,10 @@ summary(ga_rf)</code></pre>
 ## [1,]  0  0  0  1  0  0  0  0  0   0   0   0
 ## [2,]  0  0  0  1  0  0  0  0  0   0   0   1</code></pre>
 <pre class="r"><code>toc()</code></pre>
-<pre><code>## 307.86 sec elapsed</code></pre>
+<pre><code>## 364.11 sec elapsed</code></pre>
 <p>Let’s plot the progression of GA</p>
 <pre class="r"><code>plot(ga_rf)</code></pre>
-<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-50-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Let’s check each decision variables and the accuracy that is used as the fitness value.</p>
 <pre class="r"><code># Transform decision variables into data frame
 ga_rf_pop &lt;- as.data.frame(ga_rf@population)
@@ -1343,7 +1331,7 @@ set.seed(123)
 ctrl &lt;- trainControl(method=&quot;repeatedcv&quot;, number=5, repeats=10)
 attrition_forest &lt;- train(attrition ~ ., data=data_train, method=&quot;rf&quot;, trControl = ctrl)
 toc()</code></pre>
-<pre><code>## 609.19 sec elapsed</code></pre>
+<pre><code>## 481.86 sec elapsed</code></pre>
 <pre class="r"><code>attrition_forest</code></pre>
 <pre><code>## Random Forest 
 ## 
