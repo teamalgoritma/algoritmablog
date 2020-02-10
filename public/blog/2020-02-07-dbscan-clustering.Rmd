@@ -1,0 +1,226 @@
+---
+title: DBSCAN Clustering
+author: David
+github: github.com/Davidlimbong
+date: '2020-02-07'
+slug: dbscan-clustering
+categories:
+  - R
+tags:
+  - Machine Learning
+  - Clustering
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup, include=FALSE}
+# clean up the environment
+rm(list = ls())
+options(scipen = 534)
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+
+```
+
+
+# 1. Pendahuluan
+## 1.1 Clustering
+&nbsp;&nbsp;&nbsp;&nbsp; Clustering merupakan salah satu bagian dari unsupervised learning. Clustering memiliki tujuan untuk membagi data ke dalam beberapa kelompok berdasarkan kemiripan antar data. Cluster (kelompok) yang baik adalah cluster yang memiliki kemiripan yang besar antar anggota clusternya dan memiliki perbedaan yang signifikan dengan anggota cluster yang berbeda. Clustering dapat diterapkan dalam berbagai bidang seperti segmentasi pasar, cluster profiling, data spatial dll. Metode clustering sangat beragam, namun bila ingin dikelompokkan secara general berdasarkan metodenya, clustering dapat dibagi menjadi beberapa kelompok seperti gambar dibawah.
+
+
+```{r out.width="60%", fig.align='center', echo=FALSE}
+knitr::include_graphics("/img/dbscan-clustering/clustering.png")
+```
+Gambar diatas membagi metode cluster kedalam 4 metode dengan karakter dari masing masing metode. Artikel ini akan membahas salah satu algoritma yang menggunakan metode kerapatan (density-based) yaitu DBSCAN.
+
+## 1.2 Setup
+DBSCAN dapat digunakan pada R  dengan menginstall package `dbscan` terlebih dahulu.
+```{r eval=F}
+install.packages("dbscan")
+```
+
+Berikut beberapa packages yang digunakan pada artikel ini.
+```{r message=F, warning=F}
+library(dplyr)
+# clustering libs
+library(dbscan)
+library(factoextra)
+library(cluster)
+# visualization libs
+library(ggplot2)
+library(leaflet)
+library(ggthemes)
+library(fishualize)
+```
+
+# 2. DBSCAN
+&nbsp;&nbsp;&nbsp;&nbsp; Algoritma Density-based Spatial Clustering of Application with Noise (DBSCAN) merupakan metode clustering yang berbasis kepadatan (density-based) dari posisi amatan data dengan prinsip mengelompokkan data yang relatif berdekatan. DBSCAN sering diterapkan pada data yang banyak mengandung noise, hal ini dikarenakan DBSCAN tidak akan memasukkan data yang dianggap noise kedalam cluster manapun. 
+
+## 2.1 Terminologi
+&nbsp;&nbsp;&nbsp;&nbsp;DBSCAN memerlukan dua parameter input sebelum melakukan proses clustering yaitu epsilon (eps) dan minimum points (minPts). Epsilon merupakan jarak maksimal antara dua data dalam satu cluster yang diizinkan, dan minimum points adalah banyaknya data minimal dalam jarak epsilon agar terbentuk suatu cluster. Metode jarak yang digunakan dalam DBSCAN adalah jarak Euclidian. Selain epsilon dan MinPts ada beberapa terminologi lain dalam metode DBSCAN yaitu :     
+
+* `directly density-reachable` : Observasi q berhubungan langsung dengan p, jika p adalah core point dan q merupakan tetangga dari p dalam jangkauan epsilon.     
+* `density-reachable` : Observasi q dan x dalam satu cluster namun x bukan tetangga dari q dalam jangkauan epsilon.     
+* `core point` :  Core point merupakan observasi yang memiliki jumlah tetangga lebih dari sama dengan dari MinPts pada jangkauan Eps.    
+* `border point` : Border point memiliki tetangga lebih sedikit dari Minpts namun ia merupakan tetangga dari core point.    
+* `outlier/noise point` : Observasi yang bukan border points atau core points.    
+
+```{r out.width="60%", fig.align='center', echo=FALSE}
+knitr::include_graphics("/img/dbscan-clustering/dbscan terms.png")
+```
+
+## 2.2 Cara Kerja DBSCAN
+&nbsp;&nbsp;&nbsp;&nbsp; Dalam proses pembuatan cluster menggunakan DBSCAN sebuah data akan dikelompokkan dengan tetangganya. Sepasang amatan dikatakan bertetangga apabila jarak antara dua amatan tersebut kurang dari sama dengan nilai epsilon. Secara sederhana cara kerja DBSCAN adalah sebagai berikut :    
+1. Tentukan nilai minPts dan epsilon (eps) yang akan digunakan.    
+2. Pilih data awal “p” secara acak.    
+3. Hitung jarak antara data “p” terhadap semua data menggunakan Euclidian distance.    
+4. Ambil semua amatan yang density-reachable dengan amatan “p”.    
+5. Jika amatan yang memenuhi nilai epsilon lebih dari jumlah minimal amatan dalam satu gerombol maka amatan “p” dikategorikan sebagai
+core points dan gerombol terbentuk.    
+6. Jika amatan “p” adalah border points dan tidak ada amatan yang density-reachable dengan amatan “p”, maka lanjutkan pada amatan
+lainnya.    
+7. Ulangi langkah 3 sampai 6 hingga semua amatan diproses.    
+
+# 3. DBSCAN pada R
+
+## 3.1 Data Eksplorasi 
+&nbsp;&nbsp;&nbsp;&nbsp;Data yang digunakan dalam proses clustering ini adalah data `multishape` dari packages `factoextra`. Data `multishape` memiliki 1100 observasi dan 3 variabel yaitu `x`, `y`, dan `shape`. Variabel yang digunakan pada proses clustering ini adalah `x` dan `y`.
+```{r message=F}
+data("multishapes")
+multishapes <- multishapes[,1:2]
+dim(multishapes)
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;Secara visual data `multishape` dapat dilihat seperti plot dibawah. Pada plot tersebut terlihat bahwa kerapatan antar data membentuk beberapa bentuk seperti lingkaran dan persegi panjang. 
+```{r}
+ggplot(data = multishapes, aes(x = x, y = y)) +
+  geom_point(col = "firebrick4") +
+  theme_pander()
+```
+
+## 3.2 Clustering 
+
+&nbsp;&nbsp;&nbsp;&nbsp;Tahap awal sebelum melakukan clustering adalah memilih nilai minpts dan epsilon (eps). Nilai minpts dan eps yang optimum dapat dicari menggunakan fungsi `kNNdistplot` dari packages `dbscan`. Ide utama dari fungsi ini adalah menghitung jarak rata2 untuk setiap data ke k tetangga terdekatnya (nearest neighbors). Nilai dari K ditentukan oleh user yang nantinya akan digunakan sebagai minPts pada proses clustering. Rata rata jarak yang sudah didapat divisualisasikan dalam plot secara ascending untuk mendapatkan "knee" yang menunjukkan nilai optimal dari eps berdasarkan K yang ditentukan.
+
+```{r}
+kNNdistplot(multishapes, k = 4)
+abline(h = 0.15, col = "red", lty = 2)
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;Berdasarkan plot diatas dengan menggunakan K = 4 didapat jarak yang optimal yaitu sekitar 0.15. Nilai 0.15 didapat dari posisi "knee" yang terbentuk pada plot. Hasil pencarian nilai eps yang optimal diatas dapat digunakan dalam proses clustering yang mana nilai eps adalah 0.15 dengan minPts 4. Tahap selanjutnya adalah pembuatan cluster menggunakan function dbscan dengan parameter yang sudah didapat.
+
+```{r}
+db_clust <- dbscan(multishapes, eps = 0.15, minPts = 4)
+db_clust
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;Hasil clustering dari data multishape dengan 1100 observasi adalah 5 cluster dan sebanyak 29 data diidentifikasi sebagai noise. Cluster 1 merupakan cluster dengan  anggota cluster terbanyak sedangkan cluster 5 merupakan cluster dengan anggota cluster paling sedikit. Hasil cluster yang sudah dibentuk dapat dilakukan visualisasi agar terlihat pola dari cluster yang didapat.
+
+```{r}
+multishapes <- multishapes %>% 
+  mutate(clust = db_clust$cluster, 
+         clust = ifelse(clust==0,"Noise",clust)) 
+
+ggplot(data =multishapes, aes(x = x, y = y)) +
+geom_point(aes(col = as.factor(clust))) +
+theme_pander() +
+labs(col = "Cluster")
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;Dari hasil visualisasi diatas bisa dilihat bahwa cluster yang dihasilkan dbscan dapat mengelompokkan data sehingga bisa menangkap beberapa bentuk dari data. Noise yang terdeteksi pada data terlihat menyebar, hal ini dikarenakan data noise tidak berhasil ditangkap oleh eps yang ditentukan.
+
+&nbsp;&nbsp;&nbsp;&nbsp;DBSCAN merupakan metode clustering yang sangat sensitif terhadap perubahan parameter. Perbedaan kecil pada parameter yang ada (minPts, Eps) dapat menghasilkan cluster yang berbeda. Sebagai contoh pada data multishapes yang sebelumnya digunakan nilai eps 0.15 apabila diubah yang awalnya menjadi 0.2 akan menghasilkan cluster yang berbeda.
+
+```{r}
+db_clust <- dbscan(multishapes[,1:2], eps = 0.2, minPts = 4)
+db_clust
+```
+Mengubah parameter eps yang semula 0.15 menjadi 0.2 menghasilkan 4 cluster dan noise yang dihasilkan menjadi semakin berkurang menjadi 20. Cluster 1 merupakan cluster yang mengalami penambahan anggota cluster secara signifikan, yang semula 411 menjadi 820. Pola cluster yang sudah dibuat dapat divisualisasikan agar dapat melihat perbedaan dengan proses clustering sebelumnya.
+
+```{r}
+multishapes <- multishapes %>% 
+  mutate(clust = db_clust$cluster, 
+         clust = ifelse(clust==0,"Noise",clust)) 
+
+ggplot(data =multishapes, aes(x = x, y = y)) +
+geom_point(aes(col = as.factor(clust))) +
+theme_pander() +
+labs(col = "Cluster")
+```
+
+Dari hasil visualisasi diatas bisa dilihat bahwa cluster 1 yang baru menggabungkan cluster 1 dan 2 pada proses cluster sebelumnya, serta noise yang awalnya berada disekitar cluster 1 menjadi anggota cluster 1.
+
+# 4. DBSCAN pada Spatial Dataset
+&nbsp;&nbsp;&nbsp;&nbsp;Metode DBSCAN sering diimplemtasikan pada data spatial hal ini dikarenakan dimensi dari data spasial yang cukup sederhana yaitu longitide dan latitude. Data yang digunakan pada artikel ini adalah data kebakaran di Australia pada awal tahun 2020. Anda dapat mengunduh data lengkapnya pada [link berikut](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-07/MODIS_C6_Australia_and_New_Zealand_7d.csv)
+```{r message=F}
+nasa_fire <- readr::read_csv('data_input/nasa_fire.csv')
+head(nasa_fire)
+```
+
+Data `nasa_fire` memiliki 3 variabel yaitu `latitude`, `longitude`, dan `confidence`. Nilai `confidence` berkisar dari 0 hingga 100 yang menunjukkan tingkat keyakinan kebakaran terjadi.  Sebelum masuk pada proses pembuatan cluster, data `nasa_fire` akan divisualisasikan dalam bentuk peta menggunakan packages `leaflet`.
+
+```{r}
+leaflet(data = nasa_fire) %>% 
+  addTiles() %>% 
+  setView(lng = 133.7751,lat = -25.2744,zoom =  4) %>% 
+  addCircleMarkers(lng = ~longitude, 
+                   lat = ~latitude, 
+                   radius =1)
+```
+
+Dari visualisasi diatas bisa dilihat bahwa titik kebakaran menggerombol pada beberapa area, dan beberapa titik kebakaran berada jauh dari kerumunan yang ada. Tahap selanjutnya adalah menentukan nilai MinPts dan Eps yang optimum dengan menggunakan fungsi `KNNdistplot`.
+```{r}
+kNNdistplot(nasa_fire[,1:2], k = 10)
+abline(h= 0.8, col = "red", lty = 3)
+```
+
+Dengan menggunkan k = 10 maka didapat nilai eps sebesar 0.8 berdasarkan "knee" yang terbentuk dari plot. Selanjutnya proses pembuatan cluster menggunakan fungsi `dbscan` dengan parameter yang sudah didapat yaitu minPts = 10 dan eps = 0.8.
+```{r}
+nasa_clust <- dbscan(nasa_fire[,1:2], eps = 0.8, minPts = 10)
+nasa_clust
+```
+
+Clustering yang dilakukan menghasilkan 44 cluster dan 251 data noise. Cluster dengan jumlah anggota terbanyak dimiliki cluster 1 dengan 18333 anggota cluster dan cluser 43 dan 26 sebagai cluster dengan anggota cluster paling sedikit yaitu 11. Hasil Cluster dapat divisualisasikan dalam peta untuk melihat persebaran cluster yang dibentuk.
+
+```{r}
+# membuat kolom baru untuk cluster
+nasa_fire <- nasa_fire %>% 
+  mutate(clust = nasa_clust$cluster)
+
+# membuat pallet color untuk setiap cluster
+pallet <- fishualize::fish(n = length(unique(nasa_fire$clust)), option = "Bryaninops_natans")
+pal <- colorFactor(pallet, domain = unique(nasa_fire$clust))
+
+# visualisasi cluser tanpa data noise
+leaflet(data = nasa_fire[nasa_fire$clust !=0,]) %>% 
+  addTiles() %>% 
+  setView(lng = 133.7751,lat = -25.2744,zoom =  4) %>% 
+  addCircleMarkers(lng = ~longitude, 
+                   lat = ~latitude, 
+                   radius =1,
+                   color = ~pal(clust))
+```
+
+visualisasi diatas tanpa menggunakan data noise agar cluster yang sudah dibentuk bisa terlihat lebih jelas. Berdasarkan visualisasi data diatas kebakaran paling padat didaerah tenggara Australia.   
+
+# 5. Kesimpulan 
+&nbsp;&nbsp;&nbsp;&nbsp;DBSCAN merupakan algoritma clustering yang menggunakan metode density-based. Tidak seperti algoritma K-means yang menggunakan partitioning method, DBSCAN tidak memerlukan jumlah cluster sebagai inputan melainkan epsilon dan minPts. Epsilon merupakan jarak maksimal antara dua amatan dalam satu cluster yang diizinkan, dan minPts adalah banyaknya data minimal dalam jarak epsilon agar terbentuk suatu cluster. Kelebihan dari metode ini adalah dapat menangkap cluster yang memiliki bentuk serta bisa mendeteksi noise yang ada pada data. Kekurangan dari metode ini adalah tidak cocok untuk data yang memiliki tingkat kerapatan beragam, DBSCAN juga tidak cocok untuk data dengan dimensi yang besar, selain itu DBSCAN sangat sensitif terhadap perubahan nilai pada parameter.
+
+# 6. Refrensi 
+
+1. [Han J, Kamber M, Pei J. 2011. Data Mining: Concepts and Techniques, 3rd Edition.
+San Francisco (US): Morgan Kaufmann Publisher.](http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf)
