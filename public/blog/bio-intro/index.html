@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.64.0" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
 
 
@@ -58,15 +58,18 @@
 <meta property="og:description" content="It is inarguable that Data Science gives a tremendous impact on today&rsquo;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/bio-intro/" />
-<meta property="article:published_time" content="2019-12-02T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-12-02T00:00:00+00:00" />
+<meta property="article:published_time" content="2019-12-02T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-12-02T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        <meta itemprop="name" content="Bioinformatics: Decoding Nature&#39;s Code of Life">
+        
+<meta itemprop="name" content="Bioinformatics: Decoding Nature&#39;s Code of Life">
 <meta itemprop="description" content="It is inarguable that Data Science gives a tremendous impact on today&rsquo;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.">
+
+
 <meta itemprop="datePublished" content="2019-12-02T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-12-02T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="3445">
@@ -74,6 +77,7 @@
 
 
 <meta itemprop="keywords" content="Bioinformatics,Bioconductor,msa,ape," />
+
         
 
         
@@ -298,9 +302,6 @@
 
 
   
-  
-    
-  
 
 
         
@@ -308,7 +309,7 @@
         
 
         <a href="/blog/bio-intro/" class="image featured">
-            <img src="/img/2019/12/bioinfo.png" alt="">
+            <img src="/date2019/12/bioinfo.png" alt="">
         </a>
     
 
@@ -500,9 +501,14 @@
 
 
   <div id="content">
-    <p>It is inarguable that Data Science gives a tremendous impact on today&rsquo;s industry. Furthermore, it also accelerates the development of basic science research including <em>Biology</em>. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.</p>
-<p><!-- raw HTML omitted --></p>
+    
+
+<p>It is inarguable that Data Science gives a tremendous impact on today&rsquo;s industry. Furthermore, it also accelerates the development of basic science research including <em>Biology</em>. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.</p>
+
+<p><img src="/img/biointro/biointro-venn.png" style="display: block; margin: auto;" /></p>
+
 <p>The specialized Data Science area which combines <em>the use of computer science and statistics and the knowledge of Biology to understand biological data</em> is called <strong>Bioinformatics</strong>. Bioinformatics has given the world so much knowledge and improvement without us knowing. Having only a few articles that combine both the scientific and practical side of this topic, making it somewhat unexposed clearly to the public. Therefore, throughout this article we will be talking about:</p>
+
 <ul>
 <li>Misconception around Bioinformatics</li>
 <li>Biological Data for Bioinformatics</li>
@@ -510,52 +516,89 @@
 <li>Case Study: Bionanocellulose for Future Packaging</li>
 <li>Future Prospect of Bioinformatics</li>
 </ul>
+
 <h2 id="misconception-around-bioinformatics">Misconception around Bioinformatics</h2>
+
 <p>Bioinformatics is originally a subtopic in Biology. Like biology, it has the main purpose to <em>understand living things and how it functions</em>. If we compare it with the more familiar business-related topic, which aims to optimize business practices through data utilization, it has a very little difference. Bioinformatics aims to improve the efficiency and effectivity of biological research through insights derived from <strong>biological data</strong>.</p>
+
 <p>Many of the misconceptions revolved around Bioinformatics is related to the scope and the data it uses. For example, many of the cases most people considered as bioinformatics may come from the healthcare industry which utilizes various measurement data related to health. Some of them are predicting the status of <a href="https://archive.ics.uci.edu/ml/datasets/Heart+Disease">breast cancer</a> from a digitized cell image data, diagnosing the status of <a href="https://archive.ics.uci.edu/ml/datasets/Heart+Disease">heart diseases</a> from health records and laboratory test result, etc. Still, both cases use <em>normal tabular data</em> for analysis, which therefore more appropriately reported as a Data Science application in &ldquo;healthcare&rdquo;, and <em>not yet</em> considered as Bioinformatics.</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/biointro/biointro-heart.png" style="display: block; margin: auto;" /></p>
+
 <p>The data you encounter from these cases is a normal measurement data that may come from many specialized areas of Biology, such as health &amp; medicine, agriculture, environment, bioenergy, biomaterials, etc. Deep knowledge about that respective field is required in order to understand, interpret, and utilize the data appropriately. Meanwhile, the biological data that is used in bioinformatics is rather different.</p>
+
 <p>Biological data that is used in bioinformatics is probably very new to you, certainly more challenging to interpret, but also more interesting to work with. When we deal with this biological data we are actually dealing with the code that resides inside ourselves; the code that encodes a living being. This <em>code</em> is very personal and unique for every living being, including you! This data is the nature&rsquo;s code of life, <strong>DNA</strong>.</p>
+
 <p>With this nature&rsquo;s code of life, we may explore a deeper area of Biology which focuses not only to <strong>predict</strong> the class/statuses of disease but to <strong>discover</strong> what genes (code) that encodes the disease and find a way to correct them. In fact, many application of Bioinformatics helps the <em>discovery of potential natural resources for industrial application</em>, like what we will do in the later section, about finding a new material that is biodegradable enough to replace plastic for our future packaging&ndash;<em>talking about green living!</em> ;)</p>
+
 <h2 id="biological-data-for-bioinformatics">Biological Data for Bioinformatics</h2>
+
 <p>All living things are composed of cells. A cell is the basic unit of life. A single cell can regulate itself to keep living; to eat, to interact with other cells, to defend itself from danger, to repair itself, and reproduce. For example, is a single cell bacteria named <em>Salmonella</em> sp. that may cause you diarrhea. In complex organisms such as plants, animals, and humans, a single organism consist of various types and number of cells. In humans alone, it consists of approximately 40 trillion cells. These cells arranged together forming an organized structure with very complex yet neat mechanisms, making our body function almost perfectly every single day.</p>
+
 <p>Living things may be said as the most complex and magnificent molecular machine ever happened. Scientist passionately performs research to understand what makes living things function and what makes them malfunctions (ill/diseased). Through many years of research, the answer is finally proposed in 1957 and known as <strong>The Central Dogma of Biology</strong>.</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/biointro/biointro-centraldogma.png" style="display: block; margin: auto;" /></p>
+
 <blockquote>
 <p>The ‘Central Dogma’ describes that the appearance and functional ability of all living things comes from the instructions encoded in their DNA.</p>
 </blockquote>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/biointro/biointro-dna.gif" style="display: block; margin: auto;" /></p>
+
 <p>That above is <strong>DNA</strong>. It resides within the cell of each living organism. DNA is a strand with a double helix structure that contains the genetic code of an organism. This genetic code works like instructions that tell the cell what <strong>protein</strong> it should make. A special region in DNA that store codes for each specific protein is called a <strong>gene</strong>. Therefore each protein has its specific gene. The genetic code in DNA is written as a code of 4 characters, representing the 4 types of nucleotide (the building block of DNA) called adenine ( A ), cytosine ( C ), guanine ( G ), thymine ( T ). Every time a protein needs to be made, the gene must be <em>transcribed</em> first into its single strand structure called messenger RNA (mRNA), and then <em>translated</em> into protein. Unlike DNA which only has 4 character codes, proteins have 20 character codes representing each amino acid as the building block to making protein. The cryptogram to translate mRNA into protein is presented below.</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/biointro/biointro-crypto.png" style="display: block; margin: auto;" /></p>
+
 <p>The correct genetic codes and smooth translation from DNA to protein are important so that every cell in our body has enough protein that it needs to functions properly. For example, red blood cells need hemoglobin, a functional protein that binds oxygen and helps red blood cells carry oxygen throughout the body. Another example is collagen, a structural protein which promotes skin cell&rsquo;s elasticity. Another type of protein also exists such as hormones, enzymes, antibodies, etc. A failure in providing the correct protein because of some <em>error code in the DNA</em> may cause serious diseases such as Alzheimer&rsquo;s, Sickle Cell Anemia, Down syndrome, etc.</p>
+
 <p>The codes in DNA also determines an organisms appearance. Some of you might have white skins while other have exotic skin, some of you may have deep black eyes or rather more brownish, curly hair or straight, etc. Not just humans, plants and animals have it too. Have you ever seen various breeds of cats? How can Persians have thick long hair compared to Siameses which has short hair but with black pointed areas in their faces, ears, feet, and tail? How can there be a red-colored chili and the green-colored one? All of these characteristics is already encoded in their DNA.</p>
+
 <blockquote>
 <p>&ldquo;Hey, if we can decode the code of life, is it possible to make a costum organisms? Can we benefit from that?</p>
 </blockquote>
+
 <p>After knowing the relation between DNA and the measured characteristic traits (phenotype) of an organism, scientists began to do research using both DNA and phenotype data to better understand living things and its mechanism (from genetic codes to its outcomes). This practice is what we called as bioinformatics analysis. The data were stored in a database and analyzed using statistical methods with the help of computers, mainly because they are extremely large in size. A full DNA of a single cell bacteria can take about over 14 mega base pairs (14000000 character codes) while a human can have around 3 billion DNA base pairs, and we haven&rsquo;t even combined them with the phenotype data. Biological databases are now expanding at a very high rate. More software and methods are also being developed to help analyze biological data. It is not an exaggeration to say that Bioinformatics is rapidly evolving and becoming one of the hottest topics in Biology today.</p>
-<h2 id="databases--tools-in-r">Databases &amp; Tools in R</h2>
+
+<h2 id="databases-tools-in-r">Databases &amp; Tools in R</h2>
+
 <p>Research on Bioinformatics has produced numerous amounts of data and is right now being stored and maintained in Biological Databases. The databases store different types of biological data. These are the most used databases for sequence data (genetic codes) today:</p>
+
 <ul>
 <li>GenBank from NCBI</li>
 </ul>
+
 <p><a href="www.ncbi.nlm.nih.gov">GenBank</a> is an open-access sequence database, containing an annotated collection of all publicly available nucleotide sequences and their protein translations. This database is maintained by the National Center for Biotechnology Information (NCBI), a part of the National Institutes of Health in the United States.</p>
+
 <ul>
 <li>ENA</li>
 </ul>
+
 <p>The <a href="www.ebi.ac.uk/ena">European Nucleotide Archive</a>) (ENA) is a repository providing free and unrestricted access to annotated DNA and RNA sequences. The ENA is maintained by the European Bioinformatics Institute.</p>
+
 <ul>
 <li>DDBJ</li>
 </ul>
+
 <p>The DNA <a href="www.ddbj.nig.ac.jp">Data Bank of Japan</a> (DDBJ) is a biological database that collects DNA sequences. It is located at the National Institute of Genetics (NIG) in the Shizuoka prefecture, Japan.</p>
+
 <p>A joint effort to collect and disseminate databases containing DNA and RNA sequences between these three databases have been conducted through <strong>The International Nucleotide Sequence Database Collaboration</strong> (INSDC). It exchanges data on a daily basis thus these three databases contain the same data at any given time. Other databases related to protein structure and function are also available, such as <a href="www.uniprot.org">UNIPROT</a> and <a href="https://www.rcsb.org/">PDB</a>. Data related to the metabolic pathway is also available in <a href="genome.jp/kegg/">KEGG</a> database.</p>
+
 <p>Meanwhile, there are also various tools and software used for Bioinformatics, depending on the case we are trying to solve. In R, Bioinformaticians have their own repository to search for packages related to bioinformatics analysis called <a href="https://bioconductor.org/">Bioconductor</a>. The installation of packages from Bioconductor is slightly different from the installation of packages from CRAN. Inside, there are approximately 1800++ packages for scientists to perform their bioinformatics analysis.</p>
-<p><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+
+<p><img src="/img/biointro/biointro-site.png" style="display: block; margin: auto;" /></p>
+
+<p><br></p>
+
 <h2 id="case-study-biocellulose-for-future-packaging">Case Study: Biocellulose for Future Packaging</h2>
+
 <p>The value of biological research rested on the main idea and purpose of research. Those things will help scientists to design specific <strong>workflow</strong> that may guide them throughout many trials and errors. The following is an example of how Bioinformatics can solve a biological case, that is to <em>discover potential natural resources for industrial application</em>.</p>
+
 <p>It is 2019 already and many people are shifting towards a more eco-friendly way of living. One of them is to reduce the use of plastic. Starting from replacing the use of plastic straws to stainless steel, the use of reusable tumbler and lunchboxes, etc. Conversation about &lsquo;green packaging&rsquo; has also been IN for the past few years. While plastic is dominantly being used for packaging, scientists are finding a way to replace plastic with a more friendly biomaterial which is both biodegradable and versatile for the packaging industry. Through years of research, they finally found it and it&rsquo;s called <strong>Biocellulose</strong>.</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/biointro/biointro-bc.jpg" style="display: block; margin: auto;" /></p>
+
 <p>Bacterial cellulose or biocellulose is a nanomaterial produced by some bacteria. Biocellulose harbors some <a href="https://www.prescouter.com/2018/02/nanocellulose-applications-packaging/">interesting properties</a> that makes it a potential candidate to replace plastic:</p>
+
 <ul>
 <li>edible</li>
 <li>flexible</li>
@@ -563,40 +606,64 @@
 <li>biodegradable</li>
 <li>strong and has barrier properties against oxygen and water</li>
 </ul>
-<p><a href="https://www.researchgate.net/publication/331174516_Bacterial_Cellulose_as_a_Raw_Material_for_Food_and_Food_Packaging_Applications">Biocellulose</a> can be produced from various bacterial genus (<em>Acetobacter, Agrobacterium, Azotobacter, Komagataeibacter, Pseudomonas, Rhizobium, Sarcina</em>, etc.). However, the major producers of bacterial cellulose belong to the <em>Komagataeibacter</em> genus due to its higher BC yield and purity<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. For example, <em>Komagataeibacter</em> sp. strain SFCB 22-18 that has been <a href="https://patents.google.com/patent/KR20140130569A/en?q=Komagataeibacter&amp;oq=Komagataeibacter">pattened</a> as a biocelluloce producer in Korea and can be analyzed further for industrial-scale production.</p>
+
+<p><a href="https://www.researchgate.net/publication/331174516_Bacterial_Cellulose_as_a_Raw_Material_for_Food_and_Food_Packaging_Applications">Biocellulose</a> can be produced from various bacterial genus (<em>Acetobacter, Agrobacterium, Azotobacter, Komagataeibacter, Pseudomonas, Rhizobium, Sarcina</em>, etc.). However, the major producers of bacterial cellulose belong to the <em>Komagataeibacter</em> genus due to its higher BC yield and purity<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>. For example, <em>Komagataeibacter</em> sp. strain SFCB 22-18 that has been <a href="https://patents.google.com/patent/KR20140130569A/en?q=Komagataeibacter&amp;oq=Komagataeibacter">pattened</a> as a biocelluloce producer in Korea and can be analyzed further for industrial-scale production.</p>
+
 <p>Knowing this fact, indonesian&rsquo;s packaging companies may also want to apply such technology in their packaging. Unfortunately, a bacteria that is originated from a four season region may not be fully compatible to grow in a warmer/tropical region. This is due to the different temperature, humidity, nutrition availability, etc. that affect bacterial growth. Such bacteria may need special treatments thus result in higher cost. Can we find our own biocellulose bacteria and produce our own green packaging?</p>
+
 <p><strong>Well, of course!</strong></p>
+
 <p>Let&rsquo;s discover local biocelullose producing bacteria using data science! We can do that by analyzing the similarity of DNA between the known biocellulose producing bacteria and our local potential bacteria using a method called <strong>Multiple Sequence Alignment</strong> (MSA) and <strong>phylogenetic analysis</strong>.</p>
+
 <p>MSA is one of the most fundamental tasks in bioinformatics. MSA is a sequence alignment of three or more biological sequences (protein, DNA, or RNA) to detect the sequence similarity between each sample which can asses for <em>the detection of similar characteristics</em>. Each alignment were calculated for its score (from a match/mismatch from aligned genetic codes). An optimal alignment was picked and later can be processed to form a phylogenetic tree. Algorithms like ClustalW, ClustalOmega, and MUSCLE are well known and widely used for MSA.</p>
+
 <p>After MSA, we can perform <strong>phylogenetic analysis</strong>. This analysis will perform hierarchical clustering to visualize sequence similarity from MSA in the form of phylogenetic tree (dendrogram). <em>Neighbor-Joining</em> and <em>UPGMA</em> algorithm is widely used for this analysis. The three will reveal which samples are similar to one another and which samples are different.</p>
+
 <p>The workflow for this bioinformatics analysis is below:</p>
+
 <ol>
 <li>Sample local bacteria from potential places</li>
 <li>Obtain DNA sequence from potential bacteria &amp; widely known bacteria</li>
 <li>Find the genetic relationship between local and widely known bacteria through MSA and phylogenetic analysis</li>
 <li>Determine the potential local bacteria for biocellulose production and further development.</li>
 </ol>
+
 <p>Imagine a young scientist in Indonesia who has already sampled a few of the potential bacteria from <a href="https://www.dezeen.com/2018/11/13/sustainable-food-packaging-emma-sicher-peel/">Kombucha&rsquo;s SCOBY</a> and now is asking for your help. He gave you the DNA sequence from the potential bacteria he obtained and you were asked to help determine which bacteria have the highest potential to produce biocellulose, so that the young scientist can focus more to analyze that particular bacteria. These are the steps you can do to solve that problem:</p>
+
 <h3 id="install-packages">Install Packages</h3>
+
 <p>We will be using specific libraries for certain purposes:</p>
+
 <ul>
 <li><code>msa</code>: for MSA</li>
 <li><code>seqinr</code> and <code>ape</code>: for phylogenetic analysis.</li>
 </ul>
+
 <p><code>msa</code> package is stored in Bioconductor repository, therefore we need to install it first with a different syntax:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># if (!requireNamespace(&#34;BiocManager&#34;, quietly=TRUE))</span>
-<span style="color:#75715e"># install.packages(&#34;BiocManager&#34;)</span>
-<span style="color:#75715e"># BiocManager::install(&#34;msa&#34;)</span>
-</code></pre></div><p><code>BiocManager::install()</code> is a recommended way to install Bioconductor packages instead of using standard way in which R packages are installed via <code>install.packages()</code>. There are good reasons for that which you can read further in <a href="https://bioconductor.org/install/#why-biocmanagerinstall">here</a>.</p>
+
+<pre><code class="language-r"># if (!requireNamespace(&quot;BiocManager&quot;, quietly=TRUE))
+# install.packages(&quot;BiocManager&quot;)
+# BiocManager::install(&quot;msa&quot;)
+</code></pre>
+
+<p><code>BiocManager::install()</code> is a recommended way to install Bioconductor packages instead of using standard way in which R packages are installed via <code>install.packages()</code>. There are good reasons for that which you can read further in <a href="https://bioconductor.org/install/#why-biocmanagerinstall">here</a>.</p>
+
 <h3 id="read-data">Read Data</h3>
+
 <p>DNA sequences data is stored in a FASTA format, a text-based format for representing either nucleotide sequences or amino acid (protein) sequences. The nucleotides or amino acids are represented using single-letter codes. Sequence names and comments can also be added after <code>&gt;</code> one line before the sequence.</p>
+
 <p>This below is an example:</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/biointro/biointro-fasta.png" style="display: block; margin: auto;" /></p>
+
 <p>For this article, I have prepared a dummy data containing real DNA sequence data from GenBank, and some dummy DNA sequence for analysis. This data stored in a fasta format and named <code>bioc.fasta</code>. To read the data we can use <code>readDNAStringSet()</code> function from Biostrings package that already loaded as the dependencies for msa package.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(msa)
-myseq <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">readDNAStringSet</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">data_input/bioc.fasta&#34;</span>)
+
+<pre><code class="language-r">library(msa)
+myseq &lt;- readDNAStringSet(&quot;data_input/bioc.fasta&quot;)
 myseq
-</code></pre></div><pre><code>#&gt;   A DNAStringSet instance of length 18
+</code></pre>
+
+<pre><code>#&gt;   A DNAStringSet instance of length 18
 #&gt;      width seq                                         names               
 #&gt;  [1]  1481 GAGTTTCATCCTGGCTCAGA...GCGGCTGGATCACCTCCTTT Komagataeibacter ...
 #&gt;  [2]  1352 GTGGCGGACGGGTGAGTAAC...CGGTCGGGTCAGCGACTGGG Komagataeibacter ...
@@ -609,15 +676,21 @@ myseq
 #&gt; [16]  1481 GAGTTTCATCCTGGCTCAGA...GCGGCTGGATCACCTCCTTT Sample1
 #&gt; [17]  1446 TGAGTTTGATCCTGGCTCAG...GGTGAAGTCGTAACAAGGTA Sample2
 #&gt; [18]  1481 GAGTTTGATTATGGCTCAGA...GCGGCTGGATCACCTCCTTT Sample3
-</code></pre><p>The summary above shows some information:</p>
+</code></pre>
+
+<p>The summary above shows some information:</p>
+
 <ul>
 <li>DNAStringSet instances length shows how many DNA sequence we have</li>
 <li>width: the length of each DNA sequence</li>
 <li>seq: the DNA sequence</li>
 <li>names: the label for each DNA sequence</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">names</span>(myseq)
-</code></pre></div><pre><code>#&gt;  [1] &quot;Komagataeibacter xylinus strain NCIB 11664&quot;
+
+<pre><code class="language-r">names(myseq)
+</code></pre>
+
+<pre><code>#&gt;  [1] &quot;Komagataeibacter xylinus strain NCIB 11664&quot;
 #&gt;  [2] &quot;Komagataeibacter xylinus strain LMG 1515&quot;  
 #&gt;  [3] &quot;Komagataeibacter xylinus strain KTH 5655&quot;  
 #&gt;  [4] &quot;Komagataeibacter xylinus strain ZHCJ618 &quot;  
@@ -635,13 +708,24 @@ myseq
 #&gt; [16] &quot;Sample1&quot;                                   
 #&gt; [17] &quot;Sample2&quot;                                   
 #&gt; [18] &quot;Sample3&quot;
-</code></pre><p>using <code>names()</code> function we can find out the labels from our DNAStringSet data. This data contain 18 DNA sequences containing <em>16S rRNA gene</em> that is widely used for sequence similarity analysis. 4 of them are from <em>Komagataeibacter xylinus</em> (with various strains) that are being widely developed for biocellulose industrial production. The last 3 unidentified sample is the DNA of our local potential superbugs. The other DNA sample act as comparations to analyze whether our sample resides within the same cluster of <em>Komagataeibacter xylinus</em> (meaning that it may also produce high yield of biocellulose) or not.</p>
+</code></pre>
+
+<p>using <code>names()</code> function we can find out the labels from our DNAStringSet data. This data contain 18 DNA sequences containing <em>16S rRNA gene</em> that is widely used for sequence similarity analysis. 4 of them are from <em>Komagataeibacter xylinus</em> (with various strains) that are being widely developed for biocellulose industrial production. The last 3 unidentified sample is the DNA of our local potential superbugs. The other DNA sample act as comparations to analyze whether our sample resides within the same cluster of <em>Komagataeibacter xylinus</em> (meaning that it may also produce high yield of biocellulose) or not.</p>
+
 <h3 id="perform-msa">Perform MSA</h3>
+
 <p>To perform multiple sequence alignment, we can use <code>msa()</code> function. The <code>msa()</code> function will perform MSA on our DNAStringSet with the default substitution matrix with ClustalW algorithms.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">bc_msa <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">msa</span>(myseq)
-</code></pre></div><pre><code>#&gt; use default substitution matrix
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">bc_msa
-</code></pre></div><pre><code>#&gt; CLUSTAL 2.1  
+
+<pre><code class="language-r">bc_msa &lt;- msa(myseq)
+</code></pre>
+
+<pre><code>#&gt; use default substitution matrix
+</code></pre>
+
+<pre><code class="language-r">bc_msa
+</code></pre>
+
+<pre><code>#&gt; CLUSTAL 2.1  
 #&gt; 
 #&gt; Call:
 #&gt;    msa(myseq)
@@ -667,27 +751,44 @@ myseq
 #&gt; [17] ----------GAGTTTGATTATG...CTGCGGCTGGATCACCTCCTTT Sample3
 #&gt; [18] ---------AGAGTTTGATCCTG...CTGCGGCTGGATCACCTCCTTT Acidobacterium ca...
 #&gt;  Con ----------GAGTTT?ATC?TG...CTGC???--------------- Consensus
-</code></pre><p>The <code>msa()</code> function will return an <code>MSA DNA multiple alignments</code> which contains the DNA aligned sequences (notice the matched/similar codes for specific regions) and a consensus sequence, the most frequent residues found at each position in a sequence alignment. Below is the more beautiful visualization of MSA using BioEdit software that I used often back in college. With R, we can perform it just using a few line of code!</p>
-<p><!-- raw HTML omitted --></p>
-<h3 id="phylogenetic-analysis">Phylogenetic Analysis</h3>
-<p>We can perform phylogenetic analysis to utilize and visualize better our MSA result. First, we need to convert <code>msa</code> object into an <code>alignment</code> object. After that, we can compute the distance matrix (the similarity/identity score between each of the DNA samples) using the <code>dist.alignment()</code> from the <code>seqinr</code> package.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># convert msa to alignment file</span>
-bc_align <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">msaConvert</span>(bc_msa, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">seqinr::alignment&#34;</span>)
+</code></pre>
 
-<span style="color:#a6e22e">library</span>(seqinr)
-<span style="color:#75715e">#getting identity score (match) </span>
-bc_ident <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">dist.alignment</span>(bc_align, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">identity&#34;</span>)
-</code></pre></div><p>After we have the distance matrix object, we can use the object to build a phylogenetic tree. Below is an example in using the <a href="https://en.wikipedia.org/wiki/Neighbor_joining">Neighbor-Joining Algorithm</a> that is widely used for phylogenetic analysis from <code>ape</code> package. The Neighbor-Joining (NJ) algorithm allows for unequal rates of evolution for each organism thus resemble what actually happened in real life. Because NJ algorithm allows unequal rates of evolution, the branch lengths are proportional to the amount of change for each organism.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(ape)
-<span style="color:#75715e"># making phylogenetic tree using identity score</span>
-bcTree <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">nj</span>(bc_ident)
-<span style="color:#a6e22e">plot</span>(bcTree, main<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Phylogenetic Tree of Biocellulose Producing Bacteria&#34;</span>)
-</code></pre></div><p><!-- raw HTML omitted --></p>
+<p>The <code>msa()</code> function will return an <code>MSA DNA multiple alignments</code> which contains the DNA aligned sequences (notice the matched/similar codes for specific regions) and a consensus sequence, the most frequent residues found at each position in a sequence alignment. Below is the more beautiful visualization of MSA using BioEdit software that I used often back in college. With R, we can perform it just using a few line of code!</p>
+
+<p><img src="/img/biointro/biointro-msa.png" style="display: block; margin: auto;" /></p>
+
+<h3 id="phylogenetic-analysis">Phylogenetic Analysis</h3>
+
+<p>We can perform phylogenetic analysis to utilize and visualize better our MSA result. First, we need to convert <code>msa</code> object into an <code>alignment</code> object. After that, we can compute the distance matrix (the similarity/identity score between each of the DNA samples) using the <code>dist.alignment()</code> from the <code>seqinr</code> package.</p>
+
+<pre><code class="language-r"># convert msa to alignment file
+bc_align &lt;- msaConvert(bc_msa, type=&quot;seqinr::alignment&quot;)
+
+library(seqinr)
+#getting identity score (match) 
+bc_ident &lt;- dist.alignment(bc_align, &quot;identity&quot;)
+</code></pre>
+
+<p>After we have the distance matrix object, we can use the object to build a phylogenetic tree. Below is an example in using the <a href="https://en.wikipedia.org/wiki/Neighbor_joining">Neighbor-Joining Algorithm</a> that is widely used for phylogenetic analysis from <code>ape</code> package. The Neighbor-Joining (NJ) algorithm allows for unequal rates of evolution for each organism thus resemble what actually happened in real life. Because NJ algorithm allows unequal rates of evolution, the branch lengths are proportional to the amount of change for each organism.</p>
+
+<pre><code class="language-r">library(ape)
+# making phylogenetic tree using identity score
+bcTree &lt;- nj(bc_ident)
+plot(bcTree, main=&quot;Phylogenetic Tree of Biocellulose Producing Bacteria&quot;)
+</code></pre>
+
+<p><img src="/blog/2019-12-02-bio-intro_files/figure-html/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;" /></p>
+
 <p>We have known that the major producers of bacterial cellulose belong to the <em>Komagataeibacter</em> genus due to its higher biocelllose yield and purity. From the phylogenetic tree above, we know that sample 1 and sample 2 is within the cluster with many <em>Komagataeibacter xylinus</em> species. Sample 1 is especially closely related to <em>K. xylinus</em> strain NCIB 1166. Meanwhile, sample 3 did not included in any of the cluster containing Komagataeibacter bacteria and therefore might have a lower chance to produce high yield and high purity biocellulose.</p>
+
 <p>From these findings, it is beter to focus on Sample 1 and 2 to for the development of biocellulose producing bacteria for future packaging in Indonesia.</p>
+
 <h2 id="future-prospect-of-bioinformatics">Future Prospect of Bioinformatics</h2>
+
 <p>The future of Bioinformatics is very promising. People nowadays are more conscious about healthy and wiser living. They care about their health, their food, and where it comes from. Sustainability issues are getting more recognition, promoting the collaboration between Biology and industrial applications. From an article shared by <a href="https://agfundernews.com/25-startups-innovating-with-sustainable-packaging-solutions.html">AgFunderNews</a>, there are already 25 startups from around the world that are focusing on sustainable packaging solution. One of them is <a href="https://www.instagram.com/evowareworld/?hl=en">Evoware</a>, a start-up from Indonesia that develops edible packaging from seaweed and algae.</p>
+
 <p>There are many more things we can do in the future and the case example above is only a tiny portion of what Bioinformatics can do. The widely known Bioinformatics application in our life includes:</p>
+
 <ul>
 <li>Development of personalized diet &amp; medicine</li>
 <li>Drug design &amp; discovery</li>
@@ -695,18 +796,21 @@ bcTree <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">nj</
 <li>Discovery and development of novel materials</li>
 <li>Selective Breeding for crops/livestock improvement</li>
 <li>Epidemiology analysis</li>
-<li>Evolutionary analysis, etc.</li>
+<li>Evolutionary analysis, etc.<br /></li>
 </ul>
+
 <p>Once we understand the code of life, the possibility of what we can do is almost endless. With the advancement of technology, the only limit is probably our own imagination. Just make sure that what we do is for the good of the people, the living things, and our earth.</p>
+
 <h2 id="references">References</h2>
-<section class="footnotes" role="doc-endnotes">
-<hr>
+<div class="footnotes">
+
+<hr />
+
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p>De Azeredo, H.M.C., Barud, H.D., Farinas, C.S. 2019. Bacterial Cellulose as a Raw Material for Food and Food Packaging Applications. <em>Frontiers in Sustainable Food Systems</em>, Vol. 3(7): 1-5 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
+<li id="fn:1">De Azeredo, H.M.C., Barud, H.D., Farinas, C.S. 2019. Bacterial Cellulose as a Raw Material for Food and Food Packaging Applications. <em>Frontiers in Sustainable Food Systems</em>, Vol. 3(7): 1-5
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
 </ol>
-</section>
+</div>
 
   </div>
 
