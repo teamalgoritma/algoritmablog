@@ -118,12 +118,18 @@ canonifyURLs = true
   name = "Machine Learning"
   url = "/tags/machine-learning/"
   identifier = "fa fa-cog"
-  weight = 3  
+  weight = 2  
   
 [[menu.main]]
   name = "Data Visualization"
   url = "/tags/data-visualization/"
   identifier = "fa fa-area-chart"
+  weight = 3  
+  
+[[menu.main]]
+  name = "Article List"
+  url = "/tags/"
+  identifier = "fa fa-list"
   weight = 4  
 
 # Sets Social Media icons to appear and link to your account. Value should be your
