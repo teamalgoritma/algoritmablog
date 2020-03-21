@@ -1,7 +1,7 @@
 ---
 title: Interpreting Text Classification Model with LIME
 author: Arga Adyatama
-github: https://github.com/NabiilahArdini
+github: https://github.com/Argaadya
 date: '2020-03-13'
 slug: text-lime
 categories:
