@@ -1,0 +1,1216 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "blog",
+        "name" : "Interpreting Text Classification Model with LIME",
+        "headline" : "Interpreting Text Classification Model with LIME",
+        "description" : "body {\rtext-align: justify}\r\rIntroduction\rThis article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at my previous post .\nOne of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target?",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-03-13 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2020-03-13 00:00:00 \x2b0000 UTC",
+        "url" : "\/blog\/text-lime\/",
+        "wordCount" : "3377",
+        "keywords" : [ "Machine Learning","Capstone Ml","lime","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Interpreting Text Classification Model with LIME</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.55.4" />
+        
+
+
+        
+            <meta name="author" content="Arga Adyatama">
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Interpreting Text Classification Model with LIME"/>
+<meta name="twitter:description" content="body {text-align: justify}IntroductionThis article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at my previous post .
+One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target?"/>
+<meta name="twitter:site" content="@teamalgoritma"/>
+
+        <meta property="og:title" content="Interpreting Text Classification Model with LIME" />
+<meta property="og:description" content="body {text-align: justify}IntroductionThis article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at my previous post .
+One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/text-lime/" />
+<meta property="article:published_time" content="2020-03-13T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-03-13T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="Interpreting Text Classification Model with LIME">
+<meta itemprop="description" content="body {text-align: justify}IntroductionThis article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at my previous post .
+One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target?">
+
+
+<meta itemprop="datePublished" content="2020-03-13T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-03-13T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="3377">
+
+
+
+<meta itemprop="keywords" content="Machine Learning,Capstone Ml,lime," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+                
+                    <link rel="stylesheet" href="/css/night-owl.css">
+                
+            
+        
+
+
+  
+    
+      <link rel="stylesheet" href="/css/night-owl.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="/js/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+  
+
+
+      
+
+
+
+
+
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/machine-learning/">
+                            <i class="fa fa-cog">&nbsp;</i>Machine Learning
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/data-visualization/">
+                            <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/machine-learning/">
+                            <h3>
+                                <i class="fa fa-cog">&nbsp;</i>Machine Learning
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/data-visualization/">
+                            <h3>
+                                <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/text-lime/">Interpreting Text Classification Model with LIME</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-03-13'>
+                                    March 13, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/dbscan-clustering/">DBSCAN Clustering</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-02-07'>
+                                    February 7, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/optimization-with-genetic-algorithm/">Optimization and Hyper-Parameter Tuning with Genetic Algorithm</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-01-13'>
+                                    March 13, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/introduction-to-generative-adversarial-network-with-keras/">Introduction to Generative Adversarial Network with Keras</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-12-18'>
+                                    December 18, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/ridge-lasso/">Ridge and LASSO Regression</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2019-12-18'>
+                                    December 18, 2019</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="https://twitter.com/intent/tweet?text=Interpreting%20Text%20Classification%20Model%20with%20LIME&amp;url=%2fblog%2ftext-lime%2f" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2ftext-lime%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2ftext-lime%2f&amp;title=Interpreting%20Text%20Classification%20Model%20with%20LIME" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/text-lime/">Interpreting Text Classification Model with LIME</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2020-03-13'>
+            March 13, 2020</time>
+        <span class="author"><a href="">Arga Adyatama</a></span>
+        
+            <p>16 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="https://twitter.com/intent/tweet?text=Interpreting%20Text%20Classification%20Model%20with%20LIME&amp;url=%2fblog%2ftext-lime%2f" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2ftext-lime%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2ftext-lime%2f&amp;title=Interpreting%20Text%20Classification%20Model%20with%20LIME" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </section>
+  
+
+  
+
+  <div id="content">
+    
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at <a href = "https://algotech.netlify.com/blog/interpreting-classification-model-with-lime/"> my previous post </a>.</p>
+<p>One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning. The downside is, in general, interpretable model has lower performance in term of accuracy or precision, making them less useful and potentially dangerous for production. Therefore, there is a growing need on how to interpret a complex and black box model easily.</p>
+<p>There exist a method called LIME, a novel explanation technique that explains the predictions of any classifier in an interpretable and faithful manner, by learning an interpretable model locally around the prediction. Here we will see how LIME works on text classification problem of user review. By understanding on how our model works, we can have more advantage and could act wiser on what should we do.</p>
+<div id="library-and-setup" class="section level2">
+<h2>Library and Setup</h2>
+<p>Here is the list of required packages if you wish to reproduce the result.</p>
+<pre class="r"><code># Data Wrangling
+library(tidyverse)
+library(tm)
+library(tidytext)
+library(textclean)
+library(SnowballC)
+
+# Model Fitting and Evaluation
+library(caret)
+library(e1071)
+
+# Model Interpretation
+library(lime)</code></pre>
+</div>
+</div>
+<div id="use-case-steam-game-reviews" class="section level1">
+<h1>Use Case: Steam Game Reviews</h1>
+<p>For this topic, we will cover text mining application to predict customer perspective in Gaming industry. Gaming is a growing entertainment industry that can be enjoyed by everyone, from a little children to the elderly (see <a href = "https://www.youtube.com/channel/UCzkY7wa8Ksxv4M5NyUYgTmA"> a Grandma play Skyrim</a>). Gaming industry has estimated revenue of USD 43.3 Billions, surpassing global ticket sales of Box Office (USD 41.7 Billions) and streaming services (USD 28.8 Billions) in 2018<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Video games come in many platform, such as Wii, Playstation, Xbox, or even in PC. One of the most lucrative gaming environment in PC is Steam, where people can purchase, discuss, or even create games. Many top ranked game are sold via Steam.</p>
+<p>The question is, what a review have to do in Gaming industry? It turns out that a game review, especially an early access review, can heavily influence people to buy certain games<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. An early access review is a review that is give by people or organization that have played the game in the alpha or beta phase (the unfinished product). Some organization, such as the Polygon, PC Gamer, or Rock Paper Shotgun, has a role to assess and give critics to many games. There are also several individual that give game review and critics in their personal blog or Youtube Channel. They have many loyal reader that trust their reviews. Therefore, any critics given by them will become a great consideration for a player to buy a certain games. However, a review given at the full version release of the game is also important as well. Many late buyer or a skeptic people only buy a game after reading other people review after they play the game.</p>
+<p>Through text mining, we can predict based on the given review that a user will give a recommendation toward a game. Further analyisis can be done by interpreting how the machine learning model works and interpret the result. For example, what words that will increase the probability for people to give recommendation, or what words that will drastically decrease the probability to give recommendation. Based on the result, we can formulate a new strategy and marketing planning for future improvement of the game, to make sure people will buy and stay loyal to our game.</p>
+</div>
+<div id="import-data" class="section level1">
+<h1>Import Data</h1>
+<p>The data is acquired from <a href = "https://www.kaggle.com/luthfim/steam-reviews-dataset"> Kaggle </a>. It contain reviews from Steam’s best selling games as February 2019.</p>
+<pre class="r"><code>review &lt;- data.table::fread(&quot;data_input/steam_reviews.csv&quot;) %&gt;% 
+  mutate(recommendation = as.factor(recommendation))
+
+glimpse(review)</code></pre>
+<center>
+<img src="/img/text-lime/glimpse.png" />
+</center>
+<p>Data description:</p>
+<ul>
+<li>date_posted: The date of posted review</li>
+<li>funny: How many other player think the review is funny</li>
+<li>helpful: How many other player think the review is helpful</li>
+<li>hour_played: How many hour a reviewer play the game before make a review</li>
+<li>is_early_access_review: Is the game on early access?</li>
+<li>recommendation: Whether the user would recommend the game or not</li>
+<li>review: User review</li>
+<li>title: Title of the game</li>
+</ul>
+<div id="exploratory-data-analysis" class="section level3">
+<h3>Exploratory Data Analysis</h3>
+<p>Before we do model fitting, let’s check the proportion of recommendation based on whether the review is given at the early access or not.</p>
+<pre class="r"><code>table(Is_early_access = review$is_early_access_review, 
+      Recommend = review$recommendation) %&gt;% 
+  prop.table() %&gt;% 
+  addmargins()</code></pre>
+<center>
+<img src="/img/text-lime/proptable.png" />
+</center>
+<p>Based on the table, we can see that only 30% of the review come from the early access review. We can choose to only consider the early access review, but for now I will simply use all of the data.</p>
+<p>Let’s check the class imbalance at the target variable.</p>
+<pre class="r"><code>table(review$recommendation) %&gt;% 
+  prop.table()</code></pre>
+<center>
+<img src="/img/text-lime/proptable2.png" />
+</center>
+<p>Many user tag a game as recommended, with only 30% consider a game is not recommended.</p>
+</div>
+<div id="cross-validation" class="section level3">
+<h3>Cross-Validation</h3>
+<p>Let’s split the data into training set and testing set with 75% of the data will be used as the training dataset.</p>
+<pre class="r"><code>set.seed(123)
+row_review &lt;- nrow(review)
+index &lt;- sample(row_review, row_review*0.75)
+
+data_train &lt;- review[ index, ]
+data_test &lt;- review[ -index, ]</code></pre>
+<p>Check the class proportion on the target variable.</p>
+<pre class="r"><code>table(data_train$recommendation) %&gt;% 
+  prop.table()</code></pre>
+<center>
+<img src="/img/text-lime/proptable3.png" />
+</center>
+<p>We will balance the data using down-sampling method. This will increase the model performance.</p>
+<pre class="r"><code>set.seed(123)
+data_train &lt;- downSample(x = data_train$review, 
+                         y = data_train$recommendation, yname = &quot;recommendation&quot;)
+
+table(data_train$recommendation) %&gt;% 
+  prop.table()</code></pre>
+<center>
+<img src="/img/text-lime/proptable4.png" />
+</center>
+<p>Now we are ready to process the text data.</p>
+</div>
+</div>
+<div id="text-mining-in-r" class="section level1">
+<h1>Text Mining in R</h1>
+<p>Text mining in R can be done in various way. There are some packages that support text processing. If you are new to text mining, I recommend you to read this <a href = "http://tidytextmining.com/"> wonderfull book </a>. On this article, we will use two approach: <code>tm</code> and a combination of <code>text_clean</code> and <code>tidytext</code>. The difference between the two approach is the preprocessing steps in handling the text data.</p>
+<div id="using-tm-package" class="section level2">
+<h2>Using <code>tm</code> package</h2>
+<p>The first package that we will use is <code>tm</code> package.</p>
+<div id="text-cleansing" class="section level3">
+<h3>Text Cleansing</h3>
+<p>We will create a corpus that contain the text review and cleanse the data</p>
+<pre class="r"><code>review_corpus &lt;- VCorpus( VectorSource(data_train$x))
+
+review_corpus &lt;- review_corpus %&gt;% 
+  tm_map(content_transformer(tolower)) %&gt;% # lowercase
+  tm_map(removeNumbers) %&gt;% # remove numerical character
+  tm_map(removeWords, stopwords(&quot;english&quot;)) %&gt;%  # remove stopwords (and, the, am)
+  tm_map(removePunctuation) %&gt;%  # remove punctuation mark
+  tm_map(stemDocument) %&gt;%  # stem word (e.g. from walking to walk)
+  tm_map(stripWhitespace) # strip double white space</code></pre>
+</div>
+<div id="document-term-matrix" class="section level3">
+<h3>Document Term Matrix</h3>
+<p>After we cleanse the text, now we will do tokenization: break a sentence or review into an individual words/terms and count the frequency at each document/review.</p>
+<pre class="r"><code>train_dtm &lt;- DocumentTermMatrix(review_corpus)</code></pre>
+<p>We have around 196K reviews with 136K unique terms/words.</p>
+</div>
+<div id="filter-terms" class="section level3">
+<h3>Filter Terms</h3>
+<p>Filter words that appear in at least 300 documents to shorten the computation time.</p>
+<pre class="r"><code>freq &lt;- findFreqTerms(train_dtm, 300)
+length(freq)
+
+train_dtm &lt;- train_dtm[ , freq]</code></pre>
+<center>
+<img src="/img/text-lime/term.png" />
+</center>
+<p>We will only use 1584 terms to build the model. You may want to use more terms if you wish.</p>
+</div>
+<div id="bernoulli-converter" class="section level3">
+<h3>Bernoulli Converter</h3>
+<p>Convert the term frequency with bernoulli converter to account binary value (whether the terms present in the document or not).</p>
+<pre class="r"><code>bernoulli_conv &lt;- function(x){
+        x &lt;- factor(
+          ifelse(x &gt; 0, 1, 0), levels = c(0,1), labels = c(&quot;Absent&quot;, &quot;Present&quot;)
+          )
+        return(x)}
+
+# convert the document-term matrix  
+train_x &lt;- apply(train_dtm, 2, bernoulli_conv)
+
+# create the target variable
+train_label &lt;- data_train$recommendation</code></pre>
+</div>
+<div id="model-fitting" class="section level3">
+<h3>Model Fitting</h3>
+<p>We will create a Naive Bayes model to predict the target variable based on the presence of each term. We also use laplace smoothing.</p>
+<pre class="r"><code>model_bayes &lt;- naiveBayes(train_x, train_label, laplace = 1)</code></pre>
+</div>
+<div id="model-evaluation" class="section level3">
+<h3>Model Evaluation</h3>
+<p>Before we predict the data, let’s summarize the text preprocessing into a single function and store it as <code>tokenize_text()</code>. This function will be used to clean and tokenize the review from the testing dataset.</p>
+<pre class="r"><code>tokenize_text &lt;- function(text){
+  # Create Corpuse
+  data_corpus &lt;- VCorpus(VectorSource(text))
+  
+  # Cleansing
+  data_corpus_clean &lt;-  data_corpus %&gt;% 
+    tm_map(content_transformer(tolower)) %&gt;% 
+    tm_map(removeNumbers) %&gt;%
+    tm_map(removeWords, stopwords(&quot;english&quot;)) %&gt;% 
+    tm_map(removePunctuation) %&gt;% 
+    tm_map(stemDocument) %&gt;% 
+    tm_map(stripWhitespace) %&gt;% 
+    tm_map(stemDocument)
+
+  # Document-Term Matrix and use only terms from data train
+  data_dtm &lt;- DocumentTermMatrix(data_corpus_clean, 
+                                 control = list(dictionary = freq))
+
+  # Bernoulli Converter
+  data_text &lt;- apply(data_dtm, 2, bernoulli_conv)
+
+  return(data_text)
+}</code></pre>
+<p>Now let’s predict the model performance.</p>
+<pre class="r"><code>test_x &lt;- tokenize_text(data_test$review)
+test_label &lt;- data_test$recommendation
+
+pred_test &lt;- predict(model_bayes, test_x)
+
+confusionMatrix(pred_test, test_label, positive = &quot;Recommended&quot;)</code></pre>
+<center>
+<img src="/img/text-lime/confmat.png" />
+</center>
+<p>The model is quite good, with 73.6% accuracy, 85% Recall and 78% Precision.</p>
+</div>
+<div id="interpret-model-with-lime" class="section level3">
+<h3>Interpret Model with LIME</h3>
+<p>LIME is a great model that can interpret how our machine learning model (in this case, Naive Bayes) works and make prediction. In R, it come from <code>lime</code> package. However, LIME can only interpret model from several packages, including:</p>
+<ul>
+<li><code>caret</code></li>
+<li><code>mlr</code></li>
+<li><code>xgboost</code></li>
+<li><code>h20</code></li>
+<li><code>keras</code></li>
+<li><code>MASS</code></li>
+</ul>
+<p>Our model comes from <code>naiveBayes()</code> function from <code>e1071</code> package, so by default they cannot be identified by <code>lime()</code>.</p>
+<p>We have to create a support function for the <code>naiveBayes()</code> function in order to be interpreted by LIME. Let’s check the class of our model.</p>
+<pre class="r"><code>class(model_bayes)</code></pre>
+<center>
+<img src="/img/text-lime/classmodel.png" />
+</center>
+<p>We need to change the class of our model from <code>naiveBayes</code> to either <code>classification</code> or <code>regression</code> (depends on the problem). Since our case is a classification problem, we will change the model type into <code>classification</code> by creating a function.</p>
+<p>You have to create a function named <code>model_type.</code> followed by the class of the model. In our model, the class is <code>naiveBayes</code>, so we need to create a function named <code>model_type.naiveBayes</code>.</p>
+<pre class="r"><code>model_type.naiveBayes &lt;- function(x){
+  return(&quot;classification&quot;)
+}</code></pre>
+<p>We also need a function to store the prediction. Same with the <code>model_type.</code>, we need to create a <code>predict_model.</code> followed by the class of our model. The function would be <code>predict_model.naiveBayes</code>. The content of the function is the function to predict the model. In Naive Bayes, the function is <code>predict()</code>. We need to return the probability value and convert them to <code>data.frame</code>, so the content would be <code>predict(x, newdata, type = "raw")</code> to return the probability of the prediction and convert them with <code>as.data.frame()</code>.</p>
+<pre class="r"><code>predict_model.naiveBayes &lt;- function(x, newdata, type = &quot;raw&quot;) {
+
+    # return classification probabilities only   
+    res &lt;- predict(x, newdata, type = &quot;raw&quot;) %&gt;% as.data.frame()
+    
+    return(res)
+}</code></pre>
+<p>Now, we need to prepare the input for the lime. In common classification problem, the input can be the table that contain the features. However, in text classification, the input should be the original text and we also need to give the preprocessing step to process the text from cleansing to the tokenization. Make sure the input of the text is <code>character</code>, not a factor.</p>
+<pre class="r"><code>text_train &lt;- data_train$x %&gt;% as.character() # The text review from data train
+
+explainer &lt;- lime(text_train, # the input
+                  model = model_bayes,  # the model 
+                  preprocess = tokenize_text) # the preprocessing step</code></pre>
+<p>Now we will try to explain how our model work on the test dataset. We will observe the interpretation of the 2nd to 5th obervations of the data test. Don’t forget to do <code>set.seed</code> to get reproducible example.</p>
+<ul>
+<li>The <code>n_labels</code> indicate how many label of target variable to be shown.</li>
+<li>The <code>n_features</code> shows how many features will be used to explain the model. This parameter will be ignored if <code>feature_select = "none</code>.</li>
+<li>The <code>feature_select</code> shows the feature selection method.</li>
+<li><code>single_explanation</code> indicate logical whether to pool all text into a single review.</li>
+</ul>
+<pre class="r"><code>text_test &lt;- data_test$review
+
+set.seed(123)
+explanation &lt;- explain(text_test[2:5],
+                       explainer = explainer, 
+                       n_labels = 1, # show only 1 label (recommend or not recommend)
+                       n_features = 5, 
+                       feature_select = &quot;none&quot;, # use all terms to explain the model
+                       single_explanation = F)</code></pre>
+<p>Let’s visualize the result.</p>
+<pre class="r"><code># visualize the interpretation
+plot_text_explanations(explanation)</code></pre>
+<center>
+<img src="/img/text-lime/lime1.png" />
+</center>
+<center>
+<img src="/img/text-lime/lime2.png" />
+</center>
+<p>Since the plot is run from a chunk, the output height and width of the plot is limited. If you want to scroll or see the complete plot, you need to run the <code>plot_text_explanations()</code> via the console.</p>
+<p>We can see that for observations 2 (the first sentence), the probability to be not recommended is 100%. The explanation fit shows how good LIME at interpreting the prediction for this observation, which is only 27% so it may not that accurate. The blue-labeled text means that the word support/increase the probability to be not recommend, such as the word game, start or long time. The red-labeled text means that the word contradict/decrease the probability of the review to be recommended, such as fun, most infuriating or powerful.</p>
+<p>The interpretation is not that good since the explanation fit is small, but at least we can derive some insight from it. We can also observe from the second sentenct that the word difficult, gast, and Materpiece contradict the probability to be not recommended.</p>
+<p>A good example of great explanation fit is at the 3rd text (observation 4), with explanation fit of 80%. We can see that the word glitch, bug and error can support the review to be not recommended.</p>
+</div>
+</div>
+<div id="using-textclean" class="section level2">
+<h2>Using <code>textclean</code></h2>
+<p>Another great package for text processing is <code>textclean</code> package. You can read more detail about it on <a href = "https://algotech.netlify.com/blog/textclean/"> our previous article </a>.</p>
+<div id="data-preprocessing" class="section level3">
+<h3>Data Preprocessing</h3>
+<p>We will use the same data from the previous process. Using <code>text_clean</code>, we create a new column that contain the processed text that will be cleansed using various functions from the package.</p>
+<pre class="r"><code>data_train &lt;- data_train %&gt;% 
+  mutate(text_clean = x %&gt;% 
+            str_to_lower() %&gt;% 
+            replace_url() %&gt;%
+            replace_money(replacement = &quot;&quot;) %&gt;% 
+            replace_emoji() %&gt;% 
+            replace_email() %&gt;% 
+            replace_word_elongation() %&gt;% 
+            replace_html() %&gt;% 
+            replace_contraction() %&gt;% 
+            replace_number(remove = T) %&gt;% 
+            replace_date(replacement = &quot;&quot;) %&gt;% 
+            str_remove_all(pattern = &quot;[[:punct:]]&quot;) %&gt;%
+            str_squish() %&gt;% 
+            str_trim()
+           ) 
+
+head(data_train, 10)</code></pre>
+</div>
+<div id="document-term-matrix-1" class="section level3">
+<h3>Document-Term Matrix</h3>
+<p>After we cleanse the data, next we will need to tokenize the data by converting it into document-term matrix.</p>
+<pre class="r"><code>train_dtm &lt;- data_train %&gt;% 
+  select(text_clean, recommendation) %&gt;% 
+  rowid_to_column(&quot;id&quot;) %&gt;% 
+  filter(is.na(text_clean) == F) %&gt;% 
+  unnest_tokens(word, text_clean) %&gt;% 
+  mutate(word = wordStem(word)) %&gt;% 
+  anti_join(stop_words) %&gt;% 
+  count(id, word) %&gt;% 
+  cast_dtm(document = id, term = word, value = n)
+
+inspect(train_dtm)</code></pre>
+<center>
+<img src="/img/text-lime/dtm.png" />
+</center>
+<p>Let’s use terms that appear at least in 200 documents.</p>
+<pre class="r"><code>train_term &lt;- findFreqTerms(train_dtm, 200)
+length(train_term)</code></pre>
+<p>Next we use bernoulli converter toward the document-term matrix. We will also get the train label.</p>
+<pre class="r"><code># Filter the terms in DTM
+train_dtm &lt;- train_dtm[ , train_term]
+
+# Apply bernoulli converter
+train_x &lt;- apply(train_dtm, 2, bernoulli_conv)
+
+# Create train label
+train_label &lt;- data_train %&gt;% 
+  slice(  as.numeric(train_dtm$dimnames$Docs)) %&gt;% 
+  pull(recommendation)</code></pre>
+</div>
+<div id="model-fitting-1" class="section level3">
+<h3>Model Fitting</h3>
+<p>We fit the data into the Naive Bayes model with laplace smoothing.</p>
+<pre class="r"><code>model_bayes &lt;- naiveBayes(train_x, train_label, laplace = 1)</code></pre>
+</div>
+<div id="model-evaluation-1" class="section level3">
+<h3>Model Evaluation</h3>
+<p>Next, we evaluate the model to the testing dataset. We summarise the preprocessing step into a single function and store it as <code>tokenize_text()</code>.</p>
+<pre class="r"><code>tokenize_text &lt;- function(text){
+ clean_text &lt;-  text %&gt;% 
+    str_to_lower() %&gt;% 
+    replace_url() %&gt;% 
+    replace_emoji() %&gt;%
+    replace_email() %&gt;% 
+    replace_word_elongation() %&gt;% 
+    replace_html() %&gt;% 
+    replace_contraction() %&gt;% 
+    replace_number(remove = T) %&gt;% 
+    replace_date() %&gt;% 
+    str_remove_all(pattern = &quot;[[:punct:]]&quot;) %&gt;%
+    str_squish() %&gt;% 
+    str_trim()
+
+  data_text &lt;- data.frame(text_clean = clean_text) %&gt;% 
+    rowid_to_column(&quot;id&quot;) %&gt;% 
+    filter(is.na(text_clean) == F) %&gt;% 
+    mutate_all(as.character) %&gt;% 
+    unnest_tokens(word, text_clean) %&gt;%  
+    mutate(word = wordStem(word)) %&gt;% 
+    filter(word %in% train_term) %&gt;% # Use only terms that appear in training set
+    count(id, word) %&gt;% 
+    cast_dtm(document = id, term = word, value = n) %&gt;% 
+    apply(., 2, bernoulli_conv)
+  
+  return(data_text)
+}
+
+# tokenize text review
+test_x &lt;- tokenize_text(data_test$review)
+
+# get target variable
+test_label &lt;- data_test %&gt;% 
+  slice(  
+    as.numeric( test_x %&gt;% rownames() )
+    ) %&gt;% 
+  pull(recommendation)</code></pre>
+<p>After we prepare the data, now we will predict the target for the testing dataset and acquire the confusion matrix.</p>
+<pre class="r"><code>pred_test &lt;- predict(model_bayes, test_x)
+
+confusionMatrix(pred_test, test_label, positive = &quot;Recommended&quot;)</code></pre>
+<center>
+<img src="/img/text-lime/confmat2.png" />
+</center>
+</div>
+<div id="interpret-model-with-lime-1" class="section level3">
+<h3>Interpret model with LIME</h3>
+<p>To interpret the model with LIME, the step is similar to the one we’ve done by using the <code>tm</code> package. The difference is only the preprocessing step, <code>tokenize_text()</code>. To make the computation faster, we can adjust the number of permutations performed by lime through parameter <code>n_permutations</code>. On the following example, I use <code>n_permutations</code> of 10. Don’t forget to do <code>set.seed</code> to get reproducible example.</p>
+<pre class="r"><code># Get text review from training set
+train_text &lt;- data_train %&gt;% 
+  slice(  
+    as.numeric( train_x %&gt;% rownames() )
+    ) %&gt;% 
+  pull(x) %&gt;% as.character()
+
+# Get text review from testing set
+test_text &lt;- data_test$review
+
+# Set explainer
+explainer &lt;- lime(train_text, model_bayes, 
+                  preprocess = tokenize_text)
+
+set.seed(111)
+explanation &lt;- explain(test_text[2:5],
+                       explainer, n_labels = 1,
+                       n_features = 5, 
+                       n_permutations = 10, # Adjust the number of permutation
+                       feature_select = &quot;none&quot;, 
+                       single_explanation = F)</code></pre>
+<p>Let’s visualize the result.</p>
+<pre class="r"><code># Plot the visualization
+plot_text_explanations(explanation)</code></pre>
+<center>
+<img src="/img/text-lime/lime3.png" />
+</center>
+<center>
+<img src="/img/text-lime/lime4.png" />
+</center>
+</div>
+</div>
+</div>
+<div id="error-and-troubleshoot" class="section level1">
+<h1>Error and Troubleshoot</h1>
+<p>This section is dedicated to give some insight from potential <code>error</code> that you might find when using <code>lime</code>.</p>
+<div id="response-is-constant-across-permutations" class="section level2">
+<h2>Response is constant across permutations</h2>
+<p>You may wonder why we don’t insert the first observation of the review to the explanation. Let’s check the review content.</p>
+<pre class="r"><code>data_test$review[1]</code></pre>
+<p>The review containt only the word “yes”. We will try to explain it with LIME. Since the <code>explainer</code> expect a matrix, we need to insert at least 2 observations, so will go with the first and the second observation.</p>
+<pre class="r"><code>set.seed(123)
+explanation &lt;- explain(test_text[1:2],
+                       explainer = explainer, 
+                       n_labels = 1, # show only 1 label (recommend or not recommend)
+                       n_features = 5, 
+                       n_permutations = 10,
+                       feature_select = &quot;none&quot;, # use all terms to explain the model
+                       single_explanation = F)</code></pre>
+<center>
+<img src="/img/text-lime/error.png" />
+</center>
+<p>We get an error, with message <code>Error: Response is constant across permutations. Please check your model</code>. One of many reason it throws an error is because the input for our model is a document-term matrix, with many sparse/empty values. LIME don’t work really with an input that contain many sparse value like in text classification<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. With the text contain only the word <code>yes</code>, the matrix will be 0 (Absent) or sparse for most of the feature and 1 (Present) for a single feature, that is the term <code>yes</code>. So, whenever you found an error like this, you can be certain that the input is a matrix with empty values. To my best knowledge, there is no workaround for this problem yet. Therefore, we only concern with a review or text that contain several words.</p>
+</div>
+<div id="predicted_label-is-not-a-string-a-length-one-character-vector" class="section level2">
+<h2>Predicted_label is not a string (a length one character vector)</h2>
+<p>If we want to use the <code>plot_text_explanations()</code>, the <code>n_labels</code> should always be 1, meaning that we can only display output for 1 label or target value, either the <code>Recommended</code> or <code>Not Recommended</code>. If you force the explainer to include 2 labels, it will give an error like the following.</p>
+<pre class="r"><code>set.seed(123)
+explanation &lt;- explain(test_text[2:3],
+                       explainer = explainer, 
+                       n_labels = 2, # show 2 label (recommend or not recommend)
+                       n_features = 5, 
+                       n_permutations = 10,
+                       feature_select = &quot;none&quot;, # use all terms to explain the model
+                       single_explanation = F)
+
+plot_text_explanations(explanation)</code></pre>
+<center>
+<img src="/img/text-lime/error2.png" />
+</center>
+</div>
+<div id="incorrect-number-of-predictions" class="section level2">
+<h2>Incorrect number of predictions</h2>
+<p>Whenever you find an error, you can look at the cause of the error by using <code>traceback()</code> function. Here is another example of error.</p>
+<pre class="r"><code>set.seed(123)
+explanation &lt;- explain(test_text[2:4],
+                       explainer = explainer, 
+                       n_labels = 1, # show only 1 label (recommend or not recommend)
+                       n_features = 5, 
+                       n_permutations = 10,
+                       feature_select = &quot;none&quot;, # use all terms to explain the model
+                       single_explanation = F)</code></pre>
+<center>
+<img src="/img/text-lime/error3.png" />
+</center>
+<pre class="r"><code>traceback()</code></pre>
+<p>The <code>traceback()</code> will return the following result.</p>
+<pre class="r"><code># 4: stop(assertError(attr(res, &quot;msg&quot;)))
+# 3: assert_that(nrow(case_res) == length(case_perm$permutations), 
+#        msg = &quot;Incorrect number of predictions&quot;)
+# 2: explain.character(test_text[2:4], explainer, n_labels = 1, n_features = 5, 
+#        n_permutations = 10, feature_select = &quot;none&quot;, single_explanation = F)
+# 1: explain(test_text[2:4], explainer, n_labels = 1, n_features = 5, 
+#        n_permutations = 10, feature_select = &quot;none&quot;, single_explanation = F)</code></pre>
+<p>Based on the traceback result, <code>explain()</code> is error because the number of row for the predicted values (<code>case_res</code>) is not the same with the length of the permutation (<code>case_perm$permutations</code>). You can check the <a href = "https://github.com/thomasp85/lime/blob/master/R/character.R"> source code </a>) to see what really happened, but based on the error, the permutation failed to produce a prediction, therefore we have less number of prediction compared to the number of permutation. Since a permutation is a sampling problem, for temporary solution you can handle the problem by changing the <code>seed</code> for the explanation or simply change the number of permutation via <code>n_permutations</code>.</p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>LIME is very useful to help us understand how our model works not only in a common classification problem with the feature presented in tabular format, but it can also interpret how the model work by looking at the text-formatted input. The important point of using <code>lime</code> is you have to define how the text is preprocessed until it can become a matrix as the input for the model. I also have shown you several errors that may shows up when you try to use LIME.</p>
+</div>
+<div id="reference" class="section level1">
+<h1>Reference</h1>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://techcrunch.com/2019/01/22/video-game-revenue-tops-43-billion-in-2018-an-18-jump-from-2017/">Video game revenue tops $43 billion in 2018, an 18% jump from 2017</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p><a href="https://cs-agents.com/blog/game-review-affect-game-purchases/">Does a Game Review Heavily Affect Game Purchases?</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p><a href="https://stackoverflow.com/questions/51084343/root-cause-and-resolve-an-error-returned-rs-lime-librarys-explain-functio">Response is constant across permutations</a><a href="#fnref3" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/machine-learning">Machine Learning</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/capstone-ml">Capstone Ml</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/lime">lime</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-algotech-netlify-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/dbscan-clustering/"
+                class="button big previous">DBSCAN Clustering</a></li>
+    
+
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>Algoritma Technical Blog</h2>
+        <p>We're a group of people who teach data science to individuals, trains companies and their employees to better profit from data. We care about the development of data science and a sense of community that connects our alumni and team with one another. To learn more about our approach to data science problems, feel free to hop over to our blog.</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    <p class="copyright">
+      
+        &copy; 2020
+        
+          Algoritma Technical Blog
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+        
+          <script src="/js/bootstrap.min.js"></script>
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

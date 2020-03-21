@@ -234,6 +234,18 @@
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/text-lime/">Interpreting Text Classification Model with LIME</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-03-13'>
+                                    March 13, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/dbscan-clustering/">DBSCAN Clustering</a></h3>
                                 
                                 <time class="published" datetime=
@@ -277,42 +289,6 @@
                                     December 18, 2019</time>
                             </header>
                             
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/bio-intro/">Bioinformatics: Decoding Nature&#39;s Code of Life</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2019-12-02'>
-                                    December 2, 2019</time>
-                            </header>
-                            
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-
-
-        
-        
-        
-
-        <a href="/blog/bio-intro/" class="image featured">
-            <img src="/date2019/12/bioinfo.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
@@ -505,7 +481,7 @@
 
 <p>It is inarguable that Data Science gives a tremendous impact on today&rsquo;s industry. Furthermore, it also accelerates the development of basic science research including <em>Biology</em>. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.</p>
 
-<p><img src="/img/biointro/biointro-venn.png" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/biointro/biointro-venn.png" alt="" /> </center></p>
 
 <p>The specialized Data Science area which combines <em>the use of computer science and statistics and the knowledge of Biology to understand biological data</em> is called <strong>Bioinformatics</strong>. Bioinformatics has given the world so much knowledge and improvement without us knowing. Having only a few articles that combine both the scientific and practical side of this topic, making it somewhat unexposed clearly to the public. Therefore, throughout this article we will be talking about:</p>
 
@@ -523,7 +499,7 @@
 
 <p>Many of the misconceptions revolved around Bioinformatics is related to the scope and the data it uses. For example, many of the cases most people considered as bioinformatics may come from the healthcare industry which utilizes various measurement data related to health. Some of them are predicting the status of <a href="https://archive.ics.uci.edu/ml/datasets/Heart+Disease">breast cancer</a> from a digitized cell image data, diagnosing the status of <a href="https://archive.ics.uci.edu/ml/datasets/Heart+Disease">heart diseases</a> from health records and laboratory test result, etc. Still, both cases use <em>normal tabular data</em> for analysis, which therefore more appropriately reported as a Data Science application in &ldquo;healthcare&rdquo;, and <em>not yet</em> considered as Bioinformatics.</p>
 
-<p><img src="/img/biointro/biointro-heart.png" style="display: block; margin: auto;" /></p>
+<p><img src="/img/biointro/biointro-heart.png" alt="" /></p>
 
 <p>The data you encounter from these cases is a normal measurement data that may come from many specialized areas of Biology, such as health &amp; medicine, agriculture, environment, bioenergy, biomaterials, etc. Deep knowledge about that respective field is required in order to understand, interpret, and utilize the data appropriately. Meanwhile, the biological data that is used in bioinformatics is rather different.</p>
 
@@ -537,17 +513,17 @@
 
 <p>Living things may be said as the most complex and magnificent molecular machine ever happened. Scientist passionately performs research to understand what makes living things function and what makes them malfunctions (ill/diseased). Through many years of research, the answer is finally proposed in 1957 and known as <strong>The Central Dogma of Biology</strong>.</p>
 
-<p><img src="/img/biointro/biointro-centraldogma.png" style="display: block; margin: auto;" /></p>
+<p><center><img src="/img/biointro/biointro-centraldogma.png" alt="" /></center></p>
 
 <blockquote>
 <p>The ‘Central Dogma’ describes that the appearance and functional ability of all living things comes from the instructions encoded in their DNA.</p>
 </blockquote>
 
-<p><img src="/img/biointro/biointro-dna.gif" style="display: block; margin: auto;" /></p>
+<p><center><img src="/img/biointro/biointro-dna.gif" alt="" /></center></p>
 
 <p>That above is <strong>DNA</strong>. It resides within the cell of each living organism. DNA is a strand with a double helix structure that contains the genetic code of an organism. This genetic code works like instructions that tell the cell what <strong>protein</strong> it should make. A special region in DNA that store codes for each specific protein is called a <strong>gene</strong>. Therefore each protein has its specific gene. The genetic code in DNA is written as a code of 4 characters, representing the 4 types of nucleotide (the building block of DNA) called adenine ( A ), cytosine ( C ), guanine ( G ), thymine ( T ). Every time a protein needs to be made, the gene must be <em>transcribed</em> first into its single strand structure called messenger RNA (mRNA), and then <em>translated</em> into protein. Unlike DNA which only has 4 character codes, proteins have 20 character codes representing each amino acid as the building block to making protein. The cryptogram to translate mRNA into protein is presented below.</p>
 
-<p><img src="/img/biointro/biointro-crypto.png" style="display: block; margin: auto;" /></p>
+<p><center><img src="/img/biointro/biointro-crypto.png" alt="" /></center></p>
 
 <p>The correct genetic codes and smooth translation from DNA to protein are important so that every cell in our body has enough protein that it needs to functions properly. For example, red blood cells need hemoglobin, a functional protein that binds oxygen and helps red blood cells carry oxygen throughout the body. Another example is collagen, a structural protein which promotes skin cell&rsquo;s elasticity. Another type of protein also exists such as hormones, enzymes, antibodies, etc. A failure in providing the correct protein because of some <em>error code in the DNA</em> may cause serious diseases such as Alzheimer&rsquo;s, Sickle Cell Anemia, Down syndrome, etc.</p>
 
@@ -585,7 +561,7 @@
 
 <p>Meanwhile, there are also various tools and software used for Bioinformatics, depending on the case we are trying to solve. In R, Bioinformaticians have their own repository to search for packages related to bioinformatics analysis called <a href="https://bioconductor.org/">Bioconductor</a>. The installation of packages from Bioconductor is slightly different from the installation of packages from CRAN. Inside, there are approximately 1800++ packages for scientists to perform their bioinformatics analysis.</p>
 
-<p><img src="/img/biointro/biointro-site.png" style="display: block; margin: auto;" /></p>
+<p><center><img src="/img/biointro/biointro-site.png" alt="" /></center></p>
 
 <p><br></p>
 
@@ -595,7 +571,7 @@
 
 <p>It is 2019 already and many people are shifting towards a more eco-friendly way of living. One of them is to reduce the use of plastic. Starting from replacing the use of plastic straws to stainless steel, the use of reusable tumbler and lunchboxes, etc. Conversation about &lsquo;green packaging&rsquo; has also been IN for the past few years. While plastic is dominantly being used for packaging, scientists are finding a way to replace plastic with a more friendly biomaterial which is both biodegradable and versatile for the packaging industry. Through years of research, they finally found it and it&rsquo;s called <strong>Biocellulose</strong>.</p>
 
-<p><img src="/img/biointro/biointro-bc.jpg" style="display: block; margin: auto;" /></p>
+<p><center><img src="/img/biointro/biointro-bc.jpg" alt="" /></center></p>
 
 <p>Bacterial cellulose or biocellulose is a nanomaterial produced by some bacteria. Biocellulose harbors some <a href="https://www.prescouter.com/2018/02/nanocellulose-applications-packaging/">interesting properties</a> that makes it a potential candidate to replace plastic:</p>
 
@@ -654,7 +630,7 @@
 
 <p>This below is an example:</p>
 
-<p><img src="/img/biointro/biointro-fasta.png" style="display: block; margin: auto;" /></p>
+<p><center><img src="/img/biointro/biointro-fasta.png" alt="" /><center></p>
 
 <p>For this article, I have prepared a dummy data containing real DNA sequence data from GenBank, and some dummy DNA sequence for analysis. This data stored in a fasta format and named <code>bioc.fasta</code>. To read the data we can use <code>readDNAStringSet()</code> function from Biostrings package that already loaded as the dependencies for msa package.</p>
 
@@ -664,18 +640,18 @@ myseq
 </code></pre>
 
 <pre><code>#&gt;   A DNAStringSet instance of length 18
-#&gt;      width seq                                         names               
-#&gt;  [1]  1481 GAGTTTCATCCTGGCTCAGA...GCGGCTGGATCACCTCCTTT Komagataeibacter ...
-#&gt;  [2]  1352 GTGGCGGACGGGTGAGTAAC...CGGTCGGGTCAGCGACTGGG Komagataeibacter ...
-#&gt;  [3]  1386 GCAGTCGCACGAACCTTTCG...TCAGCGACTGGGGTGAAGTC Komagataeibacter ...
-#&gt;  [4]  1390 ATCCTGGCTCAGAGCGAACG...GTGAGCGAACCGCAAGGACG Komagataeibacter ...
-#&gt;  [5]  1482 GAGTTTGATCATGGCTCAGA...GCGGCTGGATCACCTCCTTT Komagataeibacter ...
+#&gt;      width seq                                              names               
+#&gt;  [1]  1481 GAGTTTCATCCTGGCTCAGAGCG...CTGCGGCTGGATCACCTCCTTT Komagataeibacter ...
+#&gt;  [2]  1352 GTGGCGGACGGGTGAGTAACGCG...CACGGTCGGGTCAGCGACTGGG Komagataeibacter ...
+#&gt;  [3]  1386 GCAGTCGCACGAACCTTTCGGGG...GGTCAGCGACTGGGGTGAAGTC Komagataeibacter ...
+#&gt;  [4]  1390 ATCCTGGCTCAGAGCGAACGCTG...CGGTGAGCGAACCGCAAGGACG Komagataeibacter ...
+#&gt;  [5]  1482 GAGTTTGATCATGGCTCAGAGCG...CTGCGGCTGGATCACCTCCTTT Komagataeibacter ...
 #&gt;  ...   ... ...
-#&gt; [14]  1285 CGTGGGAATCTACCCTTTTC...CCCGAAGGTAGTGCGCTAAC Agrobacterium rhi...
-#&gt; [15]  1493 AGAGTTTGATCCTGGCTCAG...GCGGCTGGATCACCTCCTTT Acidobacterium ca...
-#&gt; [16]  1481 GAGTTTCATCCTGGCTCAGA...GCGGCTGGATCACCTCCTTT Sample1
-#&gt; [17]  1446 TGAGTTTGATCCTGGCTCAG...GGTGAAGTCGTAACAAGGTA Sample2
-#&gt; [18]  1481 GAGTTTGATTATGGCTCAGA...GCGGCTGGATCACCTCCTTT Sample3
+#&gt; [14]  1285 CGTGGGAATCTACCCTTTTCTAC...TACCCGAAGGTAGTGCGCTAAC Agrobacterium rhi...
+#&gt; [15]  1493 AGAGTTTGATCCTGGCTCAGAAT...CTGCGGCTGGATCACCTCCTTT Acidobacterium ca...
+#&gt; [16]  1481 GAGTTTCATCCTGGCTCAGAGCG...CTGCGGCTGGATCACCTCCTTT Sample1
+#&gt; [17]  1446 TGAGTTTGATCCTGGCTCAGAGC...GGGGTGAAGTCGTAACAAGGTA Sample2
+#&gt; [18]  1481 GAGTTTGATTATGGCTCAGAGCG...CTGCGGCTGGATCACCTCCTTT Sample3
 </code></pre>
 
 <p>The summary above shows some information:</p>
@@ -731,31 +707,31 @@ myseq
 #&gt;    msa(myseq)
 #&gt; 
 #&gt; MsaDNAMultipleAlignment with 18 rows and 1509 columns
-#&gt;      aln                                              names
-#&gt;  [1] -----------------------...N--------------------- Agrobacterium rhi...
-#&gt;  [2] -----------------------...---------------------- Agrobacterium rhi...
-#&gt;  [3] -----------------------...C--------------------- Agrobacterium rhi...
-#&gt;  [4] -----------------ATCCTG...---------------------- Komagataeibacter ...
-#&gt;  [5] ---------TGAGTTTGATCCTG...---------------------- Sample2
-#&gt;  [6] ----------GAGTTTGATCATG...CTGCGGCTGGATCACCTCCTTT Komagataeibacter ...
-#&gt;  [7] ----------GAGTTTGATCMTG...CTGCGGCTGGATCACCTCCTTT Komagataeibacter ...
-#&gt;  [8] ---------TGAGTTTGATCCTG...---------------------- Komagataeibacter ...
-#&gt;  [9] ATGAACCTGAGAGTTTGATCCTG...CTGCGGCTGGATCACCTCCTTT Komagataeibacter ...
-#&gt; [10] ----------GAGTTTCATCCTG...CTGCGGCTGGATCACCTCCTTT Komagataeibacter ...
-#&gt; [11] ----------GAGTTTCATCCTG...CTGCGGCTGGATCACCTCCTTT Sample1
-#&gt; [12] -----------------------...---------------------- Komagataeibacter ...
-#&gt; [13] -----------------------...---------------------- Komagataeibacter ...
-#&gt; [14] -----------------------...CTGCGGC--------------- Komagataeibacter ...
-#&gt; [15] ---------AGAGTTTGATCCTG...CTGCGGCTGGATCACCTCCTT- Komagataeibacter ...
-#&gt; [16] -----------------------...CTGC------------------ Komagataeibacter ...
-#&gt; [17] ----------GAGTTTGATTATG...CTGCGGCTGGATCACCTCCTTT Sample3
-#&gt; [18] ---------AGAGTTTGATCCTG...CTGCGGCTGGATCACCTCCTTT Acidobacterium ca...
-#&gt;  Con ----------GAGTTT?ATC?TG...CTGC???--------------- Consensus
+#&gt;      aln                                                   names
+#&gt;  [1] -------------------------...AANN--------------------- Agrobacterium rhi...
+#&gt;  [2] -------------------------...------------------------- Agrobacterium rhi...
+#&gt;  [3] -------------------------...AACC--------------------- Agrobacterium rhi...
+#&gt;  [4] -----------------ATCCTGGC...------------------------- Komagataeibacter ...
+#&gt;  [5] ---------TGAGTTTGATCCTGGC...------------------------- Sample2
+#&gt;  [6] ----------GAGTTTGATCATGGC...AACCTGCGGCTGGATCACCTCCTTT Komagataeibacter ...
+#&gt;  [7] ----------GAGTTTGATCMTGGC...AACCTGCGGCTGGATCACCTCCTTT Komagataeibacter ...
+#&gt;  [8] ---------TGAGTTTGATCCTGGC...------------------------- Komagataeibacter ...
+#&gt;  [9] ATGAACCTGAGAGTTTGATCCTGGC...AACCTGCGGCTGGATCACCTCCTTT Komagataeibacter ...
+#&gt; [10] ----------GAGTTTCATCCTGGC...AACCTGCGGCTGGATCACCTCCTTT Komagataeibacter ...
+#&gt; [11] ----------GAGTTTCATCCTGGC...AACCTGCGGCTGGATCACCTCCTTT Sample1
+#&gt; [12] -------------------------...------------------------- Komagataeibacter ...
+#&gt; [13] -------------------------...------------------------- Komagataeibacter ...
+#&gt; [14] -------------------------...AACCTGCGGC--------------- Komagataeibacter ...
+#&gt; [15] ---------AGAGTTTGATCCTGGC...AACCTGCGGCTGGATCACCTCCTT- Komagataeibacter ...
+#&gt; [16] -------------------------...AACCTGC------------------ Komagataeibacter ...
+#&gt; [17] ----------GAGTTTGATTATGGC...AACCTGCGGCTGGATCACCTCCTTT Sample3
+#&gt; [18] ---------AGAGTTTGATCCTGGC...AACCTGCGGCTGGATCACCTCCTTT Acidobacterium ca...
+#&gt;  Con ----------GAGTTT?ATC?TGGC...AACCTGC???--------------- Consensus
 </code></pre>
 
 <p>The <code>msa()</code> function will return an <code>MSA DNA multiple alignments</code> which contains the DNA aligned sequences (notice the matched/similar codes for specific regions) and a consensus sequence, the most frequent residues found at each position in a sequence alignment. Below is the more beautiful visualization of MSA using BioEdit software that I used often back in college. With R, we can perform it just using a few line of code!</p>
 
-<p><img src="/img/biointro/biointro-msa.png" style="display: block; margin: auto;" /></p>
+<p><img src="/img/biointro/biointro-msa.png" alt="" /></p>
 
 <h3 id="phylogenetic-analysis">Phylogenetic Analysis</h3>
 
@@ -777,7 +753,7 @@ bcTree &lt;- nj(bc_ident)
 plot(bcTree, main=&quot;Phylogenetic Tree of Biocellulose Producing Bacteria&quot;)
 </code></pre>
 
-<p><img src="/blog/2019-12-02-bio-intro_files/figure-html/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/blog/2019-12-02-bio-intro_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;" /></p>
 
 <p>We have known that the major producers of bacterial cellulose belong to the <em>Komagataeibacter</em> genus due to its higher biocelllose yield and purity. From the phylogenetic tree above, we know that sample 1 and sample 2 is within the cluster with many <em>Komagataeibacter xylinus</em> species. Sample 1 is especially closely related to <em>K. xylinus</em> strain NCIB 1166. Meanwhile, sample 3 did not included in any of the cluster containing Komagataeibacter bacteria and therefore might have a lower chance to produce high yield and high purity biocellulose.</p>
 

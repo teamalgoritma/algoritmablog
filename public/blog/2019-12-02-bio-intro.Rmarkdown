@@ -34,9 +34,7 @@ knitr::opts_chunk$set(
 
 It is inarguable that Data Science gives a tremendous impact on today's industry. Furthermore, it also accelerates the development of basic science research including *Biology*. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life. 
 
-```{r echo=FALSE}
-knitr::include_graphics('/img/biointro/biointro-venn.png')
-```
+<center> ![](/img/biointro/biointro-venn.png) </center>
 
 The specialized Data Science area which combines *the use of computer science and statistics and the knowledge of Biology to understand biological data* is called **Bioinformatics**. Bioinformatics has given the world so much knowledge and improvement without us knowing. Having only a few articles that combine both the scientific and practical side of this topic, making it somewhat unexposed clearly to the public. Therefore, throughout this article we will be talking about:
 
@@ -52,9 +50,7 @@ Bioinformatics is originally a subtopic in Biology. Like biology, it has the mai
 
 Many of the misconceptions revolved around Bioinformatics is related to the scope and the data it uses. For example, many of the cases most people considered as bioinformatics may come from the healthcare industry which utilizes various measurement data related to health. Some of them are predicting the status of [breast cancer](https://archive.ics.uci.edu/ml/datasets/Heart+Disease) from a digitized cell image data, diagnosing the status of [heart diseases](https://archive.ics.uci.edu/ml/datasets/Heart+Disease) from health records and laboratory test result, etc. Still, both cases use *normal tabular data* for analysis, which therefore more appropriately reported as a Data Science application in "healthcare", and *not yet* considered as Bioinformatics.  
 
-```{r echo=FALSE}
-knitr::include_graphics('/img/biointro/biointro-heart.png')
-```
+![](/img/biointro/biointro-heart.png)
 
 The data you encounter from these cases is a normal measurement data that may come from many specialized areas of Biology, such as health & medicine, agriculture, environment, bioenergy, biomaterials, etc. Deep knowledge about that respective field is required in order to understand, interpret, and utilize the data appropriately. Meanwhile, the biological data that is used in bioinformatics is rather different. 
 
@@ -68,21 +64,16 @@ All living things are composed of cells. A cell is the basic unit of life. A sin
 
 Living things may be said as the most complex and magnificent molecular machine ever happened. Scientist passionately performs research to understand what makes living things function and what makes them malfunctions (ill/diseased). Through many years of research, the answer is finally proposed in 1957 and known as **The Central Dogma of Biology**.  
 
-```{r echo=F}
-knitr::include_graphics('/img/biointro/biointro-centraldogma.png')
-```
+
+<center>![](/img/biointro/biointro-centraldogma.png)</center>
 
 > The ‘Central Dogma’ describes that the appearance and functional ability of all living things comes from the instructions encoded in their DNA.
 
-```{r echo=F}
-knitr::include_graphics('/img/biointro/biointro-dna.gif')
-```
+<center>![](/img/biointro/biointro-dna.gif)</center>
 
 That above is **DNA**. It resides within the cell of each living organism. DNA is a strand with a double helix structure that contains the genetic code of an organism. This genetic code works like instructions that tell the cell what **protein** it should make. A special region in DNA that store codes for each specific protein is called a **gene**. Therefore each protein has its specific gene. The genetic code in DNA is written as a code of 4 characters, representing the 4 types of nucleotide (the building block of DNA) called adenine ( A ), cytosine ( C ), guanine ( G ), thymine ( T ). Every time a protein needs to be made, the gene must be *transcribed* first into its single strand structure called messenger RNA (mRNA), and then *translated* into protein. Unlike DNA which only has 4 character codes, proteins have 20 character codes representing each amino acid as the building block to making protein. The cryptogram to translate mRNA into protein is presented below.
 
-```{r echo=F}
-knitr::include_graphics('/img/biointro/biointro-crypto.png')
-```
+<center>![](/img/biointro/biointro-crypto.png)</center>
 
 The correct genetic codes and smooth translation from DNA to protein are important so that every cell in our body has enough protein that it needs to functions properly. For example, red blood cells need hemoglobin, a functional protein that binds oxygen and helps red blood cells carry oxygen throughout the body. Another example is collagen, a structural protein which promotes skin cell's elasticity. Another type of protein also exists such as hormones, enzymes, antibodies, etc. A failure in providing the correct protein because of some *error code in the DNA* may cause serious diseases such as Alzheimer's, Sickle Cell Anemia, Down syndrome, etc.
 
@@ -112,9 +103,8 @@ A joint effort to collect and disseminate databases containing DNA and RNA seque
 
 Meanwhile, there are also various tools and software used for Bioinformatics, depending on the case we are trying to solve. In R, Bioinformaticians have their own repository to search for packages related to bioinformatics analysis called [Bioconductor](https://bioconductor.org/). The installation of packages from Bioconductor is slightly different from the installation of packages from CRAN. Inside, there are approximately 1800++ packages for scientists to perform their bioinformatics analysis.
 
-```{r echo=F}
-knitr::include_graphics('/img/biointro/biointro-site.png')
-```
+
+<center>![](/img/biointro/biointro-site.png)</center>
 
 <br>
 
@@ -124,9 +114,8 @@ The value of biological research rested on the main idea and purpose of research
 
 It is 2019 already and many people are shifting towards a more eco-friendly way of living. One of them is to reduce the use of plastic. Starting from replacing the use of plastic straws to stainless steel, the use of reusable tumbler and lunchboxes, etc. Conversation about 'green packaging' has also been IN for the past few years. While plastic is dominantly being used for packaging, scientists are finding a way to replace plastic with a more friendly biomaterial which is both biodegradable and versatile for the packaging industry. Through years of research, they finally found it and it's called **Biocellulose**. 
 
-```{r echo=F}
-knitr::include_graphics('/img/biointro/biointro-bc.jpg')
-```
+
+<center>![](/img/biointro/biointro-bc.jpg)</center>
 
 Bacterial cellulose or biocellulose is a nanomaterial produced by some bacteria. Biocellulose harbors some [interesting properties](https://www.prescouter.com/2018/02/nanocellulose-applications-packaging/) that makes it a potential candidate to replace plastic:
 
@@ -180,9 +169,8 @@ DNA sequences data is stored in a FASTA format, a text-based format for represen
  
 This below is an example:
 
-```{r echo=F}
-knitr::include_graphics('/img/biointro/biointro-fasta.png')
-```
+<center>![](/img/biointro/biointro-fasta.png)<center>
+
 
 For this article, I have prepared a dummy data containing real DNA sequence data from GenBank, and some dummy DNA sequence for analysis. This data stored in a fasta format and named `bioc.fasta`. To read the data we can use `readDNAStringSet()` function from Biostrings package that already loaded as the dependencies for msa package.
 
@@ -216,9 +204,7 @@ bc_msa
 
 The `msa()` function will return an `MSA DNA multiple alignments` which contains the DNA aligned sequences (notice the matched/similar codes for specific regions) and a consensus sequence, the most frequent residues found at each position in a sequence alignment. Below is the more beautiful visualization of MSA using BioEdit software that I used often back in college. With R, we can perform it just using a few line of code!
 
-```{r echo=F}
-knitr::include_graphics('/img/biointro/biointro-msa.png')
-```
+![](/img/biointro/biointro-msa.png)
 
 ### Phylogenetic Analysis
 
