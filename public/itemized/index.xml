@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Itemized on Algoritma Technical Blog</title>
@@ -17,7 +17,7 @@
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item1/</guid>
-      <description> App 1 </description>
+      <description>App 1 </description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item2/</guid>
-      <description> App 2 </description>
+      <description>App 2 </description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item3/</guid>
-      <description> App 3 </description>
+      <description>App 3 </description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item4/</guid>
-      <description> App 4 </description>
+      <description>App 4 </description>
     </item>
     
   </channel>
