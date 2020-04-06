@@ -57,14 +57,14 @@
   </url>
   
   <url>
-    <loc>/blog/text-generating-with-markov-chains/</loc>
-    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/text-generation/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/blog/text-generating-with-markov-chains/</loc>
+    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
