@@ -3,7 +3,7 @@ title: Time Efficiency and Accuracy Improvement using PCA
 author: Yaumil Sitta
 github: https://github.com/ysitta
 date: '2020-04-13'
-slug: time-efficiency-and-accuracy-improvement-using-pca
+slug: time-and-accuracy-improvement-using-pca
 categories:
   - R
 tags: 
@@ -16,7 +16,7 @@ linktitle: ''
 type: post
 ---
 
-```{r}
+```{r setup, include=FALSE}
 # clean up the environment
 rm(list = ls())
 
@@ -29,12 +29,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-
-This article focus on the application of Principal Component Analysis (PCA) on classification analysis and the impact on the time efficiency and accuracy improvement.
-
 # About Dimensionality Reduction
 
-If you are familiar enough with data, sometimes you are faced with too many predictor variables that make the computation so heavy. Let us say, you are challenged to predict employee in your company will resign or not while the variables are the level of satisfaction on work, number of project, average monthly hours, time spend at the company, etc. You are facing so many predictor that took so long for training your model. One way to speed up your training process is by dimensionality reduction. Reducing the dimension of the variable can make the computation less heavy. 
+If you are familiar enough with data, sometimes you are faced with too many predictor variables that make the computation so heavy. Let us say, you are challenged to predict employee in your company will resign or not while the variables are the level of satisfaction on work, number of project, average monthly hours, time spend at the company, etc. You are facing so many predictor that took so long for training your model. One way to speed up your training process is by reducing the dimension that can make the computation less heavy. 
 
 To do the dimensionality reduction, the techniques divide into two ways:   
 
@@ -91,7 +88,7 @@ library(tictoc)
 
 Load the shopper intention dataset to our environment.
 ```{r}
-shopper_intention <- read_csv("data_input/online_shoppers_intention.csv")
+shopper_intention <- read_csv("pca_use_case/online_shoppers_intention.csv")
 ```
 
 ```{r echo = FALSE}
@@ -137,11 +134,8 @@ ggcorr(select_if(shopper_intention, is.numeric),
        layout.exp = 3)
 ```
 
-It looks like we have several variables that has correlation of one another, but the correlation is not quite high. Now, let us do the cross validation to split the data into train and test.
+It looks like we have several variables that has correlation of one another, but the correlation is not quite high. Now, let us do the cross validation to split the data into train and test. We will split the data into 80% to be our training dataset and 20% to be our testing dataset.
 
-Cross Validation
-
-Let us split the data into 80% to be our training dataset and 20% to be our testing dataset.
 ```{r}
 RNGkind(sample.kind = "Rounding")
 set.seed(417)
@@ -166,7 +160,7 @@ Based on the output above, our data has several missing value (NA), but the numb
 
 ### The Revenue on Online Wesite Prediction with PCA
 
-Here, we do the several preprocessing step using `recipe()` function from [recipe](https://tidymodels.github.io/recipes/) package. We store all of our preprocessing, in `step_*()` function, including **PCA** step. Here, the syntax of PCA is `step_pca(all_numeric(), threshold = 0.90)` we use the numeric variable only, and take the 90% of cummulative variance of the data, hence the threshold is set by 0.90.
+In this article, we do the several preprocessing step using `recipe()` function from [recipe](https://tidymodels.github.io/recipes/) package. We store all of our preprocessing in `step_*()` function, including the **PCA** step. The syntax of PCA in our recipe is stored as `step_pca(all_numeric(), threshold = 0.90)`. The syntax means, we use the numeric variable only and take the 90% of cummulative variance of the data, hence the threshold is set by 0.90.
 
 ```{r}
 rec <- recipe(Revenue~., training(splitted)) %>% 
@@ -189,10 +183,9 @@ Now, peek our train dataset after the preprocessing applied.
 head(train)
 ```
 
-Here we can see in train dataset above, we have 1 target variable, 6 categorical predictor and 6 new PCs (the result of 90% variance of PCA) that will be train in to our model.
+We can see in train dataset above, we have 1 target variable, 6 categorical predictor and 6 new numeric PCs (the result of 90% variance of PCA) predictor that will be trained in to our model.
 
-
-In our first model that is using PCA in our preprocessing data, we want to build a random forest model using 5 fold validation and 3 repeats to predict if the visitor of our website will generate the revenue or not. Besides, we use `tic()` and `toc()` function to measure the time elapsed while running the random forest model.
+In our first model-- the model that use PCA in the preprocessing step, we want to build a random forest model using 5 fold validation and 3 repeats to predict if the visitor of our website will generate the revenue or not. Besides, we use `tic()` and `toc()` function to measure the time elapsed while running the random forest model.
 
 ```{r eval = F}
 RNGkind(sample.kind = "Rounding")
@@ -204,7 +197,9 @@ toc()
 ```
 <center>
 
-![](assets/tictoc_pca.PNG)
+```{r echo = F}
+knitr::include_graphics('img/tictoc_pca.PNG')
+```
 
 </center>
 
@@ -216,7 +211,7 @@ After running the model, the time consumed to build the model is 1608.41 or arou
 
 
 ```{r echo = F}
-model <- readRDS("model_RF.RDS")
+model <- readRDS("pca_use_case/model_RF.RDS")
 ```
 
 Then, we use the model to predict the test dataset. 
@@ -232,7 +227,7 @@ confusionMatrix(prediction_pca, test$Revenue, positive = "TRUE")
 
 ### The Revenue on Online Wesite Prediction without PCA
 
-Now, we want to compare the result of model that use PCA in the preprocessing process with the model using the same preprocessing, but without PCA. Here let us make the recipe first.
+Now, we want to compare the result of model that use PCA in the preprocessing step with the model that use the same preprocessing step, but without PCA. Now, let us make the recipe first.
 
 ```{r}
 rec2 <- recipe(Revenue~., training(splitted)) %>% 
@@ -249,11 +244,13 @@ train2 <- juice(rec2)
 test2 <- bake(rec2, testing(splitted))
 ```
 
+Then, take a look at our training data
+
 ```{r}
 head(train2)
 ```
 
-In this case, we use 16 predictors, means there are no variable that has been removed. Now, apply the sampe random forest algorithm with the exactly same model tuning to compare the time comsume and accuracy of the model.
+As seen above, we use 16 predictors, means there are no variable that has been removed (unlike the predictors in our previous model). Next, apply the random forest algorithm with the exact same model tuning to compare the time comsume and the accuracy of the model.
 
 ```{r eval = F} 
 RNGkind(sample.kind = "Rounding")
@@ -266,7 +263,9 @@ toc()
 
 <center>
 
-![](assets/tictoc_tnp_pca2.PNG)
+```{r echo = F}
+knitr::include_graphics('img/tictoc_tnp_pca.PNG')
+```
 
 </center>
 
@@ -275,7 +274,7 @@ toc()
 ```
 
 ```{r echo = F}
-model2 <- readRDS("model_RF2.RDS")
+model2 <- readRDS("pca_use_case/model_RF2.RDS")
 ```
 
 ```{r}
@@ -301,7 +300,7 @@ In this section, we will use breast cancer dataset. Let us say, we want to predi
 Here, we will create two models, the first is the model that the predictors is using PCA, and the second is the model without PCA in the preprocessing data.
 
 ```{r}
-cancer <- read_csv("data_input/breast-cancer-wisconsin-data/data.csv")
+cancer <- read_csv("pca_use_case/breast-cancer-wisconsin-data/data.csv")
 ```
 
 Now, let us take a look at our data.
@@ -338,6 +337,7 @@ cancer <- cancer %>%
   select(-c(X33, id))
 ```
 
+Then, let us check is there any missing value on each variable.
 ```{r}
 colSums(is.na(cancer))
 ```
@@ -393,12 +393,14 @@ toc()
 ```
 
 ```{r echo = F}
-model_cancer_pca <- readRDS("rf_cancer.rds")
+model_cancer_pca <- readRDS("pca_use_case/rf_cancer.rds")
 ```
 
 <center>
 
-![](assets/cancer+pca.PNG)
+```{r echo = F}
+knitr::include_graphics('img/cancer+pca.PNG')
+```
 
 </center>
 
@@ -444,12 +446,14 @@ toc()
 ```
 
 ```{r echo = F}
-model_cancer <- readRDS("rf_cancer2.rds")
+model_cancer <- readRDS("pca_use_case/rf_cancer2.rds")
 ```
 
 <center>
 
-![](assets/cancer+tnp+pca.PNG)
+```{r echo = F}
+knitr::include_graphics('img/cancer+tnp+pca.PNG')
+```
 
 </center>
 

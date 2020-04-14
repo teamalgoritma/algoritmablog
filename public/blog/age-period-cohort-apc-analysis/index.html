@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.55.4" />
+        <meta name="generator" content="Hugo 0.69.0" />
         
 
 
@@ -60,19 +60,16 @@ Libraries and Setup You will need install the package to do APC analysis if it&r
 Libraries and Setup You will need install the package to do APC analysis if it&rsquo;s not already downloaded onto your machine." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/age-period-cohort-apc-analysis/" />
-<meta property="article:published_time" content="2019-03-28T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-03-28T00:00:00&#43;00:00"/>
+<meta property="article:published_time" content="2019-03-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-03-28T00:00:00+00:00" />
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        
-<meta itemprop="name" content="Age-Period-Cohort (APC) Analysis">
+        <meta itemprop="name" content="Age-Period-Cohort (APC) Analysis">
 <meta itemprop="description" content="Background Disclaimer The following coursebook is produced by the team at Algoritma for its Data Science Academy internal training. The coursebook is intended for a restricted audience only, i.e. the individuals and organizations having received this coursebook directly from the training organization. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
 Libraries and Setup You will need install the package to do APC analysis if it&rsquo;s not already downloaded onto your machine.">
-
-
 <meta itemprop="datePublished" content="2019-03-28T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-03-28T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="3967">
@@ -80,7 +77,6 @@ Libraries and Setup You will need install the package to do APC analysis if it&r
 
 
 <meta itemprop="keywords" content="APC,time series," />
-
         
 
         
@@ -251,6 +247,18 @@ Libraries and Setup You will need install the package to do APC analysis if it&r
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/time-and-accuracy-improvement-using-pca/">Time Efficiency and Accuracy Improvement using PCA</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-04-13'>
+                                    April 13, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/text-generating-with-markov-chains/">Text Generation with Markov Chains</a></h3>
                                 
                                 <time class="published" datetime=
@@ -346,18 +354,6 @@ Libraries and Setup You will need install the package to do APC analysis if it&r
                                 <time class="published" datetime=
                                     '2020-01-13'>
                                     January 13, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/introduction-to-generative-adversarial-network-with-keras/">Introduction to Generative Adversarial Network with Keras</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2019-12-18'>
-                                    December 18, 2019</time>
                             </header>
                             
 
@@ -521,76 +517,51 @@ Libraries and Setup You will need install the package to do APC analysis if it&r
   
 
   <div id="content">
-    
-
-<h1 id="background">Background</h1>
-
+    <h1 id="background">Background</h1>
 <h2 id="disclaimer">Disclaimer</h2>
-
 <p>The following coursebook is produced by the team at <a href="https://algorit.ma">Algoritma</a> for its Data Science Academy internal training. The coursebook is intended for a restricted audience only, i.e. the individuals and organizations having received this coursebook directly from the training organization. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.</p>
-
 <h2 id="libraries-and-setup">Libraries and Setup</h2>
-
 <p>You will need install the package to do APC analysis if it&rsquo;s not already downloaded onto your machine.</p>
-
-<pre><code class="language-r">library(broom)
-library(tidyverse)
-</code></pre>
-
-<h2 id="training-objectives">Training Objectives</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(broom)
+<span style="color:#a6e22e">library</span>(tidyverse)
+</code></pre></div><h2 id="training-objectives">Training Objectives</h2>
 <p>The primary objective of this course is to provide a comprehensive introduction to the science of APC analysis. The syllabus covers:</p>
-
 <ul>
 <li><strong>APC Analysis</strong></li>
-<li>Workflow<br /></li>
-<li>APC in R<br /></li>
+<li>Workflow</li>
+<li>APC in R</li>
 </ul>
-
 <h1 id="apc-analysis">APC Analysis</h1>
-
-<p>Age-period-cohort (APC) analysis is widely used for capturing the characteristics in time-varying elements, and mostly used in epidemiology and demographic fields or we could say this is identification problem. In particular, APC analysis discerns three types of time varying phenomena<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>:</p>
-
+<p>Age-period-cohort (APC) analysis is widely used for capturing the characteristics in time-varying elements, and mostly used in epidemiology and demographic fields or we could say this is identification problem. In particular, APC analysis discerns three types of time varying phenomena<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
 <ul>
-<li><p><strong>Age effects</strong>:</p>
-
-<p>Age effect is variations linked to biological and social processes of aging specific to individuals. They include physiologic changes and accumulation of social experiences linked to aging, but unrelated to the time period or birth cohort to which an individual belongs.</p></li>
-
-<li><p><strong>Period effects</strong>:</p>
-
-<p>Period effect is the result from external factors that equally affect all age groups at a particular calendar time. It could arise from a range of environmental, social and economic factors e.g. war, famine, economic crisis. Methodological changes in outcome definitions, classifications, or method of data collection could also lead to period effects in data.</p></li>
-
-<li><p><strong>Cohort effects</strong>:</p>
-
+<li>
+<p><strong>Age effects</strong>:</p>
+<p>Age effect is variations linked to biological and social processes of aging specific to individuals. They include physiologic changes and accumulation of social experiences linked to aging, but unrelated to the time period or birth cohort to which an individual belongs.</p>
+</li>
+<li>
+<p><strong>Period effects</strong>:</p>
+<p>Period effect is the result from external factors that equally affect all age groups at a particular calendar time. It could arise from a range of environmental, social and economic factors e.g. war, famine, economic crisis. Methodological changes in outcome definitions, classifications, or method of data collection could also lead to period effects in data.</p>
+</li>
+<li>
+<p><strong>Cohort effects</strong>:</p>
 <p>Cohort effect is variations resulting from the unique experience/exposure of a group of subjects (cohort) as they move across time.  In epidemiology, a cohort effect is conceptualized as an interaction or effect modification due to a period effect that is differentially experienced through age-specific exposure or susceptibility to that event or cause.</p>
-
-<p>In contrast to this conceptualization of cohort effect as an effect modification in epidemiology, sociological literature consider cohort effect as a structural factor representing the sum of all unique exposures experienced by the cohort from birth. In this case, age and period effect are conceived as confounders of cohort effect and APC analysis aims to disentangle the independent effect of age, period and cohort. Most of the APC analysis strategies are based on the sociological model of cohort effect, conceptualize independent effect of age, period and cohort effect.</p></li>
+<p>In contrast to this conceptualization of cohort effect as an effect modification in epidemiology, sociological literature consider cohort effect as a structural factor representing the sum of all unique exposures experienced by the cohort from birth. In this case, age and period effect are conceived as confounders of cohort effect and APC analysis aims to disentangle the independent effect of age, period and cohort. Most of the APC analysis strategies are based on the sociological model of cohort effect, conceptualize independent effect of age, period and cohort effect.</p>
+</li>
 </ul>
-
 <p><strong>Identification problem in APC:</strong> APC analysis aims at describing and estimating the independent effect of age, period and cohort on the outcome under study. The different strategies used aims to partition variance into the unique components attributable to age, period, and cohort effects. However, there is a major impediment to independently estimating age, period, and cohort effects by modeling the data which is know as the “identification problem” in APC. This is due to the exact linear dependency among age, period, and cohort: <code>\(Period – Age = Cohort\)</code>; that is, given the calendar year and age, one can determine the cohort (birth year). The presence of perfectly collinear predictors (age, period and cohort) in a regression model will produce a singular non-identifiable design matrix, from which it is statistically impossible to estimate unique estimates for the three effects.</p>
-
 <p>Age-Period-Cohort will be exist together at once, we saperate them to see which more important driving the societal changes. But those sometimes could be dificult because three of them were collinear.</p>
-
 <h2 id="conventional-solutions-to-apc">Conventional solutions to APC</h2>
-
 <p>Turn APC with regression in order to estimate parameters (trends and deviations). The parameters are combined to produce functions that describe relationships between the observed number of suicides and age, calendar period, and birth cohort.</p>
-
-<p>A popular approach to resolving the identification problem was by using constraint based regression analysis (Constrained Coefficients GLIM estimator (CGLIM)). In this strategy additional constrains are placed on one of the categories of at least one predictor to simultaneously estimate the age period and cohort effect. Thus assuming some categories of age groups, cohorts or time periods have identical effects on the dependent variable it becomes possible to estimate independent effect of age period and cohort<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">2</a></sup></p>
-
-<p>However, the results from this analysis will depend on constrains chosen by the investigator based on external information. The validity of the constraints chosen will depend on the theoretical preconception about the categories of parameter that are identical, is often subjective and there is no empirical way to confirm the validity of the chosen constraints <sup class="footnote-ref" id="fnref:4"><a href="#fn:4">3</a></sup>.</p>
-
+<p>A popular approach to resolving the identification problem was by using constraint based regression analysis (Constrained Coefficients GLIM estimator (CGLIM)). In this strategy additional constrains are placed on one of the categories of at least one predictor to simultaneously estimate the age period and cohort effect. Thus assuming some categories of age groups, cohorts or time periods have identical effects on the dependent variable it becomes possible to estimate independent effect of age period and cohort<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p>However, the results from this analysis will depend on constrains chosen by the investigator based on external information. The validity of the constraints chosen will depend on the theoretical preconception about the categories of parameter that are identical, is often subjective and there is no empirical way to confirm the validity of the chosen constraints <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
 <h3 id="apc-with-lm">APC with <code>lm</code></h3>
-
 <p>I&rsquo;ve prepared the following data originally made available in <a href="https://www.kaggle.com/russellyates88/suicide-rates-overview-1985-to-2016">kaggle</a>. We&rsquo;ll read the data into our workspace:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># load data</span>
+suicides <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;data_input/suicides.csv&#34;</span>)
 
-<pre><code class="language-r"># load data
-suicides &lt;- read_csv(&quot;data_input/suicides.csv&quot;)
-
-# quick check
-glimpse(suicides)
-</code></pre>
-
-<pre><code>#&gt; Observations: 27,820
+<span style="color:#75715e"># quick check</span>
+<span style="color:#a6e22e">glimpse</span>(suicides)
+</code></pre></div><pre><code>#&gt; Observations: 27,820
 #&gt; Variables: 6
 #&gt; $ suicides &lt;dbl&gt; 21, 16, 14, 1, 9, 1, 6, 4, 1, 0, 0, 0, 2, 17, 1, 14, ...
 #&gt; $ age      &lt;dbl&gt; 20, 44, 20, 75, 30, 75, 44, 30, 64, 10, 64, 10, 75, 2...
@@ -598,10 +569,7 @@ glimpse(suicides)
 #&gt; $ cohort   &lt;dbl&gt; 1967, 1943, 1967, 1912, 1957, 1912, 1943, 1957, 1923,...
 #&gt; $ sex      &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;...
 #&gt; $ country  &lt;chr&gt; &quot;Albania&quot;, &quot;Albania&quot;, &quot;Albania&quot;, &quot;Albania&quot;, &quot;Albania&quot;...
-</code></pre>
-
-<p>The data have 27.820 observation and 5 variables, here some description to get insight of the data:</p>
-
+</code></pre><p>The data have 27.820 observation and 5 variables, here some description to get insight of the data:</p>
 <ul>
 <li><code>sucides</code>: number of suicides</li>
 <li><code>age</code>: <em>self explanatory</em></li>
@@ -610,19 +578,15 @@ glimpse(suicides)
 <li><code>sex</code>: gender indicator</li>
 <li><code>country</code>: country indicator</li>
 </ul>
-
 <p>We need to readjust APC variable to start with:</p>
-
-<pre><code class="language-r"># readjust apc variable
-suicides &lt;- suicides %&gt;%
-  mutate(age_squared = age ^ 2) %&gt;% 
-  mutate_at(vars(period, cohort), funs(as.factor(.))) %&gt;% 
-  select(suicides, age, age_squared, period, cohort, everything())
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># readjust apc variable</span>
+suicides <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(age_squared <span style="color:#f92672">=</span> age ^ <span style="color:#ae81ff">2</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate_at</span>(<span style="color:#a6e22e">vars</span>(period, cohort), <span style="color:#a6e22e">funs</span>(<span style="color:#a6e22e">as.factor</span>(.))) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(suicides, age, age_squared, period, cohort, <span style="color:#a6e22e">everything</span>())
 
 suicides
-</code></pre>
-
-<pre><code>#&gt; # A tibble: 27,820 x 7
+</code></pre></div><pre><code>#&gt; # A tibble: 27,820 x 7
 #&gt;    suicides   age age_squared period cohort sex    country
 #&gt;       &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  &lt;fct&gt;  &lt;chr&gt;  &lt;chr&gt;  
 #&gt;  1       21    20         400 1987   1967   male   Albania
@@ -636,20 +600,13 @@ suicides
 #&gt;  9        1    64        4096 1987   1923   male   Albania
 #&gt; 10        0    10         100 1987   1977   female Albania
 #&gt; # ... with 27,810 more rows
-</code></pre>
-
-<p>Now we have our data that contained APC variables. For the next step we applied linear regression to extract coefficient of APC with equation:</p>
-
+</code></pre><p>Now we have our data that contained APC variables. For the next step we applied linear regression to extract coefficient of APC with equation:</p>
 <p><code>$$y_{ij} = \alpha_{ij} + \beta_{ij}Age + \beta_{ij}Age^2 + e_{ij}$$</code></p>
-
 <p>where <code>\(i\)</code> is representing period, and <code>\(j\)</code> representing cohort.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_lm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(suicides <span style="color:#f92672">~</span> age <span style="color:#f92672">+</span> age_squared <span style="color:#f92672">+</span> period <span style="color:#f92672">+</span> cohort, suicides)
 
-<pre><code class="language-r">apc_lm &lt;- lm(suicides ~ age + age_squared + period + cohort, suicides)
-
-summary(apc_lm)
-</code></pre>
-
-<pre><code>#&gt; 
+<span style="color:#a6e22e">summary</span>(apc_lm)
+</code></pre></div><pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = suicides ~ age + age_squared + period + cohort, 
 #&gt;     data = suicides)
@@ -793,18 +750,13 @@ summary(apc_lm)
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; 
 #&gt; Residual standard error: 889.6 on 27692 degrees of freedom
-#&gt; Multiple R-squared:  0.03193,    Adjusted R-squared:  0.02749 
+#&gt; Multiple R-squared:  0.03193,	Adjusted R-squared:  0.02749 
 #&gt; F-statistic: 7.193 on 127 and 27692 DF,  p-value: &lt; 2.2e-16
-</code></pre>
-
-<p>Use package <a href="https://cran.r-project.org/web/packages/broom/vignettes/broom.html">broom</a> to constructs a data frame that summarizes the model’s statistical findings.</p>
-
-<pre><code class="language-r">apc_tidy &lt;- tidy(apc_lm)
+</code></pre><p>Use package <a href="https://cran.r-project.org/web/packages/broom/vignettes/broom.html">broom</a> to constructs a data frame that summarizes the model’s statistical findings.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_tidy <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tidy</span>(apc_lm)
 
 apc_tidy
-</code></pre>
-
-<pre><code>#&gt; # A tibble: 128 x 5
+</code></pre></div><pre><code>#&gt; # A tibble: 128 x 5
 #&gt;    term        estimate std.error statistic  p.value
 #&gt;    &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 #&gt;  1 (Intercept) -339.      86.8      -3.91   9.40e- 5
@@ -818,23 +770,18 @@ apc_tidy
 #&gt;  9 period1991    67.5     71.9       0.939  3.48e- 1
 #&gt; 10 period1992   118.      75.2       1.57   1.17e- 1
 #&gt; # ... with 118 more rows
-</code></pre>
-
-<p>From tidied coefficients, we need to tidy our results, starting from period and cohort first:</p>
-
-<pre><code class="language-r">pc_tidy &lt;- apc_tidy %&gt;%
-  mutate(
-    key = str_replace_all(term, &quot;[:digit:]&quot;, &quot;&quot;), 
-    value = str_replace_all(term, &quot;[:alpha:]&quot;, &quot;&quot;) %&gt;% as.numeric() 
-  ) %&gt;% # seperate digit number and alphabet of term 
-  select(key, value, estimate) %&gt;% 
-  filter(key == &quot;period&quot; | key == &quot;cohort&quot;) %&gt;% 
-  spread(key, value)
+</code></pre><p>From tidied coefficients, we need to tidy our results, starting from period and cohort first:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pc_tidy <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(
+    key <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;[:digit:]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>), 
+    value <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;[:alpha:]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.numeric</span>() 
+  ) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># seperate digit number and alphabet of term </span>
+  <span style="color:#a6e22e">select</span>(key, value, estimate) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;period&#34;</span> <span style="color:#f92672">|</span> key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;cohort&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">spread</span>(key, value)
 
 pc_tidy
-</code></pre>
-
-<pre><code>#&gt; # A tibble: 125 x 3
+</code></pre></div><pre><code>#&gt; # A tibble: 125 x 3
 #&gt;    estimate cohort period
 #&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 #&gt;  1   -177.      NA   2016
@@ -848,43 +795,35 @@ pc_tidy
 #&gt;  9    -82.8   1917     NA
 #&gt; 10    -62.2   1928     NA
 #&gt; # ... with 115 more rows
-</code></pre>
+</code></pre><p>Then we can extract and tidy each coefficient using code in the chunk below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">age_coef <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;age&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">pull</span>(estimate)
 
-<p>Then we can extract and tidy each coefficient using code in the chunk below:</p>
+age_squared_coef <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;age_squared&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">pull</span>(estimate)
 
-<pre><code class="language-r">age_coef &lt;- apc_tidy %&gt;% 
-  filter(term == &quot;age&quot;) %&gt;% 
-  pull(estimate)
+period_coef <span style="color:#f92672">&lt;-</span> pc_tidy <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> period, y <span style="color:#f92672">=</span> estimate) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">drop_na</span>()
 
-age_squared_coef &lt;- apc_tidy %&gt;% 
-  filter(term == &quot;age_squared&quot;) %&gt;% 
-  pull(estimate)
-
-period_coef &lt;- pc_tidy %&gt;% 
-  select(x = period, y = estimate) %&gt;% 
-  drop_na()
-
-cohort_coef &lt;- pc_tidy %&gt;% 
-  select(x = cohort, y = estimate) %&gt;% 
-  drop_na()
-</code></pre>
-
-<p>Now we can calculate the age effect, then combine all the coefficient together:</p>
-
-<pre><code class="language-r">apc_all &lt;- suicides %&gt;%
-  mutate(age_effect = (age * age_coef) + (age_squared * age_squared_coef)) %&gt;% 
-  select(x = age, y = age_effect) %&gt;% 
-  distinct() %&gt;% 
-  mutate(group = &quot;Age Effect&quot;) %&gt;% 
-  bind_rows(mutate(period_coef, group = &quot;Period Effect&quot;)) %&gt;% 
-  bind_rows(mutate(cohort_coef, group = &quot;Cohort Effect&quot;)) %&gt;% 
-  select(group, x, y) %&gt;% 
-  arrange(x)
+cohort_coef <span style="color:#f92672">&lt;-</span> pc_tidy <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> cohort, y <span style="color:#f92672">=</span> estimate) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">drop_na</span>()
+</code></pre></div><p>Now we can calculate the age effect, then combine all the coefficient together:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_all <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(age_effect <span style="color:#f92672">=</span> (age <span style="color:#f92672">*</span> age_coef) <span style="color:#f92672">+</span> (age_squared <span style="color:#f92672">*</span> age_squared_coef)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> age, y <span style="color:#f92672">=</span> age_effect) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">distinct</span>() <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Age Effect&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(period_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Period Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(cohort_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cohort Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(group, x, y) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">arrange</span>(x)
 
 apc_all
-</code></pre>
-
-<pre><code>#&gt; # A tibble: 131 x 3
+</code></pre></div><pre><code>#&gt; # A tibble: 131 x 3
 #&gt;    group             x     y
 #&gt;    &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
 #&gt;  1 Age Effect       10 272. 
@@ -898,29 +837,20 @@ apc_all
 #&gt;  9 Cohort Effect  1913  26.9
 #&gt; 10 Cohort Effect  1914 -24.1
 #&gt; # ... with 121 more rows
-</code></pre>
-
-<p>The last but not least, we can visualize the estimated coefficient to get some insight regarding our APC decomposition:</p>
-
-<pre><code class="language-r">ggplot(apc_all, aes(x, y)) +
-  geom_line() +
-  facet_wrap(~ group, scales = &quot;free&quot;, ncol = 1)
-</code></pre>
-
-<p><img src="/blog/2019-03-28-age-period-cohort-apc-analysis_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+</code></pre><p>The last but not least, we can visualize the estimated coefficient to get some insight regarding our APC decomposition:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(apc_all, <span style="color:#a6e22e">aes</span>(x, y)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span> group, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free&#34;</span>, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <p>From plot above we can identify Age, Period and Cohort effect of suicides. But it&rsquo;s not capturing all of our the data dynamics, lets try it to more specific cases from the data. We filltered the data by sex and country:</p>
-
-<pre><code class="language-r">suicides_male_us &lt;- suicides %&gt;% 
-  filter(
-    sex == &quot;male&quot;,
-    country == &quot;United States&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">suicides_male_us <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(
+    sex <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;male&#34;</span>,
+    country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;United States&#34;</span>
   )
 
 suicides_male_us
-</code></pre>
-
-<pre><code>#&gt; # A tibble: 186 x 7
+</code></pre></div><pre><code>#&gt; # A tibble: 186 x 7
 #&gt;    suicides   age age_squared period cohort sex   country      
 #&gt;       &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  &lt;fct&gt;  &lt;chr&gt; &lt;chr&gt;        
 #&gt;  1     2177    75        5625 1985   1910   male  United States
@@ -934,16 +864,11 @@ suicides_male_us
 #&gt;  9     5450    30         900 1986   1956   male  United States
 #&gt; 10     6450    44        1936 1986   1942   male  United States
 #&gt; # ... with 176 more rows
-</code></pre>
+</code></pre><p>Now we have our data that contained APC variables of <code>male</code> in <code>United States</code>. For the next step we applied linear regression to extract coefficient of APC from the data :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_lm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(suicides <span style="color:#f92672">~</span> age <span style="color:#f92672">+</span> age_squared <span style="color:#f92672">+</span> period <span style="color:#f92672">+</span> cohort, suicides_male_us)
 
-<p>Now we have our data that contained APC variables of <code>male</code> in <code>United States</code>. For the next step we applied linear regression to extract coefficient of APC from the data :</p>
-
-<pre><code class="language-r">apc_lm &lt;- lm(suicides ~ age + age_squared + period + cohort, suicides_male_us)
-
-summary(apc_lm)
-</code></pre>
-
-<pre><code>#&gt; 
+<span style="color:#a6e22e">summary</span>(apc_lm)
+</code></pre></div><pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = suicides ~ age + age_squared + period + cohort, 
 #&gt;     data = suicides_male_us)
@@ -1086,56 +1011,48 @@ summary(apc_lm)
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; 
 #&gt; Residual standard error: 1577 on 59 degrees of freedom
-#&gt; Multiple R-squared:  0.9105, Adjusted R-squared:  0.7194 
+#&gt; Multiple R-squared:  0.9105,	Adjusted R-squared:  0.7194 
 #&gt; F-statistic: 4.765 on 126 and 59 DF,  p-value: 3.789e-10
-</code></pre>
+</code></pre><p>Again, from tidied coefficients, we need to tidy our results:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_tidy <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tidy</span>(apc_lm)
 
-<p>Again, from tidied coefficients, we need to tidy our results:</p>
+pc_tidy <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(
+    key <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;[:digit:]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>), 
+    value <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;[:alpha:]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.numeric</span>() 
+  ) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># seperate digit number and alphabet of term </span>
+  <span style="color:#a6e22e">select</span>(key, value, estimate) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;period&#34;</span> <span style="color:#f92672">|</span> key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;cohort&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">spread</span>(key, value)
 
-<pre><code class="language-r">apc_tidy &lt;- tidy(apc_lm)
+age_coef <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;age&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">pull</span>(estimate)
 
-pc_tidy &lt;- apc_tidy %&gt;%
-  mutate(
-    key = str_replace_all(term, &quot;[:digit:]&quot;, &quot;&quot;), 
-    value = str_replace_all(term, &quot;[:alpha:]&quot;, &quot;&quot;) %&gt;% as.numeric() 
-  ) %&gt;% # seperate digit number and alphabet of term 
-  select(key, value, estimate) %&gt;% 
-  filter(key == &quot;period&quot; | key == &quot;cohort&quot;) %&gt;% 
-  spread(key, value)
+age_squared_coef <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;age_squared&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">pull</span>(estimate)
 
-age_coef &lt;- apc_tidy %&gt;% 
-  filter(term == &quot;age&quot;) %&gt;% 
-  pull(estimate)
+period_coef <span style="color:#f92672">&lt;-</span> pc_tidy <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> period, y <span style="color:#f92672">=</span> estimate) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">drop_na</span>()
 
-age_squared_coef &lt;- apc_tidy %&gt;% 
-  filter(term == &quot;age_squared&quot;) %&gt;% 
-  pull(estimate)
-
-period_coef &lt;- pc_tidy %&gt;% 
-  select(x = period, y = estimate) %&gt;% 
-  drop_na()
-
-cohort_coef &lt;- pc_tidy %&gt;% 
-  select(x = cohort, y = estimate) %&gt;% 
-  drop_na()
-</code></pre>
-
-<p>Now we can calculate the age effect, then combine all the coefficient together:</p>
-
-<pre><code class="language-r">apc_all_male_us &lt;- suicides_male_us %&gt;%
-  mutate(age_effect = (age * age_coef) + (age_squared * age_squared_coef)) %&gt;% 
-  select(x = age, y = age_effect) %&gt;% 
-  distinct() %&gt;% 
-  mutate(group = &quot;Age Effect&quot;) %&gt;% 
-  bind_rows(mutate(period_coef, group = &quot;Period Effect&quot;)) %&gt;% 
-  bind_rows(mutate(cohort_coef, group = &quot;Cohort Effect&quot;)) %&gt;% 
-  select(group, x, y) %&gt;% 
-  arrange(x)
+cohort_coef <span style="color:#f92672">&lt;-</span> pc_tidy <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> cohort, y <span style="color:#f92672">=</span> estimate) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">drop_na</span>()
+</code></pre></div><p>Now we can calculate the age effect, then combine all the coefficient together:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_all_male_us <span style="color:#f92672">&lt;-</span> suicides_male_us <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(age_effect <span style="color:#f92672">=</span> (age <span style="color:#f92672">*</span> age_coef) <span style="color:#f92672">+</span> (age_squared <span style="color:#f92672">*</span> age_squared_coef)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> age, y <span style="color:#f92672">=</span> age_effect) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">distinct</span>() <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Age Effect&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(period_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Period Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(cohort_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cohort Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(group, x, y) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">arrange</span>(x)
 
 apc_all_male_us
-</code></pre>
-
-<pre><code>#&gt; # A tibble: 130 x 3
+</code></pre></div><pre><code>#&gt; # A tibble: 130 x 3
 #&gt;    group             x       y
 #&gt;    &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;
 #&gt;  1 Age Effect       10  3900. 
@@ -1149,44 +1066,35 @@ apc_all_male_us
 #&gt;  9 Cohort Effect  1913   486. 
 #&gt; 10 Cohort Effect  1914   -47.3
 #&gt; # ... with 120 more rows
-</code></pre>
-
-<p>The last we visualize the estimated coefficient to get some insight regarding our APC decomposition:</p>
-
-<pre><code class="language-r">ggplot(apc_all_male_us, aes(x, y)) +
-  geom_line() +
-  facet_wrap(~ group, scales = &quot;free&quot;, ncol = 1)
-</code></pre>
-
-<p><img src="/blog/2019-03-28-age-period-cohort-apc-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+</code></pre><p>The last we visualize the estimated coefficient to get some insight regarding our APC decomposition:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(apc_all_male_us, <span style="color:#a6e22e">aes</span>(x, y)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span> group, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free&#34;</span>, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <p><em>dive deeper</em></p>
-
 <p>Create APC analysis, try to compare the APC of <code>female</code> in <code>United States</code> with the APC we get above:</p>
-
-<pre><code class="language-r">suicides_female_us &lt;- suicides %&gt;% 
-  filter(
-    sex == &quot;female&quot;,
-    country == &quot;United States&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">suicides_female_us <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(
+    sex <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;female&#34;</span>,
+    country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;United States&#34;</span>
   )
 
 suicides_female_us
-</code></pre>
-
-<h1 id="annotations">Annotations</h1>
-<div class="footnotes">
-
-<hr />
-
+</code></pre></div><h1 id="annotations">Annotations</h1>
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">Yang Y, Schulhofer‐Wohl S, Fu WJ, Land KC. The Intrinsic Estimator for Age‐Period‐Cohort Analysis: What It Is and How to Use It1. American Journal of Sociology 2008;113(6):1697-736.
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:3">Mason, Karen Oppenheim, et al. “Some methodological issues in cohort analysis of archival data.” American sociological review (1973): 242-258
- <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-<li id="fn:4">Keyes KM, Utz RL, Robinson W, Li G. What is a cohort effect? Comparison of three statistical methods for modeling cohort effects in obesity prevalence in the United States, 1971-2006. Soc Sci Med 2010;70(7):1100-8
- <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>Yang Y, Schulhofer‐Wohl S, Fu WJ, Land KC. The Intrinsic Estimator for Age‐Period‐Cohort Analysis: What It Is and How to Use It1. American Journal of Sociology 2008;113(6):1697-736. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Mason, Karen Oppenheim, et al. “Some methodological issues in cohort analysis of archival data.” American sociological review (1973): 242-258 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Keyes KM, Utz RL, Robinson W, Li G. What is a cohort effect? Comparison of three statistical methods for modeling cohort effects in obesity prevalence in the United States, 1971-2006. Soc Sci Med 2010;70(7):1100-8 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
   </div>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Algoritma Technical Blog</title>
@@ -6,10 +6,19 @@
     <description>Recent content in R on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Time Efficiency and Accuracy Improvement using PCA</title>
+      <link>/blog/time-and-accuracy-improvement-using-pca/</link>
+      <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/time-and-accuracy-improvement-using-pca/</guid>
+      <description>About Dimensionality ReductionIf you are familiar enough with data, sometimes you are faced with too many predictor variables that make the computation so heavy. Let us say, you are challenged to predict employee in your company will resign or not while the variables are the level of satisfaction on work, number of project, average monthly hours, time spend at the company, etc. You are facing so many predictor that took so long for training your model.</description>
+    </item>
     
     <item>
       <title>Text Generation with Markov Chains</title>
@@ -94,8 +103,8 @@ But in the real world to meet OLS regression assumptions will be very difficult.
       
       <guid>/blog/poisson-regression-and-neg-ative-binomial-regression/</guid>
       <description>Introduction Regression analysis is a set of statistical processes for estimating the relationships among variables. It includes many techniques for modeling and analyzing several variables, when the focus is on the relationship between a dependent variable and one or more independent variables (or &amp;lsquo;predictors&amp;rsquo;).
-For example  Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
- Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
+For example   Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
+  Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
     </item>
     
     <item>
@@ -253,6 +262,16 @@ Before the data we gather can be used for further analysis, the very first step 
       <description>Introduction Cause has been people&amp;rsquo;s curiosity for a long time, you can see that people often ask &amp;ldquo;Why&amp;rdquo; to things happening around them. But do we actually know how to explain &amp;ldquo;cause&amp;rdquo;?
 Do we jump to conclusion of causal relationship often too quickly?
 Can association between factors that we call mathematically &amp;ldquo;correlation&amp;rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&amp;rsquo;t mean it affects each other.</description>
+    </item>
+    
+    <item>
+      <title>Support Vector Machine</title>
+      <link>/blog/support-vector-machine/</link>
+      <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/support-vector-machine/</guid>
+      <description>Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.
+So how does SVM find the right hyperplane?</description>
     </item>
     
     <item>
