@@ -204,7 +204,9 @@ toc()
 ```
 <center>
 
-![](assets/tictoc_pca.PNG)
+```{r echo = F}
+knitr::include_graphics('/img/pca_use_case/tictoc_pca.PNG')
+```
 
 </center>
 
@@ -266,7 +268,9 @@ toc()
 
 <center>
 
-![](assets/tictoc_tnp_pca2.PNG)
+```{r echo = F}
+knitr::include_graphics('/img/pca_use_case/tictoc_tnp_pca.PNG')
+```
 
 </center>
 
@@ -398,7 +402,9 @@ model_cancer_pca <- readRDS("rf_cancer.rds")
 
 <center>
 
-![](assets/cancer+pca.PNG)
+```{r echo = F}
+knitr::include_graphics('/img/pca_use_case/cancer+pca.PNG')
+```
 
 </center>
 
@@ -449,7 +455,9 @@ model_cancer <- readRDS("rf_cancer2.rds")
 
 <center>
 
-![](assets/cancer+tnp+pca.PNG)
+```{r echo = F}
+knitr::include_graphics('/img/pca_use_case/cancer+tnp+pca.PNG')
+```
 
 </center>
 
