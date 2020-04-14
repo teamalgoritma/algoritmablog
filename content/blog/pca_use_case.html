@@ -1,0 +1,543 @@
+---
+title: Time Efficiency and Accuracy Improvement using PCA
+author: Yaumil Sitta
+github: https://github.com/ysitta
+date: '2020-04-13'
+slug: time-and-accuracy-improvement-using-pca
+categories:
+  - R
+tags: 
+  - Machine Learning
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+
+
+<div id="about-dimensionality-reduction" class="section level1">
+<h1>About Dimensionality Reduction</h1>
+<p>If you are familiar enough with data, sometimes you are faced with too many predictor variables that make the computation so heavy. Let us say, you are challenged to predict employee in your company will resign or not while the variables are the level of satisfaction on work, number of project, average monthly hours, time spend at the company, etc. You are facing so many predictor that took so long for training your model. One way to speed up your training process is by reducing the dimension that can make the computation less heavy.</p>
+<p>To do the dimensionality reduction, the techniques divide into two ways:</p>
+<ul>
+<li><strong>Feature Elimination</strong><br />
+</li>
+<li><strong>Feature Extraction</strong></li>
+</ul>
+</div>
+<div id="feature-elimination" class="section level1">
+<h1>Feature Elimination</h1>
+<p>Feature elimination is when you select the variable that is influence your prediction, and throw away the variable that has no contribution to your prediction. In the case of prediction of resigning employee or not, for example, you only choose the variable that is influencing the employee resignation.</p>
+<p>Generally, you choose the variables based on your expertise on experiencing the employee resignation. Besides, you can use several statistical technique to this, like using variance, spearman, anova, etc. Unfortunately, this article will not explain what kinds of feature elimination here, since we want to focus on one of feature extraction methods.</p>
+</div>
+<div id="feature-extraction" class="section level1">
+<h1>Feature Extraction</h1>
+<p>Feature extraction is a technique that you create <strong>new</strong> variable based on your existing variable. Let us say, for the employee resignation case, given we have 10 predictor variables to predict the employee will resign or not. So, in feature extraction, we create 10 <strong>new</strong> variables based on the 10 given variable. One of the techniques to do this is called Principal Component Analysis (PCA).</p>
+</div>
+<div id="principal-component-analysis" class="section level1">
+<h1>Principal Component Analysis</h1>
+<p>The Principal Component Analysis (PCA) is a statistical method to reduce the dimension of the data by extracting the variables and leave the variables that has least information about something that we predicted <span class="math inline">\(\hat{y}\)</span>.</p>
+<p>Then, when you should using PCA instead of other method?<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<ul>
+<li>When you want to reduce the dimension/variable, but you dont care what variables that is completely remove<br />
+</li>
+<li>When you want to ensure your variables are not correlate of one another<br />
+</li>
+<li>When you are comfortable enough to make your predictor variables less interpretable</li>
+</ul>
+<p>In this article, we want to apply Principal Component Analysis on two datasets, the Online Shopper Intention and Breast Cancer dataset. The aim of this article is to compare how powerful PCA when applied in the data that has less correlate of one another and the dataset that has higher correlation of each variables. Now, let us start with the Online shopper intention dataset first.</p>
+<div id="applying-pca-on-online-shopper-intention-dataset" class="section level2">
+<h2>Applying PCA on Online Shopper Intention Dataset</h2>
+<p>We will explore PCA on the data that has variables correlation and no correlation of one another. We will start with the correlated variables first.</p>
+<p>In this use case, we use Online Shoppers Intention dataset. The data is downloaded from <a href="https://www.kaggle.com/roshansharma/online-shoppers-intention">kaggle</a>. The data consists of various Information related to customer behavior in online shopping websites. Let us say, we want to predict a customer will generate the revenue of our business or not.</p>
+<p>We will create two models here, the first is the model that the predictors is using PCA, and the second is the model without PCA in the preprocessing data.</p>
+<p>Load the library needed.</p>
+<pre class="r"><code># data wrangling
+library(tidyverse)
+library(GGally)
+
+# data preprocessing
+library(recipes)
+
+# modelling
+library(rsample)
+library(caret)
+
+# measure time consumption
+library(tictoc)</code></pre>
+<p>Load the shopper intention dataset to our environment.</p>
+<pre class="r"><code>shopper_intention &lt;- read_csv(&quot;pca_use_case/online_shoppers_intention.csv&quot;)</code></pre>
+<p>The data is shown as seen below:</p>
+<pre class="r"><code>glimpse(shopper_intention)</code></pre>
+<pre><code>#&gt; Observations: 12,330
+#&gt; Variables: 18
+#&gt; $ Administrative          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0...
+#&gt; $ Administrative_Duration &lt;dbl&gt; 0, 0, -1, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0...
+#&gt; $ Informational           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+#&gt; $ Informational_Duration  &lt;dbl&gt; 0, 0, -1, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0...
+#&gt; $ ProductRelated          &lt;dbl&gt; 1, 2, 1, 2, 10, 19, 1, 1, 2, 3, 3, 16, 7, 6...
+#&gt; $ ProductRelated_Duration &lt;dbl&gt; 0.000000, 64.000000, -1.000000, 2.666667, 6...
+#&gt; $ BounceRates             &lt;dbl&gt; 0.200000000, 0.000000000, 0.200000000, 0.05...
+#&gt; $ ExitRates               &lt;dbl&gt; 0.200000000, 0.100000000, 0.200000000, 0.14...
+#&gt; $ PageValues              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+#&gt; $ SpecialDay              &lt;dbl&gt; 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.8...
+#&gt; $ Month                   &lt;chr&gt; &quot;Feb&quot;, &quot;Feb&quot;, &quot;Feb&quot;, &quot;Feb&quot;, &quot;Feb&quot;, &quot;Feb&quot;, &quot;...
+#&gt; $ OperatingSystems        &lt;fct&gt; 1, 2, 4, 3, 3, 2, 2, 1, 2, 2, 1, 1, 1, 2, 3...
+#&gt; $ Browser                 &lt;fct&gt; 1, 2, 1, 2, 3, 2, 4, 2, 2, 4, 1, 1, 1, 5, 2...
+#&gt; $ Region                  &lt;fct&gt; 1, 1, 9, 2, 1, 1, 3, 1, 2, 1, 3, 4, 1, 1, 3...
+#&gt; $ TrafficType             &lt;dbl&gt; 1, 2, 3, 4, 4, 3, 3, 5, 3, 2, 3, 3, 3, 3, 3...
+#&gt; $ VisitorType             &lt;chr&gt; &quot;Returning_Visitor&quot;, &quot;Returning_Visitor&quot;, &quot;...
+#&gt; $ Weekend                 &lt;fct&gt; FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FA...
+#&gt; $ Revenue                 &lt;fct&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F...</code></pre>
+<p>The dataset has 12,330 observations and 18 variables. Hence, we have 17 predictor variables and 1 target variable to predict. Here are the description of the variables in the dataset:</p>
+<ul>
+<li><code>Administrative</code> = Administrative Value</li>
+<li><code>Administrative_Duration</code> = Duration in Administrative Page</li>
+<li><code>Informational</code> = Informational Value</li>
+<li><code>Informational_Duration</code> = Duration in Informational Page</li>
+<li><code>ProductRelated</code> = Product Related Value</li>
+<li><code>ProductRelated_Duration</code> = Duration in Product Related Page</li>
+<li><code>BounceRates</code> = percentage of visitors who enter the site from that page and then leave (“bounce”) without triggering any other requests to the analytics server during that session.</li>
+<li><code>ExitRates</code> = Exit rate of a web page</li>
+<li><code>PageValuesPage</code> = values of each web page</li>
+<li><code>SpecialDaySpecial</code> = days like valentine etc</li>
+<li><code>Month</code> = Month of the year</li>
+<li><code>OperatingSystems</code> = Operating system used</li>
+<li><code>Browser</code> = Browser used</li>
+<li><code>Region</code> = Region of the user</li>
+<li><code>TrafficType</code> = Traffic Type</li>
+<li><code>VisitorType</code> = Types of Visitor</li>
+<li><code>Weekend</code> = Weekend or not</li>
+<li><code>Revenue</code> = Revenue will be generated or not</li>
+</ul>
+<p>Based on its description, it looks like our variables are in its correct data type. Besides, we want to check the correlation between each numerical predictor variable using visualization in ggcorr() function from GGally package.</p>
+<pre class="r"><code>ggcorr(select_if(shopper_intention, is.numeric), 
+       label = T, 
+       hjust = 1, 
+       layout.exp = 3)</code></pre>
+<p><img src="/blog/pca_use_case_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>It looks like we have several variables that has correlation of one another, but the correlation is not quite high. Now, let us do the cross validation to split the data into train and test. We will split the data into 80% to be our training dataset and 20% to be our testing dataset.</p>
+<pre class="r"><code>RNGkind(sample.kind = &quot;Rounding&quot;)
+set.seed(417)
+splitted &lt;- initial_split(data = shopper_intention, prop = 0.8, strata = &quot;Revenue&quot;)</code></pre>
+<p>Now, let us check the proportion of our target variable in the train dataset, that is <code>Revenue</code>.</p>
+<pre class="r"><code>prop.table(table(training(splitted)$Revenue))</code></pre>
+<pre><code>#&gt; 
+#&gt;     FALSE      TRUE 
+#&gt; 0.8452103 0.1547897</code></pre>
+<p>Based on the proportion of our target variable, only 15.4% of our visitor in the website purchase any goods, hence it resulting revenue for the shop. Besides, the proportion of our target variable is imbalance</p>
+<p>Then, let us check is there any missing value on each variable.</p>
+<pre class="r"><code>colSums(is.na(shopper_intention))</code></pre>
+<pre><code>#&gt;          Administrative Administrative_Duration           Informational 
+#&gt;                      14                      14                      14 
+#&gt;  Informational_Duration          ProductRelated ProductRelated_Duration 
+#&gt;                      14                      14                      14 
+#&gt;             BounceRates               ExitRates              PageValues 
+#&gt;                      14                      14                       0 
+#&gt;              SpecialDay                   Month        OperatingSystems 
+#&gt;                       0                       0                       0 
+#&gt;                 Browser                  Region             TrafficType 
+#&gt;                       0                       0                       0 
+#&gt;             VisitorType                 Weekend                 Revenue 
+#&gt;                       0                       0                       0</code></pre>
+<p>Based on the output above, our data has several missing value (NA), but the number of missing value still 5% of our data. Hence, we can remove the NA in our preprocessing step.</p>
+<div id="the-revenue-on-online-wesite-prediction-with-pca" class="section level3">
+<h3>The Revenue on Online Wesite Prediction with PCA</h3>
+<p>In this article, we do the several preprocessing step using <code>recipe()</code> function from <a href="https://tidymodels.github.io/recipes/">recipe</a> package. We store all of our preprocessing in <code>step_*()</code> function, including the <strong>PCA</strong> step. The syntax of PCA in our recipe is stored as <code>step_pca(all_numeric(), threshold = 0.90)</code>. The syntax means, we use the numeric variable only and take the 90% of cummulative variance of the data, hence the threshold is set by 0.90.</p>
+<pre class="r"><code>rec &lt;- recipe(Revenue~., training(splitted)) %&gt;% 
+  step_naomit(all_predictors()) %&gt;% # remove the observation that has NA (missing value)
+  step_nzv(all_predictors()) %&gt;% # remove the near zero variance variable
+  step_upsample(Revenue, ratio = 1, seed = 100) %&gt;% # balancing the target variable proportion
+  step_center(all_numeric()) %&gt;% # make all the predictor has 0 mean
+  step_scale(all_numeric()) %&gt;% # make the predictor has 1 sd
+  step_pca(all_numeric(), threshold = 0.90) %&gt;% # do the pca by using 90% variance of the data
+  prep() # prepare the recipe</code></pre>
+<pre class="r"><code>train &lt;- juice(rec)
+test &lt;- bake(rec, testing(splitted))</code></pre>
+<p>Now, peek our train dataset after the preprocessing applied.</p>
+<pre class="r"><code>head(train)</code></pre>
+<pre><code>#&gt; # A tibble: 6 x 13
+#&gt;   Month OperatingSystems Browser Region VisitorType Weekend Revenue   PC1
+#&gt;   &lt;fct&gt; &lt;fct&gt;            &lt;fct&gt;   &lt;fct&gt;  &lt;fct&gt;       &lt;fct&gt;   &lt;fct&gt;   &lt;dbl&gt;
+#&gt; 1 Feb   1                1       1      Returning_~ FALSE   FALSE   -3.80
+#&gt; 2 Feb   2                2       1      Returning_~ FALSE   FALSE   -1.70
+#&gt; 3 Feb   3                3       1      Returning_~ TRUE    FALSE   -1.30
+#&gt; 4 Feb   2                2       1      Returning_~ FALSE   FALSE   -1.09
+#&gt; 5 Feb   2                4       3      Returning_~ FALSE   FALSE   -3.83
+#&gt; 6 Feb   1                2       1      Returning_~ TRUE    FALSE   -3.74
+#&gt; # ... with 5 more variables: PC2 &lt;dbl&gt;, PC3 &lt;dbl&gt;, PC4 &lt;dbl&gt;, PC5 &lt;dbl&gt;,
+#&gt; #   PC6 &lt;dbl&gt;</code></pre>
+<p>We can see in train dataset above, we have 1 target variable, 6 categorical predictor and 6 new numeric PCs (the result of 90% variance of PCA) predictor that will be trained in to our model.</p>
+<p>In our first model– the model that use PCA in the preprocessing step, we want to build a random forest model using 5 fold validation and 3 repeats to predict if the visitor of our website will generate the revenue or not. Besides, we use <code>tic()</code> and <code>toc()</code> function to measure the time elapsed while running the random forest model.</p>
+<pre class="r"><code>RNGkind(sample.kind = &quot;Rounding&quot;)
+set.seed(100)
+tic()
+ctrl &lt;- trainControl(method = &quot;repeatedcv&quot;, number = 5, repeats = 3)
+model &lt;- train(Revenue ~ ., data = train, method = &quot;rf&quot;, trControl = ctrl)
+toc()</code></pre>
+<center>
+<p><img src="img/tictoc_pca.PNG" width="466" style="display: block; margin: auto;" /></p>
+</center>
+<p>After running the model, the time consumed to build the model is 1608.41 or around 26 minutes.</p>
+<p>Then, we use the model to predict the test dataset.</p>
+<pre class="r"><code>prediction_pca &lt;- predict(model, test)</code></pre>
+<p>Now, lets check the accuracy of the model built on a confusion matrix.</p>
+<pre class="r"><code>confusionMatrix(prediction_pca, test$Revenue, positive = &quot;TRUE&quot;)</code></pre>
+<pre><code>#&gt; Confusion Matrix and Statistics
+#&gt; 
+#&gt;           Reference
+#&gt; Prediction FALSE TRUE
+#&gt;      FALSE  1954  171
+#&gt;      TRUE    128  210
+#&gt;                                           
+#&gt;                Accuracy : 0.8786          
+#&gt;                  95% CI : (0.8651, 0.8912)
+#&gt;     No Information Rate : 0.8453          
+#&gt;     P-Value [Acc &gt; NIR] : 1.425e-06       
+#&gt;                                           
+#&gt;                   Kappa : 0.5134          
+#&gt;                                           
+#&gt;  Mcnemar&#39;s Test P-Value : 0.01514         
+#&gt;                                           
+#&gt;             Sensitivity : 0.55118         
+#&gt;             Specificity : 0.93852         
+#&gt;          Pos Pred Value : 0.62130         
+#&gt;          Neg Pred Value : 0.91953         
+#&gt;              Prevalence : 0.15469         
+#&gt;          Detection Rate : 0.08526         
+#&gt;    Detection Prevalence : 0.13723         
+#&gt;       Balanced Accuracy : 0.74485         
+#&gt;                                           
+#&gt;        &#39;Positive&#39; Class : TRUE            
+#&gt; </code></pre>
+</div>
+<div id="the-revenue-on-online-wesite-prediction-without-pca" class="section level3">
+<h3>The Revenue on Online Wesite Prediction without PCA</h3>
+<p>Now, we want to compare the result of model that use PCA in the preprocessing step with the model that use the same preprocessing step, but without PCA. Now, let us make the recipe first.</p>
+<pre class="r"><code>rec2 &lt;- recipe(Revenue~., training(splitted)) %&gt;% 
+  step_naomit(all_predictors()) %&gt;% 
+  step_nzv(all_predictors()) %&gt;% 
+  step_upsample(Revenue, ratio = 1, seed = 100) %&gt;% 
+  step_center(all_numeric()) %&gt;% 
+  step_scale(all_numeric()) %&gt;% 
+  prep()</code></pre>
+<pre class="r"><code>train2 &lt;- juice(rec2)
+test2 &lt;- bake(rec2, testing(splitted))</code></pre>
+<p>Then, take a look at our training data</p>
+<pre class="r"><code>head(train2)</code></pre>
+<pre><code>#&gt; # A tibble: 6 x 17
+#&gt;   Administrative Administrative_~ Informational Informational_D~ ProductRelated
+#&gt;            &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+#&gt; 1         -0.787           -0.532        -0.452           -0.287         -0.725
+#&gt; 2         -0.787           -0.532        -0.452           -0.287         -0.706
+#&gt; 3         -0.787           -0.532        -0.452           -0.287         -0.551
+#&gt; 4         -0.787           -0.532        -0.452           -0.287         -0.378
+#&gt; 5         -0.787           -0.538        -0.452           -0.294         -0.725
+#&gt; 6         -0.500           -0.538        -0.452           -0.294         -0.725
+#&gt; # ... with 12 more variables: ProductRelated_Duration &lt;dbl&gt;, BounceRates &lt;dbl&gt;,
+#&gt; #   ExitRates &lt;dbl&gt;, PageValues &lt;dbl&gt;, Month &lt;fct&gt;, OperatingSystems &lt;fct&gt;,
+#&gt; #   Browser &lt;fct&gt;, Region &lt;fct&gt;, TrafficType &lt;dbl&gt;, VisitorType &lt;fct&gt;,
+#&gt; #   Weekend &lt;fct&gt;, Revenue &lt;fct&gt;</code></pre>
+<p>As seen above, we use 16 predictors, means there are no variable that has been removed (unlike the predictors in our previous model). Next, apply the random forest algorithm with the exact same model tuning to compare the time comsume and the accuracy of the model.</p>
+<pre class="r"><code>RNGkind(sample.kind = &quot;Rounding&quot;)
+set.seed(100)
+tic()
+ctrl &lt;- trainControl(method = &quot;repeatedcv&quot;, number = 5, repeats = 3)
+model2 &lt;- train(Revenue ~ ., data = train2, method = &quot;rf&quot;, trControl = ctrl)
+toc()</code></pre>
+<center>
+<p><img src="img/tictoc_tnp_pca.PNG" width="468" style="display: block; margin: auto;" /></p>
+</center>
+<pre class="r"><code>prediction &lt;- predict(model2, test2)</code></pre>
+<pre class="r"><code>confusionMatrix(prediction, test$Revenue, positive = &quot;TRUE&quot;)</code></pre>
+<pre><code>#&gt; Confusion Matrix and Statistics
+#&gt; 
+#&gt;           Reference
+#&gt; Prediction FALSE TRUE
+#&gt;      FALSE  1949  143
+#&gt;      TRUE    133  238
+#&gt;                                           
+#&gt;                Accuracy : 0.8879          
+#&gt;                  95% CI : (0.8748, 0.9001)
+#&gt;     No Information Rate : 0.8453          
+#&gt;     P-Value [Acc &gt; NIR] : 6.578e-10       
+#&gt;                                           
+#&gt;                   Kappa : 0.5669          
+#&gt;                                           
+#&gt;  Mcnemar&#39;s Test P-Value : 0.588           
+#&gt;                                           
+#&gt;             Sensitivity : 0.62467         
+#&gt;             Specificity : 0.93612         
+#&gt;          Pos Pred Value : 0.64151         
+#&gt;          Neg Pred Value : 0.93164         
+#&gt;              Prevalence : 0.15469         
+#&gt;          Detection Rate : 0.09663         
+#&gt;    Detection Prevalence : 0.15063         
+#&gt;       Balanced Accuracy : 0.78040         
+#&gt;                                           
+#&gt;        &#39;Positive&#39; Class : TRUE            
+#&gt; </code></pre>
+<p>Result:<br />
+- The online shopper data has a few variables that correlated of one another.<br />
+- The two model above (the model with PCA and not) has almost similar in accuracy (with PCA 0.87, without PCA 0.88)<br />
+- The time consuming while using PCA is 1608.41 sec elapsed and without PCA is 1936.95. Then we can save 328.54 seconds or +-/ 5 minutes of time when using PCA.</p>
+<blockquote>
+<p>Now, how if we have larger numeric predictor and stronger correlation?</p>
+</blockquote>
+</div>
+</div>
+<div id="applying-pca-in-breast-cancer-dataset" class="section level2">
+<h2>Applying PCA in Breast Cancer Dataset</h2>
+<p>In this section, we will use breast cancer dataset. Let us say, we want to predict a patient is diagnosed with malignant or benign cancer. The predictor variables are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass. They describe characteristics of the cell nuclei present in the image. The data itself can be downloaded from <a href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29">UCI Machine Learning Repository</a></p>
+<p>Here, we will create two models, the first is the model that the predictors is using PCA, and the second is the model without PCA in the preprocessing data.</p>
+<pre class="r"><code>cancer &lt;- read_csv(&quot;pca_use_case/breast-cancer-wisconsin-data/data.csv&quot;)</code></pre>
+<p>Now, let us take a look at our data.</p>
+<pre class="r"><code>glimpse(cancer)</code></pre>
+<pre><code>#&gt; Observations: 569
+#&gt; Variables: 33
+#&gt; $ id                      &lt;dbl&gt; 842302, 842517, 84300903, 84348301, 8435840...
+#&gt; $ diagnosis               &lt;chr&gt; &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;...
+#&gt; $ radius_mean             &lt;dbl&gt; 17.990, 20.570, 19.690, 11.420, 20.290, 12....
+#&gt; $ texture_mean            &lt;dbl&gt; 10.38, 17.77, 21.25, 20.38, 14.34, 15.70, 1...
+#&gt; $ perimeter_mean          &lt;dbl&gt; 122.80, 132.90, 130.00, 77.58, 135.10, 82.5...
+#&gt; $ area_mean               &lt;dbl&gt; 1001.0, 1326.0, 1203.0, 386.1, 1297.0, 477....
+#&gt; $ smoothness_mean         &lt;dbl&gt; 0.11840, 0.08474, 0.10960, 0.14250, 0.10030...
+#&gt; $ compactness_mean        &lt;dbl&gt; 0.27760, 0.07864, 0.15990, 0.28390, 0.13280...
+#&gt; $ concavity_mean          &lt;dbl&gt; 0.30010, 0.08690, 0.19740, 0.24140, 0.19800...
+#&gt; $ `concave points_mean`   &lt;dbl&gt; 0.14710, 0.07017, 0.12790, 0.10520, 0.10430...
+#&gt; $ symmetry_mean           &lt;dbl&gt; 0.2419, 0.1812, 0.2069, 0.2597, 0.1809, 0.2...
+#&gt; $ fractal_dimension_mean  &lt;dbl&gt; 0.07871, 0.05667, 0.05999, 0.09744, 0.05883...
+#&gt; $ radius_se               &lt;dbl&gt; 1.0950, 0.5435, 0.7456, 0.4956, 0.7572, 0.3...
+#&gt; $ texture_se              &lt;dbl&gt; 0.9053, 0.7339, 0.7869, 1.1560, 0.7813, 0.8...
+#&gt; $ perimeter_se            &lt;dbl&gt; 8.589, 3.398, 4.585, 3.445, 5.438, 2.217, 3...
+#&gt; $ area_se                 &lt;dbl&gt; 153.40, 74.08, 94.03, 27.23, 94.44, 27.19, ...
+#&gt; $ smoothness_se           &lt;dbl&gt; 0.006399, 0.005225, 0.006150, 0.009110, 0.0...
+#&gt; $ compactness_se          &lt;dbl&gt; 0.049040, 0.013080, 0.040060, 0.074580, 0.0...
+#&gt; $ concavity_se            &lt;dbl&gt; 0.05373, 0.01860, 0.03832, 0.05661, 0.05688...
+#&gt; $ `concave points_se`     &lt;dbl&gt; 0.015870, 0.013400, 0.020580, 0.018670, 0.0...
+#&gt; $ symmetry_se             &lt;dbl&gt; 0.03003, 0.01389, 0.02250, 0.05963, 0.01756...
+#&gt; $ fractal_dimension_se    &lt;dbl&gt; 0.006193, 0.003532, 0.004571, 0.009208, 0.0...
+#&gt; $ radius_worst            &lt;dbl&gt; 25.38, 24.99, 23.57, 14.91, 22.54, 15.47, 2...
+#&gt; $ texture_worst           &lt;dbl&gt; 17.33, 23.41, 25.53, 26.50, 16.67, 23.75, 2...
+#&gt; $ perimeter_worst         &lt;dbl&gt; 184.60, 158.80, 152.50, 98.87, 152.20, 103....
+#&gt; $ area_worst              &lt;dbl&gt; 2019.0, 1956.0, 1709.0, 567.7, 1575.0, 741....
+#&gt; $ smoothness_worst        &lt;dbl&gt; 0.1622, 0.1238, 0.1444, 0.2098, 0.1374, 0.1...
+#&gt; $ compactness_worst       &lt;dbl&gt; 0.6656, 0.1866, 0.4245, 0.8663, 0.2050, 0.5...
+#&gt; $ concavity_worst         &lt;dbl&gt; 0.71190, 0.24160, 0.45040, 0.68690, 0.40000...
+#&gt; $ `concave points_worst`  &lt;dbl&gt; 0.26540, 0.18600, 0.24300, 0.25750, 0.16250...
+#&gt; $ symmetry_worst          &lt;dbl&gt; 0.4601, 0.2750, 0.3613, 0.6638, 0.2364, 0.3...
+#&gt; $ fractal_dimension_worst &lt;dbl&gt; 0.11890, 0.08902, 0.08758, 0.17300, 0.07678...
+#&gt; $ X33                     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...</code></pre>
+<p>The dataset has 569 observations and 33 variables (32 predictors, 1 response variable). While, the variable description is explained below:</p>
+<ul>
+<li><code>ID</code> = ID number<br />
+</li>
+<li><code>diagnosis</code> = (M = malignant, B = benign)</li>
+</ul>
+<p>Ten real-valued features are computed for each cell nucleus:</p>
+<ul>
+<li>radius (mean of distances from center to points on the perimeter)<br />
+</li>
+<li>texture (standard deviation of gray-scale values)<br />
+</li>
+<li>perimeter<br />
+</li>
+<li>area<br />
+</li>
+<li>smoothness (local variation in radius lengths)<br />
+</li>
+<li>compactness (perimeter^2 / area - 1.0)<br />
+</li>
+<li>concavity (severity of concave portions of the contour)<br />
+</li>
+<li>concave points (number of concave portions of the contour)<br />
+</li>
+<li>symmetry<br />
+</li>
+<li>fractal dimension (“coastline approximation” - 1)</li>
+</ul>
+<p>The mean, standard error and “worst” or largest (mean of the three largest values) of these features were computed for each image, resulting in 30 features. For instance, field 3 is Mean Radius, field 13 is Radius SE, field 23 is Worst Radius.</p>
+<p>From the data, the <code>id</code> and <code>X33</code> variable did not help us to predict the diagnosis of cancer patient. Let us remove it from the data.</p>
+<pre class="r"><code>cancer &lt;- cancer %&gt;% 
+  select(-c(X33, id))</code></pre>
+<p>Then, let us check is there any missing value on each variable.</p>
+<pre class="r"><code>colSums(is.na(cancer))</code></pre>
+<pre><code>#&gt;               diagnosis             radius_mean            texture_mean 
+#&gt;                       0                       0                       0 
+#&gt;          perimeter_mean               area_mean         smoothness_mean 
+#&gt;                       0                       0                       0 
+#&gt;        compactness_mean          concavity_mean     concave points_mean 
+#&gt;                       0                       0                       0 
+#&gt;           symmetry_mean  fractal_dimension_mean               radius_se 
+#&gt;                       0                       0                       0 
+#&gt;              texture_se            perimeter_se                 area_se 
+#&gt;                       0                       0                       0 
+#&gt;           smoothness_se          compactness_se            concavity_se 
+#&gt;                       0                       0                       0 
+#&gt;       concave points_se             symmetry_se    fractal_dimension_se 
+#&gt;                       0                       0                       0 
+#&gt;            radius_worst           texture_worst         perimeter_worst 
+#&gt;                       0                       0                       0 
+#&gt;              area_worst        smoothness_worst       compactness_worst 
+#&gt;                       0                       0                       0 
+#&gt;         concavity_worst    concave points_worst          symmetry_worst 
+#&gt;                       0                       0                       0 
+#&gt; fractal_dimension_worst 
+#&gt;                       0</code></pre>
+<p>Now, let us check the correlation of each variable below to make sure the are the variables high correlated of one another rather than the online shopper data.</p>
+<pre class="r"><code>ggcorr(cancer, label = T, hjust = 1, label_size = 2, layout.exp = 6)</code></pre>
+<p><img src="/blog/pca_use_case_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>From the visualization above, the data has higher correlated between each variable than the online shopper data.</p>
+<pre class="r"><code>RNGkind(sample.kind = &quot;Rounding&quot;)
+set.seed(100)
+idx &lt;- initial_split(cancer, prop = 0.8,strata = &quot;diagnosis&quot;)
+cancer_train &lt;- training(idx)
+cancer_test &lt;- testing(idx)</code></pre>
+<div id="the-breast-cancer-prediction-with-pca" class="section level3">
+<h3>The Breast Cancer Prediction with PCA</h3>
+<p>Using breast cancer dataset, we first want to build a model using PCA in the preprocessing approach. Still, we use the 90% of the variance of the data.</p>
+<pre class="r"><code>rec_cancer_pca &lt;- recipe(diagnosis~., cancer_train) %&gt;% 
+  step_naomit(all_predictors()) %&gt;% 
+  step_nzv(all_predictors()) %&gt;%  
+  step_center(all_numeric()) %&gt;%  
+  step_scale(all_numeric()) %&gt;%  
+  step_pca(all_numeric(), threshold = 0.9) %&gt;%  
+  prep() </code></pre>
+<pre class="r"><code>cancer_train_pca &lt;- juice(rec_cancer_pca)
+cancer_test_pca &lt;- bake(rec_cancer_pca, cancer_test)</code></pre>
+<p>After applying PCA in breast cancer dataset, here are the number of variable that we will be using.</p>
+<pre class="r"><code>head(cancer_train_pca)</code></pre>
+<pre><code>#&gt; # A tibble: 6 x 8
+#&gt;   diagnosis   PC1    PC2    PC3    PC4    PC5     PC6    PC7
+#&gt;   &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+#&gt; 1 M         -9.15  -1.58  0.900 -3.89  -0.655  1.33   -2.06 
+#&gt; 2 M         -2.33   3.98  0.528 -1.04   0.584 -0.0925 -0.104
+#&gt; 3 M         -7.21 -10.1   3.13  -0.868 -2.31   2.92   -1.35 
+#&gt; 4 M         -3.91   2.22 -1.51  -2.72   0.833 -1.28    0.829
+#&gt; 5 M         -2.18   2.86  1.66  -0.242 -0.108 -0.196   0.194
+#&gt; 6 M         -3.16  -3.26  3.06   0.153 -1.55   0.542   0.213</code></pre>
+<p>From the table above, we use 7 PCs instead of 30 predictor variables. Now lets train the data to the model.</p>
+<pre class="r"><code>RNGkind(sample.kind = &quot;Rounding&quot;)
+set.seed(100)
+tic()
+ctrl &lt;- trainControl(method = &quot;repeatedcv&quot;, number = 5, repeats = 3)
+model_cancer_pca &lt;- train(diagnosis ~ ., data = cancer_train_pca, method = &quot;rf&quot;, trControl = ctrl)
+toc()</code></pre>
+<center>
+<p><img src="img/cancer+pca.PNG" width="468" style="display: block; margin: auto;" /></p>
+</center>
+<p>The time consumed when using PCA is 4.88 seconds on training the dataset. Next, we can predict the test dataset from the <code>model_cancer_pca</code>.</p>
+<pre class="r"><code>pred_cancer_pca &lt;- predict(model_cancer_pca, cancer_test_pca)</code></pre>
+<p>Now, let us check the condusion matrix of our model using confusion matrix.</p>
+<pre class="r"><code>confusionMatrix(pred_cancer_pca, cancer_test_pca$diagnosis, positive = &quot;M&quot;)</code></pre>
+<pre><code>#&gt; Confusion Matrix and Statistics
+#&gt; 
+#&gt;           Reference
+#&gt; Prediction  B  M
+#&gt;          B 70  3
+#&gt;          M  1 39
+#&gt;                                           
+#&gt;                Accuracy : 0.9646          
+#&gt;                  95% CI : (0.9118, 0.9903)
+#&gt;     No Information Rate : 0.6283          
+#&gt;     P-Value [Acc &gt; NIR] : &lt;2e-16          
+#&gt;                                           
+#&gt;                   Kappa : 0.9235          
+#&gt;                                           
+#&gt;  Mcnemar&#39;s Test P-Value : 0.6171          
+#&gt;                                           
+#&gt;             Sensitivity : 0.9286          
+#&gt;             Specificity : 0.9859          
+#&gt;          Pos Pred Value : 0.9750          
+#&gt;          Neg Pred Value : 0.9589          
+#&gt;              Prevalence : 0.3717          
+#&gt;          Detection Rate : 0.3451          
+#&gt;    Detection Prevalence : 0.3540          
+#&gt;       Balanced Accuracy : 0.9572          
+#&gt;                                           
+#&gt;        &#39;Positive&#39; Class : M               
+#&gt; </code></pre>
+<p>The accuracy of the model for the test data while using PCA is 0.96. Then, we will build a model that’s not using PCA to be compared with.</p>
+</div>
+<div id="the-breast-cancer-prediction-without-pca" class="section level3">
+<h3>The Breast Cancer Prediction without PCA</h3>
+<p>In this part, we want to classify the breast cancer patient diagnosis without PCA in the preprocessing step. Let us create a recipe for it.</p>
+<pre class="r"><code>rec_cancer &lt;- recipe(diagnosis~., cancer_train) %&gt;% 
+  step_naomit(all_predictors()) %&gt;% 
+  step_nzv(all_predictors()) %&gt;% 
+  step_center(all_numeric()) %&gt;% 
+  step_scale(all_numeric()) %&gt;% 
+  prep()</code></pre>
+<pre class="r"><code>cancer_train &lt;- juice(rec_cancer)
+cancer_test &lt;- bake(rec_cancer, cancer_test)</code></pre>
+<p>Here, we want to create a model using the same algorithm and specification to be compared with the previous model.</p>
+<pre class="r"><code>tic()
+set.seed(100)
+ctrl &lt;- trainControl(method = &quot;repeatedcv&quot;, number = 5, repeats = 3)
+model_cancer &lt;- train(diagnosis ~ ., data = cancer_train, method = &quot;rf&quot;, trControl = ctrl)
+toc()</code></pre>
+<center>
+<p><img src="img/cancer+tnp+pca.PNG" width="469" style="display: block; margin: auto;" /></p>
+</center>
+<p>The time consuming without PCA in processing data is 11.21 seconds, means it is almost 3x faster than the model that is using PCA in the preprocessing data.</p>
+<pre class="r"><code>pred_cancer &lt;- predict(model_cancer, cancer_test)</code></pre>
+<p>How about the accuracy of the model? is the accuracy greater while we do not use PCA? Now let us check it using confusion matrix below</p>
+<pre class="r"><code>confusionMatrix(pred_cancer, cancer_test$diagnosis, positive = &quot;M&quot;)</code></pre>
+<pre><code>#&gt; Confusion Matrix and Statistics
+#&gt; 
+#&gt;           Reference
+#&gt; Prediction  B  M
+#&gt;          B 71  5
+#&gt;          M  0 37
+#&gt;                                           
+#&gt;                Accuracy : 0.9558          
+#&gt;                  95% CI : (0.8998, 0.9855)
+#&gt;     No Information Rate : 0.6283          
+#&gt;     P-Value [Acc &gt; NIR] : &lt; 2e-16         
+#&gt;                                           
+#&gt;                   Kappa : 0.9029          
+#&gt;                                           
+#&gt;  Mcnemar&#39;s Test P-Value : 0.07364         
+#&gt;                                           
+#&gt;             Sensitivity : 0.8810          
+#&gt;             Specificity : 1.0000          
+#&gt;          Pos Pred Value : 1.0000          
+#&gt;          Neg Pred Value : 0.9342          
+#&gt;              Prevalence : 0.3717          
+#&gt;          Detection Rate : 0.3274          
+#&gt;    Detection Prevalence : 0.3274          
+#&gt;       Balanced Accuracy : 0.9405          
+#&gt;                                           
+#&gt;        &#39;Positive&#39; Class : M               
+#&gt; </code></pre>
+<p>Turns out, based on the confusion matrix above, the accuracy is lesser (0.95) than using PCA (0.96). Hence, the PCA really works well on the data that has high dimensional data and high correlated of variables<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>Result:</p>
+<ul>
+<li>The breast cancer dataset has many variables that correlated of one another.<br />
+</li>
+<li>The two model above (the model with PCA and not) has almost similar in accuracy (with PCA 0.96, without PCA 0.95)<br />
+</li>
+<li>The time consuming while using PCA is 4.88 sec elapsed and without PCA is 11.21. Then we can save 6.33 seconds or while using PCA the computation is more than 2x faster than the model without PCA.</li>
+</ul>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Principal Component Analysis (PCA) is very useful to speed up the computation by reducing the dimensionality of the data. Plus, when you have high dimensionality with high correlated variable of one another, the PCA can improve the accuracy of classification model. Unfortunately, while using PCA, you make your machine learning model less interpretable. Also, PCA will only be applied in your dataset when your dataset contains more than one numerical variable that you want to reduce its dimension.</p>
+<div id="reference" class="section level3">
+<h3>Reference:</h3>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://towardsdatascience.com/dimensionality-reduction-does-pca-really-improve-classification-outcome-6e9ba21f0a32">Does PCA really improve Classification Outcome</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.74.8032&amp;rep=rep1&amp;type=pdf">The Effect of Principal Component Analysis on Machine
+Learning Accuracy with High Dimensional Spectral
+Data</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
