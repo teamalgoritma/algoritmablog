@@ -17,7 +17,7 @@
       <pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>/blog/dbscan-clustering/</guid>
-      <description>body { text-align: justify}  1. Pendahuluan 1.1 Clustering  Clustering merupakan salah satu bagian dari unsupervised learning. Clustering memiliki tujuan untuk membagi data ke dalam beberapa kelompok berdasarkan kemiripan antar data. Cluster (kelompok) yang baik adalah cluster yang memiliki kemiripan yang besar antar anggota clusternya dan memiliki perbedaan yang signifikan dengan anggota cluster yang berbeda. Clustering dapat diterapkan dalam berbagai bidang seperti segmentasi pasar, cluster profiling, data spatial dll.</description>
+      <description>body {text-align: justify}1. Pendahuluan1.1 Clustering Clustering merupakan salah satu bagian dari unsupervised learning. Clustering memiliki tujuan untuk membagi data ke dalam beberapa kelompok berdasarkan kemiripan antar data. Cluster (kelompok) yang baik adalah cluster yang memiliki kemiripan yang besar antar anggota clusternya dan memiliki perbedaan yang signifikan dengan anggota cluster yang berbeda. Clustering dapat diterapkan dalam berbagai bidang seperti segmentasi pasar, cluster profiling, data spatial dll.</description>
     </item>
     
     <item>

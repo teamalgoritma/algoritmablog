@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.64.0" />
+        <meta name="generator" content="Hugo 0.69.0" />
         
 
 
@@ -153,6 +153,12 @@ Outline Why tidymodels Matters?  Things we think we&rsquo;re doing it right Thin
                     </a>
                 </li>
             
+                <li>
+                    <a href="/tags/">
+                            <i class="fa fa-list">&nbsp;</i>Article List
+                    </a>
+                </li>
+            
         </ul>
     </nav>
     <nav class="main">
@@ -215,6 +221,14 @@ Outline Why tidymodels Matters?  Things we think we&rsquo;re doing it right Thin
                         </a>
                     </li>
                 
+                    <li>
+                        <a href="/tags/">
+                            <h3>
+                                <i class="fa fa-list">&nbsp;</i>Article List
+                            </h3>
+                        </a>
+                    </li>
+                
             </ul>
         </section>
 
@@ -233,6 +247,69 @@ Outline Why tidymodels Matters?  Things we think we&rsquo;re doing it right Thin
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/time-and-accuracy-improvement-using-pca/">Time Efficiency and Accuracy Improvement using PCA</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-04-13'>
+                                    April 13, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/text-generating-with-markov-chains/">Text Generation with Markov Chains</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-04-02'>
+                                    April 2, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/text-lime/">Interpreting Text Classification Model with LIME</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-03-13'>
+                                    March 13, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/text-lime/" class="image featured">
+            <img src="/img/2020/03/lime.png" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/dbscan-clustering/">DBSCAN Clustering</a></h3>
                                 
                                 <time class="published" datetime=
@@ -240,6 +317,33 @@ Outline Why tidymodels Matters?  Things we think we&rsquo;re doing it right Thin
                                     February 7, 2020</time>
                             </header>
                             
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/dbscan-clustering/" class="image featured">
+            <img src="/img/2020/02/dbscan.jpg" alt="">
+        </a>
+    
+
 
                         </article>
                 
@@ -252,69 +356,6 @@ Outline Why tidymodels Matters?  Things we think we&rsquo;re doing it right Thin
                                     January 13, 2020</time>
                             </header>
                             
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/introduction-to-generative-adversarial-network-with-keras/">Introduction to Generative Adversarial Network with Keras</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2019-12-18'>
-                                    December 18, 2019</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/ridge-lasso/">Ridge and LASSO Regression</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2019-12-18'>
-                                    December 18, 2019</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/bio-intro/">Bioinformatics: Decoding Nature&#39;s Code of Life</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2019-12-02'>
-                                    December 2, 2019</time>
-                            </header>
-                            
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/bio-intro/" class="image featured">
-            <img src="/img/2019/12/bioinfo.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
@@ -533,57 +574,57 @@ Outline Why tidymodels Matters?  Things we think we&rsquo;re doing it right Thin
 <h1 id="why-tidymodels-matters-1">Why <code>tidymodels</code> Matters?</h1>
 <h2 id="things-we-think-were-doing-it-right">Things we think we&rsquo;re doing it right</h2>
 <h3 id="sample-splitting">Sample splitting</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># import libs</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># import libs</span>
 <span style="color:#a6e22e">library</span>(plotly)
 <span style="color:#a6e22e">library</span>(randomForest)
 <span style="color:#a6e22e">library</span>(ranger)
 <span style="color:#a6e22e">library</span>(tidyverse)
 <span style="color:#a6e22e">library</span>(tidymodels)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># import additional libs</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># import additional libs</span>
 <span style="color:#a6e22e">library</span>(lubridate)
 
-<span style="color:#75715e"># prepare example datasets</span>
-attrition <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">data_input/attrition.csv&#34;</span>)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
+<span style="color:#75715e"># prepare example datasets</span>
+attrition <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;data_input/attrition.csv&#34;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 
-<span style="color:#75715e"># train rows</span>
+<span style="color:#75715e"># train rows</span>
 in_train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">nrow</span>(attrition), <span style="color:#a6e22e">nrow</span>(attrition) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.8</span>)
 
-<span style="color:#75715e"># check target distribution in train</span>
+<span style="color:#75715e"># check target distribution in train</span>
 <span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(attrition<span style="color:#f92672">$</span>attrition[in_train]))
 </code></pre></div><pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8367347 0.1632653
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check target distribution in test</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check target distribution in test</span>
 <span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(attrition<span style="color:#f92672">$</span>attrition[<span style="color:#f92672">-</span>in_train]))
 </code></pre></div><pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8469388 0.1530612
 </code></pre><h3 id="numeric-scaling">Numeric scaling</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># scale age in full dataset</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># scale age in full dataset</span>
 age_scaled <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(attrition<span style="color:#f92672">$</span>age)
 
-<span style="color:#75715e"># check mean and standard deviation</span>
-<span style="color:#a6e22e">attr</span>(age_scaled, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">scaled:center&#34;</span>)
+<span style="color:#75715e"># check mean and standard deviation</span>
+<span style="color:#a6e22e">attr</span>(age_scaled, <span style="color:#e6db74">&#34;scaled:center&#34;</span>)
 </code></pre></div><pre><code>#&gt; [1] 36.92381
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">attr</span>(age_scaled, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">scaled:scale&#34;</span>)
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">attr</span>(age_scaled, <span style="color:#e6db74">&#34;scaled:scale&#34;</span>)
 </code></pre></div><pre><code>#&gt; [1] 9.135373
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># scale age in train dataset</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># scale age in train dataset</span>
 age_train_scaled <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(attrition<span style="color:#f92672">$</span>age[in_train])
 
-<span style="color:#75715e"># check mean and standard deviation</span>
-<span style="color:#a6e22e">attr</span>(age_train_scaled, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">scaled:center&#34;</span>)
+<span style="color:#75715e"># check mean and standard deviation</span>
+<span style="color:#a6e22e">attr</span>(age_train_scaled, <span style="color:#e6db74">&#34;scaled:center&#34;</span>)
 </code></pre></div><pre><code>#&gt; [1] 37.0085
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">attr</span>(age_train_scaled, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">scaled:scale&#34;</span>)
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">attr</span>(age_train_scaled, <span style="color:#e6db74">&#34;scaled:scale&#34;</span>)
 </code></pre></div><pre><code>#&gt; [1] 9.070969
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># scale age in test dataset</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># scale age in test dataset</span>
 age_test_scaled <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(attrition<span style="color:#f92672">$</span>age[<span style="color:#f92672">-</span>in_train])
 
-<span style="color:#75715e"># check mean and standard deviation</span>
-<span style="color:#a6e22e">attr</span>(age_test_scaled, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">scaled:center&#34;</span>)
+<span style="color:#75715e"># check mean and standard deviation</span>
+<span style="color:#a6e22e">attr</span>(age_test_scaled, <span style="color:#e6db74">&#34;scaled:center&#34;</span>)
 </code></pre></div><pre><code>#&gt; [1] 36.58503
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">attr</span>(age_test_scaled, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">scaled:scale&#34;</span>)
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">attr</span>(age_test_scaled, <span style="color:#e6db74">&#34;scaled:scale&#34;</span>)
 </code></pre></div><pre><code>#&gt; [1] 9.396712
 </code></pre><h2 id="things-we-never-think-we-could-do-it-better">Things we never think we could do it better</h2>
 <h3 id="how-we-see-model-performance">How we see model performance</h3>
@@ -629,13 +670,13 @@ k-fold splitting, with optional repetition argument.</li>
 </ul>
 <h3 id="initial-splitting">Initial splitting</h3>
 <p>Initial random sampling for splitting train and test could be done using <code>initial_split()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 
-<span style="color:#75715e"># create initial split</span>
+<span style="color:#75715e"># create initial split</span>
 splitted <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">initial_split</span>(attrition, prop <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>)
 
-<span style="color:#75715e"># check train dataset</span>
+<span style="color:#75715e"># check train dataset</span>
 <span style="color:#a6e22e">training</span>(splitted)
 </code></pre></div><pre><code>#&gt; # A tibble: 1,177 x 35
 #&gt;    attrition   age business_travel daily_rate department distance_from_h~
@@ -662,7 +703,7 @@ splitted <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">in
 #&gt; #   training_times_last_year &lt;dbl&gt;, work_life_balance &lt;dbl&gt;,
 #&gt; #   years_at_company &lt;dbl&gt;, years_in_current_role &lt;dbl&gt;,
 #&gt; #   years_since_last_promotion &lt;dbl&gt;, years_with_curr_manager &lt;dbl&gt;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check test dataset</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check test dataset</span>
 <span style="color:#a6e22e">testing</span>(splitted)
 </code></pre></div><pre><code>#&gt; # A tibble: 293 x 35
 #&gt;    attrition   age business_travel daily_rate department distance_from_h~
@@ -691,52 +732,52 @@ splitted <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">in
 #&gt; #   years_since_last_promotion &lt;dbl&gt;, years_with_curr_manager &lt;dbl&gt;
 </code></pre><hr>
 <p>But sometimes, simple random sampling is not enough:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in full dataset</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in full dataset</span>
 <span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(attrition<span style="color:#f92672">$</span>attrition))
 </code></pre></div><pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8387755 0.1612245
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in train dataset</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in train dataset</span>
 <span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">training</span>(splitted)<span style="color:#f92672">$</span>attrition))
 </code></pre></div><pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8462192 0.1537808
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in test dataset</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in test dataset</span>
 <span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">testing</span>(splitted)<span style="color:#f92672">$</span>attrition))
 </code></pre></div><pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8088737 0.1911263
 </code></pre><p>This is where we need <code>strata</code> argument to use stratified random sampling:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 
-<span style="color:#75715e"># create stratified initial split</span>
-splitted <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">initial_split</span>(attrition, prop <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>, strata <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">attrition&#34;</span>)
+<span style="color:#75715e"># create stratified initial split</span>
+splitted <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">initial_split</span>(attrition, prop <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>, strata <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;attrition&#34;</span>)
 
-<span style="color:#75715e"># target distribution in full dataset</span>
+<span style="color:#75715e"># target distribution in full dataset</span>
 <span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(attrition<span style="color:#f92672">$</span>attrition))
 </code></pre></div><pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8387755 0.1612245
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in train dataset</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in train dataset</span>
 <span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">training</span>(splitted)<span style="color:#f92672">$</span>attrition))
 </code></pre></div><pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8385726 0.1614274
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in test dataset</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in test dataset</span>
 <span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">testing</span>(splitted)<span style="color:#f92672">$</span>attrition))
 </code></pre></div><pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8395904 0.1604096
 </code></pre><h3 id="cross-sectional-resampling">Cross-sectional resampling</h3>
 <p>To use k-fold validation splits&ndash;and optionally, with repetition&ndash;we could use <code>vfold_cv()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 
-<span style="color:#75715e"># create k-fold splits with repetition</span>
-resampled <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">vfold_cv</span>(attrition, v <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, repeats <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, strata <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">attrition&#34;</span>)
+<span style="color:#75715e"># create k-fold splits with repetition</span>
+resampled <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">vfold_cv</span>(attrition, v <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, repeats <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, strata <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;attrition&#34;</span>)
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 resampled
 </code></pre></div><pre><code>#&gt; #  3-fold cross-validation repeated 2 times using stratification 
 #&gt; # A tibble: 6 x 3
@@ -749,7 +790,7 @@ resampled
 #&gt; 5 &lt;split [980/490]&gt; Repeat2 Fold2
 #&gt; 6 &lt;split [980/490]&gt; Repeat2 Fold3
 </code></pre><p>Each train and test dataset are stored in <code>splits</code> column. We could use <code>analysis()</code> and <code>assessment()</code> to get the train and test dataset, consecutively:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check train dataset on an example split</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check train dataset on an example split</span>
 <span style="color:#a6e22e">analysis</span>(resampled<span style="color:#f92672">$</span>splits[[1]])
 </code></pre></div><pre><code>#&gt; # A tibble: 980 x 35
 #&gt;    attrition   age business_travel daily_rate department distance_from_h~
@@ -776,7 +817,7 @@ resampled
 #&gt; #   training_times_last_year &lt;dbl&gt;, work_life_balance &lt;dbl&gt;,
 #&gt; #   years_at_company &lt;dbl&gt;, years_in_current_role &lt;dbl&gt;,
 #&gt; #   years_since_last_promotion &lt;dbl&gt;, years_with_curr_manager &lt;dbl&gt;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check test dataset on an example split</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check test dataset on an example split</span>
 <span style="color:#a6e22e">assessment</span>(resampled<span style="color:#f92672">$</span>splits[[1]])
 </code></pre></div><pre><code>#&gt; # A tibble: 490 x 35
 #&gt;    attrition   age business_travel daily_rate department distance_from_h~
@@ -844,19 +885,19 @@ Shrink <code>numeric</code> column(s) to several PCA components (<strong>tuneabl
 </li>
 </ol>
 <p>Let&rsquo;s see an example of defining a recipe:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># define preprocess recipe from train dataset</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># define preprocess recipe from train dataset</span>
 rec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">recipe</span>(attrition <span style="color:#f92672">~</span> ., data <span style="color:#f92672">=</span> <span style="color:#a6e22e">training</span>(splitted)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">step_rm</span>(employee_count, employee_number) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">step_nzv</span>(<span style="color:#a6e22e">all_predictors</span>()) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">step_string2factor</span>(<span style="color:#a6e22e">all_nominal</span>(), <span style="color:#f92672">-</span>attrition) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">step_string2factor</span>(attrition, levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">yes&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">no&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">step_string2factor</span>(attrition, levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;yes&#34;</span>, <span style="color:#e6db74">&#34;no&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">step_downsample</span>(attrition, ratio <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">step_center</span>(<span style="color:#a6e22e">all_numeric</span>()) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">step_scale</span>(<span style="color:#a6e22e">all_numeric</span>()) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">step_pca</span>(<span style="color:#a6e22e">all_numeric</span>(), threshold <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.85</span>) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">prep</span>(strings_as_factors <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 rec
 </code></pre></div><pre><code>#&gt; Data Recipe
 #&gt; 
@@ -890,10 +931,10 @@ Apply a recipe to new dataset. Normally, we use we will use this function to pre
 </li>
 </ul>
 <p>These are some example on how to get preprocessed train and test dataset:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get preprocessed train dataset</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get preprocessed train dataset</span>
 data_train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">juice</span>(rec)
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 data_train
 </code></pre></div><pre><code>#&gt; # A tibble: 380 x 22
 #&gt;    business_travel department education_field gender job_role
@@ -912,10 +953,10 @@ data_train
 #&gt; #   over_time &lt;fct&gt;, attrition &lt;fct&gt;, PC01 &lt;dbl&gt;, PC02 &lt;dbl&gt;, PC03 &lt;dbl&gt;,
 #&gt; #   PC04 &lt;dbl&gt;, PC05 &lt;dbl&gt;, PC06 &lt;dbl&gt;, PC07 &lt;dbl&gt;, PC08 &lt;dbl&gt;,
 #&gt; #   PC09 &lt;dbl&gt;, PC10 &lt;dbl&gt;, PC11 &lt;dbl&gt;, PC12 &lt;dbl&gt;, PC13 &lt;dbl&gt;, PC14 &lt;dbl&gt;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get preprocessed test dataset</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get preprocessed test dataset</span>
 data_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bake</span>(rec, <span style="color:#a6e22e">testing</span>(splitted))
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 data_test
 </code></pre></div><pre><code>#&gt; # A tibble: 293 x 22
 #&gt;    attrition business_travel department education_field gender job_role
@@ -951,21 +992,21 @@ In this part, we need to define the model&rsquo;s engine, which determines the p
 </li>
 </ul>
 <p>This is an example of defining a random forest model using <code>randomForest::randomForest()</code> as our engine:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set-up model specification</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set-up model specification</span>
 model_spec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rand_forest</span>(
-  mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">classification&#34;</span>,
+  mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>,
   mtry <span style="color:#f92672">=</span> <span style="color:#a6e22e">ncol</span>(data_train) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>,
   trees <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>,
   min_n <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>
 )
 
-<span style="color:#75715e"># set-up model engine</span>
+<span style="color:#75715e"># set-up model engine</span>
 model_engine <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">set_engine</span>(
   object <span style="color:#f92672">=</span> model_spec,
-  engine <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">randomForest&#34;</span>
+  engine <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;randomForest&#34;</span>
 )
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 model_engine
 </code></pre></div><pre><code>#&gt; Random Forest Model Specification (classification)
 #&gt; 
@@ -982,14 +1023,14 @@ model_engine
 </ul>
 <p>Note that some packages are behaving differently inside formula and x-y interface. For example, <code>randomForest::randomForest()</code> would convert all of our categorical variables into dummy variables in formula interface, but not in x-y interface.</p>
 <p>Fit using formula interface using <code>fit()</code> function:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
 model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fit</span>(
   object <span style="color:#f92672">=</span> model_engine,
   formula <span style="color:#f92672">=</span> attrition <span style="color:#f92672">~</span> .,
   data <span style="color:#f92672">=</span> data_train
 )
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 model
 </code></pre></div><pre><code>#&gt; parsnip model object
 #&gt; 
@@ -1006,14 +1047,14 @@ model
 #&gt; yes 141  49   0.2578947
 #&gt; no   61 129   0.3210526
 </code></pre><p>Or through x-y interface using <code>fit_xy()</code> function:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
 model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fit_xy</span>(
   object <span style="color:#f92672">=</span> model_engine,
   x <span style="color:#f92672">=</span> <span style="color:#a6e22e">select</span>(data_train, <span style="color:#f92672">-</span>attrition),
   y <span style="color:#f92672">=</span> <span style="color:#a6e22e">select</span>(data_train, attrition)
 )
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 model
 </code></pre></div><pre><code>#&gt; parsnip model object
 #&gt; 
@@ -1031,16 +1072,16 @@ model
 #&gt; no   52 138   0.2736842
 </code></pre><p>In this workflow, it should be relatively easy to change the model engine.</p>
 <p>Let&rsquo;s try to fit a same model specification, but now using <code>ranger::ranger()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set-up other model engine</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set-up other model engine</span>
 model_engine <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">set_engine</span>(
   object <span style="color:#f92672">=</span> model_spec,
-  engine <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">ranger&#34;</span>,
+  engine <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ranger&#34;</span>,
   seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>,
   num.threads <span style="color:#f92672">=</span> parallel<span style="color:#f92672">::</span><span style="color:#a6e22e">detectCores</span>() <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
-  importance <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">impurity&#34;</span>
+  importance <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;impurity&#34;</span>
 )
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 model_engine
 </code></pre></div><pre><code>#&gt; Random Forest Model Specification (classification)
 #&gt; 
@@ -1056,14 +1097,14 @@ model_engine
 #&gt; 
 #&gt; Computational engine: ranger
 </code></pre><p>Now let&rsquo;s try to fit the model, and see the result:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
 model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fit</span>(
   object <span style="color:#f92672">=</span> model_engine,
   formula <span style="color:#f92672">=</span> attrition <span style="color:#f92672">~</span> .,
   data <span style="color:#f92672">=</span> data_train
 )
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 model
 </code></pre></div><pre><code>#&gt; parsnip model object
 #&gt; 
@@ -1082,14 +1123,14 @@ model
 #&gt; Splitrule:                        gini 
 #&gt; OOB prediction error (Brier s.):  0.1945066
 </code></pre><p>Notice that <code>ranger::ranger()</code> doesn&rsquo;t behave differently between <code>fit()</code> and <code>fit_xy()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
 model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fit_xy</span>(
   object <span style="color:#f92672">=</span> model_engine,
   x <span style="color:#f92672">=</span> <span style="color:#a6e22e">select</span>(data_train, <span style="color:#f92672">-</span>attrition),
   y <span style="color:#f92672">=</span> <span style="color:#a6e22e">select</span>(data_train, attrition)
 )
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 model
 </code></pre></div><pre><code>#&gt; parsnip model object
 #&gt; 
@@ -1109,14 +1150,14 @@ model
 #&gt; OOB prediction error (Brier s.):  0.1945066
 </code></pre><p>To get the prediction, we could use <code>predict()</code> as usual&ndash;but note that it would return a tidied <code>tibble</code> instead of a <code>vector</code>, as in <code>type = &quot;class&quot;</code> cases, or a raw <code>data.frame</code>, as in <code>type = &quot;prob&quot;</code> cases.</p>
 <p>In this way, the prediction results would be very convenient for further usage, such as simple recombining with the original dataset:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get prediction on test</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get prediction on test</span>
 predicted <span style="color:#f92672">&lt;-</span> data_test <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">bind_cols</span>(<span style="color:#a6e22e">predict</span>(model, data_test)) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">bind_cols</span>(<span style="color:#a6e22e">predict</span>(model, data_test, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">prob&#34;</span>))
+  <span style="color:#a6e22e">bind_cols</span>(<span style="color:#a6e22e">predict</span>(model, data_test, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>))
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 predicted <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">select</span>(attrition, <span style="color:#a6e22e">matches</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">.pred&#34;</span>))
+  <span style="color:#a6e22e">select</span>(attrition, <span style="color:#a6e22e">matches</span>(<span style="color:#e6db74">&#34;.pred&#34;</span>))
 </code></pre></div><pre><code>#&gt; # A tibble: 293 x 4
 #&gt;    attrition .pred_class .pred_yes .pred_no
 #&gt;    &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;    &lt;dbl&gt;
@@ -1145,20 +1186,20 @@ We pass a vector as the <code>truth</code> and a vector as the <code>estimate</c
 </ul>
 <p>Note that some function, like <a href="https://tidymodels.github.io/yardstick/reference/conf_mat.html"><code>conf_mat()</code></a> , only accept <code>tibble</code> approach, since it is not returned a <code>vector</code> of length one.</p>
 <p>Let&rsquo;s start by reporting the confusion matrix:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># show confusion matrix</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># show confusion matrix</span>
 predicted <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">conf_mat</span>(truth <span style="color:#f92672">=</span> attrition, estimate <span style="color:#f92672">=</span> .pred_class) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">autoplot</span>(type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">heatmap&#34;</span>)
+  <span style="color:#a6e22e">autoplot</span>(type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;heatmap&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Now, to calculate the performance metrics, let&rsquo;s try to use the <code>tibble</code> approach&ndash;which also support <code>group_by</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># calculate accuracy</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># calculate accuracy</span>
 predicted <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">accuracy</span>(attrition, .pred_class)
 </code></pre></div><pre><code>#&gt; # A tibble: 1 x 3
 #&gt;   .metric  .estimator .estimate
 #&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 #&gt; 1 accuracy binary         0.710
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># calculate accuracy by group</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># calculate accuracy by group</span>
 predicted <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">group_by</span>(department) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">accuracy</span>(attrition, .pred_class) <span style="color:#f92672">%&gt;%</span> 
@@ -1170,7 +1211,7 @@ predicted <span style="color:#f92672">%&gt;%</span>
 #&gt; 2 research_development accuracy binary         0.760
 #&gt; 3 sales                accuracy binary         0.605
 </code></pre><p>Or using <code>vector</code> approach, which is more flexible in general:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># metrics summary</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># metrics summary</span>
 predicted <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">summarise</span>(
     accuracy <span style="color:#f92672">=</span> <span style="color:#a6e22e">accuracy_vec</span>(attrition, .pred_class),
@@ -1182,7 +1223,7 @@ predicted <span style="color:#f92672">%&gt;%</span>
 #&gt;   accuracy sensitivity specificity precision
 #&gt;      &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
 #&gt; 1    0.710       0.723       0.707     0.321
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># metrics summary by group</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># metrics summary by group</span>
 predicted <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">group_by</span>(department) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">summarise</span>(
@@ -1204,11 +1245,11 @@ predicted <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">autoplot</span>()
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>And, since it&rsquo;s returning a <code>tibble</code>, we could do further data wrangling to help us see it more clearly:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get roc curve data on test dataset</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get roc curve data on test dataset</span>
 pred_test_roc <span style="color:#f92672">&lt;-</span> predicted <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">roc_curve</span>(attrition, .pred_yes)
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 pred_test_roc
 </code></pre></div><pre><code>#&gt; # A tibble: 295 x 3
 #&gt;    .threshold specificity sensitivity
@@ -1225,18 +1266,18 @@ pred_test_roc
 #&gt; 10     0.0945     0.0325            1
 #&gt; # ... with 285 more rows
 </code></pre><p>With some <code>ggplot2</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># tidying</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># tidying</span>
 pred_test_roc <span style="color:#f92672">&lt;-</span> pred_test_roc <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate_if</span>(<span style="color:#f92672">~</span> <span style="color:#a6e22e">is.numeric</span>(.), <span style="color:#f92672">~</span> <span style="color:#a6e22e">round</span>(., <span style="color:#ae81ff">4</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">gather</span>(metric, value, <span style="color:#ae81ff">-.</span>threshold)
 
-<span style="color:#75715e"># plot sensitivity-specificity trade-off</span>
+<span style="color:#75715e"># plot sensitivity-specificity trade-off</span>
 p <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(pred_test_roc, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> .threshold, y <span style="color:#f92672">=</span> value)) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(colour <span style="color:#f92672">=</span> metric)) <span style="color:#f92672">+</span>
-  <span style="color:#a6e22e">labs</span>(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Probability Threshold to be Classified as Positive&#34;</span>, y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Value&#34;</span>, colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Metrics&#34;</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">labs</span>(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Probability Threshold to be Classified as Positive&#34;</span>, y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Value&#34;</span>, colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Metrics&#34;</span>) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">theme_minimal</span>()
 </code></pre></div><p>and <code>plotly</code> magic, it would be perfect:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># convert to plotly</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># convert to plotly</span>
 <span style="color:#a6e22e">ggplotly</span>(p)
 </code></pre></div><!-- raw HTML omitted -->
 <!-- raw HTML omitted -->

@@ -1,0 +1,912 @@
+---
+title: Text Generation with Markov Chains
+author: Arga Adyatama
+github: https://github.com/Argaadya
+date: '2020-04-02'
+slug: text-generating-with-markov-chains
+categories:
+  - R
+tags:
+  - Machine Learning
+  - Markov Chains
+  - Text Generation
+  - NLP
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<div id="introduction" class="section level1 tabset">
+<h1>Introduction</h1>
+<div id="text-generation" class="section level2">
+<h2>Text Generation</h2>
+<p>Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. The are many applications of NLP in various industries, such as:</p>
+<ul>
+<li>SPAM email detection</li>
+<li>Sentiment Analysis</li>
+<li>Text summarization</li>
+<li>Topic Modelling</li>
+<li>Text Generation</li>
+</ul>
+<p>In this article, we will try to learn the last one: text generation. The goal of text generation is to create a predictive text or an auto-generated text based on the previous typed term or word. The easiest example of text generation is the predictive text when you type in the search tab of Google<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> or when you write an email.</p>
+<blockquote>
+Autocomplete is especially useful for those using mobile devices, making it easy to complete a search on a small screen where typing can be hard. For both mobile and desktop users, it’s a huge time saver all around.
+<footer>
+Danny Sulivan, Google Public Liaison for Search
+</footer>
+</blockquote>
+<center>
+<img src="/img/markov/google.png" />{width = “80%”}
+</center>
+<p>Another implementation of text generation is to create an artificial text or script, which can be potentially applied to generate artificial news, create a better movie synopsis, create poems, or even create an entire book.</p>
+<p>The following text is generated using the natural language processing model architecture called GPT-2<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. You can try to create one by visiting <a href = https://talktotransformer.com/> the website </a> made by Adam King<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. Text generation can also be applied for image captioning or music generation, depending on the input<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>.</p>
+<center>
+<img src="/img/markov/gpt.png" />{width = “60%”}
+</center>
+<p>GPT-2 is a very sophisticated model that use more than 8 million web pages as it training dataset. However, due to the great potential to be misused, the developers decided not to release the trained model. An alternative to create our own custom text generator is using the Recurrent Neural Network and it’s LSTM companion<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. However, there is a simpler approach to create a text generator using a model called Markov Chain<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>. The state-of-the-art or the development of text generation can be found at Fonseca<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</p>
+<p>Markov Chain is a mathematical model of stochastic process that predicts the condition of the next state (e.g. will it rain tomorrow?) based on the condition of the previous one. Using this principle, the Markov Chain can predict the next word based on the last word typed. Victor Powell<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> has dedicated a great website to visualize how Markov Chains work.</p>
+<p>Through this article, we will explore the mechanism behind Markov Chains and how to apply it to create a text generator and some other use cases.</p>
+</div>
+<div id="training-objective" class="section level2">
+<h2>Training Objective</h2>
+<p>The goal of this article is to help you:</p>
+<ul>
+<li>Understand the concept of Markov Chains</li>
+<li>Understand the properties of Markov Chains</li>
+<li>Implement Markov Chains to create a text generator</li>
+<li>Create Markov Chains with 1-gram, 2-gram and 3-gram text</li>
+<li>Implement Markov Chains in several business cases</li>
+</ul>
+<p>In order to understand the topic covered here, you may at least need to understand some of the following topics:</p>
+<ul>
+<li>Basic theory of probability</li>
+<li>General understanding of text mining</li>
+</ul>
+</div>
+<div id="library-and-setup" class="section level2">
+<h2>Library and Setup</h2>
+<p>The following package is required for the next section.</p>
+<pre class="r"><code># Data wrangling
+library(tidyverse)
+
+# Text processing
+library(tidytext)
+library(textclean)
+library(tokenizers)
+
+# Markov Chain
+library(markovchain)</code></pre>
+</div>
+</div>
+<div id="markov-chain" class="section level1">
+<h1>Markov Chain</h1>
+<p>This section is dedicated to give you a general understanding of the elements and characteristics of Markov Chains.</p>
+<div id="transition-probability" class="section level2">
+<h2>Transition Probability</h2>
+<p>Markov Chain is a mathematical model of stochastic process that predicts the condition of the next state based on condition of the previous state. It is called as a stochastic process because it change or evolve over time.</p>
+<p>Let’s consider the following graph to illustrate what Markov Chains is.</p>
+<center>
+<img src="/img/markov/markov_1.png" />{width = “40%”}
+</center>
+<p>From the above network, let’s say that there are two states: A (rain) and B (sunny). If today weather is in state A (rain), there are two possibilities for the next day. Tomorrow can be rain again, indicated by the circular loop (from A to A again), or tomorrow can be sunny (B). The same goes for the state B, it can go from state B to B again on the next day, or it can be rainy (A). Each transition from A to A or A to B will have it’s own probability to happen. The Markov Chain will model the probability of transition between the current state toward the next one.</p>
+<p>For more illustrative example, let’s say we have a data of weather condition for the past 100 days.</p>
+<pre class="r"><code>weather &lt;- c(&quot;sunny&quot;, &quot;sunny&quot;, &quot;rain&quot;, &quot;cloudy&quot;)
+
+set.seed(123)
+weather_data &lt;- sample(weather, 100, replace = T)
+head(weather_data, 10)</code></pre>
+<pre><code>#&gt;  [1] &quot;rain&quot;  &quot;rain&quot;  &quot;rain&quot;  &quot;sunny&quot; &quot;rain&quot;  &quot;sunny&quot; &quot;sunny&quot; &quot;sunny&quot; &quot;rain&quot; 
+#&gt; [10] &quot;sunny&quot;</code></pre>
+<pre class="r"><code>table(weather_data) %&gt;% prop.table()</code></pre>
+<pre><code>#&gt; weather_data
+#&gt; cloudy   rain  sunny 
+#&gt;   0.17   0.29   0.54</code></pre>
+<p>If today is sunny, what is the probability that tomorrow will be sunny as well? We simply just need to calculate how many times that today is sunny and the next day is sunny as well from the data.</p>
+<pre class="r"><code>embed(weather_data, 2)[, 2:1] %&gt;% 
+   as.data.frame() %&gt;% 
+   rename(current = V1, next_day = V2) %&gt;% 
+   filter(current == &quot;sunny&quot;) %&gt;% 
+   arrange(next_day) %&gt;% 
+   count(current, next_day)</code></pre>
+<pre><code>#&gt; # A tibble: 3 x 3
+#&gt;   current next_day     n
+#&gt;   &lt;fct&gt;   &lt;fct&gt;    &lt;int&gt;
+#&gt; 1 sunny   cloudy       6
+#&gt; 2 sunny   rain        18
+#&gt; 3 sunny   sunny       30</code></pre>
+<p>Based on the data, if current day is sunny, there are 6 occurences that the next day would be cloudy, 18 occurences that the next day is rain, and 30 occurences that the next day is sunny again. Based on the data, we can directly calculate the probability. For example, if the current day is sunny, the probability that the next day would be sunny again is:</p>
+<p><span class="math display">\[P_{sunny\ sunny} = \frac{30}{30+6+18} = 0.556\]</span></p>
+<p>This probability is called as the <strong>Transition Probability</strong> and represent the probability that tomorrow will be sunny if today is sunny. Below is the probability for each next state if today is sunny.</p>
+<pre><code>#&gt; Probability of each weather tomorrow if today is sunny
+#&gt;    cloudy      rain     sunny 
+#&gt; 0.1111111 0.3333333 0.5555556</code></pre>
+<p>The above probability only consider that the current state (today) is sunny. We also need to consider other condition of the current state, which includes cloudy and rain.</p>
+<pre class="r"><code># Probability if today is cloudy
+weather_cloudy &lt;- embed(weather_data, 2)[, 2:1] %&gt;% 
+   as.data.frame() %&gt;% 
+   rename(current = V1, next_day = V2) %&gt;% 
+   filter(current == &quot;cloudy&quot;) %&gt;% 
+   pull(next_day) %&gt;% 
+   table(&quot;Probability of each weather tomorrow if today is cloudy&quot; = .) %&gt;% prop.table()
+
+
+# Probability if today is rainy
+weather_rain &lt;- embed(weather_data, 2)[, 2:1] %&gt;% 
+   as.data.frame() %&gt;% 
+   rename(current = V1, next_day = V2) %&gt;% 
+   filter(current == &quot;rain&quot;) %&gt;% 
+   pull(next_day) %&gt;% 
+   table(&quot;Probability of each weather tomorrow if today is rain&quot; = .) %&gt;% prop.table()
+
+weather_cloudy</code></pre>
+<pre><code>#&gt; Probability of each weather tomorrow if today is cloudy
+#&gt;    cloudy      rain     sunny 
+#&gt; 0.1176471 0.1764706 0.7058824</code></pre>
+<pre class="r"><code>weather_rain</code></pre>
+<pre><code>#&gt; Probability of each weather tomorrow if today is rain
+#&gt;    cloudy      rain     sunny 
+#&gt; 0.3214286 0.2500000 0.4285714</code></pre>
+</div>
+<div id="transition-probability-matrix" class="section level2">
+<h2>Transition Probability Matrix</h2>
+<p>After we have calculated all probability, we can assemble a matrix called <strong>Transition Probability Matrix</strong>. As it name suggest, the matrix consists of all transition probability from the current state toward the next state.</p>
+<pre class="r"><code>trans_matrix &lt;- rbind(weather_cloudy, weather_rain, weather_sunny) %&gt;% 
+   `rownames&lt;-`(c(&quot;cloudy&quot;, &quot;rain&quot;, &quot;sunny&quot;))
+
+trans_matrix</code></pre>
+<pre><code>#&gt;           cloudy      rain     sunny
+#&gt; cloudy 0.1176471 0.1764706 0.7058824
+#&gt; rain   0.3214286 0.2500000 0.4285714
+#&gt; sunny  0.1111111 0.3333333 0.5555556</code></pre>
+<p>Some characteristic of the transition probability matrix:</p>
+<ul>
+<li>The transition matrix is always a square matrix or n-by-n matrix (number of rows and columns are the same)</li>
+<li>The dimension of transition matrix is determined by the number of all possible states</li>
+<li>The row (commonly) represent the current state</li>
+<li>The column (commonly) represent the next state</li>
+<li>The total probability for each current state (row) is 1</li>
+<li>The next/future state is only depends on the current state and independent from the past, this properties is called <strong>Lack of Memories</strong></li>
+</ul>
+<p>The <code>markovchain</code> package will help us to simplify many process related to Markov Chains. But first, we need to convert the <code>trans_matrix</code> from matrix into a <code>markovchain</code> object.</p>
+<pre class="r"><code># convert the matrix as a markov chain object
+markov_model &lt;- new(&quot;markovchain&quot;, 
+                    transitionMatrix = trans_matrix, # Input Transition Matrix
+                    name = &quot;Weather&quot;) # Name of the Markov Chains 
+
+markov_model</code></pre>
+<pre><code>#&gt; Weather 
+#&gt;  A  3 - dimensional discrete Markov Chain defined by the following states: 
+#&gt;  cloudy, rain, sunny 
+#&gt;  The transition matrix  (by rows)  is defined as follows: 
+#&gt;           cloudy      rain     sunny
+#&gt; cloudy 0.1176471 0.1764706 0.7058824
+#&gt; rain   0.3214286 0.2500000 0.4285714
+#&gt; sunny  0.1111111 0.3333333 0.5555556</code></pre>
+<p>The Markov Chains can be presented visually by using <code>plot()</code> function toward the <code>markovchain</code> object.</p>
+<pre class="r"><code>set.seed(2)
+plot(markov_model)</code></pre>
+<p><img src="/blog/2020-04-02-text-generating-with-markov-chains_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The arrow indicate the transition toward the next state while the number shows the probability of those transition. For example, there is a probability of 0.32 for transition from rain today toward cloudy tommorow. If the next state is the same as the current state, the arrow will make a loop toward itself, like the 25% probability of rain today to rain again tommorow.</p>
+<p>Another way to create a Markov Chains without manually calculating the transition matrix is by using <code>markovchainFit()</code> function from the <code>markovchain</code> package. The function will automatically detect a sequence from the input vector and create a transition probability matrix. The only difference is that <code>markovchainFit()</code> use estimation method to calculate the transition probability. The default method to calculate the transition probability is by using <em>Maximum Likelihood Method</em> (MLE) by using the following equation:</p>
+<p><span class="math display">\[\hat p_{ij} = \frac{n_{ij}}{\Sigma_{u = 1}^k n_{iu}}\]</span></p>
+<p><span class="math inline">\(\hat p_{ij}\)</span> = transition probability from state <em>i</em> to state <em>j</em></p>
+<p><span class="math inline">\(n_{ij}\)</span> = number of sequence from <em>i</em> to <em>j</em> from the data</p>
+<p><span class="math inline">\(n_{iu}\)</span> = number of sequence from <em>i</em> to <em>u</em> with <span class="math inline">\(u = 1, 2, ..., k\)</span></p>
+<p><span class="math inline">\(k\)</span> = number of all possible states</p>
+<p>You can also add laplace smoothing and slightly modify the equation using the laplacian method:</p>
+<p><span class="math display">\[\hat p_{ij} = \frac{n_{ij}  + \alpha}{\Sigma_{u = 1}^k (n_{iu}+ \alpha)}\]</span></p>
+<p><span class="math inline">\(\alpha\)</span> = Laplace smoothing constant</p>
+<p>We will try to create the Markov Chains using the <code>markovchainFit()</code> function. The transition matrix can be acquired at the <code>estimate</code> output from the <code>markovchain</code> object.</p>
+<pre class="r"><code># Fit the data
+markov_weather &lt;- markovchainFit(weather_data, method = &quot;mle&quot;)
+
+# Get transition probaiblity
+markov_weather$estimate</code></pre>
+<pre><code>#&gt; MLE Fit 
+#&gt;  A  3 - dimensional discrete Markov Chain defined by the following states: 
+#&gt;  cloudy, rain, sunny 
+#&gt;  The transition matrix  (by rows)  is defined as follows: 
+#&gt;           cloudy      rain     sunny
+#&gt; cloudy 0.1176471 0.1764706 0.7058824
+#&gt; rain   0.3214286 0.2500000 0.4285714
+#&gt; sunny  0.1111111 0.3333333 0.5555556</code></pre>
+<p>The transition matrix is identical with the previous one.</p>
+</div>
+<div id="chapman-kolmogorov-equation" class="section level2">
+<h2>Chapman-Kolmogorov Equation</h2>
+<p>Once again, let’s visualize the Markov Chains of the weather data.</p>
+<pre class="r"><code>set.seed(123)
+plot(markov_weather$estimate)</code></pre>
+<p><img src="/blog/2020-04-02-text-generating-with-markov-chains_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>So, based on the transition matrix, if today is cloudy, the chance that tomorrow will be sunny is 71%. But what about the next 2 days? Or even the next 7 days?</p>
+<p>The arrow indicate the transition toward the next state while the number shows the probability of those transition. For example, there is a probability of 0.32 for transition from rain today toward cloudy tommorow. If the next state is the same as the current state, the arrow will make a loop toward itself, like the 25% probability of rain today to rain again tommorow.</p>
+<p>By using Markov Chains, we can get the transition matrix for the next <em>n</em>-period by simply multiply the transition matrix with itself. For example, if we want to get the transition matrix for the next 2 days:</p>
+<pre class="r"><code># Matrix multiplication
+markov_weather$estimate * markov_weather$estimate</code></pre>
+<pre><code>#&gt; MLE Fit 
+#&gt;  A  3 - dimensional discrete Markov Chain defined by the following states: 
+#&gt;  cloudy, rain, sunny 
+#&gt;  The transition matrix  (by rows)  is defined as follows: 
+#&gt;           cloudy      rain     sunny
+#&gt; cloudy 0.1489949 0.3001730 0.5508321
+#&gt; rain   0.1657913 0.2620798 0.5721289
+#&gt; sunny  0.1819431 0.2881264 0.5299305</code></pre>
+<p>So, if today is cloudy, the chance that the 2 days from now is sunny is 55.08%. How can we arrive at such conclusion? This principle is called the <strong>Chapman-Kolmogorov Equation</strong>.</p>
+<p><span class="math display">\[p_{ij}^{n} = \Sigma_{k=1}^{M} p_{ik}^{m}\ p_{kj}^{n-m}\]</span></p>
+<p><span class="math inline">\(p_{ij}^{n}\)</span> = probability that the system will be at state <em>j</em> at the <em>n-step</em> if it is on the state <em>i</em> during <em>m-step</em>.</p>
+<p>Basically, it means that in order to arrive at the sunny state at the second day, there are multiple route that can be traveled:</p>
+<ul>
+<li>today cloudy -&gt; tomorrow sunny -&gt; next 2 days sunny</li>
+<li>today cloudy -&gt; tomorrow cloudy -&gt; next 2 days sunny</li>
+<li>today cloudy -&gt; tomorrow rain -&gt; next 2 days sunny</li>
+</ul>
+<p>The Markov Chains is often more often represented as a transition probability matrix instead of a graph, with each row indicate the current states while each column indicate the next states. Based on the previous graph, we can convert it into the following transition matrix:</p>
+<p>We just need to calculate the probability for each routes and sum it all at the end.</p>
+<p>Let’s go back to the initial transition matrix:</p>
+<pre class="r"><code>markov_weather$estimate</code></pre>
+<pre><code>#&gt; MLE Fit 
+#&gt;  A  3 - dimensional discrete Markov Chain defined by the following states: 
+#&gt;  cloudy, rain, sunny 
+#&gt;  The transition matrix  (by rows)  is defined as follows: 
+#&gt;           cloudy      rain     sunny
+#&gt; cloudy 0.1176471 0.1764706 0.7058824
+#&gt; rain   0.3214286 0.2500000 0.4285714
+#&gt; sunny  0.1111111 0.3333333 0.5555556</code></pre>
+<p>Based on the <strong>Chapman-Kolmogorov</strong>, the probability to be sunny at the next 2 days if today is cloudy is:</p>
+<p><span class="math display">\[p_{cloudy\ sunny}^{2} = \Sigma_{k=0}^{3} p_{cloudy\ k}^{1}\ p_{k\ j}^{2-1}\]</span></p>
+<p><span class="math display">\[p_{cloudy\ sunny}^{2} = p_{cloudy\ cloudy}^{1}\ p_{cloudy\ sunny}^{2-1} + p_{cloudy\ sunny}^{1}\ p_{sunny\ sunny}^{2-1}+p_{cloudy\ rain}^{1}\ p_{rain\ sunny}^{2-1}\]</span></p>
+<p><span class="math display">\[p_{cloudy\ sunny}^{2} = 0.1176\ \ 0.7059 + 0.1765\ 0.4286+ 0.7059\ 0.5556 = 0.5509\]</span></p>
+<p>Or simply</p>
+<pre class="r"><code>current_state &lt;- c(1, 0, 0) # today is cloudy
+
+current_state * markov_weather$estimate^2 # probability for the next 2 days</code></pre>
+<pre><code>#&gt;         cloudy     rain     sunny
+#&gt; [1,] 0.1489949 0.300173 0.5508321</code></pre>
+<p>Let’s go back to the matrix multiplication and check the result:</p>
+<pre class="r"><code>markov_weather$estimate * markov_weather$estimate</code></pre>
+<pre><code>#&gt; MLE Fit 
+#&gt;  A  3 - dimensional discrete Markov Chain defined by the following states: 
+#&gt;  cloudy, rain, sunny 
+#&gt;  The transition matrix  (by rows)  is defined as follows: 
+#&gt;           cloudy      rain     sunny
+#&gt; cloudy 0.1489949 0.3001730 0.5508321
+#&gt; rain   0.1657913 0.2620798 0.5721289
+#&gt; sunny  0.1819431 0.2881264 0.5299305</code></pre>
+<p>The probability from cloudy to sunny in the next 2 days is 0.5508.</p>
+<p>For the next 7 days, we simply multiply the matrix 7 times:</p>
+<pre class="r"><code>markov_weather$estimate^7</code></pre>
+<pre><code>#&gt; MLE Fit^7 
+#&gt;  A  3 - dimensional discrete Markov Chain defined by the following states: 
+#&gt;  cloudy, rain, sunny 
+#&gt;  The transition matrix  (by rows)  is defined as follows: 
+#&gt;           cloudy      rain     sunny
+#&gt; cloudy 0.1717223 0.2828268 0.5454509
+#&gt; rain   0.1717158 0.2828327 0.5454515
+#&gt; sunny  0.1717163 0.2828265 0.5454573</code></pre>
+<p>So for the next 7 days, the chance of sunny if today is cloudy is 54.5%.</p>
+</div>
+<div id="special-state-in-markov-chains" class="section level2">
+<h2>Special State in Markov Chains</h2>
+<p>There are at least 4 special or notable state in Markov Chains:</p>
+<ul>
+<li>Steady State</li>
+<li>Absorbing State</li>
+<li>Transient State</li>
+<li>Recurrent State</li>
+</ul>
+<p>Understanding the presence of those stats is useful if we wish to analyze the system via Markov Chains.</p>
+<div id="steady-states" class="section level3">
+<h3>Steady States</h3>
+<p>In Markov Chains, there exist a condition where regardless of the current state, the probability for the next state is always the same. Let’s check the transition Matrix for the next 14 days:</p>
+<pre class="r"><code>markov_weather$estimate^14</code></pre>
+<pre><code>#&gt; MLE Fit^14 
+#&gt;  A  3 - dimensional discrete Markov Chain defined by the following states: 
+#&gt;  cloudy, rain, sunny 
+#&gt;  The transition matrix  (by rows)  is defined as follows: 
+#&gt;           cloudy      rain     sunny
+#&gt; cloudy 0.1717172 0.2828283 0.5454545
+#&gt; rain   0.1717172 0.2828283 0.5454545
+#&gt; sunny  0.1717172 0.2828283 0.5454545</code></pre>
+<p>As we can see, regardless if today is cloudy, rain, or sunny, the probability that tomorrow will be sunny is always 0.545 and tomorrow will be rain is always 0.2828. This condition is called the <strong>Steady-state</strong> of the transition matrix. It means that after certain point of time/step, the probability of the next step will always be the same for each state. A steady-state is important to do a long-term analysis such as insurance, inventory management, and maintenance policy.</p>
+<p>To get the steady-state of the Markov Chains, we simply use <code>steadyStates()</code> function.</p>
+<pre class="r"><code>steadyStates(markov_weather$estimate)</code></pre>
+<pre><code>#&gt;         cloudy      rain     sunny
+#&gt; [1,] 0.1717172 0.2828283 0.5454545</code></pre>
+<p>Based on the result, regardless of the current weather, the probability that tomorrow will be cloudy is 0.17, tomorrow will be rain is 0.28 and tomorrow will be sunny is 0.545.</p>
+</div>
+<div id="absorbing-state" class="section level3">
+<h3>Absorbing State</h3>
+<p>Supossed that we have the following transition matrix from Health Insurance:</p>
+<pre class="r"><code># create transition matrix
+transition_matrix &lt;- matrix(c(0.5, .25, .15, .1,
+                              0.4, 0.4, 0.0, 0.2,
+                              0, 0, 1, 0,
+                              0, 0, 0, 1), 
+                            byrow = TRUE, nrow = 4)
+
+# convert the matrix as a markov chain object
+
+markov_health &lt;- new(&quot;markovchain&quot;, transitionMatrix = transition_matrix, 
+                    name = &quot;Health Insurance&quot;, 
+                    states = c(&quot;active&quot;, &quot;disable&quot;, &quot;withdrawn&quot;, &quot;death&quot;))
+
+set.seed(4)
+plot(markov_health)</code></pre>
+<p><img src="/blog/2020-04-02-text-generating-with-markov-chains_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>If the current state is withdrawn, the next state is certainly withdrawn as well since it has the transition probability of 1. The same thing happens when the current state is death. This state is called <strong>Absorbing States</strong>, because once the system entered this state, it cannot left. The system will loop and staty at the state. Once people withdrawn their insurance, they next state will stay withdrawn and cannot be active again. Once the insured is death, they cannot be active or alive again (hopefully).</p>
+<pre class="r"><code>markov_health &lt;- new(&quot;markovchain&quot;, transitionMatrix = transition_matrix, 
+                    name = &quot;Health Insurance&quot;, 
+                    states = c(&quot;active&quot;, &quot;disable&quot;, &quot;withdrawn&quot;, &quot;death&quot;))
+
+markov_health</code></pre>
+<pre><code>#&gt; Health Insurance 
+#&gt;  A  4 - dimensional discrete Markov Chain defined by the following states: 
+#&gt;  active, disable, withdrawn, death 
+#&gt;  The transition matrix  (by rows)  is defined as follows: 
+#&gt;           active disable withdrawn death
+#&gt; active       0.5    0.25      0.15   0.1
+#&gt; disable      0.4    0.40      0.00   0.2
+#&gt; withdrawn    0.0    0.00      1.00   0.0
+#&gt; death        0.0    0.00      0.00   1.0</code></pre>
+<p>To acquire the absorbing state of the Markov Chains, we simply use <code>absorbingState()</code> function.</p>
+<pre class="r"><code>absorbingStates(markov_health)</code></pre>
+<pre><code>#&gt; [1] &quot;withdrawn&quot; &quot;death&quot;</code></pre>
+<p>Based on the result, the absorbing state for Health Insurance is <code>withdrawn</code> and <code>death</code>.</p>
+</div>
+<div id="transient-state-and-recurrent-state" class="section level3">
+<h3>Transient State and Recurrent State</h3>
+<p>A state is said to be a transient state if, upon entering this state, the process might never return to this state again.</p>
+<pre class="r"><code>transientStates(markov_health)</code></pre>
+<pre><code>#&gt; [1] &quot;active&quot;  &quot;disable&quot;</code></pre>
+<p>State <code>active</code> and <code>disable</code> is transient because there is a non-zero probability that we will never return to this state.</p>
+<p>Meanwhile, a state is said to be a recurrent state if, upon entering this state, the process definitely will return to this state again. Therefore, a state is recurrent if and only if it is not transient.</p>
+<pre class="r"><code>recurrentStates(markov_health)</code></pre>
+<pre><code>#&gt; [1] &quot;withdrawn&quot; &quot;death&quot;</code></pre>
+<p>State <code>withdrawn</code> and <code>death</code> is recurrent because there is no non-zero probability that we will never return to this state.</p>
+</div>
+</div>
+</div>
+<div id="text-generation-1" class="section level1">
+<h1>Text Generation</h1>
+<p>This part will illustrate how Markov Chain can be applied to make a text generator. There are some advantages of employing Markov Chains for text generation compared to other method:</p>
+<ul>
+<li>Simple and easy to implement</li>
+<li>Lower computation time</li>
+</ul>
+<p>However, there is some disadvantages on using Markov Chains to build text generator:</p>
+<ul>
+<li>The generated text is as good as the input corpus (garbage in garbage out)</li>
+<li>Need to create multiple n-gram Markov Chains (high order model) to captue the context</li>
+</ul>
+<p>Before we create a big and complex text generator using a corpus or collection of text data, first let’s create a simple one. I will use a single sentence and build a text generator based on words present on the sentence.</p>
+<center>
+<img src="/img/markov/fox.png" />{width = “40%”}
+</center>
+<p>First, we prepare the sentence, a generic sentence that is used as a benchmark to test fonts: <code>the quick brown fox jumps over the lazy dog</code>. I will make it longer into <code>the quick brown fox jumps over the lazy dog and the angry dog chase the fox</code>. This single text will be splitted/tokenized without eliminating the word sequences.</p>
+<pre class="r"><code># a single sentence
+short_text &lt;- c(&quot;the quick brown fox jumps over the lazy dog and the angry dog chase the fox&quot;)
+
+# split the sentence into words
+text_term &lt;- strsplit(short_text, split = &quot; &quot;) %&gt;% unlist()
+
+short_text</code></pre>
+<pre><code>#&gt; [1] &quot;the quick brown fox jumps over the lazy dog and the angry dog chase the fox&quot;</code></pre>
+<pre class="r"><code>text_term</code></pre>
+<pre><code>#&gt;  [1] &quot;the&quot;   &quot;quick&quot; &quot;brown&quot; &quot;fox&quot;   &quot;jumps&quot; &quot;over&quot;  &quot;the&quot;   &quot;lazy&quot;  &quot;dog&quot;  
+#&gt; [10] &quot;and&quot;   &quot;the&quot;   &quot;angry&quot; &quot;dog&quot;   &quot;chase&quot; &quot;the&quot;   &quot;fox&quot;</code></pre>
+<p>Now that we have the terms and it’s sequence, we can build a Markov Chains and visualize the networks.</p>
+<pre class="r"><code>fit_markov &lt;- markovchainFit(text_term, method = &quot;laplace&quot;)
+
+set.seed(123)
+plot(fit_markov$estimate)</code></pre>
+<p><img src="/blog/2020-04-02-text-generating-with-markov-chains_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>fit_markov$estimate</code></pre>
+<pre><code>#&gt; Laplacian Smooth Fit 
+#&gt;  A  11 - dimensional discrete Markov Chain defined by the following states: 
+#&gt;  and, angry, brown, chase, dog, fox, jumps, lazy, over, quick, the 
+#&gt;  The transition matrix  (by rows)  is defined as follows: 
+#&gt;       and angry brown chase dog  fox jumps lazy over quick the
+#&gt; and   0.0  0.00     0   0.0   0 0.00     0 0.00    0  0.00   1
+#&gt; angry 0.0  0.00     0   0.0   1 0.00     0 0.00    0  0.00   0
+#&gt; brown 0.0  0.00     0   0.0   0 1.00     0 0.00    0  0.00   0
+#&gt; chase 0.0  0.00     0   0.0   0 0.00     0 0.00    0  0.00   1
+#&gt; dog   0.5  0.00     0   0.5   0 0.00     0 0.00    0  0.00   0
+#&gt; fox   0.0  0.00     0   0.0   0 0.00     1 0.00    0  0.00   0
+#&gt; jumps 0.0  0.00     0   0.0   0 0.00     0 0.00    1  0.00   0
+#&gt; lazy  0.0  0.00     0   0.0   1 0.00     0 0.00    0  0.00   0
+#&gt; over  0.0  0.00     0   0.0   0 0.00     0 0.00    0  0.00   1
+#&gt; quick 0.0  0.00     1   0.0   0 0.00     0 0.00    0  0.00   0
+#&gt; the   0.0  0.25     0   0.0   0 0.25     0 0.25    0  0.25   0</code></pre>
+<p>The subsequent words are generated based on the transition probability (the number on the graph). For example, if the current word is <code>dog</code>, the next word can be <code>chase</code> and word <code>and</code>, with equal probability of 0.5 to appear. If the current word is <code>chase</code>, the next word must be <code>the</code> because it has probability of 1 to appear afer word <code>chase</code>.</p>
+<p>Now we can try to generate a text using the markov chain. Here, I only type word <code>the</code> and let the model finish the sentence. We will generate 5 different phrases.</p>
+<pre class="r"><code># generate random sentence
+for (i in 1:5) {
+
+   set.seed(i)
+   markovchainSequence(n = 7, # generate 7 next words 
+                       markovchain = fit_markov$estimate, # transition matrix
+                       t0 = &quot;the&quot;, include.t0 = T) %&gt;%  # set the first word
+   
+   # joint words
+   paste(collapse = &quot; &quot;) %&gt;% 
+   paste0(&quot;.&quot;) %&gt;% 
+   print()
+}</code></pre>
+<pre><code>#&gt; [1] &quot;the fox jumps over the angry dog chase.&quot;
+#&gt; [1] &quot;the angry dog chase the quick brown fox.&quot;
+#&gt; [1] &quot;the angry dog and the lazy dog and.&quot;
+#&gt; [1] &quot;the lazy dog and the quick brown fox.&quot;
+#&gt; [1] &quot;the angry dog chase the angry dog chase.&quot;</code></pre>
+<p>Does the sentences make sense? Perhaps some of them does. The number of words generated also affect whether the sentence will make sense or not, such as the third sentence that end with <code>and</code>, making it an incomplete sentence, while the second and fourth sentence can be a complete sentence. We may want to cut the sentence at certain point to make it a better sentence.</p>
+<p>Next, we can try to create more complex model using to create a sentences based on <code>Sherlock Holmes</code> novel.</p>
+<div id="import-dataset" class="section level2">
+<h2>Import Dataset</h2>
+<p>The data come from <a href = "https://www.gutenberg.org/ebooks/1661"> The Adventure of Sherlock Holmes </a> by Sir Arthur Conan Doyles. We will directly import the text from the <code>project gutenberg</code> website. Since processing a lot of words/terms in NLP is requires a huge resource (both times and power), I will only use this single book instead of all of Sherlock Holmes novels.</p>
+<pre class="r"><code>library(gutenbergr)
+
+sherlock &lt;- gutenberg_download(1661)
+head(sherlock, 30)</code></pre>
+<pre><code>#&gt; # A tibble: 30 x 2
+#&gt;    gutenberg_id text                               
+#&gt;           &lt;int&gt; &lt;chr&gt;                              
+#&gt;  1         1661 &quot;THE ADVENTURES OF SHERLOCK HOLMES&quot;
+#&gt;  2         1661 &quot;&quot;                                 
+#&gt;  3         1661 &quot;by&quot;                               
+#&gt;  4         1661 &quot;&quot;                                 
+#&gt;  5         1661 &quot;SIR ARTHUR CONAN DOYLE&quot;           
+#&gt;  6         1661 &quot;&quot;                                 
+#&gt;  7         1661 &quot;&quot;                                 
+#&gt;  8         1661 &quot;&quot;                                 
+#&gt;  9         1661 &quot;   I. A Scandal in Bohemia&quot;       
+#&gt; 10         1661 &quot;  II. The Red-headed League&quot;      
+#&gt; # ... with 20 more rows</code></pre>
+</div>
+<div id="text-cleansing" class="section level2">
+<h2>Text Cleansing</h2>
+<p>We need to cleanse the text and remove the chapter title and unnecessary element such as blank text.</p>
+<pre class="r"><code># Get chapter title
+chapter_title &lt;- sherlock %&gt;% 
+   filter(text != &quot;&quot;) %&gt;% 
+   slice(c(4:15)) %&gt;% 
+   pull(text) %&gt;% 
+   tolower() %&gt;% 
+   str_trim()
+
+# text cleansing
+sherlock_clean &lt;- sherlock %&gt;%  
+   mutate(text  = tolower(text)) %&gt;% 
+   filter( str_detect(text, paste(chapter_title, collapse = &quot;|&quot;)) == F,
+           text != &quot;&quot;) %&gt;% 
+   slice(-c(1:4)) %&gt;% 
+   mutate(text = text %&gt;%  
+             str_replace(pattern = &quot;--&quot;, &quot; &quot;) %&gt;% 
+             # remove punctuation selain tanda titik, koma sama seru
+             str_remove_all(pattern = &quot;(?![.,!])[[:punct:]]&quot;) %&gt;% 
+             str_remove_all(pattern = &quot;[0-9]&quot;) %&gt;% # remove numeric
+             replace_contraction() %&gt;% # I&#39;ll menjadi I will
+             replace_white() %&gt;% # remove double white space
+             str_replace_all(&quot;mrs[.]&quot;, &quot;mistress&quot;) %&gt;% 
+             str_replace_all(&quot;mr[.]&quot;, &quot;mister&quot;) %&gt;% 
+             str_replace_all(pattern = &quot;[.]&quot;, replacement = &quot; .&quot;) %&gt;% 
+             str_replace_all(pattern = &quot;[!]&quot;, replacement = &quot; !&quot;) %&gt;% 
+             str_replace_all(pattern = &quot;[,]&quot;, replacement = &quot; ,&quot;))
+
+head(sherlock_clean, 10)</code></pre>
+<pre><code>#&gt; # A tibble: 10 x 2
+#&gt;    gutenberg_id text                                                            
+#&gt;           &lt;int&gt; &lt;chr&gt;                                                           
+#&gt;  1         1661 to sherlock holmes she is always the woman . i have seldom heard
+#&gt;  2         1661 him mention her under any other name . in his eyes she eclipses 
+#&gt;  3         1661 and predominates the whole of her sex . it was not that he felt 
+#&gt;  4         1661 any emotion akin to love for irene adler . all emotions , and t~
+#&gt;  5         1661 one particularly , were abhorrent to his cold , precise but     
+#&gt;  6         1661 admirably balanced mind . he was , i take it , the most perfect 
+#&gt;  7         1661 reasoning and observing machine that the world has seen , but a~
+#&gt;  8         1661 lover he would have placed himself in a false position . he nev~
+#&gt;  9         1661 spoke of the softer passions , save with a gibe and a sneer . t~
+#&gt; 10         1661 were admirable things for the observer excellent for drawing the</code></pre>
+<p>Each row represent a single line in the book. To get better result, first we need to make a compile all row into a single vector.</p>
+<pre class="r"><code>text_sherlock &lt;- sherlock_clean %&gt;% 
+   pull(text) %&gt;% 
+   strsplit(&quot; &quot;) %&gt;% 
+   unlist() 
+
+text_sherlock %&gt;% head(30)</code></pre>
+<pre><code>#&gt;  [1] &quot;to&quot;           &quot;sherlock&quot;     &quot;holmes&quot;       &quot;she&quot;          &quot;is&quot;          
+#&gt;  [6] &quot;always&quot;       &quot;the&quot;          &quot;woman&quot;        &quot;.&quot;            &quot;i&quot;           
+#&gt; [11] &quot;have&quot;         &quot;seldom&quot;       &quot;heard&quot;        &quot;him&quot;          &quot;mention&quot;     
+#&gt; [16] &quot;her&quot;          &quot;under&quot;        &quot;any&quot;          &quot;other&quot;        &quot;name&quot;        
+#&gt; [21] &quot;.&quot;            &quot;in&quot;           &quot;his&quot;          &quot;eyes&quot;         &quot;she&quot;         
+#&gt; [26] &quot;eclipses&quot;     &quot;and&quot;          &quot;predominates&quot; &quot;the&quot;          &quot;whole&quot;</code></pre>
+<pre class="r"><code>n_distinct(text_sherlock)</code></pre>
+<pre><code>#&gt; [1] 8198</code></pre>
+</div>
+<div id="model-fitting" class="section level2">
+<h2>Model Fitting</h2>
+<p>Now we will fit the data into Markov Chains.</p>
+<pre class="r"><code>fit_markov &lt;- markovchainFit(text_sherlock)</code></pre>
+<p>Let’s try to generate some sentences based on the Markov Chains. We will generate the next 6 words.</p>
+<pre class="r"><code>for (i in 1:10) {
+
+   set.seed(i)
+
+   markovchainSequence(n = 10, 
+                       markovchain = fit_markov$estimate,
+                       t0 = &quot;the&quot;, include.t0 = T) %&gt;% 
+
+   # joint words
+   paste(collapse = &quot; &quot;) %&gt;% 
+      
+   # create proper sentence form
+   str_replace_all(pattern = &quot; ,&quot;, replacement = &quot;,&quot;) %&gt;% 
+   str_replace_all(pattern = &quot; [.]&quot;, replacement = &quot;.&quot;) %&gt;% 
+   str_replace_all(pattern = &quot; [!]&quot;, replacement = &quot;!&quot;) %&gt;% 
+
+   str_to_sentence() %&gt;% 
+
+   print()
+}</code></pre>
+<pre><code>#&gt; [1] &quot;The windows of some mystery. ill swing for this is&quot;
+#&gt; [1] &quot;The only reached her own seal and the stripped body of&quot;
+#&gt; [1] &quot;The name which had, in that i should think of&quot;
+#&gt; [1] &quot;The river, but he shot out a gipsy had been&quot;
+#&gt; [1] &quot;The king stared from his head gravely. perhaps except when&quot;
+#&gt; [1] &quot;The injuries which was that for robbery at our friends and&quot;
+#&gt; [1] &quot;The pink flush upon the ground to a wash, which&quot;
+#&gt; [1] &quot;The mystery. to open the girl, brilliant beam of&quot;
+#&gt; [1] &quot;The one of the street, and in his costume is&quot;
+#&gt; [1] &quot;The subject. there he was no doubt that, he&quot;</code></pre>
+<p>If you want to make the model as a predictive text, you can create a function that will return a set of words with the highest probability for the next step.</p>
+<pre class="r"><code>predictive_text &lt;- function(text, num_word){
+   text &lt;- strsplit(text, &quot; &quot;) %&gt;% unlist() %&gt;% tail(1)
+   
+   # exclude punctuation
+   punctuation &lt;- which(fit_markov$estimate[ tolower(text), ] %&gt;% names() %&gt;% str_detect(&quot;[:punct:]&quot;))
+   
+   suggest &lt;- fit_markov$estimate[ tolower(text), -punctuation] %&gt;%
+   sort(decreasing = T) %&gt;% 
+   head(num_word) 
+   
+   suggest &lt;- suggest[suggest &gt; 0] %&gt;% 
+   names()
+   
+   return(suggest)
+}
+
+predictive_text(&quot;i am&quot;, 10)</code></pre>
+<pre><code>#&gt;  [1] &quot;sure&quot;   &quot;not&quot;    &quot;afraid&quot; &quot;a&quot;      &quot;so&quot;     &quot;sorry&quot;  &quot;very&quot;   &quot;glad&quot;  
+#&gt;  [9] &quot;in&quot;     &quot;all&quot;</code></pre>
+<p>Since we only use a token (1-gram), the Markov Chains will only consider the last word and see no context or sequence of words in the sentence.</p>
+<pre class="r"><code>predictive_text(&quot;i wish she&quot;, 10)</code></pre>
+<pre><code>#&gt;  [1] &quot;had&quot;   &quot;was&quot;   &quot;is&quot;    &quot;has&quot;   &quot;would&quot; &quot;cried&quot; &quot;could&quot; &quot;said&quot;  &quot;will&quot; 
+#&gt; [10] &quot;saw&quot;</code></pre>
+</div>
+<div id="text-generation-with-n-gram" class="section level2">
+<h2>Text Generation with N-gram</h2>
+<p>The previous section tell us how to create a Markov Chains text generator with a single term (1-gram) token. Can we create a Markov Chain using bigram (2-grams) or trigram (3-grams)?</p>
+<p>The answer is yes. We just need to adjust the input to be an n-grams instead of a single term.</p>
+<div id="bigram-predictive-text" class="section level3">
+<h3>Bigram Predictive Text</h3>
+<p>Bigram predictive text will use two consecutive words/terms in order to predict the next word, instead of only using the last word. The transition matrix will consists of the transition probability between bigram.</p>
+<pre class="r"><code>bigram_sherlock &lt;- sherlock_clean %&gt;% 
+   head(2000) %&gt;% 
+   unnest_tokens(bigram, text, token = &quot;ngrams&quot;, n = 2) %&gt;% 
+   pull(bigram)
+
+bigram_sherlock %&gt;% head(10)</code></pre>
+<pre><code>#&gt;  [1] &quot;to sherlock&quot;     &quot;sherlock holmes&quot; &quot;holmes she&quot;      &quot;she is&quot;         
+#&gt;  [5] &quot;is always&quot;       &quot;always the&quot;      &quot;the woman&quot;       &quot;woman i&quot;        
+#&gt;  [9] &quot;i have&quot;          &quot;have seldom&quot;</code></pre>
+<p>We will fit the vector into the Markov Chains. However, since the huge amount of bigram text and my hardware limitation, I can only afford to fit the first 2000 observations of the text. This will affect the transition matrix, but since we (more precisely me) don’t have a lot of options, we will proceed to the next step. The fitting process take a lot of time to process and I have saved the <code>.Rds</code> file for you to access.</p>
+<pre class="r"><code>markov_bigram &lt;- markovchainFit(bigram_sherlock)</code></pre>
+<pre class="r"><code>markov_bigram &lt;- read_rds(&quot;data_input/bigram_sherlock.Rds&quot;)</code></pre>
+<p>We will create a predictive text function using the Bigram Markov Chains. Let’s say if I insert <code>i will</code>, what will be the top 5 next words.</p>
+<pre class="r"><code>predictive_text &lt;- function(text, num_word){
+   
+   suggest &lt;- markov_bigram$estimate[ tolower(text), ] %&gt;%
+   sort(decreasing = T) %&gt;% 
+   head(num_word) 
+   
+   suggest &lt;- suggest[ suggest &gt; 0] %&gt;% 
+   names() %&gt;% 
+   str_extract(pattern = &quot;\\s(.*)&quot;) %&gt;% 
+   str_remove(&quot;[ ]&quot;)
+   
+   return(suggest)
+}
+
+predictive_text(&quot;i will&quot;, 5) </code></pre>
+<pre><code>#&gt; [1] &quot;be&quot;     &quot;follow&quot; &quot;get&quot;    &quot;make&quot;   &quot;not&quot;</code></pre>
+<p>We can also create a random text generator using the bigram to create sentences.</p>
+<pre class="r"><code>library(stringi)
+
+for (i in 1:10) {
+
+   set.seed(i)
+
+   markovchainSequence(n = 10, 
+                       markovchain = markov_bigram$estimate,
+                       t0 = &quot;i was&quot;, include.t0 = T) %&gt;% 
+   stri_extract_last_words() %&gt;% 
+
+   # joint words
+   c(&quot;i&quot;, .) %&gt;% 
+   paste(collapse = &quot; &quot;) %&gt;% 
+      
+   # create proper sentence form
+   str_replace_all(pattern = &quot; ,&quot;, replacement = &quot;,&quot;) %&gt;% 
+   str_replace_all(pattern = &quot; [.]&quot;, replacement = &quot;.&quot;) %&gt;% 
+   str_replace_all(pattern = &quot; [!]&quot;, replacement = &quot;!&quot;) %&gt;% 
+
+   str_to_sentence() %&gt;% 
+
+   print()
+}</code></pre>
+<pre><code>#&gt; [1] &quot;I was certain that it means i have often thought the reaction&quot;
+#&gt; [1] &quot;I was aware that i had my note he asked does it&quot;
+#&gt; [1] &quot;I was always well dressed and ill swing for it made me&quot;
+#&gt; [1] &quot;I was still raised to it i could fathom then they carried&quot;
+#&gt; [1] &quot;I was aware that i have heard some vague account of you&quot;
+#&gt; [1] &quot;I was conspiring or the bullion might be removed saturday would suit&quot;
+#&gt; [1] &quot;I was about to be a little square of cardboard hammered on&quot;
+#&gt; [1] &quot;I was a royal duke and he said that she had probably&quot;
+#&gt; [1] &quot;I was aware of it in twenty minutes it was close upon&quot;
+#&gt; [1] &quot;I was compelled to open and an elderly woman stood upon the&quot;</code></pre>
+</div>
+<div id="trigram-predictive-text" class="section level3">
+<h3>Trigram Predictive Text</h3>
+<p>We will also create a Markov Chains for Trigram to get the context up to 3 previous words. However, since the huge amount of trigram text and my hardware limitation, I can only afford to fit the first 2000 observations of the text.</p>
+<pre class="r"><code>trigram_sherlock &lt;- sherlock_clean %&gt;%  
+   head(2000) %&gt;% 
+   unnest_tokens(bigram, text, token = &quot;ngrams&quot;, n = 3) %&gt;% 
+   pull(bigram)
+
+trigram_sherlock %&gt;% head(10)</code></pre>
+<pre><code>#&gt;  [1] &quot;to sherlock holmes&quot;  &quot;sherlock holmes she&quot; &quot;holmes she is&quot;      
+#&gt;  [4] &quot;she is always&quot;       &quot;is always the&quot;       &quot;always the woman&quot;   
+#&gt;  [7] &quot;the woman i&quot;         &quot;woman i have&quot;        &quot;i have seldom&quot;      
+#&gt; [10] &quot;have seldom heard&quot;</code></pre>
+<p>Fit the data into Markov Chains. The fitting process take so much time so I save the <code>.Rds</code> file for you to access.</p>
+<pre class="r"><code>markov_trigram &lt;- markovchainFit(trigram_sherlock)</code></pre>
+<pre class="r"><code>markov_trigram &lt;- read_rds(&quot;data_input/trigram_sherlock.Rds&quot;)</code></pre>
+<p>Create the predictive function.</p>
+<pre class="r"><code>predictive_text &lt;- function(text, num_word){
+   
+   suggest &lt;- markov_trigram$estimate[ tolower(text), ] %&gt;%
+   sort(decreasing = T) %&gt;% 
+   head(num_word) 
+   
+   suggest &lt;- suggest[ suggest &gt; 0 ] %&gt;% 
+   names() %&gt;% 
+   str_extract(pattern = &quot;\\s(.*)&quot;) %&gt;% 
+   str_remove(&quot;[ ]&quot;) %&gt;%  
+   str_extract(pattern = &quot;\\s(.*)&quot;) %&gt;% 
+   str_remove(&quot;[ ]&quot;)
+   
+   return(suggest)
+}
+
+predictive_text(&quot;i wish you&quot;, 5)</code></pre>
+<pre><code>#&gt; [1] &quot;would&quot;</code></pre>
+</div>
+<div id="combine-3-markov-chains" class="section level3">
+<h3>Combine 3 Markov Chains</h3>
+<p>We can combine all Markov N-grams into a single function. The benefit is that it will look for context in trigram and bigram. If the input text has 3 or more words, it will look at the last 3 words on the phrase. If the words are not identified from the trigram Markov Chains or if the phrase has only 2 words, it will look at the bigram Markov Chains instead. Finally, if the two Markov Chains failed to find the result from their respective transition matrix, we will look at the 1-gram Markov Chains to predict the next word. I have compiled it in an R script.</p>
+<ol style="list-style-type: decimal">
+<li>Mencari kemungkinan atau state di 3-gram</li>
+<li>Kalau tidak ada, cari di 2-gram</li>
+<li>Kalau tidak ada, cari di 1-gram</li>
+</ol>
+<pre class="r"><code>source(&quot;markov_predictive.R&quot;)
+
+predictive_text(&quot;i love&quot;, num_word = 5)</code></pre>
+<pre><code>#&gt; [1] &quot;own&quot;       &quot;friend&quot;    &quot;dear&quot;      &quot;companion&quot; &quot;wife&quot;</code></pre>
+</div>
+</div>
+</div>
+<div id="business-use-case" class="section level1">
+<h1>Business Use Case</h1>
+<p>There are many application of Markov Chains in various field of industries other than for text generation. On this section, I will illustrate some use cases of Markov Chains in health insurance and manufacturing machine maintenance.</p>
+<p><strong>You may skip the next sections if you only wish to learn how to create a text generator.</strong></p>
+<div id="machine-maintenance" class="section level2">
+<h2>Machine Maintenance</h2>
+<p>This problem is derived from Hillier and Lieberman<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>. A manufacturer has one key machine at the core of one of its production processes. Because of heavy use, the machine deteriorates rapidly in both quality and output. Therefore, at the end of each week, a thorough inspection is done that results in classifying the condition of the machine into one of four possible states:</p>
+<ul>
+<li>1: Good - No apparent problem</li>
+<li>2: Operable with minor deterioration</li>
+<li>3: Operable with major deterioration</li>
+<li>4: Inoperable due to bad quality</li>
+</ul>
+<p>The transition matrix for this problem is as follows.</p>
+<pre class="r"><code>transition_matrix &lt;- matrix(c(0, 7/8, 1/16, 1/16,
+                              0, 3/4, 1/8, 1/8,
+                              0, 0, 1/2, 1/2,
+                              1, 0, 0, 0), 
+                            byrow = TRUE, nrow = 4)
+
+transition_matrix</code></pre>
+<pre><code>#&gt;      [,1]  [,2]   [,3]   [,4]
+#&gt; [1,]    0 0.875 0.0625 0.0625
+#&gt; [2,]    0 0.750 0.1250 0.1250
+#&gt; [3,]    0 0.000 0.5000 0.5000
+#&gt; [4,]    1 0.000 0.0000 0.0000</code></pre>
+<p>Based on the transition matrix, we can see that an inoperable machine will go back to the state of Good as new. This is because the company cannot let the machine to stay broken since the production target must be met. The machine would be repaired or replaced. The replacement process takes 1 week to complete so that production is lost for this period. The cost of the lost production (lost profit) is USD 2,000, and the cost of replacing the machine is USD 4,000; so the total cost incurred whenever the current machine enters state 4 is USD 6,000. Even before the machine reaches state 3, costs may be incurred from the production of defective items. When the machine is in minor deteroriation (state 2), the expected costs per week is USD 1,000 while if the machine is in a major deteroriation (state 3), the expected cost per week is USD 3,000. Another cost that can be incurred is when we do an overhaul toward the machine, which incurr USD 2000 for maintenance while also making us lost USD 2000 of profit.</p>
+<p>Below is the complete list of the cost and when the cost can be incurred:</p>
+<pre class="r"><code>cost_df &lt;- data.frame(policy = c(&quot;do nothing&quot;, &quot;do nothing&quot;, &quot;do nothing&quot;, &quot;overhaul&quot;, &quot;replace&quot;),
+           state = c(1, 2, 3, 4, &quot;2, 3, 4&quot;),
+           cost_due_to_defect = c(0, 1000, 3000, 0, 0),
+           maintenance_cost = c(0, 0, 0, 2000, 4000),
+           profit_lost = c(0, 0, 0, 2000, 2000),
+           total_cost = c(0, 1000, 3000, 4000, 6000)
+           )
+
+cost_df</code></pre>
+<pre><code>#&gt;       policy   state cost_due_to_defect maintenance_cost profit_lost total_cost
+#&gt; 1 do nothing       1                  0                0           0          0
+#&gt; 2 do nothing       2               1000                0           0       1000
+#&gt; 3 do nothing       3               3000                0           0       3000
+#&gt; 4   overhaul       4                  0             2000        2000       4000
+#&gt; 5    replace 2, 3, 4                  0             4000        2000       6000</code></pre>
+<p>What is the optimal maintenance policy? Should we do nothing at all? Or do we need to overhaul everytime the machine go to major deteroriation (state 3)? Do we need to replace the machine every time it deviate from state 1? We will discuss it one at a time.</p>
+<p>First, from the transition matrix, we will create a <code>markovchain</code> object.</p>
+<pre class="r"><code>markov_model &lt;- new(&quot;markovchain&quot;, transitionMatrix = transition_matrix, 
+                    name = &quot;Machine Opeation&quot;, states = c(&quot;Good&quot;, &quot;Minor&quot;, &quot;Major&quot;, &quot;Inoperable&quot;))
+
+set.seed(123)
+plot(markov_model)</code></pre>
+<p><img src="/blog/2020-04-02-text-generating-with-markov-chains_files/figure-html/unnamed-chunk-52-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="first-policy" class="section level3">
+<h3>First Policy</h3>
+<p>First we will employ the policy to replace the machine eveytime it reach the inoperable condition (state 1).</p>
+<p>To evaluate this maintenance policy, we should consider both the immediate costs incurred over the coming week (just described) and the subsequent costs that result from having the system evolve in this way. A widely used measure of performance for Markov chains is the (long-run) <strong>expected average cost per unit time</strong>. To calculate this measure, we first derive the steady-state probabilities. If you remember, steady-state means that regardless of the previous state, the probability for the next is all the same.</p>
+<pre class="r"><code>steadyStates(markov_model)</code></pre>
+<pre><code>#&gt;           Good     Minor     Major Inoperable
+#&gt; [1,] 0.1538462 0.5384615 0.1538462  0.1538462</code></pre>
+<p>Hence, the (long-run) expected average cost per week for this maintenance policy is:</p>
+<p><span class="math display">\[0\ \pi_1 + 1000\ \pi_2\ +\ 3000\ \pi_3\ +\ 6000\ \pi_4\]</span></p>
+<pre class="r"><code>cost &lt;- c(0, 1000, 3000, 6000)
+
+policy_1 &lt;- (steadyStates(markov_model) * cost) %&gt;% sum()
+policy_1</code></pre>
+<pre><code>#&gt; [1] 1923.077</code></pre>
+<p>If we replace the machine eveytime it reach the inoperable condition (state 4), the expected cost is USD 1923.08.</p>
+</div>
+<div id="second-policy" class="section level3">
+<h3>Second Policy</h3>
+<p>The second policy is to replace the machine when it is inoperable (state 4) and overhaul it when it get to major deteroriation (state 3). Since overhauling can make our machine condition to be better, the transition matrix is changed from the previous one. Everytime the machine get overhauled, it would go from major deteroriation to minor deteroriation.</p>
+<pre class="r"><code>transition_matrix &lt;- matrix(c(0, 7/8, 1/16, 1/16,
+                              0, 3/4, 1/8, 1/8,
+                              0, 1, 0, 0,
+                              1, 0, 0, 0), 
+                            byrow = TRUE, nrow = 4)
+
+markov_model &lt;- new(&quot;markovchain&quot;, transitionMatrix = transition_matrix, 
+                    name = &quot;Machine Opeation&quot;, states = c(&quot;Good&quot;, &quot;Minor&quot;, &quot;Major&quot;, &quot;Inoperable&quot;))
+
+set.seed(123)
+plot(markov_model)</code></pre>
+<p><img src="/blog/2020-04-02-text-generating-with-markov-chains_files/figure-html/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>By employing overhaul with cost of USD 4000,the cost for state 3 goes from mere USD 3000 (cost due to defect) to USD 4000.</p>
+<p>The expected average cost is as follows.</p>
+<pre class="r"><code>cost &lt;- c(0, 1000, 4000, 6000)
+
+policy_2 &lt;- (steadyStates(markov_model) * cost) %&gt;% sum()
+policy_2</code></pre>
+<pre><code>#&gt; [1] 1666.667</code></pre>
+</div>
+<div id="third-policy" class="section level3">
+<h3>Third Policy</h3>
+<p>The third policy is to replace the machine every time it goes to state 3 and state 4. The transition matrix is once again change, because by replacing the machine, it will go from state 3 directly toward state 1 (Good) instead of going to state 2 (minor deteroriation).</p>
+<pre class="r"><code>transition_matrix &lt;- matrix(c(0, 7/8, 1/16, 1/16,
+                              0, 3/4, 1/8, 1/8,
+                              1, 0, 0, 0,
+                              1, 0, 0, 0), 
+                            byrow = TRUE, nrow = 4)
+
+markov_model &lt;- new(&quot;markovchain&quot;, transitionMatrix = transition_matrix, 
+                    name = &quot;Machine Opeation&quot;, states = c(&quot;Good&quot;, &quot;Minor&quot;, &quot;Major&quot;, &quot;Inoperable&quot;))
+
+set.seed(123)
+plot(markov_model)</code></pre>
+<p><img src="/blog/2020-04-02-text-generating-with-markov-chains_files/figure-html/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The expected average cost is as follows.</p>
+<pre class="r"><code>cost &lt;- c(0, 1000, 6000, 6000)
+
+policy_3 &lt;- (steadyStates(markov_model) * cost) %&gt;% sum()
+policy_3</code></pre>
+<pre><code>#&gt; [1] 1727.273</code></pre>
+<p>We recap the cost associated with each policy.</p>
+<pre class="r"><code>data.frame(policy = c(&quot;Only replace machine when inoperable&quot;, &quot;Replace and overhaul&quot;, &quot;Replace when major deteroriation and inoperable&quot;),
+           `expected cost` = c(policy_1, policy_2, policy_3))</code></pre>
+<pre><code>#&gt;                                            policy expected.cost
+#&gt; 1            Only replace machine when inoperable      1923.077
+#&gt; 2                            Replace and overhaul      1666.667
+#&gt; 3 Replace when major deteroriation and inoperable      1727.273</code></pre>
+<p>Based on the expected average cost, we can see that by combining machine replacement and overhaul, we can expect the minimum cost. Thus, we should employ this policy. There are a lot of other application of Markov Chains in manufacturing, such as in inventory management, quality control, even in customer management.</p>
+</div>
+</div>
+<div id="health-insurance" class="section level2">
+<h2>Health Insurance</h2>
+<p>Actuaries quantify the risk inherent in insurance contracts, evaluating the premium of insurance contract to be sold (therefore covering future risk) and evaluating the actuarial reserves of existing portfolios (the liabilities in terms of benefits or claims payments due to policyholder arising from previously sold contracts). The example comes from Deshmukh[^12].</p>
+<p>An insurer issues a special 3-year insurance contract to a person when the transitions among four states, 1: active, 2: disabled, 3: withdrawn, and 4: dead. The death benefit is 1000, payable at the end of the year of death. A death benefit is a payout to the beneficiary of a life insurance policy, annuity, or pension when the insured or annuitant dies. Suppose that the insured is active at the issue of policy. Insureds do not pay annual premiums when they are disabled. Suppose that the interest rate is 5 % per annum. Calculate the benefit reserve at the beginning of year 2 and 3.</p>
+<pre class="r"><code>benefit &lt;- c(0, 0, 500, 1000)
+
+transition_matrix &lt;- matrix(c(0.5, .25, .15, .1,
+                              0.4, 0.4, 0.0, 0.2,
+                              0, 0, 1, 0,
+                              0, 0, 0, 1), 
+                            byrow = TRUE, nrow = 4)
+
+markov_model &lt;- new(&quot;markovchain&quot;, transitionMatrix = transition_matrix, 
+                    name = &quot;Health Insurance&quot;, states = c(&quot;active&quot;, &quot;disable&quot;, &quot;withdrawn&quot;, &quot;death&quot;))
+
+set.seed(1000)
+plot(markov_model)</code></pre>
+<p><img src="/blog/2020-04-02-text-generating-with-markov-chains_files/figure-html/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The policyholders is active at <span class="math inline">\(T_0\)</span>. Therefore the expected states at <span class="math inline">\(T_1, T_2, T_3\)</span> are calculated in the following.</p>
+<pre class="r"><code>T0 &lt;- c(1,0,0,0)
+T1 &lt;- T0 * markov_model
+T2 &lt;- T1 * markov_model
+T3 &lt;- T2 * markov_model
+
+paste(c(&quot;Year 0:&quot;, T0), collapse = &quot; &quot;)</code></pre>
+<pre><code>#&gt; [1] &quot;Year 0: 1 0 0 0&quot;</code></pre>
+<pre class="r"><code>paste(c(&quot;Year 1:&quot;, T1), collapse = &quot; &quot;)</code></pre>
+<pre><code>#&gt; [1] &quot;Year 1: 0.5 0.25 0.15 0.1&quot;</code></pre>
+<pre class="r"><code>paste(c(&quot;Year 2:&quot;, T2), collapse = &quot; &quot;)</code></pre>
+<pre><code>#&gt; [1] &quot;Year 2: 0.35 0.225 0.225 0.2&quot;</code></pre>
+<pre class="r"><code>paste(c(&quot;Year 3:&quot;, T3), collapse = &quot; &quot;)</code></pre>
+<pre><code>#&gt; [1] &quot;Year 3: 0.265 0.1775 0.2775 0.28&quot;</code></pre>
+<p>The present value of future benefit (PVFB) at T0 is given by:</p>
+<pre class="r"><code>PVFB &lt;- T0 %*% benefit * 1.05 ^ -0 + 
+   T1 %*% benefit * 1.05 ^ -1 + 
+   T2 %*% benefit * 1.05 ^ -2 + 
+   T3 %*% benefit * 1.05 ^ -3
+
+PVFB</code></pre>
+<pre><code>#&gt;          [,1]
+#&gt; [1,] 811.8454</code></pre>
+<p>The yearly premium payable whether the insured is alive is as follows.</p>
+<pre class="r"><code>P &lt;- PVFB / (T0[1] * 1.05 ^- 0 + T1[1] * 1.05 ^ -1 + T2[1] * 1.05 ^ -2)</code></pre>
+<p>The reserve at the beginning of the second year, in the case of the insured being alive, is as follows.</p>
+<pre class="r"><code>PVFB &lt;- T2 %*% benefit * 1.05 ^ -1 + T3 %*% benefit * 1.05 ^ -2
+PVFP &lt;- P*(T1[1] * 1.05 ^ -0 + T2[1] * 1.05 ^ -1)
+
+PVFB - PVFP</code></pre>
+<pre><code>#&gt;          [,1]
+#&gt; [1,] 300.2528</code></pre>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Markov Chains is a simple yet effective method to create a predictive text model. It model the transition probability between states, where in NLP each state is represented by terms/words. However, since it rely only on the probability of transition between words, the text generator still feel like a random mess when creating a sentence and has no context. Regardless, Markov Chains can be applied as a predictive text using combination of 1-gram, 2-grams, and 3-grams text.</p>
+<p>The main challenge on employing an NLP model is the hardware and computational power. Perhaps in the future we would like to consider to make a text generator with Deep Learning model and compare the performance with the current Markov Chains model. Beside of its application in NLP, Markov Chains is also proven to be useful in many other fields such as maintenance and healh insurance.</p>
+</div>
+<div id="reference" class="section level1">
+<h1>Reference</h1>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://tractica.omdia.com/newsroom/press-releases/natural-language-processing-is-a-key-engine-of-ai-market-growth-enabling-44-discrete-use-cases-across-17-industries/">Natural Language Processing Is a Key Engine of AI Market Growth, Enabling 44 Discrete Use Cases Across 17 Industries</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p><a href="https://becominghuman.ai/a-simple-introduction-to-natural-language-processing-ea66a1747b32">A Simple Introduction to Natural Language Processing</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p><a href="https://www.blog.google/products/search/how-google-autocomplete-works-search/">How Google Autocomplete Works</a><a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p><a href="https://openai.com/blog/better-language-models/#sample2">OpenAI GPT-2</a><a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p><a href="https://talktotransformer.com/">Talk to Transformer</a><a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p><a href="https://machinelearningmastery.com/text-generation-lstm-recurrent-neural-networks-python-keras/">Text Generation With LSTM Recurrent Neural Networks in Python with Keras</a><a href="#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p><a href="https://www.kdnuggets.com/2019/11/markov-chains-train-text-generation.html">Markov Chains: How to Train Text Generation to Write Like George R. R. Martin</a><a href="#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p><a href="https://towardsdatascience.com/how-neural-networks-are-learning-to-write-d631b249b499?gi=348999a0611a">How Neural Networks Are Learning to Write</a><a href="#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p><a href="https://setosa.io/ev/markov-chains/">Markov Chains Explained Visually</a><a href="#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p><a href="https://www.amazon.com/Introduction-Operations-Research-Hillier-Lieberman/dp/0071139893">Introduction to Operation Research</a><a href="#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn11"><p><a href="https://www.springer.com/gp/book/9788132206583">Multiple Decrement Models in Insurance</a><a href="#fnref11" class="footnote-back">↩</a></p></li>
+</ol>
+</div>

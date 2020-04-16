@@ -6,10 +6,39 @@
     <description>Recent content in Machine Learning on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Time Efficiency and Accuracy Improvement using PCA</title>
+      <link>/blog/time-and-accuracy-improvement-using-pca/</link>
+      <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/time-and-accuracy-improvement-using-pca/</guid>
+      <description>About Dimensionality ReductionIf you are familiar enough with data, sometimes you are faced with too many predictor variables that make the computation so heavy. Let us say, you are challenged to predict employee in your company will resign or not while the variables are the level of satisfaction on work, number of project, average monthly hours, time spend at the company, etc. You are facing so many predictor that took so long for training your model.</description>
+    </item>
+    
+    <item>
+      <title>Text Generation with Markov Chains</title>
+      <link>/blog/text-generating-with-markov-chains/</link>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/text-generating-with-markov-chains/</guid>
+      <description>body {text-align: justify}IntroductionText GenerationNatural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:
+SPAM email detectionSentiment AnalysisText summarizationTopic ModellingText GenerationIn this article, we will try to learn the last one: text generation.</description>
+    </item>
+    
+    <item>
+      <title>Interpreting Text Classification Model with LIME</title>
+      <link>/blog/text-lime/</link>
+      <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/text-lime/</guid>
+      <description>body {text-align: justify}IntroductionThis article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at my previous post .
+One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target?</description>
+    </item>
     
     <item>
       <title>DBSCAN Clustering</title>
@@ -17,7 +46,7 @@
       <pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>/blog/dbscan-clustering/</guid>
-      <description>body { text-align: justify}  1. Pendahuluan 1.1 Clustering  Clustering merupakan salah satu bagian dari unsupervised learning. Clustering memiliki tujuan untuk membagi data ke dalam beberapa kelompok berdasarkan kemiripan antar data. Cluster (kelompok) yang baik adalah cluster yang memiliki kemiripan yang besar antar anggota clusternya dan memiliki perbedaan yang signifikan dengan anggota cluster yang berbeda. Clustering dapat diterapkan dalam berbagai bidang seperti segmentasi pasar, cluster profiling, data spatial dll.</description>
+      <description>body {text-align: justify}1. Pendahuluan1.1 Clustering Clustering merupakan salah satu bagian dari unsupervised learning. Clustering memiliki tujuan untuk membagi data ke dalam beberapa kelompok berdasarkan kemiripan antar data. Cluster (kelompok) yang baik adalah cluster yang memiliki kemiripan yang besar antar anggota clusternya dan memiliki perbedaan yang signifikan dengan anggota cluster yang berbeda. Clustering dapat diterapkan dalam berbagai bidang seperti segmentasi pasar, cluster profiling, data spatial dll.</description>
     </item>
     
     <item>
@@ -86,8 +115,8 @@ Outline Why tidymodels Matters?  Things we think we&amp;rsquo;re doing it right 
       
       <guid>/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
       <description>In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
- TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
- Preface When it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
+TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
     </item>
     
     <item>
@@ -96,7 +125,7 @@ Outline Why tidymodels Matters?  Things we think we&amp;rsquo;re doing it right 
       <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/time-series-prediction-with-lstm/</guid>
-      <description>Time Series Forecasting using LSTM Time series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing. A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
+      <description>Time Series Forecasting using LSTMTime series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing.A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
     </item>
     
     <item>
@@ -105,7 +134,7 @@ Outline Why tidymodels Matters?  Things we think we&amp;rsquo;re doing it right 
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/metrics-evaluation-using-yardstick/</guid>
-      <description>Motivation Evaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.</description>
+      <description>MotivationEvaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.</description>
     </item>
     
     <item>
@@ -114,7 +143,7 @@ Outline Why tidymodels Matters?  Things we think we&amp;rsquo;re doing it right 
       <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/multiple-seasonal/</guid>
-      <description>Introduction Time Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
+      <description>IntroductionTime Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
     </item>
     
     <item>
@@ -126,6 +155,16 @@ Outline Why tidymodels Matters?  Things we think we&amp;rsquo;re doing it right 
       <description>Introduction Cause has been people&amp;rsquo;s curiosity for a long time, you can see that people often ask &amp;ldquo;Why&amp;rdquo; to things happening around them. But do we actually know how to explain &amp;ldquo;cause&amp;rdquo;?
 Do we jump to conclusion of causal relationship often too quickly?
 Can association between factors that we call mathematically &amp;ldquo;correlation&amp;rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&amp;rsquo;t mean it affects each other.</description>
+    </item>
+    
+    <item>
+      <title>Support Vector Machine</title>
+      <link>/blog/support-vector-machine/</link>
+      <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/support-vector-machine/</guid>
+      <description>Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.
+So how does SVM find the right hyperplane?</description>
     </item>
     
     <item>

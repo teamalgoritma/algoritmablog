@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.64.0" />
+        <meta name="generator" content="Hugo 0.69.0" />
         
 
 
@@ -156,6 +156,12 @@ For example   Find out the effect of land area and building area on house prices
                     </a>
                 </li>
             
+                <li>
+                    <a href="/tags/">
+                            <i class="fa fa-list">&nbsp;</i>Article List
+                    </a>
+                </li>
+            
         </ul>
     </nav>
     <nav class="main">
@@ -218,6 +224,14 @@ For example   Find out the effect of land area and building area on house prices
                         </a>
                     </li>
                 
+                    <li>
+                        <a href="/tags/">
+                            <h3>
+                                <i class="fa fa-list">&nbsp;</i>Article List
+                            </h3>
+                        </a>
+                    </li>
+                
             </ul>
         </section>
 
@@ -236,6 +250,69 @@ For example   Find out the effect of land area and building area on house prices
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/time-and-accuracy-improvement-using-pca/">Time Efficiency and Accuracy Improvement using PCA</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-04-13'>
+                                    April 13, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/text-generating-with-markov-chains/">Text Generation with Markov Chains</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-04-02'>
+                                    April 2, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/text-lime/">Interpreting Text Classification Model with LIME</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-03-13'>
+                                    March 13, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/text-lime/" class="image featured">
+            <img src="/img/2020/03/lime.png" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/dbscan-clustering/">DBSCAN Clustering</a></h3>
                                 
                                 <time class="published" datetime=
@@ -243,6 +320,33 @@ For example   Find out the effect of land area and building area on house prices
                                     February 7, 2020</time>
                             </header>
                             
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/dbscan-clustering/" class="image featured">
+            <img src="/img/2020/02/dbscan.jpg" alt="">
+        </a>
+    
+
 
                         </article>
                 
@@ -255,69 +359,6 @@ For example   Find out the effect of land area and building area on house prices
                                     January 13, 2020</time>
                             </header>
                             
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/introduction-to-generative-adversarial-network-with-keras/">Introduction to Generative Adversarial Network with Keras</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2019-12-18'>
-                                    December 18, 2019</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/ridge-lasso/">Ridge and LASSO Regression</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2019-12-18'>
-                                    December 18, 2019</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/bio-intro/">Bioinformatics: Decoding Nature&#39;s Code of Life</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2019-12-02'>
-                                    December 2, 2019</time>
-                            </header>
-                            
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/bio-intro/" class="image featured">
-            <img src="/img/2019/12/bioinfo.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
@@ -499,7 +540,7 @@ For example   Find out the effect of land area and building area on house prices
 <p>Let&rsquo;s see the extreme example below !</p>
 <p>Suppose I have data of 20 different visitors who have shopped at store A. Then I want to predict how many times visitors arrive based on the amount of money spent on shopping at store A?</p>
 <p>Target variable    (y) : Count of times a visitor arrived</p>
-<p>Predictor Variable (x) :
+<p>Predictor Variable (x) : 
 Total costs (Rupiah-Indonesian) incurred for shopping at the store A</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">storeA <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(visitor<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>),
                     cost<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">52034</span>, <span style="color:#ae81ff">83432</span>, <span style="color:#ae81ff">80241</span>, <span style="color:#ae81ff">52949</span>, <span style="color:#ae81ff">55876</span>, <span style="color:#ae81ff">70292</span>, <span style="color:#ae81ff">30077</span>, <span style="color:#ae81ff">69195</span>, <span style="color:#ae81ff">60991</span>, <span style="color:#ae81ff">46161</span>, <span style="color:#ae81ff">57759</span>, <span style="color:#ae81ff">30648</span>,<span style="color:#ae81ff">77724</span> , <span style="color:#ae81ff">73404</span>, <span style="color:#ae81ff">36850</span>, <span style="color:#ae81ff">42691</span>, <span style="color:#ae81ff">64087</span>, <span style="color:#ae81ff">84858</span>, <span style="color:#ae81ff">70533</span>, <span style="color:#ae81ff">62188</span>))
@@ -534,7 +575,7 @@ Total costs (Rupiah-Indonesian) incurred for shopping at the store A</p>
 #&gt; F-statistic: 0.3898 on 1 and 18 DF,  p-value: 0.5403
 </code></pre><p>From the summary <em>modelols</em> above, it can be seen that <em>modelols</em> has an R-squared of only 2.12% and the variable <code>cost</code> is not significant to the model.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(storeA<span style="color:#f92672">$</span>cost, storeA<span style="color:#f92672">$</span>visitor)
-<span style="color:#a6e22e">abline</span>(modelols1<span style="color:#f92672">$</span>coefficients[1], modelols1<span style="color:#f92672">$</span>coefficients[2], col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">red&#34;</span>)
+<span style="color:#a6e22e">abline</span>(modelols1<span style="color:#f92672">$</span>coefficients[1], modelols1<span style="color:#f92672">$</span>coefficients[2], col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>The red line in the visualization above is the line of the regression model. And the model formed is</p>
 <p><code>$$visitor = 1.817059368-{0.000004444}\times{cost}$$</code></p>
@@ -542,7 +583,7 @@ Total costs (Rupiah-Indonesian) incurred for shopping at the store A</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">predict</span>(modelols1, <span style="color:#a6e22e">data.frame</span>(cost<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">422000</span>)))
 </code></pre></div><pre><code>#&gt;           1 
 #&gt; -0.05814847
-</code></pre><p>Based on the prediction results above, Ani came to shop A is -0.6 times.
+</code></pre><p>Based on the prediction results above, Ani came to shop A is -0.6 times. 
 Does it make sense ?</p>
 <h1 id="poisson-regression">Poisson Regression</h1>
 <p>In statistics, Poisson regression is a generalized linear model form of regression analysis used to model count data and contingency tables. Poisson regression assumes the response variable Y has a Poisson distribution, and assumes the logarithm of its expected value can be modeled by a linear combination of unknown parameters. A Poisson regression model is sometimes known as a log-linear model, especially when used to model contingency tables.</p>
@@ -667,11 +708,11 @@ Does it make sense ?</p>
 <p><code>\(\hat{y} = ln(y)\)</code> can be taken to develop a regression model (i.e. Poisson Regression)</p>
 </li>
 <li>
-<p>MLE (Maximum Likelihood Estimation) is used to estimate the parameters of regression equation
+<p>MLE (Maximum Likelihood Estimation) is used to estimate the parameters of regression equation 
 understand :</p>
 <ul>
 <li>
-<p>if <code>\(b=0\)</code>, then <code>\(\hat{y} =a\)</code> i.e. ln(y)=a, hence <strong>expected/predicted
+<p>if <code>\(b=0\)</code>, then <code>\(\hat{y} =a\)</code> i.e. ln(y)=a, hence <strong>expected/predicted 
 <code>\(\hat{y} = exp(a)\)</code></strong></p>
 </li>
 <li>
@@ -712,7 +753,7 @@ understand :</p>
 <p><strong>An administrator at a school 123 wants to learn about student absence behavior. Look for the effect of the number of days of absence based on the type of student program and mathematics score</strong></p>
 <h2 id="read-data">Read Data</h2>
 <p>The first step taken is reading the data. Use the <code>read.dta</code> function from the<code> foreign</code> library. The data used comes from the link &ldquo;<a href="https://stats.idre.ucla.edu/stat/stata/dae/nb_data.dta%22">https://stats.idre.ucla.edu/stat/stata/dae/nb_data.dta&quot;</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dat <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.dta</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">https://stats.idre.ucla.edu/stat/stata/dae/nb_data.dta&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dat <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.dta</span>(<span style="color:#e6db74">&#34;https://stats.idre.ucla.edu/stat/stata/dae/nb_data.dta&#34;</span>)
 <span style="color:#a6e22e">head</span>(dat)
 </code></pre></div><pre><code>#&gt;     id gender math daysabs prog
 #&gt; 1 1001   male   63       4    2
@@ -721,7 +762,7 @@ understand :</p>
 #&gt; 4 1004 female   16       3    2
 #&gt; 5 1005 female    2       3    2
 #&gt; 6 1006 female   71      13    2
-</code></pre><p>daysabs : The number of days of absence (Discreate - Positive)
+</code></pre><p>daysabs : The number of days of absence (Discreate - Positive) 
 The value of the daysabs variable cannot be negative. The dayabs variable is positive integer value</p>
 <p>math : Math score (kontinu)</p>
 <p>program (prog): Student program (Categorical)</p>
@@ -738,13 +779,13 @@ The value of the daysabs variable cannot be negative. The dayabs variable is pos
 </ul>
 <p>Choose 3 variables to be used are math, daysabs, and prog (based on study case)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dat <span style="color:#f92672">&lt;-</span> dat[,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">3</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>)]
-dat<span style="color:#f92672">$</span>prog <span style="color:#f92672">&lt;-</span>  <span style="color:#a6e22e">factor</span>(dat<span style="color:#f92672">$</span>prog, levels <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>, labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">General&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Academic&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Vocational&#34;</span>))
+dat<span style="color:#f92672">$</span>prog <span style="color:#f92672">&lt;-</span>  <span style="color:#a6e22e">factor</span>(dat<span style="color:#f92672">$</span>prog, levels <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>, labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;General&#34;</span>, <span style="color:#e6db74">&#34;Academic&#34;</span>, <span style="color:#e6db74">&#34;Vocational&#34;</span>))
 <span style="color:#a6e22e">summary</span>(dat<span style="color:#f92672">$</span>daysabs)
 </code></pre></div><pre><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #&gt;   0.000   1.000   4.000   5.955   8.000  35.000
 </code></pre><h2 id="distribution-of-days-absent-in-each-program">Distribution of days absent in each program.</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(dat, <span style="color:#a6e22e">aes</span>(daysabs, fill <span style="color:#f92672">=</span> prog)) <span style="color:#f92672">+</span> <span style="color:#a6e22e">geom_histogram</span>(binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, breaks<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">90</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">facet_grid</span>(prog <span style="color:#f92672">~</span> 
-    ., margins <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">free&#34;</span>)
+    ., margins <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted -->
 In the plots above is a distribution of each program has 314 observations and the distribution seems quite reasonable. The average of our outcome variables is much lower than the variance. It can be seen that the accumulation of data is close to 0, this condition indicates the data are overdispersion. There is no negative data. Because the number of days of absence cannot be negative.</p>
 <h2 id="build-the-model">Build the Model</h2>
@@ -761,7 +802,7 @@ In the plots above is a distribution of each program has 314 observations and th
 </li>
 </ul>
 <p><strong>If I want to build a model to predict daysabs without any predictor variable using Poisson Regression</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glm</span>(daysabs <span style="color:#f92672">~</span><span style="color:#ae81ff">1</span>, family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">poisson&#34;</span>, data <span style="color:#f92672">=</span> dat)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glm</span>(daysabs <span style="color:#f92672">~</span><span style="color:#ae81ff">1</span>, family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;poisson&#34;</span>, data <span style="color:#f92672">=</span> dat)
 <span style="color:#a6e22e">summary</span>(model1)
 </code></pre></div><pre><code>#&gt; 
 #&gt; Call:
@@ -794,7 +835,7 @@ $$ \hat{y} = exp(a+bx) = {exp(a)}\times{exp(bx)}$$</p>
 </code></pre></div><pre><code>#&gt; [1] 5.955414
 </code></pre><p>From the result above, exp(intercept) is mean of the target variable (daysabs)</p>
 <p><strong>If I want to predict daysabs based on math scores and student programs with Poisson Regression</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">modelpois <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glm</span>(daysabs <span style="color:#f92672">~</span> math <span style="color:#f92672">+</span> prog, family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">poisson&#34;</span>, data <span style="color:#f92672">=</span> dat)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">modelpois <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glm</span>(daysabs <span style="color:#f92672">~</span> math <span style="color:#f92672">+</span> prog, family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;poisson&#34;</span>, data <span style="color:#f92672">=</span> dat)
 <span style="color:#a6e22e">summary</span>(modelpois)
 </code></pre></div><pre><code>#&gt; 
 #&gt; Call:
@@ -916,7 +957,7 @@ Look at the Q-Q plot residuals. The plot above is a residual plot whether spread
 we get the Negative Binomial model: $$ \hat{daysabs} = exp(2.615265   -0.005993math-0.440760progAcademic-1.278651progVocational)$$</p>
 <p>Intercept, math, progAcademic, and progVocational are significant to the model.</p>
 <p>And the AIC (Akaike Information Criterion) value is 1741.3</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#Negative Binomial</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#Negative Binomial</span>
 resnb <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">simulateResiduals</span>(modelnb, refit <span style="color:#f92672">=</span> T)
 <span style="color:#a6e22e">plot</span>(resnb)
 </code></pre></div><p><!-- raw HTML omitted --></p>
@@ -981,8 +1022,8 @@ model that has a dispersion value close to 1.</p>
 <p><em>Proof :</em></p>
 <p><strong>&ldquo;Every one-unit increase in the value of math, then daysabs(y) will decrease (-) by 0.9940249 times, provided that other predictor variables are constant&rdquo;</strong></p>
 <p>If Ani and Budi are general program students and have math grades 97 and 96, then how many days are they absent?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">daysabs.Ani <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">exp</span>(<span style="color:#ae81ff">2.615265</span><span style="color:#ae81ff">-0.005993</span><span style="color:#f92672">*</span><span style="color:#ae81ff">97</span>)
-daysabs.Budi <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">exp</span>(<span style="color:#ae81ff">2.615265</span><span style="color:#ae81ff">-0.005993</span><span style="color:#f92672">*</span><span style="color:#ae81ff">96</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">daysabs.Ani <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">exp</span>(<span style="color:#ae81ff">2.615265-0.005993</span><span style="color:#f92672">*</span><span style="color:#ae81ff">97</span>)
+daysabs.Budi <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">exp</span>(<span style="color:#ae81ff">2.615265-0.005993</span><span style="color:#f92672">*</span><span style="color:#ae81ff">96</span>)
 daysabs.Ani 
 </code></pre></div><pre><code>#&gt; [1] 7.644176
 </code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">daysabs.Budi
@@ -998,14 +1039,14 @@ daysabs.Ani
 Look for the predicted daysabs value based on the new data.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">newdata1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(math <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(dat<span style="color:#f92672">$</span>math), prog <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>, levels <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>, labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">levels</span>(dat<span style="color:#f92672">$</span>prog)))
 </code></pre></div><p>type = &ldquo;link&rdquo; produces a predict value in the form of &ldquo;log&rdquo;.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">newdata1<span style="color:#f92672">$</span>pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(modelnb, newdata1, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">link&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">newdata1<span style="color:#f92672">$</span>pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(modelnb, newdata1, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;link&#34;</span>)
 newdata1
 </code></pre></div><pre><code>#&gt;       math       prog     pred
 #&gt; 1 48.26752    General 2.325999
 #&gt; 2 48.26752   Academic 1.885239
 #&gt; 3 48.26752 Vocational 1.047348
 </code></pre><p>type = &ldquo;response&rdquo;  generate predictive value that has been exponential &ldquo;exp&rdquo;.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">newdata1<span style="color:#f92672">$</span>pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(modelnb, newdata1, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">response&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">newdata1<span style="color:#f92672">$</span>pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(modelnb, newdata1, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;response&#34;</span>)
 newdata1
 </code></pre></div><pre><code>#&gt;       math       prog      pred
 #&gt; 1 48.26752    General 10.236899
@@ -1017,10 +1058,10 @@ newdata1
 #&gt; math            0.9940249
 #&gt; progAcademic    0.6435471
 #&gt; progVocational  0.2784127
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#academic dan general</span>
-<span style="color:#ae81ff">10.236899</span><span style="color:#f92672">*</span><span style="color:#ae81ff">0.6435471</span> <span style="color:#75715e">#academic</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#academic dan general</span>
+<span style="color:#ae81ff">10.236899</span><span style="color:#f92672">*</span><span style="color:#ae81ff">0.6435471</span> <span style="color:#75715e">#academic</span>
 </code></pre></div><pre><code>#&gt; [1] 6.587927
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#vocational dan general</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#vocational dan general</span>
 <span style="color:#ae81ff">10.236899</span><span style="color:#f92672">*</span><span style="color:#ae81ff">0.2784127</span>
 </code></pre></div><pre><code>#&gt; [1] 2.850083
 </code></pre><p>From the results above it is proven that :</p>

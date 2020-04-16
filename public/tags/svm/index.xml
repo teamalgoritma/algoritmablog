@@ -21,5 +21,15 @@
 So how does SVM find the right hyperplane?</description>
     </item>
     
+    <item>
+      <title>Support Vector Machine</title>
+      <link>/blog/support-vector-machine/</link>
+      <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/support-vector-machine/</guid>
+      <description>Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.
+So how does SVM find the right hyperplane?</description>
+    </item>
+    
   </channel>
 </rss>
