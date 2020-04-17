@@ -28,8 +28,8 @@ Outline Why tidymodels Matters?  Things we think we&amp;rsquo;re doing it right 
       
       <guid>/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
       <description>In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
-TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
-PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
+ TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+ Preface When it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
     </item>
     
     <item>
@@ -48,9 +48,9 @@ The term of tidyverse is actually referring to a set of packages that you’ll f
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/nested-dataframe/</guid>
-      <description>1. SetupLibraries and SetupWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
+      <description>1. Setup Libraries and Setup We’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
 You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
-library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to use purrr, caret and dplyr to quickly create some of dataset + model combinations, store data &amp;amp; model objects neatly in one tibble, and post process programatically.</description>
+library(tidyverse) library(caret)   2. Nested Dataframe You’ll learn how to use purrr, caret and dplyr to quickly create some of dataset + model combinations, store data &amp;amp; model objects neatly in one tibble, and post process programatically.</description>
     </item>
     
   </channel>

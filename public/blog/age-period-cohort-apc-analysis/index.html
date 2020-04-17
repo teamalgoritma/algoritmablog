@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.64.0" />
         
 
 
@@ -247,6 +247,18 @@ Libraries and Setup You will need install the package to do APC analysis if it&r
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/stock-cluster/">Clustering Saham Indonesia</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-04-17'>
+                                    April 17, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/time-and-accuracy-improvement-using-pca/">Time Efficiency and Accuracy Improvement using PCA</a></h3>
                                 
                                 <time class="published" datetime=
@@ -344,18 +356,6 @@ Libraries and Setup You will need install the package to do APC analysis if it&r
         </a>
     
 
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/optimization-with-genetic-algorithm/">Optimization and Hyper-Parameter Tuning with Genetic Algorithm</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-01-13'>
-                                    January 13, 2020</time>
-                            </header>
-                            
 
                         </article>
                 
@@ -556,10 +556,10 @@ Libraries and Setup You will need install the package to do APC analysis if it&r
 <p>However, the results from this analysis will depend on constrains chosen by the investigator based on external information. The validity of the constraints chosen will depend on the theoretical preconception about the categories of parameter that are identical, is often subjective and there is no empirical way to confirm the validity of the chosen constraints <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
 <h3 id="apc-with-lm">APC with <code>lm</code></h3>
 <p>I&rsquo;ve prepared the following data originally made available in <a href="https://www.kaggle.com/russellyates88/suicide-rates-overview-1985-to-2016">kaggle</a>. We&rsquo;ll read the data into our workspace:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># load data</span>
-suicides <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;data_input/suicides.csv&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># load data</span>
+suicides <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">data_input/suicides.csv&#34;</span>)
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 <span style="color:#a6e22e">glimpse</span>(suicides)
 </code></pre></div><pre><code>#&gt; Observations: 27,820
 #&gt; Variables: 6
@@ -579,7 +579,7 @@ suicides <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">re
 <li><code>country</code>: country indicator</li>
 </ul>
 <p>We need to readjust APC variable to start with:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># readjust apc variable</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># readjust apc variable</span>
 suicides <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">mutate</span>(age_squared <span style="color:#f92672">=</span> age ^ <span style="color:#ae81ff">2</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate_at</span>(<span style="color:#a6e22e">vars</span>(period, cohort), <span style="color:#a6e22e">funs</span>(<span style="color:#a6e22e">as.factor</span>(.))) <span style="color:#f92672">%&gt;%</span> 
@@ -773,11 +773,11 @@ apc_tidy
 </code></pre><p>From tidied coefficients, we need to tidy our results, starting from period and cohort first:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pc_tidy <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">mutate</span>(
-    key <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;[:digit:]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>), 
-    value <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;[:alpha:]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.numeric</span>() 
-  ) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># seperate digit number and alphabet of term </span>
+    key <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[:digit:]&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>), 
+    value <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[:alpha:]&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.numeric</span>() 
+  ) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># seperate digit number and alphabet of term </span>
   <span style="color:#a6e22e">select</span>(key, value, estimate) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">filter</span>(key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;period&#34;</span> <span style="color:#f92672">|</span> key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;cohort&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">period&#34;</span> <span style="color:#f92672">|</span> key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">cohort&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">spread</span>(key, value)
 
 pc_tidy
@@ -797,11 +797,11 @@ pc_tidy
 #&gt; # ... with 115 more rows
 </code></pre><p>Then we can extract and tidy each coefficient using code in the chunk below:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">age_coef <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;age&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">age&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">pull</span>(estimate)
 
 age_squared_coef <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;age_squared&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">age_squared&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">pull</span>(estimate)
 
 period_coef <span style="color:#f92672">&lt;-</span> pc_tidy <span style="color:#f92672">%&gt;%</span> 
@@ -816,9 +816,9 @@ cohort_coef <span style="color:#f92672">&lt;-</span> pc_tidy <span style="color:
   <span style="color:#a6e22e">mutate</span>(age_effect <span style="color:#f92672">=</span> (age <span style="color:#f92672">*</span> age_coef) <span style="color:#f92672">+</span> (age_squared <span style="color:#f92672">*</span> age_squared_coef)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> age, y <span style="color:#f92672">=</span> age_effect) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">distinct</span>() <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate</span>(group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Age Effect&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(period_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Period Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(cohort_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cohort Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Age Effect&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(period_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Period Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(cohort_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Cohort Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(group, x, y) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">arrange</span>(x)
 
@@ -840,13 +840,13 @@ apc_all
 </code></pre><p>The last but not least, we can visualize the estimated coefficient to get some insight regarding our APC decomposition:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(apc_all, <span style="color:#a6e22e">aes</span>(x, y)) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_line</span>() <span style="color:#f92672">+</span>
-  <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span> group, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free&#34;</span>, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+  <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span> group, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">free&#34;</span>, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>From plot above we can identify Age, Period and Cohort effect of suicides. But it&rsquo;s not capturing all of our the data dynamics, lets try it to more specific cases from the data. We filltered the data by sex and country:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">suicides_male_us <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">filter</span>(
-    sex <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;male&#34;</span>,
-    country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;United States&#34;</span>
+    sex <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">male&#34;</span>,
+    country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">United States&#34;</span>
   )
 
 suicides_male_us
@@ -1018,19 +1018,19 @@ suicides_male_us
 
 pc_tidy <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">mutate</span>(
-    key <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;[:digit:]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>), 
-    value <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;[:alpha:]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.numeric</span>() 
-  ) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># seperate digit number and alphabet of term </span>
+    key <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[:digit:]&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>), 
+    value <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[:alpha:]&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.numeric</span>() 
+  ) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># seperate digit number and alphabet of term </span>
   <span style="color:#a6e22e">select</span>(key, value, estimate) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">filter</span>(key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;period&#34;</span> <span style="color:#f92672">|</span> key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;cohort&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">period&#34;</span> <span style="color:#f92672">|</span> key <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">cohort&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">spread</span>(key, value)
 
 age_coef <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;age&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">age&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">pull</span>(estimate)
 
 age_squared_coef <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;age_squared&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">age_squared&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">pull</span>(estimate)
 
 period_coef <span style="color:#f92672">&lt;-</span> pc_tidy <span style="color:#f92672">%&gt;%</span> 
@@ -1045,9 +1045,9 @@ cohort_coef <span style="color:#f92672">&lt;-</span> pc_tidy <span style="color:
   <span style="color:#a6e22e">mutate</span>(age_effect <span style="color:#f92672">=</span> (age <span style="color:#f92672">*</span> age_coef) <span style="color:#f92672">+</span> (age_squared <span style="color:#f92672">*</span> age_squared_coef)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> age, y <span style="color:#f92672">=</span> age_effect) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">distinct</span>() <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate</span>(group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Age Effect&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(period_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Period Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(cohort_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cohort Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Age Effect&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(period_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Period Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">mutate</span>(cohort_coef, group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Cohort Effect&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(group, x, y) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">arrange</span>(x)
 
@@ -1069,14 +1069,14 @@ apc_all_male_us
 </code></pre><p>The last we visualize the estimated coefficient to get some insight regarding our APC decomposition:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(apc_all_male_us, <span style="color:#a6e22e">aes</span>(x, y)) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_line</span>() <span style="color:#f92672">+</span>
-  <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span> group, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free&#34;</span>, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+  <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span> group, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">free&#34;</span>, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p><em>dive deeper</em></p>
 <p>Create APC analysis, try to compare the APC of <code>female</code> in <code>United States</code> with the APC we get above:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">suicides_female_us <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">filter</span>(
-    sex <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;female&#34;</span>,
-    country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;United States&#34;</span>
+    sex <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">female&#34;</span>,
+    country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">United States&#34;</span>
   )
 
 suicides_female_us

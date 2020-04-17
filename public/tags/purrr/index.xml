@@ -18,8 +18,8 @@
       
       <guid>/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
       <description>In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
-TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
-PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
+ TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+ Preface When it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
     </item>
     
   </channel>
