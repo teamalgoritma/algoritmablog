@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 17 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Clustering</title>
+      <link>/tags/clustering/</link>
+      <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/clustering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unsupervised Learning</title>
+      <link>/tags/unsupervised-learning/</link>
+      <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/unsupervised-learning/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Machine Learning</title>
@@ -62,15 +80,6 @@
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/lime/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Clustering</title>
-      <link>/tags/clustering/</link>
-      <pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/clustering/</guid>
       <description></description>
     </item>
     
@@ -260,15 +269,6 @@
       <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/som/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Unsupervised Learning</title>
-      <link>/tags/unsupervised-learning/</link>
-      <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/unsupervised-learning/</guid>
       <description></description>
     </item>
     

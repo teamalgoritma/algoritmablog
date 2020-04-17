@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.64.0" />
         
 
 
@@ -244,6 +244,18 @@
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/stock-cluster/">Clustering Saham Indonesia</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-04-17'>
+                                    April 17, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/time-and-accuracy-improvement-using-pca/">Time Efficiency and Accuracy Improvement using PCA</a></h3>
                                 
                                 <time class="published" datetime=
@@ -341,18 +353,6 @@
         </a>
     
 
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/optimization-with-genetic-algorithm/">Optimization and Hyper-Parameter Tuning with Genetic Algorithm</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-01-13'>
-                                    January 13, 2020</time>
-                            </header>
-                            
 
                         </article>
                 
@@ -579,7 +579,7 @@
 <span style="color:#a6e22e">library</span>(dplyr)
 </code></pre></div><p>In this article, we want to use <code>ads data</code> from xyz company that make an ads on Facebook.</p>
 <h2 id="data-pre-processing">Data Pre-Processing</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/KAG_conversion_data.csv&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">data_input/KAG_conversion_data.csv&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">glimpse</span>()
 </code></pre></div><pre><code>#&gt; Observations: 1,143
 #&gt; Variables: 11
@@ -628,34 +628,34 @@
 <li><code>approved_Conversion</code> : total number of people who bougth the product after seeing the ad</li>
 </ul>
 <p>As we know that if SOM used numerical data, so if we have chategorical variables we must to change those variable to dummy variables.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># change the chategoric variables to a dummy variables</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># change the chategoric variables to a dummy variables</span>
 ads.s <span style="color:#f92672">&lt;-</span> ads <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate</span>(genderF <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(gender <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;F&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
-         genderM <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(gender <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;M&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
-         age1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;30-34&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
-         age2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;35-39&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
-         age3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;40-44&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
-         age4 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;45-49&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(genderF <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(gender <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">F&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
+         genderM <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(gender <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">M&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
+         age1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">30-34&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
+         age2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">35-39&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
+         age3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">40-44&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
+         age4 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">45-49&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>))
 
-<span style="color:#75715e"># make a train data sets that scaled and convert them to be a matrix cause kohonen function accept numeric matrix</span>
+<span style="color:#75715e"># make a train data sets that scaled and convert them to be a matrix cause kohonen function accept numeric matrix</span>
 ads.train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.matrix</span>(<span style="color:#a6e22e">scale</span>(ads.s[,<span style="color:#ae81ff">-1</span>]))
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make a SOM grid</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make a SOM grid</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
-ads.grid <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">somgrid</span>(xdim <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, ydim <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, topo <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hexagonal&#34;</span>)
+ads.grid <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">somgrid</span>(xdim <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, ydim <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, topo <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">hexagonal&#34;</span>)
 
-<span style="color:#75715e"># make a SOM model</span>
+<span style="color:#75715e"># make a SOM model</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 ads.model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">som</span>(ads.train, ads.grid, rlen <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>, keep.data <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>,
-                  dist.fcts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;euclidean&#34;</span>)
-<span style="color:#75715e"># str(ads.model)</span>
+                  dist.fcts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">euclidean&#34;</span>)
+<span style="color:#75715e"># str(ads.model)</span>
 </code></pre></div><p>From that summary of <code>ads.model</code> we know that our som grid has 10x10 dimension.</p>
 <h1 id="unsupervised-som">Unsupervised SOM</h1>
 <h2 id="visualize-of-som">Visualize of SOM</h2>
 <p>Before visualize SOM model, let&rsquo;s explore list of SOM model. If we want to know that our data position in maps, we look it in <code>unit.classif</code>. Each values represent the node number to which this application belong. For example, in first value of application, 1 means that in first application has been claaified into 1 particular nodes.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads.model<span style="color:#f92672">$</span>unit.classif
 </code></pre></div><p>And we can see the classification of each nodes by codes plot and we can see the values of each nodes using the mapping plot.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mapping&#34;</span>, pchs <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>, shape <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;round&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">mapping&#34;</span>, pchs <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>, shape <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">round&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(<span style="color:#a6e22e">data.frame</span>(ads.train), <span style="color:#ae81ff">20</span>)
 </code></pre></div><pre><code>#&gt;       interest Impressions     Clicks      Spent Total_Conversion
@@ -721,28 +721,28 @@ ads.model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">s
 #&gt; 18 -0.4742188 -0.5410454
 #&gt; 19 -0.4742188 -0.5410454
 #&gt; 20 -0.4742188 -0.5410454
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Codes Plot&#34;</span>, palette.name <span style="color:#f92672">=</span> rainbow)
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">codes&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Codes Plot&#34;</span>, palette.name <span style="color:#f92672">=</span> rainbow)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>At the first node, we can say that the input data entered on the first node is characterized from the major variable tat have gender M and age range of 30-34. For the second node there is characterized of major variables that have gender M and age range 30-34. Here we can conclude that the node will have neighbors that have similar characteristics to it, that is, like nodes 1 and 2 that are close together because they have gender M and an age range of 30-34 that same.</p>
 <h3 id="training-progress">Training Progress</h3>
 <p>As the SOM training iterations progress, the distance from each node’s weights to the samples represented by that node is reduced. Ideally, this distance should reach a minimum plateau. This plot option shows the progress over time. If the curve is continually decreasing, more iterations are required.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;changes&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">changes&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h3 id="node-counts">Node Counts</h3>
 <p>The Kohonen packages allows us to visualise the count of how many samples are mapped to each node on the map. This metric can be used as a measure of map quality – ideally the sample distribution is relatively uniform. Large values in some map areas suggests that a larger map would be benificial. Empty nodes indicate that your map size is too big for the number of samples. Aim for at least 5-10 samples per node when choosing map size.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;counts&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">counts&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Nodes that colored by red mean nodes that have the least number of input values, such as in the second nodes. If the color nodes are brighter indicating the nodes have a lot of input values, such as in the 31 nodes. For nodes that have gray colors, that means the nodes do not have input values at all.</p>
 <h3 id="neighbours-nodes">Neighbours Nodes</h3>
 <p>If we want to see nodes that have the closest or farthest neighbours, we can plot a plot based on <code>dist.neighbours</code>. Nodes that have darker colors mean that the nodes have a vector input that is closer, whereas nodes that have lighter colors mean that the nodes have vector inputs that are farther apart.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dist.neighbours&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">dist.neighbours&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h3 id="heatmaps">Heatmaps</h3>
 <p>Heatmaps are perhaps the most important visualisation possible for Self-Organising Maps.  A SOM heatmap allows the visualisation of the distribution of a single variable across the map. Typically, a SOM investigative process involves the creation of multiple heatmaps, and then the comparison of these heatmaps to identify interesting areas on the map. It is important to remember that the individual sample positions do not move from one visualisation to another, the map is simply coloured by different variables.
 The default Kohonen heatmap is created by using the type “heatmap”, and then providing one of the variables from the set of node weights. In this case we visualise the average education level on the SOM.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">heatmap.som <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(model){
   <span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">12</span>) {
-   <span style="color:#a6e22e">plot</span>(model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;property&#34;</span>, property <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCodes</span>(model)[,i], 
+   <span style="color:#a6e22e">plot</span>(model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">property&#34;</span>, property <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCodes</span>(model)[,i], 
         main <span style="color:#f92672">=</span> <span style="color:#a6e22e">colnames</span>(<span style="color:#a6e22e">getCodes</span>(model))[i]) 
   }
 }
@@ -753,13 +753,13 @@ The default Kohonen heatmap is created by using the type “heatmap”, and then
 <p>Then we want to try to clustering every observation that we have without looking the labels of <code>xyz_campaign_id</code>. Like making cluster using k-means, we must determine the number of cluster that we want to make. In this case, we want to use elbow method to determine number of cluster.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(factoextra)
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
-<span style="color:#a6e22e">fviz_nbclust</span>(ads.model<span style="color:#f92672">$</span>codes[[1]], kmeans, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wss&#34;</span>)
+<span style="color:#a6e22e">fviz_nbclust</span>(ads.model<span style="color:#f92672">$</span>codes[[1]], kmeans, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">wss&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">kmeans</span>(ads.model<span style="color:#f92672">$</span>codes[[1]], <span style="color:#ae81ff">6</span>)
 
-<span style="color:#75715e"># cluster.som &lt;- cutree(hclust(dist(ads.model$codes[[1]])), 6)</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Map&#34;</span>)
+<span style="color:#75715e"># cluster.som &lt;- cutree(hclust(dist(ads.model$codes[[1]])), 6)</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Cluster Map&#34;</span>)
 <span style="color:#a6e22e">add.cluster.boundaries</span>(ads.model, clust<span style="color:#f92672">$</span>cluster)
 </code></pre></div><p><!-- raw HTML omitted -->
 At this part, to do the profiling of the clusters that we made, we do not need to look at the descriptive results of the cluster or look deeper into the data, we only need to look at the cluster map above.</p>
@@ -772,7 +772,7 @@ At this part, to do the profiling of the clusters that we made, we do not need t
 <li>Cluster 5 (turqois) : gender Female, age 45-49, interest middle, clicks and spent low</li>
 <li>Cluster 6 (blue) : gender Female, age 30-34, interest high</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># know cluster each data</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># know cluster each data</span>
 ads.cluster <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(ads.s, cluster <span style="color:#f92672">=</span> clust<span style="color:#f92672">$</span>cluster[ads.model<span style="color:#f92672">$</span>unit.classif])
 <span style="color:#a6e22e">tail</span>(ads.cluster, <span style="color:#ae81ff">10</span>)
 </code></pre></div><pre><code>#&gt;      xyz_campaign_id interest Impressions Clicks  Spent Total_Conversion
@@ -799,27 +799,27 @@ ads.cluster <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
 #&gt; 1143                   2       1       0    0    0    0    1       3
 </code></pre><h1 id="supervised-som">Supervised SOM</h1>
 <p>In supervised SOM, we want to classify our SOM model with our dependent variable (xyz_campaign_id).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># split data</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># split data</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 int <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#a6e22e">nrow</span>(ads.s), <span style="color:#a6e22e">nrow</span>(ads.s)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.8</span>)
 train <span style="color:#f92672">&lt;-</span> ads.s[int,]
 test <span style="color:#f92672">&lt;-</span> ads.s[<span style="color:#f92672">-</span>int,]
 
-<span style="color:#75715e"># scaling data</span>
+<span style="color:#75715e"># scaling data</span>
 trainX <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(train[,<span style="color:#ae81ff">-1</span>])
-testX <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(test[,<span style="color:#ae81ff">-1</span>], center <span style="color:#f92672">=</span> <span style="color:#a6e22e">attr</span>(trainX, <span style="color:#e6db74">&#34;scaled:center&#34;</span>))
+testX <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(test[,<span style="color:#ae81ff">-1</span>], center <span style="color:#f92672">=</span> <span style="color:#a6e22e">attr</span>(trainX, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">scaled:center&#34;</span>))
 
 
-<span style="color:#75715e"># make label</span>
+<span style="color:#75715e"># make label</span>
 train.label <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(train[,<span style="color:#ae81ff">1</span>])
 test.label <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(test[,<span style="color:#ae81ff">1</span>])
 test[,<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">916</span>
 testXY <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(independent <span style="color:#f92672">=</span> testX, dependent <span style="color:#f92672">=</span> test.label)
 </code></pre></div><h2 id="classification">Classification</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># classification &amp; predict</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># classification &amp; predict</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xyf</span>(trainX, <span style="color:#a6e22e">classvec2classmat</span>(train.label), ads.grid, rlen <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(class, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;changes&#34;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(class, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">changes&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="predict">Predict</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(class, newdata <span style="color:#f92672">=</span> testXY)
@@ -830,12 +830,12 @@ class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xyf</
 #&gt;    936    0 101    0
 #&gt;    1178   0   0  114
 </code></pre><h2 id="cluster-boundaries">Cluster Boundaries</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster SOM&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Cluster SOM&#34;</span>)
 <span style="color:#a6e22e">add.cluster.boundaries</span>(ads.model, clust<span style="color:#f92672">$</span>cluster)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">c.class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">kmeans</span>(class<span style="color:#f92672">$</span>codes[[2]], <span style="color:#ae81ff">3</span>)
 <span style="color:#a6e22e">par</span>(mfrow <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>))
-<span style="color:#a6e22e">plot</span>(class, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Unsupervised SOM&#34;</span>, <span style="color:#e6db74">&#34;Supervised SOM&#34;</span>), 
+<span style="color:#a6e22e">plot</span>(class, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">codes&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Unsupervised SOM&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Supervised SOM&#34;</span>), 
      bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">3</span>)[c.class<span style="color:#f92672">$</span>cluster])
 <span style="color:#a6e22e">add.cluster.boundaries</span>(class, c.class<span style="color:#f92672">$</span>cluster)
 </code></pre></div><p><!-- raw HTML omitted --></p>

@@ -6,10 +6,19 @@
     <description>Recent content in Clustering on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 17 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/clustering/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Clustering Saham Indonesia</title>
+      <link>/blog/stock-cluster/</link>
+      <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/stock-cluster/</guid>
+      <description>body { text-align: justify}  Introduction Saham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri.</description>
+    </item>
     
     <item>
       <title>DBSCAN Clustering</title>
@@ -17,7 +26,7 @@
       <pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>/blog/dbscan-clustering/</guid>
-      <description>body {text-align: justify}1. Pendahuluan1.1 Clustering Clustering merupakan salah satu bagian dari unsupervised learning. Clustering memiliki tujuan untuk membagi data ke dalam beberapa kelompok berdasarkan kemiripan antar data. Cluster (kelompok) yang baik adalah cluster yang memiliki kemiripan yang besar antar anggota clusternya dan memiliki perbedaan yang signifikan dengan anggota cluster yang berbeda. Clustering dapat diterapkan dalam berbagai bidang seperti segmentasi pasar, cluster profiling, data spatial dll.</description>
+      <description>body { text-align: justify}  1. Pendahuluan 1.1 Clustering  Clustering merupakan salah satu bagian dari unsupervised learning. Clustering memiliki tujuan untuk membagi data ke dalam beberapa kelompok berdasarkan kemiripan antar data. Cluster (kelompok) yang baik adalah cluster yang memiliki kemiripan yang besar antar anggota clusternya dan memiliki perbedaan yang signifikan dengan anggota cluster yang berbeda. Clustering dapat diterapkan dalam berbagai bidang seperti segmentasi pasar, cluster profiling, data spatial dll.</description>
     </item>
     
     <item>
