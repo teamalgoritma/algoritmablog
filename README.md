@@ -1,5 +1,8 @@
 # :star2: Overview Algotech
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5ceca968-68f6-4458-90e3-5b72bf373c20/deploy-status)](https://app.netlify.com/sites/algotech/deploys)
+
+
 *Algotech* is a Website for technical blog Algoritma. To serve the website locally and to view a live version run the following command:
 
 ```
@@ -13,7 +16,7 @@ blogdown::serve_site()
 
 # :memo: Contributing Articles
 
-Want to contribute an article? Please follow the submission guidelines below:
+Please follow the submission guidelines below:
 
 1. Fork the repository.
 2. Make a some development version or added a new article.
@@ -30,7 +33,7 @@ If the project owner agrees with your work, they might merged your request into 
 
 **Step-2**: Keep your fork synced using Git. If you haven't yet, you should first [set up Git](https://help.github.com/en/articles/set-up-git#setting-up-git).
 
-1. On github, to **your fork** of the *algoritmablog* repository.
+1. On github, click **fork** on the *algoritmablog* repository.
 2. Open Git Bash
 3. Type `git clone`, and then paste the URL of repository. It will look like this, with your GitHub username instead of `YOUR-USERNAME`:
 
@@ -131,5 +134,19 @@ knitr::opts_chunk$set(
 knitr::include_graphics('/img/article-topic/imgname.png')
 ```
 
+4. If, the images does not appear, change the command on your Rmd (narration) file (not in code chunk) to:
+
+```
+<center> ![](/img/article-topic/imgname.png){width="60%"} </center>
+```
+
 ## 3. Submit Pull Request! :grin:
+
+* Save your article
+* To test whether your article was successfully created or not, serve the website locally with `blogdown::serve_site`.
+* Open git bash
+  * `git add .`
+  * `git commit -m 'your message'`
+  * `git push`
+* then submit a pull request to algoritma blog repository.
 

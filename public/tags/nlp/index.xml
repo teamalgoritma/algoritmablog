@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>NLP on Algoritma Technical Blog</title>
@@ -17,8 +17,8 @@
       <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>/blog/text-generating-with-markov-chains/</guid>
-      <description>body { text-align: justify}  Introduction Text Generation Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:
- SPAM email detection Sentiment Analysis Text summarization Topic Modelling Text Generation  In this article, we will try to learn the last one: text generation.</description>
+      <description>body {text-align: justify}IntroductionText GenerationNatural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:
+SPAM email detectionSentiment AnalysisText summarizationTopic ModellingText GenerationIn this article, we will try to learn the last one: text generation.</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@
       <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/textclean/</guid>
-      <description>Take tweet from twitter using rtweet package Function used for take tweet from twitter is search_tweets(). There are several parameter usually used in that function: - Topic : topic you will find at twitter - n : how many tweet that you want to take - include_rts : logical. If FALSE tweet taken didn’t contain retweet - lang : spesified language. If you want take tweet in english you can add argument lang = “en” You can use this code below to try taking tweets from twitter by removing the command</description>
+      <description>Take tweet from twitter using rtweet packageFunction used for take tweet from twitter is search_tweets(). There are several parameter usually used in that function: - Topic : topic you will find at twitter - n : how many tweet that you want to take - include_rts : logical. If FALSE tweet taken didn’t contain retweet - lang : spesified language. If you want take tweet in english you can addargument lang = “en” You can use this code below to try taking tweets from twitter by removing the command</description>
     </item>
     
     <item>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>dplyr on Algoritma Technical Blog</title>
@@ -27,7 +27,7 @@ The term of tidyverse is actually referring to a set of packages that you’ll f
       <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/textclean/</guid>
-      <description>Take tweet from twitter using rtweet package Function used for take tweet from twitter is search_tweets(). There are several parameter usually used in that function: - Topic : topic you will find at twitter - n : how many tweet that you want to take - include_rts : logical. If FALSE tweet taken didn’t contain retweet - lang : spesified language. If you want take tweet in english you can add argument lang = “en” You can use this code below to try taking tweets from twitter by removing the command</description>
+      <description>Take tweet from twitter using rtweet packageFunction used for take tweet from twitter is search_tweets(). There are several parameter usually used in that function: - Topic : topic you will find at twitter - n : how many tweet that you want to take - include_rts : logical. If FALSE tweet taken didn’t contain retweet - lang : spesified language. If you want take tweet in english you can addargument lang = “en” You can use this code below to try taking tweets from twitter by removing the command</description>
     </item>
     
     <item>
@@ -36,7 +36,7 @@ The term of tidyverse is actually referring to a set of packages that you’ll f
       <pubDate>Sun, 13 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/handling-duplicate-data/</guid>
-      <description>Reading Data and Basic Preprocessing Some data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.
+      <description>Reading Data and Basic PreprocessingSome data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.
 Making sure that there are no duplicated data is one of the aspect of understanding the data itself, because we can’t say that the model that are being made from the information full of duplicated data is relevant enough to be used in real-case scenario.</description>
     </item>
     
@@ -46,7 +46,7 @@ Making sure that there are no duplicated data is one of the aspect of understand
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/metrics-evaluation-using-yardstick/</guid>
-      <description>Motivation Evaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.</description>
+      <description>MotivationEvaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.</description>
     </item>
     
   </channel>
