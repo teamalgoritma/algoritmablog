@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Algoritma Technical Blog</title>
@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Optimization</title>
+      <link>/tags/optimization/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/optimization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Queueing</title>
+      <link>/tags/queueing/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/queueing/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Clustering</title>
@@ -93,15 +111,6 @@
     </item>
     
     <item>
-      <title>Optimization</title>
-      <link>/tags/optimization/</link>
-      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/optimization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Adversarial</title>
       <link>/tags/adversarial/</link>
       <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
@@ -111,29 +120,20 @@
     </item>
     
     <item>
-      <title>Generative Model</title>
-      <link>/tags/generative-model/</link>
-      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/generative-model/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Regularization</title>
-      <link>/tags/regularization/</link>
-      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/regularization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>deep learning</title>
       <link>/tags/deep-learning/</link>
       <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Generative Model</title>
+      <link>/tags/generative-model/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/generative-model/</guid>
       <description></description>
     </item>
     
@@ -156,6 +156,24 @@
     </item>
     
     <item>
+      <title>Regularization</title>
+      <link>/tags/regularization/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/regularization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ape</title>
+      <link>/tags/ape/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ape/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Bioconductor</title>
       <link>/tags/bioconductor/</link>
       <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
@@ -170,15 +188,6 @@
       <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/bioinformatics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ape</title>
-      <link>/tags/ape/</link>
-      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/ape/</guid>
       <description></description>
     </item>
     
@@ -399,15 +408,6 @@
     </item>
     
     <item>
-      <title>Troubleshoot</title>
-      <link>/tags/troubleshoot/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/troubleshoot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>accuracy</title>
       <link>/tags/accuracy/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
@@ -440,6 +440,15 @@
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/recall/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Troubleshoot</title>
+      <link>/tags/troubleshoot/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/troubleshoot/</guid>
       <description></description>
     </item>
     
