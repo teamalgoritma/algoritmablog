@@ -24,7 +24,7 @@
         "datePublished": "2019-11-12 00:00:00 \x2b0000 UTC",
         "dateModified" : "2019-11-12 00:00:00 \x2b0000 UTC",
         "url" : "\/blog\/text-lstm\/",
-        "wordCount" : "3980",
+        "wordCount" : "4007",
         "keywords" : [ "Machine Learning","deep learning","LSTM","Blog" ]
     }
     </script>
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.2" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
 
 
@@ -58,22 +58,26 @@
 <meta property="og:description" content="Deep Neural Network Before we further discuss the Long Short-Term Memory Model, we will first discuss the term of Deep learning where the main idea is on the Neural Network. So Neural Network is one branch of machine learning where the learning process imitates the way neurons in the human brain works. In Neural Network we know several terms, such as the input layer, hidden layer, and output layer. So the different betweetn Deep Learning and Neural Network architecture is the number of hidden layers specified." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/text-lstm/" />
-<meta property="article:published_time" content="2019-11-12T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-11-12T00:00:00+00:00" />
+<meta property="article:published_time" content="2019-11-12T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-11-12T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        <meta itemprop="name" content="Text Classification with LSTM">
+        
+<meta itemprop="name" content="Text Classification with LSTM">
 <meta itemprop="description" content="Deep Neural Network Before we further discuss the Long Short-Term Memory Model, we will first discuss the term of Deep learning where the main idea is on the Neural Network. So Neural Network is one branch of machine learning where the learning process imitates the way neurons in the human brain works. In Neural Network we know several terms, such as the input layer, hidden layer, and output layer. So the different betweetn Deep Learning and Neural Network architecture is the number of hidden layers specified.">
+
+
 <meta itemprop="datePublished" content="2019-11-12T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-11-12T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="3980">
+<meta itemprop="wordCount" content="4007">
 
 
 
 <meta itemprop="keywords" content="Machine Learning,deep learning,LSTM," />
+
         
 
         
@@ -514,74 +518,129 @@
 
 
   <div id="content">
-    <h1 id="deep-neural-network">Deep Neural Network</h1>
+    
+
+<h1 id="deep-neural-network">Deep Neural Network</h1>
+
 <p>Before we further discuss the Long Short-Term Memory Model, we will first discuss the term of <em>Deep learning</em> where the main idea is on the Neural Network. So Neural Network is one branch of machine learning where the learning process imitates the way neurons in the human brain works. In Neural Network we know several terms, such as the input layer, hidden layer, and output layer. So the different betweetn Deep Learning and Neural Network architecture is the number of hidden layers specified. Simple Neural Network only has 1 hidden layer, whereas Deep Learning has more than 1 hidden layer.</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/lstm-text/dnn.png" width="80%" style="display: block; margin: auto;" /></p>
+
 <p>Nerual Network architecture can also be characterized based on the direction of signal in training process: <em>feed-forward</em> and <em>recurrent</em>. In this material, we will discuss more the <em>Recurrent Neural Network</em> architecture.</p>
+
 <p>We know that neural network uses an algorithm called <strong>Backpropagation</strong> to update the weights of the network. So what Backpropogation does is it first calculates the gradients from the error using the chain rule, then in updates the weights (<em>Gradient Descent</em>).</p>
+
 <p>When doing backpropogation in simple neural network (1 hidden layer) we might not encounter the problem update weights. But&hellip;.</p>
+
 <blockquote>
 <p>When we build an architecture with a large number of hidden layer (Deep Neural Network) the model is likely to encounter update weight problem called <em>vanishing</em> / <em>exploding</em> gradient descent.</p>
 </blockquote>
-<h2 id="vanishing--exploding-gradient-descent">Vanishing / Exploding Gradient Descent</h2>
+
+<h2 id="vanishing-exploding-gradient-descent">Vanishing / Exploding Gradient Descent</h2>
+
 <p><strong>Vanishing Gradient Descent</strong>: the update value obtained will exponentially decrease when heading to the input layer. Here are the illustrations, which I took from: <a href="https://towardsdatascience.com/illustrated-guide-to-recurrent-neural-networks-79e5eb8049c9">Michael Nguyen&rsquo;s article</a></p>
-<p><!-- raw HTML omitted --></p>
-<p>Gradient descent aims to adjust weights that allow the model to &lsquo;<strong>learn</strong>'. the nature of the gradient that is, the greater the value of the gradient in the current layer, will affect in the next layer getting bigger. and <em>vice versa</em>. This is the problem. When doing BP, each node will calculate the gradient value and update its weight according to the gradient effect on the previous layer. so if the previous layer is small, then adjusting the weights in the current layer will be small. it causes the gradient to shrink exponentially when it goes to the input layer. so that when in the input layer it fails to do the learning due to <em>vanishing gradient problems</em>. so the model <strong>fails to learn</strong> when a pass forward is made again to make predictions.</p>
+
+<p><img src="/img/lstm-text/vg1.gif" width="35%" style="display: block; margin: auto;" /></p>
+
+<p>Gradient descent aims to adjust weights that allow the model to &lsquo;<strong>learn</strong>&rsquo;. the nature of the gradient that is, the greater the value of the gradient in the current layer, will affect in the next layer getting bigger. and <em>vice versa</em>. This is the problem. When doing BP, each node will calculate the gradient value and update its weight according to the gradient effect on the previous layer. so if the previous layer is small, then adjusting the weights in the current layer will be small. it causes the gradient to shrink exponentially when it goes to the input layer. so that when in the input layer it fails to do the learning due to <em>vanishing gradient problems</em>. so the model <strong>fails to learn</strong> when a pass forward is made again to make predictions.</p>
+
 <p><strong>Exploding Gradient Descent</strong>: the update value obtained will exponentially increase when heading to the input layer. The characteristics of the model have an exploding gradient problem, which is when the cost function results are NaN.</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/lstm-text/lossnan.png" width="80%" style="display: block; margin: auto;" /></p>
+
 <p>Here is a link duscussion regarding to exploding grgadient descent: <a href="https://stackoverflow.com/questions/37232782/nan-loss-when-training-regression-network">nan loss when training NN</a></p>
+
 <h1 id="recurrent-neural-network">Recurrent Neural Network</h1>
+
 <p>From the vasishing / exploding gradient problem mentioned above, the development of architecture from the RNN, namely LSTM and GRU, is able to handle the problem. <em>will be discussed below</em>. RNN itself has not been able to handle vanishing gradients due to short-term memory problems.</p>
+
 <p>So what is RNN? RNN is a deep learning architecture model that is commonly used for sequential data. What&rsquo;s the sequential data? The following are examples of sequential data cases:</p>
+
 <ol>
 <li><strong>Sentiment classification</strong>. Input: text, output: rating/sentiment class.</li>
 <li><strong>Translator</strong>. Input: text, output: text translator.</li>
 <li><strong>Time series data</strong>: input: Numeric, output: forecasting result.</li>
 <li><strong>Speech Recognation</strong>: input: audio, output: text.</li>
 </ol>
+
 <h2 id="rnn-concept">RNN Concept</h2>
+
 <p>The main idea of RNN is to utilize sequential information processing. RNN is called repetitive because it performs the same task for each successive element, with output depending on the previous calculation.</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/lstm-text/rnn.jpg" width="60%" style="display: block; margin: auto;" /></p>
+
 <p>The diagram above is the architecture of RNN after opening it unfolded. Suppose we have a sentence consisting of 10 words, it means that there will be 10 NN-layers formed separately. Each layer represents each word. The following are some explanations of the notation in the diagram above:</p>
+
 <ul>
 <li><code>\(x_t\)</code> is an input at (time) <code>\(t\)</code>.</li>
 <li>RNN stores an internal state <code>\(S_t\)</code> which becoming a <em>memory</em> in RNN. <code>\(S_t\)</code> is calculated based on the previous hidden state and the input in the current step. The activation function of <code>\(f\)</code> is usually nonlinear like <strong>tanh</strong> or <strong>ReLU</strong>.</li>
 </ul>
-<!-- raw HTML omitted -->
+
+<p><center>
+<code>\(S_t = f(U_{xt} + W_{St} − 1)\)</code>.
+</center><br></p>
+
 <ul>
 <li><code>\(O_t\)</code> is an output from each step <code>\(t\)</code></li>
 </ul>
+
 <h3 id="forward-pass">Forward Pass</h3>
+
 <p>For example case studies related to sentiment classification. Then the input will contain one-hot vectors of words, and the output is a sentiment class. So a feed-forward pass scheme is performed as:</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/lstm-text/forwardpass.PNG" width="60%" style="display: block; margin: auto;" /></p>
+
 <ol>
 <li>Each layer describes each word.</li>
 <li>For an explanation of the concept of the Forward pass, we look at the layer when <code>\(t\)</code> (in the middle).</li>
 </ol>
+
 <ul>
 <li>Remember that the RNN pays attention to the output calculation data at <code>\(t - 1\)</code>. So initially we have to calculate the state at <code>\(S_t\)</code> first. Involving the multiplication of the input matrix <code>\(x_t\)</code> with the parameter <code>\(U\)</code> and summing the results of the product <code>\(s_{t1}\)</code>. Then the results are processed with the tanh activation function. The calculation details are as follows:</li>
 </ul>
-<!-- raw HTML omitted -->
+
+<p><center>
+<code>\(s_t=tanh(U.x_t+W.s_{t−1)}\)</code>
+</center><br></p>
+
 <ul>
 <li>The results from <code>\(s_t\)</code> are then passed to the output by tiling the matrix multiplication of the <code>\(V\)</code> parameters and then passed with the softmax activation function. The details are as follows:</li>
 </ul>
-<!-- raw HTML omitted -->
+
+<p><center>
+<code>\(\hat{y}_t=softmax(V.s_t)\)</code>
+</center><br></p>
+
 <p>The above process is often illustrated like:</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/lstm-text/rnn-network.png" width="60%" style="display: block; margin: auto;" /></p>
+
 <h3 id="backpropogation-through-time">Backpropogation Through Time</h3>
+
 <p>The purpose of the RNN model training is to find the parameters <code>\(U, V,\)</code> and <code>\(W\)</code> which produce minimum errors. The term BTT arises because the RNN architecture pays attention to the previous time series. So to calculate the gradient at the time step <code>\(t\)</code>, we must calculate the speech at step <code>\(t − 1, t − 2, t − 3\)</code> until it is at time <code>\(t = 1\)</code>. If you are curious about how this algorithm works, I suggest to read more on this article: <a href="http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/">Part 3: Backpropogarion &amp; Vanishing Gradient</a>.</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/lstm-text/btt.gif" width="35%" style="display: block; margin: auto;" /></p>
+
 <p>As mentioned in the previous chapter, the RNN model also has a vanishing gradient problem, because it cannot capture long-term dependencies. because the number of layers is too long, making the backprop process produces a gradient value that is getting smaller and even close to zero or is said to disappear when it arrives at the initial layers.</p>
+
 <blockquote>
-<p>This is caused by the multiplication properties between fractions. Imagine that for example a fraction is 1/4, multiplied by another fraction such as 1/3, then in one operation the value is 1/12. Multiplied by other fractions such as 1/5, the value becomes 1/60, etc. This value will shrink exponentially, and with a small fractional value and many multiplication operations, the value will be close to zero.</p>
+<p>This is caused by the multiplication properties between fractions. Imagine that for example a fraction is <sup>1</sup>&frasl;<sub>4</sub>, multiplied by another fraction such as <sup>1</sup>&frasl;<sub>3</sub>, then in one operation the value is <sup>1</sup>&frasl;<sub>12</sub>. Multiplied by other fractions such as <sup>1</sup>&frasl;<sub>5</sub>, the value becomes <sup>1</sup>&frasl;<sub>60</sub>, etc. This value will shrink exponentially, and with a small fractional value and many multiplication operations, the value will be close to zero.</p>
 </blockquote>
+
 <p>To overcome this problem, there is a development of RNN model namely <strong>Long-Term Short Memory (LSTM)</strong>.</p>
+
 <h1 id="lstm">LSTM</h1>
+
 <p>Just like RNN, LSTM has a sequential model which is illustrated with a green box. if unfolded the architecture becomes as below:</p>
-<p><!-- raw HTML omitted --></p>
-<p>The difference between RNN and LSTM is that it has additional signal information that is given from one time step to the next time step which is commonly called &ldquo;<strong>cell memory</strong>&quot;. LSTM is designed to overcome the problem of vanishing gradient, using the <strong>gate mechanism</strong>.</p>
+
+<p><img src="/img/lstm-text/lstm.jpg" width="70%" style="display: block; margin: auto;" /></p>
+
+<p>The difference between RNN and LSTM is that it has additional signal information that is given from one time step to the next time step which is commonly called &ldquo;<strong>cell memory</strong>&rdquo;. LSTM is designed to overcome the problem of vanishing gradient, using the <strong>gate mechanism</strong>.</p>
+
 <h2 id="lstm-network">LSTM Network</h2>
+
 <p>So the components in LSTM consist of:</p>
+
 <ul>
 <li><strong>Forget Gate</strong> f (NN with <em>sigmoid</em> as activation function).</li>
 <li><strong>Candidate Layer</strong> g (NN with <em>tanh</em> as activation function).</li>
@@ -590,8 +649,11 @@
 <li><strong>Hidden State</strong> H (vector).</li>
 <li><strong>Memory State</strong> C (vector).</li>
 </ul>
+
 <p>The following is the LSTM diagram at the t-time step.</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/lstm-text/lstmnet.png" width="70%" style="display: block; margin: auto;" /></p>
+
 <ul>
 <li><code>\(X_t\)</code> = Input vector at the t-time.</li>
 <li><code>\(H_{t−1}\)</code> = Previous Hidden state.</li>
@@ -601,46 +663,64 @@
 <li>[*] = multiplication operation.</li>
 <li>[+] = addition operation.</li>
 </ul>
+
 <p>so the input of each LSTM module is <code>\(X_t\)</code> (current input), <code>\(H_{t − 1}\)</code>, and <code>\(C_{t − 1}\)</code>. then the output is <code>\(H_t\)</code>, and <code>\(C_t\)</code>.</p>
+
 <p>extracted from <a href="http://www.wildml.com/2015/10/recurrent-neural-network-tutorial-part-4-implementing-a-grulstm-rnn-with-python-and-theano/">Denny Britz&rsquo;s article</a> which is a summary of Christopher Olah&rsquo;s article: <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks</a>.</p>
+
 <ol>
 <li><code>\(l, f, O\)</code> is the Input, Forget, and Output gates. Both input, forget, and output have the same function formula (sigmoid), which only distinguishes the matrix parameters (<strong>note the formula below</strong>). This means that the output of this gate has a vector of values between 0 to 1. zero means that the information is blocked completely, and one means that all information is included. The gate input controls how many states you have just computed for the current input that you want to let pass. The forget gate controls how many previous states you want to let pass. Finally, the gate output controls how many internal states you want to expose to the network (higher layer &amp; next time step). All gates have the same dimensions as the hidden state dimension (etc.) as a measure for the hidden state. The output of the sigmoid gate will be multiplied by another value to control how much that value is used.</li>
 </ol>
-<!-- raw HTML omitted -->
+
+<p><center>
+<code>\(I= \sigma(x_tU^I + s_{t-_1}W^I)\)</code> <br>
+<code>\(f= \sigma(x_tU^f + s_{t-_1}W^f)\)</code> <br>
+<code>\(O= \sigma(x_tU^O + s_{t-_1}W^O)\)</code> <br>
+</center></p>
+
 <blockquote>
-<p>value 1 means &ldquo;<em>really take care of this element</em>&rdquo; while 0 means &ldquo;<em>completely get rid of this element</em>&quot;.</p>
+<p>value 1 means &ldquo;<em>really take care of this element</em>&rdquo; while 0 means &ldquo;<em>completely get rid of this element</em>&rdquo;.</p>
 </blockquote>
-<ol start="2">
-<li>
-<p><code>\(g\)</code> is a “candidate” hidden state that is computed based on the current input and the previous hidden state.</p>
-</li>
-<li>
-<p><code>\(c_t\)</code> is the internal memory of the unit. It is a combination of the previous memory <code>\(c_{t-1}\)</code> multiplied by the forget gate, and the newly computed hidden state g, multiplied by the input gate. Thus, intuitively it is a combination of how we want to combine previous memory and the new input.</p>
-</li>
+
+<ol>
+<li><p><code>\(g\)</code> is a “candidate” hidden state that is computed based on the current input and the previous hidden state.</p></li>
+
+<li><p><code>\(c_t\)</code> is the internal memory of the unit. It is a combination of the previous memory <code>\(c_{t-1}\)</code> multiplied by the forget gate, and the newly computed hidden state g, multiplied by the input gate. Thus, intuitively it is a combination of how we want to combine previous memory and the new input.</p></li>
 </ol>
-<!-- raw HTML omitted -->
+
+<p><center>
+<code>\(c_t=f_t*c_{t-_1} + I_t*g\)</code>
+</center></p>
+
 <h1 id="implementation-lstm-with-keras">Implementation LSTM with Keras</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># load packages required</span>
-<span style="color:#a6e22e">library</span>(keras)
-<span style="color:#a6e22e">library</span>(RVerbalExpressions)
-<span style="color:#a6e22e">library</span>(magrittr)
-<span style="color:#a6e22e">library</span>(textclean)
-<span style="color:#a6e22e">library</span>(tidyverse)
-<span style="color:#a6e22e">library</span>(tidytext)
-<span style="color:#a6e22e">library</span>(rsample)
-<span style="color:#a6e22e">library</span>(yardstick)
-<span style="color:#a6e22e">library</span>(caret)
 
-<span style="color:#75715e">#set seed keras for reproducible result</span>
-<span style="color:#a6e22e">use_session_with_seed</span>(<span style="color:#ae81ff">2</span>)
+<pre><code class="language-r"># load packages required
+library(keras)
+library(RVerbalExpressions)
+library(magrittr)
+library(textclean)
+library(tidyverse)
+library(tidytext)
+library(rsample)
+library(yardstick)
+library(caret)
 
-<span style="color:#75715e"># set conda env</span>
-<span style="color:#a6e22e">use_condaenv</span>(<span style="color:#e6db74">&#34;tensorflow&#34;</span>)
-</code></pre></div><h2 id="import-data">Import Data</h2>
+#set seed keras for reproducible result
+use_session_with_seed(2)
+
+# set conda env
+use_condaenv(&quot;tensorflow&quot;)
+</code></pre>
+
+<h2 id="import-data">Import Data</h2>
+
 <p>In this example we will use a case study of sentiment tweets about airlines in the US obtained from Kaggle.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;data_input/tweets_airline.csv&#34;</span>)
-<span style="color:#a6e22e">glimpse</span>(data)
-</code></pre></div><pre><code>## Observations: 14,640
+
+<pre><code class="language-r">data &lt;- read_csv(&quot;data_input/tweets_airline.csv&quot;)
+glimpse(data)
+</code></pre>
+
+<pre><code>## Observations: 14,640
 ## Variables: 15
 ## $ tweet_id                     &lt;dbl&gt; 5.703061e+17, 5.703011e+17, 5.703...
 ## $ airline_sentiment            &lt;chr&gt; &quot;neutral&quot;, &quot;positive&quot;, &quot;neutral&quot;,...
@@ -657,96 +737,168 @@
 ## $ tweet_created                &lt;chr&gt; &quot;2015-02-24 11:35:52 -0800&quot;, &quot;201...
 ## $ tweet_location               &lt;chr&gt; NA, NA, &quot;Lets Play&quot;, NA, NA, NA, ...
 ## $ user_timezone                &lt;chr&gt; &quot;Eastern Time (US &amp; Canada)&quot;, &quot;Pa...
-</code></pre><h2 id="text-pre-processing">Text Pre-Processing</h2>
-<h3 class="tabset" id="setup-regex-">Setup regex</h3>
+</code></pre>
+
+<h2 id="text-pre-processing">Text Pre-Processing</h2>
+
+<h3 id="setup-regex-tabset">Setup regex {.tabset}</h3>
+
 <h4 id="mention">mention</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">mention <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rx</span>() <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">rx_find</span>(value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;@&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">rx_alnum</span>() <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">rx_one_or_more</span>()
+
+<pre><code class="language-r">mention &lt;- rx() %&gt;% 
+  rx_find(value = &quot;@&quot;) %&gt;% 
+  rx_alnum() %&gt;% 
+  rx_one_or_more()
 mention
-</code></pre></div><pre><code>## [1] &quot;(@)[A-z0-9]+&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#e6db74">&#34;@VirginAmerica What @dhepburn said.&#34;</span> <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">str_remove_all</span>(pattern <span style="color:#f92672">=</span> mention) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">str_squish</span>()
-</code></pre></div><pre><code>## [1] &quot;What said.&quot;
-</code></pre><h4 id="hashtag">hashtag</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">hashtag <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rx</span>() <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">rx_find</span>(value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">rx_alnum</span>() <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">rx_one_or_more</span>()
+</code></pre>
+
+<pre><code>## [1] &quot;(@)[A-z0-9]+&quot;
+</code></pre>
+
+<pre><code class="language-r">&quot;@VirginAmerica What @dhepburn said.&quot; %&gt;% 
+  str_remove_all(pattern = mention) %&gt;% 
+  str_squish()
+</code></pre>
+
+<pre><code>## [1] &quot;What said.&quot;
+</code></pre>
+
+<h4 id="hashtag">hashtag</h4>
+
+<pre><code class="language-r">hashtag &lt;- rx() %&gt;% 
+  rx_find(value = &quot;#&quot;) %&gt;% 
+  rx_alnum() %&gt;% 
+  rx_one_or_more()
 hashtag
-</code></pre></div><pre><code>## [1] &quot;(#)[A-z0-9]+&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#e6db74">&#34;@VirginAmerica I&#39;m #elevategold for a good reason: you rock!!&#34;</span> <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">str_remove_all</span>(pattern <span style="color:#f92672">=</span> mention) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">str_remove_all</span>(pattern <span style="color:#f92672">=</span> hashtag) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">str_squish</span>()
-</code></pre></div><pre><code>## [1] &quot;I'm for a good reason: you rock!!&quot;
-</code></pre><h4 id="question-mark">question mark</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">question <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rx</span>() <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">rx_find</span>(value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;?&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">rx_one_or_more</span>()
+</code></pre>
+
+<pre><code>## [1] &quot;(#)[A-z0-9]+&quot;
+</code></pre>
+
+<pre><code class="language-r">&quot;@VirginAmerica I'm #elevategold for a good reason: you rock!!&quot; %&gt;% 
+  str_remove_all(pattern = mention) %&gt;%
+  str_remove_all(pattern = hashtag) %&gt;% 
+  str_squish()
+</code></pre>
+
+<pre><code>## [1] &quot;I'm for a good reason: you rock!!&quot;
+</code></pre>
+
+<h4 id="question-mark">question mark</h4>
+
+<pre><code class="language-r">question &lt;- rx() %&gt;% 
+  rx_find(value = &quot;?&quot;) %&gt;% 
+  rx_one_or_more()
 question
-</code></pre></div><pre><code>## [1] &quot;(\\?)+&quot;
-</code></pre><h4 id="exclamation-mark">exclamation mark</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">exclamation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rx</span>() <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">rx_find</span>(value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;!&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">rx_one_or_more</span>()
+</code></pre>
+
+<pre><code>## [1] &quot;(\\?)+&quot;
+</code></pre>
+
+<h4 id="exclamation-mark">exclamation mark</h4>
+
+<pre><code class="language-r">exclamation &lt;- rx() %&gt;% 
+  rx_find(value = &quot;!&quot;) %&gt;% 
+  rx_one_or_more()
 exclamation
-</code></pre></div><pre><code>## [1] &quot;(!)+&quot;
-</code></pre><h4 id="punctuation">punctuation</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">punctuation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rx_punctuation</span>()
+</code></pre>
+
+<pre><code>## [1] &quot;(!)+&quot;
+</code></pre>
+
+<h4 id="punctuation">punctuation</h4>
+
+<pre><code class="language-r">punctuation &lt;- rx_punctuation()
 punctuation
-</code></pre></div><pre><code>## [1] &quot;[[:punct:]]&quot;
-</code></pre><h4 id="number">number</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">number <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rx_digit</span>()
+</code></pre>
+
+<pre><code>## [1] &quot;[[:punct:]]&quot;
+</code></pre>
+
+<h4 id="number">number</h4>
+
+<pre><code class="language-r">number &lt;- rx_digit()
 number
-</code></pre></div><pre><code>## [1] &quot;\\d&quot;
-</code></pre><h4 id="dollar-sign">dollar sign</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dollar <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rx</span>() <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">rx_find</span>(<span style="color:#e6db74">&#34;$&#34;</span>)
+</code></pre>
+
+<pre><code>## [1] &quot;\\d&quot;
+</code></pre>
+
+<h4 id="dollar-sign">dollar sign</h4>
+
+<pre><code class="language-r">dollar &lt;- rx() %&gt;% 
+  rx_find(&quot;$&quot;)
 dollar
-</code></pre></div><pre><code>## [1] &quot;(\\$)&quot;
-</code></pre><h3 class="tabset" id="text-cleansing-">Text Cleansing</h3>
-<h4 id="replace_url"><code>replace_url</code></h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#e6db74">&#34;@VirginAmerica Really missed a prime opportunity, there. https://t.co/mWpG7grEZP&#34;</span> <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">replace_url</span>()
-</code></pre></div><pre><code>## [1] &quot;@VirginAmerica Really missed a prime opportunity, there. &quot;
-</code></pre><h4 id="replace_emoticon"><code>replace_emoticon</code></h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#e6db74">&#34;@SouthwestAir thanks! Very excited to see it :3&#34;</span> <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">replace_emoticon</span>()
-</code></pre></div><pre><code>## [1] &quot;@SouthwestAir thanks! Very excited to see it smiley &quot;
-</code></pre><h4 id="replace_contruction"><code>replace_contruction</code></h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#e6db74">&#34;@united I&#39;d thank you - but you didn&#39;t help. taking 6 hours to reply isn&#39;t actually helpful&#34;</span> <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">replace_contraction</span>()
-</code></pre></div><pre><code>## [1] &quot;@united I would thank you - but you did not help. taking 6 hours to reply is not actually helpful&quot;
-</code></pre><h4 id="replace_word_elongation"><code>replace_word_elongation</code></h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#e6db74">&#34;@VirginAmerica heyyyy guyyyys.. :/&#34;</span> <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">replace_word_elongation</span>()
-</code></pre></div><pre><code>## [1] &quot;@VirginAmerica hey guys.. :/&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data <span style="color:#f92672">&lt;-</span> data <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate</span>(
-    text_clean <span style="color:#f92672">=</span> text <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">replace_url</span>() <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">replace_emoji</span>() <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">replace_emoticon</span>() <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">replace_html</span>() <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">str_remove_all</span>(pattern <span style="color:#f92672">=</span> mention) <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">str_remove_all</span>(pattern <span style="color:#f92672">=</span> hashtag) <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">replace_contraction</span>() <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">replace_word_elongation</span>() <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">str_replace_all</span>(pattern <span style="color:#f92672">=</span> question, replacement <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;questionmark&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">str_replace_all</span>(pattern <span style="color:#f92672">=</span> exclamation, replacement <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;exclamationmark&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">str_remove_all</span>(pattern <span style="color:#f92672">=</span> punctuation) <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">str_remove_all</span>(pattern <span style="color:#f92672">=</span> number) <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">str_remove_all</span>(pattern <span style="color:#f92672">=</span> dollar) <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">str_to_lower</span>() <span style="color:#f92672">%&gt;%</span> 
-      <span style="color:#a6e22e">str_squish</span>()
+</code></pre>
+
+<pre><code>## [1] &quot;(\\$)&quot;
+</code></pre>
+
+<h3 id="text-cleansing-tabset">Text Cleansing {.tabset}</h3>
+
+<h4 id="replace-url"><code>replace_url</code></h4>
+
+<pre><code class="language-r">&quot;@VirginAmerica Really missed a prime opportunity, there. https://t.co/mWpG7grEZP&quot; %&gt;% 
+  replace_url()
+</code></pre>
+
+<pre><code>## [1] &quot;@VirginAmerica Really missed a prime opportunity, there. &quot;
+</code></pre>
+
+<h4 id="replace-emoticon"><code>replace_emoticon</code></h4>
+
+<pre><code class="language-r">&quot;@SouthwestAir thanks! Very excited to see it :3&quot; %&gt;%
+  replace_emoticon()
+</code></pre>
+
+<pre><code>## [1] &quot;@SouthwestAir thanks! Very excited to see it smiley &quot;
+</code></pre>
+
+<h4 id="replace-contruction"><code>replace_contruction</code></h4>
+
+<pre><code class="language-r">&quot;@united I'd thank you - but you didn't help. taking 6 hours to reply isn't actually helpful&quot; %&gt;% 
+  replace_contraction()
+</code></pre>
+
+<pre><code>## [1] &quot;@united I would thank you - but you did not help. taking 6 hours to reply is not actually helpful&quot;
+</code></pre>
+
+<h4 id="replace-word-elongation"><code>replace_word_elongation</code></h4>
+
+<pre><code class="language-r">&quot;@VirginAmerica heyyyy guyyyys.. :/&quot; %&gt;% 
+  replace_word_elongation()
+</code></pre>
+
+<pre><code>## [1] &quot;@VirginAmerica hey guys.. :/&quot;
+</code></pre>
+
+<pre><code class="language-r">data &lt;- data %&gt;% 
+  mutate(
+    text_clean = text %&gt;% 
+      replace_url() %&gt;% 
+      replace_emoji() %&gt;% 
+      replace_emoticon() %&gt;% 
+      replace_html() %&gt;% 
+      str_remove_all(pattern = mention) %&gt;% 
+      str_remove_all(pattern = hashtag) %&gt;% 
+      replace_contraction() %&gt;% 
+      replace_word_elongation() %&gt;% 
+      str_replace_all(pattern = question, replacement = &quot;questionmark&quot;) %&gt;% 
+      str_replace_all(pattern = exclamation, replacement = &quot;exclamationmark&quot;) %&gt;% 
+      str_remove_all(pattern = punctuation) %&gt;% 
+      str_remove_all(pattern = number) %&gt;% 
+      str_remove_all(pattern = dollar) %&gt;% 
+      str_to_lower() %&gt;% 
+      str_squish()
   )
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">select</span>(text, text_clean) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">sample_n</span>(<span style="color:#ae81ff">20</span>)
-</code></pre></div><pre><code>## # A tibble: 20 x 2
+</code></pre>
+
+<pre><code class="language-r">data %&gt;% 
+  select(text, text_clean) %&gt;% 
+  sample_n(20)
+</code></pre>
+
+<pre><code>## # A tibble: 20 x 2
 ##    text                                text_clean                          
 ##    &lt;chr&gt;                               &lt;chr&gt;                               
 ##  1 @united How can I file a claim whe~ how can i file a claim when your ag~
@@ -769,15 +921,20 @@ dollar
 ## 18 @united care less about the person~ care less about the person although~
 ## 19 @SouthwestAir I was helped by a ni~ i was helped by a nice lady at phx ~
 ## 20 @united we've been here since 3am ~ we have been here since am and you ~
-</code></pre><h3 id="prepare-datainput">prepare datainput</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data <span style="color:#f92672">&lt;-</span> data <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate</span>(label <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(airline_sentiment, levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;negative&#34;</span>, <span style="color:#e6db74">&#34;neutral&#34;</span>, <span style="color:#e6db74">&#34;positive&#34;</span>)),
-         label <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.numeric</span>(label),
-         label <span style="color:#f92672">=</span> label <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">select</span>(text_clean, label) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">na.omit</span>()
-<span style="color:#a6e22e">head</span>(data, <span style="color:#ae81ff">10</span>)
-</code></pre></div><pre><code>## # A tibble: 10 x 2
+</code></pre>
+
+<h3 id="prepare-datainput">prepare datainput</h3>
+
+<pre><code class="language-r">data &lt;- data %&gt;% 
+  mutate(label = factor(airline_sentiment, levels = c(&quot;negative&quot;, &quot;neutral&quot;, &quot;positive&quot;)),
+         label = as.numeric(label),
+         label = label - 1) %&gt;% 
+  select(text_clean, label) %&gt;% 
+  na.omit()
+head(data, 10)
+</code></pre>
+
+<pre><code>## # A tibble: 10 x 2
 ##    text_clean                                                         label
 ##    &lt;chr&gt;                                                              &lt;dbl&gt;
 ##  1 what said                                                              1
@@ -790,30 +947,50 @@ dollar
 ##  8 really missed a prime opportunity for men without hats parody the~     1
 ##  9 well i did not but now i doexclamationmark laughing                    2
 ## 10 it was amazing and arrived an hour early you are too good to me        2
-</code></pre><h2 id="tokenizer">Tokenizer</h2>
-<p>Tokenizer aims to separate each word in the entire document into a token form. The <code>num_words</code> parameter is for setting the maximum number of words to be used, sorted according to the largest frequency order. words that rarely appear will be removed. from a total of 13291 unique words contained in the text data, we reduced it to 1024 which will be used to make the model. The lower parameter is a logic condition, if TRUE then all words will be transformed to lowercase (tolower).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">num_words <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1024</span> 
+</code></pre>
 
-<span style="color:#75715e"># prepare tokenizers</span>
-tokenizer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">text_tokenizer</span>(num_words <span style="color:#f92672">=</span> num_words,
-                            lower <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">fit_text_tokenizer</span>(data<span style="color:#f92672">$</span>text_clean)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;number of unique words:&#34;</span>, <span style="color:#a6e22e">length</span>(tokenizer<span style="color:#f92672">$</span>word_counts))
-</code></pre></div><pre><code>## [1] &quot;number of unique words: 13291&quot;
-</code></pre><h3 id="intuition">Intuition</h3>
+<h2 id="tokenizer">Tokenizer</h2>
+
+<p>Tokenizer aims to separate each word in the entire document into a token form. The <code>num_words</code> parameter is for setting the maximum number of words to be used, sorted according to the largest frequency order. words that rarely appear will be removed. from a total of 13291 unique words contained in the text data, we reduced it to 1024 which will be used to make the model. The lower parameter is a logic condition, if TRUE then all words will be transformed to lowercase (tolower).</p>
+
+<pre><code class="language-r">num_words &lt;- 1024 
+
+# prepare tokenizers
+tokenizer &lt;- text_tokenizer(num_words = num_words,
+                            lower = TRUE) %&gt;% 
+  fit_text_tokenizer(data$text_clean)
+</code></pre>
+
+<pre><code class="language-r">paste(&quot;number of unique words:&quot;, length(tokenizer$word_counts))
+</code></pre>
+
+<pre><code>## [1] &quot;number of unique words: 13291&quot;
+</code></pre>
+
+<h3 id="intuition">Intuition</h3>
+
 <p>Suppose we have 5 pieces of text documents that are stored in the docs object. Then we made a token with a maximum of words / terms used, which is 4. It means that words that rarely appear will not be used during the train model. To see the number of unique words stored in the document dictionary, use the command <code>token$word_counts</code>. To see the list of words with the highest frequency of appearances, use the <code>token$word_index</code> command.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">docs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;Well done!&#39;</span>,
-        <span style="color:#e6db74">&#39;Good work&#39;</span>,
-        <span style="color:#e6db74">&#39;Great effort&#39;</span>,
-        <span style="color:#e6db74">&#39;nice work&#39;</span>,
-        <span style="color:#e6db74">&#39;Excellent!&#39;</span>)
-tokendocs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">text_tokenizer</span>(num_words <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, 
-                            lower <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">fit_text_tokenizer</span>(docs)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;number of unique words&#34;</span>,<span style="color:#a6e22e">length</span>(tokendocs<span style="color:#f92672">$</span>word_counts))
-</code></pre></div><pre><code>## [1] &quot;number of unique words 8&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">tokendocs<span style="color:#f92672">$</span>word_index[1<span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>]
-</code></pre></div><pre><code>## $work
+
+<pre><code class="language-r">docs &lt;- c('Well done!',
+        'Good work',
+        'Great effort',
+        'nice work',
+        'Excellent!')
+tokendocs &lt;- text_tokenizer(num_words = 4, 
+                            lower = TRUE) %&gt;% 
+  fit_text_tokenizer(docs)
+</code></pre>
+
+<pre><code class="language-r">paste(&quot;number of unique words&quot;,length(tokendocs$word_counts))
+</code></pre>
+
+<pre><code>## [1] &quot;number of unique words 8&quot;
+</code></pre>
+
+<pre><code class="language-r">tokendocs$word_index[1:4]
+</code></pre>
+
+<pre><code>## $work
 ## [1] 1
 ## 
 ## $well
@@ -824,129 +1001,169 @@ tokendocs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">t
 ## 
 ## $good
 ## [1] 4
-</code></pre><h2 id="splitting-data">Splitting Data</h2>
+</code></pre>
+
+<h2 id="splitting-data">Splitting Data</h2>
+
 <p>Splitting data will be done into 3 parts, namely train, validation, and test. The proportion is 60% for trains and the remaining 40% is in partitions for data validation and testing.</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/lstm-text/split.PNG" width="70%" style="display: block; margin: auto;" /></p>
+
 <p>Data Train is the data that we will use to train the model. Data Validation for evaluating hyperparameter tuning in models (adjust hidden layers, optimizers, learning rates, etc.). While the test data as an evaluator of the model that we make on <em>unseen data</em>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
-intrain <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">initial_split</span>(data <span style="color:#f92672">=</span> data, prop <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>, strata <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;label&#34;</span>)
 
-data_train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">training</span>(intrain)
-data_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">testing</span>(intrain)
+<pre><code class="language-r">set.seed(100)
+intrain &lt;- initial_split(data = data, prop = 0.8, strata = &quot;label&quot;)
 
-<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
-inval <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">initial_split</span>(data <span style="color:#f92672">=</span> data_test, prop <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, strata <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;label&#34;</span>)
+data_train &lt;- training(intrain)
+data_test &lt;- testing(intrain)
 
-data_val <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">training</span>(inval)
-data_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">testing</span>(inval)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">maxlen <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">str_count</span>(data<span style="color:#f92672">$</span>text_clean, <span style="color:#e6db74">&#34;\\w+&#34;</span>)) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> 
-<span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;maxiumum length words in data:&#34;</span>, maxlen)
-</code></pre></div><pre><code>## [1] &quot;maxiumum length words in data: 90&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># prepare x</span>
-data_train_x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">texts_to_sequences</span>(tokenizer, data_train<span style="color:#f92672">$</span>text_clean) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">pad_sequences</span>(maxlen <span style="color:#f92672">=</span> maxlen)
+set.seed(100)
+inval &lt;- initial_split(data = data_test, prop = 0.5, strata = &quot;label&quot;)
 
-data_val_x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">texts_to_sequences</span>(tokenizer, data_val<span style="color:#f92672">$</span>text_clean) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">pad_sequences</span>(maxlen <span style="color:#f92672">=</span> maxlen)
+data_val &lt;- training(inval)
+data_test &lt;- testing(inval)
+</code></pre>
 
-data_test_x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">texts_to_sequences</span>(tokenizer, data_test<span style="color:#f92672">$</span>text_clean) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">pad_sequences</span>(maxlen <span style="color:#f92672">=</span> maxlen)
+<pre><code class="language-r">maxlen &lt;- max(str_count(data$text_clean, &quot;\\w+&quot;)) + 1 
+paste(&quot;maxiumum length words in data:&quot;, maxlen)
+</code></pre>
 
-<span style="color:#75715e"># prepare y</span>
-data_train_y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">to_categorical</span>(data_train<span style="color:#f92672">$</span>label, num_classes <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
-data_val_y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">to_categorical</span>(data_val<span style="color:#f92672">$</span>label, num_classes <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
-data_test_y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">to_categorical</span>(data_test<span style="color:#f92672">$</span>label, num_classes <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
-</code></pre></div><h3 id="intuition-1">Intuition</h3>
+<pre><code>## [1] &quot;maxiumum length words in data: 90&quot;
+</code></pre>
+
+<pre><code class="language-r"># prepare x
+data_train_x &lt;- texts_to_sequences(tokenizer, data_train$text_clean) %&gt;%
+  pad_sequences(maxlen = maxlen)
+
+data_val_x &lt;- texts_to_sequences(tokenizer, data_val$text_clean) %&gt;%
+  pad_sequences(maxlen = maxlen)
+
+data_test_x &lt;- texts_to_sequences(tokenizer, data_test$text_clean) %&gt;%
+  pad_sequences(maxlen = maxlen)
+
+# prepare y
+data_train_y &lt;- to_categorical(data_train$label, num_classes = 3)
+data_val_y &lt;- to_categorical(data_val$label, num_classes = 3)
+data_test_y &lt;- to_categorical(data_test$label, num_classes = 3)
+</code></pre>
+
+<h3 id="intuition-1">Intuition</h3>
+
 <p>Command <code>texts_to_sequence()</code> aims to create a matrix results of the transformation text to the form of a number sequence (integer). Then wrapped with the command <code>pad_sequences()</code> which aims to equalize the dimensions of the length on the entire document. Imagine the input layer of a matrix, it must have the same row and column. Therefore it is necessary to do <em>padding</em>. By default the value parameter will be set to 0. This means that if there are words that are not in our token (which has been limited by <code>num_words</code>) then it will be transformed to 0. The following is the illustration:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">texts_to_sequences</span>(tokendocs, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Excellent!&#34;</span>, 
-                                <span style="color:#e6db74">&#34;Good job bro, keep hard work&#34;</span>, 
-                                <span style="color:#e6db74">&#34;well done&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">pad_sequences</span>(maxlen <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)
-</code></pre></div><pre><code>##      [,1] [,2] [,3] [,4] [,5]
+
+<pre><code class="language-r">texts_to_sequences(tokendocs, c(&quot;Excellent!&quot;, 
+                                &quot;Good job bro, keep hard work&quot;, 
+                                &quot;well done&quot;)) %&gt;% 
+  pad_sequences(maxlen = 5)
+</code></pre>
+
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    0    0    0    0    0
 ## [2,]    0    0    0    0    1
 ## [3,]    0    0    0    2    3
-</code></pre><p>The result of <code>text_to_sequences</code> is a matrix of size <code>\(n ∗ maxlen\)</code>. The example above consists of 3 text documents and is set to maxlen = 5. it will produce a <code>\(3 \times 5\)</code> matrix which each index is a representative integer of the same words as <code>tokendocs</code> in the i-th list. Recall, the word <code>done</code> is on the 3rd list on our token, right? therefore the matrix result above in the third document and the last integer sequence is 3. Why does it appear in the last index? because in <code>pad_sequences</code> we don&rsquo;t set parameters of the padding type whether &ldquo;pre&rdquo; or &ldquo;post&rdquo; and by default is &ldquo;pre&rdquo;.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">tokendocs<span style="color:#f92672">$</span>word_index[3]
-</code></pre></div><pre><code>## $done
+</code></pre>
+
+<p>The result of <code>text_to_sequences</code> is a matrix of size <code>\(n ∗ maxlen\)</code>. The example above consists of 3 text documents and is set to maxlen = 5. it will produce a <code>\(3 \times 5\)</code> matrix which each index is a representative integer of the same words as <code>tokendocs</code> in the i-th list. Recall, the word <code>done</code> is on the 3rd list on our token, right? therefore the matrix result above in the third document and the last integer sequence is 3. Why does it appear in the last index? because in <code>pad_sequences</code> we don&rsquo;t set parameters of the padding type whether &ldquo;pre&rdquo; or &ldquo;post&rdquo; and by default is &ldquo;pre&rdquo;.</p>
+
+<pre><code class="language-r">tokendocs$word_index[3]
+</code></pre>
+
+<pre><code>## $done
 ## [1] 3
-</code></pre><h2 id="architecture">Architecture</h2>
+</code></pre>
+
+<h2 id="architecture">Architecture</h2>
+
 <h3 id="embedding-layer">Embedding Layer</h3>
+
 <p>Embedding Layers can only be used in the initial / first layer of the LSTM architecture. In a variety of deep learning frameworks such as Keras, the embedding layer aims to train text data into numerical vectors which represent the closeness of the meaning of each word.</p>
-<p>Embedding layer accepts several parameters. Some examples are:</p>
+
+<p>Embedding layer accepts several parameters. Some examples are:
+* <code>input_dim</code>, which is the maximum dimension of the vocabulary that has been explained in the <strong>num_words</strong> section.</p>
+
 <ul>
-<li>
-<p><code>input_dim</code>, which is the maximum dimension of the vocabulary that has been explained in the <strong>num_words</strong> section.</p>
-</li>
-<li>
-<p><code>input_length</code>, the maximum length of the word sequence in the document input.</p>
-</li>
-<li>
-<p><code>output_dim</code> which is the embedding dimension of the output layer which will be passed to the next layer. generally is 32, but can be more dependent on the problem we face.</p>
-</li>
+<li><p><code>input_length</code>, the maximum length of the word sequence in the document input.</p></li>
+
+<li><p><code>output_dim</code> which is the embedding dimension of the output layer which will be passed to the next layer. generally is 32, but can be more dependent on the problem we face.</p></li>
 </ul>
+
 <blockquote>
 <p>Input received of 2D vectors with the form: {batch_size, sequence_length}, while the output received 3D tensor with the forms {batch_size, sequence_length, output_dim}.</p>
 </blockquote>
+
 <h3 id="deep-neural-layer">Deep Neural Layer</h3>
+
 <p>The Deep Network Layer accepts the embedding matrix as input and then is converted into smaller dimensions. The dimensions of the compression results have represented information from the data. In the case of data text, the deep learning architecture commonly used is RNN &gt; LSTM / GRU.</p>
+
 <blockquote>
 <p>you can check the <a href="https://keras.io/preprocessing/sequence/">Keras Documentation</a> for the details sequential layers.</p>
 </blockquote>
-<h3 id="output-layer">Output Layer</h3>
-<p>This output layer is the last layer in the deep learning architecture. At Keras use the layer_dense command where we need to set the unit parameters or how many neurons we want to build. In this case I use 3 units, because there are 3 classes we have (negative, neutral, positive).</p>
-<h3 id="random-initialization">Random Initialization</h3>
-<p>When the neural network / deep learning model train often results in different results. Why? because NN and DL use weigth which is generated randomly (randomness initialization). therefore we need to set the numbers (x-random models) in order to get a fixed result when repeated in the train (reproducible result). this can be done with the seed parameter in the <code>initializer_random_uniform</code> command. for more details, read the question and answer article in <a href="https://keras.rstudio.com/articles/faq.html">Keras studio</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># initiate keras model sequence</span>
-model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">keras_model_sequential</span>()
 
-<span style="color:#75715e"># model</span>
-model <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#75715e"># layer input</span>
-  <span style="color:#a6e22e">layer_embedding</span>(
-    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;input&#34;</span>,
-    input_dim <span style="color:#f92672">=</span> num_words,
-    input_length <span style="color:#f92672">=</span> maxlen,
-    output_dim <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>, 
-    embeddings_initializer <span style="color:#f92672">=</span> <span style="color:#a6e22e">initializer_random_uniform</span>(minval <span style="color:#f92672">=</span> <span style="color:#ae81ff">-0.05</span>, maxval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
-  ) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#75715e"># layer dropout</span>
-  <span style="color:#a6e22e">layer_dropout</span>(
-    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;embedding_dropout&#34;</span>,
-    rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>
-  ) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#75715e"># layer lstm 1</span>
-  <span style="color:#a6e22e">layer_lstm</span>(
-    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lstm&#34;</span>,
-    units <span style="color:#f92672">=</span> <span style="color:#ae81ff">256</span>,
-    dropout <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>,
-    recurrent_dropout <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>,
-    return_sequences <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, 
-    recurrent_initializer <span style="color:#f92672">=</span> <span style="color:#a6e22e">initializer_random_uniform</span>(minval <span style="color:#f92672">=</span> <span style="color:#ae81ff">-0.05</span>, maxval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>),
-    kernel_initializer <span style="color:#f92672">=</span> <span style="color:#a6e22e">initializer_random_uniform</span>(minval <span style="color:#f92672">=</span> <span style="color:#ae81ff">-0.05</span>, maxval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
-  ) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#75715e"># layer output</span>
-  <span style="color:#a6e22e">layer_dense</span>(
-    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;output&#34;</span>,
-    units <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>,
-    activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;softmax&#34;</span>, 
-    kernel_initializer <span style="color:#f92672">=</span> <span style="color:#a6e22e">initializer_random_uniform</span>(minval <span style="color:#f92672">=</span> <span style="color:#ae81ff">-0.05</span>, maxval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+<h3 id="output-layer">Output Layer</h3>
+
+<p>This output layer is the last layer in the deep learning architecture. At Keras use the layer_dense command where we need to set the unit parameters or how many neurons we want to build. In this case I use 3 units, because there are 3 classes we have (negative, neutral, positive).</p>
+
+<h3 id="random-initialization">Random Initialization</h3>
+
+<p>When the neural network / deep learning model train often results in different results. Why? because NN and DL use weigth which is generated randomly (randomness initialization). therefore we need to set the numbers (x-random models) in order to get a fixed result when repeated in the train (reproducible result). this can be done with the seed parameter in the <code>initializer_random_uniform</code> command. for more details, read the question and answer article in <a href="https://keras.rstudio.com/articles/faq.html">Keras studio</a></p>
+
+<pre><code class="language-r"># initiate keras model sequence
+model &lt;- keras_model_sequential()
+
+# model
+model %&gt;%
+  # layer input
+  layer_embedding(
+    name = &quot;input&quot;,
+    input_dim = num_words,
+    input_length = maxlen,
+    output_dim = 32, 
+    embeddings_initializer = initializer_random_uniform(minval = -0.05, maxval = 0.05, seed = 2)
+  ) %&gt;%
+  # layer dropout
+  layer_dropout(
+    name = &quot;embedding_dropout&quot;,
+    rate = 0.5
+  ) %&gt;%
+  # layer lstm 1
+  layer_lstm(
+    name = &quot;lstm&quot;,
+    units = 256,
+    dropout = 0.2,
+    recurrent_dropout = 0.2,
+    return_sequences = FALSE, 
+    recurrent_initializer = initializer_random_uniform(minval = -0.05, maxval = 0.05, seed = 2),
+    kernel_initializer = initializer_random_uniform(minval = -0.05, maxval = 0.05, seed = 2)
+  ) %&gt;%
+  # layer output
+  layer_dense(
+    name = &quot;output&quot;,
+    units = 3,
+    activation = &quot;softmax&quot;, 
+    kernel_initializer = initializer_random_uniform(minval = -0.05, maxval = 0.05, seed = 2)
   )
-</code></pre></div><ul>
+</code></pre>
+
+<ul>
 <li>Dropout parameters are added to reduce the risk of overfit. the range of dropout values between 0 to 1. commonly used is 0.2 to 0.5. the closer to 0 will tend to overfit, while the closer to 1 has the risk of underfit.</li>
 </ul>
+
 <h3 id="compiling-model">Compiling Model</h3>
+
 <p>For two category classes, the lost function used is <code>binary_crossentropy</code> while for multiclass cases it uses <code>categorical_crossentropy</code>. There are not only 2 option, but the most common when working with classification cases, these 2 loss functions are used. Here are some loss function options from <a href="https://keras.io/losses/">Keras Documentation</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># compile the model</span>
-model <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">compile</span>(
-  optimizer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;adam&#34;</span>,
-  metrics <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;accuracy&#34;</span>,
-  loss <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;categorical_crossentropy&#34;</span>
+
+<pre><code class="language-r"># compile the model
+model %&gt;% compile(
+  optimizer = &quot;adam&quot;,
+  metrics = &quot;accuracy&quot;,
+  loss = &quot;categorical_crossentropy&quot;
 )
 
-<span style="color:#75715e"># model summary</span>
-<span style="color:#a6e22e">summary</span>(model)
-</code></pre></div><pre><code>## ___________________________________________________________________________
+# model summary
+summary(model)
+</code></pre>
+
+<pre><code>## ___________________________________________________________________________
 ## Layer (type)                     Output Shape                  Param #     
 ## ===========================================================================
 ## input (Embedding)                (None, 90, 32)                32768       
@@ -961,53 +1178,69 @@ model <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">comp
 ## Trainable params: 329,475
 ## Non-trainable params: 0
 ## ___________________________________________________________________________
-</code></pre><h2 id="train-the-model">Train the Model</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># model fit settings</span>
-epochs <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span>
-batch_size <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">512</span>
+</code></pre>
 
-<span style="color:#75715e"># fit the model</span>
-history <span style="color:#f92672">&lt;-</span> model <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">fit</span>(
+<h2 id="train-the-model">Train the Model</h2>
+
+<pre><code class="language-r"># model fit settings
+epochs &lt;- 10
+batch_size &lt;- 512
+
+# fit the model
+history &lt;- model %&gt;% fit(
   data_train_x, data_train_y,
-  batch_size <span style="color:#f92672">=</span> batch_size, 
-  epochs <span style="color:#f92672">=</span> epochs,
-  verbose <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
-  validation_data <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(
+  batch_size = batch_size, 
+  epochs = epochs,
+  verbose = 1,
+  validation_data = list(
     data_val_x, data_val_y
   )
 )
 
-<span style="color:#75715e"># history plot</span>
-<span style="color:#a6e22e">plot</span>(history)
-</code></pre></div><p><!-- raw HTML omitted --></p>
-<h2 id="model-evaluation">Model Evaluation</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># predict on train</span>
-data_train_pred <span style="color:#f92672">&lt;-</span> model <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">predict_classes</span>(data_train_x) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">as.vector</span>()
-
-<span style="color:#75715e"># predict on val</span>
-data_val_pred <span style="color:#f92672">&lt;-</span> model <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">predict_classes</span>(data_val_x) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">as.vector</span>()
-
-<span style="color:#75715e"># predict on test</span>
-data_test_pred <span style="color:#f92672">&lt;-</span> model <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">predict_classes</span>(data_test_x) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">as.vector</span>()
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># accuracy on data train</span>
-<span style="color:#a6e22e">accuracy_vec</span>(
- truth <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(data_train<span style="color:#f92672">$</span>label,labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;negative&#34;</span>, <span style="color:#e6db74">&#34;neutral&#34;</span>, <span style="color:#e6db74">&#34;positive&#34;</span>)),
- estimate <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(data_train_pred, labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;negative&#34;</span>, <span style="color:#e6db74">&#34;neutral&#34;</span>, <span style="color:#e6db74">&#34;positive&#34;</span>))
-)
-</code></pre></div><pre><code>## [1] 0.8056534
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># accuracy on data test</span>
-<span style="color:#a6e22e">accuracy_vec</span>(
- truth <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(data_test<span style="color:#f92672">$</span>label,labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;negative&#34;</span>, <span style="color:#e6db74">&#34;neutral&#34;</span>, <span style="color:#e6db74">&#34;positive&#34;</span>)),
- estimate <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(data_test_pred, labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;negative&#34;</span>, <span style="color:#e6db74">&#34;neutral&#34;</span>, <span style="color:#e6db74">&#34;positive&#34;</span>))
-)
-</code></pre></div><pre><code>## [1] 0.7895461
+# history plot
+plot(history)
 </code></pre>
+
+<p><img src="/blog/2019-11-12-text-lstm_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
+
+<h2 id="model-evaluation">Model Evaluation</h2>
+
+<pre><code class="language-r"># predict on train
+data_train_pred &lt;- model %&gt;%
+  predict_classes(data_train_x) %&gt;%
+  as.vector()
+
+# predict on val
+data_val_pred &lt;- model %&gt;%
+  predict_classes(data_val_x) %&gt;%
+  as.vector()
+
+# predict on test
+data_test_pred &lt;- model %&gt;%
+  predict_classes(data_test_x) %&gt;%
+  as.vector()
+</code></pre>
+
+<pre><code class="language-r"># accuracy on data train
+accuracy_vec(
+ truth = factor(data_train$label,labels = c(&quot;negative&quot;, &quot;neutral&quot;, &quot;positive&quot;)),
+ estimate = factor(data_train_pred, labels = c(&quot;negative&quot;, &quot;neutral&quot;, &quot;positive&quot;))
+)
+</code></pre>
+
+<pre><code>## [1] 0.8056534
+</code></pre>
+
+<pre><code class="language-r"># accuracy on data test
+accuracy_vec(
+ truth = factor(data_test$label,labels = c(&quot;negative&quot;, &quot;neutral&quot;, &quot;positive&quot;)),
+ estimate = factor(data_test_pred, labels = c(&quot;negative&quot;, &quot;neutral&quot;, &quot;positive&quot;))
+)
+</code></pre>
+
+<pre><code>## [1] 0.7895461
+</code></pre>
+
   </div>
 
   <footer>

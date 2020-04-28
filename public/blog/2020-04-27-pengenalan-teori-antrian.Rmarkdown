@@ -17,7 +17,7 @@ type: post
 ---
 
 <style>
-body { 
+body {
 text-align: justify}
 </style>
 
@@ -38,11 +38,15 @@ library(dplyr)
 library(lubridate)
 ```
 
-<center> ![](/img/pengenalan-teori-antrian/antrian.jpg){width="60%"} </center>
 
-# Introduction{.tabset}
+
+# Introduction
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apakah kamu pernah melihat antrian dalam aktivitas sehari-hari? Pasti kamu pernah melihat banyak sekali kejadian dimana pelanggan menunggu dan membentuk suatu antrian yang panjang untuk dilayani oleh server. Kita tentunya pernah melihat antrian pelanggan yang menunggu untuk dilayani di bank, antrian untuk membeli makanan di restoran, antrian untuk masuk lift, antrian untuk mendapatkan resep obat di rumah sakit, dan masih banyak lagi. Jika kita hitung waktu tunggu untuk dilayani, saya yakin tentunya akan membutuhkan banyak waktu yang cukup lama. Ini bukan masalah baru yang baru-baru ini muncul, tapi masalah lama yang sudah terjadi sejak dulu. **Pelanggan** dapat kita anggap sebagai nasabah bank, pembeli di restoran, pekerja disuatu gedung, atau pasien di rumah sakit. **Server** dapat kita anggap sebagai teller bank, kasir, lift, atau staf medis. Sistem antrian juga dapat membangun jaringan antrian. Kita dapat menggunakan jaringan antrian untuk mengoptimalkan layanan di banyak area layanan dan akan berguna dalam memecahkan sistem masalah dunia nyata. 
+
+<center> <img src="/img/pengenalan-teori-antrian/antrian.jpg" width="60%"> </center>
+
+
 
 ## Training Objective
 
@@ -54,7 +58,7 @@ library(lubridate)
 * *Steady state*
 * Implementasi sistem antrian pada dunia bisnis
 
-<center> ![](/img/pengenalan-teori-antrian/mindmap-queue.png{width="60%"} </center>
+<center>  <img src="/img/pengenalan-teori-antrian/mindmap-queue.png" width="80%"> </center>
 
 ## Terminologi
 
@@ -76,9 +80,10 @@ library(lubridate)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Komponen dasar dari antrian yang perlu dipertimbangkan dalam sistem antrian adalah kedatangan, pelayanan, dan antrian. Kedatangan dapat dikatakan sebagai proses input. Proses input terdiri dari sumber kedatangan atau *calling population* dan cara terjadinya kedatangan atau pola kedatangan di mana biasanya terjadi proses random. Pola kedatangan pelanggan dapat dilihat dari waktu antar kedatangan dua pelanggan yang berurutan (interarrival time). Pola kedatangan pelanggan dalam antrian dapat bersifat deterministik (pasti) ataupun stokastik (acak). Pola kedatangan bersifat deterministik apabila pola kedatangan tetap/tidak berubah dan dapat ditentukan interarrival time serta menghasilkan panjang antrian yang tetap pula. Pelayanan atau mekanisme pelayanan dapat terdiri dari satu atau lebih fasilitas pelayanan. Inti dari suatu proses antrian yaitu terdapat pada terjadinya antri itu sendiri.
 
-```{r, fig.align='center', fig.width=8, out.width="50%", echo =FALSE}
-knitr::include_graphics("/img/pengenalan-teori-antrian/queueing-system.jpg")
-```
+
+<center> <img src="/img/pengenalan-teori-antrian/queueing-system.jpg" width="50%"> </center>
+
+
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ada dua hubungan antara pola kedatangan terhadap waktu, stasioner dan nonstasioner. Stasioner adalah distribusi kedatangan yang tidak tergantung waktu. Nonstasioner adalah distribusi kedatangan yang tergantung waktu[^2].
 
@@ -196,7 +201,8 @@ $$W_S = \frac{L_s}{\lambda}$$ </center>
 
    Sistem antrian ini merupakan sistem antrian yang memiliki satu jalur antrian atau satu server dan satu fase pelayanan. 
    
-<center> ![](img/pengenalan-teori-antrian/scsp.png){width="60%"} </center>
+<center> <img src="/img/pengenalan-teori-antrian/scsp.png" width="60%"> </center>
+   
    
 &nbsp;&nbsp;&nbsp;&nbsp; Formula yang dapat digunakan untuk menghitung ukuran kinerja antriannya yaitu:
    
@@ -214,7 +220,8 @@ $W_q = \frac{\lambda}{\mu(\mu-\lambda)}$ </center>
 
    Desain pelayanan yang memiliki server yang disusun secara paralel yang dialiri oleh satu aliran tunggal. Sistem antrian ini terjadi ketika ada dua atau lebih fasilitas pelayanan yang dialiri oleh satu satu antrian tunggal.
    
-<center> ![](img/pengenalan-teori-antrian/mcsp.png){width="60%"} </center>
+<center> <img src="/img/pengenalan-teori-antrian/mcsp.png" width="60%"> </center>   
+
    
 &nbsp;&nbsp;&nbsp;&nbsp; Formula yang dapat digunakan untuk menghitung ukuran kinerja antriannya yaitu:
    
@@ -231,14 +238,17 @@ $$W_q = \frac{P_0}{\mu c(c!)[1-\frac{\lambda}{\mu}]^2}(\frac{\lambda}{\mu})c$$ <
 3. Single channel-multi phase
 
    Sistem antrian ini merupakan tipe atau model antrian yang memiliki satu jalur antrian dan beberapa fase pelayanan yang disusun secara seri. Desain pelayanan seperti ini biasanya diterapkan pada pelayanan perpanjangan surat ijin mengemudi (SIM) dan pelayanan pembuatan pasport. Biasanya pada struktur antrian jenis ini terdapat beberapa loket yang tersusun secara seri yang harus dilewati oleh pelanggan hingga pelayanannya selesai. 
-   
-<center> ![](img/pengenalan-teori-antrian/scmp.png){width="60%"} </center>
+
+<center> <img src="/img/pengenalan-teori-antrian/scmp.png" width="60%"> </center>   
+
+
    
 4. Multi channel-multi phase
 
    Sistem antrian ini memiliki antrian tunggal yang melewati beberapa jalur server yang tersusun secara paralel dan tiap jalur server terdapat beberapa server yang tersusun secara seri. Contohnya adalah pada pendaftaran pasien di rumah sakit, dimana pasien yang mendaftar di rumah sakit menuju loket pendaftaran di mana biasanya terdiri dari beberapa loket kemudian pasien melanjutkan proses antriannya menuju klinik yang diinginkan. 
-   
-<center> ![](img/pengenalan-teori-antrian/mcmp.png){width="60%"} </center>
+
+<center> <img src="/img/pengenalan-teori-antrian/mcmp.png" width="60%"> </center>   
+
 
 # Distribusi Poisson
 
@@ -246,6 +256,8 @@ $$W_q = \frac{P_0}{\mu c(c!)[1-\frac{\lambda}{\mu}]^2}(\frac{\lambda}{\mu})c$$ <
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Suatu nilai diskrit dikatakan berdistribusi Poisson dengan parameter $\lambda > 0$ jika memiliki fungsi peluang sebagai berikut:
+
+
 
 <center> $$f(x; \lambda) = \frac{e^{-\lambda}\lambda ^x}{x!}$$  dengan x = 1,2,3,... </center>
 

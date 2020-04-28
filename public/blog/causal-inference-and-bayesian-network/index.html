@@ -24,7 +24,7 @@
         "datePublished": "2018-07-26 00:00:00 \x2b0000 UTC",
         "dateModified" : "2018-07-26 00:00:00 \x2b0000 UTC",
         "url" : "\/blog\/causal-inference-and-bayesian-network\/",
-        "wordCount" : "2891",
+        "wordCount" : "2913",
         "keywords" : [ "Bayesian","Causal Inference","Machine Learning","Blog" ]
     }
     </script>
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.2" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
 
 
@@ -62,24 +62,28 @@ Do we jump to conclusion of causal relationship often too quickly?
 Can association between factors that we call mathematically &ldquo;correlation&rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&rsquo;t mean it affects each other." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/causal-inference-and-bayesian-network/" />
-<meta property="article:published_time" content="2018-07-26T00:00:00+00:00" />
-<meta property="article:modified_time" content="2018-07-26T00:00:00+00:00" />
+<meta property="article:published_time" content="2018-07-26T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-07-26T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        <meta itemprop="name" content="Causal Inference and Bayesian Network">
+        
+<meta itemprop="name" content="Causal Inference and Bayesian Network">
 <meta itemprop="description" content="Introduction Cause has been people&rsquo;s curiosity for a long time, you can see that people often ask &ldquo;Why&rdquo; to things happening around them. But do we actually know how to explain &ldquo;cause&rdquo;?
 Do we jump to conclusion of causal relationship often too quickly?
 Can association between factors that we call mathematically &ldquo;correlation&rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&rsquo;t mean it affects each other.">
+
+
 <meta itemprop="datePublished" content="2018-07-26T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-07-26T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2891">
+<meta itemprop="wordCount" content="2913">
 
 
 
 <meta itemprop="keywords" content="Bayesian,Causal Inference,Machine Learning," />
+
         
 
         
@@ -328,7 +332,7 @@ Can association between factors that we call mathematically &ldquo;correlation&r
         
 
         <a href="/blog/text-lime/" class="image featured">
-            <img src="/date2020/03/lime.png" alt="">
+            <img src="/img/2020/03/lime.png" alt="">
         </a>
     
 
@@ -520,185 +524,234 @@ Can association between factors that we call mathematically &ldquo;correlation&r
 
 
   <div id="content">
-    <h1 id="introduction">Introduction</h1>
+    
+
+<h1 id="introduction">Introduction</h1>
+
 <p>Cause has been people&rsquo;s curiosity for a long time, you can see that people often ask &ldquo;Why&rdquo; to things happening around them.
-But do we actually know how to explain &ldquo;cause&rdquo;?<br>
-Do we jump to conclusion of causal relationship often too quickly?<br>
+But do we actually know how to explain &ldquo;cause&rdquo;?<br />
+Do we jump to conclusion of causal relationship often too quickly?<br />
 Can association between factors that we call mathematically &ldquo;correlation&rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&rsquo;t mean it affects each other.</p>
-<p><!-- raw HTML omitted --></p>
-<p>Sometimes we tend to quickly &ldquo;judge&rdquo; consequences of action, whether  it is strong or weak, such as &ldquo;the new rule causes riot&rdquo;, &ldquo;the president&rsquo;s opinion affected public perception of him&rdquo;, or &ldquo;chemical X has been linked to cancer&rdquo;.<br>
-In recent years, diverse fields begin to use &ldquo;evidence-based&rdquo; decision - that knowledge of <em>outcomes</em>, gathered from scientific studies and other empirical sources, should inform our choices, and we expect that these <em>choices will cause the desired results</em>. But conducting ideal experiments are expensive and hard, and often we cannot make sure the experiments result will match reality.<br>
+
+<p><img src="/img/causalinference/correlation.jpg" style="display: block; margin: auto;" /></p>
+
+<p>Sometimes we tend to quickly &ldquo;judge&rdquo; consequences of action, whether  it is strong or weak, such as &ldquo;the new rule causes riot&rdquo;, &ldquo;the president&rsquo;s opinion affected public perception of him&rdquo;, or &ldquo;chemical X has been linked to cancer&rdquo;.<br />
+In recent years, diverse fields begin to use &ldquo;evidence-based&rdquo; decision - that knowledge of <em>outcomes</em>, gathered from scientific studies and other empirical sources, should inform our choices, and we expect that these <em>choices will cause the desired results</em>. But conducting ideal experiments are expensive and hard, and often we cannot make sure the experiments result will match reality.<br />
 Nowadays, maybe causation is no longer a concern as tons of data and huge computing power allow us to make a model with such high accuracy, precision, and sensitivity. The thinking goes, if our model is representative for millions of cases in our data, our model already explains enough even if we don&rsquo;t know how or why. But we have to remember that models use a lot of correlation between variables.</p>
-<p>Truth be told, causation is rarely as simple as we tend to assume and its complexities are often under-rated. This is a serious business as misunderstanding causal links can result in ineffective actions being chosen, harmful practices perpetuated, and beneficial alternatives overlooked. Understanding causation as best as we can is absolutely neccesary for interpreting data, whether big or small.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> In the first part of this session I will try to share some facts about causation.</p>
+
+<p>Truth be told, causation is rarely as simple as we tend to assume and its complexities are often under-rated. This is a serious business as misunderstanding causal links can result in ineffective actions being chosen, harmful practices perpetuated, and beneficial alternatives overlooked. Understanding causation as best as we can is absolutely neccesary for interpreting data, whether big or small.<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> In the first part of this session I will try to share some facts about causation.</p>
+
 <h1 id="what-is-causal-inference">What is Causal Inference?</h1>
-<p>Before talking about causal inference, we need to understand first about causation. Causation is defined as &ldquo;something that makes a difference, and the difference it makes must be a difference from what would have happened without it&rdquo; <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-<p>As Wikipedia said, causal inference is the process of drawing a conclusion about a causal connection based on the conditions of the occurrence of an effect. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
-<p>A few things to note about causal inference:<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+
+<p>Before talking about causal inference, we need to understand first about causation. Causation is defined as &ldquo;something that makes a difference, and the difference it makes must be a difference from what would have happened without it&rdquo; <sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup></p>
+
+<p>As Wikipedia said, causal inference is the process of drawing a conclusion about a causal connection based on the conditions of the occurrence of an effect. <sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup></p>
+
+<p>A few things to note about causal inference:<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup></p>
+
 <ol>
-<li>
-<p>Seeing vs doing (There is no causation without manipulation)
-Let&rsquo;s say we see from data that plant&rsquo;s growth is highly correlated with sun light intensity. But, we cannot quickly conclude that light affects plant growth, as we only <em>see</em> that light and growth correlate. To prove that light affects plant growth, we need to conduct an experiment where we can <em>manipulate</em> the light intensity. If after we collect some data of the experiment we see that the correlation is still high, then we can more safely say that light affects growth.</p>
-</li>
-<li>
-<p>If X causes Y, does not mean Y wouldn&rsquo;t exist if X does not happen. It is just if X changed, Y will change accordingly.<br>
-Example : Fertilizer affects grass growth, but does not mean grass cannot grow at all when there is no fertilizer.</p>
-</li>
-<li>
-<p>If you know that, on average, A causes B and B causes C, this does not mean that you know that A causes C.
+<li><p>Seeing vs doing (There is no causation without manipulation)
+Let&rsquo;s say we see from data that plant&rsquo;s growth is highly correlated with sun light intensity. But, we cannot quickly conclude that light affects plant growth, as we only <em>see</em> that light and growth correlate. To prove that light affects plant growth, we need to conduct an experiment where we can <em>manipulate</em> the light intensity. If after we collect some data of the experiment we see that the correlation is still high, then we can more safely say that light affects growth.</p></li>
+
+<li><p>If X causes Y, does not mean Y wouldn&rsquo;t exist if X does not happen. It is just if X changed, Y will change accordingly.<br />
+Example : Fertilizer affects grass growth, but does not mean grass cannot grow at all when there is no fertilizer.</p></li>
+
+<li><p>If you know that, on average, A causes B and B causes C, this does not mean that you know that A causes C.
 It depends on condition of each happenings.
-Example is :<br>
-If I feel hungry, I will eat.<br>
-If I eat, I will be full.<br>
-But, we cannot conclude If I feel hungry, I will be full.</p>
-</li>
-<li>
-<p>X can cause Y even if there is no &ldquo;causal path&rdquo; connecting X and Y. 
-Think of it like you want to cook, but somebody call you and make you distracted thus the food burned out. That somebody &ldquo;contributes&rdquo; the food to burn out.</p>
-</li>
-<li>
-<p>Correlation <em>does not</em> imply causation.<br>
-Back to example in the introduction.</p>
-</li>
+Example is :<br />
+If I feel hungry, I will eat.<br />
+If I eat, I will be full.<br />
+But, we cannot conclude If I feel hungry, I will be full.</p></li>
+
+<li><p>X can cause Y even if there is no &ldquo;causal path&rdquo; connecting X and Y.
+Think of it like you want to cook, but somebody call you and make you distracted thus the food burned out. That somebody &ldquo;contributes&rdquo; the food to burn out.</p></li>
+
+<li><p>Correlation <em>does not</em> imply causation.<br />
+Back to example in the introduction.</p></li>
 </ol>
-<p><!-- raw HTML omitted --></p>
-<p>Let&rsquo;s say that we believe in the power of correlation and believe that there might be causal relationship between number of divorce in Maine and margarine consumption. But then we still questions to answer :<br>
-i. In what direction the causation happens? Number of divorce affects margarine consumption or margarine consumption affects number of divorce?<br>
-ii. To answer number one, and validate causation using manipulation, there have to be experiment/change of condition. For example, if there is trend change in which majority of people reduce margarine consumption, will divorce rate plummet too? Or if people in Maine are influenced to maintaining harmonious marriage, will the consumption of margarine go down too?<br>
+
+<p><img src="/img/causalinference/correlation.jpg" style="display: block; margin: auto;" /></p>
+
+<p>Let&rsquo;s say that we believe in the power of correlation and believe that there might be causal relationship between number of divorce in Maine and margarine consumption. But then we still questions to answer :<br />
+  i. In what direction the causation happens? Number of divorce affects margarine consumption or margarine consumption affects number of divorce?<br />
+  ii. To answer number one, and validate causation using manipulation, there have to be experiment/change of condition. For example, if there is trend change in which majority of people reduce margarine consumption, will divorce rate plummet too? Or if people in Maine are influenced to maintaining harmonious marriage, will the consumption of margarine go down too?<br />
 Well, so causation alone is not enough to explain causation.</p>
-<p>Aside from above example (spurious correlation), I will introduce you to Simpson&rsquo;s Paradox. Simpson&rsquo;s paradox is the fact that the correlation between two variables can actually be reversed when additional factors are considered. So two variables which appear correlated can become anticorrelated when another factor is taken into account.<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup><sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+
+<p>Aside from above example (spurious correlation), I will introduce you to Simpson&rsquo;s Paradox. Simpson&rsquo;s paradox is the fact that the correlation between two variables can actually be reversed when additional factors are considered. So two variables which appear correlated can become anticorrelated when another factor is taken into account.<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup><sup class="footnote-ref" id="fnref:12"><a href="#fn:12">6</a></sup></p>
+
 <p>See this example:</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/causalinference/simpson.jpg" style="display: block; margin: auto;" /></p>
+
 <p>If you see these table, and asked, which treatment was better, what will you answer? Without considering gender, drug treatment looks better but when we take gender into consideration non-drug treatment looks better.</p>
-<p>Judea Pearl,a computer scientist who is championing probabilistic approach to artificial intelligence, proposed solutions to this problem:<br>
-&ldquo;do-calculus&rdquo; (or causal calculus).<br>
-Do-calculus is a mathematical approach to learn probabilistic relation in manipulated events. It is done by inspecting graphical causal relations and Bayesian probability of events and adding some extra assumptions. I won&rsquo;t discuss about it now, but you can learn it in some resources.<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
+
+<p>Judea Pearl,a computer scientist who is championing probabilistic approach to artificial intelligence, proposed solutions to this problem:<br />
+&ldquo;do-calculus&rdquo; (or causal calculus).<br />
+Do-calculus is a mathematical approach to learn probabilistic relation in manipulated events. It is done by inspecting graphical causal relations and Bayesian probability of events and adding some extra assumptions. I won&rsquo;t discuss about it now, but you can learn it in some resources.<sup class="footnote-ref" id="fnref:6"><a href="#fn:6">7</a></sup></p>
+
 <p>Now, let&rsquo;s discuss some real debate regarding correlation. So there was a high correlation between smoking and lung cancer, and people thought smoking causes lung cancer. However, some people argued against this and think there may be some hidden factor (genetic traits maybe?) which contribute to person&rsquo;s tendency to smoking and his high probability developing a cancer.</p>
-<p><!-- raw HTML omitted --></p>
-<p>Randomized experiment can help resolve this. Make an experiment where people are forced to smoke and record how much of them develop lung cancer. But, this kind of experiment is illegal, so usually we resort to the mathematical &ldquo;do-calculus&rdquo;.<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
-<h1 id="causal-inference-in-machine-learning--bayesian-network">Causal Inference in Machine Learning : Bayesian Network</h1>
-<p>When we have a decent causal relations of something, we can have an unsupervised (or seldom supervised) called Bayesian Network. 
-Bayesian Network is a way we represent probability distribution in a graph, to be specific Directed Acyclic Graph.<br>
-An interactive example : here<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup><br>
+
+<p><img src="/img/causalinference/smoking_basic_causal_model.png" style="display: block; margin: auto;" /></p>
+
+<p>Randomized experiment can help resolve this. Make an experiment where people are forced to smoke and record how much of them develop lung cancer. But, this kind of experiment is illegal, so usually we resort to the mathematical &ldquo;do-calculus&rdquo;.<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup></p>
+
+<h1 id="causal-inference-in-machine-learning-bayesian-network">Causal Inference in Machine Learning : Bayesian Network</h1>
+
+<p>When we have a decent causal relations of something, we can have an unsupervised (or seldom supervised) called Bayesian Network.
+Bayesian Network is a way we represent probability distribution in a graph, to be specific Directed Acyclic Graph.<br />
+An interactive example : here<sup class="footnote-ref" id="fnref:7"><a href="#fn:7">8</a></sup><br />
 Here you can see how things have far-impacting capability and it is based on data.</p>
+
 <h2 id="usage-and-plus-of-bayesian-network">Usage and Plus of Bayesian Network</h2>
+
 <p>To give you motivation to learn this, I&rsquo;m going to introduce what is the use of Bayesian Network.</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/causalinference/use_bn.png" style="display: block; margin: auto;" /></p>
+
 <p>So, Bayesian Network can be used for prediction, anomaly detection, decision making, etc.</p>
-<p>There are benefits to using BNs compared to other unsupervised machine learning techniques. A few of these benefits are: <sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup></p>
-<ol>
-<li>It is easy to exploit expert knowledge in BN models.</li>
-<li>BN models have been found to be very robust in the sense of<br>
-i) noisy data,<br>
-ii) missing data and<br>
-iii) sparse data.</li>
-<li>Unlike many machine learning models (including Artificial Neural Network), which usually appear as a &ldquo;black box,&rdquo; all the parameters in BNs have an understandable semantic interpretation.</li>
-</ol>
+
+<p>There are benefits to using BNs compared to other unsupervised machine learning techniques. A few of these benefits are: <sup class="footnote-ref" id="fnref:8"><a href="#fn:8">9</a></sup><br />
+1. It is easy to exploit expert knowledge in BN models.<br />
+2. BN models have been found to be very robust in the sense of<br />
+    i) noisy data,<br />
+    ii) missing data and<br />
+    iii) sparse data.<br />
+3. Unlike many machine learning models (including Artificial Neural Network), which usually appear as a &ldquo;black box,&rdquo; all the parameters in BNs have an understandable semantic interpretation.</p>
+
 <h2 id="before-jumping-in-probability">Before Jumping In, Probability</h2>
-<p>I will introduce you some terms of probability</p>
-<ol>
-<li>Marginal probability : it is probability of an event that we calculate considering the supporting factors.</li>
-<li>Join probability : probability of 2 or more events happening in the same time.</li>
-<li>Conditional probability: probability of and event happening given another event has happened</li>
-</ol>
-<p>Bayes rule can be interpreted as a learning/inference mechanism, i.e., what is the new probability of having cancer after we have known the evidence, ie, that the test as been positive. In this interpretation, the probabilities are named as follows:<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup></p>
-<ol>
-<li>P(C), <em>the prior probability</em> (what we know before the evidence)</li>
-<li>P(+|C), the <em>likelihood</em> of the data given the hypothesis</li>
-<li>P(+), <em>the evidence</em> (the marginal probability of the test is positive)</li>
-<li>P(C|+), <em>the posterior probability</em>, the new belief after the evidence is processed</li>
-</ol>
+
+<p>I will introduce you some terms of probability<br />
+1. Marginal probability : it is probability of an event that we calculate considering the supporting factors.<br />
+2. Join probability : probability of 2 or more events happening in the same time.<br />
+3. Conditional probability: probability of and event happening given another event has happened</p>
+
+<p>Bayes rule can be interpreted as a learning/inference mechanism, i.e., what is the new probability of having cancer after we have known the evidence, ie, that the test as been positive. In this interpretation, the probabilities are named as follows:<sup class="footnote-ref" id="fnref:9"><a href="#fn:9">10</a></sup><br />
+1. P&copy;, <em>the prior probability</em> (what we know before the evidence)<br />
+2. P(+|C), the <em>likelihood</em> of the data given the hypothesis<br />
+3. P(+), <em>the evidence</em> (the marginal probability of the test is positive)<br />
+4. P(C|+), <em>the posterior probability</em>, the new belief after the evidence is processed</p>
+
 <h2 id="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</h2>
-<p>To understand BN, first we need to understand about graph.<sup id="fnref:11"><a href="#fn:11" class="footnote-ref" role="doc-noteref">11</a></sup>
+
+<p>To understand BN, first we need to understand about graph.<sup class="footnote-ref" id="fnref:13"><a href="#fn:13">11</a></sup>
 If we want to say A causes B, we draw a graph like this: A-&gt;B
 It is a directed graph because we need to specify the direction of the line connecting, as A-&gt;B is different with A&lt;-B.
 Acyclic means there is no cycle in the graph. For example look at this graph:</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="/img/causalinference/graph_with_loops.png" style="display: block; margin: auto;" /></p>
+
 <p>In this cyclic graph , we have X causes Y causes Z causes X, which is nonsense. Thus, we must have acyclic graph.</p>
+
 <p>Note : X,Y,Z are called node, and the arrows are called arc/edge.</p>
+
 <h2 id="connections">Connections</h2>
-<p><!-- raw HTML omitted --></p>
-<p>Suppose we have the above DAG. We are going to learn some of important terms to explain the connections between the nodes.</p>
-<ul>
-<li>We see that A -&gt; E. Here, we can say that A is the parent of E and E is the descendant of A.</li>
-<li>Every node <em>depends</em> only on its parents.</li>
-<li>Mainly there are three types of connection between 3 nodes:<sup id="fnref:12"><a href="#fn:12" class="footnote-ref" role="doc-noteref">12</a></sup><br>
-a. Serial connection, e.g. A -&gt; E -&gt; O<br>
-Example : Burglary -&gt; Alarm -&gt; Call Police<br>
-In this kind of connection, information of <code>Burglary</code> will affect the probability of <code>Alarm</code> and <code>Call Police</code>, and information of <code>Call Police</code> will affect the our belief of <code>Alarm</code> and <code>Burglary</code>. However, when we know information of <code>Alarm</code>, additional knowledge about <code>Burglary</code> does not improve the probability of <code>Call Police</code> and vice versa.<br>
-Thus the proposition goes : information may flow through a
-serial connection X -&gt; Y -&gt; Z unless the state of Y is known.<br>
-b. Divergent connection, e.g. O &lt;- E -&gt; R<br>
-Example : Alarm &lt;- Earthquake -&gt; News<br>
-In this kind of connection, information of <code>Alarm</code> will affect the probability of <code>Earthquake</code> and <code>News</code>, vice versa. However, when we know information of <code>Earthquake</code>, additional knowledge about <code>Alarm</code> does not improve the probability of <code>News</code> and vice versa.<br>
-Similar to serial connection, the proposition goes : information may flow through a serial connection X &lt;- Y -&gt; Z unless the state of Y is known.<br>
-c. Convergent connection, e.g. A -&gt; E &lt;- S (also referred to as a v-structure)<br>
-Example : Burglary -&gt; Alarm &lt;- Earthquake<br>
-In this kind of connection, if we have no info about <code>Alarm </code>, known info about <code>Burglary</code> will not improve our knowledge on <code>Earthquake</code> and vice versa. However, if we have info about <code>Alarm</code>, info about <code>Burglary</code> will affect probability of <code>Earthquake</code> and vice versa.<br>
-This connection is the opposite of divergent and serial connections. For this connection the proposition goes :information may flow through a converging connection X -&gt; Y &lt;- Z if evidence on Y or one of its descendants is available.</li>
-</ul>
+
+<p><img src="/img/causalinference/graph.jpg" style="display: block; margin: auto;" /></p>
+
+<p>Suppose we have the above DAG. We are going to learn some of important terms to explain the connections between the nodes.<br />
+- We see that A -&gt; E. Here, we can say that A is the parent of E and E is the descendant of A.<br />
+- Every node <em>depends</em> only on its parents.<br />
+- Mainly there are three types of connection between 3 nodes:<sup class="footnote-ref" id="fnref:10"><a href="#fn:10">12</a></sup><br />
+  a. Serial connection, e.g. A -&gt; E -&gt; O<br />
+      Example : Burglary -&gt; Alarm -&gt; Call Police<br />
+      In this kind of connection, information of <code>Burglary</code> will affect the probability of <code>Alarm</code> and <code>Call Police</code>, and information of <code>Call Police</code> will affect the our belief of <code>Alarm</code> and <code>Burglary</code>. However, when we know information of <code>Alarm</code>, additional knowledge about <code>Burglary</code> does not improve the probability of <code>Call Police</code> and vice versa.<br />
+      Thus the proposition goes : information may flow through a
+serial connection X -&gt; Y -&gt; Z unless the state of Y is known.<br />
+  b. Divergent connection, e.g. O &lt;- E -&gt; R<br />
+      Example : Alarm &lt;- Earthquake -&gt; News<br />
+      In this kind of connection, information of <code>Alarm</code> will affect the probability of <code>Earthquake</code> and <code>News</code>, vice versa. However, when we know information of <code>Earthquake</code>, additional knowledge about <code>Alarm</code> does not improve the probability of <code>News</code> and vice versa.<br />
+      Similar to serial connection, the proposition goes : information may flow through a serial connection X &lt;- Y -&gt; Z unless the state of Y is known.<br />
+  c. Convergent connection, e.g. A -&gt; E &lt;- S (also referred to as a v-structure)<br />
+      Example : Burglary -&gt; Alarm &lt;- Earthquake<br />
+      In this kind of connection, if we have no info about <code>Alarm</code>, known info about <code>Burglary</code> will not improve our knowledge on <code>Earthquake</code> and vice versa. However, if we have info about <code>Alarm</code>, info about <code>Burglary</code> will affect probability of <code>Earthquake</code> and vice versa.<br />
+      This connection is the opposite of divergent and serial connections. For this connection the proposition goes :information may flow through a converging connection X -&gt; Y &lt;- Z if evidence on Y or one of its descendants is available.</p>
+
 <h2 id="r-implementation">R Implementation</h2>
+
 <p>Actually you can have continous and discrete data on this model but to make it easier we will look into binary discrete data ( discrete data with 2 categories).
 To implement Bayesian Network in R we need to use <code>gRain</code> package
 and to make graph we need <code>Rgraphviz</code> package</p>
+
 <p>Let&rsquo;s say we have a case of a disease and two tests.
 We say test is negative if there is no evidence of disease, and vice versa.
-After gathering some data, we know that:</p>
-<ol>
-<li>Probability of acquiring disease is 0.01</li>
-<li>Probability of positive on test 1 given tested has disease is 0.9</li>
-<li>Probability of positive on test 1 given tested has no disease is 0.15</li>
-<li>Probability of positive on test 2 given tested has disease is 0.95</li>
-<li>Probability of positive on test 2 given tested has no disease is 0.2</li>
-</ol>
-<p>Or in math terms:</p>
-<ol>
-<li>P(D)=0.01 ; P(~D)=0.99</li>
-<li>P(T1=+|D)=0.9 ; P(T1=-|D)=0.1</li>
-<li>P(T1=+|~D)=0.15 ; P(T1=-|~D)=0.85</li>
-<li>P(T2=+|D)=0.95 ; P(T2=-|D)=0.05</li>
-<li>P(T2=+|~D)=0.2 ; P(T2=-|~D)=0.8</li>
-</ol>
+After gathering some data, we know that:
+1. Probability of acquiring disease is 0.01<br />
+2. Probability of positive on test 1 given tested has disease is 0.9<br />
+3. Probability of positive on test 1 given tested has no disease is 0.15<br />
+4. Probability of positive on test 2 given tested has disease is 0.95<br />
+5. Probability of positive on test 2 given tested has no disease is 0.2</p>
+
+<p>Or in math terms:<br />
+1. P(D)=0.01 ; P(~D)=0.99<br />
+2. P(T1=+|D)=0.9 ; P(T1=-|D)=0.1<br />
+3. P(T1=+|~D)=0.15 ; P(T1=-|~D)=0.85<br />
+4. P(T2=+|D)=0.95 ; P(T2=-|D)=0.05<br />
+5. P(T2=+|~D)=0.2 ; P(T2=-|~D)=0.8</p>
+
 <p>First, we have to make assumption about the plausible causal relations between the variables. The plausible one will be, presence of disease affects the result of test. So, the DAG would be:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">disease.dag<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">dag</span>(<span style="color:#f92672">~</span>D<span style="color:#f92672">:</span>T1<span style="color:#f92672">:</span>T2)
-<span style="color:#a6e22e">plot</span>(disease.dag)
-</code></pre></div><p><!-- raw HTML omitted --></p>
+
+<pre><code class="language-r">disease.dag&lt;-dag(~D:T1:T2)
+plot(disease.dag)
+</code></pre>
+
+<p><img src="/blog/2018-07-26-causal-inference-and-bayesian-network_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+
 <p>Now we are going to make the Bayesian Network model</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># the possible values (all nodes are boolean vars - discrete with two category)</span>
-yn <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;yes&#34;</span>,<span style="color:#e6db74">&#34;no&#34;</span>)
 
-<span style="color:#75715e"># specify the CPTs</span>
-node.D <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cptable</span>(<span style="color:#f92672">~</span> D, values<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">99</span>), levels<span style="color:#f92672">=</span>yn)
-node.T1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cptable</span>(<span style="color:#f92672">~</span> T1 <span style="color:#f92672">+</span> D, values<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">85</span>), levels<span style="color:#f92672">=</span>yn)
-node.T2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cptable</span>(<span style="color:#f92672">~</span> T2 <span style="color:#f92672">+</span> D, values<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">95</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">8</span>), levels<span style="color:#f92672">=</span>yn)
+<pre><code class="language-r"># the possible values (all nodes are boolean vars - discrete with two category)
+yn &lt;- c(&quot;yes&quot;,&quot;no&quot;)
+
+# specify the CPTs
+node.D &lt;- cptable(~ D, values=c(1, 99), levels=yn)
+node.T1 &lt;- cptable(~ T1 + D, values=c(9,1,15,85), levels=yn)
+node.T2 &lt;- cptable(~ T2 + D, values=c(95,5,2,8), levels=yn)
 
 
-<span style="color:#75715e"># create an intermediate representation of the CPTs</span>
-plist <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">compileCPT</span>(<span style="color:#a6e22e">list</span>(node.D, node.T1, node.T2))
+# create an intermediate representation of the CPTs
+plist &lt;- compileCPT(list(node.D, node.T1, node.T2))
 plist
-</code></pre></div><pre><code>#&gt; CPTspec with probabilities:
+</code></pre>
+
+<pre><code>#&gt; CPTspec with probabilities:
 #&gt;  P( D )
 #&gt;  P( T1 | D )
 #&gt;  P( T2 | D )
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#kind of prop table</span>
-plist<span style="color:#f92672">$</span>D
-</code></pre></div><pre><code>#&gt; D
+</code></pre>
+
+<pre><code class="language-r">#kind of prop table
+plist$D
+</code></pre>
+
+<pre><code>#&gt; D
 #&gt;  yes   no 
 #&gt; 0.01 0.99 
 #&gt; attr(,&quot;class&quot;)
 #&gt; [1] &quot;parray&quot; &quot;array&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create network</span>
-bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">grain</span>(plist)
-<span style="color:#a6e22e">summary</span>(bn.disease)
-</code></pre></div><pre><code>#&gt; Independence network: Compiled: FALSE Propagated: FALSE 
-#&gt;  Nodes : chr [1:3] &quot;D&quot; &quot;T1&quot; &quot;T2&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">bn.disease
-</code></pre></div><pre><code>#&gt; Independence network: Compiled: FALSE Propagated: FALSE 
-#&gt;   Nodes: chr [1:3] &quot;D&quot; &quot;T1&quot; &quot;T2&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#We can gain the probability of events using query</span>
+</code></pre>
 
-<span style="color:#75715e">#if we want to see the marginal probability (probability of individual event) of each node</span>
-<span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;T1&#34;</span>, <span style="color:#e6db74">&#34;T2&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;marginal&#34;</span>)
-</code></pre></div><pre><code>#&gt; $D
+<pre><code class="language-r"># create network
+bn.disease &lt;- grain(plist)
+summary(bn.disease)
+</code></pre>
+
+<pre><code>#&gt; Independence network: Compiled: FALSE Propagated: FALSE 
+#&gt;  Nodes : chr [1:3] &quot;D&quot; &quot;T1&quot; &quot;T2&quot;
+</code></pre>
+
+<pre><code class="language-r">bn.disease
+</code></pre>
+
+<pre><code>#&gt; Independence network: Compiled: FALSE Propagated: FALSE 
+#&gt;   Nodes: chr [1:3] &quot;D&quot; &quot;T1&quot; &quot;T2&quot;
+</code></pre>
+
+<pre><code class="language-r">#We can gain the probability of events using query
+
+#if we want to see the marginal probability (probability of individual event) of each node
+querygrain(bn.disease, nodes=c(&quot;D&quot;, &quot;T1&quot;, &quot;T2&quot;), type=&quot;marginal&quot;)
+</code></pre>
+
+<pre><code>#&gt; $D
 #&gt; D
 #&gt;  yes   no 
 #&gt; 0.01 0.99 
@@ -712,9 +765,13 @@ bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 #&gt; T2
 #&gt;    yes     no 
 #&gt; 0.2075 0.7925
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#or</span>
-<span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;T1&#34;</span>, <span style="color:#e6db74">&#34;T2&#34;</span>))
-</code></pre></div><pre><code>#&gt; $D
+</code></pre>
+
+<pre><code class="language-r">#or
+querygrain(bn.disease, nodes=c(&quot;D&quot;, &quot;T1&quot;, &quot;T2&quot;))
+</code></pre>
+
+<pre><code>#&gt; $D
 #&gt; D
 #&gt;  yes   no 
 #&gt; 0.01 0.99 
@@ -728,23 +785,37 @@ bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 #&gt; T2
 #&gt;    yes     no 
 #&gt; 0.2075 0.7925
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># or if we want to see joint probability (probability of 2 or more events happening), for example P(D,T1)</span>
-<span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;T1&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;joint&#34;</span>)
-</code></pre></div><pre><code>#&gt;      T1
+</code></pre>
+
+<pre><code class="language-r"># or if we want to see joint probability (probability of 2 or more events happening), for example P(D,T1)
+querygrain(bn.disease, nodes=c(&quot;D&quot;, &quot;T1&quot;), type=&quot;joint&quot;)
+</code></pre>
+
+<pre><code>#&gt;      T1
 #&gt; D        yes     no
 #&gt;   yes 0.0090 0.0010
 #&gt;   no  0.1485 0.8415
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># or if we want to see conditional probability of T1 given D</span>
-<span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;T1&#34;</span>,<span style="color:#e6db74">&#34;D&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;conditional&#34;</span>)
-</code></pre></div><pre><code>#&gt;      T1
+</code></pre>
+
+<pre><code class="language-r"># or if we want to see conditional probability of T1 given D
+querygrain(bn.disease, nodes=c(&quot;T1&quot;,&quot;D&quot;), type=&quot;conditional&quot;)
+</code></pre>
+
+<pre><code>#&gt;      T1
 #&gt; D      yes   no
 #&gt;   yes 0.90 0.10
 #&gt;   no  0.15 0.85
-</code></pre><h2 id="cad-dataset">CAD Dataset</h2>
+</code></pre>
+
+<h2 id="cad-dataset">CAD Dataset</h2>
+
 <p>We can also make Bayesian Network model from a dataset. This time we are going to use Cardio Artery Disease data from R dataset.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;cad1&#34;</span>)
-<span style="color:#a6e22e">str</span>(cad1)
-</code></pre></div><pre><code>#&gt; 'data.frame':	236 obs. of  14 variables:
+
+<pre><code class="language-r">data(&quot;cad1&quot;)
+str(cad1)
+</code></pre>
+
+<pre><code>#&gt; 'data.frame':    236 obs. of  14 variables:
 #&gt;  $ Sex        : Factor w/ 2 levels &quot;Female&quot;,&quot;Male&quot;: 2 2 1 2 2 2 2 2 1 2 ...
 #&gt;  $ AngPec     : Factor w/ 3 levels &quot;Atypical&quot;,&quot;None&quot;,..: 2 1 2 2 2 2 2 2 2 1 ...
 #&gt;  $ AMI        : Factor w/ 2 levels &quot;Definite&quot;,&quot;NotCertain&quot;: 2 2 1 2 2 2 2 2 2 2 ...
@@ -759,85 +830,90 @@ bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 #&gt;  $ Inherit    : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
 #&gt;  $ Heartfail  : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
 #&gt;  $ CAD        : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-</code></pre><p>We are going to focus on<code>CAD</code> variable, which represent whether a person has CAD.
+</code></pre>
+
+<p>We are going to focus on<code>CAD</code> variable, which represent whether a person has CAD.
 First, we need some assumptions about how the variables relate in the dataset. This is usually gained from expert opinions and some common sense.
 Suppose we assume that <code>Smoker</code>,<code>Inherit</code>, and <code>Hyperchol</code> variables affect <code>CAD</code> and <code>CAD</code> affect <code>AngPec</code>,<code>Heartfail</code>,<code>QWave</code>. We create the DAG of the causal model we have.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create the DAG</span>
-dag.cad <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">dag</span>(<span style="color:#f92672">~</span> CAD<span style="color:#f92672">:</span>Smoker<span style="color:#f92672">:</span>Inherit<span style="color:#f92672">:</span>Hyperchol <span style="color:#f92672">+</span> 
-                 AngPec<span style="color:#f92672">:</span>CAD <span style="color:#f92672">+</span> 
-                 Heartfail<span style="color:#f92672">:</span>CAD <span style="color:#f92672">+</span> 
-                 QWave<span style="color:#f92672">:</span>CAD)
-<span style="color:#a6e22e">plot</span>(dag.cad)
-</code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># smooth is a small positive number to avoid zero entries in the CPTs</span>
-<span style="color:#75715e"># (cf. Additive smoothing, http://en.wikipedia.org/wiki/Additive_smoothing)</span>
-bn.cad <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">grain</span>(dag.cad, data <span style="color:#f92672">=</span> cad1, smooth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>)
-<span style="color:#75715e"># Let&#39;s ask some questions...</span>
-<span style="color:#a6e22e">querygrain</span>(bn.cad, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CAD&#34;</span>, <span style="color:#e6db74">&#34;Smoker&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;conditional&#34;</span>) 
-</code></pre></div><pre><code>#&gt;       CAD
+
+<pre><code class="language-r"># create the DAG
+dag.cad &lt;- dag(~ CAD:Smoker:Inherit:Hyperchol + 
+                 AngPec:CAD + 
+                 Heartfail:CAD + 
+                 QWave:CAD)
+plot(dag.cad)
+</code></pre>
+
+<p><img src="/blog/2018-07-26-causal-inference-and-bayesian-network_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+
+<pre><code class="language-r"># smooth is a small positive number to avoid zero entries in the CPTs
+# (cf. Additive smoothing, http://en.wikipedia.org/wiki/Additive_smoothing)
+bn.cad &lt;- grain(dag.cad, data = cad1, smooth = 0.1)
+# Let's ask some questions...
+querygrain(bn.cad, nodes=c(&quot;CAD&quot;, &quot;Smoker&quot;), type=&quot;conditional&quot;) 
+</code></pre>
+
+<pre><code>#&gt;       CAD
 #&gt; Smoker        No       Yes
 #&gt;    No  0.7172084 0.2827916
 #&gt;    Yes 0.4933771 0.5066229
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># add some evidence and see how things get affected.</span>
-<span style="color:#75715e">#let say we know a person who is a smoker but he does not have hyperchol, and we want to know the probability of him gettinf CAD</span>
-bn.cad.1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">setFinding</span>(bn.cad, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Smoker&#34;</span>,<span style="color:#e6db74">&#34;Hyperchol&#34;</span>), states<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Yes&#34;</span>,<span style="color:#e6db74">&#34;No&#34;</span>))
-<span style="color:#a6e22e">querygrain</span>(bn.cad.1, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CAD&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;marginal&#34;</span>) 
-</code></pre></div><pre><code>#&gt; $CAD
+</code></pre>
+
+<pre><code class="language-r"># add some evidence and see how things get affected.
+#let say we know a person who is a smoker but he does not have hyperchol, and we want to know the probability of him gettinf CAD
+bn.cad.1 &lt;- setFinding(bn.cad, nodes=c(&quot;Smoker&quot;,&quot;Hyperchol&quot;), states=c(&quot;Yes&quot;,&quot;No&quot;))
+querygrain(bn.cad.1, nodes=c(&quot;CAD&quot;), type=&quot;marginal&quot;) 
+</code></pre>
+
+<pre><code>#&gt; $CAD
 #&gt; CAD
 #&gt;        No       Yes 
 #&gt; 0.6551764 0.3448236
-</code></pre><h2 id="weaknesses-of-bayesian-network">Weaknesses of Bayesian Network</h2>
+</code></pre>
+
+<h2 id="weaknesses-of-bayesian-network">Weaknesses of Bayesian Network</h2>
+
 <ol>
 <li>It is computationally expensive for complex models to be implemented in personal computer.</li>
 <li>The algebraic demands of the methods (e.g. the need for a full understanding of probability theory)</li>
-<li>Making sure that the prior knowledge is reliable <sup id="fnref:13"><a href="#fn:13" class="footnote-ref" role="doc-noteref">13</a></sup>, which means the probability gained from data or the distribution we choose to use.</li>
+<li>Making sure that the prior knowledge is reliable <sup class="footnote-ref" id="fnref:11"><a href="#fn:11">13</a></sup>, which means the probability gained from data or the distribution we choose to use.</li>
 <li>Different experts can suggest different causal models.</li>
 </ol>
+
 <h1 id="annotations">Annotations</h1>
-<section class="footnotes" role="doc-endnotes">
-<hr>
+<div class="footnotes">
+
+<hr />
+
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p><a href="https://www.thenewatlantis.com/publications/correlation-causation-and-confusion">https://www.thenewatlantis.com/publications/correlation-causation-and-confusion</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2" role="doc-endnote">
-<p>Lewis, David. &ldquo;Causation.&rdquo; The journal of philosophy (1973): 556-567. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:3" role="doc-endnote">
-<p><a href="https://en.wikipedia.org/wiki/Causal_inference">https://en.wikipedia.org/wiki/Causal_inference</a> <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:4" role="doc-endnote">
-<p><a href="https://egap.org/methods-guides/10-things-you-need-know-about-causal-inference">https://egap.org/methods-guides/10-things-you-need-know-about-causal-inference</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:5" role="doc-endnote">
-<p><a href="http://www.michaelnielsen.org/ddi/if-correlation-doesnt-imply-causation-then-what-does/">http://www.michaelnielsen.org/ddi/if-correlation-doesnt-imply-causation-then-what-does/</a> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:6" role="doc-endnote">
-<p><a href="http://www.homepages.ucl.ac.uk/~ucgtrbd/talks/imperial_causality.pdf">http://www.homepages.ucl.ac.uk/~ucgtrbd/talks/imperial_causality.pdf</a> <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:7" role="doc-endnote">
-<p>Pearl, J. (2003). Causality: models, reasoning, and inference. Econometric Theory. <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:8" role="doc-endnote">
-<p><a href="https://www.bayesserver.com/examples/networks/asia">https://www.bayesserver.com/examples/networks/asia</a> <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:9" role="doc-endnote">
-<p><a href="https://www.r-bloggers.com/bayesian-network-in-r-introduction/">https://www.r-bloggers.com/bayesian-network-in-r-introduction/</a> <a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:10" role="doc-endnote">
-<p><a href="http://www.di.fc.ul.pt/~jpn/r/bayesnets/bayesnets.html">http://www.di.fc.ul.pt/~jpn/r/bayesnets/bayesnets.html</a> <a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:11" role="doc-endnote">
-<p><a href="http://www.ucdenver.edu/academics/colleges/PublicHealth/Academics/departments/Biostatistics/WorkingGroups/Documents/Networks%20Presentation%20With%20Sachs%20-%20032317.pdf">http://www.ucdenver.edu/academics/colleges/PublicHealth/Academics/departments/Biostatistics/WorkingGroups/Documents/Networks%20Presentation%20With%20Sachs%20-%20032317.pdf</a> <a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:12" role="doc-endnote">
-<p><a href="https://pdfs.semanticscholar.org/3ef6/97a17a05930bdbb586cc12676e60bebb5bd1.pdf">https://pdfs.semanticscholar.org/3ef6/97a17a05930bdbb586cc12676e60bebb5bd1.pdf</a> <a href="#fnref:12" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:13" role="doc-endnote">
-<p><a href="http://niedermayer.ca/book/export/html/29">http://niedermayer.ca/book/export/html/29</a> <a href="#fnref:13" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
+<li id="fn:1"><a href="https://www.thenewatlantis.com/publications/correlation-causation-and-confusion">https://www.thenewatlantis.com/publications/correlation-causation-and-confusion</a>  
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2">Lewis, David. &ldquo;Causation.&rdquo; The journal of philosophy (1973): 556-567.  
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3"><a href="https://en.wikipedia.org/wiki/Causal_inference">https://en.wikipedia.org/wiki/Causal_inference</a>  
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4"><a href="https://egap.org/methods-guides/10-things-you-need-know-about-causal-inference">https://egap.org/methods-guides/10-things-you-need-know-about-causal-inference</a>   
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:5"><a href="http://www.michaelnielsen.org/ddi/if-correlation-doesnt-imply-causation-then-what-does/">http://www.michaelnielsen.org/ddi/if-correlation-doesnt-imply-causation-then-what-does/</a>  
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+<li id="fn:12"><a href="http://www.homepages.ucl.ac.uk/~ucgtrbd/talks/imperial_causality.pdf">http://www.homepages.ucl.ac.uk/~ucgtrbd/talks/imperial_causality.pdf</a>  
+ <a class="footnote-return" href="#fnref:12"><sup>[return]</sup></a></li>
+<li id="fn:6">Pearl, J. (2003). Causality: models, reasoning, and inference. Econometric Theory.  
+ <a class="footnote-return" href="#fnref:6"><sup>[return]</sup></a></li>
+<li id="fn:7"><a href="https://www.bayesserver.com/examples/networks/asia">https://www.bayesserver.com/examples/networks/asia</a>  
+ <a class="footnote-return" href="#fnref:7"><sup>[return]</sup></a></li>
+<li id="fn:8"><a href="https://www.r-bloggers.com/bayesian-network-in-r-introduction/">https://www.r-bloggers.com/bayesian-network-in-r-introduction/</a>   
+ <a class="footnote-return" href="#fnref:8"><sup>[return]</sup></a></li>
+<li id="fn:9"><a href="http://www.di.fc.ul.pt/~jpn/r/bayesnets/bayesnets.html">http://www.di.fc.ul.pt/~jpn/r/bayesnets/bayesnets.html</a>  
+ <a class="footnote-return" href="#fnref:9"><sup>[return]</sup></a></li>
+<li id="fn:13"><a href="http://www.ucdenver.edu/academics/colleges/PublicHealth/Academics/departments/Biostatistics/WorkingGroups/Documents/Networks%20Presentation%20With%20Sachs%20-%20032317.pdf">http://www.ucdenver.edu/academics/colleges/PublicHealth/Academics/departments/Biostatistics/WorkingGroups/Documents/Networks%20Presentation%20With%20Sachs%20-%20032317.pdf</a>  
+ <a class="footnote-return" href="#fnref:13"><sup>[return]</sup></a></li>
+<li id="fn:10"><a href="https://pdfs.semanticscholar.org/3ef6/97a17a05930bdbb586cc12676e60bebb5bd1.pdf">https://pdfs.semanticscholar.org/3ef6/97a17a05930bdbb586cc12676e60bebb5bd1.pdf</a>  
+ <a class="footnote-return" href="#fnref:10"><sup>[return]</sup></a></li>
+<li id="fn:11"><a href="http://niedermayer.ca/book/export/html/29">http://niedermayer.ca/book/export/html/29</a>  
+ <a class="footnote-return" href="#fnref:11"><sup>[return]</sup></a></li>
 </ol>
-</section>
+</div>
 
   </div>
 

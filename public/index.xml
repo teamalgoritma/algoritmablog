@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Algoritma Technical Blog</title>
@@ -17,7 +17,7 @@
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>/blog/pengenalan-teori-antrian/</guid>
-      <description>Introduction  Apakah kamu pernah melihat antrian dalam aktivitas sehari-hari? Pasti kamu pernah melihat banyak sekali kejadian dimana pelanggan menunggu dan membentuk suatu antrian yang panjang untuk dilayani oleh server. Kita tentunya pernah melihat antrian pelanggan yang menunggu untuk dilayani di bank, antrian untuk membeli makanan di restoran, antrian untuk masuk lift, antrian untuk mendapatkan resep obat di rumah sakit, dan masih banyak lagi. Jika kita hitung waktu tunggu untuk dilayani, saya yakin tentunya akan membutuhkan banyak waktu yang cukup lama.</description>
+      <description>body { text-align: justify}  Introduction &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Apakah kamu pernah melihat antrian dalam aktivitas sehari-hari? Pasti kamu pernah melihat banyak sekali kejadian dimana pelanggan menunggu dan membentuk suatu antrian yang panjang untuk dilayani oleh server. Kita tentunya pernah melihat antrian pelanggan yang menunggu untuk dilayani di bank, antrian untuk membeli makanan di restoran, antrian untuk masuk lift, antrian untuk mendapatkan resep obat di rumah sakit, dan masih banyak lagi.</description>
     </item>
     
     <item>
@@ -83,7 +83,7 @@ One of many things to consider when we want to choose a machine learning model i
       
       <guid>/blog/introduction-to-generative-adversarial-network-with-keras/</guid>
       <description>In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&amp;rsquo;s. This made Chritie&amp;rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
-Intro  Is artificial intelligence set to become art’s next medium? - Chritie&amp;rsquo;s</description>
+Intro  Is artificial intelligence set to become art’s next medium?</description>
     </item>
     
     <item>
@@ -131,8 +131,8 @@ But in the real world to meet OLS regression assumptions will be very difficult.
       
       <guid>/blog/poisson-regression-and-neg-ative-binomial-regression/</guid>
       <description>Introduction Regression analysis is a set of statistical processes for estimating the relationships among variables. It includes many techniques for modeling and analyzing several variables, when the focus is on the relationship between a dependent variable and one or more independent variables (or &amp;lsquo;predictors&amp;rsquo;).
-For example   Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
-  Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
+For example  Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
+ Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
     </item>
     
     <item>
@@ -161,7 +161,8 @@ There are many types of geospatial that we can do, such as Dot Map, Connection M
       <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/self-organizing-maps/</guid>
-      <description>Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations.</description>
+      <description>body { text-align: justify}   {width=&amp;ldquo;60%&amp;rdquo;} 
+Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.</description>
     </item>
     
     <item>
@@ -318,7 +319,7 @@ So how does SVM find the right hyperplane?</description>
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item1/</guid>
-      <description>App 1 </description>
+      <description> App 1 </description>
     </item>
     
     <item>
@@ -327,7 +328,7 @@ So how does SVM find the right hyperplane?</description>
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item2/</guid>
-      <description>App 2 </description>
+      <description> App 2 </description>
     </item>
     
     <item>
@@ -336,7 +337,7 @@ So how does SVM find the right hyperplane?</description>
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item3/</guid>
-      <description>App 3 </description>
+      <description> App 3 </description>
     </item>
     
     <item>
@@ -345,7 +346,16 @@ So how does SVM find the right hyperplane?</description>
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/itemized/item4/</guid>
-      <description>App 4 </description>
+      <description> App 4 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/blog/2019-10-22-poisson-regression-and-negative-binomial-regression/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019-10-22-poisson-regression-and-negative-binomial-regression/</guid>
+      <description>Poisson Regression and Negative Binomial Regression/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */!function(a,b){&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return b(a)}:b(a)}(&#34;undefined&#34;!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l=&#34;1.11.3&#34;,m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:&#34;&#34;,length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0a?b:0);return this.pushStack(c=0&amp;&amp;bc?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for(&#34;boolean&#34;==typeof g&amp;&amp;(j=g,g=arguments[h]||{},h++),&#34;object&#34;==typeof g||m.isFunction(g)||(g={}),h===i&amp;&amp;(g=this,h--);ih;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&amp;&amp;(j&amp;&amp;c&amp;&amp;(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&amp;&amp;m.isArray(a)?a:[]):f=a&amp;&amp;m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&amp;&amp;(g[d]=c));return g},m.extend({expando:&#34;jQuery&#34;+(l+Math.random()).replace(/\D/g,&#34;&#34;),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return&#34;function&#34;===m.type(a)},isArray:Array.isArray||function(a){return&#34;array&#34;===m.type(a)},isWindow:function(a){return null!=a&amp;&amp;a==a.window},isNumeric:function(a){return!m.isArray(a)&amp;&amp;a-parseFloat(a)+1=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||&#34;object&#34;!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&amp;&amp;!j.call(a,&#34;constructor&#34;)&amp;&amp;!j.call(a.constructor.prototype,&#34;isPrototypeOf&#34;))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.</description>
     </item>
     
   </channel>
