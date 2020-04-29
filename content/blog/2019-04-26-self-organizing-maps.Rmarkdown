@@ -19,6 +19,11 @@ linktitle: ''
 type: post
 ---
 
+<style>
+body {
+text-align: justify}
+</style>
+
 ```{r setup, include=FALSE}
 # clean up the environment
 rm(list = ls())
@@ -38,19 +43,11 @@ RNGkind(sample.kind = "Rounding")
 library(dplyr)
 ```
 
-<style>
-body {
-text-align: justify}
-</style>
-
-
-<center> ![](/img/som/imgname.png){width="60%"} </center>
-
 # Introduction Self-Organizing Maps (SOM)
 
 Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.[^1] SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations.[^2] SOM also represent clustering concept by groupingsimilar features together. So, SOM can use to cluster high-dimensional data sets by doing dimensionality reduction and visualize it using maps.
 
-<center> ![](/img/som/arsitektur.PNG){width="60%"} </center>
+<center> <img src="/img/som/arsitektur.PNG"> </center>
 
 Each data point in the data set recognizes themselves by competing for representation. SOM mapping steps startfrom initializing the weight vectors. From there a sample vector is selected randomly and the map of weight vectors is searched to find which weight best represents that sample. Each weight vector has neighborhood weights that are close to it. The weight that is chosen is rewarded by being able to become more like that randomly selected sample vector. The neighbors of that weight are also rewarded by being able to become more like the chosen sample vector. This allows the map to grow and form different shapes. Most generally, they form square/rectangular/hexagonal/L shapes in the 2D feature space.
 
@@ -66,7 +63,7 @@ SOM calculatesthe distance of each input vector by each weight of nodes. The dis
 6. The winning weight is rewarded with becoming more like the sample vector. The neighbors also become more like the sample vector. The closer a node is to the BMU, the more its weights get altered and the farther away the neighbor is from the BMU, the less it learns.
 7. Repeat the 2-5 step until every node getting close to input vectors.
 
-<center> ![](/img/som/som-training.png){width="60%"} </center>
+<center> <img src="/img/som/som-training.png"> </center>
 
 **There are a lot of use case that implement SOM algorithm :[^4]**
 
@@ -366,4 +363,3 @@ There are pros and cons using this algorithm. *The advantage using SOM :*
 [^5]: [The Ultimate Guide to Self Organizing Maps (SOMs)](https://www.superdatascience.com/blogs/the-ultimate-guide-to-self-organizing-maps-soms)
  
  
-

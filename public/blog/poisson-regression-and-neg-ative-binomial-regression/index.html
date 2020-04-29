@@ -495,6 +495,33 @@ For example  Find out the effect of land area and building area on house prices 
   
 
   
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/poisson-regression-and-neg-ative-binomial-regression/" class="image featured">
+            <img src="/img/2019/10/banner_poisson.jpg" alt="">
+        </a>
+    
+
 
   <div id="content">
     
@@ -515,7 +542,7 @@ For example  Find out the effect of land area and building area on house prices 
 
 <h2 id="some-types-of-regression">Some Types of Regression</h2>
 
-<p><img src="/img/biomial-negatif/pic.png" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/binomial-negatif/Pic.png"> </center></p>
 
 <h2 id="why-ols-is-not-suitable-for-discrete-data">Why OLS is not Suitable for Discrete Data ?</h2>
 
@@ -574,7 +601,7 @@ summary(modelols1)
 abline(modelols1$coefficients[1], modelols1$coefficients[2], col=&quot;red&quot;)
 </code></pre>
 
-<p><img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 <p>The red line in the visualization above is the line of the regression model. And the model formed is</p>
 
@@ -793,7 +820,7 @@ summary(dat$daysabs)
     ., margins = TRUE, scales = &quot;free&quot;)
 </code></pre>
 
-<p><img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" />
+<p><img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
 In the plots above is a distribution of each program has 314 observations and the distribution seems quite reasonable. The average of our outcome variables is much lower than the variance. It can be seen that the accumulation of data is close to 0, this condition indicates the data are overdispersion. There is no negative data. Because the number of days of absence cannot be negative.</p>
 
 <h2 id="build-the-model">Build the Model</h2>
@@ -908,8 +935,8 @@ testDispersion(resp, plot = F)
 </code></pre>
 
 <pre><code>#&gt; 
-#&gt;  DHARMa nonparametric dispersion test via mean deviance residual
-#&gt;  fitted vs. simulated-refitted
+#&gt;  DHARMa nonparametric dispersion test via mean deviance residual fitted
+#&gt;  vs. simulated-refitted
 #&gt; 
 #&gt; data:  resp
 #&gt; dispersion = 6.5899, p-value &lt; 2.2e-16
@@ -923,7 +950,7 @@ testDispersion(resp, plot = F)
 <pre><code class="language-r">plot(resp)
 </code></pre>
 
-<p><img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" />
+<p><img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
 Look at the Q-Q plot residuals. The plot above is a residual plot whether spreads normally or not. When the residual points have followed the diagonal line, then the residuals are normally distributed.</p>
 
 <p>However, Q-Q plot residuals from the Poisson regression model above show that residuals do not follow the normal distribution</p>
@@ -1023,7 +1050,7 @@ resnb &lt;- simulateResiduals(modelnb, refit = T)
 plot(resnb)
 </code></pre>
 
-<p><img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 <p>In the Q-Q Plot Residuals above, it can be seen that the residual point has followed a diagonal line (almost perfect). Therefore the residuals are normally distributed.</p>
 
@@ -1031,8 +1058,8 @@ plot(resnb)
 </code></pre>
 
 <pre><code>#&gt; 
-#&gt;  DHARMa nonparametric dispersion test via mean deviance residual
-#&gt;  fitted vs. simulated-refitted
+#&gt;  DHARMa nonparametric dispersion test via mean deviance residual fitted
+#&gt;  vs. simulated-refitted
 #&gt; 
 #&gt; data:  resnb
 #&gt; dispersion = 1.0913, p-value = 0.216

@@ -13,7 +13,7 @@
         "articleSection" : "blog",
         "name" : "Introduction to Generative Adversarial Network with Keras",
         "headline" : "Introduction to Generative Adversarial Network with Keras",
-        "description" : "In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie\x26rsquo;s. This made Chritie\x26rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?\nIntro  Is artificial intelligence set to become art’s next medium?",
+        "description" : "In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie\x26rsquo;s. This made Chritie\x26rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?\nIntro  \n Is artificial intelligence set to become art’s next medium?",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -52,12 +52,14 @@
         <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Introduction to Generative Adversarial Network with Keras"/>
 <meta name="twitter:description" content="In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&rsquo;s. This made Chritie&rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
-Intro  Is artificial intelligence set to become art’s next medium?"/>
+Intro  
+ Is artificial intelligence set to become art’s next medium?"/>
 <meta name="twitter:site" content="@teamalgoritma"/>
 
         <meta property="og:title" content="Introduction to Generative Adversarial Network with Keras" />
 <meta property="og:description" content="In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&rsquo;s. This made Chritie&rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
-Intro  Is artificial intelligence set to become art’s next medium?" />
+Intro  
+ Is artificial intelligence set to become art’s next medium?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/introduction-to-generative-adversarial-network-with-keras/" />
 <meta property="article:published_time" content="2019-12-18T00:00:00&#43;00:00"/>
@@ -70,7 +72,8 @@ Intro  Is artificial intelligence set to become art’s next medium?" />
         
 <meta itemprop="name" content="Introduction to Generative Adversarial Network with Keras">
 <meta itemprop="description" content="In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&rsquo;s. This made Chritie&rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
-Intro  Is artificial intelligence set to become art’s next medium?">
+Intro  
+ Is artificial intelligence set to become art’s next medium?">
 
 
 <meta itemprop="datePublished" content="2019-12-18T00:00:00&#43;00:00" />
@@ -492,6 +495,33 @@ Intro  Is artificial intelligence set to become art’s next medium?">
   
 
   
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/introduction-to-generative-adversarial-network-with-keras/" class="image featured">
+            <img src="/img/2019/12/banner_gan.jpg" alt="">
+        </a>
+    
+
 
   <div id="content">
     
@@ -500,7 +530,7 @@ Intro  Is artificial intelligence set to become art’s next medium?">
 
 <h1 id="intro">Intro</h1>
 
-<p><img src="/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg"> </center></p>
 
 <blockquote>
 <p>Is artificial intelligence set to become art’s next medium? - Chritie&rsquo;s</p>
@@ -522,28 +552,21 @@ Intro  Is artificial intelligence set to become art’s next medium?">
 
 <p>Before we go into implementation of GAN, let&rsquo;s see how GAN(s) changes overtime.</p>
 
-<p><img src="/img/intro-to-gan/gan-tweet.PNG" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/gan-tweet.PNG"> </center></p>
 
 <p>Since it&rsquo;s first appearance in 2014, and with the rising of Computer Vision - CNN, GAN grew rapidly. It&rsquo;s now able to generate a stunning images, that even our eyes cannot distinguish whether it&rsquo;s real or fake! Current most state-of-the-art GAN are StyleGAN, and you can check it&rsquo;s result in <a href="thispersondoesntexist.com">thispersondoesntexist.com</a>. Let&rsquo;s see several types of GANs</p>
 
 <h3 id="cgan-conditional-gan-2014">CGAN (Conditional GAN, 2014)</h3>
 
-<hr />
-
-<p><img src="/img/intro-to-gan/cgan.PNG" style="display: block; margin: auto;" /></p>
-
-<hr />
+<p><center> <img src="/img/intro-to-gan/cgan.PNG"> </center></p>
 
 <p>GAN was originally created to be trainable with only <strong>ONE</strong> class. If you train your GAN with dog images, it can generate dog images. If you train your GAN with cat images, it can generate cat images. But, what if your GAN was trained into both cat and dog images ? It will generate a blurry animal. To overcome this, Mirza<sup class="footnote-ref" id="fnref:CGAN"><a href="#fn:CGAN">2</a></sup> created CGAN that can diffrentiate multiple output.</p>
 
 <p>This work also make it possible to guide an image into something else like example below</p>
 
-<hr />
+<p><center> <img src="/img/intro-to-gan/pose-guide.png"> </center></p>
 
-<p><img src="/img/intro-to-gan/pose-guide.png" style="display: block; margin: auto;" />
-<sub><em>source: <a href="https://papers.nips.cc/paper/6644-pose-guided-person-image-generation.pdf">https://papers.nips.cc/paper/6644-pose-guided-person-image-generation.pdf</a></em></sub></p>
-
-<hr />
+<p><sub><em>source: <a href="https://papers.nips.cc/paper/6644-pose-guided-person-image-generation.pdf">https://papers.nips.cc/paper/6644-pose-guided-person-image-generation.pdf</a></em></sub></p>
 
 <h3 id="cyclegan-2018">CycleGAN, 2018</h3>
 
@@ -551,29 +574,30 @@ Intro  Is artificial intelligence set to become art’s next medium?">
 
 <p>Have you ever imagine a horse with zebra lines ?</p>
 
-<p><img src="/img/intro-to-gan/zebra-horse.gif" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/zebra-house.gif"> </center></p>
 
 <p>Or, playing Fortnite with PUBG style?</p>
 
-<p><img src="/img/intro-to-gan/fortnite-pubg.gif" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/fortnite-pubg.gif"> </center></p>
 
 <p>Unlike <a href="https://towardsdatascience.com/style-transfer-styling-images-with-convolutional-neural-networks-7d215b58f461">Style Transfer</a>, cycle gan is not limited by domain, wich means, you can do text-to-image style transfer!</p>
 
-<p><img src="/img/intro-to-gan/text-image.png" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/text-image.png"> </center></p>
 
 <p><sub>Sources: <a href="https://junyanz.github.io/CycleGAN/">Zebra-Horse</a>,<a href="https://towardsdatascience.com/turning-fortnite-into-pubg-with-deep-learning-cyclegan-2f9d339dcdb0">Fortnite-PUBG</a>, <a href="https://arxiv.org/pdf/1808.04538.pdf">text-image</a>
 </sub></p>
 
 <h3 id="sagan-self-attention-gan-2018">SAGAN (Self Attention GAN, 2018)</h3>
 
-<p>After Computer Vision takes over ML&rsquo;s attentions for years, eventually it face a saturation phase, where it&rsquo;s considered as State-of-the-art model for Image Classifiation, Detection, Segmentations, etc. There&rsquo;s nothing such a new architecture, everything is CNN. That&rsquo;s when NLP kicks in. Thanks for <a href="https://blog.scaleway.com/2019/building-a-machine-reading-comprehension-system-using-the-latest-advances-in-deep-learning-for-nlp/">Transformers</a>, NLP started to find a new hope, and generated a model called <a href="https://medium.com/@joealato/attention-in-nlp-734c6fa9d983">Attention</a>. This idea then inspired Zhang<sup class="footnote-ref" id="fnref:SAGAN"><a href="#fn:SAGAN">4</a></sup> to create a Self Attention GAN that can help them focus on the context of the images. His model then considered as the state-of-the art GAN. But not for a long time.
-<img src="/img/intro-to-gan/sagan.png" style="display: block; margin: auto;" /></p>
+<p>After Computer Vision takes over ML&rsquo;s attentions for years, eventually it face a saturation phase, where it&rsquo;s considered as State-of-the-art model for Image Classifiation, Detection, Segmentations, etc. There&rsquo;s nothing such a new architecture, everything is CNN. That&rsquo;s when NLP kicks in. Thanks for <a href="https://blog.scaleway.com/2019/building-a-machine-reading-comprehension-system-using-the-latest-advances-in-deep-learning-for-nlp/">Transformers</a>, NLP started to find a new hope, and generated a model called <a href="https://medium.com/@joealato/attention-in-nlp-734c6fa9d983">Attention</a>. This idea then inspired Zhang<sup class="footnote-ref" id="fnref:SAGAN"><a href="#fn:SAGAN">4</a></sup> to create a Self Attention GAN that can help them focus on the context of the images. His model then considered as the state-of-the art GAN. But not for a long time.</p>
+
+<p><center> <img src="/img/intro-to-gan/sagan.png"> </center></p>
 
 <h3 id="progan-2018">ProGAN (2018)</h3>
 
 <p>Training GAN is hard. Knowing that the Generator and Discriminator fighting each other, GAN losses somethimes become unstable and can jumped just after the model started to look converge.</p>
 
-<p><img src="/img/intro-to-gan/progan.gif" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/progan.gif"> </center></p>
 
 <p><sub>Source: <a href="https://cdn-images-1.medium.com/max/1600/1*tUhgr3m54Qc80GU2BkaOiQ.gif">Medium</a>
 </sub></p>
@@ -584,7 +608,7 @@ Intro  Is artificial intelligence set to become art’s next medium?">
 
 <p>In 2019, Brock<sup class="footnote-ref" id="fnref:BigGAN"><a href="#fn:BigGAN">6</a></sup> and his teammates from Google Deepmind attempted to create a GAN that run on a large scale of TPU cluster. Hence the name, BigGAN. No one have ever tried to train GAN on such a large cluster of machine. Now you know the power of Google.</p>
 
-<p><img src="/img/intro-to-gan/big-gan.png" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/big-gan.png"> </center></p>
 
 <p><sub>Source: Brock&rsquo;s Paper
 </sub></p>
@@ -596,7 +620,7 @@ Intro  Is artificial intelligence set to become art’s next medium?">
 <p>GANs already reach its point wich it can generate a hyper-realistic images. But GAN it&rsquo;s such a meaningless if we can&rsquo;t generate another object from it.
 Still from NVIDIA instead of continue creating more realistic images, Karras<sup class="footnote-ref" id="fnref:StyleGAN"><a href="#fn:StyleGAN">7</a></sup> focused on making GAN that can be controlled over a style, hence the name StyleGAN. This mean you have big control of what image will you generate. Or more likely, How do you want the image to be.</p>
 
-<p><img src="/img/intro-to-gan/stylegan2.png" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/stylegan2.png"> </center></p>
 
 <p><sub>Source: Karras&rsquo;s Paper
 </sub></p>
@@ -638,7 +662,7 @@ X_test = X_test[:, :, :, None]
 
 <p>The Mnist images are 28x28x1 grayscale of handwritten digits. It contains 60000 set of train data and 10000 set of test data. If you haven&rsquo;t seen it before, here&rsquo;s what they looks like</p>
 
-<p><img src="/img/intro-to-gan/mnist-reseachgate.png" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/mnist-reseachgate.png"> </center></p>
 
 <h2 id="gan-basic-concept">Gan Basic Concept</h2>
 
@@ -655,7 +679,7 @@ X_test = X_test[:, :, :, None]
 
 <p>This function will arrange several images into one frame so that it will be easier to see. This is the sample result:</p>
 
-<p><img src="/img/intro-to-gan/mnist-reseachgate.png" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/mnist-reseachgate.png"> </center></p>
 
 <pre><code class="language-python">def combine_images(generated_images):
     num = generated_images.shape[0]
@@ -839,7 +863,9 @@ g_model, d_model = train_gan(X_train,y_train, batch, epochs, g_model, d_model)
 
 <p>Here&rsquo;s how our model fake images after trained for each epoch</p>
 
-<p><img src="/img/intro-to-gan/GAN-train.PNG" style="display: block; margin: auto;" /><img src="/img/intro-to-gan/GAN-train-2.PNG" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/GAN-train.PNG> </center></p>
+
+<p><center> <img src="/img/intro-to-gan/GAN-train-2"> </center></p>
 
 <h3 id="generate-images">Generate Images</h3>
 
@@ -865,7 +891,7 @@ plt.axis('off')
 plt.show()
 </code></pre>
 
-<p><img src="/img/intro-to-gan/generator-test.PNG" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/generator-test.PNG"> </center></p>
 
 <h4 id="generate-images-from-generator-with-discriminator-check">Generate images from generator with discriminator check</h4>
 
@@ -903,7 +929,7 @@ plt.axis('off')
 plt.show()
 </code></pre>
 
-<p><img src="/img/intro-to-gan/discriminator-test.PNG" style="display: block; margin: auto;" /></p>
+<p><center> <img src="/img/intro-to-gan/discriminator-test.PNG"> </center></p>
 
 <p>Congratulations! you now can generate realistic handwritten images using Generator and Discriminator simultaneuosly. What? you want to generate specific number?</p>
 

@@ -13,9 +13,9 @@ tags:
   - network analysis
   - Data Visualization
 description: ''
-featured: ''
+featured: 'banner_twitter.jpg'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -98,15 +98,17 @@ We'll start with collecting our tweets. I'm gonna use the hashtag #TheyAreUs, wh
 ```{r}
 # export API token
 mytoken <- readRDS("data_input/mytoken.rds")
+```
 
+```{r eval=FALSE}
 tweets <- search_tweets("#TheyAreUs filter:retweets", n = 1000, include_rts = TRUE)
 ```
 
 _**Note**_:  
 _If you want to skip the API authorization process and prefer to practice on existing twitter data, you can also export the twitter data csv on this directory:_
 
-```{r, eval=FALSE}
-# tweets <- read_csv("data_input/tweets.csv")
+```{r, eval=TRUE, echo=FALSE}
+tweets <- read_csv("data_input/tweets_twinet.csv")
 ```
 
 The `search_tweets` function takes a few arguments. Above, we fetch 1000 tweets about "#TheyAreUs", and since we want to focus on re-tweets, we also ensured the tweets we collect include re-tweets.
