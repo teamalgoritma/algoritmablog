@@ -116,10 +116,10 @@
 
 	body, input, select, textarea {
 		color: #333333;
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
-		font-size: 14pt;
+		font-family: "Lato","Helvetica Neue","Helvetica","Arial","sans-serif";
+		font-size: 15px;
+		line-height: 1.42857143;
 		font-weight: 400;
-		line-height: 1.75;
 	}
 
 		@media screen and (max-width: 1680px) {
@@ -189,9 +189,8 @@
 	}
 
 	p {
-		margin: 0 0 13px;
-    font-size: 1.1em;
-    font-family: Georgia, Times, "Times New Roman", serif;
+    font-family: "Lato","Helvetica Neue","Helvetica","Arial","sans-serif";
+    font-size: 15px;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -1362,9 +1361,8 @@
     #content blockquote,
 		#content p,
 		#content ul{
-        margin: 0 0 13px;
-        font-size: 1.1em;
-        font-family: Georgia, Times, "Times New Roman", serif;
+        font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 15px;
         display: block;
         margin-block-start: 1em;
         margin-block-end: 1em;
