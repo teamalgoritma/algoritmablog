@@ -1,6 +1,6 @@
 # :star2: Overview Algotech
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5ceca968-68f6-4458-90e3-5b72bf373c20/deploy-status)](https://app.netlify.com/sites/algotech/deploys)
@@ -167,6 +167,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://algorit.ma"><img src="https://avatars0.githubusercontent.com/u/51941102?v=4" width="100px;" alt=""/><br /><sub><b>Nabiilah Ardini Fauziyyah</b></sub></a><br /><a href="#content-NabiilahArdini" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/Argaadya"><img src="https://avatars1.githubusercontent.com/u/51928527?v=4" width="100px;" alt=""/><br /><sub><b>Argaadya</b></sub></a><br /><a href="#content-Argaadya" title="Content">🖋</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/iqbalbasyar"><img src="https://avatars3.githubusercontent.com/u/15415968?v=4" width="100px;" alt=""/><br /><sub><b>iqbalbasyar</b></sub></a><br /><a href="#content-iqbalbasyar" title="Content">🖋</a></td>
+    <td align="center"><a href="http://Rpubs.com/david21"><img src="https://avatars2.githubusercontent.com/u/22296835?v=4" width="100px;" alt=""/><br /><sub><b>David</b></sub></a><br /><a href="#content-Davidlimbong" title="Content">🖋</a></td>
   </tr>
 </table>
 
