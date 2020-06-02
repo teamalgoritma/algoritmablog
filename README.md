@@ -172,7 +172,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/ysitta"><img src="https://avatars1.githubusercontent.com/u/30137330?v=4" width="100px;" alt=""/><br /><sub><b>Yaumil Sitta</b></sub></a><br /><a href="#content-ysitta" title="Content">🖋</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="http://hsnabd.netlify.com"><img src="https://avatars1.githubusercontent.com/u/33796928?v=4" width="100px;" alt=""/><br /><sub><b>Ahmad Husain Abdullah</b></sub></a><br /><a href="#maintenance-ahmadhusain" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="http://hsnabd.netlify.com"><img src="https://avatars1.githubusercontent.com/u/33796928?v=4" width="100px;" alt=""/><br /><sub><b>Ahmad Husain Abdullah</b></sub></a><br /><a href="#maintenance-ahmadhusain" title="Maintenance">🚧</a> <a href="https://github.com/teamalgoritma/algoritmablog/commits?author=ahmadhusain" title="Code">💻</a></td>
   </tr>
 </table>
 
