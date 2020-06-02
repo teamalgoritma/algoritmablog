@@ -1,6 +1,6 @@
 # :star2: Overview Algotech
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5ceca968-68f6-4458-90e3-5b72bf373c20/deploy-status)](https://app.netlify.com/sites/algotech/deploys)
@@ -170,6 +170,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://Rpubs.com/david21"><img src="https://avatars2.githubusercontent.com/u/22296835?v=4" width="100px;" alt=""/><br /><sub><b>David</b></sub></a><br /><a href="#content-Davidlimbong" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/inytss"><img src="https://avatars2.githubusercontent.com/u/49224928?v=4" width="100px;" alt=""/><br /><sub><b>Inayatus</b></sub></a><br /><a href="#content-inytss" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/ysitta"><img src="https://avatars1.githubusercontent.com/u/30137330?v=4" width="100px;" alt=""/><br /><sub><b>Yaumil Sitta</b></sub></a><br /><a href="#content-ysitta" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://hsnabd.netlify.com"><img src="https://avatars1.githubusercontent.com/u/33796928?v=4" width="100px;" alt=""/><br /><sub><b>Ahmad Husain Abdullah</b></sub></a><br /><a href="#maintenance-ahmadhusain" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 
