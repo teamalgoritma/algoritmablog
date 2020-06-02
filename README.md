@@ -1,6 +1,6 @@
 # :star2: Overview Algotech
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5ceca968-68f6-4458-90e3-5b72bf373c20/deploy-status)](https://app.netlify.com/sites/algotech/deploys)
@@ -173,6 +173,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="http://hsnabd.netlify.com"><img src="https://avatars1.githubusercontent.com/u/33796928?v=4" width="100px;" alt=""/><br /><sub><b>Ahmad Husain Abdullah</b></sub></a><br /><a href="#maintenance-ahmadhusain" title="Maintenance">🚧</a> <a href="https://github.com/teamalgoritma/algoritmablog/commits?author=ahmadhusain" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/AltruiMetavasi"><img src="https://avatars0.githubusercontent.com/u/20962339?v=4" width="100px;" alt=""/><br /><sub><b>shelloren</b></sub></a><br /><a href="#projectManagement-AltruiMetavasi" title="Project Management">📆</a> <a href="#design-AltruiMetavasi" title="Design">🎨</a></td>
   </tr>
 </table>
 
