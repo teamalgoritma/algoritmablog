@@ -171,6 +171,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="http://hsnabd.netlify.com"><img src="https://avatars1.githubusercontent.com/u/33796928?v=4" width="100px;" alt=""/><br /><sub><b>Ahmad Husain Abdullah</b></sub></a><br /><a href="#maintenance-ahmadhusain" title="Maintenance">🚧</a> <a href="https://github.com/teamalgoritma/algoritmablog/commits?author=ahmadhusain" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/AltruiMetavasi"><img src="https://avatars0.githubusercontent.com/u/20962339?v=4" width="100px;" alt=""/><br /><sub><b>shelloren</b></sub></a><br /><a href="#projectManagement-AltruiMetavasi" title="Project Management">📆</a> <a href="#design-AltruiMetavasi" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/ajengprstw"><img src="https://avatars0.githubusercontent.com/u/42662706?v=4" width="100px;" alt=""/><br /><sub><b>ajengprstw</b></sub></a><br /><a href="#content-ajengprstw" title="Content">🖋</a></td>
   </tr>
 </table>
 
