@@ -1,9 +1,6 @@
 # :star2: Overview Algotech
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/5ceca968-68f6-4458-90e3-5b72bf373c20/deploy-status)](https://app.netlify.com/sites/algotech/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5ceca968-68f6-4458-90e3-5b72bf373c20/deploy-status)](https://app.netlify.com/sites/algotech/deploys) [![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 
 
 *Algotech* is a Website for technical blog Algoritma. To serve the website locally and to view a live version run the following command:
@@ -96,7 +93,7 @@ type: post
 
 Create a new article by using `New Post` addins on your Rstudio (make sure you already installed *blogdown* packages first).
 
-![](public/img/main/newpost.png)
+<center> <img src="public/img/main/newpost.png" title="A cute kitten" width="500" height="400" /> </center>
 
 
 `Tags` are keywords or terms that describe your article. Here are some tags that already exist: 
