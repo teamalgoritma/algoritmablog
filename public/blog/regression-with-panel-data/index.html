@@ -1,0 +1,1546 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "blog",
+        "name" : "Regression Model with Panel Data",
+        "headline" : "Regression Model with Panel Data",
+        "description" : "body {\rtext-align: justify}\r\rIntroduction\rPanel Regression\rPanel data are also called longitudinal data or cross-sectional time-series data. A panel data set has multiple entities, each of which has repeated measurements at different time periods. Panel data may have individual (group) effect, time effect, or both, which are analyzed by fixed effect and\/or random effect models.1\nPanel data examples:\n\rAnnual unemployment rates of each state over several years",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-06-02 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2020-06-02 00:00:00 \x2b0000 UTC",
+        "url" : "\/blog\/regression-with-panel-data\/",
+        "wordCount" : "5413",
+        "keywords" : [ "Machine Learning","Panel Data","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Regression Model with Panel Data</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.55.4" />
+        
+
+
+        
+            <meta name="author" content="Ajeng Prastiwi">
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Regression Model with Panel Data"/>
+<meta name="twitter:description" content="body {text-align: justify}IntroductionPanel RegressionPanel data are also called longitudinal data or cross-sectional time-series data. A panel data set has multiple entities, each of which has repeated measurements at different time periods. Panel data may have individual (group) effect, time effect, or both, which are analyzed by fixed effect and/or random effect models.1
+Panel data examples:
+Annual unemployment rates of each state over several years"/>
+<meta name="twitter:site" content="@teamalgoritma"/>
+
+        <meta property="og:title" content="Regression Model with Panel Data" />
+<meta property="og:description" content="body {text-align: justify}IntroductionPanel RegressionPanel data are also called longitudinal data or cross-sectional time-series data. A panel data set has multiple entities, each of which has repeated measurements at different time periods. Panel data may have individual (group) effect, time effect, or both, which are analyzed by fixed effect and/or random effect models.1
+Panel data examples:
+Annual unemployment rates of each state over several years" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/regression-with-panel-data/" />
+<meta property="article:published_time" content="2020-06-02T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-06-02T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="Regression Model with Panel Data">
+<meta itemprop="description" content="body {text-align: justify}IntroductionPanel RegressionPanel data are also called longitudinal data or cross-sectional time-series data. A panel data set has multiple entities, each of which has repeated measurements at different time periods. Panel data may have individual (group) effect, time effect, or both, which are analyzed by fixed effect and/or random effect models.1
+Panel data examples:
+Annual unemployment rates of each state over several years">
+
+
+<meta itemprop="datePublished" content="2020-06-02T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-06-02T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="5413">
+
+
+
+<meta itemprop="keywords" content="Machine Learning,Panel Data," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+                
+                    <link rel="stylesheet" href="/css/night-owl.css">
+                
+            
+        
+
+
+  
+    
+      <link rel="stylesheet" href="/css/night-owl.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="/js/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+  
+
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-164959107-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+
+
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/machine-learning/">
+                            <i class="fa fa-cog">&nbsp;</i>Machine Learning
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/data-visualization/">
+                            <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/">
+                            <i class="fa fa-list">&nbsp;</i>Article List
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/machine-learning/">
+                            <h3>
+                                <i class="fa fa-cog">&nbsp;</i>Machine Learning
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/data-visualization/">
+                            <h3>
+                                <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/">
+                            <h3>
+                                <i class="fa fa-list">&nbsp;</i>Article List
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/regression-with-panel-data/">Regression Model with Panel Data</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-06-02'>
+                                    June 2, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/pengenalan-teori-antrian/">Pengenalan Teori Antrian</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-04-27'>
+                                    April 27, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/stock-cluster/">Clustering Saham Indonesia</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-04-17'>
+                                    April 17, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/time-and-accuracy-improvement-using-pca/">Time Efficiency and Accuracy Improvement using PCA</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-04-13'>
+                                    April 13, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/text-generating-with-markov-chains/">Text Generation with Markov Chains</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-04-02'>
+                                    April 2, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="https://twitter.com/intent/tweet?text=Regression%20Model%20with%20Panel%20Data&amp;url=%2fblog%2fregression-with-panel-data%2f" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fregression-with-panel-data%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fregression-with-panel-data%2f&amp;title=Regression%20Model%20with%20Panel%20Data" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/regression-with-panel-data/">Regression Model with Panel Data</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2020-06-02'>
+            June 2, 2020</time>
+        <span class="author"><a href="https://github.com/ajengprstw/">Ajeng Prastiwi</a></span>
+        
+            <p>26 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="https://twitter.com/intent/tweet?text=Regression%20Model%20with%20Panel%20Data&amp;url=%2fblog%2fregression-with-panel-data%2f" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fregression-with-panel-data%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fregression-with-panel-data%2f&amp;title=Regression%20Model%20with%20Panel%20Data" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </section>
+  
+
+  
+
+  <div id="content">
+    
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<div id="panel-regression" class="section level2">
+<h2>Panel Regression</h2>
+<p>Panel data are also called longitudinal data or cross-sectional time-series data. A panel data set has multiple entities, each of which has repeated measurements at different time periods. Panel data may have individual (group) effect, time effect, or both, which are analyzed by fixed effect and/or random effect models.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Panel data examples:</p>
+<ul>
+<li><p>Annual unemployment rates of each state over several years</p></li>
+<li><p>Quarterly sales of individual stores over several quarters</p></li>
+<li><p>Salary for the same worker, working at several different jobs.</p></li>
+</ul>
+<p>Why should we use panel data?</p>
+<ul>
+<li><p>Controlling for individual heterogeneity</p></li>
+<li><p>Panel data give more informative data, more variability, less collinearity among the variables, more degress of freedom and more efficiency</p></li>
+<li><p>Omitted variable bias.</p></li>
+</ul>
+</div>
+<div id="learning-objectives" class="section level2">
+<h2>Learning Objectives</h2>
+<p>The goal of this article is to help you:</p>
+<ul>
+<li><p>Understand the concept of panel regression</p></li>
+<li><p>Understand structure of panel data sets</p></li>
+<li><p>Implement panel regression in business case.</p></li>
+</ul>
+</div>
+<div id="library-and-setup" class="section level2">
+<h2>Library and setup</h2>
+<pre class="r"><code>library(dplyr)
+library(lubridate)
+library(plm)
+library(AER)
+library(gplots)
+library(lmtest)
+library(rsample)
+library(MLmetrics)</code></pre>
+</div>
+</div>
+<div id="advantages-of-panel-data" class="section level1">
+<h1>Advantages of panel data</h1>
+<p>Panel data, by blending the inter-individual differences and intra-individual dynamics, have several advantages over cross-sectional or time-series data:</p>
+<ul>
+<li><p>The obvious benefit is in terms of obtaining a large sample, giving more degrees of freedom, more variability, more information and less multicollinearity among the variables hence improving the efficiency of econometrics estimates <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p></li>
+<li><p>Interpretable models, we can interpret the regression coefficients in the framework of a cross-section and time-series effect.</p></li>
+</ul>
+</div>
+<div id="structure-of-panel-data-sets" class="section level1">
+<h1>Structure of Panel data sets</h1>
+<p>Panel data have three types of data, there are cross section, pooled cross section, and panel. To help you visualize these types of data we’ll consider some sample data sets below.</p>
+<p>We use the <code>Grunfeld</code> datasets from <code>AER</code> package. This datasets tell about Grunfeld’s Investment Data on 11 large US manufacturing firms over 20 years, for the years 1935-1954.</p>
+<pre class="r"><code>data(&quot;Grunfeld&quot;)
+head(Grunfeld)</code></pre>
+<pre><code>#&gt;   invest  value capital           firm year
+#&gt; 1  317.6 3078.5     2.8 General Motors 1935
+#&gt; 2  391.8 4661.7    52.6 General Motors 1936
+#&gt; 3  410.6 5387.1   156.9 General Motors 1937
+#&gt; 4  257.7 2792.2   209.2 General Motors 1938
+#&gt; 5  330.8 4313.2   203.4 General Motors 1939
+#&gt; 6  461.2 4643.9   207.2 General Motors 1940</code></pre>
+<p>This datasets have 20 annual observations on 3 variables for 11 firms, here some description of each feature:</p>
+<ul>
+<li><p><code>invest</code> : Gross investment, defined as additions to plant and equipment plus maintenance and repairs in millions of dollars deflated by the implicit price deflator of producers’ durable equipment (base 1947).</p></li>
+<li><p><code>value</code>: Market value of the firm, defined as the price of common shares at December 31 (or, for WH, IBM and CH, the average price of December 31 and January 31 of the following year) times the number of common shares outstanding plus price of preferred shares at December 31 (or average price of December 31 and January 31 of the following year) times number of preferred shares plus total book value of debt at December 31 in millions of dollars deflated by the implicit GNP price deflator (base 1947).</p></li>
+<li><p><code>capital</code>: Stock of plant and equipment, defined as the accumulated sum of net additions to plant and equipment deflated by the implicit price deflator for producers’ durable equipment (base 1947) minus depreciation allowance deflated by depreciation expense deflator (10 years moving average of wholesale price index of metals and metal products, base 1947).</p></li>
+<li><p><code>firm</code>: factor with 11 levels: <code>General Motors</code>, <code>US Steel</code>, <code>General Electric</code>, <code>Chrysler</code>, <code>Atlantic Refining</code>, <code>IBM</code>, <code>Union Oil</code>, <code>Westinghouse</code>, <code>Goodyear</code>, <code>Diamond Match</code>, <code>American Steel</code>.</p></li>
+<li><p><code>year</code>: Year.</p></li>
+</ul>
+<div id="cross-sectional-data" class="section level2">
+<h2>Cross Sectional Data</h2>
+<p>Cross sectional data is a type of data collected by observing many subjects at the one point or period of time.</p>
+<pre class="r"><code>csd &lt;- Grunfeld %&gt;% 
+  select(-firm) %&gt;% 
+  filter(year == 1954)
+head(csd)</code></pre>
+<pre><code>#&gt;    invest  value capital year
+#&gt; 1 1486.70 5593.6  2226.3 1954
+#&gt; 2  459.30 2115.5   669.7 1954
+#&gt; 3  189.60 2759.9   888.9 1954
+#&gt; 4  172.49  703.2   414.9 1954
+#&gt; 5   81.43  365.7   804.9 1954
+#&gt; 6  135.72  927.3   238.7 1954</code></pre>
+</div>
+<div id="pooled-cross-sectional-data" class="section level2">
+<h2>Pooled Cross Sectional Data</h2>
+<p>Pooled cross sectional data is multiple snapshots of multiple bunches of (randomly selected) individuals (or states or firms or whatever) at many points in time <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+<pre class="r"><code>pcs &lt;- Grunfeld%&gt;% 
+  select(-firm)
+head(pcs)</code></pre>
+<pre><code>#&gt;   invest  value capital year
+#&gt; 1  317.6 3078.5     2.8 1935
+#&gt; 2  391.8 4661.7    52.6 1936
+#&gt; 3  410.6 5387.1   156.9 1937
+#&gt; 4  257.7 2792.2   209.2 1938
+#&gt; 5  330.8 4313.2   203.4 1939
+#&gt; 6  461.2 4643.9   207.2 1940</code></pre>
+<p><code>pcs</code> is an example of a pooled cross-sectional data set because we have observations with different year. We can use the same notation here as in cross section, indexing each person, firm, city, etc. by <span class="math inline">\(i\)</span>. Suppose we have 11 cross sectional datasets from 19 different years, pooling the data means to treat them as one larger sample and control for the fact that some observations are from a different year.</p>
+</div>
+<div id="panel-data" class="section level2">
+<h2>Panel Data</h2>
+<p>Panel data have a special structure, each row of the data corresponds to a specific individual and time period.</p>
+<pre class="r"><code>head(Grunfeld)</code></pre>
+<pre><code>#&gt;   invest  value capital           firm year
+#&gt; 1  317.6 3078.5     2.8 General Motors 1935
+#&gt; 2  391.8 4661.7    52.6 General Motors 1936
+#&gt; 3  410.6 5387.1   156.9 General Motors 1937
+#&gt; 4  257.7 2792.2   209.2 General Motors 1938
+#&gt; 5  330.8 4313.2   203.4 General Motors 1939
+#&gt; 6  461.2 4643.9   207.2 General Motors 1940</code></pre>
+<p>The data set has 11 firms with 220 observation. This particular panel data set is sometimes referenced as a <code>balanced panel data set</code> because we observe every single firm has 20 observations.</p>
+<p>The equation for model becomes:</p>
+<p><span class="math inline">\(y_{it} = \beta_0+\beta _1x_i+u_{it}\)</span></p>
+<p>where :</p>
+<ul>
+<li><span class="math inline">\(y_{it}\)</span> is the dependent variable</li>
+<li><span class="math inline">\(i\)</span> denoting households, individuals, firms, countries, etc.</li>
+<li><span class="math inline">\(t\)</span> denoting time.</li>
+</ul>
+<p>The <code>i</code> subscript, therefore, denotes the cross-section dimension whereas <code>t</code> denotes the time series dimension. How do we account for the cross section and time heterogeneity in this model? this is done by using a two-way error component assumption for the disturbances, <span class="math inline">\(u_{it}\)</span> with:</p>
+<p><span class="math inline">\(u_{it} = \mu _i+\lambda _t+\upsilon _{it}\)</span></p>
+<p>where:</p>
+<ul>
+<li><p><span class="math inline">\(\mu _i\)</span> represents the unobservable individual (cross section) heterogeneity</p></li>
+<li><p><span class="math inline">\(\lambda _t\)</span> denotes the unobservable time heterogeneity</p></li>
+<li><p><span class="math inline">\(\upsilon_{it}\)</span> is the remaining random error term</p></li>
+</ul>
+<p>The first two components(<span class="math inline">\(\mu _i\)</span> and <span class="math inline">\(\lambda _t\)</span>) are also called within component and the last <span class="math inline">\(\upsilon _{it}\)</span>, panel or between component</p>
+</div>
+<div id="heterogeneity" class="section level2">
+<h2>Heterogeneity</h2>
+<p>We need to make sure that our data is a balanced panel or an unbalanced panel. If we have an unbalanced panel, try to classify individuals or time periods and get some manageable.</p>
+<pre class="r"><code>plotmeans(formula = invest~year, main = &quot;Heterogeineity Across Year&quot;, data = Grunfeld)</code></pre>
+<p><img src="/blog/2020-06-02-panel-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>From the plot above, we have a balanced panel dataset with 11 observations every year.</p>
+</div>
+</div>
+<div id="estimation-model-of-panel-regression" class="section level1">
+<h1>Estimation model of panel regression</h1>
+<div id="pooled-regression" class="section level2">
+<h2>Pooled Regression</h2>
+<p>The (pooled) OLS is a pooled linear regression without fixed and random effects. It assumes a constant intercept and slopes regardless of group and time period. We will use the <code>plm</code> command with the option <code>model = "pooling"</code> to obtain the pooled estimates:</p>
+<pre class="r"><code>pooling &lt;- plm(invest~value + capital, data = Grunfeld, model = &quot;pooling&quot;, index = c(&quot;firm&quot;,&quot;year&quot;))
+summary(pooling)</code></pre>
+<pre><code>#&gt; Pooling Model
+#&gt; 
+#&gt; Call:
+#&gt; plm(formula = invest ~ value + capital, data = Grunfeld, model = &quot;pooling&quot;, 
+#&gt;     index = c(&quot;firm&quot;, &quot;year&quot;))
+#&gt; 
+#&gt; Balanced Panel: n = 11, T = 20, N = 220
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min.  1st Qu.   Median  3rd Qu.     Max. 
+#&gt; -290.331  -25.762   11.059   29.741  377.936 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                Estimate  Std. Error t-value  Pr(&gt;|t|)    
+#&gt; (Intercept) -38.4100540   8.4133709 -4.5654  8.35e-06 ***
+#&gt; value         0.1145344   0.0055188 20.7534 &lt; 2.2e-16 ***
+#&gt; capital       0.2275141   0.0242283  9.3904 &lt; 2.2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Total Sum of Squares:    9712000
+#&gt; Residual Sum of Squares: 1768700
+#&gt; R-Squared:      0.81789
+#&gt; Adj. R-Squared: 0.81621
+#&gt; F-statistic: 487.284 on 2 and 217 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>Three additional arguments are common to these function:</p>
+<ul>
+<li><p>index: this argument enables the estimation function to identify the structure of the data, the individual and the time period for each observation</p></li>
+<li><p>effect: the kind of effects to include in the model, individual effects, time effects, and two-ways</p></li>
+<li><p>model: the kind of model to be estimated, most of the time a model with fixed effects or a model with random effects</p></li>
+</ul>
+<pre class="r"><code>summary(pooling)</code></pre>
+<pre><code>#&gt; Pooling Model
+#&gt; 
+#&gt; Call:
+#&gt; plm(formula = invest ~ value + capital, data = Grunfeld, model = &quot;pooling&quot;, 
+#&gt;     index = c(&quot;firm&quot;, &quot;year&quot;))
+#&gt; 
+#&gt; Balanced Panel: n = 11, T = 20, N = 220
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min.  1st Qu.   Median  3rd Qu.     Max. 
+#&gt; -290.331  -25.762   11.059   29.741  377.936 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                Estimate  Std. Error t-value  Pr(&gt;|t|)    
+#&gt; (Intercept) -38.4100540   8.4133709 -4.5654  8.35e-06 ***
+#&gt; value         0.1145344   0.0055188 20.7534 &lt; 2.2e-16 ***
+#&gt; capital       0.2275141   0.0242283  9.3904 &lt; 2.2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Total Sum of Squares:    9712000
+#&gt; Residual Sum of Squares: 1768700
+#&gt; R-Squared:      0.81789
+#&gt; Adj. R-Squared: 0.81621
+#&gt; F-statistic: 487.284 on 2 and 217 DF, p-value: &lt; 2.22e-16</code></pre>
+</div>
+<div id="the-fixed-effects-model" class="section level2">
+<h2>The Fixed Effects Model</h2>
+<p>Fixed effect model explore the relationship between predictor and outcome variables within and entity (country, person, company, .etc). Each entity has its own individual characteristics that may or may not influence the predictor variables. When using Fixed Effects Model we assume that something within the individual may impact or bias the predictor or outcome variables and we need to control for this. This is the rationale behind the assumption of the correlation between entity’s error term and predictor variables. Fixed Effect remove the effect of those time-invariant characteristics so we can assess the net effect of the predictors on the outcome variable<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
+<p>The equation for the fixed effects model becomes:</p>
+<p>$ y_{it} = <em>iX</em>{it} + <em>i + u</em>{it} $</p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">\(y_{it}\)</span> is the dependent variable, where i = entity and t = time</p></li>
+<li><p><span class="math inline">\(\beta_i\)</span> is the coefficient for independent variable</p></li>
+<li><p><span class="math inline">\(X_{it}\)</span> represents one independent variable</p></li>
+<li><p><span class="math inline">\(\alpha _i\)</span> that represents a unique value for each individual in the unit individual. it would represent the effect of all characteristics of an individual that do not change over time</p></li>
+<li><p><span class="math inline">\(u_{it}\)</span> is the error term</p></li>
+</ul>
+<p>with <span class="math inline">\(i = 1,...,n\)</span> and <span class="math inline">\(t=1,...,T\)</span>. The <span class="math inline">\(\alpha _i\)</span> are entity-specific intercepts that capture heterogeneities across entities. An equivalent representation of this model is given by</p>
+<p>$ y_{it} = _0 + <em>iX</em>{it} + …+<em>kX</em>{it}+ _2D2_i+ _3D3_i +…+_nDn_i$</p>
+<p>where the <span class="math inline">\(\gamma _2D2_i+ \gamma _3D3_i + \gamma _nDn_i\)</span> are dummy variables</p>
+<p>There are several strategies for estimating a fixed effect model.</p>
+</div>
+<div id="least-square-dummy-variable" class="section level2">
+<h2>Least Square Dummy Variable</h2>
+<p>The least squares dummy variable model (LSDV) uses dummy variables. These strategies of course, produce the identical parameter estimates of regressor (non dummy independent variables). The between <code>estimation</code> fits a model using individual or time means of dependent and independent without dummies.</p>
+<pre class="r"><code>lsdv &lt;- lm(invest~value + capital + factor(firm), data = Grunfeld)
+summary(lsdv)</code></pre>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = invest ~ value + capital + factor(firm), data = Grunfeld)
+#&gt; 
+#&gt; Residuals:
+#&gt;      Min       1Q   Median       3Q      Max 
+#&gt; -184.008  -15.660    0.272   16.414  250.753 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                                 Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)                    -70.29907   47.37535  -1.484    0.139    
+#&gt; value                            0.11013    0.01130   9.746  &lt; 2e-16 ***
+#&gt; capital                          0.31003    0.01654  18.744  &lt; 2e-16 ***
+#&gt; factor(firm)US Steel           172.20381   29.70010   5.798 2.48e-08 ***
+#&gt; factor(firm)General Electric  -165.27033   30.28530  -5.457 1.38e-07 ***
+#&gt; factor(firm)Chrysler            42.48996   41.84991   1.015    0.311    
+#&gt; factor(firm)Atlantic Refining  -44.30345   48.12221  -0.921    0.358    
+#&gt; factor(firm)IBM                 47.13887   44.61445   1.057    0.292    
+#&gt; factor(firm)Union Oil            3.75484   48.19182   0.078    0.938    
+#&gt; factor(firm)Westinghouse        12.75258   41.98604   0.304    0.762    
+#&gt; factor(firm)Goodyear           -16.91548   46.17941  -0.366    0.715    
+#&gt; factor(firm)Diamond Match       63.73104   47.96886   1.329    0.185    
+#&gt; factor(firm)American Steel      49.72087   48.28006   1.030    0.304    
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 50.3 on 207 degrees of freedom
+#&gt; Multiple R-squared:  0.9461, Adjusted R-squared:  0.9429 
+#&gt; F-statistic: 302.6 on 12 and 207 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="within-estimator" class="section level2">
+<h2>Within Estimator</h2>
+<p>The <code>within</code> estimation doesn’t need dummy variables, but it uses deviations from group (or time period) means. That is <code>within</code> estimation uses variation within each individual or entity instead of a large number of dummies.</p>
+<p>The within estimator substracts these unit-level means from the response, treatment, and all the controls:</p>
+<p><span class="math inline">\(Y_{it}-\bar{Y_i} = (X_{it}-\bar{X_i})&#39;\beta+ (u_{it}-\bar{u_i})\)</span></p>
+<p>Also note that since <span class="math inline">\(\bar{Y_i}\)</span> are unit averages, and the unobserved effect is constant over time, substracting off the mean also subtracts that unobserved effect.</p>
+<p>The default behavior of <code>plm</code> is to introduce individual effects. Using the <code>effect</code> argument, one may also introduce:</p>
+<ul>
+<li><p>individual effects( effect = “individual”)</p></li>
+<li><p>time effects( effect = “time” )</p></li>
+<li><p>individual and time effects ( effect = “twoways” ). The two-ways effect model is for the moment only available for balanced panels</p></li>
+</ul>
+<p>Here’s the code using <code>plm</code>. Note that in this case, <code>model = "within"</code> means fixed effects for the entity variable.</p>
+<pre class="r"><code>within &lt;- plm(invest~value + capital, data = Grunfeld, model = &quot;within&quot;, index = c(&quot;firm&quot;,&quot;year&quot;), effect = &quot;twoways&quot;)
+summary(within)</code></pre>
+<pre><code>#&gt; Twoways effects Within Model
+#&gt; 
+#&gt; Call:
+#&gt; plm(formula = invest ~ value + capital, data = Grunfeld, effect = &quot;twoways&quot;, 
+#&gt;     model = &quot;within&quot;, index = c(&quot;firm&quot;, &quot;year&quot;))
+#&gt; 
+#&gt; Balanced Panel: n = 11, T = 20, N = 220
+#&gt; 
+#&gt; Residuals:
+#&gt;      Min.   1st Qu.    Median   3rd Qu.      Max. 
+#&gt; -163.4113  -17.6747   -1.8345   17.9490  217.1070 
+#&gt; 
+#&gt; Coefficients:
+#&gt;         Estimate Std. Error t-value  Pr(&gt;|t|)    
+#&gt; value   0.116681   0.012933  9.0219 &lt; 2.2e-16 ***
+#&gt; capital 0.351436   0.021049 16.6964 &lt; 2.2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Total Sum of Squares:    1672200
+#&gt; Residual Sum of Squares: 459400
+#&gt; R-Squared:      0.72527
+#&gt; Adj. R-Squared: 0.67997
+#&gt; F-statistic: 248.15 on 2 and 188 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>The Fixed Effect model assumes an individual-speciﬁc intercept that is non-random, while all other coefficients are fixed (homogeneous across units)<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. We can get the fixed effects constant for each firm and year using <code>fixef()</code>. The <code>fixef()</code> function returns an object of class fixef.</p>
+<pre class="r"><code>fixef(within)</code></pre>
+<pre><code>#&gt;    General Motors          US Steel  General Electric          Chrysler 
+#&gt;         -125.5411           76.7777         -264.8565          -37.3708 
+#&gt; Atlantic Refining               IBM         Union Oil      Westinghouse 
+#&gt;         -136.2723          -30.2288          -80.5651          -65.4880 
+#&gt;          Goodyear     Diamond Match    American Steel 
+#&gt;         -101.7344           -7.2787          -23.7715</code></pre>
+<pre class="r"><code>fixef(within, effect = &quot;time&quot;)</code></pre>
+<pre><code>#&gt;     1935     1936     1937     1938     1939     1940     1941     1942 
+#&gt;  -30.534  -47.494  -66.910  -66.158  -93.634  -70.359  -47.022  -48.534 
+#&gt;     1943     1944     1945     1946     1947     1948     1949     1950 
+#&gt;  -68.307  -68.855  -80.074  -58.289  -65.412  -68.865  -95.735  -97.922 
+#&gt;     1951     1952     1953     1954 
+#&gt;  -85.369  -87.023  -89.047 -112.328</code></pre>
+<p>A summary method is provided, which prints the effects (in deviation from the overall intercept), their standard error and the test of equality to the overall intercepts.</p>
+<pre class="r"><code>summary(fixef(within))</code></pre>
+<pre><code>#&gt;                    Estimate Std. Error  t-value  Pr(&gt;|t|)    
+#&gt; General Motors    -125.5411    54.6650  -2.2966  0.022747 *  
+#&gt; US Steel            76.7777    26.7488   2.8703  0.004571 ** 
+#&gt; General Electric  -264.8565    26.3789 -10.0405 &lt; 2.2e-16 ***
+#&gt; Chrysler           -37.3708    13.9735  -2.6744  0.008146 ** 
+#&gt; Atlantic Refining -136.2723    14.7514  -9.2379 &lt; 2.2e-16 ***
+#&gt; IBM                -30.2288    12.2184  -2.4740  0.014247 *  
+#&gt; Union Oil          -80.5651    12.7329  -6.3273 1.781e-09 ***
+#&gt; Westinghouse       -65.4880    13.8303  -4.7351 4.300e-06 ***
+#&gt; Goodyear          -101.7344    12.7979  -7.9493 1.690e-13 ***
+#&gt; Diamond Match       -7.2787    11.0891  -0.6564  0.512381    
+#&gt; American Steel     -23.7715    11.1419  -2.1335  0.034178 *  
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Relationship of type <code>dmean</code> and <code>level</code> and <code>overall intercept</code></p>
+<pre class="r"><code>overall &lt;- within_intercept(within)
+fx_dmean &lt;- fixef(within, type = &quot;dmean&quot;) 
+fx_level &lt;- fixef(within, type = &quot;level&quot;)
+  
+all.equal(overall + fx_dmean, fx_level, check.attributes = FALSE)</code></pre>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<p>Calculation fitted values of two ways within model</p>
+<pre class="r"><code>fixefs &lt;- fixef(within)[index(within, which = &quot;id&quot;)]
+fitted_by_hand &lt;- fixefs + (within$coefficients[&quot;value&quot;] * within$model$value) + (within$coefficients[&quot;capital&quot;] * within$model$capital)</code></pre>
+</div>
+<div id="the-random-effects-model" class="section level2">
+<h2>The Random Effects Model</h2>
+<p>In the random effects model, the individual-specific effect is a random variable that is uncorrelated with the explanatory variables. The advantages of random effects specification are: <a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<ul>
+<li><p>The number of paramaters stay constant when sample size increases</p></li>
+<li><p>It allows the derivation of efficient estimators that make use of both within and between (group) variation.</p></li>
+<li><p>It allows the estimation of the impact of time invariant variables</p></li>
+</ul>
+<p>The equation for the random effects model becomes:</p>
+<p><span class="math display">\[y_{it} = \beta _iX_{it} + \alpha  +\varepsilon_{it} + u_{it}\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(u_{it}\)</span> is between entity error.</li>
+<li><span class="math inline">\(\varepsilon_{it}\)</span> is within entity error</li>
+</ul>
+<pre class="r"><code>random &lt;- plm(invest~value + capital, data = Grunfeld, model = &quot;random&quot;, index = c(&quot;firm&quot;,&quot;year&quot;), effect = &quot;twoways&quot;)
+summary(random)</code></pre>
+<pre><code>#&gt; Twoways effects Random Effect Model 
+#&gt;    (Swamy-Arora&#39;s transformation)
+#&gt; 
+#&gt; Call:
+#&gt; plm(formula = invest ~ value + capital, data = Grunfeld, effect = &quot;twoways&quot;, 
+#&gt;     model = &quot;random&quot;, index = c(&quot;firm&quot;, &quot;year&quot;))
+#&gt; 
+#&gt; Balanced Panel: n = 11, T = 20, N = 220
+#&gt; 
+#&gt; Effects:
+#&gt;                   var std.dev share
+#&gt; idiosyncratic 2443.62   49.43 0.283
+#&gt; individual    6206.26   78.78 0.717
+#&gt; time             0.00    0.00 0.000
+#&gt; theta: 0.8611 (id) 0 (time) 2.776e-17 (total)
+#&gt; 
+#&gt; Residuals:
+#&gt;      Min.   1st Qu.    Median   3rd Qu.      Max. 
+#&gt; -177.6721  -18.9754    4.1721   14.9430  253.1971 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                Estimate  Std. Error z-value Pr(&gt;|z|)    
+#&gt; (Intercept) -53.9812884  26.0814102 -2.0697  0.03848 *  
+#&gt; value         0.1093251   0.0099449 10.9931  &lt; 2e-16 ***
+#&gt; capital       0.3081066   0.0163788 18.8113  &lt; 2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Total Sum of Squares:    2388700
+#&gt; Residual Sum of Squares: 549690
+#&gt; R-Squared:      0.76988
+#&gt; Adj. R-Squared: 0.76776
+#&gt; Chisq: 725.987 on 2 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>For a random model, the <code>summary</code> output gives information about the variance of the components of the error.</p>
+<pre class="r"><code>ranef(random)</code></pre>
+<pre><code>#&gt;    General Motors          US Steel  General Electric          Chrysler 
+#&gt;        -11.360155        154.988363       -175.795335         26.442593 
+#&gt; Atlantic Refining               IBM         Union Oil      Westinghouse 
+#&gt;        -58.348487         30.754167        -11.607130         -2.805524 
+#&gt;          Goodyear     Diamond Match    American Steel 
+#&gt;        -31.765611         46.565016         32.932104</code></pre>
+</div>
+<div id="fixed-effect-vs-random-effect-models" class="section level2">
+<h2>Fixed Effect vs Random Effect Models</h2>
+<p>Panel data models estimate fixed and/or random effects models using dummy variables. The core difference between fixed and random effect models lies in the role of dummies. If dummies are consideres as a part of the intercept, it is a fixed effect model. In a random effect model, the dummies act as an error term.</p>
+<p>The fixed effect model examines group difference in intercepts, assuming the same slopes and constant variance across groups. Fixed effect models use Leas Square Dummy Variable (LSDV), within effect, and between effect estimation methods. Thus OLS regression with dummies, in fact, are fixes effect models.</p>
+</div>
+<div id="selection-method-of-panel-regression" class="section level2">
+<h2>Selection Method of panel regression</h2>
+<p>We can check the several tests are the Chow Test, Hausman Test, and Lagrange Test to decide on the most appropriate model:</p>
+<div id="chow-test-for-poolability" class="section level3">
+<h3>1. Chow Test for Poolability</h3>
+<p>Chow test is a test to determine the model of whether Pooled Effect or Fixed Effect (FE) is most appropriately used in estimating panel data. What is poolability? Poolability asks if slopes are the same across group or overtime.</p>
+<p>H0: pooled effect model</p>
+<p>H1: fixed effect model</p>
+<pre class="r"><code>pFtest(within,pooling)</code></pre>
+<pre><code>#&gt; 
+#&gt;  F test for twoways effects
+#&gt; 
+#&gt; data:  invest ~ value + capital
+#&gt; F = 18.476, df1 = 29, df2 = 188, p-value &lt; 2.2e-16
+#&gt; alternative hypothesis: significant effects</code></pre>
+<p>From the result above, we can see the p-value is below 0.05 so a fixed effect model is better for this data</p>
+</div>
+<div id="hausman-test" class="section level3">
+<h3>2. Hausman Test</h3>
+<p>Hausman test is a statistical test to select whether the most appropriate Fixed Effect or Random Effect model is used. The additional arguments is model, the kind of model to be estimated, most of the time a model with fixed effects or a model with random effects.</p>
+<p>H0: Random Effect Model</p>
+<p>H1: Fixed Effect Model</p>
+<pre class="r"><code>phtest(within, random)</code></pre>
+<pre><code>#&gt; 
+#&gt;  Hausman Test
+#&gt; 
+#&gt; data:  invest ~ value + capital
+#&gt; chisq = 13.253, df = 2, p-value = 0.001325
+#&gt; alternative hypothesis: one model is inconsistent</code></pre>
+<p>From the result above, the p-value is below 0.05 so a fixed effect model is better for this data</p>
+</div>
+<div id="lagrange-multiplier" class="section level3">
+<h3>3. Lagrange Multiplier</h3>
+<p>Lagrange Multiplier to determine whether Random Effect (RE) is better than Comman Effect method.</p>
+<p>H0: Pooled Effect Model</p>
+<p>H1: Random Effect Model</p>
+<pre class="r"><code>plmtest(within,effect = &quot;twoways&quot;,type = &quot;bp&quot;)</code></pre>
+<pre><code>#&gt; 
+#&gt;  Lagrange Multiplier Test - two-ways effects (Breusch-Pagan) for
+#&gt;  balanced panels
+#&gt; 
+#&gt; data:  invest ~ value + capital
+#&gt; chisq = 881.07, df = 2, p-value &lt; 2.2e-16
+#&gt; alternative hypothesis: significant effects</code></pre>
+<p>From the result above, the p-value is below 0.05 so a random effect model is better for this data</p>
+<blockquote>
+<p>The test will help you to decide, but your explanation/motivation according to the data structure and research question to use an estimator or another it’s a better choice.</p>
+</blockquote>
+</div>
+</div>
+<div id="diagnostics-test" class="section level2">
+<h2>Diagnostics Test</h2>
+<div id="test-of-serial-correlation" class="section level3">
+<h3>Test of Serial Correlation</h3>
+<p>Serial correlation is the relationship between a variable and a lagged version of itself over various time intervals.</p>
+<p>Serial correlation hypothesis test:</p>
+<p>H0: There is not serial correlation</p>
+<p>H1: There is serial correlation</p>
+<pre class="r"><code>pbgtest(random)</code></pre>
+<pre><code>#&gt; 
+#&gt;  Breusch-Godfrey/Wooldridge test for serial correlation in panel models
+#&gt; 
+#&gt; data:  invest ~ value + capital
+#&gt; chisq = 77.049, df = 20, p-value = 1.237e-08
+#&gt; alternative hypothesis: serial correlation in idiosyncratic errors</code></pre>
+<p>From the result above, the p-value is below 0.05 so there is serial correlation.</p>
+</div>
+<div id="testing-for-heteroskedasticity" class="section level3">
+<h3>Testing for Heteroskedasticity</h3>
+<p>Heteroscedasticity is a condition where the variability of a variable is unequal across its range of value.</p>
+<p>Heteroscedasticity hypothesis test:</p>
+<p>H0: Homoskedasticity</p>
+<p>H1: Heteroskedasticity</p>
+<pre class="r"><code>bptest(random)</code></pre>
+<pre><code>#&gt; 
+#&gt;  studentized Breusch-Pagan test
+#&gt; 
+#&gt; data:  random
+#&gt; BP = 65.228, df = 2, p-value = 6.854e-15</code></pre>
+<p>From the result above, the p-value is below 0.05 so there is heteroscedasticity</p>
+</div>
+</div>
+</div>
+<div id="use-case" class="section level1">
+<h1>Use Case</h1>
+<p>In this section, we will use case of panel regression in public capital productivity.</p>
+<pre class="r"><code>productivity &lt;- read.csv(&quot;data_input/productivity.csv&quot;)
+str(productivity)</code></pre>
+<pre><code>#&gt; &#39;data.frame&#39;:    816 obs. of  10 variables:
+#&gt;  $ STATE: Factor w/ 48 levels &quot;ALABAMA&quot;,&quot;ARIZONA&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ YR   : int  1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 ...
+#&gt;  $ P_CAP: num  15033 15502 15972 16406 16763 ...
+#&gt;  $ HWY  : num  7326 7526 7765 7908 8026 ...
+#&gt;  $ WATER: num  1656 1721 1765 1742 1735 ...
+#&gt;  $ UTIL : num  6051 6255 6442 6756 7002 ...
+#&gt;  $ PC   : num  35794 37300 38670 40084 42057 ...
+#&gt;  $ GSP  : int  28418 29375 31303 33430 33749 33604 35764 37463 39964 40979 ...
+#&gt;  $ EMP  : num  1010 1022 1072 1136 1170 ...
+#&gt;  $ UNEMP: num  4.7 5.2 4.7 3.9 5.5 7.7 6.8 7.4 6.3 7.1 ...</code></pre>
+<p>The data has 816 observations and 10 variables. The target variable is Gross State Product (GSP). Variable <code>STATE</code> represents the entities or panels and <code>YR</code> represent the time variable. Here some description of each feature:</p>
+<ul>
+<li>STATE : state name</li>
+<li>YR : year</li>
+<li>P_CAP : public capital</li>
+<li>HWY : highway capital</li>
+<li>WATER : water utility capital</li>
+<li>UTIL : utility capital</li>
+<li>PC : private capital</li>
+<li>GSP : gross state product</li>
+<li>EMP : employment rate</li>
+<li>UNEMP : unemployment rate</li>
+</ul>
+<div id="cross-validation" class="section level3">
+<h3>Cross Validation</h3>
+<p>We split the data into <code>data_train</code> and <code>data_test</code>. The first 13 years will be the training data and the last 4 years will be data test.</p>
+<pre class="r"><code>set.seed(100)
+data_train &lt;- productivity %&gt;% 
+              filter( !YR %in% c(1983,1984,1985,1986))
+data_test &lt;- productivity %&gt;% 
+              filter( YR %in% c(1983,1984,1985,1986))</code></pre>
+</div>
+<div id="exploratory-data" class="section level3">
+<h3>Exploratory data</h3>
+<p>Before we go further, we need to make sure that our data is balanced panel from 1970 to 1982.</p>
+<pre class="r"><code>plotmeans(formula = GSP ~ YR, main = &quot;Heterogeineity Across Year&quot;,data = data_train)</code></pre>
+<p><img src="/blog/2020-06-02-panel-regression_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>From the plot above, we have a balanced panel with 48 observations every year.</p>
+</div>
+<div id="modelling" class="section level3">
+<h3>Modelling</h3>
+<p>In this case, we will try to build 3 model from pooling, fixed, and random model.</p>
+<pre class="r"><code>mod_pooling &lt;- plm(GSP ~ P_CAP + HWY + WATER +
+                     UTIL + PC + EMP + UNEMP,
+                   data = data_train,
+                   model = &quot;pooling&quot;)
+summary(mod_pooling)</code></pre>
+<pre><code>#&gt; Pooling Model
+#&gt; 
+#&gt; Call:
+#&gt; plm(formula = GSP ~ P_CAP + HWY + WATER + UTIL + PC + EMP + UNEMP, 
+#&gt;     data = data_train, model = &quot;pooling&quot;)
+#&gt; 
+#&gt; Balanced Panel: n = 48, T = 13, N = 624
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min.  1st Qu.   Median  3rd Qu.     Max. 
+#&gt; -23508.4  -3502.1   1006.8   3028.9  33069.1 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                Estimate  Std. Error t-value  Pr(&gt;|t|)    
+#&gt; (Intercept) -7.1687e+02  8.0383e+02 -0.8918    0.3728    
+#&gt; P_CAP       -7.3614e+04  3.6801e+04 -2.0003    0.0459 *  
+#&gt; HWY          7.3615e+04  3.6801e+04  2.0003    0.0459 *  
+#&gt; WATER        7.3616e+04  3.6801e+04  2.0004    0.0459 *  
+#&gt; UTIL         7.3615e+04  3.6801e+04  2.0004    0.0459 *  
+#&gt; PC           3.0618e-01  1.1688e-02 26.1954 &lt; 2.2e-16 ***
+#&gt; EMP          1.8854e+01  7.0890e-01 26.5968 &lt; 2.2e-16 ***
+#&gt; UNEMP       -6.1782e+02  1.1387e+02 -5.4255 8.314e-08 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Total Sum of Squares:    2.7027e+12
+#&gt; Residual Sum of Squares: 1.9502e+10
+#&gt; R-Squared:      0.99278
+#&gt; Adj. R-Squared: 0.9927
+#&gt; F-statistic: 12107.4 on 7 and 616 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>From the pooling model, all of independent variable significants to dependent variable and generate a value of 0.99 for adjusted R squared. The result of pooling model has intercept and slopes regardless of group and time period. Next, we will build within model:</p>
+<pre class="r"><code>mod_within &lt;- plm(GSP ~ P_CAP + HWY + WATER +
+                     UTIL + PC + EMP + UNEMP,
+                   data = data_train,
+                   model = &quot;within&quot;,
+                   index = c(&quot;STATE&quot;,&quot;YR&quot;),
+                   effect = &quot;twoways&quot;)
+summary(mod_within)</code></pre>
+<pre><code>#&gt; Twoways effects Within Model
+#&gt; 
+#&gt; Call:
+#&gt; plm(formula = GSP ~ P_CAP + HWY + WATER + UTIL + PC + EMP + UNEMP, 
+#&gt;     data = data_train, effect = &quot;twoways&quot;, model = &quot;within&quot;, 
+#&gt;     index = c(&quot;STATE&quot;, &quot;YR&quot;))
+#&gt; 
+#&gt; Balanced Panel: n = 48, T = 13, N = 624
+#&gt; 
+#&gt; Residuals:
+#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#&gt; -7842.0  -718.9   -54.4     0.0   648.7  6593.5 
+#&gt; 
+#&gt; Coefficients:
+#&gt;          Estimate  Std. Error t-value Pr(&gt;|t|)    
+#&gt; P_CAP  9.4220e+03  1.1642e+04  0.8093   0.4187    
+#&gt; HWY   -9.4222e+03  1.1642e+04 -0.8093   0.4187    
+#&gt; WATER -9.4224e+03  1.1642e+04 -0.8093   0.4187    
+#&gt; UTIL  -9.4216e+03  1.1642e+04 -0.8093   0.4187    
+#&gt; PC    -2.7614e-02  2.0574e-02 -1.3422   0.1801    
+#&gt; EMP    3.7677e+01  7.6494e-01 49.2555   &lt;2e-16 ***
+#&gt; UNEMP  8.6094e+01  7.1320e+01  1.2072   0.2279    
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Total Sum of Squares:    3.512e+10
+#&gt; Residual Sum of Squares: 1563600000
+#&gt; R-Squared:      0.95548
+#&gt; Adj. R-Squared: 0.9502
+#&gt; F-statistic: 1707.69 on 7 and 557 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>To check the intercept for each cross-section and time period, we can used function <code>fixef()</code>.</p>
+<pre class="r"><code>fixef(mod_within)</code></pre>
+<pre><code>#&gt;        ALABAMA        ARIZONA       ARKANSAS     CALIFORNIA       COLORADO 
+#&gt;      -10424.53       -3566.05       -5122.71       -2201.48       -3368.31 
+#&gt;    CONNECTICUT       DELAWARE        FLORIDA        GEORGIA          IDAHO 
+#&gt;       -6830.42       -1991.55      -17674.65      -16897.08       -1587.21 
+#&gt;       ILLINOIS        INDIANA           IOWA         KANSAS       KENTUCKY 
+#&gt;      -11828.54      -12051.68       -2441.26        -516.46       -2156.66 
+#&gt;      LOUISIANA          MAINE       MARYLAND  MASSACHUSETTS       MICHIGAN 
+#&gt;       20243.90       -3992.07       -9682.28      -23539.79       -5966.18 
+#&gt;      MINNESOTA    MISSISSIPPI       MISSOURI        MONTANA       NEBRASKA 
+#&gt;       -8757.58       -5991.93      -11232.59         425.73       -3624.40 
+#&gt;         NEVADA  NEW_HAMPSHIRE     NEW_JERSEY     NEW_MEXICO       NEW_YORK 
+#&gt;       -1231.83       -3607.94      -10573.66        1585.53      -32166.92 
+#&gt; NORTH_CAROLINA   NORTH_DAKOTA           OHIO       OKLAHOMA         OREGON 
+#&gt;      -19458.55         474.27      -20503.08        3315.88       -4532.44 
+#&gt;   PENNSYLVANIA   RHODE_ISLAND SOUTH_CAROLINA   SOUTH_DAKOTA       TENNESSE 
+#&gt;      -32702.66       -4520.25      -12793.72        -894.22      -15095.64 
+#&gt;          TEXAS           UTAH        VERMONT       VIRGINIA     WASHINGTON 
+#&gt;       30577.25       -3716.22       -1987.88       -9702.83       -3925.40 
+#&gt;  WEST_VIRGINIA      WISCONSIN        WYOMING 
+#&gt;       -1573.68      -12151.91        4245.09</code></pre>
+<pre class="r"><code>fixef(mod_within,effect = &quot;time&quot;)</code></pre>
+<pre><code>#&gt;    1970    1971    1972    1973    1974    1975    1976    1977    1978    1979 
+#&gt; -6561.2 -5764.7 -5247.7 -4967.8 -6592.4 -6677.1 -5971.0 -5654.3 -5848.6 -6611.8 
+#&gt;    1980    1981    1982 
+#&gt; -7594.0 -7030.4 -7193.8</code></pre>
+<p>Next, we will build the random model:</p>
+<pre class="r"><code>mod_random &lt;- plm(GSP ~ P_CAP + HWY + WATER +
+                     UTIL + PC + EMP + UNEMP,
+                   data = data_train,
+                   model = &quot;random&quot;,
+                   index = c(&quot;STATE&quot;,&quot;YR&quot;),
+                  effect = &quot;twoways&quot;)
+summary(mod_random)</code></pre>
+<pre><code>#&gt; Twoways effects Random Effect Model 
+#&gt;    (Swamy-Arora&#39;s transformation)
+#&gt; 
+#&gt; Call:
+#&gt; plm(formula = GSP ~ P_CAP + HWY + WATER + UTIL + PC + EMP + UNEMP, 
+#&gt;     data = data_train, effect = &quot;twoways&quot;, model = &quot;random&quot;, 
+#&gt;     index = c(&quot;STATE&quot;, &quot;YR&quot;))
+#&gt; 
+#&gt; Balanced Panel: n = 48, T = 13, N = 624
+#&gt; 
+#&gt; Effects:
+#&gt;                     var   std.dev share
+#&gt; idiosyncratic 2.807e+06 1.676e+03 0.098
+#&gt; individual    2.571e+07 5.070e+03 0.900
+#&gt; time          5.286e+04 2.299e+02 0.002
+#&gt; theta: 0.9087 (id) 0.2753 (time) 0.2749 (total)
+#&gt; 
+#&gt; Residuals:
+#&gt;       Min.    1st Qu.     Median    3rd Qu.       Max. 
+#&gt; -8850.7380  -588.8907     4.4832   549.8404  9901.7155 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                Estimate  Std. Error z-value  Pr(&gt;|z|)    
+#&gt; (Intercept) -3.2450e+03  1.1435e+03 -2.8377 0.0045441 ** 
+#&gt; P_CAP        1.2397e+04  1.2799e+04  0.9686 0.3327469    
+#&gt; HWY         -1.2397e+04  1.2799e+04 -0.9686 0.3327483    
+#&gt; WATER       -1.2398e+04  1.2799e+04 -0.9686 0.3327336    
+#&gt; UTIL        -1.2397e+04  1.2799e+04 -0.9686 0.3327561    
+#&gt; PC           6.0680e-02  1.7461e-02  3.4752 0.0005104 ***
+#&gt; EMP          3.3964e+01  6.8185e-01 49.8107 &lt; 2.2e-16 ***
+#&gt; UNEMP       -1.5642e+02  5.9315e+01 -2.6372 0.0083600 ** 
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Total Sum of Squares:    6.6693e+10
+#&gt; Residual Sum of Squares: 2126900000
+#&gt; R-Squared:      0.96811
+#&gt; Adj. R-Squared: 0.96775
+#&gt; Chisq: 18700.3 on 7 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>Variable private capital and employee rate have positively related to gross state product and other independent variable have negatively related to our target variable.</p>
+<pre class="r"><code>ranef(mod_random)</code></pre>
+<pre><code>#&gt;        ALABAMA        ARIZONA       ARKANSAS     CALIFORNIA       COLORADO 
+#&gt;    -5230.10493     1819.95913      -90.08252    18339.30247     2153.96993 
+#&gt;    CONNECTICUT       DELAWARE        FLORIDA        GEORGIA          IDAHO 
+#&gt;      382.82692     3198.92806    -8683.31375    -9655.38005     3013.77662 
+#&gt;       ILLINOIS        INDIANA           IOWA         KANSAS       KENTUCKY 
+#&gt;    -2514.21002    -6107.49603     1115.73924     2934.53554     2356.77859 
+#&gt;      LOUISIANA          MAINE       MARYLAND  MASSACHUSETTS       MICHIGAN 
+#&gt;    20080.55495     1305.33545    -2291.20789   -12570.66767     2684.74534 
+#&gt;      MINNESOTA    MISSISSIPPI       MISSOURI        MONTANA       NEBRASKA 
+#&gt;    -3331.05067    -1078.35286    -4937.46721     4143.34031      795.33684 
+#&gt;         NEVADA  NEW_HAMPSHIRE     NEW_JERSEY     NEW_MEXICO       NEW_YORK 
+#&gt;     3482.59290     1225.91024    -1061.28694     5718.19874    -8522.63749 
+#&gt; NORTH_CAROLINA   NORTH_DAKOTA           OHIO       OKLAHOMA         OREGON 
+#&gt;   -11998.91470     3967.56349   -11794.13171     6770.49466     1127.12389 
+#&gt;   PENNSYLVANIA   RHODE_ISLAND SOUTH_CAROLINA   SOUTH_DAKOTA       TENNESSE 
+#&gt;   -21524.30136     1283.93650    -6993.38460     2757.16259    -8700.68861 
+#&gt;          TEXAS           UTAH        VERMONT       VIRGINIA     WASHINGTON 
+#&gt;    28325.56849     1269.45013     2843.35365    -3205.10527     3144.51776 
+#&gt;  WEST_VIRGINIA      WISCONSIN        WYOMING 
+#&gt;     2297.18196    -5229.31019     6980.91007</code></pre>
+<p>After we build 3 models above, we need to decide which model will to choose from the test:</p>
+<ul>
+<li>Chow test for poolability</li>
+</ul>
+<pre class="r"><code>pFtest(mod_within, mod_pooling)</code></pre>
+<pre><code>#&gt; 
+#&gt;  F test for twoways effects
+#&gt; 
+#&gt; data:  GSP ~ P_CAP + HWY + WATER + UTIL + PC + EMP + UNEMP
+#&gt; F = 108.31, df1 = 59, df2 = 557, p-value &lt; 2.2e-16
+#&gt; alternative hypothesis: significant effects</code></pre>
+<p>The test has a p-value less than the significance level of 0.05, therefore we reject H0, we can conclude to select fixed effect model.</p>
+<ul>
+<li>Hausman Test</li>
+</ul>
+<pre class="r"><code>phtest(mod_within, mod_random)</code></pre>
+<pre><code>#&gt; 
+#&gt;  Hausman Test
+#&gt; 
+#&gt; data:  GSP ~ P_CAP + HWY + WATER + UTIL + PC + EMP + UNEMP
+#&gt; chisq = 7.9098, df = 7, p-value = 0.3406
+#&gt; alternative hypothesis: one model is inconsistent</code></pre>
+<p>The test has a p-value above the significance level of 0.05, therefore we fail to reject H0, we can conclude to select random effect model.</p>
+<ul>
+<li>Lagrange Multiplier</li>
+</ul>
+<pre class="r"><code>plmtest(mod_within, effect = &quot;twoways&quot;, type = &quot;bp&quot;)</code></pre>
+<pre><code>#&gt; 
+#&gt;  Lagrange Multiplier Test - two-ways effects (Breusch-Pagan) for
+#&gt;  balanced panels
+#&gt; 
+#&gt; data:  GSP ~ P_CAP + HWY + WATER + UTIL + PC + EMP + UNEMP
+#&gt; chisq = 1948.8, df = 2, p-value &lt; 2.2e-16
+#&gt; alternative hypothesis: significant effects</code></pre>
+<p>The test has a p-value less than the significance level of 0.05, therefore we reject H0, we can conclude to select random effect model.</p>
+<p>From the three test above, we will used random effect model. Next, we only check the assumption of random effect model:</p>
+<ul>
+<li>Test of serial correlation</li>
+</ul>
+<pre class="r"><code>pbgtest(mod_random)</code></pre>
+<pre><code>#&gt; 
+#&gt;  Breusch-Godfrey/Wooldridge test for serial correlation in panel models
+#&gt; 
+#&gt; data:  GSP ~ P_CAP + HWY + WATER + UTIL + PC + EMP + UNEMP
+#&gt; chisq = 291.28, df = 13, p-value &lt; 2.2e-16
+#&gt; alternative hypothesis: serial correlation in idiosyncratic errors</code></pre>
+<p>The test has a p-value less than the significance level of 0.05, therefore we reject H0, we can conclude there is serial correlation.</p>
+<ul>
+<li>Heteroscedasticity</li>
+</ul>
+<p>We need to check heteroscedasticity using the Breusch Pagan test.</p>
+<pre class="r"><code>bptest(mod_random)</code></pre>
+<pre><code>#&gt; 
+#&gt;  studentized Breusch-Pagan test
+#&gt; 
+#&gt; data:  mod_random
+#&gt; BP = 276.65, df = 7, p-value &lt; 2.2e-16</code></pre>
+<p>The test has a p-value less than the significance level of 0.05, therefore we reject the null hypothesis.</p>
+<p>We can conclude that the assumption is not already passed. This may be a restrictive assumption in many panel data applications.</p>
+<ul>
+<li>Predict data test</li>
+</ul>
+<pre class="r"><code>pred &lt;- predict(mod_random,data_test)</code></pre>
+<ul>
+<li>Let’s check the performance of our model</li>
+</ul>
+<pre class="r"><code>RMSE(pred, data_test$GSP)</code></pre>
+<pre><code>#&gt; [1] 9376.271</code></pre>
+<pre class="r"><code>MAPE(pred, data_test$GSP)</code></pre>
+<pre><code>#&gt; [1] 0.1312989</code></pre>
+</div>
+</div>
+<div id="conlusion" class="section level1">
+<h1>Conlusion</h1>
+<p>Panel regression is a method that can build model both the common and individual behaviors of groups. The advantage of a panel data set over a cross-section is that it will allow the researcher great flexibility in modeling of differences in behavior across individuals. The challenge from implementation panel regression is the assumption of no unobserved heterogeneity.</p>
+</div>
+<div id="annotation" class="section level1">
+<h1>Annotation</h1>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://www.iuj.ac.jp/faculty/kucc625/method/panel/panel_iuj.pdf">Practical Guides to Panel Data Modeling: A Step by Step Analysis Using Stata</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://www.uio.no/studier/emner/sv/oekonomi/ECON5103/v10/undervisningsmateriale/PDAppl_14.pdf">Panel Data Analysis-Advantages and Challenges</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://are.berkeley.edu/courses/EEP118/current/handouts/eep118_panel_data_fixed_effects.pdf">Introductory Applied Econometrics</a><a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p><a href="http://www.princeton.edu/~otorres/Panel101R.pdf">Getting Started in Fixed/Random Effects Models using R</a><a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://www.researchgate.net/publication/288254393_Fixed-effects_panel_regression">Regression Analysis and Causal Inference</a><a href="#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://books.google.co.id/books?id=EO40DAAAQBAJ&amp;pg=RA4-PA199&amp;lpg=RA4-PA199&amp;dq=The+advantages+of+random+effects+specification+are+The+number+of+parameters+stay+constant+when+sample+size+increases&amp;source=bl&amp;ots=8kd5H-wGl_&amp;sig=ACfU3U3GPCuzzfCpUMJUWK08SKV6zj-i6A&amp;hl=en&amp;sa=X&amp;ved=2ahUKEwjBqJ7XguLpAhV2H7cAHf2sDMIQ6AEwAHoECAcQAQ#v=onepage&amp;q=The%20advantages%20of%20random%20effects%20specification%20are%20The%20number%20of%20parameters%20stay%20constant%20when%20sample%20size%20increases&amp;f=false">The New Palgrave Dictionary of Economics</a><a href="#fnref6" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/machine-learning">Machine Learning</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/panel-data">Panel Data</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-algotech-netlify-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/pengenalan-teori-antrian/"
+                class="button big previous">Pengenalan Teori Antrian</a></li>
+    
+
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>Algoritma Technical Blog</h2>
+        <p>We're a group of people who teach data science to individuals, trains companies and their employees to better profit from data. We care about the development of data science and a sense of community that connects our alumni and team with one another. To learn more about our approach to data science problems, feel free to hop over to our blog.</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    <p class="copyright">
+      
+        &copy; 2020
+        
+          Algoritma Technical Blog
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+        
+          <script src="/js/bootstrap.min.js"></script>
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+

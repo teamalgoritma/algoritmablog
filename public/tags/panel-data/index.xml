@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Panel Data on Algoritma Technical Blog</title>
+    <link>/tags/panel-data/</link>
+    <description>Recent content in Panel Data on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/panel-data/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Regression Model with Panel Data</title>
+      <link>/blog/regression-with-panel-data/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/regression-with-panel-data/</guid>
+      <description>body {text-align: justify}IntroductionPanel RegressionPanel data are also called longitudinal data or cross-sectional time-series data. A panel data set has multiple entities, each of which has repeated measurements at different time periods. Panel data may have individual (group) effect, time effect, or both, which are analyzed by fixed effect and/or random effect models.1
+Panel data examples:
+Annual unemployment rates of each state over several years</description>
+    </item>
+    
+  </channel>
+</rss>
