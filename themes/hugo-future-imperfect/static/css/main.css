@@ -256,8 +256,8 @@
 		}
 
 	code {
-		background: #ffffff;
-		color: black;
+		background: darkred;
+		color: white;
 		border: solid 1px rgba(160, 160, 160, 0.3);
 		font-family: "Courier New", monospace;
 		margin: 0 0.1em;
