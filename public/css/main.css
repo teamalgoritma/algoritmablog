@@ -1358,17 +1358,12 @@
             border-bottom-color: transparent;
         }
 
-		#content blockquote,
+    #content blockquote,
 		#content p,
 		#content ul{
-        font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-        font-size: 15px;
-		display: block;
-		text-indent: 2em;
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
+        margin: 0 0 13px;
+        font-size: 1.1em;
+        font-family: Georgia, Times, "Times New Roman", serif;
     }
 
 		.post > .image.featured {
@@ -1946,8 +1941,7 @@
 	        filter: alpha(opacity=87);
 
 	        /* Modern Browsers */
-			opacity: 0.87;
-			margin-block-start: 1em;
+	        opacity: 0.87;
 	    }
 
 /* Table */

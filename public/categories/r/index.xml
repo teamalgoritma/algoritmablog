@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Algoritma Technical Blog</title>
@@ -28,7 +28,7 @@ Panel data examples:
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>/blog/pengenalan-teori-antrian/</guid>
-      <description>body { text-align: justify}  Introduction &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Apakah kamu pernah melihat antrian dalam aktivitas sehari-hari? Pasti kamu pernah melihat banyak sekali kejadian dimana pelanggan menunggu dan membentuk suatu antrian yang panjang untuk dilayani oleh server. Kita tentunya pernah melihat antrian pelanggan yang menunggu untuk dilayani di bank, antrian untuk membeli makanan di restoran, antrian untuk masuk lift, antrian untuk mendapatkan resep obat di rumah sakit, dan masih banyak lagi.</description>
+      <description>Introduction  Apakah kamu pernah melihat antrian dalam aktivitas sehari-hari? Pasti kamu pernah melihat banyak sekali kejadian dimana pelanggan menunggu dan membentuk suatu antrian yang panjang untuk dilayani oleh server. Kita tentunya pernah melihat antrian pelanggan yang menunggu untuk dilayani di bank, antrian untuk membeli makanan di restoran, antrian untuk masuk lift, antrian untuk mendapatkan resep obat di rumah sakit, dan masih banyak lagi. Jika kita hitung waktu tunggu untuk dilayani, saya yakin tentunya akan membutuhkan banyak waktu yang cukup lama.</description>
     </item>
     
     <item>
@@ -132,8 +132,8 @@ But in the real world to meet OLS regression assumptions will be very difficult.
       
       <guid>/blog/poisson-regression-and-neg-ative-binomial-regression/</guid>
       <description>Introduction Regression analysis is a set of statistical processes for estimating the relationships among variables. It includes many techniques for modeling and analyzing several variables, when the focus is on the relationship between a dependent variable and one or more independent variables (or &amp;lsquo;predictors&amp;rsquo;).
-For example  Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
- Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
+For example   Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
+  Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
     </item>
     
     <item>
@@ -162,7 +162,7 @@ There are many types of geospatial that we can do, such as Dot Map, Connection M
       <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/self-organizing-maps/</guid>
-      <description>body { text-align: justify}  Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.</description>
+      <description>Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations.</description>
     </item>
     
     <item>
