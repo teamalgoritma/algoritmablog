@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.71.1" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -272,6 +272,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-happiness-of-the-third-age/">Rplicate Series: Happiness of The Third Age</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-08-27'>
+                                    August 27, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/song2vec-music-recommender/">Song2Vec: Music Recommender</a></h3>
                                 
                                 <time class="published" datetime=
@@ -313,18 +325,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-04-17'>
                                     April 17, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/time-and-accuracy-improvement-using-pca/">Time Efficiency and Accuracy Improvement using PCA</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-04-13'>
-                                    April 13, 2020</time>
                             </header>
                             
 
@@ -527,7 +527,7 @@ if (!doNotTrack) {
 <h2 id="vanishing--exploding-gradient-descent">Vanishing / Exploding Gradient Descent</h2>
 <p><strong>Vanishing Gradient Descent</strong>: the update value obtained will exponentially decrease when heading to the input layer. Here are the illustrations, which I took from: <a href="https://towardsdatascience.com/illustrated-guide-to-recurrent-neural-networks-79e5eb8049c9">Michael Nguyen&rsquo;s article</a></p>
 <p><!-- raw HTML omitted --></p>
-<p>Gradient descent aims to adjust weights that allow the model to &lsquo;<strong>learn</strong>'. the nature of the gradient that is, the greater the value of the gradient in the current layer, will affect in the next layer getting bigger. and <em>vice versa</em>. This is the problem. When doing BP, each node will calculate the gradient value and update its weight according to the gradient effect on the previous layer. so if the previous layer is small, then adjusting the weights in the current layer will be small. it causes the gradient to shrink exponentially when it goes to the input layer. so that when in the input layer it fails to do the learning due to <em>vanishing gradient problems</em>. so the model <strong>fails to learn</strong> when a pass forward is made again to make predictions.</p>
+<p>Gradient descent aims to adjust weights that allow the model to &lsquo;<strong>learn</strong>&rsquo;. the nature of the gradient that is, the greater the value of the gradient in the current layer, will affect in the next layer getting bigger. and <em>vice versa</em>. This is the problem. When doing BP, each node will calculate the gradient value and update its weight according to the gradient effect on the previous layer. so if the previous layer is small, then adjusting the weights in the current layer will be small. it causes the gradient to shrink exponentially when it goes to the input layer. so that when in the input layer it fails to do the learning due to <em>vanishing gradient problems</em>. so the model <strong>fails to learn</strong> when a pass forward is made again to make predictions.</p>
 <p><strong>Exploding Gradient Descent</strong>: the update value obtained will exponentially increase when heading to the input layer. The characteristics of the model have an exploding gradient problem, which is when the cost function results are NaN.</p>
 <p><!-- raw HTML omitted --></p>
 <p>Here is a link duscussion regarding to exploding grgadient descent: <a href="https://stackoverflow.com/questions/37232782/nan-loss-when-training-regression-network">nan loss when training NN</a></p>
@@ -580,7 +580,7 @@ if (!doNotTrack) {
 <h1 id="lstm">LSTM</h1>
 <p>Just like RNN, LSTM has a sequential model which is illustrated with a green box. if unfolded the architecture becomes as below:</p>
 <p><!-- raw HTML omitted --></p>
-<p>The difference between RNN and LSTM is that it has additional signal information that is given from one time step to the next time step which is commonly called &ldquo;<strong>cell memory</strong>&quot;. LSTM is designed to overcome the problem of vanishing gradient, using the <strong>gate mechanism</strong>.</p>
+<p>The difference between RNN and LSTM is that it has additional signal information that is given from one time step to the next time step which is commonly called &ldquo;<strong>cell memory</strong>&rdquo;. LSTM is designed to overcome the problem of vanishing gradient, using the <strong>gate mechanism</strong>.</p>
 <h2 id="lstm-network">LSTM Network</h2>
 <p>So the components in LSTM consist of:</p>
 <ul>
@@ -609,7 +609,7 @@ if (!doNotTrack) {
 </ol>
 <!-- raw HTML omitted -->
 <blockquote>
-<p>value 1 means &ldquo;<em>really take care of this element</em>&rdquo; while 0 means &ldquo;<em>completely get rid of this element</em>&quot;.</p>
+<p>value 1 means &ldquo;<em>really take care of this element</em>&rdquo; while 0 means &ldquo;<em>completely get rid of this element</em>&rdquo;.</p>
 </blockquote>
 <ol start="2">
 <li>
