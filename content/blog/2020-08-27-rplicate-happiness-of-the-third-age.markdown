@@ -140,11 +140,11 @@ male1 <- male +
              aes(y=X45.to.59)) +
   geom_text(data=data.m[7,],
             aes(x=years, y=X60.to.74),
-            label="60-74", color="#f05a40", nudge_y = -3, nudge_x = -0.5, 
+            label="60-74", color="#f05a40", nudge_y = -3, nudge_x = -1.5, 
             fontface = "bold", family = "Segoe UI") +
   geom_text(data=data.m[10,],
             aes(y=X75.and.over, x=years),
-            label="75+", color="#7a2712", nudge_y = 6, 
+            label="75+", color="#7a2712", nudge_y = 6, nudge_x = 1, 
             fontface = "bold", family = "Segoe UI")
 
 male1
@@ -233,7 +233,7 @@ library(gridExtra)
 grid.arrange(male3, female, nrow=1)
 ```
 
-<img src="/blog/2020-08-27-rplicate-happiness-of-the-third-age_files/figure-html/unnamed-chunk-10-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2020-08-27-rplicate-happiness-of-the-third-age_files/figure-html/unnamed-chunk-10-1.png" width="816" style="display: block; margin: auto;" />
 
 Thank you for reading and we hope this article can help you to find the delight in exploring data visualization in R. Happy learning and coding!
 
