@@ -21,10 +21,10 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-08-18 00:00:00 \u002b0000 UTC",
-        "dateModified" : "2019-08-18 00:00:00 \u002b0000 UTC",
+        "datePublished": "2019-08-18 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2019-08-18 00:00:00 \x2b0000 UTC",
         "url" : "\/blog\/creating-choropleth-with-mapshaper-and-r\/",
-        "wordCount" : "2617",
+        "wordCount" : "2613",
         "keywords" : [ "Geocoding","Mapshaper","Leaflet","Map","Data Visualization","Blog" ]
     }
     </script>
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.72.0" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
   
     
@@ -75,23 +75,27 @@ There are many types of geospatial that we can do, such as Dot Map, Connection M
 There are many types of geospatial that we can do, such as Dot Map, Connection Map, Choropleth, Hexbin Map, and Bubble Map1. Each type of geospatial has its own function, and each of these types also requires different types of information/data." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/creating-choropleth-with-mapshaper-and-r/" />
-<meta property="article:published_time" content="2019-08-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-08-18T00:00:00+00:00" />
+<meta property="article:published_time" content="2019-08-18T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-08-18T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        <meta itemprop="name" content="Creating Choropleth with Mapshaper and R">
+        
+<meta itemprop="name" content="Creating Choropleth with Mapshaper and R">
 <meta itemprop="description" content="Geospatial is one of the important things in data processing. With geospatial, we can provide information only with the help of maps so that information can be conveyed properly.
 There are many types of geospatial that we can do, such as Dot Map, Connection Map, Choropleth, Hexbin Map, and Bubble Map1. Each type of geospatial has its own function, and each of these types also requires different types of information/data.">
+
+
 <meta itemprop="datePublished" content="2019-08-18T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-08-18T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2617">
+<meta itemprop="wordCount" content="2613">
 
 
 
 <meta itemprop="keywords" content="Geocoding,Mapshaper,Leaflet,Map,Data Visualization," />
+
         
 
         
@@ -518,43 +522,53 @@ if (!doNotTrack) {
 
 
   <div id="content">
-    <p><em>Geospatial</em> is one of the important things in data processing. With <em>geospatial</em>, we can provide information only with the help of maps so that information can be conveyed properly.</p>
-<p>There are many types of <em>geospatial</em> that we can do, such as <em>Dot Map</em>, <em>Connection Map</em>, <em>Choropleth</em>, <em>Hexbin Map</em>, and <em>Bubble Map</em><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Each type of geospatial has its own function, and each of these types also requires different types of information/data.</p>
+    
+
+<p><em>Geospatial</em> is one of the important things in data processing. With <em>geospatial</em>, we can provide information only with the help of maps so that information can be conveyed properly.</p>
+
+<p>There are many types of <em>geospatial</em> that we can do, such as <em>Dot Map</em>, <em>Connection Map</em>, <em>Choropleth</em>, <em>Hexbin Map</em>, and <em>Bubble Map</em><sup class="footnote-ref" id="fnref:note-1"><a href="#fn:note-1">1</a></sup>. Each type of geospatial has its own function, and each of these types also requires different types of information/data.</p>
+
 <p>This time, we will learn about one form of geocoding which is <strong>choropleth</strong>. Our pursuit of this material:</p>
+
 <ul>
 <li>Retrieving Data
+
 <ul>
-<li>Using <strong>Shapefile</strong>
-<ul>
+<li>Using <strong>Shapefile</strong></li>
 <li>Types of data used</li>
 <li>Introduction to <strong>mapshaper</strong></li>
 <li>Choose the data you want to focus on</li>
 <li>Reading <code>.json</code> data</li>
-</ul>
-</li>
 <li>Using <code>.rds</code></li>
-</ul>
-</li>
+</ul></li>
 <li>Processing Data
+
 <ul>
 <li>Hydrant Data</li>
 <li>Data Merge</li>
-</ul>
-</li>
+</ul></li>
 <li>Presenting Data with <code>leaflet</code></li>
 </ul>
+
 <h2 id="retrieving-data">Retrieving Data</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(prettydoc)
-<span style="color:#a6e22e">library</span>(tidyverse)
-<span style="color:#a6e22e">library</span>(ggplot2)
-<span style="color:#a6e22e">library</span>(leaflet)
-<span style="color:#a6e22e">library</span>(geojsonio)
-<span style="color:#a6e22e">library</span>(htmlwidgets)
-<span style="color:#a6e22e">library</span>(htmltools)
-</code></pre></div><p>First of all, we would like to download the data from [GADM] (<a href="https://gadm.org/download_country_v3.html)">https://gadm.org/download_country_v3.html)</a>. We will focus on <strong>Indonesia</strong>. In data retrieval, there are two ways we can do it: process the file as a Shapefile data type first, or directly process it using R with <code>.rds</code> data. We could also read the entire data using the <code>readOGR</code> function from the <code>rgdal</code> package, but we won&rsquo;t discuss that this time.</p>
+
+<pre><code class="language-r">library(prettydoc)
+library(tidyverse)
+library(ggplot2)
+library(leaflet)
+library(geojsonio)
+library(htmlwidgets)
+library(htmltools)
+</code></pre>
+
+<p>First of all, we would like to download the data from <a href="https://gadm.org/download_country_v3.html">GADM</a>. We will focus on <strong>Indonesia</strong>. In data retrieval, there are two ways we can do it: process the file as a Shapefile data type first, or directly process it using R with <code>.rds</code> data. We could also read the entire data using the <code>readOGR</code> function from the <code>rgdal</code> package, but we won&rsquo;t discuss that this time.</p>
+
 <h3 id="shapefile-data">Shapefile Data</h3>
+
 <p>Shapefile data is a collection of data used in many <em>geospatial</em> applications. The advantage of Shapefile data is that besides being accessible in many map processing applications, Shapefile data can also be viewed and processed in <strong>mapshaper</strong> (we will discuss it after this) to ensure the information in it before extracting it as the file we need.</p>
-<p>When we look at Shapefile data (<code>.shp</code>) that we have downloaded from GADM, we can see that each section is divided into several files at once <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>:</p>
+
+<p>When we look at Shapefile data (<code>.shp</code>) that we have downloaded from GADM, we can see that each section is divided into several files at once <sup class="footnote-ref" id="fnref:note-2"><a href="#fn:note-2">2</a></sup>:</p>
+
 <ul>
 <li><code>.shp</code>: main data containing geometry information (main)</li>
 <li><code>.shx</code>: index file of each geometry (main)</li>
@@ -562,27 +576,50 @@ if (!doNotTrack) {
 <li><code>.prj</code>: file that stores coordinate system information (optional, used in ArcGIS)</li>
 <li><code>.cpg</code>: file used to specify the <em>code page</em> to identify the character set used (optional)</li>
 </ul>
+
 <p>Because the information that we use is spread to several files at once with different extensions, we have to change it first to one file so that it is more easily accessed/processed in R. For this reason, we will process it first in <a href="https://mapshaper.org/">mapshaper</a>. After some processing and cleaning, we can extract the data in the form of <code>.json</code>.</p>
-<!-- raw HTML omitted -->
+
+<p><center> <img src="/img/mapshaper/0.png" width="90%"> </center></p>
+
 <p>Mapshaper will receive some data and collect it at once. From all 5 extensions we from shapefiles, we can put everything except <code>.cpg</code>. We set everything up, we click on the <em>detect intersection path</em> section to confirm whether our data have any <em>intersection</em>/<em>contact point</em> or not, then we <em>import</em>.</p>
-<!-- raw HTML omitted -->
-<p>From the results we have imported, we can see that the <code>gadm36_IDN_3</code> data is the data that cuts across the district. In this data, it also happens that the map we get is a &lsquo;good&rsquo; map, because there is no <em>meeting point</em>/<em>intersection</em><sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>After that, we would want to see all information about each area that we have from the data we have imported, by pressing the <code>i</code> button on the top right. We can see that there is information about the country (in the variable <code>NAME_0</code>), provinces (<code> NAME_1</code>), districts/cities (<code>NAME_2</code>), sub-districts (<code> NAME_3</code>), also villages (<code>NAME_4</code>) of each place. In addition, there are IDs for each section, but we will not use them here.</p>
-<p>We can directly export it in the form of TopoJSON (similar if not lighter than GeoJSON, and we can use this because our data is clean enough <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>). But for now, we will try to select/filter the areas we want to focus on.</p>
+
+<p><center> <img src="/img/mapshaper/1.png" width="90%"> </center></p>
+
+<p>From the results we have imported, we can see that the <code>gadm36_IDN_3</code> data is the data that cuts across the district. In this data, it also happens that the map we get is a &lsquo;good&rsquo; map, because there is no <em>meeting point</em>/<em>intersection</em><sup class="footnote-ref" id="fnref:note-3"><a href="#fn:note-3">3</a></sup>.</p>
+
+<p><center> <img src="/img/mapshaper/2.png" width="90%"> </center></p>
+
+<p><center> <img src="/img/mapshaper/2_intersection.png" width="90%"> </center></p>
+
+<p><center> <img src="/img/mapshaper/2_intersection_zoom.png" width="90%"> </center></p>
+
+<p>After that, we would want to see all information about each area that we have from the data we have imported, by pressing the <code>i</code> button on the top right. We can see that there is information about the country (in the variable <code>NAME_0</code>), provinces (<code>NAME_1</code>), districts/cities (<code>NAME_2</code>), sub-districts (<code>NAME_3</code>), also villages (<code>NAME_4</code>) of each place. In addition, there are IDs for each section, but we will not use them here.</p>
+
+<p>We can directly export it in the form of TopoJSON (similar if not lighter than GeoJSON, and we can use this because our data is clean enough <sup class="footnote-ref" id="fnref:note-4"><a href="#fn:note-4">4</a></sup>). But for now, we will try to select/filter the areas we want to focus on.</p>
+
 <p>In the mapshaper, there is a <em>console</em> that we can use to process map data. We can see commands that we can use with <code>help</code> and see some examples of using console with <code>tips</code>.</p>
+
 <p>We will try to select only in the sub-district (<code>gadm36_IDN_3</code>) and we filter only on the DKI Jakarta area:</p>
+
 <pre><code>filter 'NAME_1 == &quot;Jakarta Raya&quot;'
-</code></pre><!-- raw HTML omitted -->
+</code></pre>
+
+<p><center> <img src="/img/mapshaper/3_jakarta_kecamatan.png" width="90%"> </center></p>
+
 <p>After that, we will export the data as TopoJSON by clicking &lsquo;Export&rsquo; at the top right.</p>
+
 <p>Then, to read the <code>.json</code> data in R, we will use the <code>geojsonio</code> package. In the <code>geojson_read</code> function, we specify <code>what = &quot;sp&quot;</code> to make sure the data we read is a spatial class, not <em>list</em>. Due to the data we have from different sources and differences in the &ldquo;Pulau Seribu&rdquo; section (vs. &ldquo;Kep. Seribu&rdquo;), we will omit that section.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Read the data</span>
-jakarta_json <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">geojson_read</span>(<span style="color:#e6db74">&#34;data_input/clean/gadm36_IDN_3_jkt.json&#34;</span>, what <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sp&#34;</span>)
-</code></pre></div><p>If you want to check the data first, you can use <code>@</code> to see the contents of the table</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(jakarta_json<span style="color:#f92672">@</span>data)
-</code></pre></div><pre><code>#&gt;     id GID_0    NAME_0   GID_1       NAME_1 NL_NAME_1     GID_2        NAME_2
+
+<pre><code class="language-r"># Read the data
+jakarta_json &lt;- geojson_read(&quot;data_input/clean/gadm36_IDN_3_jkt.json&quot;, what = &quot;sp&quot;)
+</code></pre>
+
+<p>If you want to check the data first, you can use <code>@</code> to see the contents of the table</p>
+
+<pre><code class="language-r">head(jakarta_json@data)
+</code></pre>
+
+<pre><code>#&gt;     id GID_0    NAME_0   GID_1       NAME_1 NL_NAME_1     GID_2        NAME_2
 #&gt; 1 &lt;NA&gt;   IDN Indonesia IDN.7_1 Jakarta Raya           IDN.7.1_1 Jakarta Barat
 #&gt; 2 &lt;NA&gt;   IDN Indonesia IDN.7_1 Jakarta Raya           IDN.7.1_1 Jakarta Barat
 #&gt; 3 &lt;NA&gt;   IDN Indonesia IDN.7_1 Jakarta Raya           IDN.7.1_1 Jakarta Barat
@@ -603,20 +640,24 @@ jakarta_json <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e
 #&gt; 4 Sub-district 3174020       
 #&gt; 5 Sub-district 3174010       
 #&gt; 6 Sub-district 3174030
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Change the data type to `sf`</span>
-jakarta_json_mod <span style="color:#f92672">&lt;-</span> sf<span style="color:#f92672">::</span><span style="color:#a6e22e">st_as_sf</span>(jakarta_json)
+</code></pre>
 
-<span style="color:#75715e"># Removing `Kepulauan Seribu` and some columns we won&#39;t use </span>
-jakarta_json_mod <span style="color:#f92672">&lt;-</span> jakarta_json_mod <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#75715e"># Change the name as template</span>
-  <span style="color:#a6e22e">mutate</span>(NAME_3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(NAME_3, <span style="color:#a6e22e">fixed</span>(<span style="color:#e6db74">&#34; &#34;</span>), <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">str_to_title</span>()) <span style="color:#f92672">%&gt;%</span>       
-  <span style="color:#75715e"># Removing `Kepulauan Seribu`</span>
-  <span style="color:#a6e22e">filter</span>(NAME_2 <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;Kepulauan Seribu&#34;</span>)  <span style="color:#f92672">%&gt;%</span>                        
-  <span style="color:#75715e"># Removing some columns</span>
-  dplyr<span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span><span style="color:#a6e22e">c</span>(id, NL_NAME_1, NL_NAME_2, NL_NAME_3, VARNAME_3, HASC_3, TYPE_3, ENGTYPE_3)) 
+<pre><code class="language-r"># Change the data type to `sf`
+jakarta_json_mod &lt;- sf::st_as_sf(jakarta_json)
 
-<span style="color:#a6e22e">glimpse</span>(jakarta_json_mod)
-</code></pre></div><pre><code>#&gt; Observations: 45
+# Removing `Kepulauan Seribu` and some columns we won't use 
+jakarta_json_mod &lt;- jakarta_json_mod %&gt;% 
+  # Change the name as template
+  mutate(NAME_3 = str_replace_all(NAME_3, fixed(&quot; &quot;), &quot;&quot;) %&gt;% str_to_title()) %&gt;%       
+  # Removing `Kepulauan Seribu`
+  filter(NAME_2 != &quot;Kepulauan Seribu&quot;)  %&gt;%                        
+  # Removing some columns
+  dplyr::select(-c(id, NL_NAME_1, NL_NAME_2, NL_NAME_3, VARNAME_3, HASC_3, TYPE_3, ENGTYPE_3)) 
+
+glimpse(jakarta_json_mod)
+</code></pre>
+
+<pre><code>#&gt; Observations: 45
 #&gt; Variables: 10
 #&gt; $ GID_0    &lt;chr&gt; &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;I...
 #&gt; $ NAME_0   &lt;chr&gt; &quot;Indonesia&quot;, &quot;Indonesia&quot;, &quot;Indonesia&quot;, &quot;Indonesia&quot;, &quot;Indon...
@@ -628,17 +669,26 @@ jakarta_json_mod <span style="color:#f92672">&lt;-</span> jakarta_json_mod <span
 #&gt; $ NAME_3   &lt;chr&gt; &quot;Cengkareng&quot;, &quot;Grogolpetamburan&quot;, &quot;Kalideres&quot;, &quot;Kebonjeruk...
 #&gt; $ CC_3     &lt;chr&gt; &quot;3174070&quot;, &quot;3174040&quot;, &quot;3174080&quot;, &quot;3174020&quot;, &quot;3174010&quot;, &quot;31...
 #&gt; $ geometry &lt;MULTIPOLYGON&gt; MULTIPOLYGON (((106.7004 -6..., MULTIPOLYGON (((1...
-</code></pre><h3 id="data-rds">Data <code>.rds</code></h3>
-<p>For <code>.rds</code> data, we can directly select <code>R(sf)</code> in GADM<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>. After that, we can immediately read it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">indonesia_rds <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_rds</span>(<span style="color:#e6db74">&#34;data_input/clean/gadm36_IDN_3_sf.rds&#34;</span>)
-</code></pre></div><p>Then because we want to focus on DKI Jakarta, we will process the data first</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">jakarta_rds <span style="color:#f92672">&lt;-</span> indonesia_rds <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate</span>(NAME_3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(NAME_3, <span style="color:#a6e22e">fixed</span>(<span style="color:#e6db74">&#34; &#34;</span>), <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">str_to_title</span>()) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">filter</span>(NAME_1 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Jakarta Raya&#34;</span>, NAME_2 <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;Kepulauan Seribu&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-  dplyr<span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span><span style="color:#a6e22e">c</span>(NL_NAME_1, NL_NAME_2, NL_NAME_3, VARNAME_3, HASC_3, TYPE_3, ENGTYPE_3))
+</code></pre>
 
-<span style="color:#a6e22e">glimpse</span>(jakarta_rds)
-</code></pre></div><pre><code>#&gt; Observations: 45
+<h3 id="data-rds">Data <code>.rds</code></h3>
+
+<p>For <code>.rds</code> data, we can directly select <code>R(sf)</code> in GADM<sup class="footnote-ref" id="fnref:note-5"><a href="#fn:note-5">5</a></sup>. After that, we can immediately read it.</p>
+
+<pre><code class="language-r">indonesia_rds &lt;- read_rds(&quot;data_input/clean/gadm36_IDN_3_sf.rds&quot;)
+</code></pre>
+
+<p>Then because we want to focus on DKI Jakarta, we will process the data first</p>
+
+<pre><code class="language-r">jakarta_rds &lt;- indonesia_rds %&gt;% 
+  mutate(NAME_3 = str_replace_all(NAME_3, fixed(&quot; &quot;), &quot;&quot;) %&gt;% str_to_title()) %&gt;%
+  filter(NAME_1 == &quot;Jakarta Raya&quot;, NAME_2 != &quot;Kepulauan Seribu&quot;) %&gt;% 
+  dplyr::select(-c(NL_NAME_1, NL_NAME_2, NL_NAME_3, VARNAME_3, HASC_3, TYPE_3, ENGTYPE_3))
+
+glimpse(jakarta_rds)
+</code></pre>
+
+<pre><code>#&gt; Observations: 45
 #&gt; Variables: 10
 #&gt; $ GID_0    &lt;chr&gt; &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;IDN&quot;, &quot;I...
 #&gt; $ NAME_0   &lt;chr&gt; &quot;Indonesia&quot;, &quot;Indonesia&quot;, &quot;Indonesia&quot;, &quot;Indonesia&quot;, &quot;Indon...
@@ -650,51 +700,81 @@ jakarta_json_mod <span style="color:#f92672">&lt;-</span> jakarta_json_mod <span
 #&gt; $ NAME_3   &lt;chr&gt; &quot;Cengkareng&quot;, &quot;Grogolpetamburan&quot;, &quot;Kalideres&quot;, &quot;Kebonjeruk...
 #&gt; $ CC_3     &lt;chr&gt; &quot;3174070&quot;, &quot;3174040&quot;, &quot;3174080&quot;, &quot;3174020&quot;, &quot;3174010&quot;, &quot;31...
 #&gt; $ geometry &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON (((106.7004 -6..., MULTIPOLYGON ...
-</code></pre><p>We can see that both data already contain the same information and with the same class. Please note that the next time we use <code>leaflet</code>, one of the data type they can read is spatial data frames from package <code>lf</code> (see <code>?leaflet</code> for further details).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">class</span>(jakarta_rds)
-</code></pre></div><pre><code>#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">class</span>(jakarta_json_mod)
-</code></pre></div><pre><code>#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;
-</code></pre><p>We can continue to use one of the data we have read previously. This time, we will use the data that had been read earlier through mapshaper (<code>jakarta_json_mod</code>).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">rm</span>(indonesia_rds, jakarta_rds)
-</code></pre></div><h2 id="processing-the-data">Processing The Data</h2>
+</code></pre>
+
+<p>We can see that both data already contain the same information and with the same class. Please note that the next time we use <code>leaflet</code>, one of the data type they can read is spatial data frames from package <code>lf</code> (see <code>?leaflet</code> for further details).</p>
+
+<pre><code class="language-r">class(jakarta_rds)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;
+</code></pre>
+
+<pre><code class="language-r">class(jakarta_json_mod)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;
+</code></pre>
+
+<p>We can continue to use one of the data we have read previously. This time, we will use the data that had been read earlier through mapshaper (<code>jakarta_json_mod</code>).</p>
+
+<pre><code class="language-r">rm(indonesia_rds, jakarta_rds)
+</code></pre>
+
+<h2 id="processing-the-data">Processing The Data</h2>
+
 <p>In the data processing stage, we will try to match the contents of the hydrant data which we will later display the information on the map, with the geometry data that have previously read (and processed). This is done to avoid clashes due to different regional names, and it also more reasonable to do so.</p>
+
 <h3 id="hydrant-data">Hydrant Data</h3>
+
 <p>We will read the hydrant data which contains information about the hydrants scattered in the Greater Jakarta area along with the conditions (Good/Damaged/Missing) and the location name of the area (<strong>not</strong> the location of the hydrant).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">hidran <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/clean/hidran.csv&#34;</span>)
 
-hidran_mod <span style="color:#f92672">&lt;-</span> hidran <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate</span>(lokasi <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(lokasi, <span style="color:#a6e22e">fixed</span>(<span style="color:#e6db74">&#34; &#34;</span>), <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">str_to_title</span>()) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">filter</span>(wilayah <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;Kepulauan Seribu&#34;</span>) 
+<pre><code class="language-r">hidran &lt;- read.csv(&quot;data_input/clean/hidran.csv&quot;)
 
-<span style="color:#a6e22e">head</span>(hidran_mod)
-</code></pre></div><pre><code>#&gt;   no       wilayah       lokasi kondisi jumlah  latitude longitude
+hidran_mod &lt;- hidran %&gt;% 
+  mutate(lokasi = str_replace_all(lokasi, fixed(&quot; &quot;), &quot;&quot;) %&gt;% str_to_title()) %&gt;% 
+  filter(wilayah != &quot;Kepulauan Seribu&quot;) 
+
+head(hidran_mod)
+</code></pre>
+
+<pre><code>#&gt;   no       wilayah       lokasi kondisi jumlah  latitude longitude
 #&gt; 1  1 Jakarta Pusat       Gambir    Baik     20 -6.169115  106.8165
 #&gt; 2  2 Jakarta Pusat   Tanahabang    Baik     36 -6.206441  106.8122
 #&gt; 3  3 Jakarta Pusat      Menteng    Baik     30 -6.195425  106.8346
 #&gt; 4  4 Jakarta Pusat    Joharbaru    Baik     15 -6.185153  106.8575
 #&gt; 5  5 Jakarta Pusat Cempakaputih    Baik     21 -6.180330  106.8687
 #&gt; 6  6 Jakarta Pusat    Kemayoran    Baik     34 -6.160978  106.8533
-</code></pre><p>There are several other modifications that will be made:</p>
+</code></pre>
+
+<p>There are several other modifications that will be made:</p>
+
 <ul>
 <li>The condition &ldquo;Lost&rdquo;/&ldquo;Hilang&rdquo; will be replaced by &ldquo;Damaged&rdquo;/&ldquo;Rusak&rdquo; due to the &ldquo;Hilang&rdquo; factor gives very little or no contribution to the data</li>
 <li>Conditions/&ldquo;kondisi&rdquo; will be added by region and location again so that the level from the original &ldquo;Rusak&rdquo; and &ldquo;Rusak&rdquo; from &ldquo;Hilang&rdquo; can be combined into one factor only</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">hidran_mod <span style="color:#f92672">&lt;-</span> hidran_mod <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate</span>(kondisi <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(kondisi <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Hilang&#34;</span>, <span style="color:#e6db74">&#34;Rusak&#34;</span>, <span style="color:#a6e22e">paste</span>(kondisi))) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">group_by</span>(wilayah, lokasi, kondisi) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">summarise</span>(jumlah <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(jumlah)) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">ungroup</span>()
 
-<span style="color:#a6e22e">glimpse</span>(hidran_mod)
-</code></pre></div><pre><code>#&gt; Observations: 82
+<pre><code class="language-r">hidran_mod &lt;- hidran_mod %&gt;% 
+  mutate(kondisi = ifelse(kondisi == &quot;Hilang&quot;, &quot;Rusak&quot;, paste(kondisi))) %&gt;% 
+  group_by(wilayah, lokasi, kondisi) %&gt;% 
+  summarise(jumlah = sum(jumlah)) %&gt;% 
+  ungroup()
+
+glimpse(hidran_mod)
+</code></pre>
+
+<pre><code>#&gt; Observations: 82
 #&gt; Variables: 4
 #&gt; $ wilayah &lt;fct&gt; Jakarta Barat, Jakarta Barat, Jakarta Barat, Jakarta Barat,...
 #&gt; $ lokasi  &lt;chr&gt; &quot;Cengkareng&quot;, &quot;Cengkareng&quot;, &quot;Grogolpetamburan&quot;, &quot;Grogolpeta...
 #&gt; $ kondisi &lt;chr&gt; &quot;Baik&quot;, &quot;Rusak&quot;, &quot;Baik&quot;, &quot;Rusak&quot;, &quot;Baik&quot;, &quot;Rusak&quot;, &quot;Baik&quot;, ...
 #&gt; $ jumlah  &lt;int&gt; 13, 1, 21, 4, 3, 3, 5, 2, 36, 7, 7, 7, 7, 7, 21, 10, 20, 9,...
-</code></pre><h3 id="combining-data">Combining Data</h3>
+</code></pre>
+
+<h3 id="combining-data">Combining Data</h3>
+
 <p>In merging data, there are several things that we&rsquo;ll do:</p>
+
 <ul>
 <li>Combining the <code>json</code> data we have with the <code>hydrant</code> data, where <code>NAME_2</code> in the <code>json</code> data will be paired with <code>territory</code>/<code>wilayah</code> in the <code>hydrant</code> data, and <code>NAME_3</code> with <code>location</code>/<code>lokasi</code></li>
 <li>Performs the <code>complete</code> function to fill <code>kondisi</code>(<code>Baik</code>/<code>Rusak</code>) in areas not previously listed in the <code>hydrant</code> data</li>
@@ -704,25 +784,28 @@ hidran_mod <span style="color:#f92672">&lt;-</span> hidran <span style="color:#f
 <li>Replacing the value of <code>NA</code> in <code>jumlah</code> with <code>0</code></li>
 <li>Removes lines with <code>kondisi == NA</code></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">jakarta_hidran <span style="color:#f92672">&lt;-</span> jakarta_json_mod <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">left_join</span>(hidran_mod, by <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;NAME_2&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wilayah&#34;</span>, <span style="color:#e6db74">&#34;NAME_3&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lokasi&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">complete</span>(kondisi, NAME_3) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">arrange</span>(NAME_3, NAME_0) <span style="color:#f92672">%&gt;%</span> 
-  tidyr<span style="color:#f92672">::</span><span style="color:#a6e22e">fill</span>(<span style="color:#f92672">-</span><span style="color:#a6e22e">c</span>(jumlah, kondisi), .direction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;down&#34;</span>) 
 
-<span style="color:#75715e"># Create a looping function to fill empty row in `geometri` column</span>
-<span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">nrow</span>(jakarta_hidran)) {
-  jakarta_hidran<span style="color:#f92672">$</span>geometry[i] <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ifelse</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">lengths</span>(jakarta_hidran<span style="color:#f92672">$</span>geometry[i]), 
-                                    rlist<span style="color:#f92672">::</span><span style="color:#a6e22e">list.take</span>(jakarta_hidran<span style="color:#f92672">$</span>geometry[i<span style="color:#ae81ff">-1</span>], n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>), 
-                                    jakarta_hidran<span style="color:#f92672">$</span>geometry[i])
+<pre><code class="language-r">jakarta_hidran &lt;- jakarta_json_mod %&gt;% 
+  left_join(hidran_mod, by = c(&quot;NAME_2&quot; = &quot;wilayah&quot;, &quot;NAME_3&quot; = &quot;lokasi&quot;)) %&gt;% 
+  complete(kondisi, NAME_3) %&gt;% 
+  arrange(NAME_3, NAME_0) %&gt;% 
+  tidyr::fill(-c(jumlah, kondisi), .direction = &quot;down&quot;) 
+
+# Create a looping function to fill empty row in `geometri` column
+for (i in 1:nrow(jakarta_hidran)) {
+  jakarta_hidran$geometry[i] &lt;- ifelse(!lengths(jakarta_hidran$geometry[i]), 
+                                    rlist::list.take(jakarta_hidran$geometry[i-1], n = 1), 
+                                    jakarta_hidran$geometry[i])
 }
 
-jakarta_hidran <span style="color:#f92672">&lt;-</span> jakarta_hidran <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate</span>(jumlah <span style="color:#f92672">=</span> <span style="color:#a6e22e">replace_na</span>(jumlah, replace <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">na.omit</span>()
+jakarta_hidran &lt;- jakarta_hidran %&gt;% 
+  mutate(jumlah = replace_na(jumlah, replace = 0)) %&gt;% 
+  na.omit()
 
-<span style="color:#a6e22e">glimpse</span>(jakarta_hidran)
-</code></pre></div><pre><code>#&gt; Observations: 90
+glimpse(jakarta_hidran)
+</code></pre>
+
+<pre><code>#&gt; Observations: 90
 #&gt; Variables: 12
 #&gt; $ kondisi  &lt;chr&gt; &quot;Baik&quot;, &quot;Rusak&quot;, &quot;Baik&quot;, &quot;Rusak&quot;, &quot;Baik&quot;, &quot;Rusak&quot;, &quot;Baik&quot;,...
 #&gt; $ NAME_3   &lt;chr&gt; &quot;Cakung&quot;, &quot;Cakung&quot;, &quot;Cempakaputih&quot;, &quot;Cempakaputih&quot;, &quot;Cengk...
@@ -736,106 +819,132 @@ jakarta_hidran <span style="color:#f92672">&lt;-</span> jakarta_hidran <span sty
 #&gt; $ CC_3     &lt;chr&gt; &quot;3172080&quot;, &quot;3172080&quot;, &quot;3173050&quot;, &quot;3173050&quot;, &quot;3174070&quot;, &quot;31...
 #&gt; $ jumlah   &lt;dbl&gt; 51, 12, 21, 10, 13, 1, 10, 16, 57, 9, 0, 0, 16, 1, 0, 0, 9...
 #&gt; $ geometry &lt;MULTIPOLYGON&gt; MULTIPOLYGON (((106.9508 -6..., MULTIPOLYGON (((1...
-</code></pre><p>When we do a simple <code>leaflet</code> mapping using <code>jakarta_hidran</code> data, we get an error like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">leaflet</span>(jakarta_hidran) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">addTiles</span>() <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">addPolygons</span>()
-</code></pre></div><pre><code>#&gt; Error in polygonData.default(data): Don't know how to get path data from object of class tbl_df
-</code></pre><p>This is because when we perform the <code>complete</code> function, our data will be converted into<code> tbl_df</code> data type, and this type is not accepted by <code>leaflet</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">class</span>(jakarta_hidran)
-</code></pre></div><pre><code>#&gt; [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
-</code></pre><p>For that, we will change it back to <code>sf</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">jakarta_hidran_sf <span style="color:#f92672">&lt;-</span> jakarta_hidran <span style="color:#f92672">%&gt;%</span> sf<span style="color:#f92672">::</span><span style="color:#a6e22e">st_as_sf</span>()
+</code></pre>
 
-<span style="color:#a6e22e">class</span>(jakarta_hidran_sf)
-</code></pre></div><pre><code>#&gt; [1] &quot;sf&quot;         &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
-</code></pre><h2 id="showing-the-choropleth-using-leaflet">Showing the Choropleth using <code>leaflet</code></h2>
+<p>When we do a simple <code>leaflet</code> mapping using <code>jakarta_hidran</code> data, we get an error like this:</p>
+
+<pre><code class="language-r">leaflet(jakarta_hidran) %&gt;% 
+  addTiles() %&gt;% 
+  addPolygons()
+</code></pre>
+
+<pre><code>#&gt; Error in polygonData.default(data): Don't know how to get path data from object of class tbl_df
+</code></pre>
+
+<p>This is because when we perform the <code>complete</code> function, our data will be converted into<code>tbl_df</code> data type, and this type is not accepted by <code>leaflet</code>.</p>
+
+<pre><code class="language-r">class(jakarta_hidran)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
+</code></pre>
+
+<p>For that, we will change it back to <code>sf</code>.</p>
+
+<pre><code class="language-r">jakarta_hidran_sf &lt;- jakarta_hidran %&gt;% sf::st_as_sf()
+
+class(jakarta_hidran_sf)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;sf&quot;         &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
+</code></pre>
+
+<h2 id="showing-the-choropleth-using-leaflet">Showing the Choropleth using <code>leaflet</code></h2>
+
 <p>In presenting data, we will first put our data into leaflet. Then, the appropriate coloring for <em>choropleth</em> will be formed. Palette is determined from red to blue (please see <em>cheatsheet</em> that has been provided). In addition, a popup is also made for each place.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># leaflet</span>
-m <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">leaflet</span>(jakarta_hidran_sf)
 
-<span style="color:#75715e"># Coloring</span>
-temp_baik <span style="color:#f92672">&lt;-</span> jakarta_hidran_sf <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">filter</span>(kondisi <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Baik&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-  dplyr<span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>(GID_3, NAME_3, jumlah)
-temp_rusak <span style="color:#f92672">&lt;-</span> jakarta_hidran_sf <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">filter</span>(kondisi <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Rusak&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-  dplyr<span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>(GID_3, NAME_3, jumlah) 
+<pre><code class="language-r"># leaflet
+m &lt;- leaflet(jakarta_hidran_sf)
 
-<span style="color:#75715e"># -1 &lt;= x &lt;= 1</span>
-col_formula <span style="color:#f92672">&lt;-</span> (temp_baik<span style="color:#f92672">$</span>jumlah <span style="color:#f92672">-</span> temp_rusak<span style="color:#f92672">$</span>jumlah)<span style="color:#f92672">/</span>(temp_baik<span style="color:#f92672">$</span>jumlah <span style="color:#f92672">+</span> temp_rusak<span style="color:#f92672">$</span>jumlah) 
-col <span style="color:#f92672">&lt;-</span> col_formula <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">is.nan</span>(.), <span style="color:#ae81ff">0</span>)
+# Coloring
+temp_baik &lt;- jakarta_hidran_sf %&gt;% 
+  filter(kondisi == &quot;Baik&quot;) %&gt;% 
+  dplyr::select(GID_3, NAME_3, jumlah)
+temp_rusak &lt;- jakarta_hidran_sf %&gt;% 
+  filter(kondisi == &quot;Rusak&quot;) %&gt;% 
+  dplyr::select(GID_3, NAME_3, jumlah) 
 
-bins <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">-1</span>, <span style="color:#a6e22e">fivenum</span>(col))
+# -1 &lt;= x &lt;= 1
+col_formula &lt;- (temp_baik$jumlah - temp_rusak$jumlah)/(temp_baik$jumlah + temp_rusak$jumlah) 
+col &lt;- col_formula %&gt;% replace(is.nan(.), 0)
 
-pal <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">colorBin</span>(<span style="color:#e6db74">&#34;RdYlBu&#34;</span>, domain <span style="color:#f92672">=</span> col, bins <span style="color:#f92672">=</span> bins)
+bins &lt;- c(-1, fivenum(col))
 
-<span style="color:#75715e"># Popup</span>
-popup.cont  <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;&lt;h2&gt;&lt;b&gt;&#34;</span>, jakarta_hidran_sf<span style="color:#f92672">$</span>NAME_3, <span style="color:#e6db74">&#34;&lt;/b&gt;&lt;/h2&gt;&#34;</span>,
-   <span style="color:#e6db74">&#34;&lt;h4&gt;&lt;b&gt; Baik: &#34;</span>, temp_baik<span style="color:#f92672">$</span>jumlah, <span style="color:#e6db74">&#34;&lt;/h4&gt;&lt;/b&gt;&#34;</span>,
-   <span style="color:#e6db74">&#34;&lt;h4&gt;&lt;b&gt; Rusak: &#34;</span>, temp_rusak<span style="color:#f92672">$</span>jumlah, <span style="color:#e6db74">&#34;&lt;/h4&gt;&lt;/b&gt;&#34;</span>
+pal &lt;- colorBin(&quot;RdYlBu&quot;, domain = col, bins = bins)
+
+# Popup
+popup.cont  &lt;- paste(&quot;&lt;h2&gt;&lt;b&gt;&quot;, jakarta_hidran_sf$NAME_3, &quot;&lt;/b&gt;&lt;/h2&gt;&quot;,
+   &quot;&lt;h4&gt;&lt;b&gt; Baik: &quot;, temp_baik$jumlah, &quot;&lt;/h4&gt;&lt;/b&gt;&quot;,
+   &quot;&lt;h4&gt;&lt;b&gt; Rusak: &quot;, temp_rusak$jumlah, &quot;&lt;/h4&gt;&lt;/b&gt;&quot;
 )
-</code></pre></div><p>And finally, we will form a map with <em>tiles</em> provided by <code>CartoDB</code> using the <code>addProviderTiles</code> function. Then we set polygons and legends on the map. We also change the name of each element in the legend to make it more sensible.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">map1 <span style="color:#f92672">&lt;-</span> m <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">addProviderTiles</span>(providers<span style="color:#f92672">$</span>CartoDB.DarkMatter) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">addPolygons</span>(fillColor <span style="color:#f92672">=</span> <span style="color:#f92672">~</span><span style="color:#a6e22e">pal</span>(col),
-              weight <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
-              opacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
-              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;black&#34;</span>,
-              dashArray <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;3&#34;</span>,
-              fillOpacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>,
-              label <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;Kecamatan: &#34;</span>, jakarta_hidran_sf<span style="color:#f92672">$</span>NAME_3),
-              popup <span style="color:#f92672">=</span> popup.cont) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">addLegend</span>(<span style="color:#e6db74">&#34;bottomright&#34;</span>, 
-            pal <span style="color:#f92672">=</span> pal,
-            values <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>col,
-            title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hydrant Condition&#34;</span>,
-            labFormat <span style="color:#f92672">=</span> <span style="color:#a6e22e">labelFormat</span>(digits <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>),
-            opacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+</code></pre>
+
+<p>And finally, we will form a map with <em>tiles</em> provided by <code>CartoDB</code> using the <code>addProviderTiles</code> function. Then we set polygons and legends on the map. We also change the name of each element in the legend to make it more sensible.</p>
+
+<pre><code class="language-r">map1 &lt;- m %&gt;% 
+  addProviderTiles(providers$CartoDB.DarkMatter) %&gt;% 
+  addPolygons(fillColor = ~pal(col),
+              weight = 1,
+              opacity = 1,
+              color = &quot;black&quot;,
+              dashArray = &quot;3&quot;,
+              fillOpacity = 0.5,
+              label = paste0(&quot;Kecamatan: &quot;, jakarta_hidran_sf$NAME_3),
+              popup = popup.cont) %&gt;%
+  addLegend(&quot;bottomright&quot;, 
+            pal = pal,
+            values = ~col,
+            title = &quot;Hydrant Condition&quot;,
+            labFormat = labelFormat(digits = 2),
+            opacity = 1)
 
 map1
-</code></pre></div><!-- raw HTML omitted -->
+</code></pre>
+
+<iframe seamless src="/img/mapshaper/map1.html" width="100%" height="500"></iframe>
+
 <p>For the record, we can also arrange each part of the <em>legend</em> by adjusting the colors one by one (taken by using <code>inspect element</code>) and we can label it from there. If it is not done like this, then the text in the legend cannot be changed and is still shown in numeric form even though it has been given the <code>labels</code> parameter. Also, be aware that in order for the <code>colors</code> parameter to work, the <code>pal</code> parameter in <code>addLegend</code> must be removed.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">map2 <span style="color:#f92672">&lt;-</span> m <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">addProviderTiles</span>(providers<span style="color:#f92672">$</span>CartoDB.DarkMatter) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">addPolygons</span>(fillColor <span style="color:#f92672">=</span> <span style="color:#f92672">~</span><span style="color:#a6e22e">pal</span>(col),
-              weight <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
-              opacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
-              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;black&#34;</span>,
-              dashArray <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;3&#34;</span>,
-              fillOpacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>,
-              label <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;Kecamatan: &#34;</span>, jakarta_hidran_sf<span style="color:#f92672">$</span>NAME_3),
-              popup <span style="color:#f92672">=</span> popup.cont) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">addLegend</span>(<span style="color:#e6db74">&#34;bottomright&#34;</span>, 
-            values <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>col,
-            colors <span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;#D7191C&#34;</span>, <span style="color:#e6db74">&#34;#FDAE61&#34;</span>, <span style="color:#e6db74">&#34;#FFFFBF&#34;</span>, <span style="color:#e6db74">&#34;#ABD9E9&#34;</span>, <span style="color:#e6db74">&#34;#2C7BB6&#34;</span>), <span style="color:#75715e"># Taken from `inspect element` with condition parameter `pal` exists</span>
-            labels<span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Terrible&#34;</span>, <span style="color:#e6db74">&#34;Bad&#34;</span>, <span style="color:#e6db74">&#34;Decent/No Hydrant&#34;</span>, <span style="color:#e6db74">&#34;Good&#34;</span>, <span style="color:#e6db74">&#34;Great&#34;</span>),
-            title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hydrant Condition&#34;</span>,
-            labFormat <span style="color:#f92672">=</span> <span style="color:#a6e22e">labelFormat</span>(digits <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>),
-            opacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+
+<pre><code class="language-r">map2 &lt;- m %&gt;% 
+  addProviderTiles(providers$CartoDB.DarkMatter) %&gt;% 
+  addPolygons(fillColor = ~pal(col),
+              weight = 1,
+              opacity = 1,
+              color = &quot;black&quot;,
+              dashArray = &quot;3&quot;,
+              fillOpacity = 0.5,
+              label = paste0(&quot;Kecamatan: &quot;, jakarta_hidran_sf$NAME_3),
+              popup = popup.cont) %&gt;%
+  addLegend(&quot;bottomright&quot;, 
+            values = ~col,
+            colors =c(&quot;#D7191C&quot;, &quot;#FDAE61&quot;, &quot;#FFFFBF&quot;, &quot;#ABD9E9&quot;, &quot;#2C7BB6&quot;), # Taken from `inspect element` with condition parameter `pal` exists
+            labels= c(&quot;Terrible&quot;, &quot;Bad&quot;, &quot;Decent/No Hydrant&quot;, &quot;Good&quot;, &quot;Great&quot;),
+            title = &quot;Hydrant Condition&quot;,
+            labFormat = labelFormat(digits = 2),
+            opacity = 1)
 map2
-</code></pre></div><!-- raw HTML omitted -->
+</code></pre>
+
+<iframe seamless src="/img/mapshaper/map2.html" width="100%" height="500"></iframe>
+
 <h2 id="additional-information">Additional Information</h2>
-<section class="footnotes" role="doc-endnotes">
-<hr>
+<div class="footnotes">
+
+<hr />
+
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p><a href="https://www.data-to-viz.com/">https://www.data-to-viz.com/</a> - examples of using maps for data <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2" role="doc-endnote">
-<p><a href="http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Shapefile_file_extensions">http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Shapefile_file_extensions</a> - Information about extensions from shapefiles <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:3" role="doc-endnote">
-<p>If the data we read has a meeting point, we can simplify it before we extract them to avoid things that are not desirable. This can be done by <code>simplify</code> at the top right. To see information for each point, please check the <code>?</code> Section. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:4" role="doc-endnote">
-<p><a href="https://stackoverflow.com/questions/14740705/difference-between-geojson-and-topojson">https://stackoverflow.com/questions/14740705/difference-between-geojson-and-topojson</a> - Differences between GeoJSON and TopoJSON <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:5" role="doc-endnote">
-<p><a href="http://strimas.com/r/tidy-sf/">http://strimas.com/r/tidy-sf/</a> - <code>sf</code> replaces <code>sp</code> to handle spatial objects, and is formed to complement <code>tidyverse</code> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
+<li id="fn:note-1"><a href="https://www.data-to-viz.com/">https://www.data-to-viz.com/</a> - examples of using maps for data
+ <a class="footnote-return" href="#fnref:note-1"><sup>[return]</sup></a></li>
+<li id="fn:note-2"><a href="http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Shapefile_file_extensions">http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Shapefile_file_extensions</a> - Information about extensions from shapefiles
+ <a class="footnote-return" href="#fnref:note-2"><sup>[return]</sup></a></li>
+<li id="fn:note-3">If the data we read has a meeting point, we can simplify it before we extract them to avoid things that are not desirable. This can be done by <code>simplify</code> at the top right. To see information for each point, please check the <code>?</code> Section.
+ <a class="footnote-return" href="#fnref:note-3"><sup>[return]</sup></a></li>
+<li id="fn:note-4"><a href="https://stackoverflow.com/questions/14740705/difference-between-geojson-and-topojson">https://stackoverflow.com/questions/14740705/difference-between-geojson-and-topojson</a> - Differences between GeoJSON and TopoJSON
+ <a class="footnote-return" href="#fnref:note-4"><sup>[return]</sup></a></li>
+<li id="fn:note-5"><a href="http://strimas.com/r/tidy-sf/">http://strimas.com/r/tidy-sf/</a> - <code>sf</code> replaces <code>sp</code> to handle spatial objects, and is formed to complement <code>tidyverse</code>
+ <a class="footnote-return" href="#fnref:note-5"><sup>[return]</sup></a></li>
 </ol>
-</section>
+</div>
 
   </div>
 
@@ -1037,7 +1146,28 @@ map2
     
   </section>
 
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Upcoming Workshop</h3>
+      </header>
+      <div class="posts-container">
+          <article class="mini-post">
+            <header>
+              <h3>
+                <img src="https://f.hubspotusercontent40.net/hubfs/3432944/IG_ID_story.png", alt="alternatetext", width="250" height="400">
+                <br>
+                <a href="https://algorit.ma/ds-course/kickstart-series-image-generation-using-deep-learning/?utm_source=algotech">More details</a>
+              </h3>
+            </header>
+          </article>
+      </div>
 
+      
+      
+    </div>
+  </section>
 
   
   
