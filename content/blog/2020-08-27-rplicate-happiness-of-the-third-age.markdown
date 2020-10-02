@@ -1,12 +1,15 @@
 ---
 title: 'Rplicate Series: Happiness of The Third Age'
 author: Handoyo Sjarif
+github: https://github.com/t3981-h
 date: '2020-08-27'
 slug: rplicate-happiness-of-the-third-age
 categories:
   - R
 tags:
   - Data Visualization
+  - ggplot2
+  - Rplicate
 description: ''
 featured: ''
 featuredalt: ''
