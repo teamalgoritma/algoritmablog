@@ -1,41 +1,50 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/data-visualization/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/ggplot2/</loc>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/rplicate/</loc>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/rplicate-series-cherry-bomb/</loc>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -44,27 +53,23 @@
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>/tags/gensim/</loc>
+    <lastmod>2020-06-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/machine-learning/</loc>
     <lastmod>2020-06-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/python/</loc>
     <lastmod>2020-06-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/recommender-system/</loc>
     <lastmod>2020-06-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -75,19 +80,11 @@
   <url>
     <loc>/tags/topic-modelling/</loc>
     <lastmod>2020-06-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/gensim/</loc>
-    <lastmod>2020-06-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/panel-data/</loc>
     <lastmod>2020-06-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -98,7 +95,6 @@
   <url>
     <loc>/tags/optimization/</loc>
     <lastmod>2020-04-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -109,13 +105,11 @@
   <url>
     <loc>/tags/queueing/</loc>
     <lastmod>2020-04-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/clustering/</loc>
     <lastmod>2020-04-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -126,7 +120,6 @@
   <url>
     <loc>/tags/unsupervised-learning/</loc>
     <lastmod>2020-04-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -137,19 +130,16 @@
   <url>
     <loc>/tags/markov-chains/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/nlp/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/text-generation/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -160,7 +150,6 @@
   <url>
     <loc>/tags/capstone-ml/</loc>
     <lastmod>2020-03-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -171,7 +160,6 @@
   <url>
     <loc>/tags/lime/</loc>
     <lastmod>2020-03-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -182,7 +170,6 @@
   <url>
     <loc>/tags/genetic-algorithm/</loc>
     <lastmod>2020-01-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -193,13 +180,16 @@
   <url>
     <loc>/tags/adversarial/</loc>
     <lastmod>2019-12-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/deep-learning/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/generative-model/</loc>
     <lastmod>2019-12-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -208,9 +198,18 @@
   </url>
   
   <url>
+    <loc>/tags/overfitting/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/regression/</loc>
+    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/regularization/</loc>
     <lastmod>2019-12-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -219,33 +218,18 @@
   </url>
   
   <url>
-    <loc>/tags/deep-learning/</loc>
-    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/overfitting/</loc>
-    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/regression/</loc>
-    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>/tags/ape/</loc>
+    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/bioconductor/</loc>
     <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/bioinformatics/</loc>
     <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -259,27 +243,18 @@
   </url>
   
   <url>
-    <loc>/tags/ape/</loc>
-    <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/msa/</loc>
     <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/tidymodels/</loc>
     <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/lstm/</loc>
     <lastmod>2019-11-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -300,7 +275,6 @@
   <url>
     <loc>/tags/tidyverse/</loc>
     <lastmod>2019-10-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -311,31 +285,21 @@
   <url>
     <loc>/tags/geocoding/</loc>
     <lastmod>2019-08-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/leaflet/</loc>
     <lastmod>2019-08-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/map/</loc>
     <lastmod>2019-08-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/mapshaper/</loc>
     <lastmod>2019-08-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/som/</loc>
-    <lastmod>2019-04-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -344,13 +308,42 @@
   </url>
   
   <url>
-    <loc>/tags/apc/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>/tags/som/</loc>
+    <lastmod>2019-04-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/blog/age-period-cohort-apc-analysis/</loc>
+    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/apc/</loc>
+    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/graph/</loc>
+    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/network-analysis/</loc>
+    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/time-series/</loc>
+    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/twinetverse/</loc>
+    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/twitter/</loc>
     <lastmod>2019-03-28T00:00:00+00:00</lastmod>
   </url>
   
@@ -360,33 +353,13 @@
   </url>
   
   <url>
-    <loc>/tags/graph/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>/tags/forecast/</loc>
+    <lastmod>2019-01-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/network-analysis/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/time-series/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/twinetverse/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/twitter/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>/tags/purrr/</loc>
+    <lastmod>2019-01-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -395,21 +368,8 @@
   </url>
   
   <url>
-    <loc>/tags/forecast/</loc>
-    <lastmod>2019-01-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/purrr/</loc>
-    <lastmod>2019-01-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/data-manipulation/</loc>
     <lastmod>2019-01-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -420,7 +380,11 @@
   <url>
     <loc>/tags/dplyr/</loc>
     <lastmod>2019-01-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/feature-engineering/</loc>
+    <lastmod>2019-01-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -429,21 +393,13 @@
   </url>
   
   <url>
-    <loc>/tags/feature-engineering/</loc>
-    <lastmod>2019-01-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/text-preprocessiong/</loc>
     <lastmod>2019-01-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/textclean/</loc>
     <lastmod>2019-01-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -454,12 +410,21 @@
   <url>
     <loc>/tags/rnn/</loc>
     <lastmod>2019-01-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/blog/time-series-prediction-with-lstm/</loc>
     <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/accuracy/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/metrics-evaluation/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -473,9 +438,18 @@
   </url>
   
   <url>
+    <loc>/tags/precision/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/recall/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/troubleshoot/</loc>
     <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -484,33 +458,8 @@
   </url>
   
   <url>
-    <loc>/tags/accuracy/</loc>
-    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/metrics-evaluation/</loc>
-    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/precision/</loc>
-    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/recall/</loc>
-    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/yardstick/</loc>
     <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -521,13 +470,11 @@
   <url>
     <loc>/tags/multiple-seasonal/</loc>
     <lastmod>2019-01-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/tbats/</loc>
     <lastmod>2019-01-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -538,13 +485,11 @@
   <url>
     <loc>/tags/bayesian/</loc>
     <lastmod>2018-07-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/causal-inference/</loc>
     <lastmod>2018-07-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -553,13 +498,12 @@
   </url>
   
   <url>
-    <loc>/tags/svm/</loc>
+    <loc>/blog/support-vector-machine/</loc>
     <lastmod>2018-02-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/blog/support-vector-machine/</loc>
+    <loc>/tags/svm/</loc>
     <lastmod>2018-02-07T00:00:00+00:00</lastmod>
   </url>
   
@@ -586,17 +530,11 @@
   <url>
     <loc>/itemized/</loc>
     <lastmod>2017-06-22T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/about/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/blog/2019-10-22-poisson-regression-and-negative-binomial-regression/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
