@@ -6,11 +6,7 @@
     <description>Recent content in Tags on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Oct 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 02 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Data Visualization</title>
       <link>/tags/data-visualization/</link>
@@ -39,18 +35,18 @@
     </item>
     
     <item>
-      <title>gensim</title>
-      <link>/tags/gensim/</link>
-      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
+      <title>Collaborative Filtering</title>
+      <link>/tags/collaborative-filtering/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/gensim/</guid>
+      <guid>/tags/collaborative-filtering/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Machine Learning</title>
       <link>/tags/machine-learning/</link>
-      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/machine-learning/</guid>
       <description></description>
@@ -59,9 +55,18 @@
     <item>
       <title>Recommender System</title>
       <link>/tags/recommender-system/</link>
-      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/recommender-system/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gensim</title>
+      <link>/tags/gensim/</link>
+      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/gensim/</guid>
       <description></description>
     </item>
     

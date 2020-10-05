@@ -6,11 +6,7 @@
     <description>Recent content in Itemized on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 22 Jun 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/itemized/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 22 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="/itemized/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fancy App 1</title>
       <link>/itemized/item1/</link>

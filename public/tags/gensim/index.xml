@@ -6,11 +6,7 @@
     <description>Recent content in gensim on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Jun 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/gensim/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 29 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/gensim/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Song2Vec: Music Recommender</title>
       <link>/blog/song2vec-music-recommender/</link>

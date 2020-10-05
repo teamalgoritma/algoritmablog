@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.72.0" />
+        <meta name="generator" content="Hugo 0.75.1" />
         
   
     
@@ -85,13 +85,14 @@ So how does SVM find the right hyperplane?" />
         <meta itemprop="name" content="Support Vector Machine">
 <meta itemprop="description" content="Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.
 So how does SVM find the right hyperplane?">
-<meta itemprop="datePublished" content="2018-02-07T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2018-02-07T00:00:00&#43;00:00" />
+<meta itemprop="datePublished" content="2018-02-07T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-02-07T00:00:00+00:00" />
 <meta itemprop="wordCount" content="2166">
 
 
 
 <meta itemprop="keywords" content="SVM,Machine Learning," />
+
         
 
         
@@ -287,6 +288,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/skincare-recommender-system/">Skincare Recommendation System</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-09-01'>
+                                    September 1, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/rplicate-happiness-of-the-third-age/">Rplicate Series: Happiness of The Third Age</a></h3>
                                 
                                 <time class="published" datetime=
@@ -316,18 +329,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-06-02'>
                                     June 2, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/pengenalan-teori-antrian/">Pengenalan Teori Antrian</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-04-27'>
-                                    April 27, 2020</time>
                             </header>
                             
 
@@ -551,7 +552,7 @@ if (!doNotTrack) {
 <p>SVM has a technique called the kernel trick. These are functions which takes low dimensional input space and transform it to a higher dimensional space i.e. it converts not separable problem to separable problem, these functions are called kernels.</p>
 <p>In R, there are 4 various options available with kernel. They are linear, radial, polynomial and sigmoid.</p>
 <h3 id="parameters-in-svm">Parameters in SVM</h3>
-<p>Parameters in SVM are kernel, c (cost function) and gamma. C is a parameter that controls tradeoff between smooth decision boundary and classifying training points correctly. Small C makes the cost of misclassificaiton low (&ldquo;soft margin&rdquo;), thus allowing more of them for the sake of wider cushion and conversely Large C makes the cost of misclassification high (&lsquo;hard margin&rdquo;), thus forcing the algorithm to explain the input data stricter and potentially overfit. In the other side, gamma parameter  defines how far the influence of a single training example reaches, if gamma has a low value, then that means that every point has a far reach, and conversely high values means that each training example only has a close reach.</p>
+<p>Parameters in SVM are kernel, c (cost function) and gamma. C is a parameter that controls tradeoff between smooth decision boundary and classifying training points correctly. Small C makes the cost of misclassificaiton low (&ldquo;soft margin&rdquo;), thus allowing more of them for the sake of wider cushion and conversely Large C makes the cost of misclassification high (&lsquo;hard margin&quot;), thus forcing the algorithm to explain the input data stricter and potentially overfit. In the other side, gamma parameter  defines how far the influence of a single training example reaches, if gamma has a low value, then that means that every point has a far reach, and conversely high values means that each training example only has a close reach.</p>
 <h3 id="strengths-and-weaknesses-of-svm">Strengths and Weaknesses of SVM</h3>
 <p><strong>Strengths</strong></p>
 <ol>

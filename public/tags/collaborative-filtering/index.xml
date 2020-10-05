@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Collaborative Filtering on Algoritma Technical Blog</title>
+    <link>/tags/collaborative-filtering/</link>
+    <description>Recent content in Collaborative Filtering on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/collaborative-filtering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Skincare Recommendation System</title>
+      <link>/blog/skincare-recommender-system/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/skincare-recommender-system/</guid>
+      <description>body {text-align: justify}Sys.setenv(RETICULATE_PYTHON = &amp;quot;C:/Users/dyahn/anaconda3/envs/dataanalytics/python.exe&amp;quot;)library(reticulate)py_run_string(&amp;quot;import os&amp;quot;)py_run_string(&amp;quot;os.environ[&amp;#39;QT_QPA_PLATFORM_PLUGIN_PATH&amp;#39;] = &amp;#39;C:/Users/dyahn/anaconda3/Library/plugins/platforms&amp;#39;&amp;quot;)Skincare Recommendation System using Collaborative Filtering (Matrix Factorization)IntroductionHave you ever imagine how Netflix give you recommendation for movies you have never watch before? If you’re familiar with machine learning, you can find the answer. Yappps.. that’s right. The answer is “Recommendation System”.Recommendation system or recommender system is subclass of information filtering system that seeks to predict the “rating” or “preference” a user would give to an item.</description>
+    </item>
+    
+  </channel>
+</rss>

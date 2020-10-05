@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.72.0" />
+        <meta name="generator" content="Hugo 0.75.1" />
         
   
     
@@ -85,13 +85,14 @@ Outline Why tidymodels Matters?  Things we think we&rsquo;re doing it right Thin
         <meta itemprop="name" content="Introduction to tidymodels">
 <meta itemprop="description" content="The following presentation is produced by the team at Algoritma for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
 Outline Why tidymodels Matters?  Things we think we&rsquo;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?">
-<meta itemprop="datePublished" content="2019-10-06T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-10-06T00:00:00&#43;00:00" />
+<meta itemprop="datePublished" content="2019-10-06T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-10-06T00:00:00+00:00" />
 <meta itemprop="wordCount" content="3991">
 
 
 
 <meta itemprop="keywords" content="tidymodels,tidyverse,Machine Learning," />
+
         
 
         
@@ -287,6 +288,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/skincare-recommender-system/">Skincare Recommendation System</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-09-01'>
+                                    September 1, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/rplicate-happiness-of-the-third-age/">Rplicate Series: Happiness of The Third Age</a></h3>
                                 
                                 <time class="published" datetime=
@@ -316,18 +329,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-06-02'>
                                     June 2, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/pengenalan-teori-antrian/">Pengenalan Teori Antrian</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-04-27'>
-                                    April 27, 2020</time>
                             </header>
                             
 
@@ -853,7 +854,7 @@ Shrink <code>numeric</code> column(s) to several PCA components (<strong>tuneabl
 <ul>
 <li>It will automatically convert all <code>character</code> columns to <code>factor</code>;</li>
 <li>If you used <code>step_string2factor()</code>, don&rsquo;t forget to specify <code>strings_as_factors = FALSE</code></li>
-<li>It will train the recipe to the specified dataset in the <code>recipe()</code>'s <code>data</code> argument;</li>
+<li>It will train the recipe to the specified dataset in the <code>recipe()</code>&rsquo;s <code>data</code> argument;</li>
 <li>If you want to train to other dataset, you can supply the new dataset to <code>training</code> argument, and set the <code>fresh</code> argument to <code>TRUE</code></li>
 </ul>
 </li>

@@ -6,11 +6,7 @@
     <description>Recent content on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Oct 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 02 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rplicate Series: Cherry Bomb</title>
       <link>/blog/rplicate-series-cherry-bomb/</link>
@@ -20,6 +16,15 @@
       <description>In this second article on Rplicate Series, We will share to you one way to replicate the plot titled Cherry Bomb from the article &amp;ldquo;Japan’s cherry blossoms are emerging increasingly early, 7th April 2017&amp;rdquo;. The raw dataset used for this graph was obtained from a phenological dataset that was previously collected by Dr. Yasuyuki Aono from Osaka Prefecture University12.
 While replicating the plot, we will also learn how to:
  various data pre-processing tricks such as separate a column into several columns, create date data from several columns, and reverse levels of a categorical column create a scatterplot with a custom shape/image as points using geom_smooth() for visualizing trend in the data explore facets and various theme editing on ggplot2  Let&amp;rsquo;s dive in below!</description>
+    </item>
+    
+    <item>
+      <title>Skincare Recommendation System</title>
+      <link>/blog/skincare-recommender-system/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/skincare-recommender-system/</guid>
+      <description>body {text-align: justify}Sys.setenv(RETICULATE_PYTHON = &amp;quot;C:/Users/dyahn/anaconda3/envs/dataanalytics/python.exe&amp;quot;)library(reticulate)py_run_string(&amp;quot;import os&amp;quot;)py_run_string(&amp;quot;os.environ[&amp;#39;QT_QPA_PLATFORM_PLUGIN_PATH&amp;#39;] = &amp;#39;C:/Users/dyahn/anaconda3/Library/plugins/platforms&amp;#39;&amp;quot;)Skincare Recommendation System using Collaborative Filtering (Matrix Factorization)IntroductionHave you ever imagine how Netflix give you recommendation for movies you have never watch before? If you’re familiar with machine learning, you can find the answer. Yappps.. that’s right. The answer is “Recommendation System”.Recommendation system or recommender system is subclass of information filtering system that seeks to predict the “rating” or “preference” a user would give to an item.</description>
     </item>
     
     <item>
