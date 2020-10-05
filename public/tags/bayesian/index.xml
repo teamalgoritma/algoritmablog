@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bayesian on Algoritma Technical Blog</title>
@@ -6,7 +6,11 @@
     <description>Recent content in Bayesian on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Jul 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/bayesian/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/bayesian/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Causal Inference and Bayesian Network</title>
       <link>/blog/causal-inference-and-bayesian-network/</link>

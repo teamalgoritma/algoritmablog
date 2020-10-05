@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Generative Model on Algoritma Technical Blog</title>
@@ -6,7 +6,11 @@
     <description>Recent content in Generative Model on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/generative-model/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/generative-model/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Introduction to Generative Adversarial Network with Keras</title>
       <link>/blog/introduction-to-generative-adversarial-network-with-keras/</link>
@@ -14,7 +18,8 @@
       
       <guid>/blog/introduction-to-generative-adversarial-network-with-keras/</guid>
       <description>In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&amp;rsquo;s. This made Chritie&amp;rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
-Intro  Is artificial intelligence set to become art’s next medium? - Chritie&amp;rsquo;s</description>
+Intro  
+ Is artificial intelligence set to become art’s next medium?</description>
     </item>
     
   </channel>
