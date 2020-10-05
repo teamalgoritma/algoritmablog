@@ -34,7 +34,7 @@ Recommendation system or recommender system is subclass of information filtering
 <p><strong>Collaborative filtering</strong> is one of basic models for recommendation system which are based on assumption that people like things similar to other things they like, or things that are liked by other people which have similar taste with them.<br>
 The ilustration given below :</p>
 <center>
-<img src="img/skincare-recommender-system/New%20Project.png" style="width:80.0%" />
+<img src="/img/skincare-recommender-system/New%20Project.png" style="width:80.0%" />
 </center>
 <p>From the ilustration above, information given that Kiki (girl with black cat) likes to buy apple, banana, and watermelon. While Satsuki (girl with yellow shirt) likes to buy apple and banana. They have similar taste in apple and banana, so we can recommend Satsuki to buy watermelon.<br></p>
 <p>In <strong>collaborative filtering</strong>method there are two approaches which can be implemented :<br></p>
@@ -146,7 +146,7 @@ print(&quot;Number of uniq reviewer :&quot;,uniq_reviewer)</code></pre>
 <strong>Matrix Factorization</strong> is one way to handle those issue. Matrix factorization will breaking down of one matrix into a product of multiple matrices and give predictive rating in sparse matrix. Basic idea from matrix factorization is that attitudes or preferences of a user can be determined by a small number of hidden factors.<br>
 Illustration given below:</p>
 <center>
-<img src="img/skincare-recommender-system/matrix.JPG" style="width:80.0%" />
+<img src="/img/skincare-recommender-system/matrix.JPG" style="width:80.0%" />
 </center>
 <p>Intuitively, we can understand hidden factors for items and users from illustration above. Say that U is low dimensional matrix for Users features and V is low dimensional matrix for Product features. Every matrix values represent different characteristics about the users and the product. For e.g I have 3 features in Product matrix <em>(i) what kind categories of the product? (ii) Does the product contains dangerous addictive substance? (iii)How the product give impact in our skin?</em> Likewise, in Users matrix might represent <em>(i)how sensitive the user’s skin into the product substances? (ii)Does the user like “X” category product, an so on</em>. We can get the predictive ratings by calculate the dot product between matrix U and matrix V.</p>
 </div>
@@ -154,13 +154,13 @@ Illustration given below:</p>
 <h3>Singular Value Decomposition (SVD)</h3>
 <p><strong>Singular Value Decomposition</strong> is one of type Matrix Factorization. SVD algorithm will decomposes a matrix R into the best lower rank approximation of the original matrix R. Matematically SVD produce by the formula below :</p>
 <center>
-<img src="img/skincare-recommender-system/svd.JPG" style="width:50.0%" />
+<img src="/img/skincare-recommender-system/svd.JPG" style="width:50.0%" />
 </center>
 <div style="text-align:justify">
 where U and V are orthogonal matrix with orthonormal eigenvectors and <span class="math inline">\(\sum\)</span> is the diagonal matrix of singular values (essentially weights). The matrix can be factorized as :
 </div>
 <center>
-<img src="img/skincare-recommender-system/matrix_.jpg" style="width:80.0%" />
+<img src="/img/skincare-recommender-system/matrix_.jpg" style="width:80.0%" />
 </center>
 <p>We can arrange eigenvectors in different orders to produce U and V.</p>
 </div>
