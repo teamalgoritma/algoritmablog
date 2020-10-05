@@ -33,8 +33,12 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+Have you ever imagine how Netflix give you recommendation for movies you have never watch before?
+If you're familiar with machine learning, you can find the answer. Yappps.. that's right. The answer is "Recommendation System".
+Recommendation system or recommender system is subclass of information filtering system that seeks to predict the "rating" or "preference" a user would give to an item. Recommendation system aims to telling us which movies to watch (Netflix), which product to buy (Amazone), or which songs to listen (Spotify) based on our historical data.<br>
 
-```{r}
+
+```{r, echo=FALSE}
 Sys.setenv(RETICULATE_PYTHON = "C:/Users/dyahn/anaconda3/envs/dataanalytics/python.exe")
 library(reticulate)
 py_run_string("import os")
@@ -45,11 +49,6 @@ py_run_string("os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = 'C:/Users/dyahn/anaco
 # Skincare Recommendation System using Collaborative Filtering (Matrix Factorization)
 
 ## Introduction
-
-Have you ever imagine how Netflix give you recommendation for movies you have never watch before? <br>
-
-If you're familiar with machine learning, you can find the answer. Yappps.. that's right. The answer is "Recommendation System".
-Recommendation system or recommender system is subclass of information filtering system that seeks to predict the "rating" or "preference" a user would give to an item. Recommendation system aims to telling us which movies to watch (Netflix), which product to buy (Amazone), or which songs to listen (Spotify) based on our historical data.<br>
 
 **Collaborative filtering** is one of basic models for recommendation system which are based on assumption that people like things similar to other things they like, or things that are liked by other people which have similar taste with them.<br>
 The ilustration given below :
