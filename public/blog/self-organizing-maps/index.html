@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.72.0" />
+        <meta name="generator" content="Hugo 0.75.1" />
         
   
     
@@ -82,13 +82,14 @@
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Self-Organizing Maps">
 <meta itemprop="description" content="Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations.">
-<meta itemprop="datePublished" content="2019-04-26T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-04-26T00:00:00&#43;00:00" />
+<meta itemprop="datePublished" content="2019-04-26T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-04-26T00:00:00+00:00" />
 <meta itemprop="wordCount" content="2694">
 
 
 
 <meta itemprop="keywords" content="SOM,Clustering,Unsupervised Learning,Machine Learning," />
+
         
 
         
@@ -284,6 +285,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/skincare-recommender-system/">Skincare Recommendation System</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-09-01'>
+                                    September 1, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/rplicate-happiness-of-the-third-age/">Rplicate Series: Happiness of The Third Age</a></h3>
                                 
                                 <time class="published" datetime=
@@ -313,18 +326,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-06-02'>
                                     June 2, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/pengenalan-teori-antrian/">Pengenalan Teori Antrian</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-04-27'>
-                                    April 27, 2020</time>
                             </header>
                             
 
@@ -615,7 +616,7 @@ ads.model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">s
 <span style="color:#75715e"># str(ads.model)</span>
 </code></pre></div><p>From that summary of <code>ads.model</code> we know that our SOM grid has 10x10 dimension.</p>
 <h1 id="unsupervised-som">Unsupervised SOM</h1>
-<h2 class="tabset tabset-fade tabset-pills" id="visualize-of-som-">Visualize of SOM</h2>
+<h2 class="tabset tabset-fade tabset-pills" id="visualize-of-som">Visualize of SOM</h2>
 <p>Before visualizingSOM model, let’s explore a list of SOM model. If we want to know that our data position in maps, we look it in <code>unit.classif</code>. Each value represent the node number to which this application belongs. For example, in the first value of the application, 12 means that in the first application has been classified into 12 particular node.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(ads.model<span style="color:#f92672">$</span>unit.classif)
 </code></pre></div><pre><code>#&gt; [1] 12 13 13 23 22 22

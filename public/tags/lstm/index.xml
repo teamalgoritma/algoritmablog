@@ -6,11 +6,7 @@
     <description>Recent content in LSTM on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Nov 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/lstm/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 12 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/lstm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Text Classification with LSTM</title>
       <link>/blog/text-lstm/</link>

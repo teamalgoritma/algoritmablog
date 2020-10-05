@@ -48,27 +48,37 @@
   </url>
   
   <url>
+    <loc>/tags/collaborative-filtering/</loc>
+    <lastmod>2020-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/machine-learning/</loc>
+    <lastmod>2020-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/python/</loc>
+    <lastmod>2020-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/recommender-system/</loc>
+    <lastmod>2020-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/skincare-recommender-system/</loc>
+    <lastmod>2020-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/rplicate-happiness-of-the-third-age/</loc>
     <lastmod>2020-08-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/gensim/</loc>
-    <lastmod>2020-06-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/machine-learning/</loc>
-    <lastmod>2020-06-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/python/</loc>
-    <lastmod>2020-06-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/recommender-system/</loc>
     <lastmod>2020-06-29T00:00:00+00:00</lastmod>
   </url>
   
