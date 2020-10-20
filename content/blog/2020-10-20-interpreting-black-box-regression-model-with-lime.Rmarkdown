@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-![](public/img/lime.png)
+![](img/lime.png)
 
 # INTRODUCTION
 
@@ -118,7 +118,7 @@ options(scipen = 999)
 Now we will import the dataset and inspect the contents. There are performances for 2 subjects: Mathematics and Portuguese language (language). For the first part, we will focus only on the math dataset.
 
 ```{r}
-df <- read.csv("data/student-mat.csv", sep = ";")
+df <- read.csv("data_input/student-mat.csv", sep = ";")
 
 glimpse(df)
 ```

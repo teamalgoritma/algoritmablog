@@ -19,7 +19,7 @@ type: post
 
 
 
-![](public/img/lime.png)
+![](img/lime.png)
 
 # INTRODUCTION
 
@@ -110,7 +110,7 @@ Now we will import the dataset and inspect the contents. There are performances 
 
 
 ```r
-df <- read.csv("data/student-mat.csv", sep = ";")
+df <- read.csv("data_input/student-mat.csv", sep = ";")
 
 glimpse(df)
 ```
@@ -282,7 +282,7 @@ We will try to find the correlation between numeric variables.
 ggcorr(df_clean, label = T)
 ```
 
-<img src="index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
 
 The final score (`G3`) has strong correlation with the score of the first (`G1`) and second period (`G2`). This is not surprising, since student achievement is highly affected by previous performances. Based on the author's commentary on this topic[^5], it is more difficult to predict `G3` without `G2` and `G1`. We will try to prove this point.
 
@@ -301,7 +301,7 @@ df_clean %>%
        title = "Final Score Distribution of Different Schools")
 ```
 
-<img src="index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" />
 
 Based on the density plot, the final score distribution of math are almost similar in both school. Thus, schools might not be a strong predictor for the final score of a student.
 
@@ -593,7 +593,7 @@ model_rf$importance %>%
        title = "Random Forest Variable Importance")
 ```
 
-<img src="index_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" />
 
 However, variable importance measures rarely give insight into the average direction that a variable affects a response function. They simply state the magnitude of a variable’s relationship with the response as compared to other variables used in the model. We can’t know specifically the influence of each factors for a single observation (no local-fidelity). That’s why we need LIME to help us understand individually what influence the performance of each student.
 
@@ -707,7 +707,7 @@ Finally, we will visualize the explanation using the `plot_features()` function.
 plot_features(explanation = explanation)
 ```
 
-<img src="index_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" />
 
 The case indicate the index of the data. Case : 1 indicate the first observation, Case : 2 indicate the second observation, etc. The `prediction` value show the predicted value based on the model interpretation and prediction. You can compare the prediction value with the actual final score (`G3`) value.
 
@@ -750,7 +750,7 @@ explanation <- explain(x = selected_data,
 plot_features(explanation)
 ```
 
-<img src="index_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" />
 
 Some parameters you can adjust in explanation function:
 
@@ -813,7 +813,7 @@ explanation <- explain(x = selected_data,
 plot_features(explanation)
 ```
 
-<img src="index_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" />
 
 # REFERENCE
 
