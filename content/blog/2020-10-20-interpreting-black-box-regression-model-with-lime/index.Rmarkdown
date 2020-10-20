@@ -30,10 +30,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r echo=FALSE}
-knitr::include_graphics("public/img/lime.png")
-```
-
+![](public/img/lime.png)
 
 # INTRODUCTION
 
