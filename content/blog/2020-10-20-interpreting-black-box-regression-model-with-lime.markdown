@@ -19,8 +19,6 @@ type: post
 
 
 
-![](img/lime.png)
-
 # INTRODUCTION
 
 One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning. The downside is, in general, interpretable model has lower performance in term of accuracy or precision, making them less useful and potentially dangerous for production. Therefore, there is a growing need on how to interpret a complex and black box model easily.
@@ -28,6 +26,8 @@ One of many things to consider when we want to choose a machine learning model i
 There exist a method called **LIME**, a novel explanation technique that explains the predictions of any classifier or regression problem in an interpretable and faithful manner, by learning an interpretable model locally around the prediction. By understanding on how our model works, we can have more advantage and could act wiser on what should we do.
 
 On this article, we will explore how to implement LIME in regression problem.
+
+![](img/lime.png)
 
 # LOCAL INTERPRETABLE MODEL-AGNOSTIC EXPLANATION (LIME)
 
