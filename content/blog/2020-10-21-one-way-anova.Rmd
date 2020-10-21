@@ -143,7 +143,7 @@ benih %>%
 ```
 
 Membuat visualisasi sebaran data dari setiap dosis. Kita bisa menggunakan fungsi-fungsi yang terdapat pada package `ggplot2`.
-```{r}
+```{r eval=FALSE}
 ggplot(data = benih, aes(x = dosis, y = daya_tumbuh)) +
   geom_boxplot() +
   geom_jitter(aes(color = dosis), show.legend = F) +
@@ -152,6 +152,8 @@ ggplot(data = benih, aes(x = dosis, y = daya_tumbuh)) +
   theme_minimal()
 ```
 
+<center> ![](/img/anova/boxplot.png) </center>
+
 Berdasarkan hasil ringkasan statistik dan visualisasi sebaran daya tumbuh benih kacang hijau dari setiap dosis fumigasi di atas, diketahui bahwa perbedaan pemberian dosis fumigasi menyebabkan perbedaan daya tumbuh benih kacang hijau. Pemberian dosis Fumigan *Methyl Bromide* (CH3Br) 0 gr/m3 (kontrol) dan 16 gr/m3 menyebabkan daya tumbuh benih kacang hijau yang serupa, yaitu 100. Namun, pemberian dosis Fumigan *Methyl Bromide* (CH3Br) dengan ukuran yang lebih besar, yaitu 32, 48, dan 64 gr/m3 justru menyebabkan penurunan daya tumbuh benih kacang hijau. Rata-rata daya tumbuh benih kacang hijau yang diberikan dosis Fumigan *Methyl Bromide* (CH3Br) 32, 48, dan 64 gr/m3, yaitu 90.25, 80, dan 85. Untuk membuktikan hipotesis tersebut berdasarkan data yang ada akan dilakukan one-way ANOVA.
 
 ## Aplikasi One-Way ANOVA
@@ -159,8 +161,6 @@ Berdasarkan hasil ringkasan statistik dan visualisasi sebaran daya tumbuh benih 
 Untuk melakukan one-way ANOVA kita bisa menggunakan fungsi `aov()`.
 ```{r}
 ANOVA_benih <- aov(formula = daya_tumbuh ~ dosis, data = benih)
-
-ANOVA_benih
 ```
 
 Untuk melihat output hasil one-way ANOVA bisa dengan print objek `ANOVA_benih` atau menggunakan fungsi `summary()`.
