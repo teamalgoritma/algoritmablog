@@ -127,25 +127,15 @@ glimpse(benih)</code></pre>
   labs(x = &quot;Dosis Fumigan Methyl Bromide (CH3Br) per gr/m3&quot;,
        y = &quot;Daya Tumbuh Benih Kacang Hijau&quot;) +
   theme_minimal()</code></pre>
-<p><img src="/blog/2020-10-21-one-way-anova_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<center>
+<img src="/img/anova/boxplot.png" />
+</center>
 <p>Berdasarkan hasil ringkasan statistik dan visualisasi sebaran daya tumbuh benih kacang hijau dari setiap dosis fumigasi di atas, diketahui bahwa perbedaan pemberian dosis fumigasi menyebabkan perbedaan daya tumbuh benih kacang hijau. Pemberian dosis Fumigan <em>Methyl Bromide</em> (CH3Br) 0 gr/m3 (kontrol) dan 16 gr/m3 menyebabkan daya tumbuh benih kacang hijau yang serupa, yaitu 100. Namun, pemberian dosis Fumigan <em>Methyl Bromide</em> (CH3Br) dengan ukuran yang lebih besar, yaitu 32, 48, dan 64 gr/m3 justru menyebabkan penurunan daya tumbuh benih kacang hijau. Rata-rata daya tumbuh benih kacang hijau yang diberikan dosis Fumigan <em>Methyl Bromide</em> (CH3Br) 32, 48, dan 64 gr/m3, yaitu 90.25, 80, dan 85. Untuk membuktikan hipotesis tersebut berdasarkan data yang ada akan dilakukan one-way ANOVA.</p>
 </div>
 <div id="aplikasi-one-way-anova" class="section level2">
 <h2>Aplikasi One-Way ANOVA</h2>
 <p>Untuk melakukan one-way ANOVA kita bisa menggunakan fungsi <code>aov()</code>.</p>
-<pre class="r"><code>ANOVA_benih &lt;- aov(formula = daya_tumbuh ~ dosis, data = benih)
-
-ANOVA_benih</code></pre>
-<pre><code>#&gt; Call:
-#&gt;    aov(formula = daya_tumbuh ~ dosis, data = benih)
-#&gt; 
-#&gt; Terms:
-#&gt;                  dosis Residuals
-#&gt; Sum of Squares  2556.4     435.5
-#&gt; Deg. of Freedom      4        35
-#&gt; 
-#&gt; Residual standard error: 3.527443
-#&gt; Estimated effects may be unbalanced</code></pre>
+<pre class="r"><code>ANOVA_benih &lt;- aov(formula = daya_tumbuh ~ dosis, data = benih)</code></pre>
 <p>Untuk melihat output hasil one-way ANOVA bisa dengan print objek <code>ANOVA_benih</code> atau menggunakan fungsi <code>summary()</code>.</p>
 <pre class="r"><code>summary(ANOVA_benih)</code></pre>
 <pre><code>#&gt;             Df Sum Sq Mean Sq F value            Pr(&gt;F)    
