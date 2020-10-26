@@ -35,8 +35,7 @@ On this occation, we will learn about Topic Modelling and it's application in a 
 
 Suppose that we have the following word cloud, can you guess what these words have in common?
 
-<img src="img/topic_model/politic.png" width="426" style="display: block; margin: auto;" />
-
+<center> ![](/img/topic_model_lda/politic.png){width="100%"} </center>
 
 The interpretation may differ from one persone to another, but most of you must be agree that the word cloud has a common theme or topic. Perhaps you might say that it is related to economics, or politics, or business. The real theme of the words is unkown, but we as the observer are giving the group of words a meaningful and understandable topic. This activity is what we call as **Topic Modelling**.
 
@@ -54,7 +53,7 @@ There are many application of Topic Modelling, even outside of the field of NLP.
 
 Below is another example of topic modeling from *Blei et al.* where the top words for each topic (arts, budgets, children, and education) are shown. The colored text on the lower part of the figure illustrate that a single document is a collection of words with various topic.
 
-<img src="img/topic_model/topic.PNG" width="375" style="display: block; margin: auto;" />
+<center> ![](/img/topic_model_lda/topic.PNG){width="100%"} </center>
 
 The popular algorithm for Topic Modeling is **Latent Dirichlet Allocation (LDA)**, which is developed by <a href = "http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf"> **Blei et al.** </a>. This algorithm can be understood in this two simple properties[^5]:
 
@@ -153,7 +152,7 @@ The word *Latent* in Latent Dirichlet Allocation refers to the latent or hidden 
 
 An LDA model is built based on these two principles and has the following graphical structures. 
 
-<img src="img/topic_model/lda_model.jpg" width="350" style="display: block; margin: auto;" />
+<center> ![](/img/topic_model_lda/lda_model.jpg){width="100%"} </center>
 
 Notation:
 
@@ -173,11 +172,11 @@ The LDA model consists of 2 different priors distribution: probability distribut
 
 The following figure is the illustration of the Dirichlet distribution for each topic to each document. Suppose we have a collection of documents and we are confident that on the corpus we have 3 different topics. Each dot represent a single document and each side of the triangle represent a single topics. The position of each document represent the probability distribution for each topic. We randomly assign the position of each document based on its probability distribution. We can see that document A has a close proximity to the topic of Science. This indicate that document A has a high probability of belong to topic Science and low probability ot belong to Politics or Economy. Meanwhile, document B has a high probability to belong to the topic Economy. Document C is located between Science and Politics, so it has a rather equal probability for those topics and low probability for the topic Economy. The topic D is located at the center of the triangle, which means that it has an equal probability for the three topics. 
 
-<img src="img/topic_model/dirichlet1.png" width="339" style="display: block; margin: auto;" />
+<center> ![](/img/topic_model_lda/dirichlet1.png){width="100%"} </center>
 
 The goal of LDA is to make each document as close as possible toward a certain topics, although it may not always be achieved for all document. If the above graphics represent our prior probability for each document to each topics, the following graphic illustrate the posterior probability where all document is having a strong relation with a certain topics.
 
-<img src="img/topic_model/dirichlet2.png" width="339" style="display: block; margin: auto;" />
+<center> ![](/img/topic_model_lda/dirichlet2.png){width="100%"} </center>
 
 We may translate the probability distribution into the following table:
 
@@ -199,7 +198,7 @@ data.frame(document = c("A","B","C","D"),
 
 The second prior distribution is the probability of a topics belong to certain words: word-topic probability. This prior is concerned with what terms that represent what topic? Is there any terms that have strong connection with certain topics? Let's say we have 4 terms: *President*, *Planet*, *Market*, and *Energy*. Each terms will act as the edge of the triangle. However, since we have more than 3 terms, the shape of the distribution is not a triangle anymore, but a tetrahedron. The following figures illustrate a random assignment of Dirichlet distribution between topics and words.
 
-<img src="img/topic_model/dirichlet3.png" width="426" style="display: block; margin: auto;" />
+<center> ![](/img/topic_model_lda/dirichlet3.png){width="100%"} </center>
 
 If we translate the position of each topic into a probabilistic value, we get the following table:
 
@@ -225,7 +224,7 @@ These prior distribution will be used to generate word samples to calculate the 
 
 Let's go back toward the LDA structure.
 
-<img src="img/topic_model/lda_model.jpg" width="350" style="display: block; margin: auto;" />
+<center> ![](/img/topic_model_lda/lda_model.jpg){width="100%"} </center>
 
 The generative process is the process of generating a document by randomly selecting words from each topic. The rough description of the process is as follows:
 
@@ -880,7 +879,7 @@ news_word_topic %>%
          strip.text.x = element_text(colour = "white"))
 ```
 
-<img src="/blog/topic-model-lda_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="/blog/topic-model-lda_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" />
 
 #### Document-Topic Probabilities {.tabset}
 
@@ -1063,7 +1062,7 @@ news_doc_topic %>%
         title = "Topic Proportions Over Time on Weekly Interval")
 ```
 
-<img src="/blog/topic-model-lda_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/topic-model-lda_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" />
 
 As we can see, for COVID-19 case (late 2019-2020), as the time goes, more articles are reporting more about the social issues of the coronavirus. There is a one week time gap between in the late December to early January where no news are collected. News regarding the source of the virus or new cases is less reported on March since almost all country have been contracted by the virus and thus people and the government are more concerned about their survival and well-being.
 
@@ -1195,7 +1194,7 @@ iter_k %>%
    theme(panel.grid.minor = element_blank())
 ```
 
-<img src="/blog/topic-model-lda_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/topic-model-lda_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" />
 
 The optimal number of topics can be chosen by picking the number of topics that give the highest average coherence.
 
