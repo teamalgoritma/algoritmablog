@@ -6,10 +6,46 @@
     <description>Recent content in Tags on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>/tags/machine-learning/</link>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Topic Modelling</title>
+      <link>/tags/topic-modelling/</link>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/topic-modelling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Capstone Ml</title>
+      <link>/tags/capstone-ml/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/capstone-ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lime</title>
+      <link>/tags/lime/</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/lime/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Data Visualization</title>
@@ -48,29 +84,11 @@
     </item>
     
     <item>
-      <title>Machine Learning</title>
-      <link>/tags/machine-learning/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/machine-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Recommender System</title>
       <link>/tags/recommender-system/</link>
       <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/recommender-system/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Topic Modelling</title>
-      <link>/tags/topic-modelling/</link>
-      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/topic-modelling/</guid>
       <description></description>
     </item>
     
@@ -152,24 +170,6 @@
       <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/text-generation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Capstone Ml</title>
-      <link>/tags/capstone-ml/</link>
-      <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/capstone-ml/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lime</title>
-      <link>/tags/lime/</link>
-      <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/lime/</guid>
       <description></description>
     </item>
     

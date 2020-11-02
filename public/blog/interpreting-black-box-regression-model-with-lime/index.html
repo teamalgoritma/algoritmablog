@@ -1,0 +1,1562 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "\/"
+        },
+        "articleSection" : "blog",
+        "name" : "Interpreting Black Box Regression Model with LIME",
+        "headline" : "Interpreting Black Box Regression Model with LIME",
+        "description" : "INTRODUCTION One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning.",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-10-20 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2020-10-20 00:00:00 \x2b0000 UTC",
+        "url" : "\/blog\/interpreting-black-box-regression-model-with-lime\/",
+        "wordCount" : "5461",
+        "keywords" : [ "lime","Machine Learning","Capstone Ml","Blog" ]
+    }
+    </script>
+        
+            
+                <title>Interpreting Black Box Regression Model with LIME</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.55.4" />
+        
+  
+    
+  
+
+  
+
+  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='/favicon/favicon.png'>
+  
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
+  <meta name="application-name" content="Algoritma Technical Blog">
+  <meta name="msapplication-tooltip" content="To learn more about our approach to data science problems, feel free to hop over to our blog.">
+  <meta name="msapplication-config" content='/favicon/ieconfig.xml'>
+
+
+
+        
+            <meta name="author" content="Arga Adyatama">
+        
+        
+            
+                <meta name="description" content="To learn more about our approach to data science problems, feel free to hop over to our blog.">
+            
+        
+
+        <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Interpreting Black Box Regression Model with LIME"/>
+<meta name="twitter:description" content="INTRODUCTION One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning."/>
+<meta name="twitter:site" content="@teamalgoritma"/>
+
+        <meta property="og:title" content="Interpreting Black Box Regression Model with LIME" />
+<meta property="og:description" content="INTRODUCTION One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/interpreting-black-box-regression-model-with-lime/" />
+<meta property="article:published_time" content="2020-10-20T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-10-20T00:00:00&#43;00:00"/>
+
+        <meta property="og:image" content="//images/logo.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="512">
+        <meta property="og:image:height" content="512">
+        
+<meta itemprop="name" content="Interpreting Black Box Regression Model with LIME">
+<meta itemprop="description" content="INTRODUCTION One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning.">
+
+
+<meta itemprop="datePublished" content="2020-10-20T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-10-20T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="5461">
+
+
+
+<meta itemprop="keywords" content="lime,Machine Learning,Capstone Ml," />
+
+        
+
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/add-on.css">
+            <link rel="stylesheet" href="/css/academicons.min.css">
+        
+
+        
+            
+                
+            
+                
+                    <link rel="stylesheet" href="/css/main.css">
+                
+            
+        
+
+
+  
+    
+      <link rel="stylesheet" href="/css/night-owl.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="/js/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+  
+
+
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-164959107-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+
+
+    </head>
+    <body>
+
+      
+      <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+      <h1><a href="/">blog</a></h1>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/">
+                            <i class="fa fa-home">&nbsp;</i>Home
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/machine-learning/">
+                            <i class="fa fa-cog">&nbsp;</i>Machine Learning
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/data-visualization/">
+                            <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/tags/">
+                            <i class="fa fa-list">&nbsp;</i>Article List
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="as_sitesearch" value="/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="as_sitesearch" value="/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/">
+                            <h3>
+                                <i class="fa fa-home">&nbsp;</i>Home
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/machine-learning/">
+                            <h3>
+                                <i class="fa fa-cog">&nbsp;</i>Machine Learning
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/data-visualization/">
+                            <h3>
+                                <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags/">
+                            <h3>
+                                <i class="fa fa-list">&nbsp;</i>Article List
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section class="recent-posts">
+            <div class="mini-posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+
+                
+                    
+                
+
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/topic-modeling-lda/">Topic Modelling with Latent Dirichlet Allocation (LDA)</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-10-26'>
+                                    October 26, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-10-21'>
+                                    October 21, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/interpreting-black-box-regression-model-with-lime/">Interpreting Black Box Regression Model with LIME</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-10-20'>
+                                    October 20, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/rplicate-series-cherry-bomb/">Rplicate Series: Cherry Bomb</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-10-02'>
+                                    October 2, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/skincare-recommender-system/">Skincare Recommendation System</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-09-01'>
+                                    September 1, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+
+                
+                    <a href=
+                        
+                            /blog/
+                        
+                        class="button">View more posts</a>
+                
+            </div>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+
+<li>
+  <a href="https://twitter.com/intent/tweet?text=Interpreting%20Black%20Box%20Regression%20Model%20with%20LIME by Arga%20Adyatama&amp;url=%2fblog%2finterpreting-black-box-regression-model-with-lime%2f" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2finterpreting-black-box-regression-model-with-lime%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2finterpreting-black-box-regression-model-with-lime%2f&amp;title=Interpreting%20Black%20Box%20Regression%20Model%20with%20LIME" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/interpreting-black-box-regression-model-with-lime/">Interpreting Black Box Regression Model with LIME</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2020-10-20'>
+            October 20, 2020</time>
+        <span class="author"><a href="">Arga Adyatama</a></span>
+        
+            <p>26 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+  
+    <section id="social-share">
+      <ul class="icons">
+        
+
+
+
+<li>
+  <a href="https://twitter.com/intent/tweet?text=Interpreting%20Black%20Box%20Regression%20Model%20with%20LIME by Arga%20Adyatama&amp;url=%2fblog%2finterpreting-black-box-regression-model-with-lime%2f" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2finterpreting-black-box-regression-model-with-lime%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2finterpreting-black-box-regression-model-with-lime%2f&amp;title=Interpreting%20Black%20Box%20Regression%20Model%20with%20LIME" target="_blank" class="share-btn linkedin">
+      <i class="fa fa-linkedin"></i>
+      <p>LinkedIn</p>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </section>
+  
+
+  
+
+  <div id="content">
+    
+
+<h1 id="introduction">INTRODUCTION</h1>
+
+<p>One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning. The downside is, in general, interpretable model has lower performance in term of accuracy or precision, making them less useful and potentially dangerous for production. Therefore, there is a growing need on how to interpret a complex and black box model easily.</p>
+
+<p>There exist a method called <strong>LIME</strong>, a novel explanation technique that explains the predictions of any classifier or regression problem in an interpretable and faithful manner, by learning an interpretable model locally around the prediction. By understanding on how our model works, we can have more advantage and could act wiser on what should we do.</p>
+
+<p>On this article, we will explore how to implement LIME in regression problem.</p>
+
+<p><img src="img/lime.png" alt="" /></p>
+
+<h1 id="local-interpretable-model-agnostic-explanation-lime">LOCAL INTERPRETABLE MODEL-AGNOSTIC EXPLANATION (LIME)</h1>
+
+<h2 id="lime-characteristics">LIME Characteristics</h2>
+
+<p>Let’s understand some of the LIME characteristic (Ribeiro et al., 2016)<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>:</p>
+
+<ul>
+<li><strong>Interpretable</strong></li>
+</ul>
+
+<p>Provide qualitative understanding between the input variables and the response. Interpretability must take into account the user’s limitations. Thus, a linear model, a gradient vector or an additive model may or may not be interpretable. For example, if hundreds or thousands of features significantly contribute to a prediction, it is not reasonable to expect any user to comprehend why the prediction was made, even if individual weights can be inspected. This requirement further implies that explanations should be easy to understand, which is not necessarily true of the features used by the model, and thus the “input variables” in the explanations may need to be different than the features. Finally, the notion of interpretability also depends on the target audience. Machine learning practitioners may be able to interpret small Bayesian networks, but laymen may be more comfortable with a small number of weighted features as an explanation.</p>
+
+<ul>
+<li><strong>Local Fidelity</strong></li>
+</ul>
+
+<p>Although it is often impossible for an explanation to be completely faithful unless it is the complete description of the model itself, for an explanation to be meaningful it must at least be locally faithful, i.e. it must correspond to how the model behaves in the vicinity of the instance being predicted. We note that local fidelity does not imply global fidelity: features that are globally important may not be important in the local context, and vice versa. While global fidelity would imply local fidelity, identifying globally faithful explanations that are interpretable remains a challenge for complex models.</p>
+
+<ul>
+<li><strong>Model-Agnostic</strong></li>
+</ul>
+
+<p>An explainer should be able to explain any model, and thus be model-agnostic (i.e. treat the original model as a black box). Apart from the fact that many state of the art classifiers are not currently interpretable, this also provides flexibility to explain future classifiers.</p>
+
+<h2 id="how-lime-works">How LIME Works</h2>
+
+<p>The generalized algorithm LIME applies is (Boehmke, 2018)<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>:</p>
+
+<p>(1) Given an observation, permute it to create replicated feature data with slight value modifications.</p>
+
+<p>(2) Compute similarity distance measure between original observation and permuted observations.</p>
+
+<p>(3) Apply selected machine learning model to predict outcomes of permuted data.</p>
+
+<p>(4) Select m number of features to best describe predicted outcomes.</p>
+
+<p>(5) Fit a simple model to the permuted data, explaining the complex model outcome with m features from the permuted data weighted by its similarity to the original observation .</p>
+
+<p>(6) Use the resulting feature weights to explain local behavior.</p>
+
+<h2 id="lime-package-in-r">LIME package in R</h2>
+
+<p>You can implement LIME in R with lime package. See Thomas Lin Pederson&rsquo;s<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup> github repository for more details.</p>
+
+<p>To install the LIME package, you just simply run the <code>install.packages()</code> function.</p>
+
+<pre><code class="language-r">install.packages(&quot;lime&quot;)
+</code></pre>
+
+<h1 id="case-study">CASE STUDY</h1>
+
+<p>We will try to use black box model to solve regression problem and implement LIME to interpret how the model behave on various input. The dataset would be the <strong>Student Performance</strong> from UCI machine learning repository<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup>. This data approach student achievement in secondary education of two Portuguese schools.</p>
+
+<h2 id="library">Library</h2>
+
+<p>The following library and setup will be used throughout the articles.</p>
+
+<pre><code class="language-r"># Data Wrangling
+library(tidyverse)
+
+# Exploratory Data Analysis
+library(GGally)
+
+# Modeling and Evaluation
+library(randomForest)
+library(yardstick)
+library(lmtest)
+
+# Model Interpretation
+library(lime)
+
+# Set theme for visualization
+theme_set(theme_minimal())
+
+options(scipen = 999)
+</code></pre>
+
+<h2 id="import-data">Import Data</h2>
+
+<p>Now we will import the dataset and inspect the contents. There are performances for 2 subjects: Mathematics and Portuguese language (language). For the first part, we will focus only on the math dataset.</p>
+
+<pre><code class="language-r">df &lt;- read.csv(&quot;data_input/student-mat.csv&quot;, sep = &quot;;&quot;)
+
+glimpse(df)
+</code></pre>
+
+<pre><code>#&gt; Rows: 395
+#&gt; Columns: 33
+#&gt; $ school     &lt;chr&gt; &quot;GP&quot;, &quot;GP&quot;, &quot;GP&quot;, &quot;GP&quot;, &quot;GP&quot;, &quot;GP&quot;, &quot;GP&quot;, &quot;GP&quot;, &quot;GP&quot;, &quot;GP&quot;…
+#&gt; $ sex        &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;…
+#&gt; $ age        &lt;int&gt; 18, 17, 15, 15, 16, 16, 16, 17, 15, 15, 15, 15, 15, 15, 15…
+#&gt; $ address    &lt;chr&gt; &quot;U&quot;, &quot;U&quot;, &quot;U&quot;, &quot;U&quot;, &quot;U&quot;, &quot;U&quot;, &quot;U&quot;, &quot;U&quot;, &quot;U&quot;, &quot;U&quot;, &quot;U&quot;, &quot;U&quot;…
+#&gt; $ famsize    &lt;chr&gt; &quot;GT3&quot;, &quot;GT3&quot;, &quot;LE3&quot;, &quot;GT3&quot;, &quot;GT3&quot;, &quot;LE3&quot;, &quot;LE3&quot;, &quot;GT3&quot;, &quot;L…
+#&gt; $ Pstatus    &lt;chr&gt; &quot;A&quot;, &quot;T&quot;, &quot;T&quot;, &quot;T&quot;, &quot;T&quot;, &quot;T&quot;, &quot;T&quot;, &quot;A&quot;, &quot;A&quot;, &quot;T&quot;, &quot;T&quot;, &quot;T&quot;…
+#&gt; $ Medu       &lt;int&gt; 4, 1, 1, 4, 3, 4, 2, 4, 3, 3, 4, 2, 4, 4, 2, 4, 4, 3, 3, 4…
+#&gt; $ Fedu       &lt;int&gt; 4, 1, 1, 2, 3, 3, 2, 4, 2, 4, 4, 1, 4, 3, 2, 4, 4, 3, 2, 3…
+#&gt; $ Mjob       &lt;chr&gt; &quot;at_home&quot;, &quot;at_home&quot;, &quot;at_home&quot;, &quot;health&quot;, &quot;other&quot;, &quot;servi…
+#&gt; $ Fjob       &lt;chr&gt; &quot;teacher&quot;, &quot;other&quot;, &quot;other&quot;, &quot;services&quot;, &quot;other&quot;, &quot;other&quot;,…
+#&gt; $ reason     &lt;chr&gt; &quot;course&quot;, &quot;course&quot;, &quot;other&quot;, &quot;home&quot;, &quot;home&quot;, &quot;reputation&quot;,…
+#&gt; $ guardian   &lt;chr&gt; &quot;mother&quot;, &quot;father&quot;, &quot;mother&quot;, &quot;mother&quot;, &quot;father&quot;, &quot;mother&quot;…
+#&gt; $ traveltime &lt;int&gt; 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 3, 1, 2, 1, 1, 1, 3, 1, 1…
+#&gt; $ studytime  &lt;int&gt; 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 3, 1, 2, 3, 1, 3, 2, 1, 1…
+#&gt; $ failures   &lt;int&gt; 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0…
+#&gt; $ schoolsup  &lt;chr&gt; &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;…
+#&gt; $ famsup     &lt;chr&gt; &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;…
+#&gt; $ paid       &lt;chr&gt; &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;,…
+#&gt; $ activities &lt;chr&gt; &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;y…
+#&gt; $ nursery    &lt;chr&gt; &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;ye…
+#&gt; $ higher     &lt;chr&gt; &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;y…
+#&gt; $ internet   &lt;chr&gt; &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;…
+#&gt; $ romantic   &lt;chr&gt; &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no…
+#&gt; $ famrel     &lt;int&gt; 4, 5, 4, 3, 4, 5, 4, 4, 4, 5, 3, 5, 4, 5, 4, 4, 3, 5, 5, 3…
+#&gt; $ freetime   &lt;int&gt; 3, 3, 3, 2, 3, 4, 4, 1, 2, 5, 3, 2, 3, 4, 5, 4, 2, 3, 5, 1…
+#&gt; $ goout      &lt;int&gt; 4, 3, 2, 2, 2, 2, 4, 4, 2, 1, 3, 2, 3, 3, 2, 4, 3, 2, 5, 3…
+#&gt; $ Dalc       &lt;int&gt; 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1…
+#&gt; $ Walc       &lt;int&gt; 1, 1, 3, 1, 2, 2, 1, 1, 1, 1, 2, 1, 3, 2, 1, 2, 2, 1, 4, 3…
+#&gt; $ health     &lt;int&gt; 3, 3, 3, 5, 5, 5, 3, 1, 1, 5, 2, 4, 5, 3, 3, 2, 2, 4, 5, 5…
+#&gt; $ absences   &lt;int&gt; 6, 4, 10, 2, 4, 10, 0, 6, 0, 0, 0, 4, 2, 2, 0, 4, 6, 4, 16…
+#&gt; $ G1         &lt;int&gt; 5, 5, 7, 15, 6, 15, 12, 6, 16, 14, 10, 10, 14, 10, 14, 14,…
+#&gt; $ G2         &lt;int&gt; 6, 5, 8, 14, 10, 15, 12, 5, 18, 15, 8, 12, 14, 10, 16, 14,…
+#&gt; $ G3         &lt;int&gt; 6, 6, 10, 15, 10, 15, 11, 6, 19, 15, 9, 12, 14, 11, 16, 14…
+</code></pre>
+
+<p>The dataset have more than 600 observations with 33 different variables. Our goal is to predict and explain the final score (<code>G3</code>) of each student using all available variables.</p>
+
+<p>The full description of each variables are as follows:</p>
+
+<ol>
+<li>school - student&rsquo;s school (binary: &ldquo;GP&rdquo; - Gabriel Pereira or &ldquo;MS&rdquo; - Mousinho da Silveira)</li>
+<li>sex - student&rsquo;s sex (binary: &ldquo;F&rdquo; - female or &ldquo;M&rdquo; - male)</li>
+<li>age - student&rsquo;s age (numeric: from 15 to 22)</li>
+<li>address - student&rsquo;s home address type (binary: &ldquo;U&rdquo; - urban or &ldquo;R&rdquo; - rural)</li>
+<li>famsize - family size (binary: &ldquo;LE3&rdquo; - less or equal to 3 or &ldquo;GT3&rdquo; - greater than 3)</li>
+<li>Pstatus - parent&rsquo;s cohabitation status (binary: &ldquo;T&rdquo; - living together or &ldquo;A&rdquo; - apart)</li>
+<li>Medu - mother&rsquo;s education (numeric: 0 - none,  1 - primary education (4th grade), 2 – 5th to 9th grade, 3 – secondary education or 4 – higher education)</li>
+<li>Fedu - father&rsquo;s education (numeric: 0 - none,  1 - primary education (4th grade), 2 – 5th to 9th grade, 3 – secondary education or 4 – higher education)</li>
+<li>Mjob - mother&rsquo;s job (nominal: &ldquo;teacher&rdquo;, &ldquo;health&rdquo; care related, civil &ldquo;services&rdquo; (e.g. administrative or police), &ldquo;at_home&rdquo; or &ldquo;other&rdquo;)</li>
+<li>Fjob - father&rsquo;s job (nominal: &ldquo;teacher&rdquo;, &ldquo;health&rdquo; care related, civil &ldquo;services&rdquo; (e.g. administrative or police), &ldquo;at_home&rdquo; or &ldquo;other&rdquo;)</li>
+<li>reason - reason to choose this school (nominal: close to &ldquo;home&rdquo;, school &ldquo;reputation&rdquo;, &ldquo;course&rdquo; preference or &ldquo;other&rdquo;)</li>
+<li>guardian - student&rsquo;s guardian (nominal: &ldquo;mother&rdquo;, &ldquo;father&rdquo; or &ldquo;other&rdquo;)</li>
+<li>traveltime - home to school travel time (numeric: 1 - <15 min., 2 - 15 to 30 min., 3 - 30 min. to 1 hour, or 4 - >1 hour)</li>
+<li>studytime - weekly study time (numeric: 1 - <2 hours, 2 - 2 to 5 hours, 3 - 5 to 10 hours, or 4 - >10 hours)</li>
+<li>failures - number of past class failures (numeric: n if 1&lt;=n&lt;3, else 4)</li>
+<li>schoolsup - extra educational support (binary: yes or no)</li>
+<li>famsup - family educational support (binary: yes or no)</li>
+<li>paid - extra paid classes within the course subject (Math or Portuguese) (binary: yes or no)</li>
+<li>activities - extra-curricular activities (binary: yes or no)</li>
+<li>nursery - attended nursery school (binary: yes or no)</li>
+<li>higher - wants to take higher education (binary: yes or no)</li>
+<li>internet - Internet access at home (binary: yes or no)</li>
+<li>romantic - with a romantic relationship (binary: yes or no)</li>
+<li>famrel - quality of family relationships (numeric: from 1 - very bad to 5 - excellent)</li>
+<li>freetime - free time after school (numeric: from 1 - very low to 5 - very high)</li>
+<li>goout - going out with friends (numeric: from 1 - very low to 5 - very high)</li>
+<li>Dalc - workday alcohol consumption (numeric: from 1 - very low to 5 - very high)</li>
+<li>Walc - weekend alcohol consumption (numeric: from 1 - very low to 5 - very high)</li>
+<li>health - current health status (numeric: from 1 - very bad to 5 - very good)</li>
+<li>absences - number of school absences (numeric: from 0 to 93)</li>
+<li>G1 - first period grade (numeric: from 0 to 20)</li>
+<li>G2 - second period grade (numeric: from 0 to 20)</li>
+<li>G3 - final grade (numeric: from 0 to 20, output target)</li>
+</ol>
+
+<h2 id="data-cleansing">Data Cleansing</h2>
+
+<p>We will cleanse the data so that all variables have proper type of data. For example, there are many integer variables that are actually categorical variables. All variables, except for <code>G1</code>, <code>G2</code>, <code>G3</code>, <code>age</code>, and <code>absences</code> will be tranformed into factors.</p>
+
+<pre><code class="language-r">untransformed &lt;- c(&quot;G1&quot;, &quot;G2&quot;, &quot;G3&quot;, &quot;age&quot;, &quot;absences&quot;)
+
+df_clean &lt;- df %&gt;% 
+  mutate_if(!(names(.) %in% untransformed), as.factor)
+
+glimpse(df_clean)
+</code></pre>
+
+<pre><code>#&gt; Rows: 395
+#&gt; Columns: 33
+#&gt; $ school     &lt;fct&gt; GP, GP, GP, GP, GP, GP, GP, GP, GP, GP, GP, GP, GP, GP, GP…
+#&gt; $ sex        &lt;fct&gt; F, F, F, F, F, M, M, F, M, M, F, F, M, M, M, F, F, F, M, M…
+#&gt; $ age        &lt;int&gt; 18, 17, 15, 15, 16, 16, 16, 17, 15, 15, 15, 15, 15, 15, 15…
+#&gt; $ address    &lt;fct&gt; U, U, U, U, U, U, U, U, U, U, U, U, U, U, U, U, U, U, U, U…
+#&gt; $ famsize    &lt;fct&gt; GT3, GT3, LE3, GT3, GT3, LE3, LE3, GT3, LE3, GT3, GT3, GT3…
+#&gt; $ Pstatus    &lt;fct&gt; A, T, T, T, T, T, T, A, A, T, T, T, T, T, A, T, T, T, T, T…
+#&gt; $ Medu       &lt;fct&gt; 4, 1, 1, 4, 3, 4, 2, 4, 3, 3, 4, 2, 4, 4, 2, 4, 4, 3, 3, 4…
+#&gt; $ Fedu       &lt;fct&gt; 4, 1, 1, 2, 3, 3, 2, 4, 2, 4, 4, 1, 4, 3, 2, 4, 4, 3, 2, 3…
+#&gt; $ Mjob       &lt;fct&gt; at_home, at_home, at_home, health, other, services, other,…
+#&gt; $ Fjob       &lt;fct&gt; teacher, other, other, services, other, other, other, teac…
+#&gt; $ reason     &lt;fct&gt; course, course, other, home, home, reputation, home, home,…
+#&gt; $ guardian   &lt;fct&gt; mother, father, mother, mother, father, mother, mother, mo…
+#&gt; $ traveltime &lt;fct&gt; 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 3, 1, 2, 1, 1, 1, 3, 1, 1…
+#&gt; $ studytime  &lt;fct&gt; 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 3, 1, 2, 3, 1, 3, 2, 1, 1…
+#&gt; $ failures   &lt;fct&gt; 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0…
+#&gt; $ schoolsup  &lt;fct&gt; yes, no, yes, no, no, no, no, yes, no, no, no, no, no, no,…
+#&gt; $ famsup     &lt;fct&gt; no, yes, no, yes, yes, yes, no, yes, yes, yes, yes, yes, y…
+#&gt; $ paid       &lt;fct&gt; no, no, yes, yes, yes, yes, no, no, yes, yes, yes, no, yes…
+#&gt; $ activities &lt;fct&gt; no, no, no, yes, no, yes, no, no, no, yes, no, yes, yes, n…
+#&gt; $ nursery    &lt;fct&gt; yes, no, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes,…
+#&gt; $ higher     &lt;fct&gt; yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes…
+#&gt; $ internet   &lt;fct&gt; no, yes, yes, yes, no, yes, yes, no, yes, yes, yes, yes, y…
+#&gt; $ romantic   &lt;fct&gt; no, no, no, yes, no, no, no, no, no, no, no, no, no, no, y…
+#&gt; $ famrel     &lt;fct&gt; 4, 5, 4, 3, 4, 5, 4, 4, 4, 5, 3, 5, 4, 5, 4, 4, 3, 5, 5, 3…
+#&gt; $ freetime   &lt;fct&gt; 3, 3, 3, 2, 3, 4, 4, 1, 2, 5, 3, 2, 3, 4, 5, 4, 2, 3, 5, 1…
+#&gt; $ goout      &lt;fct&gt; 4, 3, 2, 2, 2, 2, 4, 4, 2, 1, 3, 2, 3, 3, 2, 4, 3, 2, 5, 3…
+#&gt; $ Dalc       &lt;fct&gt; 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1…
+#&gt; $ Walc       &lt;fct&gt; 1, 1, 3, 1, 2, 2, 1, 1, 1, 1, 2, 1, 3, 2, 1, 2, 2, 1, 4, 3…
+#&gt; $ health     &lt;fct&gt; 3, 3, 3, 5, 5, 5, 3, 1, 1, 5, 2, 4, 5, 3, 3, 2, 2, 4, 5, 5…
+#&gt; $ absences   &lt;int&gt; 6, 4, 10, 2, 4, 10, 0, 6, 0, 0, 0, 4, 2, 2, 0, 4, 6, 4, 16…
+#&gt; $ G1         &lt;int&gt; 5, 5, 7, 15, 6, 15, 12, 6, 16, 14, 10, 10, 14, 10, 14, 14,…
+#&gt; $ G2         &lt;int&gt; 6, 5, 8, 14, 10, 15, 12, 5, 18, 15, 8, 12, 14, 10, 16, 14,…
+#&gt; $ G3         &lt;int&gt; 6, 6, 10, 15, 10, 15, 11, 6, 19, 15, 9, 12, 14, 11, 16, 14…
+</code></pre>
+
+<h2 id="exploratory-data-analysis">Exploratory Data Analysis</h2>
+
+<p>The first thing we do before building the model is to do exploratory data analysis. The point is to find insight about the data before we start building the model.</p>
+
+<h3 id="missing-values">Missing Values</h3>
+
+<p>We will check whether there are any missing values in the data.</p>
+
+<pre><code class="language-r">df_clean %&gt;% 
+  is.na() %&gt;% 
+  colSums() 
+</code></pre>
+
+<pre><code>#&gt;     school        sex        age    address    famsize    Pstatus       Medu 
+#&gt;          0          0          0          0          0          0          0 
+#&gt;       Fedu       Mjob       Fjob     reason   guardian traveltime  studytime 
+#&gt;          0          0          0          0          0          0          0 
+#&gt;   failures  schoolsup     famsup       paid activities    nursery     higher 
+#&gt;          0          0          0          0          0          0          0 
+#&gt;   internet   romantic     famrel   freetime      goout       Dalc       Walc 
+#&gt;          0          0          0          0          0          0          0 
+#&gt;     health   absences         G1         G2         G3 
+#&gt;          0          0          0          0          0
+</code></pre>
+
+<p>No missing data found in any variables, so we are good to go.</p>
+
+<h3 id="correlation-between-variables">Correlation Between Variables</h3>
+
+<p>We will try to find the correlation between numeric variables.</p>
+
+<pre><code class="language-r">ggcorr(df_clean, label = T)
+</code></pre>
+
+<p><img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+
+<p>The final score (<code>G3</code>) has strong correlation with the score of the first (<code>G1</code>) and second period (<code>G2</code>). This is not surprising, since student achievement is highly affected by previous performances. Based on the author&rsquo;s commentary on this topic<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup>, it is more difficult to predict <code>G3</code> without <code>G2</code> and <code>G1</code>. We will try to prove this point.</p>
+
+<h3 id="influence-of-schools">Influence of Schools</h3>
+
+<p>Since the data are collected from 2 different schools, we would like to see if there is a great discrepancy in the final score between school.</p>
+
+<pre><code class="language-r">df_clean %&gt;% 
+  mutate(school = ifelse(school == &quot;GP&quot;, &quot;Gabriel Pereira (GP)&quot;, &quot;Mousinho da Silveira (MS)&quot;)) %&gt;% 
+  ggplot(aes(G3, fill = school)) +
+  geom_density(alpha = 0.6, show.legend = F) +
+  facet_wrap(~school) +
+  labs(x = NULL, 
+       title = &quot;Final Score Distribution of Different Schools&quot;)
+</code></pre>
+
+<p><img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+
+<p>Based on the density plot, the final score distribution of math are almost similar in both school. Thus, schools might not be a strong predictor for the final score of a student.</p>
+
+<h2 id="cross-validation">Cross-Validation</h2>
+
+<p>Now that we&rsquo;ve explore some insight from our data, we will start to split the data into training set and testing set, with 80% of the data will be the training set.</p>
+
+<pre><code class="language-r">set.seed(123)
+df_row &lt;- nrow(df_clean)
+
+index &lt;- sample(df_row, 0.8*df_row)
+
+data_train &lt;- df_clean[ index, ]
+data_test &lt;- df_clean[ -index, ]
+</code></pre>
+
+<h2 id="model-fitting-and-evaluation">Model Fitting and Evaluation</h2>
+
+<h3 id="linear-regression">Linear Regression</h3>
+
+<p>As a common practice, we will build the basic linear regression model to fit the data.</p>
+
+<pre><code class="language-r">model_linear &lt;- lm(G3 ~ . , data = data_train)
+</code></pre>
+
+<p>We will use stepwise approach to find a linear model with minimum AIC.</p>
+
+<pre><code class="language-r">model_step &lt;- step(model_linear, direction = &quot;both&quot;, trace = 0)
+
+summary(model_step)
+</code></pre>
+
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = G3 ~ age + failures + activities + romantic + famrel + 
+#&gt;     absences + G1 + G2, data = data_train)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -8.7011 -0.5239  0.2289  0.9347  3.3135 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                Estimate Std. Error t value             Pr(&gt;|t|)    
+#&gt; (Intercept)    2.221332   1.544307   1.438             0.151356    
+#&gt; age           -0.222564   0.085415  -2.606             0.009623 ** 
+#&gt; failures1     -0.821324   0.298484  -2.752             0.006288 ** 
+#&gt; failures2     -0.642575   0.499468  -1.287             0.199247    
+#&gt; failures3     -0.387404   0.625616  -0.619             0.536227    
+#&gt; activitiesyes -0.418825   0.196670  -2.130             0.034014 *  
+#&gt; romanticyes   -0.348120   0.216439  -1.608             0.108793    
+#&gt; famrel2       -1.194241   0.824513  -1.448             0.148537    
+#&gt; famrel3        0.003406   0.711698   0.005             0.996185    
+#&gt; famrel4        0.295796   0.680765   0.435             0.664232    
+#&gt; famrel5        0.552679   0.696697   0.793             0.428235    
+#&gt; absences       0.048852   0.012578   3.884             0.000126 ***
+#&gt; G1             0.133187   0.057151   2.330             0.020442 *  
+#&gt; G2             0.975842   0.051338  19.008 &lt; 0.0000000000000002 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; Residual standard error: 1.731 on 302 degrees of freedom
+#&gt; Multiple R-squared:  0.8581, Adjusted R-squared:  0.852 
+#&gt; F-statistic: 140.5 on 13 and 302 DF,  p-value: &lt; 0.00000000000000022
+</code></pre>
+
+<p>The model has an <code>Adjusted R-Squared</code> of 85%, suggesting that the model can explain the data well enough. We might also interested in seeing how good the model will be on the testing dataset.</p>
+
+<pre><code class="language-r"># Function for evaluating model
+eval_recap &lt;- function(truth, estimate){
+  
+  df_new &lt;- data.frame(truth = truth,
+                       estimate = estimate)
+  
+  data.frame(RMSE = rmse_vec(truth, estimate),
+             MAE = mae_vec(truth, estimate),
+             &quot;R-Square&quot; = rsq_vec(truth, estimate),
+             check.names = F
+             ) %&gt;% 
+    mutate(MSE = sqrt(RMSE))
+}
+</code></pre>
+
+<pre><code class="language-r">pred_test &lt;- predict(model_step, data_test)
+
+eval_recap(truth = data_test$G3,
+           estimate = pred_test)
+</code></pre>
+
+<pre><code>#&gt;       RMSE     MAE  R-Square      MSE
+#&gt; 1 2.326917 1.55557 0.7727604 1.525424
+</code></pre>
+
+<p>The linear model seems satisfying enough for us. However, our goal is to explain how each predictor will influence the result (target variable). In order to get unbiased estimator for the linear model, we should check if the linear model satisy it&rsquo;s own assumption. Any violation in the model assumption will make the estimate coefficient and the test result unreliable/biased<sup class="footnote-ref" id="fnref:6"><a href="#fn:6">6</a></sup>.</p>
+
+<h4 id="residuals-normality">Residuals Normality</h4>
+
+<p>First, we will check whether the residuals are normally distributed using the Shapiro-Wilk test.</p>
+
+<p>$$
+H_0 : p-value &gt; 0.05 : Residuals\ Normally\ Distributed \</p>
+
+<p>H_1 : p-value &lt; 0.05 : Residuals\ Are\ Not\ Normally\ Distributed
+$$</p>
+
+<pre><code class="language-r">shapiro.test(model_step$residuals)
+</code></pre>
+
+<pre><code>#&gt; 
+#&gt;  Shapiro-Wilk normality test
+#&gt; 
+#&gt; data:  model_step$residuals
+#&gt; W = 0.79108, p-value &lt; 0.00000000000000022
+</code></pre>
+
+<p>Based on the result, the residuals are not normally distributed.</p>
+
+<h4 id="residuals-autocorrelation">Residuals Autocorrelation</h4>
+
+<p>Second, we will check whether the residuals are correlating with itself using the Durbin-Watson test.</p>
+
+<p>$$
+H_0 : p-value &gt; 0.05 : Residuals\ Are\ Not\ Autocorrelated \</p>
+
+<p>H_1 : p-value &lt; 0.05 : Residuals\ Are\ Autocorrelated
+$$</p>
+
+<pre><code class="language-r">dwtest(model_step)
+</code></pre>
+
+<pre><code>#&gt; 
+#&gt;  Durbin-Watson test
+#&gt; 
+#&gt; data:  model_step
+#&gt; DW = 1.8459, p-value = 0.08874
+#&gt; alternative hypothesis: true autocorrelation is greater than 0
+</code></pre>
+
+<p>Based on the test, the residuals are also contain autocorrelation</p>
+
+<h4 id="homoscesdasticity">Homoscesdasticity</h4>
+
+<p>Homoscesdasticity means that the variance of the random variables are constant. We can use the Breusch-Pagan test to check the homoscesdasticity of the model.</p>
+
+<p>$$
+H_0 : p-value &gt; 0.05 : Constant\ Variance\ (Homoscesdasticity) \</p>
+
+<p>H_1 : p-value &lt; 0.05 : Variance\ Not\ Constance\ (Heterocesdasticity)
+$$</p>
+
+<pre><code class="language-r">bptest(model_step)
+</code></pre>
+
+<pre><code>#&gt; 
+#&gt;  studentized Breusch-Pagan test
+#&gt; 
+#&gt; data:  model_step
+#&gt; BP = 43.801, df = 13, p-value = 0.0000331
+</code></pre>
+
+<p>The model is also doesn&rsquo;t have a constant variance.</p>
+
+<h4 id="multicollinearity">Multicollinearity</h4>
+
+<p>The multicollinearity will look for a high correlation between predictors.</p>
+
+<pre><code class="language-r">rms::vif(model_step)
+</code></pre>
+
+<pre><code>#&gt;           age     failures1     failures2     failures3 activitiesyes 
+#&gt;      1.203030      1.210549      1.114074      1.142246      1.019727 
+#&gt;   romanticyes       famrel2       famrel3       famrel4       famrel5 
+#&gt;      1.116431      2.828425      6.882270     12.218073     10.286541 
+#&gt;      absences            G1            G2 
+#&gt;      1.103045      3.790568      3.842387
+</code></pre>
+
+<p>No strong multicollinearity are presence since all predictors have VIF &lt; 10.</p>
+
+<p>So &hellip; our model failed to fulfill almost all of assumptions for linear regression model. The interpretation of the estimate coefficient and the significant test would be unreliable. You might be interested in tuning the linear model to fulfill the assumption but for now, we will proceed to use more advanced models: Random Forest and Support Vector Regression (SVR).</p>
+
+<h3 id="random-forest">Random Forest</h3>
+
+<p>Random Forest implementation come in many packages but for this post I will use <code>randomForest()</code> from <code>randomForest</code> package.</p>
+
+<pre><code class="language-r">set.seed(123)
+model_rf &lt;- randomForest(x = data_train %&gt;% select(-G3),
+                         y = data_train$G3, 
+                         ntree = 500)
+
+model_rf
+</code></pre>
+
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt;  randomForest(x = data_train %&gt;% select(-G3), y = data_train$G3,      ntree = 500) 
+#&gt;                Type of random forest: regression
+#&gt;                      Number of trees: 500
+#&gt; No. of variables tried at each split: 10
+#&gt; 
+#&gt;           Mean of squared residuals: 3.414625
+#&gt;                     % Var explained: 83.08
+</code></pre>
+
+<p>We will evaluate the Random Forest model.</p>
+
+<pre><code class="language-r">pred_test &lt;- predict(model_rf, data_test, type = &quot;response&quot;)
+
+eval_recap(truth = data_test$G3,
+           estimate = pred_test)
+</code></pre>
+
+<pre><code>#&gt;       RMSE      MAE  R-Square      MSE
+#&gt; 1 2.006828 1.412788 0.8400051 1.416626
+</code></pre>
+
+<p>The Random Forest is slightly better than the linear model.</p>
+
+<h3 id="support-vector-regression-svr">Support Vector Regression (SVR)</h3>
+
+<p>SVR is a variant of Support Vector Machine for regression problem<sup class="footnote-ref" id="fnref:7"><a href="#fn:7">7</a></sup>. If you are interested in SVM, you can the article from algotech<sup class="footnote-ref" id="fnref:8"><a href="#fn:8">8</a></sup>. The SVM implementation can be acquired from the <code>e1071</code> package.</p>
+
+<pre><code class="language-r">library(e1071)
+
+model_svr &lt;- svm(G3 ~ ., data = data_train)
+
+pred_test &lt;- predict(model_svr, data_test)
+
+eval_recap(truth = data_test$G3,
+           estimate = pred_test)
+</code></pre>
+
+<pre><code>#&gt;     RMSE      MAE R-Square      MSE
+#&gt; 1 2.3571 1.447381 0.776828 1.535285
+</code></pre>
+
+<p>The SVR model has lower performance compared to Random Forest. However, we will still use both model for further analysis both as comparison and as examples.</p>
+
+<h1 id="model-interpretation">MODEL INTERPRETATION</h1>
+
+<p>You can actually find the importance of variables in Random Forest. The importances are calculated using the Gini index.</p>
+
+<pre><code class="language-r">model_rf$importance %&gt;% 
+  as.data.frame() %&gt;% 
+  arrange(-IncNodePurity) %&gt;% 
+  rownames_to_column(&quot;variable&quot;) %&gt;% 
+  head(10) %&gt;% 
+  ggplot(aes(IncNodePurity, 
+             reorder(variable, IncNodePurity))
+         ) +
+  geom_col(fill = &quot;firebrick&quot;) +
+  labs(x = &quot;Importance&quot;,
+       y = NULL,
+       title = &quot;Random Forest Variable Importance&quot;)
+</code></pre>
+
+<p><img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+
+<p>However, variable importance measures rarely give insight into the average direction that a variable affects a response function. They simply state the magnitude of a variable’s relationship with the response as compared to other variables used in the model. We can’t know specifically the influence of each factors for a single observation (no local-fidelity). That’s why we need LIME to help us understand individually what influence the performance of each student.</p>
+
+<p>Now we will try to interpret the black box model using <code>lime</code>.</p>
+
+<h2 id="explainer">Explainer</h2>
+
+<p>The first thing to is to build an <code>explainer</code>. This explainer object will be used as the foundation to interpret the black box model.</p>
+
+<pre><code class="language-r">set.seed(123)
+explainer &lt;- lime(x = data_train %&gt;% select(-G3), 
+                  model = model_rf)
+</code></pre>
+
+<p>Some parameter you can adjust in lime function:</p>
+
+<ul>
+<li><code>x</code> = Dataset that is used to train the model.</li>
+<li><code>model</code> = The machine learning model we want to explain</li>
+<li><code>bin_continuous</code> = Logical value indicating if numerical variable should be binned into several groups</li>
+<li><code>n_bins</code> = Number of bins for continuous variables</li>
+</ul>
+
+<h2 id="explanation">Explanation</h2>
+
+<p>The next thing to do is to build the <code>explanation</code> for each data test. The explanation will give the interpretation of the model toward each observation. However, in these part we will only make explanation for the first 4 observation of the data for simplicity.</p>
+
+<pre><code class="language-r"># Select only the first 4 observations
+selected_data &lt;- data_test %&gt;% 
+  select(-G3) %&gt;% 
+  slice(1:4)
+
+# Explain the model
+set.seed(123)
+explanation &lt;- explain(x = selected_data, 
+                       explainer = explainer, 
+                       feature_select = &quot;auto&quot;, # Method of feature selection for lime
+                       n_features = 10 # Number of features to explain the model
+                       )
+</code></pre>
+
+<pre><code>#&gt; Error: The class of model must have a model_type method. See ?model_type to get an overview of models supported out of the box
+</code></pre>
+
+<p>The explanation gave us an error. If you don&rsquo;t face the same error, congratulations, you can proceed to visualize the explanation using the <code>plot_features()</code> function below. However, I will explain how to handle the error first.</p>
+
+<pre><code class="language-r">plot_features(explanation)
+</code></pre>
+
+<h2 id="troubleshooting-error-in-model-type">Troubleshooting Error in <code>model_type</code></h2>
+
+<p>The error happened because <code>lime</code> didn&rsquo;t recognize the model. To handle this, we first specify the model so that it can be recognized by lime.</p>
+
+<p>First, check the class of the model.</p>
+
+<pre><code class="language-r">class(model_rf)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;randomForest&quot;
+</code></pre>
+
+<p>The class of our Random Forest model is <code>randomForest</code>.</p>
+
+<p>The second step is to create a function named <code>model_type.</code> followed by the class of the model. In our model, the class is <strong>&ldquo;randomForest&rdquo;</strong>, so we need to create a function named <code>model_type.randomForest</code>. Since the problem is a regression problem, the function must return <strong>&ldquo;regression&rdquo;</strong>.</p>
+
+<pre><code class="language-r">model_type.randomForest &lt;- function(x){
+  return(&quot;regression&quot;) # for regression problem
+}
+</code></pre>
+
+<p>We also need a function to store the prediction value. Same with the <code>model_type.</code>, we need to create a <code>predict_model.</code> followed by the class of our model. The function would be <code>predict_model.randomForest</code>. The content of the function is the function to predict the model. In Random Forest, the function is predict(). We need to return the prediction value and convert them to data.frame, so the content would be <code>predict(x, newdata)</code>  to return the probability of the prediction and convert them with <code>as.data.frame()</code>.</p>
+
+<pre><code class="language-r">predict_model.randomForest &lt;- function(x, newdata, type = &quot;response&quot;) {
+
+    # return prediction value
+    predict(x, newdata) %&gt;% as.data.frame()
+    
+}
+</code></pre>
+
+<p>Now once again we will run the previous explanation. The <code>n_features</code> determine how many features that will be used for interpretation. Here, we will only consider of 10 features. You can choose another number if you wish. The <code>feature_select</code> parameter will determine how the lime select which features/predictors that will be used for interpreting the model. To consider all predictors, you can simply change the parameter to <code>feature_select = &quot;none&quot;</code> to indicate that all features will be considered and there are no selection.</p>
+
+<pre><code class="language-r">set.seed(123)
+explanation &lt;- explain(x = selected_data, 
+                       explainer = explainer, 
+                       n_features = 10, # Number of features to explain the model
+                       feature_select = &quot;auto&quot;, # Method of feature selection for lime
+                       )
+</code></pre>
+
+<h2 id="visualization-and-interpretation">Visualization and Interpretation</h2>
+
+<p>Finally, we will visualize the explanation using the <code>plot_features()</code> function.</p>
+
+<pre><code class="language-r">plot_features(explanation = explanation)
+</code></pre>
+
+<p><img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
+
+<p>The case indicate the index of the data. Case : 1 indicate the first observation, Case : 2 indicate the second observation, etc. The <code>prediction</code> value show the predicted value based on the model interpretation and prediction. You can compare the prediction value with the actual final score (<code>G3</code>) value.</p>
+
+<pre><code class="language-r">head(data_test$G3)
+</code></pre>
+
+<pre><code>#&gt; [1]  6 10 15 16 14 10
+</code></pre>
+
+<p>Inside the plot, we can see several bar charts. The <code>y-axis</code> show the features while the <code>x-axis</code> show the relative strength of each features. The positive value (blue color) show that the feature support or increase the value of the prediction, while the negative value (red color) has negative effect or decrease the prediction value.</p>
+
+<p>Each observation has different explanation. For the first observation, The <code>G2</code> and <code>G1</code> value has negative effect toward the final score (<code>G3</code>). The interpretation is that because the <code>G2</code> (score of the student during the second grade) is lower than 9 and <code>G1</code> (score of the student during the first grade), it will lower the predicted final score (<code>G3</code>). However, since the student never fail in the past class (failure = 0), it increase the predicted final score, although only by little value.</p>
+
+<p>The second observation is almost similar with the first observation. Since the student has low <code>G1</code> and <code>G2</code>, the predicted final score will be low. However, this student also has failed 3 times in the past (failure = 3), the predicted is also lowered down.</p>
+
+<p>The third observation has a quite good <code>G1</code> (G1 &lt; 13) and <code>G2</code> (G2 &lt; 13) and never failed in the past classes, so he/she has higher predicted final score. The fourth observation has almost the same characteristics with the third observation.</p>
+
+<p>As we can see, the student&rsquo;s performance during the first and second grade (<code>G1</code> &amp; <code>G2</code>) strongly affect the final score of each student, followed by the number of past failure (<code>failure</code>),  number of school absences (<code>absences</code>) and the motivation to take higher education (<code>higher</code>) for the first 4 observations of the data test.</p>
+
+<p>The next element is Explanation Fit. These values indicate how good LIME explain the model, kind of like the <code>\(R^2\)</code> (R-Squared) value of linear regression. Here we see the Explanation Fit only has values around 0.50-0.7 (50%-70%), which can be interpreted that LIME can only explain a little about our model. You may consider not to trust the LIME output since it only has low Explanation Fit.</p>
+
+<h2 id="tuning-lime">Tuning LIME</h2>
+
+<p>You can improve the Explanation Fit by tuning the explain function parameter. The following parameter increase the explanation fit up to 90%. You can adjust the value of each parameters until you&rsquo;ve found the desired explanation fit.</p>
+
+<pre><code class="language-r">set.seed(123)
+explanation &lt;- explain(x = selected_data, 
+                       explainer = explainer, 
+                       dist_fun = &quot;manhattan&quot;,
+                       kernel_width = 2,
+                       n_features = 10, # Number of features to explain the model
+                       feature_select = &quot;auto&quot;, # Method of feature selection for lime
+                       )
+
+plot_features(explanation)
+</code></pre>
+
+<p><img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+
+<p>Some parameters you can adjust in explanation function:</p>
+
+<ul>
+<li><code>x</code> = The object you want to explain</li>
+<li><code>explainer</code> = the explainer object from lime function</li>
+<li><code>n_features</code> = number of features used to explain the data</li>
+<li><code>n_permutations</code> = number of permutations for each observation for explanation. THe default is 5000 permutations</li>
+<li><code>dist_fun</code> = distance function used to calculate the distance to the permutation. The default is Gower’s distance but can also use euclidean, manhattan, or any other distance function allowed by ?dist()</li>
+<li><code>kernel_width</code> = An exponential kernel of a user defined width (defaults to 0.75 times the square root of the number of features) used to convert the distance measure to a similarity value</li>
+</ul>
+
+<p>Now the important features are changed along with the increasing explanation fit. The <code>G2</code> variable is still the most important feature for all observation while <code>G1</code> has declined.</p>
+
+<p>Similarly, you can create the explanation for the SVR model.</p>
+
+<pre><code class="language-r">set.seed(123)
+explainer &lt;- lime(x = data_train %&gt;% select(-G3), 
+                  model = model_svr)
+</code></pre>
+
+<p>Check the class of SVR model.</p>
+
+<pre><code class="language-r">class(model_svr)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;svm.formula&quot; &quot;svm&quot;
+</code></pre>
+
+<p>Create SVR model specification for lime.</p>
+
+<pre><code class="language-r">model_type.svm &lt;- function(x){
+  return(&quot;regression&quot;) # for regression problem
+}
+
+predict_model.svm &lt;- function(x, newdata, type = &quot;response&quot;) {
+
+    # return prediction value
+    predict(x, newdata) %&gt;% as.data.frame()
+    
+}
+</code></pre>
+
+<p>Create explanation and visualize the result.</p>
+
+<pre><code class="language-r">set.seed(123)
+explanation &lt;- explain(x = selected_data, 
+                       explainer = explainer, 
+                       feature_select = &quot;auto&quot;, # Method of feature selection for lime
+                       n_features = 10 # Number of features to explain the model
+                       )
+
+plot_features(explanation)
+</code></pre>
+
+<p><img src="/blog/2020-10-20-interpreting-black-box-regression-model-with-lime_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+
+<h1 id="reference">REFERENCE</h1>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><a href="https://arxiv.org/abs/1602.04938">Ribeiro, M. Tulio, Singh, Sameer, and Guestrin, Carlos. 2016. “Why Should I Trust You?”: Explaining the Predictions of Any Classifier.</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2"><a href="https://www.business-science.io/business/2018/06/25/lime-local-feature-interpretation.html">Brad Boehmke. 2018. “LIME: Machine Learning Model Interpretability with LIME”.</a>
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3"><a href="https://github.com/thomasp85/lime">Thomas Lin Pederson. “Local Interpretable Model-Agnostic Explanations (R port of original Python package)”.</a> 
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4"><a href="https://archive.ics.uci.edu/ml/datasets/Student+Performance">Student Performance Data Set.</a>
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:5"><a href="http://www3.dsi.uminho.pt/pcortez/student.pdf">P. Cortez and A. Silva. Using Data Mining to Predict Secondary School Student Performance. In A. Brito and J. Teixeira Eds., Proceedings of 5th FUture BUsiness TEChnology Conference (FUBUTEC 2008) pp. 5-12, Porto, Portugal, April, 2008, EUROSIS, ISBN 978-9077381-39-7.</a>
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+<li id="fn:6"><a href="https://towardsdatascience.com/what-happens-when-you-break-the-assumptions-of-linear-regression-f78f2fe90f3a">What Happens When You Break the Assumptions of Linear Regression?</a>
+ <a class="footnote-return" href="#fnref:6"><sup>[return]</sup></a></li>
+<li id="fn:7"><a href="https://www.educba.com/support-vector-regression/">EDUCBA. Support Vector Regression.</a>
+ <a class="footnote-return" href="#fnref:7"><sup>[return]</sup></a></li>
+<li id="fn:8"><a href="https://algotech.netlify.com/blog/support-vector-machine/">Efa Hazna Latiefah. Support Vector Machine</a>
+ <a class="footnote-return" href="#fnref:8"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+  </div>
+
+  <footer>
+    <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/lime">lime</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/machine-learning">Machine Learning</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/capstone-ml">Capstone Ml</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+
+</article>
+
+    <article class="post">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-algotech-netlify-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </article>
+
+
+<ul class="actions pagination">
+    
+        <li><a href="/blog/rplicate-series-cherry-bomb/"
+                class="button big previous">Rplicate Series: Cherry Bomb</a></li>
+    
+
+    
+        <li><a href="/blog/one-way-anova-test-in-r/"
+                class="button big next">One-Way ANOVA Test in R</a></li>
+    
+</ul>
+
+
+    </div>
+    
+<section id="sidebar">
+
+  
+  <section id="intro">
+    
+    
+      
+        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+      
+    
+    
+      <header>
+        <h2>Algoritma Technical Blog</h2>
+        <p>We're a group of people who teach data science to individuals, trains companies and their employees to better profit from data. We care about the development of data science and a sense of community that connects our alumni and team with one another. To learn more about our approach to data science problems, feel free to hop over to our blog.</p>
+      </header>
+    
+    
+      <ul class="icons">
+        
+        
+  <li><a href="//github.com/teamalgoritma" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/company/teamalgoritma" target="_blank" title="LinkedIn Company" class="fa fa-linkedin"></a></li>
+
+
+
+
+
+
+
+
+
+  <li><a href="//facebook.com/teamalgoritma" target="_blank" title="Facebook" class="fa fa-facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//instagram.com/teamalgoritma" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+  <li><a href="//twitter.com/teamalgoritma" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    
+  </section>
+
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Upcoming Workshop</h3>
+      </header>
+      <div class="posts-container">
+          <article class="mini-post">
+            <header>
+              <h3>
+                
+                <img src="/img/2020/ads/ddt.png", alt="alternatetext", width="270" height="340">
+                <a href="https://algorit.ma/data-driven-2/?utm_source=algotech">More details</a>
+              </h3>
+            </header>
+          </article>
+      </div>
+
+      
+      
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+  
+
+  
+  <section id="footer">
+    <p class="copyright">
+      
+        &copy; 2020
+        
+          Algoritma Technical Blog
+        
+      .
+      Powered by <a href="//gohugo.io" target="_blank">Hugo</a>
+    </p>
+  </section>
+</section>
+
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    <style>
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height:50px; 
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 50px;
+        padding-right: 50px;
+}
+      }
+
+
+      </style>
+
+      <div class="footer">
+        <p>
+          Want to know more about our workshop?
+          <a href="https://algorit.ma/?utm_source=algotech&utm_medium=content&utm_campaign=interpreting-black-box-regression-model-with-lime" style="color: rgb(197, 38, 38)"> Visit our main website here</a> <br>
+        </p>
+          
+      </div>
+    
+
+    
+      
+    
+
+    
+      
+      
+      
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+        
+        
+        
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+        <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/css.min.js"></script>
+        <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+      
+    
+    
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
+      <script src="/js/util.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/backToTop.js"></script>
+    
+
+    
+      
+        
+      
+        
+          <script src="/js/bootstrap.min.js"></script>
+        
+      
+    
+
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+      <script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
+
