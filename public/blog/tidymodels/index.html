@@ -13,7 +13,7 @@
         "articleSection" : "blog",
         "name" : "Introduction to tidymodels",
         "headline" : "Introduction to tidymodels",
-        "description" : "The following presentation is produced by the team at Algoritma for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.\nOutline Why tidymodels Matters?  Things we think we\u0026rsquo;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?",
+        "description" : "The following presentation is produced by the team at Algoritma for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.\nOutline Why tidymodels Matters?  Things we think we\x26rsquo;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -21,10 +21,10 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-10-06 00:00:00 \u002b0000 UTC",
-        "dateModified" : "2019-10-06 00:00:00 \u002b0000 UTC",
+        "datePublished": "2019-10-06 00:00:00 \x2b0000 UTC",
+        "dateModified" : "2019-10-06 00:00:00 \x2b0000 UTC",
         "url" : "\/blog\/tidymodels\/",
-        "wordCount" : "3991",
+        "wordCount" : "6950",
         "keywords" : [ "tidymodels","tidyverse","Machine Learning","Blog" ]
     }
     </script>
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.72.0" />
+        <meta name="generator" content="Hugo 0.55.4" />
         
   
     
@@ -75,23 +75,27 @@ Outline Why tidymodels Matters?  Things we think we&rsquo;re doing it right Thin
 Outline Why tidymodels Matters?  Things we think we&rsquo;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/tidymodels/" />
-<meta property="article:published_time" content="2019-10-06T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-10-06T00:00:00+00:00" />
+<meta property="article:published_time" content="2019-10-06T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-10-06T00:00:00&#43;00:00"/>
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        <meta itemprop="name" content="Introduction to tidymodels">
+        
+<meta itemprop="name" content="Introduction to tidymodels">
 <meta itemprop="description" content="The following presentation is produced by the team at Algoritma for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
 Outline Why tidymodels Matters?  Things we think we&rsquo;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?">
+
+
 <meta itemprop="datePublished" content="2019-10-06T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-10-06T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="3991">
+<meta itemprop="wordCount" content="6950">
 
 
 
 <meta itemprop="keywords" content="tidymodels,tidyverse,Machine Learning," />
+
         
 
         
@@ -426,7 +430,7 @@ if (!doNotTrack) {
             October 6, 2019</time>
         <span class="author"><a href="https://github.com/bagasbgy">R. Dimas Bagas Herlambang</a></span>
         
-            <p>19 minute read</p>
+            <p>33 minute read</p>
         
         
     </div>
@@ -518,90 +522,146 @@ if (!doNotTrack) {
 
 
   <div id="content">
-    <p>The following presentation is produced by the team at <a href="https://algorit.ma">Algoritma</a> for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.</p>
+    
+
+<p>The following presentation is produced by the team at <a href="https://algorit.ma">Algoritma</a> for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.</p>
+
 <h1 id="outline">Outline</h1>
+
 <h2 id="why-tidymodels-matters">Why <code>tidymodels</code> Matters?</h2>
+
 <ul>
 <li>Things we think we&rsquo;re doing it right</li>
 <li>Things we never think we could do it better</li>
 </ul>
+
 <h2 id="setting-the-cross-validation-scheme-using-rsample">Setting the Cross-Validation Scheme using <code>rsample</code></h2>
+
 <ul>
 <li>Rethinking: Why we need validation?</li>
 <li>Tidy way to <code>rsample</code>-ing your dataset</li>
 </ul>
+
 <h2 id="data-preprocess-using-recipes">Data Preprocess using <code>recipes</code></h2>
+
 <ul>
 <li>Rethinking: How we should treat train and test?</li>
 <li>Reproducible preprocess <code>recipes</code></li>
 </ul>
+
 <h2 id="model-fitting-using-parsnip">Model Fitting using <code>parsnip</code></h2>
+
 <ul>
 <li>Rethinking: How many machine learning packages you used?</li>
 <li>One vegeta.. I mean package to rule them all: <code>parsnip</code></li>
 </ul>
+
 <h2 id="model-evaluation-using-yardstick">Model Evaluation using <code>yardstick</code></h2>
+
 <ul>
 <li>Rethinking: How we measure the goodness of our model?</li>
 <li>It&rsquo;s always good to bring your own <code>yardstick</code></li>
 </ul>
+
 <h1 id="why-tidymodels-matters-1">Why <code>tidymodels</code> Matters?</h1>
-<h2 id="things-we-think-were-doing-it-right">Things we think we&rsquo;re doing it right</h2>
+
+<h2 id="things-we-think-we-re-doing-it-right">Things we think we&rsquo;re doing it right</h2>
+
 <h3 id="sample-splitting">Sample splitting</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># import libs</span>
-<span style="color:#a6e22e">library</span>(plotly)
-<span style="color:#a6e22e">library</span>(randomForest)
-<span style="color:#a6e22e">library</span>(ranger)
-<span style="color:#a6e22e">library</span>(tidyverse)
-<span style="color:#a6e22e">library</span>(tidymodels)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># import additional libs</span>
-<span style="color:#a6e22e">library</span>(lubridate)
 
-<span style="color:#75715e"># prepare example datasets</span>
-attrition <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;data_input/attrition.csv&#34;</span>)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
-<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
+<pre><code class="language-r"># import libs
+library(plotly)
+library(randomForest)
+library(ranger)
+library(tidyverse)
+library(tidymodels)
+</code></pre>
 
-<span style="color:#75715e"># train rows</span>
-in_train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">nrow</span>(attrition), <span style="color:#a6e22e">nrow</span>(attrition) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.8</span>)
+<pre><code class="language-r"># import additional libs
+library(lubridate)
 
-<span style="color:#75715e"># check target distribution in train</span>
-<span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(attrition<span style="color:#f92672">$</span>attrition[in_train]))
-</code></pre></div><pre><code>#&gt; 
+# prepare example datasets
+attrition &lt;- read_csv(&quot;data_input/attrition.csv&quot;)
+</code></pre>
+
+<pre><code class="language-r"># set seed
+set.seed(100)
+
+# train rows
+in_train &lt;- sample(1:nrow(attrition), nrow(attrition) * 0.8)
+
+# check target distribution in train
+prop.table(table(attrition$attrition[in_train]))
+</code></pre>
+
+<pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8367347 0.1632653
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check target distribution in test</span>
-<span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(attrition<span style="color:#f92672">$</span>attrition[<span style="color:#f92672">-</span>in_train]))
-</code></pre></div><pre><code>#&gt; 
+</code></pre>
+
+<pre><code class="language-r"># check target distribution in test
+prop.table(table(attrition$attrition[-in_train]))
+</code></pre>
+
+<pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8469388 0.1530612
-</code></pre><h3 id="numeric-scaling">Numeric scaling</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># scale age in full dataset</span>
-age_scaled <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(attrition<span style="color:#f92672">$</span>age)
+</code></pre>
 
-<span style="color:#75715e"># check mean and standard deviation</span>
-<span style="color:#a6e22e">attr</span>(age_scaled, <span style="color:#e6db74">&#34;scaled:center&#34;</span>)
-</code></pre></div><pre><code>#&gt; [1] 36.92381
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">attr</span>(age_scaled, <span style="color:#e6db74">&#34;scaled:scale&#34;</span>)
-</code></pre></div><pre><code>#&gt; [1] 9.135373
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># scale age in train dataset</span>
-age_train_scaled <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(attrition<span style="color:#f92672">$</span>age[in_train])
+<h3 id="numeric-scaling">Numeric scaling</h3>
 
-<span style="color:#75715e"># check mean and standard deviation</span>
-<span style="color:#a6e22e">attr</span>(age_train_scaled, <span style="color:#e6db74">&#34;scaled:center&#34;</span>)
-</code></pre></div><pre><code>#&gt; [1] 37.0085
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">attr</span>(age_train_scaled, <span style="color:#e6db74">&#34;scaled:scale&#34;</span>)
-</code></pre></div><pre><code>#&gt; [1] 9.070969
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># scale age in test dataset</span>
-age_test_scaled <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(attrition<span style="color:#f92672">$</span>age[<span style="color:#f92672">-</span>in_train])
+<pre><code class="language-r"># scale age in full dataset
+age_scaled &lt;- scale(attrition$age)
 
-<span style="color:#75715e"># check mean and standard deviation</span>
-<span style="color:#a6e22e">attr</span>(age_test_scaled, <span style="color:#e6db74">&#34;scaled:center&#34;</span>)
-</code></pre></div><pre><code>#&gt; [1] 36.58503
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">attr</span>(age_test_scaled, <span style="color:#e6db74">&#34;scaled:scale&#34;</span>)
-</code></pre></div><pre><code>#&gt; [1] 9.396712
-</code></pre><h2 id="things-we-never-think-we-could-do-it-better">Things we never think we could do it better</h2>
+# check mean and standard deviation
+attr(age_scaled, &quot;scaled:center&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] 36.92381
+</code></pre>
+
+<pre><code class="language-r">attr(age_scaled, &quot;scaled:scale&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] 9.135373
+</code></pre>
+
+<pre><code class="language-r"># scale age in train dataset
+age_train_scaled &lt;- scale(attrition$age[in_train])
+
+# check mean and standard deviation
+attr(age_train_scaled, &quot;scaled:center&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] 37.0085
+</code></pre>
+
+<pre><code class="language-r">attr(age_train_scaled, &quot;scaled:scale&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] 9.070969
+</code></pre>
+
+<pre><code class="language-r"># scale age in test dataset
+age_test_scaled &lt;- scale(attrition$age[-in_train])
+
+# check mean and standard deviation
+attr(age_test_scaled, &quot;scaled:center&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] 36.58503
+</code></pre>
+
+<pre><code class="language-r">attr(age_test_scaled, &quot;scaled:scale&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] 9.396712
+</code></pre>
+
+<h2 id="things-we-never-think-we-could-do-it-better">Things we never think we could do it better</h2>
+
 <h3 id="how-we-see-model-performance">How we see model performance</h3>
+
 <pre><code>#&gt; Confusion Matrix and Statistics
 #&gt; 
 #&gt;           Reference
@@ -629,30 +689,44 @@ age_test_scaled <span style="color:#f92672">&lt;-</span> <span style="color:#a6e
 #&gt;                                           
 #&gt;        'Positive' Class : yes             
 #&gt; 
-</code></pre><h3 id="how-we-use-receiver-operating-curve">How we use Receiver Operating Curve</h3>
-<p><!-- raw HTML omitted --></p>
+</code></pre>
+
+<h3 id="how-we-use-receiver-operating-curve">How we use Receiver Operating Curve</h3>
+
+<p><img src="/blog/2019-10-06-tidymodels_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+
 <h1 id="setting-the-cross-validation-scheme-using-rsample-1">Setting the Cross-Validation Scheme using <code>rsample</code></h1>
+
 <h2 id="rethinking-why-we-need-validation">Rethinking: Why we need validation?</h2>
+
 <h2 id="tidy-way-to-rsample-ing-your-dataset">Tidy way to <code>rsample</code>-ing your dataset</h2>
+
 <p><a href="https://tidymodels.github.io/rsample/"><code>rsample</code></a> is part of <code>tidymodels</code> that could help us in splitting or resampling or machine learning dataset.</p>
+
 <p>There are so many splitting and resampling approach provided by <code>rsample</code>&ndash;as you could see in its <a href="https://tidymodels.github.io/rsample/reference/index.html">full function references page</a>. In this introduction, we will use two most general function:</p>
+
 <ul>
 <li><a href="https://tidymodels.github.io/rsample/reference/initial_split.html"><code>initial_split()</code></a>:
 Simple train and test splitting.</li>
 <li><a href="https://tidymodels.github.io/rsample/reference/vfold_cv.html"><code>vfold_cv()</code></a>:
 k-fold splitting, with optional repetition argument.</li>
 </ul>
+
 <h3 id="initial-splitting">Initial splitting</h3>
+
 <p>Initial random sampling for splitting train and test could be done using <code>initial_split()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
-<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 
-<span style="color:#75715e"># create initial split</span>
-splitted <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">initial_split</span>(attrition, prop <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>)
+<pre><code class="language-r"># set seed
+set.seed(100)
 
-<span style="color:#75715e"># check train dataset</span>
-<span style="color:#a6e22e">training</span>(splitted)
-</code></pre></div><pre><code>#&gt; # A tibble: 1,177 x 35
+# create initial split
+splitted &lt;- initial_split(attrition, prop = 0.8)
+
+# check train dataset
+training(splitted)
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 1,177 x 35
 #&gt;    attrition   age business_travel daily_rate department distance_from_h~
 #&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;
 #&gt;  1 yes          41 travel_rarely         1102 sales                     1
@@ -677,9 +751,13 @@ splitted <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">in
 #&gt; #   training_times_last_year &lt;dbl&gt;, work_life_balance &lt;dbl&gt;,
 #&gt; #   years_at_company &lt;dbl&gt;, years_in_current_role &lt;dbl&gt;,
 #&gt; #   years_since_last_promotion &lt;dbl&gt;, years_with_curr_manager &lt;dbl&gt;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check test dataset</span>
-<span style="color:#a6e22e">testing</span>(splitted)
-</code></pre></div><pre><code>#&gt; # A tibble: 293 x 35
+</code></pre>
+
+<pre><code class="language-r"># check test dataset
+testing(splitted)
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 293 x 35
 #&gt;    attrition   age business_travel daily_rate department distance_from_h~
 #&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;
 #&gt;  1 no           29 travel_rarely         1389 research_~               21
@@ -704,56 +782,89 @@ splitted <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">in
 #&gt; #   training_times_last_year &lt;dbl&gt;, work_life_balance &lt;dbl&gt;,
 #&gt; #   years_at_company &lt;dbl&gt;, years_in_current_role &lt;dbl&gt;,
 #&gt; #   years_since_last_promotion &lt;dbl&gt;, years_with_curr_manager &lt;dbl&gt;
-</code></pre><hr>
+</code></pre>
+
+<hr />
+
 <p>But sometimes, simple random sampling is not enough:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in full dataset</span>
-<span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(attrition<span style="color:#f92672">$</span>attrition))
-</code></pre></div><pre><code>#&gt; 
+
+<pre><code class="language-r"># target distribution in full dataset
+prop.table(table(attrition$attrition))
+</code></pre>
+
+<pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8387755 0.1612245
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in train dataset</span>
-<span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">training</span>(splitted)<span style="color:#f92672">$</span>attrition))
-</code></pre></div><pre><code>#&gt; 
+</code></pre>
+
+<pre><code class="language-r"># target distribution in train dataset
+prop.table(table(training(splitted)$attrition))
+</code></pre>
+
+<pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8462192 0.1537808
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in test dataset</span>
-<span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">testing</span>(splitted)<span style="color:#f92672">$</span>attrition))
-</code></pre></div><pre><code>#&gt; 
+</code></pre>
+
+<pre><code class="language-r"># target distribution in test dataset
+prop.table(table(testing(splitted)$attrition))
+</code></pre>
+
+<pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8088737 0.1911263
-</code></pre><p>This is where we need <code>strata</code> argument to use stratified random sampling:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
-<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
+</code></pre>
 
-<span style="color:#75715e"># create stratified initial split</span>
-splitted <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">initial_split</span>(attrition, prop <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>, strata <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;attrition&#34;</span>)
+<p>This is where we need <code>strata</code> argument to use stratified random sampling:</p>
 
-<span style="color:#75715e"># target distribution in full dataset</span>
-<span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(attrition<span style="color:#f92672">$</span>attrition))
-</code></pre></div><pre><code>#&gt; 
+<pre><code class="language-r"># set seed
+set.seed(100)
+
+# create stratified initial split
+splitted &lt;- initial_split(attrition, prop = 0.8, strata = &quot;attrition&quot;)
+
+# target distribution in full dataset
+prop.table(table(attrition$attrition))
+</code></pre>
+
+<pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8387755 0.1612245
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in train dataset</span>
-<span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">training</span>(splitted)<span style="color:#f92672">$</span>attrition))
-</code></pre></div><pre><code>#&gt; 
+</code></pre>
+
+<pre><code class="language-r"># target distribution in train dataset
+prop.table(table(training(splitted)$attrition))
+</code></pre>
+
+<pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8385726 0.1614274
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># target distribution in test dataset</span>
-<span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">testing</span>(splitted)<span style="color:#f92672">$</span>attrition))
-</code></pre></div><pre><code>#&gt; 
+</code></pre>
+
+<pre><code class="language-r"># target distribution in test dataset
+prop.table(table(testing(splitted)$attrition))
+</code></pre>
+
+<pre><code>#&gt; 
 #&gt;        no       yes 
 #&gt; 0.8395904 0.1604096
-</code></pre><h3 id="cross-sectional-resampling">Cross-sectional resampling</h3>
+</code></pre>
+
+<h3 id="cross-sectional-resampling">Cross-sectional resampling</h3>
+
 <p>To use k-fold validation splits&ndash;and optionally, with repetition&ndash;we could use <code>vfold_cv()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set seed</span>
-<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 
-<span style="color:#75715e"># create k-fold splits with repetition</span>
-resampled <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">vfold_cv</span>(attrition, v <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, repeats <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, strata <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;attrition&#34;</span>)
+<pre><code class="language-r"># set seed
+set.seed(100)
 
-<span style="color:#75715e"># quick check</span>
+# create k-fold splits with repetition
+resampled &lt;- vfold_cv(attrition, v = 3, repeats = 2, strata = &quot;attrition&quot;)
+
+# quick check
 resampled
-</code></pre></div><pre><code>#&gt; #  3-fold cross-validation repeated 2 times using stratification 
+</code></pre>
+
+<pre><code>#&gt; #  3-fold cross-validation repeated 2 times using stratification 
 #&gt; # A tibble: 6 x 3
 #&gt;   splits            id      id2  
 #&gt;   &lt;named list&gt;      &lt;chr&gt;   &lt;chr&gt;
@@ -763,10 +874,15 @@ resampled
 #&gt; 4 &lt;split [980/490]&gt; Repeat2 Fold1
 #&gt; 5 &lt;split [980/490]&gt; Repeat2 Fold2
 #&gt; 6 &lt;split [980/490]&gt; Repeat2 Fold3
-</code></pre><p>Each train and test dataset are stored in <code>splits</code> column. We could use <code>analysis()</code> and <code>assessment()</code> to get the train and test dataset, consecutively:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check train dataset on an example split</span>
-<span style="color:#a6e22e">analysis</span>(resampled<span style="color:#f92672">$</span>splits[[1]])
-</code></pre></div><pre><code>#&gt; # A tibble: 980 x 35
+</code></pre>
+
+<p>Each train and test dataset are stored in <code>splits</code> column. We could use <code>analysis()</code> and <code>assessment()</code> to get the train and test dataset, consecutively:</p>
+
+<pre><code class="language-r"># check train dataset on an example split
+analysis(resampled$splits[[1]])
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 980 x 35
 #&gt;    attrition   age business_travel daily_rate department distance_from_h~
 #&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;
 #&gt;  1 no           49 travel_frequen~        279 research_~                8
@@ -791,9 +907,13 @@ resampled
 #&gt; #   training_times_last_year &lt;dbl&gt;, work_life_balance &lt;dbl&gt;,
 #&gt; #   years_at_company &lt;dbl&gt;, years_in_current_role &lt;dbl&gt;,
 #&gt; #   years_since_last_promotion &lt;dbl&gt;, years_with_curr_manager &lt;dbl&gt;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># check test dataset on an example split</span>
-<span style="color:#a6e22e">assessment</span>(resampled<span style="color:#f92672">$</span>splits[[1]])
-</code></pre></div><pre><code>#&gt; # A tibble: 490 x 35
+</code></pre>
+
+<pre><code class="language-r"># check test dataset on an example split
+assessment(resampled$splits[[1]])
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 490 x 35
 #&gt;    attrition   age business_travel daily_rate department distance_from_h~
 #&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;
 #&gt;  1 yes          41 travel_rarely         1102 sales                     1
@@ -818,12 +938,20 @@ resampled
 #&gt; #   training_times_last_year &lt;dbl&gt;, work_life_balance &lt;dbl&gt;,
 #&gt; #   years_at_company &lt;dbl&gt;, years_in_current_role &lt;dbl&gt;,
 #&gt; #   years_since_last_promotion &lt;dbl&gt;, years_with_curr_manager &lt;dbl&gt;
-</code></pre><h1 id="data-preprocess-using-recipes-1">Data Preprocess using <code>recipes</code></h1>
+</code></pre>
+
+<h1 id="data-preprocess-using-recipes-1">Data Preprocess using <code>recipes</code></h1>
+
 <h2 id="rethinking-how-do-we-should-treat-train-and-test">Rethinking: How do we should treat train and test?</h2>
+
 <h2 id="reproducible-preprocess-recipes">Reproducible preprocess <code>recipes</code></h2>
+
 <p><a href="https://tidymodels.github.io/recipes/"><code>recipes</code></a> is part of <code>tidymodels</code> that could help us in making a reproducible data preprocess.</p>
+
 <p>There are so many data preprocess approach provided by <code>recipes</code>&ndash;as you could see in its <a href="https://tidymodels.github.io/recipes/reference/index.html">full function references page</a> . In this introduction, we will use several preprocess steps related to our example dataset.</p>
+
 <p>There are several steps that we could apply to our dataset&ndash;some are very fundamental and sometimes mandatory, but some are also tuneable:</p>
+
 <ul>
 <li><a href="https://tidymodels.github.io/recipes/reference/step_rm.html"><code>step_rm()</code></a> :
 Manually remove unused columns.</li>
@@ -840,40 +968,46 @@ Normalize the standard deviation of <code>numeric</code> column(s) to one (<stro
 <li><a href="https://tidymodels.github.io/recipes/reference/step_pca.html"><code>step_pca()</code></a> :
 Shrink <code>numeric</code> column(s) to several PCA components (<strong>tuneable</strong>).</li>
 </ul>
+
 <h3 id="designing-your-first-preprocess-recipes">Designing your first preprocess recipes</h3>
+
 <ol>
 <li>Initiate a recipe using <code>recipe()</code>
+
 <ul>
 <li>Define your formula in the first argument.</li>
 <li>Supply a template dataset in <code>data</code> argument.</li>
-</ul>
-</li>
+</ul></li>
 <li>Pipe to every needed <code>step_*()</code>&ndash;always remember to put every step in proper consecutive manner.</li>
 <li>After finished with every needed <code>step_*()</code>, pipe to <code>prep()</code> function to train your recipe
+
 <ul>
 <li>It will automatically convert all <code>character</code> columns to <code>factor</code>;</li>
 <li>If you used <code>step_string2factor()</code>, don&rsquo;t forget to specify <code>strings_as_factors = FALSE</code></li>
-<li>It will train the recipe to the specified dataset in the <code>recipe()</code>'s <code>data</code> argument;</li>
+<li>It will train the recipe to the specified dataset in the <code>recipe()</code>&rsquo;s <code>data</code> argument;</li>
 <li>If you want to train to other dataset, you can supply the new dataset to <code>training</code> argument, and set the <code>fresh</code> argument to <code>TRUE</code></li>
-</ul>
-</li>
+</ul></li>
 </ol>
-<p>Let&rsquo;s see an example of defining a recipe:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># define preprocess recipe from train dataset</span>
-rec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">recipe</span>(attrition <span style="color:#f92672">~</span> ., data <span style="color:#f92672">=</span> <span style="color:#a6e22e">training</span>(splitted)) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">step_rm</span>(employee_count, employee_number) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">step_nzv</span>(<span style="color:#a6e22e">all_predictors</span>()) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">step_string2factor</span>(<span style="color:#a6e22e">all_nominal</span>(), <span style="color:#f92672">-</span>attrition) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">step_string2factor</span>(attrition, levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;yes&#34;</span>, <span style="color:#e6db74">&#34;no&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">step_downsample</span>(attrition, ratio <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">step_center</span>(<span style="color:#a6e22e">all_numeric</span>()) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">step_scale</span>(<span style="color:#a6e22e">all_numeric</span>()) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">step_pca</span>(<span style="color:#a6e22e">all_numeric</span>(), threshold <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.85</span>) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">prep</span>(strings_as_factors <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
 
-<span style="color:#75715e"># quick check</span>
+<p>Let&rsquo;s see an example of defining a recipe:</p>
+
+<pre><code class="language-r"># define preprocess recipe from train dataset
+rec &lt;- recipe(attrition ~ ., data = training(splitted)) %&gt;% 
+  step_rm(employee_count, employee_number) %&gt;%
+  step_nzv(all_predictors()) %&gt;% 
+  step_string2factor(all_nominal(), -attrition) %&gt;%
+  step_string2factor(attrition, levels = c(&quot;yes&quot;, &quot;no&quot;)) %&gt;%
+  step_downsample(attrition, ratio = 1/1, seed = 100) %&gt;%
+  step_center(all_numeric()) %&gt;%
+  step_scale(all_numeric()) %&gt;%
+  step_pca(all_numeric(), threshold = 0.85) %&gt;%
+  prep(strings_as_factors = FALSE)
+
+# quick check
 rec
-</code></pre></div><pre><code>#&gt; Data Recipe
+</code></pre>
+
+<pre><code>#&gt; Data Recipe
 #&gt; 
 #&gt; Inputs:
 #&gt; 
@@ -893,24 +1027,28 @@ rec
 #&gt; Centering for age, daily_rate, ... [trained]
 #&gt; Scaling for age, daily_rate, ... [trained]
 #&gt; PCA extraction with age, daily_rate, ... [trained]
-</code></pre><p>There are two ways of obtaining the result from our recipe:</p>
-<ul>
-<li>
-<p><a href="https://tidymodels.github.io/recipes/reference/juice.html"><code>juice()</code></a> :
-Extract preprocessed dataset from <code>prep()</code>-ed recipe. Normally, we will use this function to get preprocessed train dataset.</p>
-</li>
-<li>
-<p><a href="https://tidymodels.github.io/recipes/reference/bake.html"><code>bake()</code></a> :
-Apply a recipe to new dataset. Normally, we use we will use this function to preprocess new dataset, such as test dataset, or prediction dataset.</p>
-</li>
-</ul>
-<p>These are some example on how to get preprocessed train and test dataset:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get preprocessed train dataset</span>
-data_train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">juice</span>(rec)
+</code></pre>
 
-<span style="color:#75715e"># quick check</span>
+<p>There are two ways of obtaining the result from our recipe:</p>
+
+<ul>
+<li><p><a href="https://tidymodels.github.io/recipes/reference/juice.html"><code>juice()</code></a> :
+Extract preprocessed dataset from <code>prep()</code>-ed recipe. Normally, we will use this function to get preprocessed train dataset.</p></li>
+
+<li><p><a href="https://tidymodels.github.io/recipes/reference/bake.html"><code>bake()</code></a> :
+Apply a recipe to new dataset. Normally, we use we will use this function to preprocess new dataset, such as test dataset, or prediction dataset.</p></li>
+</ul>
+
+<p>These are some example on how to get preprocessed train and test dataset:</p>
+
+<pre><code class="language-r"># get preprocessed train dataset
+data_train &lt;- juice(rec)
+
+# quick check
 data_train
-</code></pre></div><pre><code>#&gt; # A tibble: 380 x 22
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 380 x 22
 #&gt;    business_travel department education_field gender job_role
 #&gt;    &lt;fct&gt;           &lt;fct&gt;      &lt;fct&gt;           &lt;fct&gt;  &lt;fct&gt;   
 #&gt;  1 travel_rarely   sales      life_sciences   female sales_e~
@@ -927,12 +1065,16 @@ data_train
 #&gt; #   over_time &lt;fct&gt;, attrition &lt;fct&gt;, PC01 &lt;dbl&gt;, PC02 &lt;dbl&gt;, PC03 &lt;dbl&gt;,
 #&gt; #   PC04 &lt;dbl&gt;, PC05 &lt;dbl&gt;, PC06 &lt;dbl&gt;, PC07 &lt;dbl&gt;, PC08 &lt;dbl&gt;,
 #&gt; #   PC09 &lt;dbl&gt;, PC10 &lt;dbl&gt;, PC11 &lt;dbl&gt;, PC12 &lt;dbl&gt;, PC13 &lt;dbl&gt;, PC14 &lt;dbl&gt;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get preprocessed test dataset</span>
-data_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bake</span>(rec, <span style="color:#a6e22e">testing</span>(splitted))
+</code></pre>
 
-<span style="color:#75715e"># quick check</span>
+<pre><code class="language-r"># get preprocessed test dataset
+data_test &lt;- bake(rec, testing(splitted))
+
+# quick check
 data_test
-</code></pre></div><pre><code>#&gt; # A tibble: 293 x 22
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 293 x 22
 #&gt;    attrition business_travel department education_field gender job_role
 #&gt;    &lt;fct&gt;     &lt;fct&gt;           &lt;fct&gt;      &lt;fct&gt;           &lt;fct&gt;  &lt;fct&gt;   
 #&gt;  1 no        travel_rarely   research_~ life_sciences   female manufac~
@@ -949,40 +1091,49 @@ data_test
 #&gt; #   over_time &lt;fct&gt;, PC01 &lt;dbl&gt;, PC02 &lt;dbl&gt;, PC03 &lt;dbl&gt;, PC04 &lt;dbl&gt;,
 #&gt; #   PC05 &lt;dbl&gt;, PC06 &lt;dbl&gt;, PC07 &lt;dbl&gt;, PC08 &lt;dbl&gt;, PC09 &lt;dbl&gt;,
 #&gt; #   PC10 &lt;dbl&gt;, PC11 &lt;dbl&gt;, PC12 &lt;dbl&gt;, PC13 &lt;dbl&gt;, PC14 &lt;dbl&gt;
-</code></pre><h1 id="model-fitting-using-parsnip-1">Model Fitting using <code>parsnip</code></h1>
+</code></pre>
+
+<h1 id="model-fitting-using-parsnip-1">Model Fitting using <code>parsnip</code></h1>
+
 <h2 id="rethinking-how-many-machine-learning-packages-you-used">Rethinking: How many machine learning packages you used?</h2>
+
 <h2 id="one-vegeta-i-mean-package-to-rule-them-all-parsnip">One vegeta.. I mean package to rule them all: <code>parsnip</code></h2>
+
 <p><a href="https://tidymodels.github.io/parsnip/"><code>parsnip</code></a>  is part of <code>tidymodels</code> that could help us in model fitting and prediction flows.</p>
+
 <p>There are so many models supported by <code>parsnip</code>&ndash;as you could see in its <a href="https://tidymodels.github.io/parsnip/articles/articles/Models.html">full model list</a> . In this introduction, we will use random forest as an example model.</p>
+
 <p>There are two part of defining a model that should be noted:</p>
+
 <ul>
-<li>
-<p><strong>Defining model&rsquo;s specification</strong>:
-In this part, we need to define the model&rsquo;s specification, such as <code>mtry</code> and <code>trees</code> for random forest, through model specific functions. For example, you can use <a href="https://tidymodels.github.io/parsnip/reference/rand_forest.html"><code>rand_forest()</code></a>  to define a random forest specification. Make sure to check <a href="https://tidymodels.github.io/parsnip/articles/articles/Models.html">full model list</a>  to see every model and its available arguments.</p>
-</li>
-<li>
-<p><strong>Defining model&rsquo;s engine</strong>:
-In this part, we need to define the model&rsquo;s engine, which determines the package we will use to fit our model. This part could be done using <a href="https://tidymodels.github.io/parsnip/reference/set_engine.html"><code>set_engine()</code></a>  function. Note that in addition to defining which package we want to use as our engine, we could also passing package specific arguments to this function.</p>
-</li>
+<li><p><strong>Defining model&rsquo;s specification</strong>:
+In this part, we need to define the model&rsquo;s specification, such as <code>mtry</code> and <code>trees</code> for random forest, through model specific functions. For example, you can use <a href="https://tidymodels.github.io/parsnip/reference/rand_forest.html"><code>rand_forest()</code></a>  to define a random forest specification. Make sure to check <a href="https://tidymodels.github.io/parsnip/articles/articles/Models.html">full model list</a>  to see every model and its available arguments.</p></li>
+
+<li><p><strong>Defining model&rsquo;s engine</strong>:
+In this part, we need to define the model&rsquo;s engine, which determines the package we will use to fit our model. This part could be done using <a href="https://tidymodels.github.io/parsnip/reference/set_engine.html"><code>set_engine()</code></a>  function. Note that in addition to defining which package we want to use as our engine, we could also passing package specific arguments to this function.</p></li>
 </ul>
+
 <p>This is an example of defining a random forest model using <code>randomForest::randomForest()</code> as our engine:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set-up model specification</span>
-model_spec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rand_forest</span>(
-  mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>,
-  mtry <span style="color:#f92672">=</span> <span style="color:#a6e22e">ncol</span>(data_train) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>,
-  trees <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>,
-  min_n <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>
+
+<pre><code class="language-r"># set-up model specification
+model_spec &lt;- rand_forest(
+  mode = &quot;classification&quot;,
+  mtry = ncol(data_train) - 2,
+  trees = 500,
+  min_n = 15
 )
 
-<span style="color:#75715e"># set-up model engine</span>
-model_engine <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">set_engine</span>(
-  object <span style="color:#f92672">=</span> model_spec,
-  engine <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;randomForest&#34;</span>
+# set-up model engine
+model_engine &lt;- set_engine(
+  object = model_spec,
+  engine = &quot;randomForest&quot;
 )
 
-<span style="color:#75715e"># quick check</span>
+# quick check
 model_engine
-</code></pre></div><pre><code>#&gt; Random Forest Model Specification (classification)
+</code></pre>
+
+<pre><code>#&gt; Random Forest Model Specification (classification)
 #&gt; 
 #&gt; Main Arguments:
 #&gt;   mtry = ncol(data_train) - 2
@@ -990,23 +1141,31 @@ model_engine
 #&gt;   min_n = 15
 #&gt; 
 #&gt; Computational engine: randomForest
-</code></pre><p>To fit our model, we have two options:</p>
+</code></pre>
+
+<p>To fit our model, we have two options:</p>
+
 <ul>
 <li>Formula interface</li>
 <li>X-Y interface</li>
 </ul>
+
 <p>Note that some packages are behaving differently inside formula and x-y interface. For example, <code>randomForest::randomForest()</code> would convert all of our categorical variables into dummy variables in formula interface, but not in x-y interface.</p>
+
 <p>Fit using formula interface using <code>fit()</code> function:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
-model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fit</span>(
-  object <span style="color:#f92672">=</span> model_engine,
-  formula <span style="color:#f92672">=</span> attrition <span style="color:#f92672">~</span> .,
-  data <span style="color:#f92672">=</span> data_train
+
+<pre><code class="language-r"># fit the model
+model &lt;- fit(
+  object = model_engine,
+  formula = attrition ~ .,
+  data = data_train
 )
 
-<span style="color:#75715e"># quick check</span>
+# quick check
 model
-</code></pre></div><pre><code>#&gt; parsnip model object
+</code></pre>
+
+<pre><code>#&gt; parsnip model object
 #&gt; 
 #&gt; 
 #&gt; Call:
@@ -1020,17 +1179,22 @@ model
 #&gt;     yes  no class.error
 #&gt; yes 141  49   0.2578947
 #&gt; no   61 129   0.3210526
-</code></pre><p>Or through x-y interface using <code>fit_xy()</code> function:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
-model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fit_xy</span>(
-  object <span style="color:#f92672">=</span> model_engine,
-  x <span style="color:#f92672">=</span> <span style="color:#a6e22e">select</span>(data_train, <span style="color:#f92672">-</span>attrition),
-  y <span style="color:#f92672">=</span> <span style="color:#a6e22e">select</span>(data_train, attrition)
+</code></pre>
+
+<p>Or through x-y interface using <code>fit_xy()</code> function:</p>
+
+<pre><code class="language-r"># fit the model
+model &lt;- fit_xy(
+  object = model_engine,
+  x = select(data_train, -attrition),
+  y = select(data_train, attrition)
 )
 
-<span style="color:#75715e"># quick check</span>
+# quick check
 model
-</code></pre></div><pre><code>#&gt; parsnip model object
+</code></pre>
+
+<pre><code>#&gt; parsnip model object
 #&gt; 
 #&gt; 
 #&gt; Call:
@@ -1044,20 +1208,26 @@ model
 #&gt;     yes  no class.error
 #&gt; yes 138  52   0.2736842
 #&gt; no   52 138   0.2736842
-</code></pre><p>In this workflow, it should be relatively easy to change the model engine.</p>
+</code></pre>
+
+<p>In this workflow, it should be relatively easy to change the model engine.</p>
+
 <p>Let&rsquo;s try to fit a same model specification, but now using <code>ranger::ranger()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set-up other model engine</span>
-model_engine <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">set_engine</span>(
-  object <span style="color:#f92672">=</span> model_spec,
-  engine <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ranger&#34;</span>,
-  seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>,
-  num.threads <span style="color:#f92672">=</span> parallel<span style="color:#f92672">::</span><span style="color:#a6e22e">detectCores</span>() <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
-  importance <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;impurity&#34;</span>
+
+<pre><code class="language-r"># set-up other model engine
+model_engine &lt;- set_engine(
+  object = model_spec,
+  engine = &quot;ranger&quot;,
+  seed = 100,
+  num.threads = parallel::detectCores() / 2,
+  importance = &quot;impurity&quot;
 )
 
-<span style="color:#75715e"># quick check</span>
+# quick check
 model_engine
-</code></pre></div><pre><code>#&gt; Random Forest Model Specification (classification)
+</code></pre>
+
+<pre><code>#&gt; Random Forest Model Specification (classification)
 #&gt; 
 #&gt; Main Arguments:
 #&gt;   mtry = ncol(data_train) - 2
@@ -1070,17 +1240,22 @@ model_engine
 #&gt;   importance = impurity
 #&gt; 
 #&gt; Computational engine: ranger
-</code></pre><p>Now let&rsquo;s try to fit the model, and see the result:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
-model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fit</span>(
-  object <span style="color:#f92672">=</span> model_engine,
-  formula <span style="color:#f92672">=</span> attrition <span style="color:#f92672">~</span> .,
-  data <span style="color:#f92672">=</span> data_train
+</code></pre>
+
+<p>Now let&rsquo;s try to fit the model, and see the result:</p>
+
+<pre><code class="language-r"># fit the model
+model &lt;- fit(
+  object = model_engine,
+  formula = attrition ~ .,
+  data = data_train
 )
 
-<span style="color:#75715e"># quick check</span>
+# quick check
 model
-</code></pre></div><pre><code>#&gt; parsnip model object
+</code></pre>
+
+<pre><code>#&gt; parsnip model object
 #&gt; 
 #&gt; Ranger result
 #&gt; 
@@ -1096,17 +1271,22 @@ model
 #&gt; Variable importance mode:         impurity 
 #&gt; Splitrule:                        gini 
 #&gt; OOB prediction error (Brier s.):  0.1945066
-</code></pre><p>Notice that <code>ranger::ranger()</code> doesn&rsquo;t behave differently between <code>fit()</code> and <code>fit_xy()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># fit the model</span>
-model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fit_xy</span>(
-  object <span style="color:#f92672">=</span> model_engine,
-  x <span style="color:#f92672">=</span> <span style="color:#a6e22e">select</span>(data_train, <span style="color:#f92672">-</span>attrition),
-  y <span style="color:#f92672">=</span> <span style="color:#a6e22e">select</span>(data_train, attrition)
+</code></pre>
+
+<p>Notice that <code>ranger::ranger()</code> doesn&rsquo;t behave differently between <code>fit()</code> and <code>fit_xy()</code>:</p>
+
+<pre><code class="language-r"># fit the model
+model &lt;- fit_xy(
+  object = model_engine,
+  x = select(data_train, -attrition),
+  y = select(data_train, attrition)
 )
 
-<span style="color:#75715e"># quick check</span>
+# quick check
 model
-</code></pre></div><pre><code>#&gt; parsnip model object
+</code></pre>
+
+<pre><code>#&gt; parsnip model object
 #&gt; 
 #&gt; Ranger result
 #&gt; 
@@ -1122,17 +1302,23 @@ model
 #&gt; Variable importance mode:         impurity 
 #&gt; Splitrule:                        gini 
 #&gt; OOB prediction error (Brier s.):  0.1945066
-</code></pre><p>To get the prediction, we could use <code>predict()</code> as usual&ndash;but note that it would return a tidied <code>tibble</code> instead of a <code>vector</code>, as in <code>type = &quot;class&quot;</code> cases, or a raw <code>data.frame</code>, as in <code>type = &quot;prob&quot;</code> cases.</p>
+</code></pre>
+
+<p>To get the prediction, we could use <code>predict()</code> as usual&ndash;but note that it would return a tidied <code>tibble</code> instead of a <code>vector</code>, as in <code>type = &quot;class&quot;</code> cases, or a raw <code>data.frame</code>, as in <code>type = &quot;prob&quot;</code> cases.</p>
+
 <p>In this way, the prediction results would be very convenient for further usage, such as simple recombining with the original dataset:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get prediction on test</span>
-predicted <span style="color:#f92672">&lt;-</span> data_test <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">bind_cols</span>(<span style="color:#a6e22e">predict</span>(model, data_test)) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">bind_cols</span>(<span style="color:#a6e22e">predict</span>(model, data_test, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>))
 
-<span style="color:#75715e"># quick check</span>
-predicted <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">select</span>(attrition, <span style="color:#a6e22e">matches</span>(<span style="color:#e6db74">&#34;.pred&#34;</span>))
-</code></pre></div><pre><code>#&gt; # A tibble: 293 x 4
+<pre><code class="language-r"># get prediction on test
+predicted &lt;- data_test %&gt;% 
+  bind_cols(predict(model, data_test)) %&gt;% 
+  bind_cols(predict(model, data_test, type = &quot;prob&quot;))
+
+# quick check
+predicted %&gt;% 
+  select(attrition, matches(&quot;.pred&quot;))
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 293 x 4
 #&gt;    attrition .pred_class .pred_yes .pred_no
 #&gt;    &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;    &lt;dbl&gt;
 #&gt;  1 no        no             0.340     0.660
@@ -1146,86 +1332,125 @@ predicted <span style="color:#f92672">%&gt;%</span>
 #&gt;  9 no        no             0.147     0.853
 #&gt; 10 no        yes            0.680     0.320
 #&gt; # ... with 283 more rows
-</code></pre><h1 id="model-evaluation-using-yardstick-1">Model Evaluation using <code>yardstick</code></h1>
+</code></pre>
+
+<h1 id="model-evaluation-using-yardstick-1">Model Evaluation using <code>yardstick</code></h1>
+
 <h2 id="rethinking-how-do-we-measure-the-goodness-of-our-model">Rethinking: How do we measure the goodness of our model?</h2>
-<h2 id="its-always-good-to-bring-your-own-yardstick">It&rsquo;s always good to bring your own <code>yardstick</code></h2>
+
+<h2 id="it-s-always-good-to-bring-your-own-yardstick">It&rsquo;s always good to bring your own <code>yardstick</code></h2>
+
 <p><a href="https://tidymodels.github.io/yardstick/"><code>yardstick</code></a>  is part of <code>tidymodels</code> that could help us in calculating model performance metrics.</p>
+
 <p>There are so many metrics available by <code>yardstick</code>&ndash;as you could see in its <a href="https://tidymodels.github.io/yardstick/reference/index.html">full function references page</a> . In this introduction, we will calculate some model performance metrics for classification task as an example.</p>
+
 <p>There are two ways of calculating model performance metrics, which differ in its input and output:</p>
+
 <ul>
 <li><code>tibble</code> approach:
 We pass a dataset containing the <code>truth</code> and <code>estimate</code> to the function, and it will return a <code>tibble</code> containing the results, e.g., <a href="https://tidymodels.github.io/yardstick/reference/precision.html"><code>precision()</code></a>  function.</li>
 <li><code>vector</code> approach:
 We pass a vector as the <code>truth</code> and a vector as the <code>estimate</code> to the function, and it will return a <code>vector</code> which show the results, e.g., <a href="https://tidymodels.github.io/yardstick/reference/precision.html"><code>precision_vec()</code></a>  function.</li>
 </ul>
+
 <p>Note that some function, like <a href="https://tidymodels.github.io/yardstick/reference/conf_mat.html"><code>conf_mat()</code></a> , only accept <code>tibble</code> approach, since it is not returned a <code>vector</code> of length one.</p>
+
 <p>Let&rsquo;s start by reporting the confusion matrix:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># show confusion matrix</span>
-predicted <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">conf_mat</span>(truth <span style="color:#f92672">=</span> attrition, estimate <span style="color:#f92672">=</span> .pred_class) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">autoplot</span>(type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;heatmap&#34;</span>)
-</code></pre></div><p><!-- raw HTML omitted --></p>
+
+<pre><code class="language-r"># show confusion matrix
+predicted %&gt;% 
+  conf_mat(truth = attrition, estimate = .pred_class) %&gt;% 
+  autoplot(type = &quot;heatmap&quot;)
+</code></pre>
+
+<p><img src="/blog/2019-10-06-tidymodels_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+
 <p>Now, to calculate the performance metrics, let&rsquo;s try to use the <code>tibble</code> approach&ndash;which also support <code>group_by</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># calculate accuracy</span>
-predicted <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">accuracy</span>(attrition, .pred_class)
-</code></pre></div><pre><code>#&gt; # A tibble: 1 x 3
+
+<pre><code class="language-r"># calculate accuracy
+predicted %&gt;% 
+  accuracy(attrition, .pred_class)
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 1 x 3
 #&gt;   .metric  .estimator .estimate
 #&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 #&gt; 1 accuracy binary         0.710
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># calculate accuracy by group</span>
-predicted <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">group_by</span>(department) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">accuracy</span>(attrition, .pred_class) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">ungroup</span>()
-</code></pre></div><pre><code>#&gt; # A tibble: 3 x 4
+</code></pre>
+
+<pre><code class="language-r"># calculate accuracy by group
+predicted %&gt;% 
+  group_by(department) %&gt;% 
+  accuracy(attrition, .pred_class) %&gt;% 
+  ungroup()
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 3 x 4
 #&gt;   department           .metric  .estimator .estimate
 #&gt;   &lt;fct&gt;                &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 #&gt; 1 human_resources      accuracy binary         0.636
 #&gt; 2 research_development accuracy binary         0.760
 #&gt; 3 sales                accuracy binary         0.605
-</code></pre><p>Or using <code>vector</code> approach, which is more flexible in general:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># metrics summary</span>
-predicted <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">summarise</span>(
-    accuracy <span style="color:#f92672">=</span> <span style="color:#a6e22e">accuracy_vec</span>(attrition, .pred_class),
-    sensitivity <span style="color:#f92672">=</span> <span style="color:#a6e22e">sens_vec</span>(attrition, .pred_class),
-    specificity <span style="color:#f92672">=</span> <span style="color:#a6e22e">spec_vec</span>(attrition, .pred_class),
-    precision <span style="color:#f92672">=</span> <span style="color:#a6e22e">precision_vec</span>(attrition, .pred_class)
+</code></pre>
+
+<p>Or using <code>vector</code> approach, which is more flexible in general:</p>
+
+<pre><code class="language-r"># metrics summary
+predicted %&gt;% 
+  summarise(
+    accuracy = accuracy_vec(attrition, .pred_class),
+    sensitivity = sens_vec(attrition, .pred_class),
+    specificity = spec_vec(attrition, .pred_class),
+    precision = precision_vec(attrition, .pred_class)
   )
-</code></pre></div><pre><code>#&gt; # A tibble: 1 x 4
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 1 x 4
 #&gt;   accuracy sensitivity specificity precision
 #&gt;      &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
 #&gt; 1    0.710       0.723       0.707     0.321
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># metrics summary by group</span>
-predicted <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">group_by</span>(department) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">summarise</span>(
-    accuracy <span style="color:#f92672">=</span> <span style="color:#a6e22e">accuracy_vec</span>(attrition, .pred_class),
-    sensitivity <span style="color:#f92672">=</span> <span style="color:#a6e22e">sens_vec</span>(attrition, .pred_class),
-    specificity <span style="color:#f92672">=</span> <span style="color:#a6e22e">spec_vec</span>(attrition, .pred_class),
-    precision <span style="color:#f92672">=</span> <span style="color:#a6e22e">precision_vec</span>(attrition, .pred_class)
-  ) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">ungroup</span>()
-</code></pre></div><pre><code>#&gt; # A tibble: 3 x 5
+</code></pre>
+
+<pre><code class="language-r"># metrics summary by group
+predicted %&gt;% 
+  group_by(department) %&gt;% 
+  summarise(
+    accuracy = accuracy_vec(attrition, .pred_class),
+    sensitivity = sens_vec(attrition, .pred_class),
+    specificity = spec_vec(attrition, .pred_class),
+    precision = precision_vec(attrition, .pred_class)
+  ) %&gt;% 
+  ungroup()
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 3 x 5
 #&gt;   department           accuracy sensitivity specificity precision
 #&gt;   &lt;fct&gt;                   &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
 #&gt; 1 human_resources         0.636       1           0.556     0.333
 #&gt; 2 research_development    0.760       0.677       0.776     0.362
 #&gt; 3 sales                   0.605       0.786       0.569     0.262
-</code></pre><p>Sometimes the model performance metrics could also improving the models final results. For example, through Receiver Operating Curve, we could assess the probability threshold effect to sensitivity and specificity:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">predicted <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">roc_curve</span>(attrition, .pred_yes) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">autoplot</span>()
-</code></pre></div><p><!-- raw HTML omitted --></p>
-<p>And, since it&rsquo;s returning a <code>tibble</code>, we could do further data wrangling to help us see it more clearly:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get roc curve data on test dataset</span>
-pred_test_roc <span style="color:#f92672">&lt;-</span> predicted <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#a6e22e">roc_curve</span>(attrition, .pred_yes)
+</code></pre>
 
-<span style="color:#75715e"># quick check</span>
+<p>Sometimes the model performance metrics could also improving the models final results. For example, through Receiver Operating Curve, we could assess the probability threshold effect to sensitivity and specificity:</p>
+
+<pre><code class="language-r">predicted %&gt;% 
+  roc_curve(attrition, .pred_yes) %&gt;% 
+  autoplot()
+</code></pre>
+
+<p><img src="/blog/2019-10-06-tidymodels_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
+
+<p>And, since it&rsquo;s returning a <code>tibble</code>, we could do further data wrangling to help us see it more clearly:</p>
+
+<pre><code class="language-r"># get roc curve data on test dataset
+pred_test_roc &lt;- predicted %&gt;%
+  roc_curve(attrition, .pred_yes)
+
+# quick check
 pred_test_roc
-</code></pre></div><pre><code>#&gt; # A tibble: 295 x 3
+</code></pre>
+
+<pre><code>#&gt; # A tibble: 295 x 3
 #&gt;    .threshold specificity sensitivity
 #&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
 #&gt;  1  -Inf          0                 1
@@ -1239,22 +1464,30 @@ pred_test_roc
 #&gt;  9     0.0922     0.0285            1
 #&gt; 10     0.0945     0.0325            1
 #&gt; # ... with 285 more rows
-</code></pre><p>With some <code>ggplot2</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># tidying</span>
-pred_test_roc <span style="color:#f92672">&lt;-</span> pred_test_roc <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate_if</span>(<span style="color:#f92672">~</span> <span style="color:#a6e22e">is.numeric</span>(.), <span style="color:#f92672">~</span> <span style="color:#a6e22e">round</span>(., <span style="color:#ae81ff">4</span>)) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">gather</span>(metric, value, <span style="color:#ae81ff">-.</span>threshold)
+</code></pre>
 
-<span style="color:#75715e"># plot sensitivity-specificity trade-off</span>
-p <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(pred_test_roc, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> .threshold, y <span style="color:#f92672">=</span> value)) <span style="color:#f92672">+</span>
-  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(colour <span style="color:#f92672">=</span> metric)) <span style="color:#f92672">+</span>
-  <span style="color:#a6e22e">labs</span>(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Probability Threshold to be Classified as Positive&#34;</span>, y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Value&#34;</span>, colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Metrics&#34;</span>) <span style="color:#f92672">+</span>
-  <span style="color:#a6e22e">theme_minimal</span>()
-</code></pre></div><p>and <code>plotly</code> magic, it would be perfect:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># convert to plotly</span>
-<span style="color:#a6e22e">ggplotly</span>(p)
-</code></pre></div><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<p>With some <code>ggplot2</code>:</p>
+
+<pre><code class="language-r"># tidying
+pred_test_roc &lt;- pred_test_roc %&gt;% 
+  mutate_if(~ is.numeric(.), ~ round(., 4)) %&gt;% 
+  gather(metric, value, -.threshold)
+
+# plot sensitivity-specificity trade-off
+p &lt;- ggplot(pred_test_roc, aes(x = .threshold, y = value)) +
+  geom_line(aes(colour = metric)) +
+  labs(x = &quot;Probability Threshold to be Classified as Positive&quot;, y = &quot;Value&quot;, colour = &quot;Metrics&quot;) +
+  theme_minimal()
+</code></pre>
+
+<p>and <code>plotly</code> magic, it would be perfect:</p>
+
+<pre><code class="language-r"># convert to plotly
+ggplotly(p)
+</code></pre>
+
+<p><!--html_preserve--><div id="htmlwidget-2b1913c8222382f6d64c" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2b1913c8222382f6d64c">{&ldquo;x&rdquo;:{&ldquo;data&rdquo;:[{&ldquo;x&rdquo;:[null,0.0422,0.0487,0.0568,0.0674,0.0685,0.0705,0.0884,0.0922,0.0945,0.0975,0.1093,0.1123,0.1171,0.1239,0.1243,0.1248,0.1256,0.1271,0.1401,0.1419,0.1473,0.1514,0.1538,0.1551,0.163,0.1631,0.1635,0.1657,0.1678,0.1712,0.1761,0.1796,0.1807,0.1846,0.1849,0.1853,0.1853,0.1868,0.187,0.1983,0.1988,0.1994,0.1997,0.2012,0.2022,0.2161,0.2171,0.2192,0.222,0.2227,0.229,0.2315,0.2349,0.2354,0.2354,0.237,0.2374,0.2401,0.2402,0.2429,0.2457,0.2475,0.253,0.2577,0.2601,0.2646,0.2671,0.2672,0.2678,0.2684,0.269,0.2692,0.2707,0.2776,0.2778,0.2792,0.2833,0.2863,0.2874,0.2892,0.2892,0.2897,0.2908,0.2927,0.295,0.3023,0.3072,0.3077,0.308,0.3131,0.314,0.3153,0.3159,0.3211,0.3224,0.3238,0.324,0.3241,0.3245,0.3268,0.3275,0.3297,0.3353,0.3355,0.3387,0.34,0.3415,0.3436,0.3447,0.345,0.3465,0.3476,0.3482,0.3524,0.3535,0.3564,0.3568,0.3578,0.3626,0.3646,0.3655,0.3671,0.3673,0.3674,0.3677,0.3682,0.3731,0.3735,0.3735,0.3745,0.376,0.3768,0.3831,0.3858,0.3871,0.3918,0.3928,0.3943,0.3955,0.4018,0.4028,0.4072,0.4078,0.409,0.4129,0.4138,0.4158,0.4167,0.4187,0.4203,0.421,0.4342,0.4363,0.4398,0.4409,0.442,0.4427,0.4449,0.4479,0.4483,0.4483,0.4515,0.4542,0.4576,0.458,0.4608,0.4612,0.4615,0.4618,0.4671,0.4687,0.4688,0.4691,0.4691,0.4751,0.4754,0.4756,0.4758,0.48,0.4824,0.4878,0.4894,0.4906,0.4913,0.4915,0.4934,0.4957,0.5017,0.5044,0.5046,0.5048,0.5063,0.5067,0.5091,0.5105,0.511,0.5116,0.5134,0.5143,0.5149,0.5175,0.5193,0.5211,0.522,0.5223,0.5235,0.5243,0.5258,0.5281,0.529,0.5433,0.5436,0.5467,0.5477,0.5486,0.5497,0.5537,0.5566,0.5573,0.5576,0.5596,0.5679,0.5703,0.5835,0.5845,0.5905,0.5911,0.5921,0.5925,0.5945,0.605,0.6102,0.6104,0.6108,0.6242,0.6344,0.6362,0.6369,0.6388,0.6391,0.6421,0.6439,0.6472,0.6512,0.6549,0.6557,0.6561,0.6561,0.6576,0.6579,0.6591,0.6654,0.6654,0.6655,0.6728,0.6805,0.6881,0.6903,0.7029,0.7076,0.7139,0.7159,0.7186,0.7216,0.7375,0.7387,0.7393,0.7395,0.7459,0.7483,0.7492,0.7571,0.7631,0.7641,0.7645,0.7679,0.7709,0.7737,0.774,0.7755,0.7856,0.7866,0.7913,0.8071,0.8225,0.8261,0.8343,0.843,0.8513,0.858,0.8588,0.8614,0.8912,null],&ldquo;y&rdquo;:[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9787,0.9574,0.9574,0.9574,0.9574,0.9574,0.9574,0.9362,0.9362,0.9362,0.9362,0.9362,0.9362,0.9362,0.9362,0.9362,0.9362,0.9149,0.9149,0.9149,0.9149,0.9149,0.9149,0.9149,0.9149,0.9149,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8936,0.8723,0.8723,0.8723,0.8723,0.8723,0.8723,0.8723,0.8723,0.8723,0.8723,0.8723,0.8511,0.8511,0.8511,0.8511,0.8511,0.8511,0.8511,0.8511,0.8511,0.8511,0.8511,0.8511,0.8511,0.8298,0.8298,0.8298,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.8085,0.7872,0.7872,0.7872,0.7872,0.766,0.766,0.766,0.7447,0.7447,0.7447,0.7447,0.7447,0.7447,0.7447,0.7447,0.7447,0.7447,0.7447,0.7447,0.7447,0.7234,0.7234,0.7234,0.7234,0.7234,0.7234,0.7234,0.7234,0.7021,0.7021,0.7021,0.7021,0.7021,0.7021,0.7021,0.7021,0.6809,0.6809,0.6809,0.6809,0.6809,0.6809,0.6809,0.6809,0.6809,0.6596,0.6596,0.6596,0.6596,0.6596,0.6596,0.6383,0.6383,0.6383,0.6383,0.617,0.617,0.617,0.617,0.617,0.617,0.5957,0.5957,0.5957,0.5957,0.5957,0.5957,0.5957,0.5745,0.5745,0.5532,0.5532,0.5319,0.5106,0.4894,0.4894,0.4681,0.4681,0.4681,0.4681,0.4681,0.4468,0.4468,0.4468,0.4468,0.4255,0.4255,0.4255,0.4043,0.4043,0.4043,0.4043,0.4043,0.383,0.383,0.383,0.383,0.383,0.383,0.383,0.383,0.3617,0.3404,0.3404,0.3191,0.2979,0.2766,0.2553,0.2553,0.234,0.234,0.234,0.2128,0.2128,0.1915,0.1702,0.1702,0.1489,0.1489,0.1277,0.1064,0.1064,0.1064,0.0851,0.0638,0.0426,0.0213,0],&ldquo;text&rdquo;:[&ldquo;metric: sensitivity<br />.threshold:   -Inf<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.0422<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.0487<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.0568<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.0674<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.0685<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.0705<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.0884<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.0922<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.0945<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.0975<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1093<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1123<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1171<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1239<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1243<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1248<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1256<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1271<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1401<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1419<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1473<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1514<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1538<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1551<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1630<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1631<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1635<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1657<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1678<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1712<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1761<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1796<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1807<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1846<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1849<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1853<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1853<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1868<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1870<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1983<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1988<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1994<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.1997<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2012<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2022<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2161<br />value: 1.0000&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2171<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2192<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2220<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2227<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2290<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2315<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2349<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2354<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2354<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2370<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2374<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2401<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2402<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2429<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2457<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2475<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2530<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2577<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2601<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2646<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2671<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2672<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2678<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2684<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2690<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2692<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2707<br />value: 0.9787&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2776<br />value: 0.9574&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2778<br />value: 0.9574&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2792<br />value: 0.9574&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2833<br />value: 0.9574&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2863<br />value: 0.9574&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2874<br />value: 0.9574&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2892<br />value: 0.9362&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2892<br />value: 0.9362&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2897<br />value: 0.9362&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2908<br />value: 0.9362&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2927<br />value: 0.9362&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.2950<br />value: 0.9362&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3023<br />value: 0.9362&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3072<br />value: 0.9362&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3077<br />value: 0.9362&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3080<br />value: 0.9362&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3131<br />value: 0.9149&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3140<br />value: 0.9149&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3153<br />value: 0.9149&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3159<br />value: 0.9149&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3211<br />value: 0.9149&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3224<br />value: 0.9149&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3238<br />value: 0.9149&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3240<br />value: 0.9149&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3241<br />value: 0.9149&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3245<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3268<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3275<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3297<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3353<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3355<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3387<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3400<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3415<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3436<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3447<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3450<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3465<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3476<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3482<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3524<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3535<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3564<br />value: 0.8936&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3568<br />value: 0.8723&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3578<br />value: 0.8723&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3626<br />value: 0.8723&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3646<br />value: 0.8723&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3655<br />value: 0.8723&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3671<br />value: 0.8723&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3673<br />value: 0.8723&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3674<br />value: 0.8723&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3677<br />value: 0.8723&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3682<br />value: 0.8723&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3731<br />value: 0.8723&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3735<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3735<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3745<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3760<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3768<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3831<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3858<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3871<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3918<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3928<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3943<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.3955<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4018<br />value: 0.8511&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4028<br />value: 0.8298&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4072<br />value: 0.8298&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4078<br />value: 0.8298&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4090<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4129<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4138<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4158<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4167<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4187<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4203<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4210<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4342<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4363<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4398<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4409<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4420<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4427<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4449<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4479<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4483<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4483<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4515<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4542<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4576<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4580<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4608<br />value: 0.8085&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4612<br />value: 0.7872&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4615<br />value: 0.7872&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4618<br />value: 0.7872&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4671<br />value: 0.7872&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4687<br />value: 0.7660&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4688<br />value: 0.7660&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4691<br />value: 0.7660&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4691<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4751<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4754<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4756<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4758<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4800<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4824<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4878<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4894<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4906<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4913<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4915<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4934<br />value: 0.7447&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.4957<br />value: 0.7234&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5017<br />value: 0.7234&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5044<br />value: 0.7234&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5046<br />value: 0.7234&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5048<br />value: 0.7234&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5063<br />value: 0.7234&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5067<br />value: 0.7234&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5091<br />value: 0.7234&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5105<br />value: 0.7021&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5110<br />value: 0.7021&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5116<br />value: 0.7021&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5134<br />value: 0.7021&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5143<br />value: 0.7021&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5149<br />value: 0.7021&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5175<br />value: 0.7021&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5193<br />value: 0.7021&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5211<br />value: 0.6809&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5220<br />value: 0.6809&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5223<br />value: 0.6809&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5235<br />value: 0.6809&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5243<br />value: 0.6809&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5258<br />value: 0.6809&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5281<br />value: 0.6809&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5290<br />value: 0.6809&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5433<br />value: 0.6809&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5436<br />value: 0.6596&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5467<br />value: 0.6596&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5477<br />value: 0.6596&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5486<br />value: 0.6596&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5497<br />value: 0.6596&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5537<br />value: 0.6596&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5566<br />value: 0.6383&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5573<br />value: 0.6383&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5576<br />value: 0.6383&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5596<br />value: 0.6383&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5679<br />value: 0.6170&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5703<br />value: 0.6170&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5835<br />value: 0.6170&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5845<br />value: 0.6170&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5905<br />value: 0.6170&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5911<br />value: 0.6170&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5921<br />value: 0.5957&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5925<br />value: 0.5957&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.5945<br />value: 0.5957&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6050<br />value: 0.5957&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6102<br />value: 0.5957&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6104<br />value: 0.5957&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6108<br />value: 0.5957&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6242<br />value: 0.5745&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6344<br />value: 0.5745&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6362<br />value: 0.5532&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6369<br />value: 0.5532&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6388<br />value: 0.5319&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6391<br />value: 0.5106&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6421<br />value: 0.4894&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6439<br />value: 0.4894&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6472<br />value: 0.4681&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6512<br />value: 0.4681&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6549<br />value: 0.4681&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6557<br />value: 0.4681&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6561<br />value: 0.4681&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6561<br />value: 0.4468&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6576<br />value: 0.4468&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6579<br />value: 0.4468&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6591<br />value: 0.4468&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6654<br />value: 0.4255&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6654<br />value: 0.4255&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6655<br />value: 0.4255&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6728<br />value: 0.4043&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6805<br />value: 0.4043&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6881<br />value: 0.4043&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.6903<br />value: 0.4043&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7029<br />value: 0.4043&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7076<br />value: 0.3830&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7139<br />value: 0.3830&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7159<br />value: 0.3830&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7186<br />value: 0.3830&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7216<br />value: 0.3830&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7375<br />value: 0.3830&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7387<br />value: 0.3830&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7393<br />value: 0.3830&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7395<br />value: 0.3617&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7459<br />value: 0.3404&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7483<br />value: 0.3404&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7492<br />value: 0.3191&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7571<br />value: 0.2979&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7631<br />value: 0.2766&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7641<br />value: 0.2553&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7645<br />value: 0.2553&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7679<br />value: 0.2340&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7709<br />value: 0.2340&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7737<br />value: 0.2340&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7740<br />value: 0.2128&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7755<br />value: 0.2128&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7856<br />value: 0.1915&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7866<br />value: 0.1702&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.7913<br />value: 0.1702&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.8071<br />value: 0.1489&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.8225<br />value: 0.1489&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.8261<br />value: 0.1277&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.8343<br />value: 0.1064&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.8430<br />value: 0.1064&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.8513<br />value: 0.1064&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.8580<br />value: 0.0851&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.8588<br />value: 0.0638&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.8614<br />value: 0.0426&rdquo;,&ldquo;metric: sensitivity<br />.threshold: 0.8912<br />value: 0.0213&rdquo;,&ldquo;metric: sensitivity<br />.threshold:    Inf<br />value: 0.0000&rdquo;],&ldquo;type&rdquo;:&ldquo;scatter&rdquo;,&ldquo;mode&rdquo;:&ldquo;lines&rdquo;,&ldquo;line&rdquo;:{&ldquo;width&rdquo;:1.88976377952756,&ldquo;color&rdquo;:&ldquo;rgba(248,118,109,1)&rdquo;,&ldquo;dash&rdquo;:&ldquo;solid&rdquo;},&ldquo;hoveron&rdquo;:&ldquo;points&rdquo;,&ldquo;name&rdquo;:&ldquo;sensitivity&rdquo;,&ldquo;legendgroup&rdquo;:&ldquo;sensitivity&rdquo;,&ldquo;showlegend&rdquo;:true,&ldquo;xaxis&rdquo;:&ldquo;x&rdquo;,&ldquo;yaxis&rdquo;:&ldquo;y&rdquo;,&ldquo;hoverinfo&rdquo;:&ldquo;text&rdquo;,&ldquo;frame&rdquo;:null},{&ldquo;x&rdquo;:[null,0.0422,0.0487,0.0568,0.0674,0.0685,0.0705,0.0884,0.0922,0.0945,0.0975,0.1093,0.1123,0.1171,0.1239,0.1243,0.1248,0.1256,0.1271,0.1401,0.1419,0.1473,0.1514,0.1538,0.1551,0.163,0.1631,0.1635,0.1657,0.1678,0.1712,0.1761,0.1796,0.1807,0.1846,0.1849,0.1853,0.1853,0.1868,0.187,0.1983,0.1988,0.1994,0.1997,0.2012,0.2022,0.2161,0.2171,0.2192,0.222,0.2227,0.229,0.2315,0.2349,0.2354,0.2354,0.237,0.2374,0.2401,0.2402,0.2429,0.2457,0.2475,0.253,0.2577,0.2601,0.2646,0.2671,0.2672,0.2678,0.2684,0.269,0.2692,0.2707,0.2776,0.2778,0.2792,0.2833,0.2863,0.2874,0.2892,0.2892,0.2897,0.2908,0.2927,0.295,0.3023,0.3072,0.3077,0.308,0.3131,0.314,0.3153,0.3159,0.3211,0.3224,0.3238,0.324,0.3241,0.3245,0.3268,0.3275,0.3297,0.3353,0.3355,0.3387,0.34,0.3415,0.3436,0.3447,0.345,0.3465,0.3476,0.3482,0.3524,0.3535,0.3564,0.3568,0.3578,0.3626,0.3646,0.3655,0.3671,0.3673,0.3674,0.3677,0.3682,0.3731,0.3735,0.3735,0.3745,0.376,0.3768,0.3831,0.3858,0.3871,0.3918,0.3928,0.3943,0.3955,0.4018,0.4028,0.4072,0.4078,0.409,0.4129,0.4138,0.4158,0.4167,0.4187,0.4203,0.421,0.4342,0.4363,0.4398,0.4409,0.442,0.4427,0.4449,0.4479,0.4483,0.4483,0.4515,0.4542,0.4576,0.458,0.4608,0.4612,0.4615,0.4618,0.4671,0.4687,0.4688,0.4691,0.4691,0.4751,0.4754,0.4756,0.4758,0.48,0.4824,0.4878,0.4894,0.4906,0.4913,0.4915,0.4934,0.4957,0.5017,0.5044,0.5046,0.5048,0.5063,0.5067,0.5091,0.5105,0.511,0.5116,0.5134,0.5143,0.5149,0.5175,0.5193,0.5211,0.522,0.5223,0.5235,0.5243,0.5258,0.5281,0.529,0.5433,0.5436,0.5467,0.5477,0.5486,0.5497,0.5537,0.5566,0.5573,0.5576,0.5596,0.5679,0.5703,0.5835,0.5845,0.5905,0.5911,0.5921,0.5925,0.5945,0.605,0.6102,0.6104,0.6108,0.6242,0.6344,0.6362,0.6369,0.6388,0.6391,0.6421,0.6439,0.6472,0.6512,0.6549,0.6557,0.6561,0.6561,0.6576,0.6579,0.6591,0.6654,0.6654,0.6655,0.6728,0.6805,0.6881,0.6903,0.7029,0.7076,0.7139,0.7159,0.7186,0.7216,0.7375,0.7387,0.7393,0.7395,0.7459,0.7483,0.7492,0.7571,0.7631,0.7641,0.7645,0.7679,0.7709,0.7737,0.774,0.7755,0.7856,0.7866,0.7913,0.8071,0.8225,0.8261,0.8343,0.843,0.8513,0.858,0.8588,0.8614,0.8912,null],&ldquo;y&rdquo;:[0,0,0.0041,0.0081,0.0122,0.0163,0.0203,0.0244,0.0285,0.0325,0.0366,0.0407,0.0447,0.0488,0.0528,0.0569,0.061,0.065,0.0691,0.0732,0.0772,0.0813,0.0854,0.0894,0.0935,0.0976,0.1016,0.1057,0.1098,0.1138,0.1179,0.122,0.126,0.1301,0.1341,0.1382,0.1423,0.1463,0.1504,0.1545,0.1585,0.1626,0.1667,0.1707,0.1748,0.1789,0.1829,0.1829,0.187,0.1911,0.1951,0.1992,0.2033,0.2073,0.2114,0.2154,0.2195,0.2236,0.2276,0.2317,0.2358,0.2398,0.2439,0.248,0.252,0.2561,0.2602,0.2642,0.2683,0.2724,0.2764,0.2805,0.2846,0.2886,0.2886,0.2927,0.2967,0.3008,0.3049,0.3089,0.3089,0.313,0.3171,0.3211,0.3252,0.3293,0.3333,0.3374,0.3415,0.3455,0.3455,0.3496,0.3537,0.3577,0.3618,0.3659,0.3699,0.374,0.378,0.378,0.3821,0.3862,0.3902,0.3943,0.3984,0.4024,0.4065,0.4106,0.4146,0.4187,0.4228,0.4268,0.4309,0.435,0.439,0.4431,0.4472,0.4472,0.4512,0.4553,0.4593,0.4634,0.4675,0.4715,0.4756,0.4797,0.4837,0.4878,0.4878,0.4919,0.4959,0.5,0.5041,0.5081,0.5122,0.5163,0.5203,0.5244,0.5285,0.5325,0.5366,0.5366,0.5407,0.5447,0.5447,0.5488,0.5528,0.5569,0.561,0.565,0.5691,0.5732,0.5772,0.5813,0.5854,0.5894,0.5935,0.5976,0.6016,0.6057,0.6098,0.6138,0.6179,0.622,0.626,0.6301,0.6341,0.6341,0.6382,0.6423,0.6463,0.6463,0.6504,0.6545,0.6545,0.6585,0.6626,0.6667,0.6707,0.6748,0.6789,0.6829,0.687,0.6911,0.6951,0.6992,0.7033,0.7033,0.7073,0.7114,0.7154,0.7195,0.7236,0.7276,0.7317,0.7317,0.7358,0.7398,0.7439,0.748,0.752,0.7561,0.7602,0.7602,0.7642,0.7683,0.7724,0.7764,0.7805,0.7846,0.7886,0.7927,0.7927,0.7967,0.8008,0.8049,0.8089,0.813,0.813,0.8171,0.8211,0.8252,0.8252,0.8293,0.8333,0.8374,0.8415,0.8455,0.8455,0.8496,0.8537,0.8577,0.8618,0.8659,0.8699,0.8699,0.874,0.874,0.878,0.878,0.878,0.878,0.8821,0.8821,0.8862,0.8902,0.8943,0.8984,0.8984,0.9024,0.9065,0.9106,0.9106,0.9146,0.9187,0.9187,0.9228,0.9268,0.9309,0.935,0.935,0.939,0.9431,0.9472,0.9512,0.9553,0.9593,0.9634,0.9634,0.9634,0.9675,0.9675,0.9675,0.9675,0.9675,0.9715,0.9715,0.9756,0.9797,0.9797,0.9837,0.9837,0.9837,0.9878,0.9878,0.9919,0.9919,0.9919,0.9959,1,1,1,1,1,1],&ldquo;text&rdquo;:[&ldquo;metric: specificity<br />.threshold:   -Inf<br />value: 0.0000&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.0422<br />value: 0.0000&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.0487<br />value: 0.0041&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.0568<br />value: 0.0081&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.0674<br />value: 0.0122&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.0685<br />value: 0.0163&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.0705<br />value: 0.0203&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.0884<br />value: 0.0244&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.0922<br />value: 0.0285&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.0945<br />value: 0.0325&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.0975<br />value: 0.0366&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1093<br />value: 0.0407&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1123<br />value: 0.0447&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1171<br />value: 0.0488&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1239<br />value: 0.0528&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1243<br />value: 0.0569&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1248<br />value: 0.0610&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1256<br />value: 0.0650&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1271<br />value: 0.0691&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1401<br />value: 0.0732&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1419<br />value: 0.0772&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1473<br />value: 0.0813&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1514<br />value: 0.0854&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1538<br />value: 0.0894&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1551<br />value: 0.0935&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1630<br />value: 0.0976&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1631<br />value: 0.1016&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1635<br />value: 0.1057&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1657<br />value: 0.1098&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1678<br />value: 0.1138&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1712<br />value: 0.1179&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1761<br />value: 0.1220&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1796<br />value: 0.1260&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1807<br />value: 0.1301&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1846<br />value: 0.1341&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1849<br />value: 0.1382&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1853<br />value: 0.1423&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1853<br />value: 0.1463&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1868<br />value: 0.1504&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1870<br />value: 0.1545&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1983<br />value: 0.1585&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1988<br />value: 0.1626&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1994<br />value: 0.1667&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.1997<br />value: 0.1707&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2012<br />value: 0.1748&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2022<br />value: 0.1789&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2161<br />value: 0.1829&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2171<br />value: 0.1829&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2192<br />value: 0.1870&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2220<br />value: 0.1911&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2227<br />value: 0.1951&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2290<br />value: 0.1992&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2315<br />value: 0.2033&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2349<br />value: 0.2073&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2354<br />value: 0.2114&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2354<br />value: 0.2154&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2370<br />value: 0.2195&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2374<br />value: 0.2236&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2401<br />value: 0.2276&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2402<br />value: 0.2317&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2429<br />value: 0.2358&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2457<br />value: 0.2398&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2475<br />value: 0.2439&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2530<br />value: 0.2480&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2577<br />value: 0.2520&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2601<br />value: 0.2561&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2646<br />value: 0.2602&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2671<br />value: 0.2642&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2672<br />value: 0.2683&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2678<br />value: 0.2724&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2684<br />value: 0.2764&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2690<br />value: 0.2805&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2692<br />value: 0.2846&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2707<br />value: 0.2886&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2776<br />value: 0.2886&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2778<br />value: 0.2927&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2792<br />value: 0.2967&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2833<br />value: 0.3008&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2863<br />value: 0.3049&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2874<br />value: 0.3089&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2892<br />value: 0.3089&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2892<br />value: 0.3130&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2897<br />value: 0.3171&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2908<br />value: 0.3211&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2927<br />value: 0.3252&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.2950<br />value: 0.3293&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3023<br />value: 0.3333&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3072<br />value: 0.3374&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3077<br />value: 0.3415&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3080<br />value: 0.3455&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3131<br />value: 0.3455&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3140<br />value: 0.3496&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3153<br />value: 0.3537&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3159<br />value: 0.3577&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3211<br />value: 0.3618&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3224<br />value: 0.3659&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3238<br />value: 0.3699&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3240<br />value: 0.3740&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3241<br />value: 0.3780&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3245<br />value: 0.3780&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3268<br />value: 0.3821&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3275<br />value: 0.3862&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3297<br />value: 0.3902&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3353<br />value: 0.3943&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3355<br />value: 0.3984&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3387<br />value: 0.4024&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3400<br />value: 0.4065&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3415<br />value: 0.4106&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3436<br />value: 0.4146&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3447<br />value: 0.4187&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3450<br />value: 0.4228&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3465<br />value: 0.4268&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3476<br />value: 0.4309&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3482<br />value: 0.4350&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3524<br />value: 0.4390&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3535<br />value: 0.4431&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3564<br />value: 0.4472&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3568<br />value: 0.4472&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3578<br />value: 0.4512&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3626<br />value: 0.4553&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3646<br />value: 0.4593&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3655<br />value: 0.4634&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3671<br />value: 0.4675&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3673<br />value: 0.4715&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3674<br />value: 0.4756&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3677<br />value: 0.4797&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3682<br />value: 0.4837&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3731<br />value: 0.4878&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3735<br />value: 0.4878&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3735<br />value: 0.4919&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3745<br />value: 0.4959&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3760<br />value: 0.5000&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3768<br />value: 0.5041&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3831<br />value: 0.5081&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3858<br />value: 0.5122&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3871<br />value: 0.5163&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3918<br />value: 0.5203&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3928<br />value: 0.5244&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3943<br />value: 0.5285&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.3955<br />value: 0.5325&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4018<br />value: 0.5366&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4028<br />value: 0.5366&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4072<br />value: 0.5407&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4078<br />value: 0.5447&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4090<br />value: 0.5447&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4129<br />value: 0.5488&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4138<br />value: 0.5528&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4158<br />value: 0.5569&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4167<br />value: 0.5610&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4187<br />value: 0.5650&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4203<br />value: 0.5691&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4210<br />value: 0.5732&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4342<br />value: 0.5772&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4363<br />value: 0.5813&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4398<br />value: 0.5854&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4409<br />value: 0.5894&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4420<br />value: 0.5935&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4427<br />value: 0.5976&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4449<br />value: 0.6016&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4479<br />value: 0.6057&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4483<br />value: 0.6098&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4483<br />value: 0.6138&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4515<br />value: 0.6179&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4542<br />value: 0.6220&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4576<br />value: 0.6260&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4580<br />value: 0.6301&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4608<br />value: 0.6341&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4612<br />value: 0.6341&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4615<br />value: 0.6382&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4618<br />value: 0.6423&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4671<br />value: 0.6463&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4687<br />value: 0.6463&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4688<br />value: 0.6504&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4691<br />value: 0.6545&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4691<br />value: 0.6545&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4751<br />value: 0.6585&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4754<br />value: 0.6626&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4756<br />value: 0.6667&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4758<br />value: 0.6707&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4800<br />value: 0.6748&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4824<br />value: 0.6789&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4878<br />value: 0.6829&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4894<br />value: 0.6870&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4906<br />value: 0.6911&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4913<br />value: 0.6951&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4915<br />value: 0.6992&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4934<br />value: 0.7033&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.4957<br />value: 0.7033&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5017<br />value: 0.7073&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5044<br />value: 0.7114&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5046<br />value: 0.7154&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5048<br />value: 0.7195&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5063<br />value: 0.7236&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5067<br />value: 0.7276&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5091<br />value: 0.7317&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5105<br />value: 0.7317&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5110<br />value: 0.7358&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5116<br />value: 0.7398&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5134<br />value: 0.7439&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5143<br />value: 0.7480&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5149<br />value: 0.7520&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5175<br />value: 0.7561&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5193<br />value: 0.7602&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5211<br />value: 0.7602&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5220<br />value: 0.7642&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5223<br />value: 0.7683&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5235<br />value: 0.7724&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5243<br />value: 0.7764&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5258<br />value: 0.7805&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5281<br />value: 0.7846&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5290<br />value: 0.7886&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5433<br />value: 0.7927&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5436<br />value: 0.7927&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5467<br />value: 0.7967&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5477<br />value: 0.8008&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5486<br />value: 0.8049&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5497<br />value: 0.8089&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5537<br />value: 0.8130&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5566<br />value: 0.8130&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5573<br />value: 0.8171&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5576<br />value: 0.8211&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5596<br />value: 0.8252&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5679<br />value: 0.8252&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5703<br />value: 0.8293&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5835<br />value: 0.8333&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5845<br />value: 0.8374&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5905<br />value: 0.8415&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5911<br />value: 0.8455&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5921<br />value: 0.8455&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5925<br />value: 0.8496&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.5945<br />value: 0.8537&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6050<br />value: 0.8577&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6102<br />value: 0.8618&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6104<br />value: 0.8659&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6108<br />value: 0.8699&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6242<br />value: 0.8699&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6344<br />value: 0.8740&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6362<br />value: 0.8740&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6369<br />value: 0.8780&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6388<br />value: 0.8780&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6391<br />value: 0.8780&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6421<br />value: 0.8780&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6439<br />value: 0.8821&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6472<br />value: 0.8821&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6512<br />value: 0.8862&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6549<br />value: 0.8902&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6557<br />value: 0.8943&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6561<br />value: 0.8984&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6561<br />value: 0.8984&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6576<br />value: 0.9024&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6579<br />value: 0.9065&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6591<br />value: 0.9106&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6654<br />value: 0.9106&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6654<br />value: 0.9146&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6655<br />value: 0.9187&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6728<br />value: 0.9187&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6805<br />value: 0.9228&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6881<br />value: 0.9268&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.6903<br />value: 0.9309&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7029<br />value: 0.9350&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7076<br />value: 0.9350&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7139<br />value: 0.9390&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7159<br />value: 0.9431&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7186<br />value: 0.9472&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7216<br />value: 0.9512&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7375<br />value: 0.9553&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7387<br />value: 0.9593&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7393<br />value: 0.9634&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7395<br />value: 0.9634&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7459<br />value: 0.9634&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7483<br />value: 0.9675&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7492<br />value: 0.9675&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7571<br />value: 0.9675&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7631<br />value: 0.9675&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7641<br />value: 0.9675&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7645<br />value: 0.9715&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7679<br />value: 0.9715&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7709<br />value: 0.9756&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7737<br />value: 0.9797&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7740<br />value: 0.9797&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7755<br />value: 0.9837&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7856<br />value: 0.9837&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7866<br />value: 0.9837&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.7913<br />value: 0.9878&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.8071<br />value: 0.9878&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.8225<br />value: 0.9919&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.8261<br />value: 0.9919&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.8343<br />value: 0.9919&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.8430<br />value: 0.9959&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.8513<br />value: 1.0000&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.8580<br />value: 1.0000&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.8588<br />value: 1.0000&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.8614<br />value: 1.0000&rdquo;,&ldquo;metric: specificity<br />.threshold: 0.8912<br />value: 1.0000&rdquo;,&ldquo;metric: specificity<br />.threshold:    Inf<br />value: 1.0000&rdquo;],&ldquo;type&rdquo;:&ldquo;scatter&rdquo;,&ldquo;mode&rdquo;:&ldquo;lines&rdquo;,&ldquo;line&rdquo;:{&ldquo;width&rdquo;:1.88976377952756,&ldquo;color&rdquo;:&ldquo;rgba(0,191,196,1)&rdquo;,&ldquo;dash&rdquo;:&ldquo;solid&rdquo;},&ldquo;hoveron&rdquo;:&ldquo;points&rdquo;,&ldquo;name&rdquo;:&ldquo;specificity&rdquo;,&ldquo;legendgroup&rdquo;:&ldquo;specificity&rdquo;,&ldquo;showlegend&rdquo;:true,&ldquo;xaxis&rdquo;:&ldquo;x&rdquo;,&ldquo;yaxis&rdquo;:&ldquo;y&rdquo;,&ldquo;hoverinfo&rdquo;:&ldquo;text&rdquo;,&ldquo;frame&rdquo;:null}],&ldquo;layout&rdquo;:{&ldquo;margin&rdquo;:{&ldquo;t&rdquo;:26.2283105022831,&ldquo;r&rdquo;:7.30593607305936,&ldquo;b&rdquo;:40.1826484018265,&ldquo;l&rdquo;:48.9497716894977},&ldquo;font&rdquo;:{&ldquo;color&rdquo;:&ldquo;rgba(0,0,0,1)&rdquo;,&ldquo;family&rdquo;:&ldquo;&rdquo;,&ldquo;size&rdquo;:14.6118721461187},&ldquo;xaxis&rdquo;:{&ldquo;domain&rdquo;:[0,1],&ldquo;automargin&rdquo;:true,&ldquo;type&rdquo;:&ldquo;linear&rdquo;,&ldquo;autorange&rdquo;:false,&ldquo;range&rdquo;:[-0.00025,0.93365],&ldquo;tickmode&rdquo;:&ldquo;array&rdquo;,&ldquo;ticktext&rdquo;:[&ldquo;0.00&rdquo;,&ldquo;0.25&rdquo;,&ldquo;0.50&rdquo;,&ldquo;0.75&rdquo;],&ldquo;tickvals&rdquo;:[0,0.25,0.5,0.75],&ldquo;categoryorder&rdquo;:&ldquo;array&rdquo;,&ldquo;categoryarray&rdquo;:[&ldquo;0.00&rdquo;,&ldquo;0.25&rdquo;,&ldquo;0.50&rdquo;,&ldquo;0.75&rdquo;],&ldquo;nticks&rdquo;:null,&ldquo;ticks&rdquo;:&ldquo;&rdquo;,&ldquo;tickcolor&rdquo;:null,&ldquo;ticklen&rdquo;:3.65296803652968,&ldquo;tickwidth&rdquo;:0,&ldquo;showticklabels&rdquo;:true,&ldquo;tickfont&rdquo;:{&ldquo;color&rdquo;:&ldquo;rgba(77,77,77,1)&rdquo;,&ldquo;family&rdquo;:&ldquo;&rdquo;,&ldquo;size&rdquo;:11.689497716895},&ldquo;tickangle&rdquo;:-0,&ldquo;showline&rdquo;:false,&ldquo;linecolor&rdquo;:null,&ldquo;linewidth&rdquo;:0,&ldquo;showgrid&rdquo;:true,&ldquo;gridcolor&rdquo;:&ldquo;rgba(235,235,235,1)&rdquo;,&ldquo;gridwidth&rdquo;:0.66417600664176,&ldquo;zeroline&rdquo;:false,&ldquo;anchor&rdquo;:&ldquo;y&rdquo;,&ldquo;title&rdquo;:{&ldquo;text&rdquo;:&ldquo;Probability Threshold to be Classified as Positive&rdquo;,&ldquo;font&rdquo;:{&ldquo;color&rdquo;:&ldquo;rgba(0,0,0,1)&rdquo;,&ldquo;family&rdquo;:&ldquo;&rdquo;,&ldquo;size&rdquo;:14.6118721461187}},&ldquo;hoverformat&rdquo;:&ldquo;.2f&rdquo;},&ldquo;yaxis&rdquo;:{&ldquo;domain&rdquo;:[0,1],&ldquo;automargin&rdquo;:true,&ldquo;type&rdquo;:&ldquo;linear&rdquo;,&ldquo;autorange&rdquo;:false,&ldquo;range&rdquo;:[-0.05,1.05],&ldquo;tickmode&rdquo;:&ldquo;array&rdquo;,&ldquo;ticktext&rdquo;:[&ldquo;0.00&rdquo;,&ldquo;0.25&rdquo;,&ldquo;0.50&rdquo;,&ldquo;0.75&rdquo;,&ldquo;1.00&rdquo;],&ldquo;tickvals&rdquo;:[0,0.25,0.5,0.75,1],&ldquo;categoryorder&rdquo;:&ldquo;array&rdquo;,&ldquo;categoryarray&rdquo;:[&ldquo;0.00&rdquo;,&ldquo;0.25&rdquo;,&ldquo;0.50&rdquo;,&ldquo;0.75&rdquo;,&ldquo;1.00&rdquo;],&ldquo;nticks&rdquo;:null,&ldquo;ticks&rdquo;:&ldquo;&rdquo;,&ldquo;tickcolor&rdquo;:null,&ldquo;ticklen&rdquo;:3.65296803652968,&ldquo;tickwidth&rdquo;:0,&ldquo;showticklabels&rdquo;:true,&ldquo;tickfont&rdquo;:{&ldquo;color&rdquo;:&ldquo;rgba(77,77,77,1)&rdquo;,&ldquo;family&rdquo;:&ldquo;&rdquo;,&ldquo;size&rdquo;:11.689497716895},&ldquo;tickangle&rdquo;:-0,&ldquo;showline&rdquo;:false,&ldquo;linecolor&rdquo;:null,&ldquo;linewidth&rdquo;:0,&ldquo;showgrid&rdquo;:true,&ldquo;gridcolor&rdquo;:&ldquo;rgba(235,235,235,1)&rdquo;,&ldquo;gridwidth&rdquo;:0.66417600664176,&ldquo;zeroline&rdquo;:false,&ldquo;anchor&rdquo;:&ldquo;x&rdquo;,&ldquo;title&rdquo;:{&ldquo;text&rdquo;:&ldquo;Value&rdquo;,&ldquo;font&rdquo;:{&ldquo;color&rdquo;:&ldquo;rgba(0,0,0,1)&rdquo;,&ldquo;family&rdquo;:&ldquo;&rdquo;,&ldquo;size&rdquo;:14.6118721461187}},&ldquo;hoverformat&rdquo;:&ldquo;.2f&rdquo;},&ldquo;shapes&rdquo;:[{&ldquo;type&rdquo;:&ldquo;rect&rdquo;,&ldquo;fillcolor&rdquo;:null,&ldquo;line&rdquo;:{&ldquo;color&rdquo;:null,&ldquo;width&rdquo;:0,&ldquo;linetype&rdquo;:[]},&ldquo;yref&rdquo;:&ldquo;paper&rdquo;,&ldquo;xref&rdquo;:&ldquo;paper&rdquo;,&ldquo;x0&rdquo;:0,&ldquo;x1&rdquo;:1,&ldquo;y0&rdquo;:0,&ldquo;y1&rdquo;:1}],&ldquo;showlegend&rdquo;:true,&ldquo;legend&rdquo;:{&ldquo;bgcolor&rdquo;:null,&ldquo;bordercolor&rdquo;:null,&ldquo;borderwidth&rdquo;:0,&ldquo;font&rdquo;:{&ldquo;color&rdquo;:&ldquo;rgba(0,0,0,1)&rdquo;,&ldquo;family&rdquo;:&ldquo;&rdquo;,&ldquo;size&rdquo;:11.689497716895},&ldquo;y&rdquo;:0.96751968503937},&ldquo;annotations&rdquo;:[{&ldquo;text&rdquo;:&ldquo;Metrics&rdquo;,&ldquo;x&rdquo;:1.02,&ldquo;y&rdquo;:1,&ldquo;showarrow&rdquo;:false,&ldquo;ax&rdquo;:0,&ldquo;ay&rdquo;:0,&ldquo;font&rdquo;:{&ldquo;color&rdquo;:&ldquo;rgba(0,0,0,1)&rdquo;,&ldquo;family&rdquo;:&ldquo;&rdquo;,&ldquo;size&rdquo;:14.6118721461187},&ldquo;xref&rdquo;:&ldquo;paper&rdquo;,&ldquo;yref&rdquo;:&ldquo;paper&rdquo;,&ldquo;textangle&rdquo;:-0,&ldquo;xanchor&rdquo;:&ldquo;left&rdquo;,&ldquo;yanchor&rdquo;:&ldquo;bottom&rdquo;,&ldquo;legendTitle&rdquo;:true}],&ldquo;hovermode&rdquo;:&ldquo;closest&rdquo;,&ldquo;barmode&rdquo;:&ldquo;relative&rdquo;},&ldquo;config&rdquo;:{&ldquo;doubleClick&rdquo;:&ldquo;reset&rdquo;,&ldquo;showSendToCloud&rdquo;:false},&ldquo;source&rdquo;:&ldquo;A&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;1974f664f9e&rdquo;:{&ldquo;colour&rdquo;:{},&ldquo;x&rdquo;:{},&ldquo;y&rdquo;:{},&ldquo;type&rdquo;:&ldquo;scatter&rdquo;}},&ldquo;cur_data&rdquo;:&ldquo;1974f664f9e&rdquo;,&ldquo;visdat&rdquo;:{&ldquo;1974f664f9e&rdquo;:[&ldquo;function (y) &ldquo;,&ldquo;x&rdquo;]},&ldquo;highlight&rdquo;:{&ldquo;on&rdquo;:&ldquo;plotly_click&rdquo;,&ldquo;persistent&rdquo;:false,&ldquo;dynamic&rdquo;:false,&ldquo;selectize&rdquo;:false,&ldquo;opacityDim&rdquo;:0.2,&ldquo;selected&rdquo;:{&ldquo;opacity&rdquo;:1},&ldquo;debounce&rdquo;:0},&ldquo;shinyEvents&rdquo;:[&ldquo;plotly_hover&rdquo;,&ldquo;plotly_click&rdquo;,&ldquo;plotly_selected&rdquo;,&ldquo;plotly_relayout&rdquo;,&ldquo;plotly_brushed&rdquo;,&ldquo;plotly_brushing&rdquo;,&ldquo;plotly_clickannotation&rdquo;,&ldquo;plotly_doubleclick&rdquo;,&ldquo;plotly_deselect&rdquo;,&ldquo;plotly_afterplot&rdquo;],&ldquo;base_url&rdquo;:&ldquo;<a href="https://plot.ly&quot;},&quot;evals&quot;:[],&quot;jsHooks&quot;:[]">https://plot.ly&quot;},&quot;evals&quot;:[],&quot;jsHooks&quot;:[]</a>}</script><!--/html_preserve--></p>
 
   </div>
 
