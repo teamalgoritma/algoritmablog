@@ -22,7 +22,7 @@ type: post
 
 In this third article on **Rplicate Series**, We will share to you one way to replicate The Economist plot titled **"I can't get no ..."**. The plot making will also demonstrate ways to converting smooth line into **linear line**, using **guides for legend**, and adding a **text annotation** to a plot. The raw dataset used for this graph was obtained from a PDF, so we will also use **tibble** package to copy-paste the data into R.
 
-<center> ![](/img/rplicate2/icant.png){width="60%"} </center>
+<center> ![](/img/rplicate3/icant.png){width="60%"} </center>
 
 Let's dive in below!
 
@@ -217,7 +217,7 @@ data_f <- data_f %>%
           NA)))))))
 
 # quick check
-head(data_f,3)
+head(data_f, 3)
 ```
 
 ```
