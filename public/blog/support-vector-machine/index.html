@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2018",
-        "datePublished": "2018-02-07 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2018-02-07 00:00:00 \x2b0000 UTC",
+        "datePublished": "2018-02-07 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2018-02-07 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/support-vector-machine\/",
         "wordCount" : "2166",
         "keywords" : [ "SVM","Machine Learning","Blog" ]
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.55.4" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -75,19 +75,16 @@ So how does SVM find the right hyperplane?"/>
 So how does SVM find the right hyperplane?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/support-vector-machine/" />
-<meta property="article:published_time" content="2018-02-07T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2018-02-07T00:00:00&#43;00:00"/>
+<meta property="article:published_time" content="2018-02-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-02-07T00:00:00+00:00" />
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        
-<meta itemprop="name" content="Support Vector Machine">
+        <meta itemprop="name" content="Support Vector Machine">
 <meta itemprop="description" content="Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.
 So how does SVM find the right hyperplane?">
-
-
 <meta itemprop="datePublished" content="2018-02-07T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-02-07T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="2166">
@@ -95,7 +92,6 @@ So how does SVM find the right hyperplane?">
 
 
 <meta itemprop="keywords" content="SVM,Machine Learning," />
-
         
 
         
@@ -279,6 +275,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-i-can-t-get-no/">Rplicate Series: I can&#39;t get no ...</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-10-26'>
+                                    October 26, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/topic-modeling-lda/">Topic Modelling with Latent Dirichlet Allocation (LDA)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -320,18 +328,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-02'>
                                     October 2, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/skincare-recommender-system/">Skincare Recommendation System</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-09-01'>
-                                    September 1, 2020</time>
                             </header>
                             
 
@@ -522,136 +518,83 @@ if (!doNotTrack) {
 
 
   <div id="content">
-    
-
-<h2 id="support-vector-machine-svm">Support Vector Machine (SVM)</h2>
-
+    <h2 id="support-vector-machine-svm">Support Vector Machine (SVM)</h2>
 <p>Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.</p>
-
 <p>So how does SVM find the right hyperplane?. Let me give you example to understand how it works.</p>
-
 <p><strong>Identify the right hyper-plane (Scenario-1)</strong></p>
-
 <blockquote>
 <p>Which line do you think separates the data?</p>
 </blockquote>
-
-<p><center> <img src="/img/svm/gambar1.jpg"> </center></p>
-
+<!-- raw HTML omitted -->
 <blockquote>
 <p>And obviously the line B is the one that segregates the two classes better.</p>
 </blockquote>
-
 <p><strong>Identify the right hyper-plane (Scenario-2)</strong></p>
-
 <p>Check the line that you think best separates the data. Obviously all three of them seem   to separates the data, but one is the best?</p>
-
-<p><center> <img src="/img/svm/gambar2.jpg"> </center></p>
-
+<!-- raw HTML omitted -->
 <p>And SVM would choose the line C as the best separator. What this line does that the     other ones don&rsquo;t do, it maximizes the distance to the nearest point and it does this     relative to both classes. It&rsquo;s a line that maximizes the distance to the nearest points   in either class, that distance is often called margin.</p>
-
 <p><strong>Identify the right hyper-plane (Scenario-3)</strong></p>
-
-<p><center> <img src="/img/svm/gambar3.jpg"> </center></p>
-
+<!-- raw HTML omitted -->
 <p>SVM selects the hyper-plane which classifies the classes accurately prior to maximizing   margin.So For SVM , you are triying to classify correctly and subject to that         constraint, you maximize the margin. Here, hyper-plane B has a classification error and A   has classified all correctly. Therefore, the right hyper-plane is A.</p>
-
 <p><strong>Identify the right hyper-plane (Scenario-4)</strong></p>
-
 <p>So sometimes for SVM, it seems impossible to do right job. For example, you might have   a data set just like this. In which clearly no decision surface exist that would   separate the two classes, you can think of the point down here as an outlier</p>
-
-<p><center> <img src="/img/svm/gambar4.jpg"> </center></p>
-
+<!-- raw HTML omitted -->
 <p>SVM has a feature to ignore outliers and find the hyper-plane that has maximum margin. Hence, we can say, SVM is robust to outliers.</p>
-
-<p><center> <img src="/img/svm/gambar5.jpg"> </center></p>
-
+<!-- raw HTML omitted -->
 <h3 id="the-kernel-trick">The Kernel Trick</h3>
-
 <p>In the scenario below, we can&rsquo;t have linear hyper-plane between the two classes, so how does SVM classify these two classes? Till now, we have only looked at the linear hyper-plane.</p>
-
-<p><center> <img src="/img/svm/gambar6.jpg"> </center></p>
-
+<!-- raw HTML omitted -->
 <p>SVM can solve this problem Easily! It solves this problem by introducing additional feature. Here, we will add a new feature z=x^2+y^2. Now, let&rsquo;s plot the data points on axis x and z.</p>
-
-<p><center> <img src="/img/svm/gambar7.jpg"> </center></p>
-
+<!-- raw HTML omitted -->
 <p>When we look at the hyper-plane in original input space it looks like a circle.</p>
-
-<p><center> <img src="/img/svm/gambar10.jpg"> </center></p>
-
+<!-- raw HTML omitted -->
 <p>SVM has a technique called the kernel trick. These are functions which takes low dimensional input space and transform it to a higher dimensional space i.e. it converts not separable problem to separable problem, these functions are called kernels.</p>
-
 <p>In R, there are 4 various options available with kernel. They are linear, radial, polynomial and sigmoid.</p>
-
 <h3 id="parameters-in-svm">Parameters in SVM</h3>
-
 <p>Parameters in SVM are kernel, c (cost function) and gamma. C is a parameter that controls tradeoff between smooth decision boundary and classifying training points correctly. Small C makes the cost of misclassificaiton low (&ldquo;soft margin&rdquo;), thus allowing more of them for the sake of wider cushion and conversely Large C makes the cost of misclassification high (&lsquo;hard margin&rdquo;), thus forcing the algorithm to explain the input data stricter and potentially overfit. In the other side, gamma parameter  defines how far the influence of a single training example reaches, if gamma has a low value, then that means that every point has a far reach, and conversely high values means that each training example only has a close reach.</p>
-
 <h3 id="strengths-and-weaknesses-of-svm">Strengths and Weaknesses of SVM</h3>
-
 <p><strong>Strengths</strong></p>
-
 <ol>
 <li>Tradeoff between classifier complexity and error can be controlled explicitly</li>
 <li>SVMs work very well in practice, even with very small training</li>
 <li>It uses a subset of training points in the decision function (called support vectors), so it is also memory efficient</li>
 </ol>
-
 <p><strong>Weaknesses</strong></p>
-
 <p>Need to choose a &ldquo;good&rdquo; kernel function</p>
-
 <h3 id="how-to-determine-the-optimal-parameters">How to determine the optimal parameters?</h3>
-
 <p>there&rsquo;s no way to figure out which kernel would do the best for a particular problem. The only way to choose the best kernel is to actually try out all possible kernels, and choose the one that does the best empirically. However, we can still look at some differences between various kernel functions, to have some rules of thumb. When data is not linearly separable the first choice is always a Radial kernels because the Radial kernel have the properties that tend to make Radial kernel better in general, for most problems.They are:</p>
-
 <ol>
 <li>Translation invariance: The radial kernel is the only non-linear kernel that is translation invariant,</li>
 <li>Radial kernel is a function of the Euclidean distance between the points, whereas all other kernels are functions of inner product of the points.</li>
 <li>Normalized: A kernel is said to be normalized if K(x,x)=1 for all x. This is true for only RBF kernel in the above list.</li>
 </ol>
-
 <p>In order to find the optimum values of C and gamma parameter, we can use grid Search along with Cross Validation. In R , you can use tune.svm for finding the best model.</p>
-
 <h2 id="svm-in-r">SVM in R</h2>
-
 <p>The e1071 package in R is used to create Support Vector Machines with ease.</p>
-
 <h3 id="svm-for-classification">SVM for Classification</h3>
-
 <p>Let&rsquo;s apply what we learn above to do classification using 1000 past records of bank loans, each with a variable <code>default</code> that indicates whether the applicant did default on the loan.</p>
-
-<pre><code class="language-r">loans &lt;- read.csv(&quot;data_input/loan.csv&quot;)
-colnames(loans)
-</code></pre>
-
-<pre><code>##  [1] &quot;checking_balance&quot;     &quot;months_loan_duration&quot; &quot;credit_history&quot;      
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">loans <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/loan.csv&#34;</span>)
+<span style="color:#a6e22e">colnames</span>(loans)
+</code></pre></div><pre><code>##  [1] &quot;checking_balance&quot;     &quot;months_loan_duration&quot; &quot;credit_history&quot;      
 ##  [4] &quot;purpose&quot;              &quot;amount&quot;               &quot;savings_balance&quot;     
 ##  [7] &quot;employment_duration&quot;  &quot;percent_of_income&quot;    &quot;years_at_residence&quot;  
 ## [10] &quot;age&quot;                  &quot;other_credit&quot;         &quot;housing&quot;             
 ## [13] &quot;existing_loans_count&quot; &quot;job&quot;                  &quot;dependents&quot;          
 ## [16] &quot;phone&quot;                &quot;default&quot;
-</code></pre>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">10</span>)
+<span style="color:#75715e"># select 900 values randomly from 1:1000</span>
+rand.vec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1000</span>,<span style="color:#ae81ff">900</span>)
+loans.train <span style="color:#f92672">&lt;-</span> loans[rand.vec, ] 
+loans.test <span style="color:#f92672">&lt;-</span> loans[<span style="color:#f92672">-</span>rand.vec, ]
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(e1071)
+<span style="color:#a6e22e">library</span>(gmodels)
+modelsvm1<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;linear&#34;</span>)
+modelsvm2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radial&#34;</span>)
 
-<pre><code class="language-r">set.seed(10)
-# select 900 values randomly from 1:1000
-rand.vec &lt;- sample(1:1000,900)
-loans.train &lt;- loans[rand.vec, ] 
-loans.test &lt;- loans[-rand.vec, ]
-</code></pre>
-
-<pre><code class="language-r">library(e1071)
-library(gmodels)
-modelsvm1&lt;-svm(default~., data=loans.train, kernel=&quot;linear&quot;)
-modelsvm2&lt;-svm(default~., data=loans.train, kernel=&quot;radial&quot;)
-
-preds1&lt;-predict(modelsvm1,loans.test[,-17])
-preds2&lt;-predict(modelsvm2,loans.test[,-17])
-CrossTable(preds1,loans.test$default)
-</code></pre>
-
-<pre><code>## 
+preds1<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predict</span>(modelsvm1,loans.test[,<span style="color:#ae81ff">-17</span>])
+preds2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predict</span>(modelsvm2,loans.test[,<span style="color:#ae81ff">-17</span>])
+<span style="color:#a6e22e">CrossTable</span>(preds1,loans.test<span style="color:#f92672">$</span>default)
+</code></pre></div><pre><code>## 
 ##  
 ##    Cell Contents
 ## |-------------------------|
@@ -686,12 +629,8 @@ CrossTable(preds1,loans.test$default)
 ## -------------|-----------|-----------|-----------|
 ## 
 ## 
-</code></pre>
-
-<pre><code class="language-r">CrossTable(preds2,loans.test$default)
-</code></pre>
-
-<pre><code>## 
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">CrossTable</span>(preds2,loans.test<span style="color:#f92672">$</span>default)
+</code></pre></div><pre><code>## 
 ##  
 ##    Cell Contents
 ## |-------------------------|
@@ -726,15 +665,10 @@ CrossTable(preds1,loans.test$default)
 ## -------------|-----------|-----------|-----------|
 ## 
 ## 
-</code></pre>
-
-<p>the svm radial kernel perform better with the 79% accuracy. Let&rsquo;s tune the c and gamma parameter using &lsquo;tune.svm()&rsquo; function.</p>
-
-<pre><code class="language-r">svmmodel&lt;-tune.svm(default~., data = loans.test, kernel=&quot;radial&quot;,gamma =seq(0.01,0.1,len=10), cost=seq(5,50,len=10),tunecontrol=tune.control(cross=5))
-summary(svmmodel)
-</code></pre>
-
-<pre><code>## 
+</code></pre><p>the svm radial kernel perform better with the 79% accuracy. Let&rsquo;s tune the c and gamma parameter using &lsquo;tune.svm()&rsquo; function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">svmmodel<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">tune.svm</span>(default<span style="color:#f92672">~</span>., data <span style="color:#f92672">=</span> loans.test, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radial&#34;</span>,gamma <span style="color:#f92672">=</span><span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,len<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>), cost<span style="color:#f92672">=</span><span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">50</span>,len<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>),tunecontrol<span style="color:#f92672">=</span><span style="color:#a6e22e">tune.control</span>(cross<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>))
+<span style="color:#a6e22e">summary</span>(svmmodel)
+</code></pre></div><pre><code>## 
 ## Parameter tuning of 'svm':
 ## 
 ## - sampling method: 5-fold cross validation 
@@ -847,17 +781,12 @@ summary(svmmodel)
 ## 98   0.08   50  0.31 0.08944272
 ## 99   0.09   50  0.31 0.08944272
 ## 100  0.10   50  0.30 0.07905694
-</code></pre>
+</code></pre><p>The methods above give gamma= 0.03 and c=5 as optimal paramters. lets apply this result to our svm model to know wether the model would perform better or not.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">svmmodelrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radial&#34;</span>, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">0.03</span>,cost<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+predsrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predict</span>(svmmodelrad,loans.test[,<span style="color:#ae81ff">-17</span>])
 
-<p>The methods above give gamma= 0.03 and c=5 as optimal paramters. lets apply this result to our svm model to know wether the model would perform better or not.</p>
-
-<pre><code class="language-r">svmmodelrad&lt;-svm(default~., data=loans.train, kernel=&quot;radial&quot;, gamma=0.03,cost=5)
-predsrad&lt;-predict(svmmodelrad,loans.test[,-17])
-
-CrossTable(predsrad,loans.test$default)
-</code></pre>
-
-<pre><code>## 
+<span style="color:#a6e22e">CrossTable</span>(predsrad,loans.test<span style="color:#f92672">$</span>default)
+</code></pre></div><pre><code>## 
 ##  
 ##    Cell Contents
 ## |-------------------------|
@@ -892,9 +821,7 @@ CrossTable(predsrad,loans.test$default)
 ## -------------|-----------|-----------|-----------|
 ## 
 ## 
-</code></pre>
-
-<p>Although the tune method doesn&rsquo;t give the higher accuracy, but it reduce the number of false negatives.</p>
+</code></pre><p>Although the tune method doesn&rsquo;t give the higher accuracy, but it reduce the number of false negatives.</p>
 
   </div>
 
@@ -962,9 +889,6 @@ CrossTable(predsrad,loans.test$default)
 
 
 <ul class="actions pagination">
-    
-        <li><a href="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression/"
-                class="button big previous"></a></li>
     
 
     

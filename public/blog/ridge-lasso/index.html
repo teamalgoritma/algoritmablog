@@ -21,10 +21,10 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-12-18 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2019-12-18 00:00:00 \x2b0000 UTC",
+        "datePublished": "2019-12-18 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2019-12-18 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/ridge-lasso\/",
-        "wordCount" : "3767",
+        "wordCount" : "3718",
         "keywords" : [ "regression","Machine Learning","overfitting","Regularization","Blog" ]
     }
     </script>
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.55.4" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -77,28 +77,24 @@ Ordinary Least Squares (OLS) is the most common estimation method for linear mod
 But in the real world to meet OLS regression assumptions will be very difficult." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/ridge-lasso/" />
-<meta property="article:published_time" content="2019-12-18T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-12-18T00:00:00&#43;00:00"/>
+<meta property="article:published_time" content="2019-12-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-18T00:00:00+00:00" />
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        
-<meta itemprop="name" content="Ridge and LASSO Regression">
+        <meta itemprop="name" content="Ridge and LASSO Regression">
 <meta itemprop="description" content="Overview Regression analysis is a way that can be used to determine the relationship between the predictor variable (x) and the target variable (y).
 Ordinary Least Squares (OLS) is the most common estimation method for linear models and it applies for good reasons. As long as your model meets the OLS assumptions for linear regression, you can rest easy knowing that you get the best estimate.
 But in the real world to meet OLS regression assumptions will be very difficult.">
-
-
 <meta itemprop="datePublished" content="2019-12-18T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-12-18T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="3767">
+<meta itemprop="wordCount" content="3718">
 
 
 
 <meta itemprop="keywords" content="regression,Machine Learning,overfitting,Regularization," />
-
         
 
         
@@ -282,6 +278,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-i-can-t-get-no/">Rplicate Series: I can&#39;t get no ...</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-10-26'>
+                                    October 26, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/topic-modeling-lda/">Topic Modelling with Latent Dirichlet Allocation (LDA)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -323,18 +331,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-02'>
                                     October 2, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/skincare-recommender-system/">Skincare Recommendation System</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-09-01'>
-                                    September 1, 2020</time>
                             </header>
                             
 
@@ -498,230 +494,139 @@ if (!doNotTrack) {
   
 
   <div id="content">
-    
-
-<h2 id="overview">Overview</h2>
-
+    <h2 id="overview">Overview</h2>
 <p>Regression analysis is a way that can be used to determine the relationship between the predictor variable (x) and the target variable (y).</p>
-
 <p>Ordinary Least Squares (OLS) is the most common estimation method for linear models and it applies for good reasons. As long as your model meets the OLS assumptions for linear regression, you can rest easy knowing that you get the best estimate.</p>
-
 <p>But in the real world to meet OLS regression assumptions will be very difficult. Especially the assumption of &ldquo;Multicollinearity&rdquo;. Multicollinearity assumptions occur when the predictor variables are highly correlated with each other and there are many predictors. This is reflected in the formula for variance given above: if m approaches n, the variance approaches infinity. When multicollinearity occurs, the OLS estimator will <em>tend</em> to have very large variants, although with small bias. However, estimators that have very large variants will produce poor estimates. This phenomenon is referred to as <strong>Overfitting</strong>.</p>
-
-<p>This graphic illustrates (Figure 1) what bias and variance are. Imagine the bull&rsquo;s-eye is the true population parameter that we are estimating, β, and the shots at it are the values of our estimates resulting from four different estimators
-- low bias and variance,</p>
-
+<p>This graphic illustrates (Figure 1) what bias and variance are. Imagine the bull&rsquo;s-eye is the true population parameter that we are estimating, β, and the shots at it are the values of our estimates resulting from four different estimators</p>
 <ul>
-<li><p>high bias and variance,</p></li>
-
-<li><p>low bias and high variance,</p></li>
-
-<li><p>high bias and low variance.</p></li>
+<li>
+<p>low bias and variance,</p>
+</li>
+<li>
+<p>high bias and variance,</p>
+</li>
+<li>
+<p>low bias and high variance,</p>
+</li>
+<li>
+<p>high bias and low variance.</p>
+</li>
 </ul>
-
-<div class="figure" style="text-align: center">
-<img src="/img/ridge-lasso/ridge_lasso_fig1.jpg" alt=" Bias and Variance (source: Shenoy, Aditi, 2019, What is Bias, Variance and Bias-Variance Tradeoff?)"  />
-<p class="caption">Figure 1:  Bias and Variance (source: Shenoy, Aditi, 2019, What is Bias, Variance and Bias-Variance Tradeoff?)</p>
-</div>
-
+<!-- raw HTML omitted -->
 <p>Let’s say we have model which is very accurate, therefore the error of our model will be low, meaning a low bias and low variance as shown in first figure.  All the data points fit within the bulls-eye.</p>
-
 <p>Now how this bias and variance is balanced to have a perfect model? Take a look at the image below and try to understand.</p>
-
-<div class="figure" style="text-align: center">
-<img src="/img/ridge-lasso/ridge_lasso_fig2.png" alt="Bias Variance Tradeoff (source: Hsieh, Ben, 2012, Understanding the Bias-Variance Tradeoff in k means clustering)"  />
-<p class="caption">Figure 2: Bias Variance Tradeoff (source: Hsieh, Ben, 2012, Understanding the Bias-Variance Tradeoff in k means clustering)</p>
-</div>
-
+<!-- raw HTML omitted -->
 <p>In the picture above, it can be seen based on the complexity of the model that has 2 possible errors, namely:</p>
-
 <ol>
-<li><p>Underfitting</p></li>
-
-<li><p>Overfitting</p></li>
+<li>
+<p>Underfitting</p>
+</li>
+<li>
+<p>Overfitting</p>
+</li>
 </ol>
-
 <p>To overcome <strong>Underfitting</strong> or high bias, we can basically add new parameters to our model so that the model complexity increases, and thus reducing high bias.</p>
-
 <p>As a complexity model, which in the case of linear regression can be considered as the number of predictors, it increases, the expected variance also increases, but the bias decreases. An impartial OLS will place us on the right side of the image, which is far from optimal, this term is called <strong>Overfitting</strong>.</p>
-
 <p>Now, how can we overcome Overfitting for a regression model?</p>
-
 <p>Basically there are two methods to overcome overfitting,</p>
-
 <p><strong>1. Reduce the model complexity</strong>,</p>
-
 <p>To reduce the complexity of the model we can use stepwise Regression (forward or backward) selection for this, but that way we would not be able to tell anything about the removed variables&rsquo; effect on the response.</p>
-
 <p>But we will introduce you to 2 Regularization Regression methods that are quite good and can be used to overcome overfitting obstacles.</p>
-
 <p><strong>2. Regularization.</strong></p>
-
 <h2 id="regularization">Regularization</h2>
-
 <p>Regularization is a regression technique, which limits, regulates or shrinks the estimated coefficient towards zero. In other words, this technique does not encourage learning of more complex or flexible models, so as to avoid the risk of overfitting.</p>
-
 <p>The formula for Multiple Linear Regression looks like this.</p>
-
 <p><code>$$y = \beta_{0} + \beta_{i}x_{i}$$</code></p>
-
 <p>Here Y represents the relationship studied and β represents the estimated coefficient for different variables or predictors (X).</p>
-
 <p>The procedure for selecting a regression line uses an error value, known as Sum Square Error (SSE). Regression lines are formed when minimizing SSE values.</p>
-
 <p>Where the SSE formula is as follows:</p>
-
 <p><code>$$SSE =\sum_{x = 1}^{n} (y_{i}-\hat{y}_{i})^2$$</code></p>
-
 <p>That&rsquo;s why if I want to predict house prices based on land area, but I only have 2 data train like Figure 3a below,</p>
-
-<div class="figure" style="text-align: center">
-<img src="/img/ridge-lasso/ridge_lasso_ffff1.png" alt="OLS Regression"  />
-<p class="caption">Figure 3: OLS Regression</p>
-</div>
-
+<!-- raw HTML omitted -->
 <p>then the regression model (line) that I have is like figure 3.</p>
-
 <p>But the problem is what if it turns out I have test data and its distribution is like the blue dot below?</p>
-
-<div class="figure" style="text-align: center">
-<img src="/img/ridge-lasso/ridge_lasso_ffff2.png" alt="Overfitting"  />
-<p class="caption">Figure 4: Overfitting</p>
-</div>
-
+<!-- raw HTML omitted -->
 <p>Figure 4 above shows that if we have a regression line in orange, and want to predict test data like the blue dot above, the estimator has a very large variance even though it has a small bias value, and The regression model formed is very good for the data train but bad for the test data. When the phenomenon occurs, the model built is subject to <em>overfitting</em> problems.</p>
-
 <p>There are two types of regression that are quite familiar and use this Regularization technique, namely:</p>
-
 <ol>
-<li><p>Ridge Regression</p></li>
-
-<li><p>Lasso Regression</p></li>
+<li>
+<p>Ridge Regression</p>
+</li>
+<li>
+<p>Lasso Regression</p>
+</li>
 </ol>
-
 <h2 id="ridge-regression">Ridge Regression</h2>
-
 <p>Ridge Regression is a variation of linear regression. We use ridge regression to tackle the multicollinearity problem. Due to multicollinearity, we see a very large variance in the least square estimates of the model. So to reduce this variance a degree of bias is added to the regression estimates.</p>
-
 <p>Ordinary Least Square (OLS) will create a model by minimizing the value of Sum Square Error (SSE), Whereas The Rigde regression will create a model by minimizing :</p>
-
 <p><code>$$SSE + λ \sum_{i = 1}^{n} (\beta_{i})^2$$</code></p>
-
-<div class="figure" style="text-align: center">
-<img src="/img/ridge-lasso/ridge_lasso_ffff3.png" alt="Ridge Regression"  />
-<p class="caption">Figure 5: Ridge Regression</p>
-</div>
-
+<!-- raw HTML omitted -->
 <p>It can be seen that the main idea of Ridge Regression is to add a little bias to reduce the value of the variance estimator.</p>
-
 <p>It can be seen that the greater the value of λ (lambda) the regression line will be more horizontal, so the coefficient value approaches 0.</p>
-
-<div class="figure" style="text-align: center">
-<img src="/img/ridge-lasso/ridge_lasso_ffff5.png" alt="Lambda Parameter"  />
-<p class="caption">Figure 6: Lambda Parameter</p>
-</div>
-
+<!-- raw HTML omitted -->
 <p><strong>If λ = 0, the output is similar to simple linear regression.</strong></p>
-
 <p><strong>If λ = very large , the coefficients value approaches 0.</strong></p>
-
 <h2 id="lasso-regression">Lasso Regression</h2>
-
 <p>LASSO (Least Absolute Shrinkage Selector Operator), The algorithm is another variation of linear regression like ridge regression. We use lasso regression when we have large number of predictor variables.</p>
-
 <p>The equation of LASSO is similar to ridge regression and looks like as given below.</p>
-
 <p><code>$$SSE + λ \sum_{i = 1}^{n} |\beta_{i}|$$</code></p>
-
 <p>Here the objective is as follows: If λ = 0, We get same coefficients as linear regression If λ = vary large, All coefficients are shriked towards zero.</p>
-
 <p><strong>The main difference between Ridge and LASSO Regression is that if ridge regression can shrink the coefficient close to 0 so that all predictor variables are retained. Whereas LASSO can shrink the coefficient to exactly 0 so that LASSO can select and discard the predictor variables that have the right coefficient of 0.</strong></p>
-
 <h2 id="ordinary-least-square-ols-regression">Ordinary Least Square (OLS) Regression</h2>
-
 <h3 id="libraries">Libraries</h3>
-
 <p>The first thing to do is to prepare several libraries as below.</p>
-
-<pre><code class="language-r">library(glmnet)  
-library(caret)  
-library(dplyr)   
-library(car)
-library(nnet)
-library(GGally)
-library(lmtest)
-</code></pre>
-
-<h3 id="read-data">Read Data</h3>
-
-<pre><code class="language-r">data(mtcars)
-mtcars &lt;- mtcars %&gt;% 
-  select(-vs, -am)
-head(mtcars)
-</code></pre>
-
-<pre><code>#&gt;                    mpg cyl disp  hp drat    wt  qsec gear carb
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(glmnet)  
+<span style="color:#a6e22e">library</span>(caret)  
+<span style="color:#a6e22e">library</span>(dplyr)   
+<span style="color:#a6e22e">library</span>(car)
+<span style="color:#a6e22e">library</span>(nnet)
+<span style="color:#a6e22e">library</span>(GGally)
+<span style="color:#a6e22e">library</span>(lmtest)
+</code></pre></div><h3 id="read-data">Read Data</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data</span>(mtcars)
+mtcars <span style="color:#f92672">&lt;-</span> mtcars <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>vs, <span style="color:#f92672">-</span>am)
+<span style="color:#a6e22e">head</span>(mtcars)
+</code></pre></div><pre><code>#&gt;                    mpg cyl disp  hp drat    wt  qsec gear carb
 #&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46    4    4
 #&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02    4    4
 #&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61    4    1
 #&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44    3    1
 #&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02    3    2
 #&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22    3    1
-</code></pre>
-
-<p>Now we will try to create an OLS model using <code>mtcars</code> data, which consists of 32 observations (rows) and 11 variables:</p>
-
-<p>[, 1]   mpg Miles/(US) gallon</p>
-
-<p>[, 2]   cyl Number of cylinders</p>
-
-<p>[, 3]   disp    Displacement (cu.in.)</p>
-
-<p>[, 4]   hp  Gross horsepower</p>
-
-<p>[, 5]   drat    Rear axle ratio</p>
-
-<p>[, 6]   wt  Weight (1000 lbs)</p>
-
-<p>[, 7]   qsec    <sup>1</sup>&frasl;<sub>4</sub> mile time</p>
-
-<p>[, 8]   gear    Number of forward gears</p>
-
-<p>[, 9]   carb    Number of carburetors</p>
-
+</code></pre><p>Now we will try to create an OLS model using <code>mtcars</code> data, which consists of 32 observations (rows) and 11 variables:</p>
+<p>[, 1]	mpg	Miles/(US) gallon</p>
+<p>[, 2]	cyl	Number of cylinders</p>
+<p>[, 3]	disp	Displacement (cu.in.)</p>
+<p>[, 4]	hp	Gross horsepower</p>
+<p>[, 5]	drat	Rear axle ratio</p>
+<p>[, 6]	wt	Weight (1000 lbs)</p>
+<p>[, 7]	qsec	1/4 mile time</p>
+<p>[, 8]	gear	Number of forward gears</p>
+<p>[, 9]	carb	Number of carburetors</p>
 <p>In this case, OLS Regression, Ridge Regression, and LASSO Regression will be applied to predict <em>mpg</em> based on 10 other predictor variables.</p>
-
 <ul>
 <li>Correlation</li>
 </ul>
-
-<pre><code class="language-r">ggcorr(mtcars, label = T)
-</code></pre>
-
-<p><img src="/blog/2019-12-18-ridge-lasso_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggcorr</span>(mtcars, label <span style="color:#f92672">=</span> T)
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <h3 id="data-partition">Data Partition</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">head</span>(mtcars,<span style="color:#ae81ff">24</span>)
+test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tail</span>(mtcars,<span style="color:#ae81ff">8</span>)[,<span style="color:#ae81ff">-1</span>]
 
-<pre><code class="language-r">train &lt;- head(mtcars,24)
-test &lt;- tail(mtcars,8)[,-1]
+<span style="color:#75715e">## Split Data for Ridge and LASSO model</span>
 
-## Split Data for Ridge and LASSO model
+xtrain <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">model.matrix</span>(mpg<span style="color:#f92672">~</span>., train)[,<span style="color:#ae81ff">-1</span>]
+ytrain <span style="color:#f92672">&lt;-</span> train<span style="color:#f92672">$</span>mpg
 
-xtrain &lt;- model.matrix(mpg~., train)[,-1]
-ytrain &lt;- train$mpg
-
-test2 &lt;-  tail(mtcars,8)
-ytest &lt;- tail(mtcars,8)[,1]
-xtest &lt;- model.matrix(mpg~., test2)[,-1] 
-</code></pre>
-
-<h3 id="ols-regression-model">OLS Regression Model</h3>
-
-<pre><code class="language-r">ols &lt;- lm(mpg~., train)
-summary(ols)
-</code></pre>
-
-<pre><code>#&gt; 
+test2 <span style="color:#f92672">&lt;-</span>  <span style="color:#a6e22e">tail</span>(mtcars,<span style="color:#ae81ff">8</span>)
+ytest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tail</span>(mtcars,<span style="color:#ae81ff">8</span>)[,<span style="color:#ae81ff">1</span>]
+xtest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">model.matrix</span>(mpg<span style="color:#f92672">~</span>., test2)[,<span style="color:#ae81ff">-1</span>] 
+</code></pre></div><h3 id="ols-regression-model">OLS Regression Model</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(mpg<span style="color:#f92672">~</span>., train)
+<span style="color:#a6e22e">summary</span>(ols)
+</code></pre></div><pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = mpg ~ ., data = train)
 #&gt; 
@@ -744,144 +649,97 @@ summary(ols)
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; 
 #&gt; Residual standard error: 2.553 on 15 degrees of freedom
-#&gt; Multiple R-squared:  0.8886, Adjusted R-squared:  0.8293 
+#&gt; Multiple R-squared:  0.8886,	Adjusted R-squared:  0.8293 
 #&gt; F-statistic: 14.96 on 8 and 15 DF,  p-value: 0.000007346
-</code></pre>
-
-<h3 id="assumption-checking-of-ols-regression-model">Assumption Checking of OLS Regression Model</h3>
-
+</code></pre><h3 id="assumption-checking-of-ols-regression-model">Assumption Checking of OLS Regression Model</h3>
 <p>Linear regression is an analysis that assesses whether one or more predictor variables explain the dependent (criterion) variable.  The regression has four key assumptions:</p>
-
 <p><strong>1. Linearity</strong></p>
-
 <p>linear regression needs the relationship between the predictor and target variables to be linear.  To test this linearity you can use the <code>cor.test ()</code> function.</p>
-
 <ul>
-<li><p>H0 : Correlation is not significant</p></li>
-
-<li><p>H1 : Correlation is Significant</p></li>
+<li>
+<p>H0 : Correlation is not significant</p>
+</li>
+<li>
+<p>H1 : Correlation is Significant</p>
+</li>
 </ul>
-
-<pre><code class="language-r">cbind(cor.test(mtcars$mpg,mtcars$cyl)[[3]],
-cor.test(mtcars$mpg,mtcars$disp)[[3]],
-cor.test(mtcars$mpg,mtcars$hp)[[3]],
-cor.test(mtcars$mpg,mtcars$drat)[[3]],
-cor.test(mtcars$mpg,mtcars$wt)[[3]],
-cor.test(mtcars$mpg,mtcars$qsec)[[3]],
-cor.test(mtcars$mpg,mtcars$gear)[[3]],
-cor.test(mtcars$mpg,mtcars$carb)[[3]])
-</code></pre>
-
-<pre><code>#&gt;                    [,1]               [,2]            [,3]         [,4]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cbind</span>(<span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>cyl)[[3]],
+<span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>disp)[[3]],
+<span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>hp)[[3]],
+<span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>drat)[[3]],
+<span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>wt)[[3]],
+<span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>qsec)[[3]],
+<span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>gear)[[3]],
+<span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>carb)[[3]])
+</code></pre></div><pre><code>#&gt;                    [,1]               [,2]            [,3]         [,4]
 #&gt; [1,] 0.0000000006112687 0.0000000009380327 0.0000001787835 0.0000177624
 #&gt;                    [,5]       [,6]        [,7]        [,8]
 #&gt; [1,] 0.0000000001293959 0.01708199 0.005400948 0.001084446
-</code></pre>
-
-<p>From the p-values above shows each predictor variable has a <strong>significant correlation</strong> on the target variable (mpg).</p>
-
+</code></pre><p>From the p-values above shows each predictor variable has a <strong>significant correlation</strong> on the target variable (mpg).</p>
 <p><strong>2. Normalitas Residual</strong></p>
-
 <p>OLS Regression requires residuals from a standard normal distribution model. Why? because if the residuals have a normal standard distribution, then the residual distribution is spread around with mean 0 and some variance.</p>
-
 <ul>
-<li><p>H0 : Residuals are normally distributed</p></li>
-
-<li><p>H1 : Residuals are not normally distributed</p></li>
+<li>
+<p>H0 : Residuals are normally distributed</p>
+</li>
+<li>
+<p>H1 : Residuals are not normally distributed</p>
+</li>
 </ul>
-
-<pre><code class="language-r">shapiro.test(ols$residuals)
-</code></pre>
-
-<pre><code>#&gt; 
-#&gt;  Shapiro-Wilk normality test
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">shapiro.test</span>(ols<span style="color:#f92672">$</span>residuals)
+</code></pre></div><pre><code>#&gt; 
+#&gt; 	Shapiro-Wilk normality test
 #&gt; 
 #&gt; data:  ols$residuals
 #&gt; W = 0.99087, p-value = 0.9979
-</code></pre>
-
-<p>Based on the above results obtained p-value (0.1709) &gt; alpha (0.05) so that it was concluded that Residuals are normally distributed.</p>
-
+</code></pre><p>Based on the above results obtained p-value (0.1709) &gt; alpha (0.05) so that it was concluded that Residuals are normally distributed.</p>
 <p><strong>3. No Heteroskedasticity</strong></p>
-
 <p>The assumption of No Heteroskedasticity or No Homoskedasticity means that the residual model has a homogeneous variant, and does not form a pattern. The No Heteroskedasticity assumption can be tested using the <code>bptest ()</code> function.</p>
-
 <ul>
-<li><p>H0 : Distributed residuals are homogenous</p></li>
-
-<li><p>H1 : Distributed residuals are heterogenous</p></li>
+<li>
+<p>H0 : Distributed residuals are homogenous</p>
+</li>
+<li>
+<p>H1 : Distributed residuals are heterogenous</p>
+</li>
 </ul>
-
-<pre><code class="language-r">bptest(ols)
-</code></pre>
-
-<pre><code>#&gt; 
-#&gt;  studentized Breusch-Pagan test
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">bptest</span>(ols)
+</code></pre></div><pre><code>#&gt; 
+#&gt; 	studentized Breusch-Pagan test
 #&gt; 
 #&gt; data:  ols
 #&gt; BP = 15.888, df = 8, p-value = 0.044
-</code></pre>
-
-<p>Based on the above results obtained p-value (0.0356) &lt; alpha (0.05) so it can be concluded that resDistributed residuals are heterogenous</p>
-
+</code></pre><p>Based on the above results obtained p-value (0.0356) &lt; alpha (0.05) so it can be concluded that resDistributed residuals are heterogenous</p>
 <p><strong>4. No Multicolinearity</strong></p>
-
 <p>Multicollinearity is a condition where there are at least 2 predictor variables that have a strong relationship. We expect that there is <strong>no multicollinearity</strong>. Multicollinearity is marked if the Variance Inflation Factor (VIF) value is &gt; 10.</p>
-
-<pre><code class="language-r">vif(ols)
-</code></pre>
-
-<pre><code>#&gt;       cyl      disp        hp      drat        wt      qsec      gear 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">vif</span>(ols)
+</code></pre></div><pre><code>#&gt;       cyl      disp        hp      drat        wt      qsec      gear 
 #&gt; 14.649665 19.745238 11.505313  7.234090 18.973493  5.619677  8.146065 
 #&gt;      carb 
 #&gt;  8.646147
-</code></pre>
-
-<p>In the above output, there are 7 predictor variables that have a VIF value &gt; 10. This indicates that the estimator model of the ols model has a <strong>large variance (Overfitting Problem)</strong>.</p>
-
+</code></pre><p>In the above output, there are 7 predictor variables that have a VIF value &gt; 10. This indicates that the estimator model of the ols model has a <strong>large variance (Overfitting Problem)</strong>.</p>
 <h3 id="evidence-of-overfitting">Evidence of Overfitting</h3>
-
 <p>Let&rsquo;s prove it by comparing the MSE (Mean Square Error) error value between the data train and the test data.</p>
-
 <ul>
 <li>Data Train</li>
 </ul>
-
-<pre><code class="language-r">ols_pred &lt;- predict(ols, newdata = train)
-mean((ols_pred-ytrain)^2)
-</code></pre>
-
-<pre><code>#&gt; [1] 4.072081
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> train)
+<span style="color:#a6e22e">mean</span>((ols_pred<span style="color:#f92672">-</span>ytrain)^2)
+</code></pre></div><pre><code>#&gt; [1] 4.072081
+</code></pre><ul>
 <li>Data Test</li>
 </ul>
-
-<pre><code class="language-r">ols_pred &lt;- predict(ols, newdata = test)
-mean((ols_pred-ytest)^2)
-</code></pre>
-
-<pre><code>#&gt; [1] 22.15188
-</code></pre>
-
-<p>As mentioned above, one way to overcome overfitting can be to reduce the dimensions using the Stepwise Regression method.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> test)
+<span style="color:#a6e22e">mean</span>((ols_pred<span style="color:#f92672">-</span>ytest)^2)
+</code></pre></div><pre><code>#&gt; [1] 22.15188
+</code></pre><p>As mentioned above, one way to overcome overfitting can be to reduce the dimensions using the Stepwise Regression method.</p>
 <p>Stepwise regression is a combination of forwarding and backward methods, the first variable entered is the variable with the highest and significant correlation with the dependent variable, the second incoming variable is the variable with the highest and still significant correlation after certain variables enter the model then other variables that is in the model is evaluated, if there are variables that are not significant then the variable is excluded.</p>
-
 <h2 id="stepwise-regression">Stepwise Regression</h2>
-
-<pre><code class="language-r">names(mtcars)
-</code></pre>
-
-<pre><code>#&gt; [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;gear&quot; &quot;carb&quot;
-</code></pre>
-
-<pre><code class="language-r">lm.all &lt;- lm(mpg ~., train)
-stepwise_mod &lt;- step(lm.all, direction=&quot;backward&quot;)
-</code></pre>
-
-<pre><code>#&gt; Start:  AIC=51.7
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">names</span>(mtcars)
+</code></pre></div><pre><code>#&gt; [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;gear&quot; &quot;carb&quot;
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">lm.all <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(mpg <span style="color:#f92672">~</span>., train)
+stepwise_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">step</span>(lm.all, direction<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;backward&#34;</span>)
+</code></pre></div><pre><code>#&gt; Start:  AIC=51.7
 #&gt; mpg ~ cyl + disp + hp + drat + wt + qsec + gear + carb
 #&gt; 
 #&gt;        Df Sum of Sq     RSS    AIC
@@ -949,12 +807,8 @@ stepwise_mod &lt;- step(lm.all, direction=&quot;backward&quot;)
 #&gt; - gear  1    21.151 125.81 45.761
 #&gt; - drat  1    57.478 162.14 51.849
 #&gt; - carb  1   259.357 364.01 71.259
-</code></pre>
-
-<pre><code class="language-r">summary(stepwise_mod)
-</code></pre>
-
-<pre><code>#&gt; 
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">summary</span>(stepwise_mod)
+</code></pre></div><pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = mpg ~ drat + gear + carb, data = train)
 #&gt; 
@@ -972,51 +826,31 @@ stepwise_mod &lt;- step(lm.all, direction=&quot;backward&quot;)
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; 
 #&gt; Residual standard error: 2.288 on 20 degrees of freedom
-#&gt; Multiple R-squared:  0.8808, Adjusted R-squared:  0.8629 
+#&gt; Multiple R-squared:  0.8808,	Adjusted R-squared:  0.8629 
 #&gt; F-statistic: 49.24 on 3 and 20 DF,  p-value: 0.000000002032
-</code></pre>
-
-<pre><code class="language-r">vif(stepwise_mod)
-</code></pre>
-
-<pre><code>#&gt;     drat     gear     carb 
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">vif</span>(stepwise_mod)
+</code></pre></div><pre><code>#&gt;     drat     gear     carb 
 #&gt; 3.232190 3.220083 1.011370
-</code></pre>
-
-<pre><code class="language-r">shapiro.test(stepwise_mod$residuals)
-</code></pre>
-
-<pre><code>#&gt; 
-#&gt;  Shapiro-Wilk normality test
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">shapiro.test</span>(stepwise_mod<span style="color:#f92672">$</span>residuals)
+</code></pre></div><pre><code>#&gt; 
+#&gt; 	Shapiro-Wilk normality test
 #&gt; 
 #&gt; data:  stepwise_mod$residuals
 #&gt; W = 0.98755, p-value = 0.9869
-</code></pre>
-
-<pre><code class="language-r">bptest(stepwise_mod)
-</code></pre>
-
-<pre><code>#&gt; 
-#&gt;  studentized Breusch-Pagan test
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">bptest</span>(stepwise_mod)
+</code></pre></div><pre><code>#&gt; 
+#&gt; 	studentized Breusch-Pagan test
 #&gt; 
 #&gt; data:  stepwise_mod
 #&gt; BP = 7.1292, df = 3, p-value = 0.06789
-</code></pre>
-
-<h2 id="ridge-regression-model">Ridge Regression Model</h2>
-
+</code></pre><h2 id="ridge-regression-model">Ridge Regression Model</h2>
 <p>As mentioned above, the second way to overcome the problem of overfitting in regression is to use Regularization Regression.
 Two types of regression regularization will be discussed this time, the first is Ridge regression.</p>
-
 <p><strong>Ridge regression is the same as OLS regression</strong></p>
-
 <p>Below, the writer tries to prove whether Ridge has parameters <code>\(\lambda = 0\)</code> then the Ridge regression coefficient is <em>approximately</em> the same as the Ordinary Least Square Regression coefficients.</p>
-
-<pre><code class="language-r">ridge_cv &lt;- glmnet(xtrain, ytrain, alpha = 0,lambda = 0)
-predict.glmnet(ridge_cv, s = 0, type = 'coefficients')
-</code></pre>
-
-<pre><code>#&gt; 9 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ridge_cv <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,lambda <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+<span style="color:#a6e22e">predict.glmnet</span>(ridge_cv, s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;coefficients&#39;</span>)
+</code></pre></div><pre><code>#&gt; 9 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 #&gt;                        1
 #&gt; (Intercept) -5.105168916
 #&gt; cyl          0.675181160
@@ -1027,54 +861,30 @@ predict.glmnet(ridge_cv, s = 0, type = 'coefficients')
 #&gt; qsec         0.004891085
 #&gt; gear         3.456626642
 #&gt; carb        -2.660723992
-</code></pre>
-
-<pre><code class="language-r">ols$coefficients
-</code></pre>
-
-<pre><code>#&gt;  (Intercept)          cyl         disp           hp         drat 
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols<span style="color:#f92672">$</span>coefficients
+</code></pre></div><pre><code>#&gt;  (Intercept)          cyl         disp           hp         drat 
 #&gt; -5.422701011  0.696306643 -0.001029893 -0.010342436  5.368257224 
 #&gt;           wt         qsec         gear         carb 
 #&gt; -0.475646420  0.011715279  3.440558813 -2.661675645
-</code></pre>
-
-<h3 id="choosing-optimal-lambda-value-of-ridge-regression">Choosing Optimal Lambda Value of Ridge Regression</h3>
-
+</code></pre><h3 id="choosing-optimal-lambda-value-of-ridge-regression">Choosing Optimal Lambda Value of Ridge Regression</h3>
 <p>As already discussed <code>\(\lambda\)</code> is an error value parameter used to add bias so that variance and estimator decrease.</p>
-
 <p>The glmnet function trains the model multiple times for all the different values of lambda which we pass as a sequence of vector to the lambda = argument in the glmnet function.</p>
-
-<pre><code class="language-r">set.seed(100)
-lambdas_to_try &lt;- 10^seq(-3, 7, length.out = 100)
-</code></pre>
-
-<p>The next task is to identify the optimal value of lambda which results into minimum error. This can be achieved automatically by using <code>cv.glmnet()</code> function. Setting <strong>alpha = 0 implements Ridge Regression</strong>.</p>
-
-<pre><code class="language-r">set.seed(100)
-ridge_cv &lt;- cv.glmnet(xtrain, ytrain, alpha = 0, lambda = lambdas_to_try)
-plot(ridge_cv)
-</code></pre>
-
-<p><img src="/blog/2019-12-18-ridge-lasso_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
+lambdas_to_try <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span><span style="color:#a6e22e">^seq</span>(<span style="color:#ae81ff">-3</span>, <span style="color:#ae81ff">7</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>)
+</code></pre></div><p>The next task is to identify the optimal value of lambda which results into minimum error. This can be achieved automatically by using <code>cv.glmnet()</code> function. Setting <strong>alpha = 0 implements Ridge Regression</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
+ridge_cv <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cv.glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, lambda <span style="color:#f92672">=</span> lambdas_to_try)
+<span style="color:#a6e22e">plot</span>(ridge_cv)
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <p>From the picture above it shows the best log (lambda) between about 0 to 2.5 because it has the smallest MSE value. On the x-axis (above) you can see all the numbers are 8. This shows the number of predictors used. No matter how much lambda is used, the predictor variable remains 8. This means that Ridge Regression cannot perform automatic feature selection.</p>
-
 <h3 id="extracting-the-best-lambda-of-ridge-regression">Extracting the Best Lambda of Ridge Regression</h3>
-
-<pre><code class="language-r">best_lambda_ridge &lt;- ridge_cv$lambda.min
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">best_lambda_ridge <span style="color:#f92672">&lt;-</span> ridge_cv<span style="color:#f92672">$</span>lambda.min
 best_lambda_ridge
-</code></pre>
-
-<pre><code>#&gt; [1] 1.707353
-</code></pre>
-
-<h3 id="build-models-based-on-the-best-lambda">Build Models Based on The Best Lambda</h3>
-
-<pre><code class="language-r">ridge_mod &lt;- glmnet(xtrain, ytrain, alpha = 0, lambda = best_lambda_ridge)
-predict.glmnet(ridge_mod,  type = 'coefficients')
-</code></pre>
-
-<pre><code>#&gt; 9 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+</code></pre></div><pre><code>#&gt; [1] 1.707353
+</code></pre><h3 id="build-models-based-on-the-best-lambda">Build Models Based on The Best Lambda</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ridge_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, lambda <span style="color:#f92672">=</span> best_lambda_ridge)
+<span style="color:#a6e22e">predict.glmnet</span>(ridge_mod,  type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;coefficients&#39;</span>)
+</code></pre></div><pre><code>#&gt; 9 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 #&gt;                       s0
 #&gt; (Intercept) 17.201163649
 #&gt; cyl         -0.354685636
@@ -1085,49 +895,26 @@ predict.glmnet(ridge_mod,  type = 'coefficients')
 #&gt; qsec         0.060788898
 #&gt; gear         1.415532975
 #&gt; carb        -1.065339475
-</code></pre>
-
-<p>So the Ridge Regression model obtained is <code>$$mpg = 17.81 - 0.39cyl -0.005disp-0.01hp+2.05drat-1.12wt+0.09qseq+1.32gear-0.90carb$$</code></p>
-
+</code></pre><p>So the Ridge Regression model obtained is <code>$$mpg = 17.81 - 0.39cyl -0.005disp-0.01hp+2.05drat-1.12wt+0.09qseq+1.32gear-0.90carb$$</code></p>
 <h2 id="lasso-regression-model">LASSO Regression Model</h2>
-
 <h3 id="choosing-optimal-lambda-value-of-lasso-regression">Choosing Optimal Lambda Value of LASSO Regression</h3>
-
 <p>Setting the range of lambda values, with the same parameter settings as Ridge Regression</p>
-
-<pre><code class="language-r">lambdas_to_try &lt;- 10^seq(-3, 7, length.out = 100)
-</code></pre>
-
-<p>Identify the optimal value of lambda which results into minimum error. This can be achieved automatically by using <code>cv.glmnet()</code> function. Setting <strong>alpha = 1 implements LASSO Regression</strong>.</p>
-
-<pre><code class="language-r">set.seed(100)
-lasso_cv &lt;- cv.glmnet(xtrain, ytrain, alpha = 1, lambda = lambdas_to_try)
-plot(lasso_cv)
-</code></pre>
-
-<p><img src="/blog/2019-12-18-ridge-lasso_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">lambdas_to_try <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span><span style="color:#a6e22e">^seq</span>(<span style="color:#ae81ff">-3</span>, <span style="color:#ae81ff">7</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>)
+</code></pre></div><p>Identify the optimal value of lambda which results into minimum error. This can be achieved automatically by using <code>cv.glmnet()</code> function. Setting <strong>alpha = 1 implements LASSO Regression</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
+lasso_cv <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cv.glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, lambda <span style="color:#f92672">=</span> lambdas_to_try)
+<span style="color:#a6e22e">plot</span>(lasso_cv)
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <p>From the picture above it shows the best log(lambda) between about -1 to 0, because it has the smallest MSE value. On the x-axis (above) has a different value, based on the best lambda it can be seen that the best predictor variable is 5. This shows that LASSO Regression can perform automatic feature selection.</p>
-
 <h3 id="extracting-the-est-lambda-of-lasso-regression">Extracting the est lambda of LASSO Regression</h3>
-
-<pre><code class="language-r">best_lambda_lasso &lt;- lasso_cv$lambda.min
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">best_lambda_lasso <span style="color:#f92672">&lt;-</span> lasso_cv<span style="color:#f92672">$</span>lambda.min
 best_lambda_lasso
-</code></pre>
-
-<pre><code>#&gt; [1] 0.1668101
-</code></pre>
-
-<h3 id="build-models-based-the-best-lambda">Build Models Based The Best Lambda</h3>
-
-<pre><code class="language-r"># Fit final model, get its sum of squared residuals and multiple R-squared
-lasso_mod &lt;- glmnet(xtrain, ytrain, alpha = 1, lambda = best_lambda_lasso)
-</code></pre>
-
-<pre><code class="language-r">predict.glmnet(lasso_mod, type = 'coefficients')
-</code></pre>
-
-<pre><code>#&gt; 9 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+</code></pre></div><pre><code>#&gt; [1] 0.1668101
+</code></pre><h3 id="build-models-based-the-best-lambda">Build Models Based The Best Lambda</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Fit final model, get its sum of squared residuals and multiple R-squared</span>
+lasso_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, lambda <span style="color:#f92672">=</span> best_lambda_lasso)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">predict.glmnet</span>(lasso_mod, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;coefficients&#39;</span>)
+</code></pre></div><pre><code>#&gt; 9 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 #&gt;                      s0
 #&gt; (Intercept)  7.37367761
 #&gt; cyl          .         
@@ -1138,91 +925,49 @@ lasso_mod &lt;- glmnet(xtrain, ytrain, alpha = 1, lambda = best_lambda_lasso)
 #&gt; qsec         .         
 #&gt; gear         2.14674952
 #&gt; carb        -1.88455227
-</code></pre>
-
-<p>From the results above it can be seen that the variables cyl, disp, and qseq have decreased coefficients to exactly 0. So the LASSO Regression model obtained is
+</code></pre><p>From the results above it can be seen that the variables cyl, disp, and qseq have decreased coefficients to exactly 0. So the LASSO Regression model obtained is
 <code>$$mpg = 8.31-0.001hp+4.063drat-1.00wt+1.96gear-1.79carb$$</code></p>
-
 <h2 id="model-comparison">Model Comparison</h2>
-
 <h3 id="compare-the-mse-value-of-data-train-and-test">Compare The MSE value of Data Train and Test</h3>
-
 <p><strong>OLS Regression</strong></p>
-
-<pre><code class="language-r"># MSE of Data Train (OLS)
-ols_pred &lt;- predict(ols, newdata = train)
-mean((ols_pred-ytrain)^2)
-</code></pre>
-
-<pre><code>#&gt; [1] 4.072081
-</code></pre>
-
-<pre><code class="language-r"># MSE of Data Test (OLS)
-ols_pred &lt;- predict(ols, newdata = test)
-mean((ols_pred-ytest)^2)
-</code></pre>
-
-<pre><code>#&gt; [1] 22.15188
-</code></pre>
-
-<pre><code class="language-r"># MSE of Data Train (Stepwise)
-back_pred &lt;- predict(stepwise_mod, newdata = train)
-mean((back_pred-ytrain)^2)
-</code></pre>
-
-<pre><code>#&gt; [1] 4.360721
-</code></pre>
-
-<pre><code class="language-r"># MSE of Data Test (Stepwise)
-back_pred &lt;- predict(stepwise_mod, newdata = test)
-mean((back_pred-ytest)^2)
-</code></pre>
-
-<pre><code>#&gt; [1] 22.41245
-</code></pre>
-
-<pre><code class="language-r"># MSE of Data Train (Ridge)
-ridge_pred &lt;- predict(ridge_mod,  newx = xtrain)
-mean((ridge_pred-ytrain)^2)
-</code></pre>
-
-<pre><code>#&gt; [1] 4.920852
-</code></pre>
-
-<pre><code class="language-r"># MSE of Data Test (Ridge)
-ridge_pred &lt;- predict(ridge_mod,  newx = xtest)
-mean((ridge_pred-ytest)^2)
-</code></pre>
-
-<pre><code>#&gt; [1] 7.22441
-</code></pre>
-
-<pre><code class="language-r"># MSE of Data Train (LASSO)
-lasso_pred &lt;- predict(lasso_mod,  newx = xtrain)
-mean((lasso_pred-ytrain)^2)
-</code></pre>
-
-<pre><code>#&gt; [1] 4.269417
-</code></pre>
-
-<pre><code class="language-r"># MSE of Data Test (LASSO)
-lasso_pred &lt;- predict(lasso_mod,  newx = xtest)
-mean((lasso_pred-ytest)^2)
-</code></pre>
-
-<pre><code>#&gt; [1] 13.56875
-</code></pre>
-
-<p>Based on the above results the best regression model using <code>mtcars</code> data is Ridge Regression. Because the difference of MSE data training and testing is not much different.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (OLS)</span>
+ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> train)
+<span style="color:#a6e22e">mean</span>((ols_pred<span style="color:#f92672">-</span>ytrain)^2)
+</code></pre></div><pre><code>#&gt; [1] 4.072081
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (OLS)</span>
+ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> test)
+<span style="color:#a6e22e">mean</span>((ols_pred<span style="color:#f92672">-</span>ytest)^2)
+</code></pre></div><pre><code>#&gt; [1] 22.15188
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (Stepwise)</span>
+back_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(stepwise_mod, newdata <span style="color:#f92672">=</span> train)
+<span style="color:#a6e22e">mean</span>((back_pred<span style="color:#f92672">-</span>ytrain)^2)
+</code></pre></div><pre><code>#&gt; [1] 4.360721
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (Stepwise)</span>
+back_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(stepwise_mod, newdata <span style="color:#f92672">=</span> test)
+<span style="color:#a6e22e">mean</span>((back_pred<span style="color:#f92672">-</span>ytest)^2)
+</code></pre></div><pre><code>#&gt; [1] 22.41245
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (Ridge)</span>
+ridge_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ridge_mod,  newx <span style="color:#f92672">=</span> xtrain)
+<span style="color:#a6e22e">mean</span>((ridge_pred<span style="color:#f92672">-</span>ytrain)^2)
+</code></pre></div><pre><code>#&gt; [1] 4.920852
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (Ridge)</span>
+ridge_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ridge_mod,  newx <span style="color:#f92672">=</span> xtest)
+<span style="color:#a6e22e">mean</span>((ridge_pred<span style="color:#f92672">-</span>ytest)^2)
+</code></pre></div><pre><code>#&gt; [1] 7.22441
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (LASSO)</span>
+lasso_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(lasso_mod,  newx <span style="color:#f92672">=</span> xtrain)
+<span style="color:#a6e22e">mean</span>((lasso_pred<span style="color:#f92672">-</span>ytrain)^2)
+</code></pre></div><pre><code>#&gt; [1] 4.269417
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (LASSO)</span>
+lasso_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(lasso_mod,  newx <span style="color:#f92672">=</span> xtest)
+<span style="color:#a6e22e">mean</span>((lasso_pred<span style="color:#f92672">-</span>ytest)^2)
+</code></pre></div><pre><code>#&gt; [1] 13.56875
+</code></pre><p>Based on the above results the best regression model using <code>mtcars</code> data is Ridge Regression. Because the difference of MSE data training and testing is not much different.</p>
 <h3 id="compare-prediction-results-from-all-four-models">Compare prediction results from all four models.</h3>
-
-<pre><code class="language-r">predict_value &lt;- cbind(ytest, ols_pred, ridge_pred, lasso_pred,back_pred)
-colnames(predict_value) &lt;- c(&quot;y_actual&quot;, &quot;ols_pred&quot;, &quot;ridge_pred&quot;, &quot;lasso_pred&quot;, &quot;stepwise_pred&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">predict_value <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cbind</span>(ytest, ols_pred, ridge_pred, lasso_pred,back_pred)
+<span style="color:#a6e22e">colnames</span>(predict_value) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;y_actual&#34;</span>, <span style="color:#e6db74">&#34;ols_pred&#34;</span>, <span style="color:#e6db74">&#34;ridge_pred&#34;</span>, <span style="color:#e6db74">&#34;lasso_pred&#34;</span>, <span style="color:#e6db74">&#34;stepwise_pred&#34;</span>)
 predict_value
-</code></pre>
-
-<pre><code>#&gt;                  y_actual  ols_pred ridge_pred lasso_pred stepwise_pred
+</code></pre></div><pre><code>#&gt;                  y_actual  ols_pred ridge_pred lasso_pred stepwise_pred
 #&gt; Pontiac Firebird     19.2 17.829311   16.12641   17.20188      17.52899
 #&gt; Fiat X1-9            27.3 28.902655   27.72686   28.35547      28.88586
 #&gt; Porsche 914-2        26.0 31.136052   28.00826   29.60271      31.41857
@@ -1231,40 +976,44 @@ predict_value
 #&gt; Ferrari Dino         19.7 16.325756   19.08362   17.23060      16.33122
 #&gt; Maserati Bora        15.0  9.759043   12.21058   10.68292      10.48615
 #&gt; Volvo 142E           21.4 25.508611   24.96332   25.32522      26.32918
-</code></pre>
-
-<p>Based on the results that can be seen in the model that produces the closest prediction value <code>y_actual</code> is the <strong>Ridge Regression</strong> model.</p>
-
+</code></pre><p>Based on the results that can be seen in the model that produces the closest prediction value <code>y_actual</code> is the <strong>Ridge Regression</strong> model.</p>
 <p>Based on the comparison of the Error values from the models, it was found that the Ridge Regression model which has the smallest Mean Square Error (MSE).</p>
-
 <h2 id="conclusion">Conclusion</h2>
-
 <p>Based on the description above, the following conclusions are obtained:</p>
-
 <ol>
-<li><p>Multicollinearity problems in the Ordinary Least Square (OLS) regression model will make the predictor estimator have a large variance, causing overfitting problems.</p></li>
-
-<li><p>Ridge and LASSO regression are good enough to be applied as an alternative if our Ordinary Least Square (OLS) model has multicollinearity problems.</p></li>
-
-<li><p>Ridge and LASSO regression work by adding the bias parameter (λ) so that the estimator variance is reduced.</p></li>
-
-<li><p>Ridge and LASSO Regression is that if ridge regression can shrink the coefficient close to 0 so that all predictor variables are retained.</p></li>
-
-<li><p>LASSO Regression can shrink the coefficient to exactly 0, so that LASSO can select and discard the predictor variables.</p></li>
-
-<li><p>Ridge Regression is best used if the data do not have many predictor variables, whereas LASSO Regression is good if the data has many predictor variables, because it will simplify the interpretation of the model.</p></li>
-
-<li><p>From the comparison of the above models between OLS Regression, Stepwise Regression, Ridge Regression, and LASSO Regression, the best model is Ridge Regression. Based on the MSE value of the smallest model and the closest prediction estimator to the actual value.</p></li>
+<li>
+<p>Multicollinearity problems in the Ordinary Least Square (OLS) regression model will make the predictor estimator have a large variance, causing overfitting problems.</p>
+</li>
+<li>
+<p>Ridge and LASSO regression are good enough to be applied as an alternative if our Ordinary Least Square (OLS) model has multicollinearity problems.</p>
+</li>
+<li>
+<p>Ridge and LASSO regression work by adding the bias parameter (λ) so that the estimator variance is reduced.</p>
+</li>
+<li>
+<p>Ridge and LASSO Regression is that if ridge regression can shrink the coefficient close to 0 so that all predictor variables are retained.</p>
+</li>
+<li>
+<p>LASSO Regression can shrink the coefficient to exactly 0, so that LASSO can select and discard the predictor variables.</p>
+</li>
+<li>
+<p>Ridge Regression is best used if the data do not have many predictor variables, whereas LASSO Regression is good if the data has many predictor variables, because it will simplify the interpretation of the model.</p>
+</li>
+<li>
+<p>From the comparison of the above models between OLS Regression, Stepwise Regression, Ridge Regression, and LASSO Regression, the best model is Ridge Regression. Based on the MSE value of the smallest model and the closest prediction estimator to the actual value.</p>
+</li>
 </ol>
-
 <h2 id="annotations">Annotations</h2>
-
 <ol>
-<li><p>Shenoy, Aditi, 2019, What is Bias, Variance and Bias-Variance Tradeoff? (Part 1), viewed 2019, <a href="https://aditishenoy.github.io/what-is-bias-variance-and-bias-variance-tradeoff-part-1/">https://aditishenoy.github.io/what-is-bias-variance-and-bias-variance-tradeoff-part-1/</a></p></li>
-
-<li><p>bbroto06, Predicting Labour Wages using Ridge and Lasso Regression, viewed 2019, <a href="http://rpubs.com/bbroto06/ridge_lasso_regression">http://rpubs.com/bbroto06/ridge_lasso_regression</a></p></li>
-
-<li><p>Vidhya, Analytics , 2019, A comprehensive beginners guide for Linear, Ridge and Lasso Regression in Python and R, viewed 2019, <a href="https://www.analyticsvidhya.com/blog/2017/06/a-comprehensive-guide-for-linear-ridge-and-lasso-regression/">https://www.analyticsvidhya.com/blog/2017/06/a-comprehensive-guide-for-linear-ridge-and-lasso-regression/</a></p></li>
+<li>
+<p>Shenoy, Aditi, 2019, What is Bias, Variance and Bias-Variance Tradeoff? (Part 1), viewed 2019, <a href="https://aditishenoy.github.io/what-is-bias-variance-and-bias-variance-tradeoff-part-1/">https://aditishenoy.github.io/what-is-bias-variance-and-bias-variance-tradeoff-part-1/</a></p>
+</li>
+<li>
+<p>bbroto06, Predicting Labour Wages using Ridge and Lasso Regression, viewed 2019, <a href="http://rpubs.com/bbroto06/ridge_lasso_regression">http://rpubs.com/bbroto06/ridge_lasso_regression</a></p>
+</li>
+<li>
+<p>Vidhya, Analytics , 2019, A comprehensive beginners guide for Linear, Ridge and Lasso Regression in Python and R, viewed 2019, <a href="https://www.analyticsvidhya.com/blog/2017/06/a-comprehensive-guide-for-linear-ridge-and-lasso-regression/">https://www.analyticsvidhya.com/blog/2017/06/a-comprehensive-guide-for-linear-ridge-and-lasso-regression/</a></p>
+</li>
 </ol>
 
   </div>

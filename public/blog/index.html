@@ -29,8 +29,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-10-26 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2020-10-26 00:00:00 \x2b0000 UTC",
+        "datePublished": "2020-10-26 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2020-10-26 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/",
         "wordCount" : "0",
         "keywords" : [ "Blog" ]
@@ -42,7 +42,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.55.4" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -77,18 +77,14 @@
 <meta property="og:description" content="To learn more about our approach to data science problems, feel free to hop over to our blog." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/blog/" />
-
-<meta property="og:updated_time" content="2020-10-26T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2020-10-26T00:00:00+00:00" />
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        
-<meta itemprop="name" content="Blog">
+        <meta itemprop="name" content="Blog">
 <meta itemprop="description" content="To learn more about our approach to data science problems, feel free to hop over to our blog.">
-
-
         
 
         
@@ -267,6 +263,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-i-can-t-get-no/">Rplicate Series: I can&#39;t get no ...</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-10-26'>
+                                    October 26, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/topic-modeling-lda/">Topic Modelling with Latent Dirichlet Allocation (LDA)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -313,18 +321,6 @@ if (!doNotTrack) {
 
                         </article>
                 
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/skincare-recommender-system/">Skincare Recommendation System</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-09-01'>
-                                    September 1, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
 
                 
                     <a href=
@@ -343,6 +339,77 @@ if (!doNotTrack) {
     
     <div id="main">
         
+        
+            <article class="post">
+  <header>
+    <div class="title">
+        
+            <h2><a href="/blog/rplicate-i-can-t-get-no/">Rplicate Series: I can&#39;t get no ...</a></h2>
+        
+        
+    </div>
+    <div class="meta">
+        
+
+        <time class="published"
+            datetime='2020-10-26'>
+            October 26, 2020</time>
+        <span class="author"><a href="https://github.com/Davidlimbong">David Tahi Ulubalang</a></span>
+        
+            <p>11 minute read</p>
+        
+        
+    </div>
+</header>
+
+  
+
+  
+  <p>In this third article on <strong>Rplicate Series</strong>, We will share to you one way to replicate The Economist plot titled <strong>&ldquo;I can&rsquo;t get no &hellip;&quot;</strong>. The plot making will also demonstrate ways to converting smooth line into <strong>linear line</strong>, using <strong>guides for legend</strong>, and adding a <strong>text annotation</strong> to a plot. The raw dataset used for this graph was obtained from a PDF, so we will also use <strong>tibble</strong> package to copy-paste the data into R.</p>
+  <footer>
+    <ul class="actions">
+      <li><a href="/blog/rplicate-i-can-t-get-no/" class="button big">Continue Reading</a></li>
+    </ul>
+  <ul class="stats">
+  <li class="categories">
+    <ul>
+        
+            
+            
+                <i class="fa fa-folder"></i>
+                
+                
+                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                
+            
+        
+    </ul>
+  </li>
+  <li class="tags">
+    <ul>
+        
+            
+            
+                <i class="fa fa-tags"></i>
+                
+                
+                <li><a class="article-category-link" href="/tags/data-visualization">Data Visualization</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/ggplot2">ggplot2</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/rplicate">Rplicate</a></li>
+                
+            
+        
+    </ul>
+  </li>
+</ul>
+
+  </footer>
+</article>
+
         
             <article class="post">
   <header>
@@ -369,7 +436,7 @@ if (!doNotTrack) {
   
 
   
-  <p>Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>. The are many applications of NLP in various industries, such as:</p>
+  <p>Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. The are many applications of NLP in various industries, such as:</p>
   <footer>
     <ul class="actions">
       <li><a href="/blog/topic-modeling-lda/" class="button big">Continue Reading</a></li>
@@ -466,77 +533,6 @@ if (!doNotTrack) {
                 
                 
                 <li><a class="article-category-link" href="/tags/capstone-ml">Capstone ML</a></li>
-                
-            
-        
-    </ul>
-  </li>
-</ul>
-
-  </footer>
-</article>
-
-        
-            <article class="post">
-  <header>
-    <div class="title">
-        
-            <h2><a href="/blog/interpreting-black-box-regression-model-with-lime/">Interpreting Black Box Regression Model with LIME</a></h2>
-        
-        
-    </div>
-    <div class="meta">
-        
-
-        <time class="published"
-            datetime='2020-10-20'>
-            October 20, 2020</time>
-        <span class="author"><a href="">Arga Adyatama</a></span>
-        
-            <p>26 minute read</p>
-        
-        
-    </div>
-</header>
-
-  
-
-  
-  <p>One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model&hellip;</p>
-  <footer>
-    <ul class="actions">
-      <li><a href="/blog/interpreting-black-box-regression-model-with-lime/" class="button big">Continue Reading</a></li>
-    </ul>
-  <ul class="stats">
-  <li class="categories">
-    <ul>
-        
-            
-            
-                <i class="fa fa-folder"></i>
-                
-                
-                <li><a class="article-category-link" href="/categories/r">R</a></li>
-                
-            
-        
-    </ul>
-  </li>
-  <li class="tags">
-    <ul>
-        
-            
-            
-                <i class="fa fa-tags"></i>
-                
-                
-                <li><a class="article-category-link" href="/tags/lime">lime</a></li>
-                
-                
-                <li><a class="article-category-link" href="/tags/machine-learning">Machine Learning</a></li>
-                
-                
-                <li><a class="article-category-link" href="/tags/capstone-ml">Capstone Ml</a></li>
                 
             
         
