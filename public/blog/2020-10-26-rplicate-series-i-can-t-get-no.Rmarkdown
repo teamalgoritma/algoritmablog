@@ -3,6 +3,10 @@ title: 'Rplicate Series: I can''t get no ...'
 author: David Tahi Ulubalang
 github: https://github.com/Davidlimbong
 date: '2020-10-26'
+output:
+  blogdown::html_page:
+    toc: true
+    highlight: breezedark
 slug: rplicate-i-can-t-get-no
 categories:
   - R
@@ -150,6 +154,8 @@ Below is a glimpse of our data:
 ```{r}
 head(data1, 3)
 ```
+
+
 ```{r}
 head(data2, 3)
 ```
