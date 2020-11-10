@@ -3,6 +3,10 @@ title: 'Rplicate Series: I can''t get no ...'
 author: David Tahi Ulubalang
 github: https://github.com/Davidlimbong
 date: '2020-10-26'
+output:
+  blogdown::html_page:
+    toc: true
+    highlight: breezedark
 slug: rplicate-i-can-t-get-no
 categories:
   - R
@@ -150,6 +154,8 @@ head(data1, 3)
 #> 2 Canada                 73                 79               78               82
 #> 3 France                 47                 54               62               73
 ```
+
+
 
 ```r
 head(data2, 3)

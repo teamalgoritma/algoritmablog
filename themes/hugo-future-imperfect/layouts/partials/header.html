@@ -58,6 +58,10 @@
             <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
             <link rel="stylesheet" href="{{ "css/add-on.css" | relURL }}">
             <link rel="stylesheet" href="{{ "css/academicons.min.css" | relURL }}">
+            <link href="{{ "/lib/datatables-css-0.0.0/datatables-crosstalk.css" | relURL }}" rel="stylesheet">
+            <link href="{{ "/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" | relURL }}" rel="stylesheet">
+            <link href="{{ "/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" | relURL }}" rel="stylesheet">
+            <link href="{{ "/lib/crosstalk-1.0.0/css/crosstalk.css" | relURL }}" rel="stylesheet">
         {{ end }}
 
         {{ if ne ($.Scratch.Get "cssFiles") false }}
