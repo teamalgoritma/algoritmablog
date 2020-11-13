@@ -13,7 +13,7 @@
         "articleSection" : "blog",
         "name" : "Rplicate Series: Cherry Bomb",
         "headline" : "Rplicate Series: Cherry Bomb",
-        "description" : "In this second article on Rplicate Series, We will share to you one way to replicate the plot titled Cherry Bomb from the article \x26ldquo;Japan’s cherry blossoms are emerging increasingly early, 7th April 2017\x26rdquo;. The raw dataset used for this graph was obtained from a phenological dataset that was previously collected by Dr. Yasuyuki Aono from Osaka Prefecture University12.\n {width=\x26ldquo;60%\x26rdquo;} \nWhile replicating the plot, we will also learn how to:",
+        "description" : "In this second article on Rplicate Series, We will share to you one way to replicate the plot titled Cherry Bomb from the article \x26ldquo;Japan’s cherry blossoms are emerging increasingly early, 7th April 2017\x26rdquo;. The raw dataset used for this graph was obtained from a phenological dataset that was previously collected by Dr. Yasuyuki Aono from Osaka Prefecture University12.\nWhile replicating the plot, we will also learn how to:\n various data pre-processing tricks such as separate a column into several columns, create date data from several columns, and reverse levels of a categorical column create a scatterplot with a custom shape\/image as points using geom_smooth() for visualizing trend in the data explore facets and various theme editing on ggplot2  Let\x26rsquo;s dive in below!",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -24,7 +24,7 @@
         "datePublished": "2020-10-02 00:00:00 \x2b0000 UTC",
         "dateModified" : "2020-10-02 00:00:00 \x2b0000 UTC",
         "url" : "\/blog\/rplicate-series-cherry-bomb\/",
-        "wordCount" : "1907",
+        "wordCount" : "1905",
         "keywords" : [ "Data Visualization","ggplot2","Rplicate","Blog" ]
     }
     </script>
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.55.4" />
+        <meta name="generator" content="Hugo 0.69.0" />
         
   
     
@@ -67,38 +67,34 @@
         <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rplicate Series: Cherry Bomb"/>
 <meta name="twitter:description" content="In this second article on Rplicate Series, We will share to you one way to replicate the plot titled Cherry Bomb from the article &ldquo;Japan’s cherry blossoms are emerging increasingly early, 7th April 2017&rdquo;. The raw dataset used for this graph was obtained from a phenological dataset that was previously collected by Dr. Yasuyuki Aono from Osaka Prefecture University12.
- {width=&ldquo;60%&rdquo;} 
-While replicating the plot, we will also learn how to:"/>
+While replicating the plot, we will also learn how to:
+ various data pre-processing tricks such as separate a column into several columns, create date data from several columns, and reverse levels of a categorical column create a scatterplot with a custom shape/image as points using geom_smooth() for visualizing trend in the data explore facets and various theme editing on ggplot2  Let&rsquo;s dive in below!"/>
 <meta name="twitter:site" content="@teamalgoritma"/>
 
         <meta property="og:title" content="Rplicate Series: Cherry Bomb" />
 <meta property="og:description" content="In this second article on Rplicate Series, We will share to you one way to replicate the plot titled Cherry Bomb from the article &ldquo;Japan’s cherry blossoms are emerging increasingly early, 7th April 2017&rdquo;. The raw dataset used for this graph was obtained from a phenological dataset that was previously collected by Dr. Yasuyuki Aono from Osaka Prefecture University12.
- {width=&ldquo;60%&rdquo;} 
-While replicating the plot, we will also learn how to:" />
+While replicating the plot, we will also learn how to:
+ various data pre-processing tricks such as separate a column into several columns, create date data from several columns, and reverse levels of a categorical column create a scatterplot with a custom shape/image as points using geom_smooth() for visualizing trend in the data explore facets and various theme editing on ggplot2  Let&rsquo;s dive in below!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/rplicate-series-cherry-bomb/" />
-<meta property="article:published_time" content="2020-10-02T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2020-10-02T00:00:00&#43;00:00"/>
+<meta property="article:published_time" content="2020-10-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-02T00:00:00+00:00" />
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        
-<meta itemprop="name" content="Rplicate Series: Cherry Bomb">
+        <meta itemprop="name" content="Rplicate Series: Cherry Bomb">
 <meta itemprop="description" content="In this second article on Rplicate Series, We will share to you one way to replicate the plot titled Cherry Bomb from the article &ldquo;Japan’s cherry blossoms are emerging increasingly early, 7th April 2017&rdquo;. The raw dataset used for this graph was obtained from a phenological dataset that was previously collected by Dr. Yasuyuki Aono from Osaka Prefecture University12.
- {width=&ldquo;60%&rdquo;} 
-While replicating the plot, we will also learn how to:">
-
-
+While replicating the plot, we will also learn how to:
+ various data pre-processing tricks such as separate a column into several columns, create date data from several columns, and reverse levels of a categorical column create a scatterplot with a custom shape/image as points using geom_smooth() for visualizing trend in the data explore facets and various theme editing on ggplot2  Let&rsquo;s dive in below!">
 <meta itemprop="datePublished" content="2020-10-02T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-10-02T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1907">
+<meta itemprop="wordCount" content="1905">
 
 
 
 <meta itemprop="keywords" content="Data Visualization,ggplot2,Rplicate," />
-
         
 
         
@@ -502,42 +498,27 @@ if (!doNotTrack) {
   
 
   <div id="content">
-    
-
-<p>In this second article on <strong>Rplicate Series</strong>, We will share to you one way to replicate the plot titled <strong>Cherry Bomb</strong> from the article <a href="https://www.economist.com/graphic-detail/2017/04/07/japans-cherry-blossoms-are-emerging-increasingly-early">&ldquo;Japan’s cherry blossoms are emerging increasingly early, 7th April 2017&rdquo;</a>. The raw dataset used for this graph was obtained from a <a href="http://atmenv.envi.osakafu-u.ac.jp/aono/kyophenotemp4/">phenological dataset</a> that was previously collected by Dr. Yasuyuki Aono from Osaka Prefecture University<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup><sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>.</p>
-
-<p><center> <img src="/img/rplicate2/cherrybomb.png" alt="" />{width=&ldquo;60%&rdquo;} </center></p>
-
+    <p>In this second article on <strong>Rplicate Series</strong>, We will share to you one way to replicate the plot titled <strong>Cherry Bomb</strong> from the article <a href="https://www.economist.com/graphic-detail/2017/04/07/japans-cherry-blossoms-are-emerging-increasingly-early">&ldquo;Japan’s cherry blossoms are emerging increasingly early, 7th April 2017&rdquo;</a>. The raw dataset used for this graph was obtained from a <a href="http://atmenv.envi.osakafu-u.ac.jp/aono/kyophenotemp4/">phenological dataset</a> that was previously collected by Dr. Yasuyuki Aono from Osaka Prefecture University<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+<!-- raw HTML omitted -->
 <p>While replicating the plot, we will also learn how to:</p>
-
 <ul>
 <li>various data pre-processing tricks such as separate a column into several columns, create date data from several columns, and reverse levels of a categorical column</li>
 <li>create a scatterplot with a custom shape/image as points</li>
 <li>using <code>geom_smooth()</code> for visualizing trend in the data</li>
 <li>explore facets and various theme editing on ggplot2</li>
 </ul>
-
 <p>Let&rsquo;s dive in below!</p>
-
 <h1 id="load-packages">Load Packages</h1>
-
 <p>These are the basic packages that we will use. Along the way, there will be some packages that we will load just before its use to better understand and remember its functionality.</p>
-
-<pre><code class="language-r">library(dplyr) # to simplify data transformation
-library(tidyr) # to tidying data
-library(lubridate) # to deal with date
-library(ggplot2) # to create plot
-</code></pre>
-
-<h1 id="import-dataset">Import Dataset</h1>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(dplyr) <span style="color:#75715e"># to simplify data transformation</span>
+<span style="color:#a6e22e">library</span>(tidyr) <span style="color:#75715e"># to tidying data</span>
+<span style="color:#a6e22e">library</span>(lubridate) <span style="color:#75715e"># to deal with date</span>
+<span style="color:#a6e22e">library</span>(ggplot2) <span style="color:#75715e"># to create plot</span>
+</code></pre></div><h1 id="import-dataset">Import Dataset</h1>
 <p>The first thing we have to do is to load the dataset into R.</p>
-
-<pre><code class="language-r">sakura &lt;- read.csv(&quot;data_input/sakura.csv&quot;)
-tail(sakura)
-</code></pre>
-
-<pre><code>#&gt;        AD full.flowering.doy full.flowering.date source data.type
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sakura <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/sakura.csv&#34;</span>)
+<span style="color:#a6e22e">tail</span>(sakura)
+</code></pre></div><pre><code>#&gt;        AD full.flowering.doy full.flowering.date source data.type
 #&gt; 1213 2013                 93                 403      8         0
 #&gt; 1214 2014                 94                 404      8         0
 #&gt; 1215 2015                 93                 403      8         0
@@ -551,10 +532,7 @@ tail(sakura)
 #&gt; 1216 NEWS-PAPER(ARASHIYAMA)
 #&gt; 1217 NEWS-PAPER(ARASHIYAMA)
 #&gt; 1218 NEWS-PAPER(ARASHIYAMA)
-</code></pre>
-
-<p>These are the descriptions of each column:</p>
-
+</code></pre><p>These are the descriptions of each column:</p>
 <ul>
 <li><strong>AD</strong>: year in A.D.</li>
 <li><strong>full.flowering.doy</strong>: full flowering day of year</li>
@@ -563,337 +541,240 @@ tail(sakura)
 <li><strong>data.type</strong>: data source code</li>
 <li><strong>reference</strong>: name of old document/references</li>
 </ul>
-
 <h1 id="data-wrangling">Data Wrangling</h1>
-
 <p>The next step is <em>data wrangling</em> or the process of tidying and transforming data from a raw dataset into another format that is easier for plotting.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># selecting column for plotting</span>
+sakura <span style="color:#f92672">&lt;-</span> sakura <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(AD, full.flowering.date)
 
-<pre><code class="language-r"># selecting column for plotting
-sakura &lt;- sakura %&gt;% 
-  select(AD, full.flowering.date)
-
-sample_n(sakura,6) # sampling rows
-</code></pre>
-
-<pre><code>#&gt;     AD full.flowering.date
+<span style="color:#a6e22e">sample_n</span>(sakura,<span style="color:#ae81ff">6</span>) <span style="color:#75715e"># sampling rows</span>
+</code></pre></div><pre><code>#&gt;     AD full.flowering.date
 #&gt; 1 1367                 407
 #&gt; 2 1344                 411
 #&gt; 3  886                  NA
 #&gt; 4 1528                 415
 #&gt; 5  978                  NA
 #&gt; 6 1045                  NA
-</code></pre>
+</code></pre><p>After some exploration, we find that most of the data came from early AD contain missing records of its full flowering date. Therefore, the next step is to obtain the data with no missing values on its <code>full.flowering.date</code>, and for better visualization, we can also rename the &ldquo;AD&rdquo; column to &ldquo;Year&rdquo;.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sakura.used <span style="color:#f92672">&lt;-</span> sakura <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(full.flowering.date <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;NA&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">rename</span>(Year<span style="color:#f92672">=</span>AD)
 
-<p>After some exploration, we find that most of the data came from early AD contain missing records of its full flowering date. Therefore, the next step is to obtain the data with no missing values on its <code>full.flowering.date</code>, and for better visualization, we can also rename the &ldquo;AD&rdquo; column to &ldquo;Year&rdquo;.</p>
-
-<pre><code class="language-r">sakura.used &lt;- sakura %&gt;% 
-  filter(full.flowering.date != &quot;NA&quot;) %&gt;% 
-  rename(Year=AD)
-
-head(sakura.used)
-</code></pre>
-
-<pre><code>#&gt;   Year full.flowering.date
+<span style="color:#a6e22e">head</span>(sakura.used)
+</code></pre></div><pre><code>#&gt;   Year full.flowering.date
 #&gt; 1  812                 401
 #&gt; 2  815                 415
 #&gt; 3  831                 406
 #&gt; 4  851                 418
 #&gt; 5  853                 414
 #&gt; 6  864                 409
-</code></pre>
+</code></pre><p>If you see the data above, the <em>month</em> and <em>day of month</em> information is still stored in one column <code>full.flowering.date</code>. Meanwhile, we need both information separately to display it on the y-axis. Moreover, it is still stored in an integer format with no separator between both information. We will need to separate both information into different columns. To do that, we can use the <code>separate()</code> function, as seen below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sakura.plot <span style="color:#f92672">&lt;-</span> sakura.used <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">separate</span>(full.flowering.date, 
+           into <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;month&#34;</span>, <span style="color:#e6db74">&#34;day&#34;</span>), <span style="color:#75715e"># name of the new columns</span>
+           sep <span style="color:#f92672">=</span> <span style="color:#ae81ff">-2</span>) <span style="color:#75715e"># separate from the last 2 digits</span>
 
-<p>If you see the data above, the <em>month</em> and <em>day of month</em> information is still stored in one column <code>full.flowering.date</code>. Meanwhile, we need both information separately to display it on the y-axis. Moreover, it is still stored in an integer format with no separator between both information. We will need to separate both information into different columns. To do that, we can use the <code>separate()</code> function, as seen below:</p>
-
-<pre><code class="language-r">sakura.plot &lt;- sakura.used %&gt;% 
-  separate(full.flowering.date, 
-           into = c(&quot;month&quot;, &quot;day&quot;), # name of the new columns
-           sep = -2) # separate from the last 2 digits
-
-head(sakura.plot)
-</code></pre>
-
-<pre><code>#&gt;   Year month day
+<span style="color:#a6e22e">head</span>(sakura.plot)
+</code></pre></div><pre><code>#&gt;   Year month day
 #&gt; 1  812     4  01
 #&gt; 2  815     4  15
 #&gt; 3  831     4  06
 #&gt; 4  851     4  18
 #&gt; 5  853     4  14
 #&gt; 6  864     4  09
-</code></pre>
+</code></pre><p>Now, we only need to remove the leading zero of some digits in the <code>day</code> column. We can use the function <code>f_num()</code> from <strong>numform</strong> package. The numform package contains various functions to format numbers for publication.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(numform)
 
-<p>Now, we only need to remove the leading zero of some digits in the <code>day</code> column. We can use the function <code>f_num()</code> from <strong>numform</strong> package. The numform package contains various functions to format numbers for publication.</p>
+sakura.plot <span style="color:#f92672">&lt;-</span> sakura.plot <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(day <span style="color:#f92672">=</span> <span style="color:#a6e22e">f_num</span>(day, 
+                     digits <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)) <span style="color:#75715e"># to set for 0 number behind decimal point </span>
 
-<pre><code class="language-r">library(numform)
-
-sakura.plot &lt;- sakura.plot %&gt;% 
-  mutate(day = f_num(day, 
-                     digits = 0)) # to set for 0 number behind decimal point 
-
-head(sakura.plot)
-</code></pre>
-
-<pre><code>#&gt;   Year month day
+<span style="color:#a6e22e">head</span>(sakura.plot)
+</code></pre></div><pre><code>#&gt;   Year month day
 #&gt; 1  812     4   1
 #&gt; 2  815     4  15
 #&gt; 3  831     4   6
 #&gt; 4  851     4  18
 #&gt; 5  853     4  14
 #&gt; 6  864     4   9
-</code></pre>
-
-<p>The next step we are going to do is to combine year, month, and day information into a full date format. Let&rsquo;s store it into a column named <code>date</code>. After that, let&rsquo;s replace the month value into its respective month label. We can also change the data type of column <code>day</code> into integers, or just replace it with the day information obtained from the column <code>date</code>.</p>
-
-<pre><code class="language-r">sakura.plot &lt;- sakura.plot %&gt;% 
-  mutate(date = as.Date(paste(Year, month, day, sep = &quot;-&quot;)),
-         month = month(date, label = T, abbr = F),
-         day = day(date))
+</code></pre><p>The next step we are going to do is to combine year, month, and day information into a full date format. Let&rsquo;s store it into a column named <code>date</code>. After that, let&rsquo;s replace the month value into its respective month label. We can also change the data type of column <code>day</code> into integers, or just replace it with the day information obtained from the column <code>date</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sakura.plot <span style="color:#f92672">&lt;-</span> sakura.plot <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(date <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.Date</span>(<span style="color:#a6e22e">paste</span>(Year, month, day, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-&#34;</span>)),
+         month <span style="color:#f92672">=</span> <span style="color:#a6e22e">month</span>(date, label <span style="color:#f92672">=</span> T, abbr <span style="color:#f92672">=</span> F),
+         day <span style="color:#f92672">=</span> <span style="color:#a6e22e">day</span>(date))
   
 
-head(sakura.plot)
-</code></pre>
-
-<pre><code>#&gt;   Year month day       date
+<span style="color:#a6e22e">head</span>(sakura.plot)
+</code></pre></div><pre><code>#&gt;   Year month day       date
 #&gt; 1  812 April   1 0812-04-01
 #&gt; 2  815 April  15 0815-04-15
 #&gt; 3  831 April   6 0831-04-06
 #&gt; 4  851 April  18 0851-04-18
 #&gt; 5  853 April  14 0853-04-14
 #&gt; 6  864 April   9 0864-04-09
-</code></pre>
-
-<pre><code class="language-r">unique(sakura.plot$month)
-</code></pre>
-
-<pre><code>#&gt; [1] April Maret Mei  
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">unique</span>(sakura.plot<span style="color:#f92672">$</span>month)
+</code></pre></div><pre><code>#&gt; [1] April Maret Mei  
 #&gt; 12 Levels: Januari &lt; Februari &lt; Maret &lt; April &lt; Mei &lt; Juni &lt; ... &lt; Desember
-</code></pre>
+</code></pre><p>If we look at the order of our <code>month</code> column, it is still in the reverse format. We can reverse the order of the levels by using the function <code>fct_rev()</code> from <strong>forcats</strong> package. Forcats package itself contains many functions form working with categorical variables/factors.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sakura.plot <span style="color:#f92672">&lt;-</span> sakura.plot <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(month <span style="color:#f92672">=</span> forcats<span style="color:#f92672">::</span><span style="color:#a6e22e">fct_rev</span>(month))
 
-<p>If we look at the order of our <code>month</code> column, it is still in the reverse format. We can reverse the order of the levels by using the function <code>fct_rev()</code> from <strong>forcats</strong> package. Forcats package itself contains many functions form working with categorical variables/factors.</p>
-
-<pre><code class="language-r">sakura.plot &lt;- sakura.plot %&gt;% 
-  mutate(month = forcats::fct_rev(month))
-
-unique(sakura.plot$month)
-</code></pre>
-
-<pre><code>#&gt; [1] April Maret Mei  
+<span style="color:#a6e22e">unique</span>(sakura.plot<span style="color:#f92672">$</span>month)
+</code></pre></div><pre><code>#&gt; [1] April Maret Mei  
 #&gt; 12 Levels: Desember &lt; November &lt; Oktober &lt; September &lt; Agustus &lt; ... &lt; Januari
-</code></pre>
-
-<p>We have now obtained the data ready for plotting.</p>
-
+</code></pre><p>We have now obtained the data ready for plotting.</p>
 <h1 id="create-plot">Create Plot</h1>
-
 <p>In this section, we will display the code for plotting followed by its result below. Try tracking on what has been added to the code and how it gives changes to the plot!</p>
-
 <h2 id="the-canvas">The Canvas</h2>
-
-<pre><code class="language-r"># blank canvas
-p &lt;- ggplot(sakura.plot, aes(x = Year, y = day))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># blank canvas</span>
+p <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(sakura.plot, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> Year, y <span style="color:#f92672">=</span> day))
 
 p
-</code></pre>
-
-<p><img src="/blog/2020-10-02-rplicate-series-cherry-bomb_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="add-facets">Add Facets</h2>
-
-<pre><code class="language-r"># add facets_grid by month, horizontally
-p + facet_grid(month~.)
-</code></pre>
-
-<p><img src="/blog/2020-10-02-rplicate-series-cherry-bomb_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
-
-<pre><code class="language-r"># customize facets
-p2 &lt;- p + facet_grid(month~., 
-             scales = &quot;free&quot;, # free scales on both x &amp; y axis 
-             space = &quot;free&quot;, # panel's height &amp; width will vary based on data
-             switch = &quot;y&quot;) # facet label to be displayed on th right
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># add facets_grid by month, horizontally</span>
+p <span style="color:#f92672">+</span> <span style="color:#a6e22e">facet_grid</span>(month<span style="color:#f92672">~</span>.)
+</code></pre></div><p><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># customize facets</span>
+p2 <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span> <span style="color:#a6e22e">facet_grid</span>(month<span style="color:#f92672">~</span>., 
+             scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free&#34;</span>, <span style="color:#75715e"># free scales on both x &amp; y axis </span>
+             space <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free&#34;</span>, <span style="color:#75715e"># panel&#39;s height &amp; width will vary based on data</span>
+             switch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;y&#34;</span>) <span style="color:#75715e"># facet label to be displayed on th right</span>
 
 
 p2
-</code></pre>
-
-<p><img src="/blog/2020-10-02-rplicate-series-cherry-bomb_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
-
-<h2 id="add-geom-point">Add <code>geom_point</code></h2>
-
+</code></pre></div><p><!-- raw HTML omitted --></p>
+<h2 id="add-geom_point">Add <code>geom_point</code></h2>
 <p>The basic idea is to create a scatterplot from our data.</p>
-
-<pre><code class="language-r"># basic idea
-p2 + geom_point()
-</code></pre>
-
-<p><img src="/blog/2020-10-02-rplicate-series-cherry-bomb_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># basic idea</span>
+p2 <span style="color:#f92672">+</span> <span style="color:#a6e22e">geom_point</span>()
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <p>But let&rsquo;s make it more interesting by changing the point shape into a custom cherry blossom image. There are several ways to add custom shape as point (scatterplot) in ggplot:</p>
-
 <p><strong>1. Use extended ASCII symbol in the argument <code>shape</code></strong></p>
-
 <p>The standard shape in geom_point only has options from shape 1-25. The extended number is actually options for various ASCII characters. We can use the ASCII character number 42 to obtain a flower-like shape as seen below.</p>
-
-<pre><code class="language-r">p3 &lt;- p2 + geom_point(shape = 42, size = 5, color = &quot;#f64b77&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p3 <span style="color:#f92672">&lt;-</span> p2 <span style="color:#f92672">+</span> <span style="color:#a6e22e">geom_point</span>(shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#f64b77&#34;</span>)
 
 p3
-</code></pre>
-
-<p><img src="/blog/2020-10-02-rplicate-series-cherry-bomb_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <p><strong>2. Add image as point using <code>geom_image()</code></strong></p>
-
 <p>We can use <code>geom_image()</code> from the package <strong>ggimage</strong> to add an image as a point in our plot. For that to work, we need to store the custom image into a column in our data. In this demo, we will use an icon made by <a href="https://www.flaticon.com/authors/freepik">Freepik</a> from <a href="https://www.flaticon.com">Flaticon</a>. This is our icon image that has been saved locally:</p>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># adding new column to store image</span>
+sakura.plot2 <span style="color:#f92672">&lt;-</span> sakura.plot <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(image <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;img/cherry.png&#34;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create plot</span>
+<span style="color:#a6e22e">library</span>(ggimage)
 
-<p><center> <img src="/img/rplicate2/cherry.png" alt="" />{width=&ldquo;60%&rdquo;} </center></p>
-
-<pre><code class="language-r"># adding new column to store image
-sakura.plot2 &lt;- sakura.plot %&gt;% 
-  mutate(image = &quot;img/cherry.png&quot;)
-</code></pre>
-
-<pre><code class="language-r"># create plot
-library(ggimage)
-
-ggplot(sakura.plot2, aes(x = Year, y = day)) + 
-  facet_grid(month~., scales = &quot;free&quot;, space = &quot;free_y&quot;, switch = &quot;y&quot;) +
-  geom_image(aes(image = image))
-</code></pre>
-
-<p><img src="/blog/2020-10-02-rplicate-series-cherry-bomb_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+<span style="color:#a6e22e">ggplot</span>(sakura.plot2, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> Year, y <span style="color:#f92672">=</span> day)) <span style="color:#f92672">+</span> 
+  <span style="color:#a6e22e">facet_grid</span>(month<span style="color:#f92672">~</span>., scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free&#34;</span>, space <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free_y&#34;</span>, switch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;y&#34;</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_image</span>(<span style="color:#a6e22e">aes</span>(image <span style="color:#f92672">=</span> image))
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <p>The latter option seems to be more flexible, but unfortunately, the image cannot be displayed properly due to the small panel size (result from setting <code>space = &quot;free&quot;</code> in facets). For that reason, we will use the first option instead.</p>
-
-<h2 id="add-geom-smooth">Add <code>geom_smooth</code></h2>
-
+<h2 id="add-geom_smooth">Add <code>geom_smooth</code></h2>
 <p>Below we will add a smooth line using <code>geom_smooth()</code>. Because we also need legend for our smooth line, we can specify the color and fill label within <code>aes()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p4 <span style="color:#f92672">&lt;-</span> p3 <span style="color:#f92672">+</span>
 
-<pre><code class="language-r">p4 &lt;- p3 +
-
-  # make trend line
-  geom_smooth(aes(fill = &quot;Trend&quot;), span = 0.1, se = FALSE, color = &quot;#644128&quot;) +
+  <span style="color:#75715e"># make trend line</span>
+  <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Trend&#34;</span>), span <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>, se <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#644128&#34;</span>) <span style="color:#f92672">+</span>
   
-  # make confidence interval with no trend line
-  geom_smooth(aes(color = &quot;Confidence Interval&quot;), span = 0.1, fill = &quot;#a56c56&quot;, linetype = 0)
+  <span style="color:#75715e"># make confidence interval with no trend line</span>
+  <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Confidence Interval&#34;</span>), span <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>, fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#a56c56&#34;</span>, linetype <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
 
 p4
-</code></pre>
-
-<p><img src="/blog/2020-10-02-rplicate-series-cherry-bomb_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="costumize-axis">Costumize Axis</h2>
-
 <p>We can specify our axis manually for our plot that (unfortunately) did not follow a specific sequence.</p>
-
-<pre><code class="language-r">p5 &lt;- p4 + 
-scale_x_continuous(
-  limits = c(812,2020),
-  breaks = c(800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2016),
-  labels = c(&quot;800&quot;, &quot;&quot;, &quot;1000&quot;, &quot;&quot;, &quot;1200&quot;, &quot;&quot;, &quot;1400&quot;, &quot;&quot;, &quot;1600&quot;, &quot;&quot;, &quot;1800&quot;, &quot;&quot;, &quot;&quot;, &quot;2016&quot;)) +
-scale_y_continuous(
-  breaks = c(1, 10, 20),
-  labels = c(&quot;1st&quot;, &quot;10th&quot;, &quot;20th&quot;))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p5 <span style="color:#f92672">&lt;-</span> p4 <span style="color:#f92672">+</span> 
+<span style="color:#a6e22e">scale_x_continuous</span>(
+  limits <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">812</span>,<span style="color:#ae81ff">2020</span>),
+  breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">800</span>, <span style="color:#ae81ff">900</span>, <span style="color:#ae81ff">1000</span>, <span style="color:#ae81ff">1100</span>, <span style="color:#ae81ff">1200</span>, <span style="color:#ae81ff">1300</span>, <span style="color:#ae81ff">1400</span>, <span style="color:#ae81ff">1500</span>, <span style="color:#ae81ff">1600</span>, <span style="color:#ae81ff">1700</span>, <span style="color:#ae81ff">1800</span>, <span style="color:#ae81ff">1900</span>, <span style="color:#ae81ff">2000</span>, <span style="color:#ae81ff">2016</span>),
+  labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;800&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;1000&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;1200&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;1400&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;1600&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;1800&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;2016&#34;</span>)) <span style="color:#f92672">+</span>
+<span style="color:#a6e22e">scale_y_continuous</span>(
+  breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>),
+  labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;1st&#34;</span>, <span style="color:#e6db74">&#34;10th&#34;</span>, <span style="color:#e6db74">&#34;20th&#34;</span>))
 
 p5
-</code></pre>
-
-<p><img src="/blog/2020-10-02-rplicate-series-cherry-bomb_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="add-labels">Add Labels</h2>
-
 <p>We can add labels and make some of them italics using the function <code>expression()</code>:</p>
-
-<pre><code class="language-r">p6 &lt;- p5 +
-labs(title = &quot;Cherry Bomb&quot;, 
-     subtitle = &quot;Date of cherry-blossom peak-bloom in Kyoto, Japan, 800AD - 2016&quot;,
-     x = expression(italic(&quot;Year&quot;)),
-     y = expression(italic(&quot;Date of cherry-blossom peak-bloom&quot;)),
-     caption = &quot;Source: Yasuyuki Aono, Osaka Prefecture University&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p6 <span style="color:#f92672">&lt;-</span> p5 <span style="color:#f92672">+</span>
+<span style="color:#a6e22e">labs</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cherry Bomb&#34;</span>, 
+     subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Date of cherry-blossom peak-bloom in Kyoto, Japan, 800AD - 2016&#34;</span>,
+     x <span style="color:#f92672">=</span> <span style="color:#a6e22e">expression</span>(<span style="color:#a6e22e">italic</span>(<span style="color:#e6db74">&#34;Year&#34;</span>)),
+     y <span style="color:#f92672">=</span> <span style="color:#a6e22e">expression</span>(<span style="color:#a6e22e">italic</span>(<span style="color:#e6db74">&#34;Date of cherry-blossom peak-bloom&#34;</span>)),
+     caption <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Source: Yasuyuki Aono, Osaka Prefecture University&#34;</span>)
 
 p6
-</code></pre>
-
-<p><img src="/blog/2020-10-02-rplicate-series-cherry-bomb_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="costumize-theme">Costumize Theme</h2>
-
 <p>Last but not least is to custom our theme. Below is an extensive list of options we can use to custom our plot theme, and there are still many more. You can try to modify this code and see how it affects our plot to better understand its use. We can also use a custom font which we have discussed in the previous article <a href="https://algotech.netlify.app/blog/rplicate-happiness-of-the-third-age/">&ldquo;Rplicate Series: Happiness of The Third Age&rdquo;</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(extrafont)
 
-<pre><code class="language-r">library(extrafont)
+<span style="color:#75715e"># importing fonts to R</span>
+<span style="color:#75715e"># font_import() </span>
 
-# importing fonts to R
-# font_import() 
-
-# load all fonts so it can be used
-loadfonts(device = &quot;win&quot;) 
-</code></pre>
-
-<pre><code class="language-r">cherrybomb &lt;- p6 + theme(
-  # general
-  text = element_text(family = &quot;Segoe UI&quot;),
+<span style="color:#75715e"># load all fonts so it can be used</span>
+<span style="color:#a6e22e">loadfonts</span>(device <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;win&#34;</span>) 
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">cherrybomb <span style="color:#f92672">&lt;-</span> p6 <span style="color:#f92672">+</span> <span style="color:#a6e22e">theme</span>(
+  <span style="color:#75715e"># general</span>
+  text <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Segoe UI&#34;</span>),
   
-  # panel
-  panel.background = element_rect(fill = &quot;white&quot;),
-  panel.grid.major.y = element_line(color = &quot;#a56c56&quot;, 
-                                    linetype = &quot;solid&quot;),
-  panel.grid.major.x = element_blank(),
-  panel.grid.minor = element_blank(),
-  panel.spacing = unit(0.1, &quot;cm&quot;),
+  <span style="color:#75715e"># panel</span>
+  panel.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;white&#34;</span>),
+  panel.grid.major.y <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_line</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#a56c56&#34;</span>, 
+                                    linetype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;solid&#34;</span>),
+  panel.grid.major.x <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
+  panel.grid.minor <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
+  panel.spacing <span style="color:#f92672">=</span> <span style="color:#a6e22e">unit</span>(<span style="color:#ae81ff">0.1</span>, <span style="color:#e6db74">&#34;cm&#34;</span>),
   
-  # axis
-  axis.line.x = element_line(colour = &quot;black&quot;),
-  axis.line.y = element_blank(),
-  axis.text = element_text(size = 8),
-  axis.title = element_text(size = 8),
+  <span style="color:#75715e"># axis</span>
+  axis.line.x <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_line</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;black&#34;</span>),
+  axis.line.y <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
+  axis.text <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>),
+  axis.title <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>),
   
-  # legends
-  legend.position = c(0.81, 1),
-  legend.key = element_blank(),
-  legend.box = &quot;horizontal&quot;,
-  legend.box.spacing = unit(1, &quot;mm&quot;),
-  legend.title = element_blank(),
-  legend.text = element_text(size = 8),
-  legend.background = element_blank(),
+  <span style="color:#75715e"># legends</span>
+  legend.position <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.81</span>, <span style="color:#ae81ff">1</span>),
+  legend.key <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
+  legend.box <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;horizontal&#34;</span>,
+  legend.box.spacing <span style="color:#f92672">=</span> <span style="color:#a6e22e">unit</span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;mm&#34;</span>),
+  legend.title <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
+  legend.text <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>),
+  legend.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
   
-  # labs
-  plot.title = element_text(hjust = 0, 
-                            face = &quot;bold&quot;, 
-                            size = 12),
-  plot.subtitle = element_text(hjust = 0, 
-                               face = &quot;plain&quot;, 
-                               size = 10),
-  plot.caption = element_text(size = 8, 
-                              colour = &quot;#B3B1B1&quot;, 
-                              hjust = 0),
+  <span style="color:#75715e"># labs</span>
+  plot.title <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, 
+                            face <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold&#34;</span>, 
+                            size <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>),
+  plot.subtitle <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, 
+                               face <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;plain&#34;</span>, 
+                               size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>),
+  plot.caption <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, 
+                              colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#B3B1B1&#34;</span>, 
+                              hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>),
   
-  # facets title
-  strip.placement = &quot;outside&quot;,
-  strip.background = element_rect(fill = &quot;#e8dbd6&quot;),
-  strip.switch.pad.grid = unit(0.2, &quot;cm&quot;),
-  strip.text = element_text(size = 7))
-</code></pre>
-
-<p>And here is our final Cherry Bomb Plot!</p>
-
-<pre><code class="language-r">cherrybomb
-</code></pre>
-
-<p><img src="/blog/2020-10-02-rplicate-series-cherry-bomb_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+  <span style="color:#75715e"># facets title</span>
+  strip.placement <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;outside&#34;</span>,
+  strip.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#e8dbd6&#34;</span>),
+  strip.switch.pad.grid <span style="color:#f92672">=</span> <span style="color:#a6e22e">unit</span>(<span style="color:#ae81ff">0.2</span>, <span style="color:#e6db74">&#34;cm&#34;</span>),
+  strip.text <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>))
+</code></pre></div><p>And here is our final Cherry Bomb Plot!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">cherrybomb
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <h1 id="additional-notes">Additional Notes</h1>
-
 <p>This graph was both fun and challenging to make. Unfortunately, we have not managed to replicate one minor detail. If you take a more detailed look at the plot, we still have an <strong>uncomplete label for the tickmarks in the y-axis</strong>. I find it difficult to create different y-axis tickmarks and their labels for each facet in the plot. It is very unfortunate that the facet_grid function is not yet provided with the ability to have/set different scales/limits and breaks for each facet. And yet, I also haven&rsquo;t found a way to assign different breaks and limits for each facet. Thankfully the communities are developing it right now. For more info, you can <a href="https://github.com/zeehio/facetscales">click here</a>.</p>
-
 <p>Thank you for reading and we hope this article can help you to find the delight in exploring data visualization in R. Happy learning and coding!</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">Contents of Sakura or Cherry-blossom tree phenological data on Excel format was partly added, replaced re-edited, and reconstructed by Aono and Kazui (2008); Aono and Saito (2010); Aono, 2012.
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">Aono (2012; Chikyu Kankyo (Global Environment), 17, 21-29) 
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>Contents of Sakura or Cherry-blossom tree phenological data on Excel format was partly added, replaced re-edited, and reconstructed by Aono and Kazui (2008); Aono and Saito (2010); Aono, 2012. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Aono (2012; Chikyu Kankyo (Global Environment), 17, 21-29) <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
   </div>
 

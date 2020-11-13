@@ -24,7 +24,7 @@
         "datePublished": "2020-10-26 00:00:00 \x2b0000 UTC",
         "dateModified" : "2020-10-26 00:00:00 \x2b0000 UTC",
         "url" : "\/blog\/topic-modeling-lda\/",
-        "wordCount" : "21597",
+        "wordCount" : "21581",
         "keywords" : [ "Machine Learning","Topic Modelling","Blog" ]
     }
     </script>
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.55.4" />
+        <meta name="generator" content="Hugo 0.69.0" />
         
   
     
@@ -75,27 +75,23 @@
  SPAM email detection Sentiment Analysis Text summarization Text Generation Topic Modelling  On this occation, we will learn about Topic Modelling and it&rsquo;s application in a real case." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/topic-modeling-lda/" />
-<meta property="article:published_time" content="2020-10-26T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2020-10-26T00:00:00&#43;00:00"/>
+<meta property="article:published_time" content="2020-10-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-26T00:00:00+00:00" />
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        
-<meta itemprop="name" content="Topic Modelling with Latent Dirichlet Allocation (LDA)">
+        <meta itemprop="name" content="Topic Modelling with Latent Dirichlet Allocation (LDA)">
 <meta itemprop="description" content="Topic Modelling Background Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:
  SPAM email detection Sentiment Analysis Text summarization Text Generation Topic Modelling  On this occation, we will learn about Topic Modelling and it&rsquo;s application in a real case.">
-
-
 <meta itemprop="datePublished" content="2020-10-26T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-10-26T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="21597">
+<meta itemprop="wordCount" content="21581">
 
 
 
 <meta itemprop="keywords" content="Machine Learning,Topic Modelling," />
-
         
 
         
@@ -499,14 +495,9 @@ if (!doNotTrack) {
   
 
   <div id="content">
-    
-
-<h1 id="topic-modelling">Topic Modelling</h1>
-
+    <h1 id="topic-modelling">Topic Modelling</h1>
 <h2 id="background">Background</h2>
-
-<p>Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>. The are many applications of NLP in various industries, such as:</p>
-
+<p>Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. The are many applications of NLP in various industries, such as:</p>
 <ul>
 <li>SPAM email detection</li>
 <li>Sentiment Analysis</li>
@@ -514,22 +505,15 @@ if (!doNotTrack) {
 <li>Text Generation</li>
 <li>Topic Modelling</li>
 </ul>
-
 <p>On this occation, we will learn about Topic Modelling and it&rsquo;s application in a real case. Before we start the journey, let&rsquo;s consider a simple example.</p>
-
 <p>Suppose that we have the following word cloud, can you guess what these words have in common?</p>
-
-<p><center> <img src="/img/topic_model_lda/politic.png" alt="" />{width=&ldquo;100%&rdquo;} </center></p>
-
+<!-- raw HTML omitted -->
 <p>The interpretation may differ from one persone to another, but most of you must be agree that the word cloud has a common theme or topic. Perhaps you might say that it is related to economics, or politics, or business. The real theme of the words is unkown, but we as the observer are giving the group of words a meaningful and understandable topic. This activity is what we call as <strong>Topic Modelling</strong>.</p>
-
 <blockquote>
-<p>In text mining, we often have collections of documents, such as blog posts or news articles, that we’d like to divide into natural groups so that we can understand them separately. Topic modeling is a method for unsupervised classification of such documents, similar to clustering on numeric data, which finds natural groups of items even when we’re not sure what we’re looking for.
-<footer> Julia Silge and David Robinson</footer></p>
+<p>In text mining, we often have collections of documents, such as blog posts or news articles, that we’d like to divide into natural groups so that we can understand them separately. Topic modeling is a method for unsupervised classification of such documents, similar to clustering on numeric data, which finds natural groups of items even when we’re not sure what we’re looking for.</p>
+<!-- raw HTML omitted -->
 </blockquote>
-
-<p>There are many application of Topic Modelling, even outside of the field of NLP. Some applications of Topic Modelling derived from <em>Boyd-Graber et al.</em><sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup> and <em>Blei et al.</em><sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup> includes:</p>
-
+<p>There are many application of Topic Modelling, even outside of the field of NLP. Some applications of Topic Modelling derived from <em>Boyd-Graber et al.</em><sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> and <em>Blei et al.</em><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> includes:</p>
 <ul>
 <li>Discover different topic in large corpus of document</li>
 <li>Sentiment Analysis</li>
@@ -538,66 +522,50 @@ if (!doNotTrack) {
 <li>Document Classification</li>
 <li>Recommender System</li>
 </ul>
-
 <p>Below is another example of topic modeling from <em>Blei et al.</em> where the top words for each topic (arts, budgets, children, and education) are shown. The colored text on the lower part of the figure illustrate that a single document is a collection of words with various topic.</p>
-
-<p><center> <img src="/img/topic_model_lda/topic.PNG" alt="" />{width=&ldquo;100%&rdquo;} </center></p>
-
-<p>The popular algorithm for Topic Modeling is <strong>Latent Dirichlet Allocation (LDA)</strong>, which is developed by <a href = "http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf"> <strong>Blei et al.</strong> </a>. This algorithm can be understood in this two simple properties<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup>:</p>
-
+<!-- raw HTML omitted -->
+<p>The popular algorithm for Topic Modeling is <strong>Latent Dirichlet Allocation (LDA)</strong>, which is developed by <!-- raw HTML omitted --> <strong>Blei et al.</strong> <!-- raw HTML omitted -->. This algorithm can be understood in this two simple properties<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>:</p>
 <ul>
 <li><strong>Every document is a mixture of topics</strong>. We imagine that each document may contain words from several topics in particular proportions. For example, in a two-topic model we could say “Document 1 is 90% topic A and 10% topic B, while Document 2 is 30% topic A and 70% topic B.”</li>
 <li><strong>Every topic is a mixture of words</strong>. For example, we could imagine a two-topic model of American news, with one topic for “politics” and one for “entertainment.” The most common words in the politics topic might be “President”, “Congress”, and “government”, while the entertainment topic may be made up of words such as “movies”, “television”, and “actor”. Importantly, words can be shared between topics; a word like “budget” might appear in both equally.</li>
 </ul>
-
 <p><strong>The objective</strong> of this article is as follows:</p>
-
 <ul>
 <li>Understand the advantage and disadvantage of LDA</li>
 <li>Understand how to train and evaluate Topic Modelling with LDA</li>
 <li>Learn how to implement Topic Modeling in a corpus of document</li>
 <li>Learn how to interpret and explore the output of LDA</li>
 </ul>
-
 <h2 id="library-and-setup">Library and Setup</h2>
-
 <p>Below is the required package to reproduce the code in this article.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Data Wrangling</span>
+<span style="color:#a6e22e">library</span>(tidyverse)
 
-<pre><code class="language-r"># Data Wrangling
-library(tidyverse)
+<span style="color:#75715e"># Text Processing</span>
+<span style="color:#a6e22e">library</span>(tm)
+<span style="color:#a6e22e">library</span>(corpus)
+<span style="color:#a6e22e">library</span>(tidytext)
+<span style="color:#a6e22e">library</span>(textclean)
+<span style="color:#a6e22e">library</span>(lubridate)
+<span style="color:#a6e22e">library</span>(hunspell)
+<span style="color:#a6e22e">library</span>(SnowballC)
+<span style="color:#a6e22e">library</span>(textmineR)
+<span style="color:#a6e22e">library</span>(scales)
 
-# Text Processing
-library(tm)
-library(corpus)
-library(tidytext)
-library(textclean)
-library(lubridate)
-library(hunspell)
-library(SnowballC)
-library(textmineR)
-library(scales)
+<span style="color:#75715e"># Visualization</span>
+<span style="color:#a6e22e">library</span>(ggwordcloud)
 
-# Visualization
-library(ggwordcloud)
+<span style="color:#75715e"># Modeling and Evaluation</span>
+<span style="color:#a6e22e">library</span>(randomForest)
+<span style="color:#a6e22e">library</span>(e1071)
+<span style="color:#a6e22e">library</span>(yardstick)
 
-# Modeling and Evaluation
-library(randomForest)
-library(e1071)
-library(yardstick)
-
-options(scipen = 999)
-</code></pre>
-
-<h1 id="general-concept">General Concept</h1>
-
+<span style="color:#a6e22e">options</span>(scipen <span style="color:#f92672">=</span> <span style="color:#ae81ff">999</span>)
+</code></pre></div><h1 id="general-concept">General Concept</h1>
 <p>This section illustrate the first principle and the workflow of Topic Modelling with LDA</p>
-
 <h2 id="latent-dirichlet-allocation-lda">Latent Dirichlet Allocation (LDA)</h2>
-
 <p>LDA is a generative probabilistic model of a corpus. Compared to other topic modelling methods such as the unigram model, Latent Semantic Analysis (LSA), and Probabilistic Latent Semantic Analysis (pLSA), the advantage and disadvantage of LDA is as follows:</p>
-
 <p><strong>Advantages</strong></p>
-
 <ul>
 <li>Can find latent topic inside documents</li>
 <li>Supervised learning requires a true label, which may not be available</li>
@@ -605,50 +573,35 @@ options(scipen = 999)
 <li>LDA can be paired with word2vec to retain the word representation.</li>
 <li>LDA give interpretable topics</li>
 </ul>
-
 <p><strong>Disadvantages</strong></p>
-
 <ul>
 <li>Only considers document as a bag of words and ignore syntactic information (e.g. word order) and semantic information (e.g. the multiplicity of meanings of a given word)</li>
 <li>Fixed number of topics</li>
 <li>Uncorrelated topics (Dirichlet topic distribution cannot capture correlations)</li>
 <li>Static (no evolution of topics over time)</li>
 </ul>
-
 <p>We will break the concept one step at a time. Back to the last section, the main principle of LDA is these 2 concepts:</p>
-
 <ul>
 <li><strong>Every document is a mixture of topics</strong></li>
 <li><strong>Every topic is a mixture of words</strong></li>
 </ul>
-
 <p>We will go to the first concept. LDA does not give a clear answer wether a document belong to a certain topics because a document is considered as a mixture of topics. In a single document, we may find several topics. A news about the financial crisis of 2008 may consists of economics, politics and social topics, blended in a single article that discuss about the market value, the government response and the impact of high unemployment rate. Thus, as an example, a document may consists of 30% economics, 60% politics, and 10% social topics. The percentage of each topic represent the probability of the document to belong a certain topic. Therefore, we can imagine the mixture of topics as a probability distribution such as the following table:</p>
-
-<pre><code class="language-r">set.seed(123)
-data.frame(news = 1:5,
-           economics = runif(5, max = 0.5),
-           politics = runif(5, max = 0.5)) %&gt;% 
-   mutate(social = 1 - (economics + politics))
-</code></pre>
-
-<pre><code>#&gt;   news economics   politics    social
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<span style="color:#a6e22e">data.frame</span>(news <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>,
+           economics <span style="color:#f92672">=</span> <span style="color:#a6e22e">runif</span>(<span style="color:#ae81ff">5</span>, max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>),
+           politics <span style="color:#f92672">=</span> <span style="color:#a6e22e">runif</span>(<span style="color:#ae81ff">5</span>, max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">mutate</span>(social <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> (economics <span style="color:#f92672">+</span> politics))
+</code></pre></div><pre><code>#&gt;   news economics   politics    social
 #&gt; 1    1 0.1437888 0.02277825 0.8334330
 #&gt; 2    2 0.3941526 0.26405274 0.3417947
 #&gt; 3    3 0.2044885 0.44620952 0.3493020
 #&gt; 4    4 0.4415087 0.27571751 0.2827738
 #&gt; 5    5 0.4702336 0.22830737 0.3014590
-</code></pre>
-
-<p>The first news has a 14% chance to be an economics news, 2% of politics news and 83% of social news. The second news has a 39% chance to be an economics news, 26% of politics news and 34% of social news and so on. Higher probability means that the document can be represented by the topic.</p>
-
+</code></pre><p>The first news has a 14% chance to be an economics news, 2% of politics news and 83% of social news. The second news has a 39% chance to be an economics news, 26% of politics news and 34% of social news and so on. Higher probability means that the document can be represented by the topic.</p>
 <p>The word <em>Latent</em> in Latent Dirichlet Allocation refers to the latent or hidden structure inside a document. As we have seen in the previous section, we intuively think that a group of words can have a central theme or topics. Therefore, according to the second principle, a topic is a mixture of words, where a certain words have a strong association with a certain topic. For example, the word <em>President</em> have a strong signal that it belong to the topic of politics, or the word <em>Loan</em> and <em>Interest</em> have a strong signal toward economics topic. Just as a document has a probability distribution for each topic, a topic also has a probability distribution for each words/terms. LDA assume that a document is a bag of words, thus we do not care about the word sequence.</p>
-
 <p>An LDA model is built based on these two principles and has the following graphical structures.</p>
-
-<p><center> <img src="/img/topic_model_lda/lda_model.jpg" alt="" />{width=&ldquo;100%&rdquo;} </center></p>
-
+<!-- raw HTML omitted -->
 <p>Notation:</p>
-
 <ul>
 <li><code>\(\alpha\)</code> = The dirichlet parameter for per-document topic proportion</li>
 <li><code>\(\theta_d\)</code> = Topic distribution of document <code>\(d\)</code></li>
@@ -660,244 +613,159 @@ data.frame(news = 1:5,
 <li><code>\(N\)</code> = Collection of words within documents</li>
 <li><code>\(D\)</code> = Collection of document in the corpus</li>
 </ul>
-
-<p>LDA belong to a hierarchical bayesian model. A bayesian model has a prior and a posterior. A prior means the probability distribution of certain things before we see the data. For example, we may belief that the probability distribution for a roll of dice is uniformly distributed with every value have the same probability to appear. We have this assumption before we try to roll the dice. Meanwhile, the posterior probability reflects the probability distribution after we see the data, after we roll the dice. For example, after we toss the dice for 10,000 times, the number 5 appears for more than 5,000 tosses. This may change our belief that the value for each side is uniformly distributed, since a single side of the dice has a high chance to appear and we might be suspicious that the dice is not fair. We can calculate the posterior probability using the Bayes Theorem<sup class="footnote-ref" id="fnref:6"><a href="#fn:6">6</a></sup>, which we will not discuss on this article. The concept of prior and posterior probability is important to the understanding of the LDA process.</p>
-
+<p>LDA belong to a hierarchical bayesian model. A bayesian model has a prior and a posterior. A prior means the probability distribution of certain things before we see the data. For example, we may belief that the probability distribution for a roll of dice is uniformly distributed with every value have the same probability to appear. We have this assumption before we try to roll the dice. Meanwhile, the posterior probability reflects the probability distribution after we see the data, after we roll the dice. For example, after we toss the dice for 10,000 times, the number 5 appears for more than 5,000 tosses. This may change our belief that the value for each side is uniformly distributed, since a single side of the dice has a high chance to appear and we might be suspicious that the dice is not fair. We can calculate the posterior probability using the Bayes Theorem<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>, which we will not discuss on this article. The concept of prior and posterior probability is important to the understanding of the LDA process.</p>
 <p>The LDA model consists of 2 different priors distribution: probability distribution of topic to document (topic-document probability) and probability distribution of words to topics (word-topic probability). The probability distribution for the two priors are not uniform or normal distribution, but a Dirichlet distribution with the <code>\(\alpha\)</code> and <code>\(\beta\)</code> parameters as well as the number of topics as the input.</p>
-
 <p>The following figure is the illustration of the Dirichlet distribution for each topic to each document. Suppose we have a collection of documents and we are confident that on the corpus we have 3 different topics. Each dot represent a single document and each side of the triangle represent a single topics. The position of each document represent the probability distribution for each topic. We randomly assign the position of each document based on its probability distribution. We can see that document A has a close proximity to the topic of Science. This indicate that document A has a high probability of belong to topic Science and low probability ot belong to Politics or Economy. Meanwhile, document B has a high probability to belong to the topic Economy. Document C is located between Science and Politics, so it has a rather equal probability for those topics and low probability for the topic Economy. The topic D is located at the center of the triangle, which means that it has an equal probability for the three topics.</p>
-
-<p><center> <img src="/img/topic_model_lda/dirichlet1.png" alt="" />{width=&ldquo;100%&rdquo;} </center></p>
-
+<!-- raw HTML omitted -->
 <p>The goal of LDA is to make each document as close as possible toward a certain topics, although it may not always be achieved for all document. If the above graphics represent our prior probability for each document to each topics, the following graphic illustrate the posterior probability where all document is having a strong relation with a certain topics.</p>
-
-<p><center> <img src="/img/topic_model_lda/dirichlet2.png" alt="" />{width=&ldquo;100%&rdquo;} </center></p>
-
+<!-- raw HTML omitted -->
 <p>We may translate the probability distribution into the following table:</p>
-
-<pre><code class="language-r">data.frame(document = c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),
-           sciences = c(0.8, 0.1, 0.1, 0.1),
-           politics = c(0.1, 0.05, 0.85, 0.8),
-           economy = c(0.1, 0.85, 0.05, 0.1))
-</code></pre>
-
-<pre><code>#&gt;   document sciences politics economy
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(document <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;A&#34;</span>,<span style="color:#e6db74">&#34;B&#34;</span>,<span style="color:#e6db74">&#34;C&#34;</span>,<span style="color:#e6db74">&#34;D&#34;</span>),
+           sciences <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">0.1</span>),
+           politics <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.85</span>, <span style="color:#ae81ff">0.8</span>),
+           economy <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">0.85</span>, <span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.1</span>))
+</code></pre></div><pre><code>#&gt;   document sciences politics economy
 #&gt; 1        A      0.8     0.10    0.10
 #&gt; 2        B      0.1     0.05    0.85
 #&gt; 3        C      0.1     0.85    0.05
 #&gt; 4        D      0.1     0.80    0.10
-</code></pre>
-
-<p>The second prior distribution is the probability of a topics belong to certain words: word-topic probability. This prior is concerned with what terms that represent what topic? Is there any terms that have strong connection with certain topics? Let&rsquo;s say we have 4 terms: <em>President</em>, <em>Planet</em>, <em>Market</em>, and <em>Energy</em>. Each terms will act as the edge of the triangle. However, since we have more than 3 terms, the shape of the distribution is not a triangle anymore, but a tetrahedron. The following figures illustrate a random assignment of Dirichlet distribution between topics and words.</p>
-
-<p><center> <img src="/img/topic_model_lda/dirichlet3.png" alt="" />{width=&ldquo;100%&rdquo;} </center></p>
-
+</code></pre><p>The second prior distribution is the probability of a topics belong to certain words: word-topic probability. This prior is concerned with what terms that represent what topic? Is there any terms that have strong connection with certain topics? Let&rsquo;s say we have 4 terms: <em>President</em>, <em>Planet</em>, <em>Market</em>, and <em>Energy</em>. Each terms will act as the edge of the triangle. However, since we have more than 3 terms, the shape of the distribution is not a triangle anymore, but a tetrahedron. The following figures illustrate a random assignment of Dirichlet distribution between topics and words.</p>
+<!-- raw HTML omitted -->
 <p>If we translate the position of each topic into a probabilistic value, we get the following table:</p>
-
-<pre><code class="language-r">data.frame(topic = c(&quot;Politics&quot;, &quot;Science&quot;, &quot;Economy&quot;),
-           president = c(0.8, 0.15, 0.1),
-           planet = c(0.05, 0.5, 0.05),
-           energy = c(0.1, 0.3, 0.15),
-           market = c(0.05, 0.05, 0.7))
-</code></pre>
-
-<pre><code>#&gt;      topic president planet energy market
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(topic <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Politics&#34;</span>, <span style="color:#e6db74">&#34;Science&#34;</span>, <span style="color:#e6db74">&#34;Economy&#34;</span>),
+           president <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">0.15</span>, <span style="color:#ae81ff">0.1</span>),
+           planet <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.05</span>),
+           energy <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">0.3</span>, <span style="color:#ae81ff">0.15</span>),
+           market <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.7</span>))
+</code></pre></div><pre><code>#&gt;      topic president planet energy market
 #&gt; 1 Politics      0.80   0.05   0.10   0.05
 #&gt; 2  Science      0.15   0.50   0.30   0.05
 #&gt; 3  Economy      0.10   0.05   0.15   0.70
-</code></pre>
-
-<p>Based on the table, the terms <em>President</em> has strong association with the word politics, <em>Planet</em> with Science and <em>Market</em> with Economy.</p>
-
+</code></pre><p>Based on the table, the terms <em>President</em> has strong association with the word politics, <em>Planet</em> with Science and <em>Market</em> with Economy.</p>
 <p>These prior distribution will be used to generate word samples to calculate the posterior probability or the estimate of the true probability.</p>
-
 <p>Let&rsquo;s go back toward the LDA structure.</p>
-
-<p><center> <img src="/img/topic_model_lda/lda_model.jpg" alt="" />{width=&ldquo;100%&rdquo;} </center></p>
-
+<!-- raw HTML omitted -->
 <p>The generative process is the process of generating a document by randomly selecting words from each topic. The rough description of the process is as follows:</p>
-
 <ol>
-<li><p>Randomly choose a distribution over topics</p></li>
-
-<li><p>For each word in the document</p></li>
-</ol>
-
+<li>
+<p>Randomly choose a distribution over topics</p>
+</li>
+<li>
+<p>For each word in the document</p>
 <p>a. randomly choose a topic from the distribution over topics
-   b. randomly choose a word from the corresponding topic (distribution over the vocabulary)</p>
-
+b. randomly choose a word from the corresponding topic (distribution over the vocabulary)</p>
+</li>
+</ol>
 <p>In order to estimate the posterior probability of the topic-document and word-topic distribution, we need to use Gibbs-sampling or Variational Expectation Maximation (VEM). Both are approximate inference method and has its own characteristic.</p>
-
 <h2 id="gibbs-sampling">Gibbs Sampling</h2>
-
 <p>The Gibbs sampling is one of many method to sample data in Bayesian Statistics. The concept of Gibbs sampling in topic modeling is that we assume that all documents and all terms have a prior topics except for a single word, which we will calculate the posterior probability of belonging to certain topics. The algorithm of Gibbs sampling is as follows:</p>
-
-<hr />
-
+<hr>
 <ol>
 <li>For each iteration <code>\(i\)</code>:</li>
 </ol>
-
 <p>1.1 For each document <code>\(d\)</code> and word <code>\(n\)</code> currently assigned to <code>\(z_{old}\)</code> :</p>
-
 <p>1.1.1 Decrement <code>\(n_{d,z_{old}}\)</code> and <code>\(v_{z_{old}, w_{d,n}}\)</code></p>
-
 <p>1.1.2 Sample <code>\(z_{new} = k\)</code> with probability proportional to <code>\(\frac{n_{d,k} + \alpha_k\ v_{k,w_{d,n}} + \lambda_{w_{d,n}}}{\Sigma_i=k^K n_{d,i} +\alpha_i\ \Sigma_i v_{k,i} + \lambda_i}\)</code></p>
-
 <p>1.1.3 Increment <code>\(n_{d,z_{new}}\)</code> and <code>\(v_{z_{old}, w_{d,n}}\)</code></p>
-
-<hr />
-
+<hr>
 <p>Notation :</p>
-
 <p><code>\(z_{old}\)</code> : prior/early topic assignment</p>
-
 <p><code>\(z_{new}\)</code> : updated topic assignment</p>
-
 <p><code>\(n_{d,k}\)</code> : Number of times document <code>\(d\)</code> uses topic <code>\(k\)</code></p>
-
 <p><code>\(v_{k, w_{d,n}}\)</code> : Number of times topic <code>\(k\)</code> uses word type <code>\(w_{d,n}\)</code></p>
-
 <p><code>\(\alpha_k\)</code> : Dirichlet parameter for document to topic distribution</p>
-
 <p><code>\(\lambda_{w_{d,n}}\)</code> : Dirichlet parameter for topic to word distribution</p>
-
 <p>We will try with an example. Suppose we have a corpus of documents, with one of them is as follows:</p>
-
 <blockquote>
 <p>The government put curfew during pandemic</p>
 </blockquote>
-
 <p>Suppose that the document has a pre-determined topic assignment:</p>
-
-<pre><code class="language-r">data.frame(
-   topic = c(1, 2, 2, 3, 1, 3),
-   term = c(&quot;the&quot;, &quot;government&quot;, &quot;put&quot;, &quot;curfew&quot;, &quot;during&quot;, &quot;pandemic&quot;)
-) %&gt;% 
-   t() %&gt;% 
-   as.data.frame()
-</code></pre>
-
-<pre><code>#&gt;        V1         V2  V3     V4     V5       V6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(
+   topic <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>),
+   term <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;the&#34;</span>, <span style="color:#e6db74">&#34;government&#34;</span>, <span style="color:#e6db74">&#34;put&#34;</span>, <span style="color:#e6db74">&#34;curfew&#34;</span>, <span style="color:#e6db74">&#34;during&#34;</span>, <span style="color:#e6db74">&#34;pandemic&#34;</span>)
+) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">t</span>() <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">as.data.frame</span>()
+</code></pre></div><pre><code>#&gt;        V1         V2  V3     V4     V5       V6
 #&gt; topic   1          2   2      3      1        3
 #&gt; term  the government put curfew during pandemic
-</code></pre>
-
-<p>The following is the count of words for each topics from all documents inside the corpus:</p>
-
-<pre><code class="language-r">data.frame(
-   term = c(&quot;the&quot;, &quot;government&quot;, &quot;put&quot;, &quot;curfew&quot;, &quot;during&quot;, &quot;pandemic&quot;),
-   topic_1 = c(200, 10, 30 ,20, 5, 8),
-   topic_2 = c(40, 30, 10, 5, 3, 2),
-   topic_3 = c(10, 2, 1, 8, 17, 30)
+</code></pre><p>The following is the count of words for each topics from all documents inside the corpus:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(
+   term <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;the&#34;</span>, <span style="color:#e6db74">&#34;government&#34;</span>, <span style="color:#e6db74">&#34;put&#34;</span>, <span style="color:#e6db74">&#34;curfew&#34;</span>, <span style="color:#e6db74">&#34;during&#34;</span>, <span style="color:#e6db74">&#34;pandemic&#34;</span>),
+   topic_1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">30</span> ,<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>),
+   topic_2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>),
+   topic_3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">30</span>)
 )
-</code></pre>
-
-<pre><code>#&gt;         term topic_1 topic_2 topic_3
+</code></pre></div><pre><code>#&gt;         term topic_1 topic_2 topic_3
 #&gt; 1        the     200      40      10
 #&gt; 2 government      10      30       2
 #&gt; 3        put      30      10       1
 #&gt; 4     curfew      20       5       8
 #&gt; 5     during       5       3      17
 #&gt; 6   pandemic       8       2      30
-</code></pre>
-
-<p>For the first iteration and the first term, we would like to update the topic assignment for the word <em>government</em>.</p>
-
-<pre><code class="language-r">data.frame(
-   topic = c(1, &quot;?&quot;, 2, 3, 1, 3),
-   document = c(&quot;The&quot;, &quot;government&quot;, &quot;put&quot;, &quot;curfew&quot;, &quot;during&quot;, &quot;pandemic&quot;)
-) %&gt;% 
-   t() %&gt;% 
-   as.data.frame()
-</code></pre>
-
-<pre><code>#&gt;           V1         V2  V3     V4     V5       V6
+</code></pre><p>For the first iteration and the first term, we would like to update the topic assignment for the word <em>government</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(
+   topic <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;?&#34;</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>),
+   document <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;The&#34;</span>, <span style="color:#e6db74">&#34;government&#34;</span>, <span style="color:#e6db74">&#34;put&#34;</span>, <span style="color:#e6db74">&#34;curfew&#34;</span>, <span style="color:#e6db74">&#34;during&#34;</span>, <span style="color:#e6db74">&#34;pandemic&#34;</span>)
+) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">t</span>() <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">as.data.frame</span>()
+</code></pre></div><pre><code>#&gt;           V1         V2  V3     V4     V5       V6
 #&gt; topic      1          ?   2      3      1        3
 #&gt; document The government put curfew during pandemic
-</code></pre>
-
-<p>1.1.1 Decrement <code>\(n_{d,z_{old}}\)</code> and <code>\(v_{z_{old}, w_{d,n}}\)</code></p>
-
+</code></pre><p>1.1.1 Decrement <code>\(n_{d,z_{old}}\)</code> and <code>\(v_{z_{old}, w_{d,n}}\)</code></p>
 <p>The word <em>government</em> was assigned as topic 2 earlier so we would omit that assignment and reduce the count of word <em>government</em> from the topic 2 by 1 (from 30 to 29).</p>
-
-<pre><code class="language-r">data.frame(
-   term = c(&quot;the&quot;, &quot;government&quot;, &quot;put&quot;, &quot;curfew&quot;, &quot;during&quot;, &quot;pandemic&quot;),
-   topic_1 = c(200, 10, 30 ,20, 5, 8),
-   topic_2 = c(40, 29, 10, 5, 3, 2),
-   topic_3 = c(10, 2, 1, 8, 17, 30)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(
+   term <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;the&#34;</span>, <span style="color:#e6db74">&#34;government&#34;</span>, <span style="color:#e6db74">&#34;put&#34;</span>, <span style="color:#e6db74">&#34;curfew&#34;</span>, <span style="color:#e6db74">&#34;during&#34;</span>, <span style="color:#e6db74">&#34;pandemic&#34;</span>),
+   topic_1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">30</span> ,<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>),
+   topic_2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>),
+   topic_3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">30</span>)
 )
-</code></pre>
-
-<pre><code>#&gt;         term topic_1 topic_2 topic_3
+</code></pre></div><pre><code>#&gt;         term topic_1 topic_2 topic_3
 #&gt; 1        the     200      40      10
 #&gt; 2 government      10      29       2
 #&gt; 3        put      30      10       1
 #&gt; 4     curfew      20       5       8
 #&gt; 5     during       5       3      17
 #&gt; 6   pandemic       8       2      30
-</code></pre>
-
-<p>1.1.2 Sample <code>\(z_{new} = k\)</code> with probability proportional to <code>\(\frac{n_{d,k} + \alpha_k\ v_{k,w_{d,n}} + \lambda_{w_{d,n}}}{\Sigma_i=k^K n_{d,i} +\alpha_i\ \Sigma_i v_{k,i} + \lambda_i}\)</code></p>
-
+</code></pre><p>1.1.2 Sample <code>\(z_{new} = k\)</code> with probability proportional to <code>\(\frac{n_{d,k} + \alpha_k\ v_{k,w_{d,n}} + \lambda_{w_{d,n}}}{\Sigma_i=k^K n_{d,i} +\alpha_i\ \Sigma_i v_{k,i} + \lambda_i}\)</code></p>
 <p>Now we update the topic assignment using the earlier formula. We will get the probability for each topic (k) and then sample the topic. Higher probability means that the word will be likely assigned to that topic.</p>
-
 <p><code>$$z_{new} = \frac{n_{d,k} + \alpha_k\ v_{k,w_{d,n}} + \lambda_{w_{d,n}}}{\Sigma_{i=k}^K n_{d,i} +\alpha_i\ \Sigma_i v_{k,i} + \lambda_i}$$</code></p>
-
 <p>Long story short, after we get the sample, we update the topic assignment for the word. For example, based on the sample, the new topic assignment for the word <em>government</em> is topic 1.</p>
-
-<pre><code class="language-r">data.frame(
-   topic = c(1, 1, 2, 3, 1, 3),
-   document = c(&quot;The&quot;, &quot;government&quot;, &quot;put&quot;, &quot;curfew&quot;, &quot;during&quot;, &quot;pandemic&quot;)
-) %&gt;% 
-   t() %&gt;% 
-   as.data.frame()
-</code></pre>
-
-<pre><code>#&gt;           V1         V2  V3     V4     V5       V6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(
+   topic <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>),
+   document <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;The&#34;</span>, <span style="color:#e6db74">&#34;government&#34;</span>, <span style="color:#e6db74">&#34;put&#34;</span>, <span style="color:#e6db74">&#34;curfew&#34;</span>, <span style="color:#e6db74">&#34;during&#34;</span>, <span style="color:#e6db74">&#34;pandemic&#34;</span>)
+) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">t</span>() <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">as.data.frame</span>()
+</code></pre></div><pre><code>#&gt;           V1         V2  V3     V4     V5       V6
 #&gt; topic      1          1   2      3      1        3
 #&gt; document The government put curfew during pandemic
-</code></pre>
-
-<p>1.1.3 Increment <code>\(n_{d,z_{new}}\)</code> and <code>\(v_{z_{old}, w_{d,n}}\)</code></p>
-
+</code></pre><p>1.1.3 Increment <code>\(n_{d,z_{new}}\)</code> and <code>\(v_{z_{old}, w_{d,n}}\)</code></p>
 <p>We increment the counts for each word to each topic based on the newly updated assignment and we continue to update the topic for the next words. The count for word <em>government</em> for topic 1 is increased from 10 to 1.</p>
-
-<pre><code class="language-r">data.frame(
-   term = c(&quot;the&quot;, &quot;government&quot;, &quot;put&quot;, &quot;curfew&quot;, &quot;during&quot;, &quot;pandemic&quot;),
-   topic_1 = c(200, 11, 30 ,20, 5, 8),
-   topic_2 = c(40, 29, 10, 5, 3, 2),
-   topic_3 = c(10, 2, 1, 8, 17, 30)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(
+   term <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;the&#34;</span>, <span style="color:#e6db74">&#34;government&#34;</span>, <span style="color:#e6db74">&#34;put&#34;</span>, <span style="color:#e6db74">&#34;curfew&#34;</span>, <span style="color:#e6db74">&#34;during&#34;</span>, <span style="color:#e6db74">&#34;pandemic&#34;</span>),
+   topic_1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">30</span> ,<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>),
+   topic_2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>),
+   topic_3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">30</span>)
 )
-</code></pre>
-
-<pre><code>#&gt;         term topic_1 topic_2 topic_3
+</code></pre></div><pre><code>#&gt;         term topic_1 topic_2 topic_3
 #&gt; 1        the     200      40      10
 #&gt; 2 government      11      29       2
 #&gt; 3        put      30      10       1
 #&gt; 4     curfew      20       5       8
 #&gt; 5     during       5       3      17
 #&gt; 6   pandemic       8       2      30
-</code></pre>
-
-<h1 id="case-studies">Case Studies</h1>
-
+</code></pre><h1 id="case-studies">Case Studies</h1>
 <h2 id="covid-19-cbc-news">COVID-19 CBC News</h2>
-
-<p>We will try to do a document modelling to find different topics in <strong>CBC News/COVID-19 Articles</strong>. The dataset is acquired from <a href = "https://www.kaggle.com/ryanxjhan/cbc-news-coronavirus-articles-march-26"> Kaggle </a>. The context of the dataset is that has the news media been overreacting or under-reacting during the development of COVID-19? What are the media&rsquo;s main focuses?</p>
-
+<p>We will try to do a document modelling to find different topics in <strong>CBC News/COVID-19 Articles</strong>. The dataset is acquired from <!-- raw HTML omitted --> Kaggle <!-- raw HTML omitted -->. The context of the dataset is that has the news media been overreacting or under-reacting during the development of COVID-19? What are the media&rsquo;s main focuses?</p>
 <p>We will try to answer this problem by finding latent information inside corpus using Latent Dirichlet Allocation.</p>
-
 <h3 id="import-data">Import Data</h3>
-
 <p>The dataset consists of more than 2,725 articles with 7 columns. To read &lsquo;big&rsquo; data with fast running time, we can use <code>fread()</code> function from <code>data.table</code> package.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">covid_news <span style="color:#f92672">&lt;-</span> data.table<span style="color:#f92672">::</span><span style="color:#a6e22e">fread</span>(<span style="color:#e6db74">&#34;data_input/covid_news.csv&#34;</span>, header <span style="color:#f92672">=</span> T, encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Latin-1&#34;</span>)
 
-<pre><code class="language-r">covid_news &lt;- data.table::fread(&quot;data_input/covid_news.csv&quot;, header = T, encoding = &quot;Latin-1&quot;)
-
-glimpse(covid_news)
-</code></pre>
-
-<pre><code>#&gt; Rows: 2,725
+<span style="color:#a6e22e">glimpse</span>(covid_news)
+</code></pre></div><pre><code>#&gt; Rows: 2,725
 #&gt; Columns: 7
 #&gt; $ V1           &lt;int&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17…
 #&gt; $ authors      &lt;chr&gt; &quot;['Cbc News']&quot;, &quot;['Cbc News']&quot;, &quot;['The Associated Press'…
@@ -906,10 +774,7 @@ glimpse(covid_news)
 #&gt; $ description  &lt;chr&gt; &quot;Canadian pharmacies are limiting how much medication ca…
 #&gt; $ text         &lt;chr&gt; &quot;Canadian pharmacies are limiting how much medication ca…
 #&gt; $ url          &lt;chr&gt; &quot;https://www.cbc.ca/news/health/covid-19-drug-supply-1.5…
-</code></pre>
-
-<p>Data description:</p>
-
+</code></pre><p>Data description:</p>
 <ul>
 <li><strong>V1</strong>: Document index</li>
 <li><strong>authors</strong>: The author of the news/articles</li>
@@ -919,13 +784,9 @@ glimpse(covid_news)
 <li><strong>text</strong>: The full text of the news/article</li>
 <li><strong>url</strong>: The link of the news/article</li>
 </ul>
-
 <p>Below is the sample of the data.</p>
-
-<pre><code class="language-r">head(covid_news, 10)
-</code></pre>
-
-<pre><code>#&gt;     V1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(covid_news, <span style="color:#ae81ff">10</span>)
+</code></pre></div><pre><code>#&gt;     V1
 #&gt;  1:  0
 #&gt;  2:  1
 #&gt;  3:  2
@@ -1002,14 +863,9 @@ glimpse(covid_news)
 #&gt;  8:                                      https://www.cbc.ca/news/canada/windsor/michigan-hospitals-coronavirus-1.5510518
 #&gt;  9:                                                      https://www.cbc.ca/news/world/us-coronavirus-thursday-1.5510581
 #&gt; 10: https://www.cbc.ca/news/canada/montreal/jewish-general-hospital-to-set-up-trailers-for-covid-19-evaluation-1.5511901
-</code></pre>
-
-<p>Based on the title of the sample news, some article reported about the virus spread and transmission while some others talk about what the government does in response to the COVID-19. We will explore it further using the topic modelling.</p>
-
+</code></pre><p>Based on the title of the sample news, some article reported about the virus spread and transmission while some others talk about what the government does in response to the COVID-19. We will explore it further using the topic modelling.</p>
 <h3 id="text-cleansing">Text Cleansing</h3>
-
 <p>We will clean the text first before proceed further. The text cleansing process includes:</p>
-
 <ul>
 <li>lowercase all text</li>
 <li>remove html tag</li>
@@ -1021,86 +877,65 @@ glimpse(covid_news)
 <li>remove double white space</li>
 <li>remove white space at the start and the end of text</li>
 </ul>
-
-<pre><code class="language-r">covid_clean &lt;- covid_news %&gt;% 
-   mutate(text_clean = text %&gt;% 
-             replace_non_ascii() %&gt;% 
-             replace_html(symbol = F) %&gt;% # remove html tag
-             str_replace_all(&quot;[0-9]&quot;, &quot; &quot;) %&gt;% 
-             str_replace_all(&quot;[-|]&quot;, &quot; &quot;) %&gt;% # replace &quot;-&quot; with space
-             tolower() %&gt;% #lowercase
-             str_remove_all(&quot;coronavirus|covid 19|covid|canadian|canadians&quot;) %&gt;%  # remove common words
-             replace_symbol() %&gt;%
-             replace_contraction() %&gt;% 
-             replace_word_elongation() %&gt;%  # lengthen shortened word
-             str_replace_all(&quot;[[:punct:]]&quot;, &quot; &quot;) %&gt;% # remove punctuation
-             str_replace_all(&quot; dr &quot;, &quot; doctor &quot;) %&gt;% 
-             make_plural() %&gt;%
-             str_replace_all(&quot; s &quot;, &quot; &quot;) %&gt;%  
-             str_squish() %&gt;% # remove double whitespace
-             str_trim() # remove whitespace at the start and end of the text
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">covid_clean <span style="color:#f92672">&lt;-</span> covid_news <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">mutate</span>(text_clean <span style="color:#f92672">=</span> text <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">replace_non_ascii</span>() <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">replace_html</span>(symbol <span style="color:#f92672">=</span> F) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># remove html tag</span>
+             <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34;[0-9]&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34;[-|]&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># replace &#34;-&#34; with space</span>
+             <span style="color:#a6e22e">tolower</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#lowercase</span>
+             <span style="color:#a6e22e">str_remove_all</span>(<span style="color:#e6db74">&#34;coronavirus|covid 19|covid|canadian|canadians&#34;</span>) <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e"># remove common words</span>
+             <span style="color:#a6e22e">replace_symbol</span>() <span style="color:#f92672">%&gt;%</span>
+             <span style="color:#a6e22e">replace_contraction</span>() <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">replace_word_elongation</span>() <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e"># lengthen shortened word</span>
+             <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34;[[:punct:]]&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># remove punctuation</span>
+             <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34; dr &#34;</span>, <span style="color:#e6db74">&#34; doctor &#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">make_plural</span>() <span style="color:#f92672">%&gt;%</span>
+             <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34; s &#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">%&gt;%</span>  
+             <span style="color:#a6e22e">str_squish</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># remove double whitespace</span>
+             <span style="color:#a6e22e">str_trim</span>() <span style="color:#75715e"># remove whitespace at the start and end of the text</span>
           )
-</code></pre>
+</code></pre></div><p>Let&rsquo;s see the remaining number of words on each document in our corpus.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">document_length <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sapply</span>(<span style="color:#a6e22e">strsplit</span>(covid_clean<span style="color:#f92672">$</span>text, <span style="color:#e6db74">&#34; &#34;</span>), length)
 
-<p>Let&rsquo;s see the remaining number of words on each document in our corpus.</p>
-
-<pre><code class="language-r">document_length &lt;- sapply(strsplit(covid_clean$text, &quot; &quot;), length)
-
-document_length %&gt;% 
-   summary()
-</code></pre>
-
-<pre><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+document_length <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">summary</span>()
+</code></pre></div><pre><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #&gt;    14.0   431.0   632.0   713.1   896.0  5100.0
-</code></pre>
+</code></pre><p>The shortest document has 14 words while the longest has 5100 words. LDA will works better if the text input has a lot of words inside the sentence. We will filter document that has at least consists of 100 words.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">covid_clean <span style="color:#f92672">&lt;-</span> covid_clean <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">slice</span>(<span style="color:#a6e22e">which</span>(document_length <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>))
 
-<p>The shortest document has 14 words while the longest has 5100 words. LDA will works better if the text input has a lot of words inside the sentence. We will filter document that has at least consists of 100 words.</p>
-
-<pre><code class="language-r">covid_clean &lt;- covid_clean %&gt;% 
-   slice(which(document_length &gt; 100))
-
-dim(covid_clean)
-</code></pre>
-
-<pre><code>#&gt; [1] 2710    8
-</code></pre>
-
-<p>We have 2,710 number of documents remanining.</p>
-
+<span style="color:#a6e22e">dim</span>(covid_clean)
+</code></pre></div><pre><code>#&gt; [1] 2710    8
+</code></pre><p>We have 2,710 number of documents remanining.</p>
 <h3 id="document-term-matrix">Document-Term Matrix</h3>
-
-<p>The next step is to tokenize the text and create a Document-Term Matrix (DTM) from our text data. We will also remove any stop words such as <code>the</code> or <code>is</code> since they are irrelevant for this problem. We will also do stem words into their basic form, such as from <code>walking</code> into <code>walk</code>. To get better stemming, we also change all <code>positive</code> terms into <code>positives</code>. The stemming function is created manually by with <code>hunspell</code><sup class="footnote-ref" id="fnref:7"><a href="#fn:7">7</a></sup> stemming at its core. <code>hunspell</code> stemming give better result compared to the basic stemming algorithm such as Porter stemming algorithm<sup class="footnote-ref" id="fnref:8"><a href="#fn:8">8</a></sup>.</p>
-
-<pre><code class="language-r">stem_hunspell &lt;- function(term) {
-    # look up the term in the dictionary
-    stems &lt;- hunspell_stem(term)[[1]]
+<p>The next step is to tokenize the text and create a Document-Term Matrix (DTM) from our text data. We will also remove any stop words such as <code>the</code> or <code>is</code> since they are irrelevant for this problem. We will also do stem words into their basic form, such as from <code>walking</code> into <code>walk</code>. To get better stemming, we also change all <code>positive</code> terms into <code>positives</code>. The stemming function is created manually by with <code>hunspell</code><sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> stemming at its core. <code>hunspell</code> stemming give better result compared to the basic stemming algorithm such as Porter stemming algorithm<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">stem_hunspell <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(term) {
+    <span style="color:#75715e"># look up the term in the dictionary</span>
+    stems <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hunspell_stem</span>(term)[[1]]
     
-    if (length(stems) == 0) { # if there are no stems, use the original term
-        stem &lt;- term
-    } else { # if there are multiple stems, use the last one
-        stem &lt;- stems[[length(stems)]]
+    <span style="color:#a6e22e">if </span>(<span style="color:#a6e22e">length</span>(stems) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) { <span style="color:#75715e"># if there are no stems, use the original term</span>
+        stem <span style="color:#f92672">&lt;-</span> term
+    } else { <span style="color:#75715e"># if there are multiple stems, use the last one</span>
+        stem <span style="color:#f92672">&lt;-</span> stems[<span style="color:#a6e22e">[length</span>(stems)]]
     }
-    return(stem)
+    <span style="color:#a6e22e">return</span>(stem)
 }
 
-news_term &lt;- covid_clean %&gt;% 
-   unnest_tokens(output = &quot;word&quot;, input = text_clean) %&gt;% 
-   anti_join(stop_words)  %&gt;% 
-   mutate(word = ifelse(word == &quot;positive&quot;, &quot;positives&quot;, word),
-          word = text_tokens(word, stemmer = stem_hunspell) %&gt;% as.character() ) %&gt;% 
-   drop_na(word) %&gt;% 
-   count(V1, word)
-</code></pre>
+news_term <span style="color:#f92672">&lt;-</span> covid_clean <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">unnest_tokens</span>(output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;word&#34;</span>, input <span style="color:#f92672">=</span> text_clean) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">anti_join</span>(stop_words)  <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">mutate</span>(word <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(word <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;positive&#34;</span>, <span style="color:#e6db74">&#34;positives&#34;</span>, word),
+          word <span style="color:#f92672">=</span> <span style="color:#a6e22e">text_tokens</span>(word, stemmer <span style="color:#f92672">=</span> stem_hunspell) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.character</span>() ) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">drop_na</span>(word) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">count</span>(V1, word)
+</code></pre></div><p>Next, we will transform the data into document-term matrix (DTM). The value inside the matrix represent the <code>term frequency</code> or the number of terms appear inside each document.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dtm_news <span style="color:#f92672">&lt;-</span> news_term <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">cast_dtm</span>(document <span style="color:#f92672">=</span> V1, term <span style="color:#f92672">=</span> word, value <span style="color:#f92672">=</span> n)
 
-<p>Next, we will transform the data into document-term matrix (DTM). The value inside the matrix represent the <code>term frequency</code> or the number of terms appear inside each document.</p>
-
-<pre><code class="language-r">dtm_news &lt;- news_term %&gt;% 
-   cast_dtm(document = V1, term = word, value = n)
-
-inspect(dtm_news)
-</code></pre>
-
-<pre><code>#&gt; &lt;&lt;DocumentTermMatrix (documents: 2710, terms: 25191)&gt;&gt;
+<span style="color:#a6e22e">inspect</span>(dtm_news)
+</code></pre></div><pre><code>#&gt; &lt;&lt;DocumentTermMatrix (documents: 2710, terms: 25191)&gt;&gt;
 #&gt; Non-/sparse entries: 511876/67755734
 #&gt; Sparsity           : 99%
 #&gt; Maximal term length: 29
@@ -1118,53 +953,38 @@ inspect(dtm_news)
 #&gt;   35      12  19     12   25   12     35       15      8   11     8
 #&gt;   49      18  11      9   27   20     34       14     11   15     5
 #&gt;   56      19  21     10   27   19     22       17     10   22    10
-</code></pre>
-
-<p>We have 2,710 documents with total terms of more than 28,000 terms. We will remove rare word that occur only in less than 5 documents and also the common words that appear in more than 90% of all documents. This is intended to give us a collections of terms that is common enough and shared by several documents to indicate a shared topics/latent information but also unique enough that it is not shared by all documents.</p>
-
-<pre><code class="language-r">word_freq &lt;- findFreqTerms(dtm_news, 
-                           lowfreq = 5, 
-                           highfreq = nrow(dtm_news)*0.9
+</code></pre><p>We have 2,710 documents with total terms of more than 28,000 terms. We will remove rare word that occur only in less than 5 documents and also the common words that appear in more than 90% of all documents. This is intended to give us a collections of terms that is common enough and shared by several documents to indicate a shared topics/latent information but also unique enough that it is not shared by all documents.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">word_freq <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">findFreqTerms</span>(dtm_news, 
+                           lowfreq <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, 
+                           highfreq <span style="color:#f92672">=</span> <span style="color:#a6e22e">nrow</span>(dtm_news)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.9</span>
                            )
 
-dtm_news &lt;- dtm_news[ , word_freq]
+dtm_news <span style="color:#f92672">&lt;-</span> dtm_news[ , word_freq]
 dtm_news
-</code></pre>
-
-<pre><code>#&gt; &lt;&lt;DocumentTermMatrix (documents: 2710, terms: 9138)&gt;&gt;
+</code></pre></div><pre><code>#&gt; &lt;&lt;DocumentTermMatrix (documents: 2710, terms: 9138)&gt;&gt;
 #&gt; Non-/sparse entries: 442433/24321547
 #&gt; Sparsity           : 98%
 #&gt; Maximal term length: 19
 #&gt; Weighting          : term frequency (tf)
-</code></pre>
-
-<p>The number of terms drastically drop from 29,000 to around 9,000 terms. We will use this data to train the LDA model.</p>
-
+</code></pre><p>The number of terms drastically drop from 29,000 to around 9,000 terms. We will use this data to train the LDA model.</p>
 <h3 id="topic-modelling-with-lda">Topic Modelling with LDA</h3>
-
 <p>We will create an LDA model with <code>k = 3</code> topics. The choice of number of topics is arbitrary, but we will show you how to find the optimal number of topics later. We will use Gibbs-sampling to estimate the parameter using 5000 iterations of sampling and 4000 burn-in iterations. The burn-in iteration means that we only collecting samples starting from iteration of 4000, since the earlier iteration is still unstable and may not reflect the actual distribution of the data.</p>
-
 <p>Since the computation is quite long (around 30-60 minutes), I have prepared the pre-trained model in the next chunk.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dtm_lda <span style="color:#f92672">&lt;-</span> Matrix<span style="color:#f92672">::</span><span style="color:#a6e22e">Matrix</span>(<span style="color:#a6e22e">as.matrix</span>(dtm_news), sparse <span style="color:#f92672">=</span> T)
 
-<pre><code class="language-r">dtm_lda &lt;- Matrix::Matrix(as.matrix(dtm_news), sparse = T)
-
-set.seed(123)
-lda_news &lt;- FitLdaModel(dtm = dtm_lda, 
-                        k = 3, 
-                        iterations = 5000,
-                        burnin = 4000, 
-                        calc_coherence = T
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+lda_news <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FitLdaModel</span>(dtm <span style="color:#f92672">=</span> dtm_lda, 
+                        k <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, 
+                        iterations <span style="color:#f92672">=</span> <span style="color:#ae81ff">5000</span>,
+                        burnin <span style="color:#f92672">=</span> <span style="color:#ae81ff">4000</span>, 
+                        calc_coherence <span style="color:#f92672">=</span> T
                         )
-</code></pre>
-
-<p>The details about the parameter of <code>FitLdaModel()</code> function is as follows:</p>
-
+</code></pre></div><p>The details about the parameter of <code>FitLdaModel()</code> function is as follows:</p>
 <ul>
 <li>dtm = input data, must be in the form of document-term matrix (dtm)</li>
 <li>k = number of topics</li>
 <li>iterations = maximum number of iterations</li>
 </ul>
-
 <pre><code>#&gt; List of 9
 #&gt;  $ phi           : num [1:3, 1:9138] 0.000000166 0.000000256 0.000020914 0.001365947 0.001274729 ...
 #&gt;   ..- attr(*, &quot;dimnames&quot;)=List of 2
@@ -1189,7 +1009,7 @@ lda_news &lt;- FitLdaModel(dtm = dtm_lda,
 #&gt;   ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;t_1&quot; &quot;t_2&quot; &quot;t_3&quot;
 #&gt;  $ beta          : Named num [1:9138] 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 ...
 #&gt;   ..- attr(*, &quot;names&quot;)= chr [1:9138] &quot;acetaminophen&quot; &quot;act&quot; &quot;actual&quot; &quot;america&quot; ...
-#&gt;  $ log_likelihood:'data.frame':  500 obs. of  2 variables:
+#&gt;  $ log_likelihood:'data.frame':	500 obs. of  2 variables:
 #&gt;   ..$ iteration     : num [1:500] 0 10 20 30 40 50 60 70 80 90 ...
 #&gt;   ..$ log_likelihood: num [1:500] -5815798 -5770673 -5741072 -5732850 -5729403 ...
 #&gt;  $ coherence     : Named num [1:3] 0.108 0.11 0.144
@@ -1199,10 +1019,7 @@ lda_news &lt;- FitLdaModel(dtm = dtm_lda,
 #&gt;   .. ..$ : chr [1:3] &quot;t_1&quot; &quot;t_2&quot; &quot;t_3&quot;
 #&gt;   .. ..$ : chr [1:2] &quot;label_1&quot; &quot;label_2&quot;
 #&gt;  - attr(*, &quot;class&quot;)= chr &quot;lda_topic_model&quot;
-</code></pre>
-
-<p>Below are some important attribute acquired from the LDA Model:</p>
-
+</code></pre><p>Below are some important attribute acquired from the LDA Model:</p>
 <ul>
 <li><strong>phi</strong> : Posterior per-topic-per-word probabilities</li>
 <li><strong>theta</strong> : Posterior per-document-per-topic probabilities</li>
@@ -1210,42 +1027,28 @@ lda_news &lt;- FitLdaModel(dtm = dtm_lda,
 <li><strong>beta</strong> : Prior per-document-per-topic probabilities</li>
 <li><strong>coherence</strong> : The probabilistic coherence of each topic</li>
 </ul>
-
 <p>If a term has a high value of theta, it has a high probability of that term being generated from that topic. This also indicates that the term has a high association toward a certain topic.</p>
-
-<pre><code class="language-r">lda_news$theta %&gt;% 
-   head() %&gt;% 
-   as.data.frame() %&gt;% 
-   set_names(paste(&quot;Topic&quot;, 1:3)) %&gt;% 
-   rownames_to_column(&quot;document&quot;)  
-</code></pre>
-
-<pre><code>#&gt;   document      Topic 1     Topic 2     Topic 3
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">lda_news<span style="color:#f92672">$</span>theta <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">head</span>() <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">as.data.frame</span>() <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">set_names</span>(<span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;Topic&#34;</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>)) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">rownames_to_column</span>(<span style="color:#e6db74">&#34;document&#34;</span>)  
+</code></pre></div><pre><code>#&gt;   document      Topic 1     Topic 2     Topic 3
 #&gt; 1        0 0.5473617292 0.134138589 0.318499682
 #&gt; 2        1 0.9978331528 0.001083424 0.001083424
 #&gt; 3        2 0.0002356823 0.942964883 0.056799434
 #&gt; 4        3 0.0430145752 0.107003199 0.849982225
 #&gt; 5        4 0.4562965655 0.249136834 0.294566600
 #&gt; 6        5 0.0441518203 0.315259489 0.640588691
-</code></pre>
-
-<p>Remember that LDA assumes that a topic is a mixture of words. The posterior probability for per-topic-per-word assignment is represented by the <em>phi</em> value. The sum of all phi for a topic is 1.</p>
-
-<pre><code class="language-r">lda_news$phi %&gt;% 
-   rowSums()
-</code></pre>
-
-<pre><code>#&gt; t_1 t_2 t_3 
+</code></pre><p>Remember that LDA assumes that a topic is a mixture of words. The posterior probability for per-topic-per-word assignment is represented by the <em>phi</em> value. The sum of all phi for a topic is 1.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">lda_news<span style="color:#f92672">$</span>phi <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">rowSums</span>()
+</code></pre></div><pre><code>#&gt; t_1 t_2 t_3 
 #&gt;   1   1   1
-</code></pre>
-
-<p>To get the top terms for each topic, we can use the <code>GetTopTerms</code> function.</p>
-
-<pre><code class="language-r">GetTopTerms(lda_news$phi, 10) %&gt;% 
-   as.data.frame()
-</code></pre>
-
-<pre><code>#&gt;         t_1      t_2        t_3
+</code></pre><p>To get the top terms for each topic, we can use the <code>GetTopTerms</code> function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">GetTopTerms</span>(lda_news<span style="color:#f92672">$</span>phi, <span style="color:#ae81ff">10</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">as.data.frame</span>()
+</code></pre></div><pre><code>#&gt;         t_1      t_2        t_3
 #&gt; 1    school   dollar       port
 #&gt; 2    social     cent quarantine
 #&gt; 3  distance minister     flight
@@ -1256,26 +1059,17 @@ lda_news &lt;- FitLdaModel(dtm = dtm_lda,
 #&gt; 8      hand    price     cruise
 #&gt; 9    centre     busy    patient
 #&gt; 10  medical business      world
-</code></pre>
-
-<h3 id="exploration">Exploration</h3>
-
+</code></pre><h3 id="exploration">Exploration</h3>
 <p>As we have stated earlier, LDA merely give us the hidden/latent structure inside the corpus of our documents. It is our job as the user to interpret the latent information and assign labels for each generated topic.</p>
-
 <h4 id="word-topic-probabilities">Word-Topic Probabilities</h4>
-
 <p>Below is the top words for each topic. LDA doesn&rsquo;t specifically inform us about what each topic is about. By looking at the representative words of each topic, we as the human will give meaning to each topic. The top terms in the first topic seems to tells us about the impact of the virus outbreak, as indicated by the word <code>school</code>, <code>social distance</code>, <code>store</code>, and <code>student</code>. The second topic talks about the politics and economy regarding the COVID-19, since we see the presence of words <code>cent</code>, <code>federal</code>, <code>minister</code>, and <code>company</code>. The third topic tell us about the spread and transmission of COVID-19, indicated by the word <code>patient</code>, <code>dr</code> (doctor), <code>quarantine</code>, and <code>flight</code>.</p>
-
 <p>As we can see, by using LDA, even though we don&rsquo;t have the true labels or class, the model can generate association between words and topics by assigning probabilities. Using k = 3, we have 3 topics that can easily interpreted since they are quite different from each other.</p>
-
-<pre><code class="language-r">news_word_topic &lt;- GetTopTerms(lda_news$phi, 30) %&gt;% 
-   as.data.frame() %&gt;% 
-   set_names(paste(&quot;Topic&quot;, 1:3))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">news_word_topic <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">GetTopTerms</span>(lda_news<span style="color:#f92672">$</span>phi, <span style="color:#ae81ff">30</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">as.data.frame</span>() <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">set_names</span>(<span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;Topic&#34;</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>))
 
 news_word_topic
-</code></pre>
-
-<pre><code>#&gt;       Topic 1   Topic 2       Topic 3
+</code></pre></div><pre><code>#&gt;       Topic 1   Topic 2       Topic 3
 #&gt; 1      school    dollar          port
 #&gt; 2      social      cent    quarantine
 #&gt; 3    distance  minister        flight
@@ -1306,50 +1100,38 @@ news_word_topic
 #&gt; 28     online     party       airport
 #&gt; 29   employee     trump        family
 #&gt; 30       food      fund        global
-</code></pre>
-
-<p>We can also present top words in each topic using visualization. Here, we will visualize the top 50 terms in each topics using word cloud.</p>
-
-<pre><code class="language-r">news_word_topic %&gt;% 
-   rownames_to_column(&quot;id&quot;) %&gt;%
-   mutate(id = as.numeric(id)) %&gt;% 
-   pivot_longer(-id, names_to = &quot;topic&quot;, values_to = &quot;term&quot;) %&gt;% 
-   ggplot(aes(label = term, size = rev(id), color = topic, alpha = rev(id))) +
-   geom_text_wordcloud(seed = 123) +
-   facet_wrap(~topic, scales = &quot;free&quot;) +
-   scale_alpha_continuous(range = c(0.4, 1)) +
-   scale_color_manual(values = c( &quot;dodgerblue4&quot;, &quot;firebrick4&quot;, &quot;darkgreen&quot;)) +
-   theme_minimal() +
-   theme(strip.background = element_rect(fill = &quot;firebrick&quot;),
-         strip.text.x = element_text(colour = &quot;white&quot;))
-</code></pre>
-
-<p><img src="/blog/topic-model-lda_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
-
-<h4 id="document-topic-probabilities-tabset">Document-Topic Probabilities {.tabset}</h4>
-
+</code></pre><p>We can also present top words in each topic using visualization. Here, we will visualize the top 50 terms in each topics using word cloud.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">news_word_topic <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">rownames_to_column</span>(<span style="color:#e6db74">&#34;id&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+   <span style="color:#a6e22e">mutate</span>(id <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.numeric</span>(id)) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">pivot_longer</span>(<span style="color:#f92672">-</span>id, names_to <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;topic&#34;</span>, values_to <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;term&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">ggplot</span>(<span style="color:#a6e22e">aes</span>(label <span style="color:#f92672">=</span> term, size <span style="color:#f92672">=</span> <span style="color:#a6e22e">rev</span>(id), color <span style="color:#f92672">=</span> topic, alpha <span style="color:#f92672">=</span> <span style="color:#a6e22e">rev</span>(id))) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">geom_text_wordcloud</span>(seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">123</span>) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span>topic, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free&#34;</span>) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">scale_alpha_continuous</span>(range <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.4</span>, <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">scale_color_manual</span>(values <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>( <span style="color:#e6db74">&#34;dodgerblue4&#34;</span>, <span style="color:#e6db74">&#34;firebrick4&#34;</span>, <span style="color:#e6db74">&#34;darkgreen&#34;</span>)) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">theme_minimal</span>() <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">theme</span>(strip.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;firebrick&#34;</span>),
+         strip.text.x <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;white&#34;</span>))
+</code></pre></div><p><!-- raw HTML omitted --></p>
+<h4 class="tabset" id="document-topic-probabilities-">Document-Topic Probabilities</h4>
 <p>We can also acquire the probability of a document belong to certain topics. We will use this metric to check whether our guest about the interpretation of each topic is make sense and if each topic is different enough subjectively.</p>
-
 <h5 id="social-issues">Social Issues</h5>
-
 <p>The following table shows the top 10 news title that has the highest probability to the topic of social issues of coronavirus.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">news_doc_topic <span style="color:#f92672">&lt;-</span> lda_news<span style="color:#f92672">$</span>theta <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">as.data.frame</span>() <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">rownames_to_column</span>(<span style="color:#e6db74">&#34;id&#34;</span>) 
 
-<pre><code class="language-r">news_doc_topic &lt;- lda_news$theta %&gt;% 
-   as.data.frame() %&gt;% 
-   rownames_to_column(&quot;id&quot;) 
-
-news_doc_topic %&gt;% 
-   arrange(desc(t_1)) %&gt;% 
-   left_join(covid_clean %&gt;% 
-                mutate(V1 = as.character(V1)) %&gt;% 
-                select(V1, title), 
-             by = c(&quot;id&quot; = &quot;V1&quot;)) %&gt;% 
-   column_to_rownames(&quot;id&quot;) %&gt;% 
-   select(title, everything()) %&gt;% 
-   head(10)
-</code></pre>
-
-<pre><code>#&gt;                                                                                             title
+news_doc_topic <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">arrange</span>(<span style="color:#a6e22e">desc</span>(t_1)) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">left_join</span>(covid_clean <span style="color:#f92672">%&gt;%</span> 
+                <span style="color:#a6e22e">mutate</span>(V1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.character</span>(V1)) <span style="color:#f92672">%&gt;%</span> 
+                <span style="color:#a6e22e">select</span>(V1, title), 
+             by <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;V1&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">column_to_rownames</span>(<span style="color:#e6db74">&#34;id&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">select</span>(title, <span style="color:#a6e22e">everything</span>()) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">head</span>(<span style="color:#ae81ff">10</span>)
+</code></pre></div><pre><code>#&gt;                                                                                             title
 #&gt; 4126                           No school for Manitoba K-12 students for 3 weeks starting March 23
 #&gt; 234  Online screening tool for coronavirus up and running in Manitoba, chief nursing officer says
 #&gt; 2693         'Really upsetting': YK1 school board votes to close for remainder of the school year
@@ -1371,24 +1153,18 @@ news_doc_topic %&gt;%
 #&gt; 3374 0.9991847 0.0004076641 0.0004076641
 #&gt; 3004 0.9991536 0.0004231909 0.0004231909
 #&gt; 2744 0.9991201 0.0004399472 0.0004399472
-</code></pre>
-
-<h5 id="politics-and-economy">Politics and Economy</h5>
-
+</code></pre><h5 id="politics-and-economy">Politics and Economy</h5>
 <p>The following table shows the top 10 news title that has the highest probability to belong the topic of politics and economy.</p>
-
-<pre><code class="language-r">news_doc_topic %&gt;% 
-   arrange(desc(t_2)) %&gt;% 
-   left_join(covid_clean %&gt;% 
-                mutate(V1 = as.character(V1)) %&gt;% 
-                select(V1, title), 
-             by = c(&quot;id&quot; = &quot;V1&quot;)) %&gt;% 
-   column_to_rownames(&quot;id&quot;) %&gt;% 
-   select(title, everything()) %&gt;% 
-   head(10)
-</code></pre>
-
-<pre><code>#&gt;                                                                                                   title
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">news_doc_topic <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">arrange</span>(<span style="color:#a6e22e">desc</span>(t_2)) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">left_join</span>(covid_clean <span style="color:#f92672">%&gt;%</span> 
+                <span style="color:#a6e22e">mutate</span>(V1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.character</span>(V1)) <span style="color:#f92672">%&gt;%</span> 
+                <span style="color:#a6e22e">select</span>(V1, title), 
+             by <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;V1&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">column_to_rownames</span>(<span style="color:#e6db74">&#34;id&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">select</span>(title, <span style="color:#a6e22e">everything</span>()) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">head</span>(<span style="color:#ae81ff">10</span>)
+</code></pre></div><pre><code>#&gt;                                                                                                   title
 #&gt; 4479       Alberta premier says layoffs loom as oilpatch warns of 'catastrophic' impact from low prices
 #&gt; 301                          TSX loses another 8% as Canadian oil price falls to lowest level on record
 #&gt; 3375                                       'Batten down the hatches': Oilpatch braces as prices plummet
@@ -1410,24 +1186,18 @@ news_doc_topic %&gt;%
 #&gt; 4435 0.0004076641 0.9991847 0.0004076641
 #&gt; 3443 0.0004161465 0.9991677 0.0004161465
 #&gt; 4285 0.0004967710 0.9990065 0.0004967710
-</code></pre>
-
-<h5 id="virus-transmission">Virus Transmission</h5>
-
+</code></pre><h5 id="virus-transmission">Virus Transmission</h5>
 <p>The following table shows the top 10 news title that has the highest probability to belong the topic of virus transmission.</p>
-
-<pre><code class="language-r">news_doc_topic %&gt;% 
-   arrange(desc(t_3)) %&gt;% 
-   left_join(covid_clean %&gt;% 
-                mutate(V1 = as.character(V1)) %&gt;% 
-                select(V1, title), 
-             by = c(&quot;id&quot; = &quot;V1&quot;)) %&gt;% 
-   column_to_rownames(&quot;id&quot;) %&gt;% 
-   select(title, everything()) %&gt;% 
-   head(10)
-</code></pre>
-
-<pre><code>#&gt;                                                                                                title
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">news_doc_topic <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">arrange</span>(<span style="color:#a6e22e">desc</span>(t_3)) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">left_join</span>(covid_clean <span style="color:#f92672">%&gt;%</span> 
+                <span style="color:#a6e22e">mutate</span>(V1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.character</span>(V1)) <span style="color:#f92672">%&gt;%</span> 
+                <span style="color:#a6e22e">select</span>(V1, title), 
+             by <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;V1&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">column_to_rownames</span>(<span style="color:#e6db74">&#34;id&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">select</span>(title, <span style="color:#a6e22e">everything</span>()) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">head</span>(<span style="color:#ae81ff">10</span>)
+</code></pre></div><pre><code>#&gt;                                                                                                title
 #&gt; 3997                                    Death toll from new coronavirus outbreak in China reaches 17
 #&gt; 996                                               Timeline: How the new coronavirus arose and spread
 #&gt; 1058               Canadian doctor, WHO team heading to China, where coronavirus death toll tops 900
@@ -1449,68 +1219,48 @@ news_doc_topic %&gt;%
 #&gt; 4571 0.0004478280 0.0004478280 0.9991043
 #&gt; 1223 0.0004710316 0.0004710316 0.9990579
 #&gt; 658  0.0006049607 0.0006049607 0.9987901
-</code></pre>
-
-<h4 id="topic-proportion-over-time">Topic Proportion over Time</h4>
-
+</code></pre><h4 id="topic-proportion-over-time">Topic Proportion over Time</h4>
 <p>We will illustrate a distant view on the topics in the data over time. Let&rsquo;s see the range of date when each article is published.</p>
-
-<pre><code class="language-r">range(covid_clean$publish_date)
-</code></pre>
-
-<pre><code>#&gt; [1] &quot;2019-12-22 18:36:00&quot; &quot;2020-03-27 08:30:00&quot;
-</code></pre>
-
-<p>The first article start at the end of December 2019 and the latest article is on March 2020. We will group the data into weekly interval and see the proportion of each topic across the weeks.</p>
-
-<pre><code class="language-r">news_doc_topic %&gt;% 
-   left_join(covid_clean %&gt;% 
-                mutate(V1 = as.character(V1)) %&gt;% 
-                select(V1, title, publish_date), 
-             by = c(&quot;id&quot; = &quot;V1&quot;)) %&gt;% 
-   select(-id) %&gt;% 
-   select(title, everything()) %&gt;% 
-   pivot_longer(c(t_1, t_2, t_3), names_to = &quot;topic&quot;, values_to = &quot;theta&quot;) %&gt;% 
-   mutate(topic = case_when( topic == &quot;t_1&quot; ~ &quot;Social Issues&quot;,
-                             topic == &quot;t_2&quot; ~ &quot;Virus Transmission&quot;,
-                             TRUE ~ &quot;Politics and Economy&quot;) %&gt;% 
-             factor(levels = c(&quot;Virus Transmission&quot;, &quot;Social Issues&quot;, &quot;Politics and Economy&quot;)),
-          publish_date = ymd_hms(publish_date),
-          time = floor_date(publish_date, unit = &quot;week&quot;) %&gt;% as.Date()
-          ) %&gt;% 
-   group_by(time, topic) %&gt;% 
-   summarise(theta = mean(theta)) %&gt;% 
-   ggplot(aes(time, theta, fill = topic, color = topic)) +
-   geom_line() +
-   geom_point(show.legend = F) +
-   theme_minimal() +
-   theme(legend.position = &quot;top&quot;) +
-   scale_x_date(date_breaks = &quot;1 weeks&quot;, 
-                labels = date_format(format = &quot;%d\n%b&quot;)) +
-   scale_y_continuous() +
-   scale_fill_manual(values = c(&quot;firebrick&quot;, &quot;orange&quot;, &quot;dodgerblue3&quot;)) +
-   labs(x = NULL, y = expression(theta), color = NULL, 
-        title = &quot;Topic Proportions Over Time on Weekly Interval&quot;)
-</code></pre>
-
-<p><img src="/blog/topic-model-lda_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">range</span>(covid_clean<span style="color:#f92672">$</span>publish_date)
+</code></pre></div><pre><code>#&gt; [1] &quot;2019-12-22 18:36:00&quot; &quot;2020-03-27 08:30:00&quot;
+</code></pre><p>The first article start at the end of December 2019 and the latest article is on March 2020. We will group the data into weekly interval and see the proportion of each topic across the weeks.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">news_doc_topic <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">left_join</span>(covid_clean <span style="color:#f92672">%&gt;%</span> 
+                <span style="color:#a6e22e">mutate</span>(V1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.character</span>(V1)) <span style="color:#f92672">%&gt;%</span> 
+                <span style="color:#a6e22e">select</span>(V1, title, publish_date), 
+             by <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;V1&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>id) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">select</span>(title, <span style="color:#a6e22e">everything</span>()) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">pivot_longer</span>(<span style="color:#a6e22e">c</span>(t_1, t_2, t_3), names_to <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;topic&#34;</span>, values_to <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;theta&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">mutate</span>(topic <span style="color:#f92672">=</span> <span style="color:#a6e22e">case_when</span>( topic <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;t_1&#34;</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Social Issues&#34;</span>,
+                             topic <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;t_2&#34;</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Virus Transmission&#34;</span>,
+                             <span style="color:#66d9ef">TRUE</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Politics and Economy&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">factor</span>(levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Virus Transmission&#34;</span>, <span style="color:#e6db74">&#34;Social Issues&#34;</span>, <span style="color:#e6db74">&#34;Politics and Economy&#34;</span>)),
+          publish_date <span style="color:#f92672">=</span> <span style="color:#a6e22e">ymd_hms</span>(publish_date),
+          time <span style="color:#f92672">=</span> <span style="color:#a6e22e">floor_date</span>(publish_date, unit <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;week&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.Date</span>()
+          ) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">group_by</span>(time, topic) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">summarise</span>(theta <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(theta)) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">ggplot</span>(<span style="color:#a6e22e">aes</span>(time, theta, fill <span style="color:#f92672">=</span> topic, color <span style="color:#f92672">=</span> topic)) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">geom_line</span>() <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">geom_point</span>(show.legend <span style="color:#f92672">=</span> F) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">theme_minimal</span>() <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">theme</span>(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;top&#34;</span>) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">scale_x_date</span>(date_breaks <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1 weeks&#34;</span>, 
+                labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">date_format</span>(format <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;%d\n%b&#34;</span>)) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">scale_y_continuous</span>() <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">scale_fill_manual</span>(values <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;firebrick&#34;</span>, <span style="color:#e6db74">&#34;orange&#34;</span>, <span style="color:#e6db74">&#34;dodgerblue3&#34;</span>)) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">labs</span>(x <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, y <span style="color:#f92672">=</span> <span style="color:#a6e22e">expression</span>(theta), color <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, 
+        title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Topic Proportions Over Time on Weekly Interval&#34;</span>)
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <p>As we can see, for COVID-19 case (late 2019-2020), as the time goes, more articles are reporting more about the social issues of the coronavirus. There is a one week time gap between in the late December to early January where no news are collected. News regarding the source of the virus or new cases is less reported on March since almost all country have been contracted by the virus and thus people and the government are more concerned about their survival and well-being.</p>
-
-<p>However, LDA can&rsquo;t accurately track the change inside the topic over time since LDA assume that the order of the document does not matter. This assumption may be unrealistic when analyzing long-running collections that span years or centuries, since a topic may change from time to time. For example, the topic Virus Transmission may containt mostly about the transmission and new cases in early 2020 and more about the virus source and characteristics in the later period. These kind of change inside the topic is not detected by LDA. A more advanced and improved version LDA that can accomodate this is the Dynamic Topic Model<sup class="footnote-ref" id="fnref:9"><a href="#fn:9">9</a></sup>, a model that respects the ordering of the documents and gives a richer posterior topical structure than LDA.</p>
-
+<p>However, LDA can&rsquo;t accurately track the change inside the topic over time since LDA assume that the order of the document does not matter. This assumption may be unrealistic when analyzing long-running collections that span years or centuries, since a topic may change from time to time. For example, the topic Virus Transmission may containt mostly about the transmission and new cases in early 2020 and more about the virus source and characteristics in the later period. These kind of change inside the topic is not detected by LDA. A more advanced and improved version LDA that can accomodate this is the Dynamic Topic Model<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup>, a model that respects the ordering of the documents and gives a richer posterior topical structure than LDA.</p>
 <h3 id="evaluating-lda">Evaluating LDA</h3>
-
 <p>Although LDA is an unsupervised learning, we can still measure some of its performance. Traditionally, and still for many practical applications, to evaluate if “the correct thing” has been learned about the corpus, an implicit knowledge and “eyeballing” approaches are used. Ideally, we’d like to capture this information in a single metric that can be maximized, and compared.</p>
-
 <h4 id="eye-balling-test">Eye-Balling Test</h4>
-
 <p>The evaluation of a topic model can be done by looking at the content directly, such as the top-n words like what we previously did. We can decide whether the collection of words inside each topic make sense or contain certain similarity.</p>
-
-<pre><code class="language-r">news_word_topic
-</code></pre>
-
-<pre><code>#&gt;       Topic 1   Topic 2       Topic 3
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">news_word_topic
+</code></pre></div><pre><code>#&gt;       Topic 1   Topic 2       Topic 3
 #&gt; 1      school    dollar          port
 #&gt; 2      social      cent    quarantine
 #&gt; 3    distance  minister        flight
@@ -1541,117 +1291,87 @@ news_doc_topic %&gt;%
 #&gt; 28     online     party       airport
 #&gt; 29   employee     trump        family
 #&gt; 30       food      fund        global
-</code></pre>
-
-<h4 id="intrinsic-measures">Intrinsic Measures</h4>
-
+</code></pre><h4 id="intrinsic-measures">Intrinsic Measures</h4>
 <p>One of the most popular metric to evaluate a topic model is by looking at the topic coherence. Topic Coherence measures the degree of semantic similarity between the top words in a single topic. The <code>textmineR</code> implements a new topic coherence measure based on probability theory. Probabilistic coherence measures how associated words are in a topic, controlling for statistical independence.</p>
-
 <blockquote>
-<p>&ldquo;Suppose you have a corpus of articles from the sports section of a newspaper. A topic with the words {sport, sports, ball, fan, athlete} would look great if you look at correlation, without correcting for independence. But we actually know that it’s a terrible topic because the words are so frequent in this corpus as to be meaningless. In other words, they are highly correlated with each other but they are statistically-independent of each other.&rdquo;
-<footer> Thomas W. Jones</footer></p>
+<p>&ldquo;Suppose you have a corpus of articles from the sports section of a newspaper. A topic with the words {sport, sports, ball, fan, athlete} would look great if you look at correlation, without correcting for independence. But we actually know that it’s a terrible topic because the words are so frequent in this corpus as to be meaningless. In other words, they are highly correlated with each other but they are statistically-independent of each other.&rdquo;</p>
+<!-- raw HTML omitted -->
 </blockquote>
-
 <p>The intuition of the probabilistic coherence is that it measure how probable a pair of words will come from the same documents than from a random document in the corpus. For example, if we the top 3 words of a topic is <code>apple</code>, <code>banana</code>, and <code>cheese</code>, we can calculate the topic coherence by averaging the following numbers:</p>
-
 <ol>
-<li><p><code>\(P(apple|banana) - P(banana)\)</code></p></li>
-
-<li><p><code>\(P(apple|cheese) - P(cheese)\)</code></p></li>
-
-<li><p><code>\(P(banana|cheese) - P(cheese)\)</code></p></li>
+<li>
+<p><code>\(P(apple|banana) - P(banana)\)</code></p>
+</li>
+<li>
+<p><code>\(P(apple|cheese) - P(cheese)\)</code></p>
+</li>
+<li>
+<p><code>\(P(banana|cheese) - P(cheese)\)</code></p>
+</li>
 </ol>
-
 <p>Description:</p>
-
 <ul>
 <li><code>\(P(apple|banana)\)</code> : The probability that words apple and banana appear together in the same documents</li>
 <li><code>\(P(banana)\)</code> : The probability that the word banana appear in the corpus as a whole</li>
 </ul>
-
 <p>You can get the coherence for each topic by calling the <code>coherence</code> object from the LDA models. By default, the topic coherence only look for the top 5 words of each topic.</p>
-
-<pre><code class="language-r">lda_news$coherence
-</code></pre>
-
-<pre><code>#&gt;       t_1       t_2       t_3 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">lda_news<span style="color:#f92672">$</span>coherence
+</code></pre></div><pre><code>#&gt;       t_1       t_2       t_3 
 #&gt; 0.1082933 0.1103960 0.1437167
-</code></pre>
+</code></pre><p>We will try to find the optimal number of topics by finding the average probabilistic coherence for several number of topics, ranging from k = 10 to k = 100 with interval of 10. To speed up the computation, we will only use 200 sampling iterations with burnin iteration of 180 for the sake of illustration since higher number of iterations can run for hours or even days.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dtm_lda <span style="color:#f92672">&lt;-</span> Matrix<span style="color:#f92672">::</span><span style="color:#a6e22e">Matrix</span>(<span style="color:#a6e22e">as.matrix</span>(dtm_news), sparse <span style="color:#f92672">=</span> T)
+k_list <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">100</span>, by <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>)
 
-<p>We will try to find the optimal number of topics by finding the average probabilistic coherence for several number of topics, ranging from k = 10 to k = 100 with interval of 10. To speed up the computation, we will only use 200 sampling iterations with burnin iteration of 180 for the sake of illustration since higher number of iterations can run for hours or even days.</p>
+model_list <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">TmParallelApply</span>(X <span style="color:#f92672">=</span> k_list, FUN <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(k){
 
-<pre><code class="language-r">dtm_lda &lt;- Matrix::Matrix(as.matrix(dtm_news), sparse = T)
-k_list &lt;- seq(10, 100, by = 10)
-
-model_list &lt;- TmParallelApply(X = k_list, FUN = function(k){
-
-  m &lt;- FitLdaModel(dtm = dtm_lda, 
-                   k = k, 
-                   iterations = 500, 
-                   burnin = 200,
-                   calc_coherence = TRUE)
+  m <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FitLdaModel</span>(dtm <span style="color:#f92672">=</span> dtm_lda, 
+                   k <span style="color:#f92672">=</span> k, 
+                   iterations <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>, 
+                   burnin <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>,
+                   calc_coherence <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
   
-  m &lt;- mean(m$coherence)
+  m <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">mean</span>(m<span style="color:#f92672">$</span>coherence)
   
-  return(m)
+  <span style="color:#a6e22e">return</span>(m)
 }, 
-cpus = 4
+cpus <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
 )
-</code></pre>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">k_list <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">100</span>, by <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>)
 
-<pre><code class="language-r">k_list &lt;- seq(10, 100, by = 10)
+model_list <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_rds</span>(<span style="color:#e6db74">&#34;data_input/coherence result.Rds&#34;</span>)
 
-model_list &lt;- read_rds(&quot;data_input/coherence result.Rds&quot;)
-
-iter_k &lt;- data.frame(
-   k = k_list,
-   coherence = model_list %&gt;% unlist()
+iter_k <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(
+   k <span style="color:#f92672">=</span> k_list,
+   coherence <span style="color:#f92672">=</span> model_list <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">unlist</span>()
 )
 
-iter_k %&gt;%
-   mutate(max_k = which(coherence == max(coherence)) * 10) %&gt;% 
-   ggplot(aes(k, coherence)) +
-   geom_vline(aes(xintercept = max_k), alpha = 0.5, lty = &quot;dashed&quot;) +
-   geom_line(color = &quot;skyblue4&quot;) +
-   geom_point() +
-   scale_x_continuous(breaks = seq(0, 200, 20)) +
-   labs(x = &quot;Number of Topics&quot;, y = &quot;Coherence&quot;, title = &quot;Coherence Score over Number of Topics&quot;) +
-   theme_minimal() +
-   theme(panel.grid.minor = element_blank())
-</code></pre>
-
-<p><img src="/blog/topic-model-lda_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
-
+iter_k <span style="color:#f92672">%&gt;%</span>
+   <span style="color:#a6e22e">mutate</span>(max_k <span style="color:#f92672">=</span> <span style="color:#a6e22e">which</span>(coherence <span style="color:#f92672">==</span> <span style="color:#a6e22e">max</span>(coherence)) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">ggplot</span>(<span style="color:#a6e22e">aes</span>(k, coherence)) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">geom_vline</span>(<span style="color:#a6e22e">aes</span>(xintercept <span style="color:#f92672">=</span> max_k), alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, lty <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dashed&#34;</span>) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">geom_line</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;skyblue4&#34;</span>) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">geom_point</span>() <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">scale_x_continuous</span>(breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">20</span>)) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">labs</span>(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Number of Topics&#34;</span>, y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Coherence&#34;</span>, title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Coherence Score over Number of Topics&#34;</span>) <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">theme_minimal</span>() <span style="color:#f92672">+</span>
+   <span style="color:#a6e22e">theme</span>(panel.grid.minor <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>())
+</code></pre></div><p><!-- raw HTML omitted --></p>
 <p>The optimal number of topics can be chosen by picking the number of topics that give the highest average coherence.</p>
-
-<p>There are also other methods to evaluate the topic model. It will be too much to discuss them on this article. You can visit Julia Silge blogpost<sup class="footnote-ref" id="fnref:10"><a href="#fn:10">10</a></sup> to see some of the evaluation metrics.</p>
-
+<p>There are also other methods to evaluate the topic model. It will be too much to discuss them on this article. You can visit Julia Silge blogpost<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup> to see some of the evaluation metrics.</p>
 <h4 id="extrinsic-measures">Extrinsic Measures</h4>
-
 <p>Model performance toward a specific task, such as text classification. If the topics is regarded as a feature for classification model, we can use accuracy or any other classification metrics to check if the topic model is good enough to do the job.</p>
-
 <h2 id="document-classification">Document Classification</h2>
-
 <p>LDA can also be treated as a model for dimensionality reduction. Each document can be reduce into its associated gamma values. Dimensionality reduction is crucial in text mining since using each word as a feature will result in large dataset and longer computation. In this section, we will compare the performance of text classification using different treatment of dimensionality reduction.</p>
-
 <h3 id="import-data-1">Import Data</h3>
-
 <p>We will import data about workplace review. The data consists of 60,672 observations with the review text and the sentiment.</p>
-
-<pre><code class="language-r">df &lt;- data.table::fread(&quot;data_input/review.csv&quot;)
-glimpse(df)
-</code></pre>
-
-<pre><code>#&gt; Rows: 60,672
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">&lt;-</span> data.table<span style="color:#f92672">::</span><span style="color:#a6e22e">fread</span>(<span style="color:#e6db74">&#34;data_input/review.csv&#34;</span>)
+<span style="color:#a6e22e">glimpse</span>(df)
+</code></pre></div><pre><code>#&gt; Rows: 60,672
 #&gt; Columns: 2
 #&gt; $ Sentiment &lt;chr&gt; &quot;positives&quot;, &quot;negatives&quot;, &quot;positives&quot;, &quot;negatives&quot;, &quot;positi…
 #&gt; $ Review    &lt;chr&gt; &quot;People are smart and friendly&quot;, &quot;Bureaucracy is slowing th…
-</code></pre>
-
-<h3 id="text-cleansing-1">Text Cleansing</h3>
-
+</code></pre><h3 id="text-cleansing-1">Text Cleansing</h3>
 <p>We will do the usual data cleansing:</p>
-
 <ul>
 <li>Lowecase all text</li>
 <li>Replace all html symbol</li>
@@ -1659,22 +1379,19 @@ glimpse(df)
 <li>Remove all puncuations and numbers</li>
 <li>Remove extra white space</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df_clean <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">mutate</span>(text_clean <span style="color:#f92672">=</span> Review <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">tolower</span>() <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">replace_html</span>() <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">replace_word_elongation</span>() <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34;-&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">str_remove_all</span>(<span style="color:#e6db74">&#34;[[:punct:]]&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">str_remove_all</span>(<span style="color:#e6db74">&#34;[[0-9]]&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">str_squish</span>() <span style="color:#f92672">%&gt;%</span> 
+             <span style="color:#a6e22e">str_trim</span>())
 
-<pre><code class="language-r">df_clean &lt;- df %&gt;% 
-   mutate(text_clean = Review %&gt;% 
-             tolower() %&gt;% 
-             replace_html() %&gt;% 
-             replace_word_elongation() %&gt;% 
-             str_replace_all(&quot;-&quot;, &quot; &quot;) %&gt;% 
-             str_remove_all(&quot;[[:punct:]]&quot;) %&gt;% 
-             str_remove_all(&quot;[[0-9]]&quot;) %&gt;% 
-             str_squish() %&gt;% 
-             str_trim())
-
-df_clean %&gt;% head()
-</code></pre>
-
-<pre><code>#&gt;    Sentiment
+df_clean <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">head</span>()
+</code></pre></div><pre><code>#&gt;    Sentiment
 #&gt; 1: positives
 #&gt; 2: negatives
 #&gt; 3: positives
@@ -1695,125 +1412,95 @@ df_clean %&gt;% head()
 #&gt; 4:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 worklife balance what balance all those perks and benefits are an illusion they keep you at work and they help you to be more productive ive never met anybody at google who actually time off on weekends or on vacations you may not hear management say you have to work on weekendsvacations but they set the culture by doing so and it inevitably trickles down i dont know if google inadvertently hires the work a holics or if they create work a holics in us regardless i have seen way too many of the following marriages fall apart colleagues choosing work and projects over family colleagues getting physically sick and ill because of stress colleagues crying while at work because of the stress colleagues shooting out emails at midnight am am am it is absolutely ridiculous and something needs to change poor management i think the issue is that a majority of people love google because they get to work on interesting technical problems and these are the people that see little value in learning how to develop emotional intelligence perhaps they enjoy technical problems because people are too difficult people are promoted into management positions not because they actually know how to leadmanage but because they happen to be smart or because there is no other path to grow into so there is a layer of intelligent individuals who are horrible managers and leaders yet there is no value system to actually do anything about that because emotional intelligence or adaptive leadership are not taken seriously jerks sure there are a lot of brilliant people but sadly there are also a lot of jerks and many times they are one and the same years ago that wasnt the case i dont know if the pool of candidates is getting smaller or maybe all the folks with great personalities cashed out and left or maybe people are getting burned out and its wearing on their personality and patience ive heard stories of managers straight up cussing out their employees and intimidatingscaring their employees into compliance its a giant company now and inevitably it has become slower moving and is now layered with process and bureaucracy so many political battles empire building territory grabbing google says dont be evil but that practice doesnt seem to be put into place when it comes to internal practices
 #&gt; 5: if youre a software engineer youre among the kings of the hill at google its an engineer driven company without a doubt that is changing but its still very engineer focused the perks are amazing yes free breakfast lunch an dinner every weekday amazing holiday parties at waldorf astoria ny public library moma etc overnight ski trips to vermont overnight nature trips to the poconos in the summer summer picnics at chelsea piers and on and on and on i dont see this going away unless the company starts hurting financially speaking of which the company is doing quite well which reflects in bonuses and equity grants there a huge diversity of work ranging from defending independent journalism worldwide google project shield to crisis response during disasters see maps during hurricane sandy or tsunamis to the best machine learning experts and projects in the world to more mundane revenue driving projects in advertising theres really something for everybody its easy to move around within the company as long as youre in good standing the vast majority of engineers are the company is amazingly open every week larry page and sergey brin host whats called tgif where food beer wine etc is served a new project is presented and afterward theres an open forum to ask the executives anything you want its truly fair game to ask anything no matter how controversial and frequently the executives will be responsive no nobody cares if you use an iphone facebook shop with amazon stream using spotify or refuse to use google+ the company is amazingly open and flexible neither pro nor con but general information on work life balance promotions and advancement work life balance can be what you want it to be on most teams some teams are in more competitive sectors and require more crazy hours all the time but very few of them if you do whats expected youll be fine at least for a handful of years working a roughly hour work week is possible and many people do it there are also people who are hyper motived and work like crazy just because they love it or because theyre competitive or they want to get a promotion if you work hour weeks without putting in anything extra youll fall behind them as they advance and you stand still and maybe that doesnt matter so it works out for everybody but at least know where you would realistically stand if you excel and work your butt off youll be compensated and promoted if you let yourself be a code monkey and just sit coding with your head down all day youll be fine but wont advance a big complaint from some googlers is about not being able to advance even at google with pure coding sure if youre the uber genius who created mapreduce and bigtable youre going to advance like a rocket without having to do anything but coding but if youre like most engineers at google smarter than average but just average compared to other googlers youre just a good coder and not revolutionary code monkeys are important to actually get stuff done and to be sure you absolutely need to be a good coder as a software engineer its the minimum requirement but code monkeys wont advance because theyre not leaders and theyre easy to replace to get promoted you need to lead and do more than just code there are plenty of ways to lead other than being an official tech lead so this isnt actually that hard so the real point is just that you cant just sit there coding what other people tell you to code all day and expect to advance
 #&gt; 6:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            it is becoming larger and with it comes growing pains bureaucracy slow to respond to market threats bloated teams cross divisional tension though nothing remotely approaching that of microsofts internal tension the quality of the engineers is possibly dropping but possibly not its hard to get real metrics because as the absolute number of people grows naturally the number of bad apples grows as a percentage its supposedly the same as it ever was but with larger numbers of poorer quality engineers it just feels like things might be changing for the worse also with growth means more internal confidential data leaks again because of the raw numbers of people product announcements being ruined etc that means the company has to be tighter lipped internally to avoid leaks which makes things less open its still an amazingly open place but less so than it was even a couple years ago the good thing is they recognize it and actively look to improve things because they know how important it is to keep the good culture
-</code></pre>
+</code></pre><p>Next, we inspect the summary of the length of each document. The maximum number of words in a document is 2161 terms.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">document_length <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sapply</span>(<span style="color:#a6e22e">strsplit</span>(df_clean<span style="color:#f92672">$</span>text_clean, <span style="color:#e6db74">&#34; &#34;</span>), length)
 
-<p>Next, we inspect the summary of the length of each document. The maximum number of words in a document is 2161 terms.</p>
-
-<pre><code class="language-r">document_length &lt;- sapply(strsplit(df_clean$text_clean, &quot; &quot;), length)
-
-document_length %&gt;% 
-   summary()
-</code></pre>
-
-<pre><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+document_length <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">summary</span>()
+</code></pre></div><pre><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #&gt;     0.0     7.0    14.0    25.7    27.0  2161.0
-</code></pre>
+</code></pre><p>We will only take documents with more than 50 terms/words.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df_clean <span style="color:#f92672">&lt;-</span> df_clean <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">slice</span>(<span style="color:#a6e22e">which</span>(document_length <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>))
 
-<p>We will only take documents with more than 50 terms/words.</p>
-
-<pre><code class="language-r">df_clean &lt;- df_clean %&gt;% 
-   slice(which(document_length &gt; 50))
-
-dim(df_clean)
-</code></pre>
-
-<pre><code>#&gt; [1] 6271    3
-</code></pre>
-
-<h3 id="cross-validation">Cross-Validation</h3>
-
+<span style="color:#a6e22e">dim</span>(df_clean)
+</code></pre></div><pre><code>#&gt; [1] 6271    3
+</code></pre><h3 id="cross-validation">Cross-Validation</h3>
 <p>We split the data into the training set (80%) and the testing set (20%). We will also check the class proportion of the target variable in the training set.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+index <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#a6e22e">nrow</span>(df_clean), <span style="color:#a6e22e">nrow</span>(df_clean)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.8</span>)
 
-<pre><code class="language-r">set.seed(123)
-index &lt;- sample(nrow(df_clean), nrow(df_clean)*0.8)
+data_train <span style="color:#f92672">&lt;-</span> df_clean[index, ]
+data_test <span style="color:#f92672">&lt;-</span> df_clean[<span style="color:#f92672">-</span>index, ]
 
-data_train &lt;- df_clean[index, ]
-data_test &lt;- df_clean[-index, ]
-
-table(df_clean$Sentiment) %&gt;% prop.table()
-</code></pre>
-
-<pre><code>#&gt; 
+<span style="color:#a6e22e">table</span>(df_clean<span style="color:#f92672">$</span>Sentiment) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">prop.table</span>()
+</code></pre></div><pre><code>#&gt; 
 #&gt; negatives positives 
 #&gt; 0.6451922 0.3548078
-</code></pre>
+</code></pre><p>As we can see, there is a class imbalance between the negative and postive sentiment, so we will upsample the minority class first.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(caret)
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+data_train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">upSample</span>(x <span style="color:#f92672">=</span> data_train <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>Sentiment), 
+                       y <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(data_train<span style="color:#f92672">$</span>Sentiment), yname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sentiment&#34;</span>) 
 
-<p>As we can see, there is a class imbalance between the negative and postive sentiment, so we will upsample the minority class first.</p>
-
-<pre><code class="language-r">library(caret)
-set.seed(123)
-data_train &lt;- upSample(x = data_train %&gt;% select(-Sentiment), 
-                       y = as.factor(data_train$Sentiment), yname = &quot;sentiment&quot;) 
-
-glimpse(data_train)
-</code></pre>
-
-<pre><code>#&gt; Rows: 6,474
+<span style="color:#a6e22e">glimpse</span>(data_train)
+</code></pre></div><pre><code>#&gt; Rows: 6,474
 #&gt; Columns: 3
 #&gt; $ Review     &lt;chr&gt; &quot;As it has grown big, Google has become miserably stagnant…
 #&gt; $ text_clean &lt;chr&gt; &quot;as it has grown big google has become miserably stagnant …
 #&gt; $ sentiment  &lt;fct&gt; negatives, negatives, negatives, negatives, negatives, neg…
-</code></pre>
-
-<h3 id="document-term-matrix-1">Document-Term Matrix</h3>
-
+</code></pre><h3 id="document-term-matrix-1">Document-Term Matrix</h3>
 <p>Next, we create the document-term matrix (DTM) for each document. The term will be a combination of unigram (1-gram) and bigram (2-gram) for each documents.</p>
-
-<pre><code class="language-r">stem_hunspell &lt;- function(term) {
-    # look up the term in the dictionary
-    stems &lt;- hunspell_stem(term)[[1]]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">stem_hunspell <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(term) {
+    <span style="color:#75715e"># look up the term in the dictionary</span>
+    stems <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hunspell_stem</span>(term)[[1]]
     
-    if (length(stems) == 0) { # if there are no stems, use the original term
-        stem &lt;- term
-    } else { # if there are multiple stems, use the last one
-        stem &lt;- stems[[length(stems)]]
+    <span style="color:#a6e22e">if </span>(<span style="color:#a6e22e">length</span>(stems) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) { <span style="color:#75715e"># if there are no stems, use the original term</span>
+        stem <span style="color:#f92672">&lt;-</span> term
+    } else { <span style="color:#75715e"># if there are multiple stems, use the last one</span>
+        stem <span style="color:#f92672">&lt;-</span> stems[<span style="color:#a6e22e">[length</span>(stems)]]
     }
-    return(stem)
+    <span style="color:#a6e22e">return</span>(stem)
 }
 
-train_term &lt;- data_train %&gt;% 
-   rownames_to_column(&quot;id&quot;) %&gt;% 
-   unnest_tokens(output = &quot;word&quot;, input = text_clean) %&gt;% 
-   anti_join(stop_words)  %&gt;% 
-   mutate(word = text_tokens(word, stemmer = stem_hunspell) %&gt;% as.character()) %&gt;% 
-   drop_na(word) %&gt;% 
-   count(id, word)
+train_term <span style="color:#f92672">&lt;-</span> data_train <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">rownames_to_column</span>(<span style="color:#e6db74">&#34;id&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">unnest_tokens</span>(output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;word&#34;</span>, input <span style="color:#f92672">=</span> text_clean) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">anti_join</span>(stop_words)  <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">mutate</span>(word <span style="color:#f92672">=</span> <span style="color:#a6e22e">text_tokens</span>(word, stemmer <span style="color:#f92672">=</span> stem_hunspell) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.character</span>()) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">drop_na</span>(word) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">count</span>(id, word)
 
-train_bigram &lt;- data_train %&gt;% 
-   rownames_to_column(&quot;id&quot;) %&gt;% 
-   unnest_tokens(output = &quot;word&quot;, input = text_clean, token = &quot;ngrams&quot;, n = 2) %&gt;% 
-   drop_na(word) %&gt;% 
-   count(id, word)
+train_bigram <span style="color:#f92672">&lt;-</span> data_train <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">rownames_to_column</span>(<span style="color:#e6db74">&#34;id&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">unnest_tokens</span>(output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;word&#34;</span>, input <span style="color:#f92672">=</span> text_clean, token <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ngrams&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">drop_na</span>(word) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">count</span>(id, word)
 
-test_term &lt;- data_test %&gt;% 
-   rownames_to_column(&quot;id&quot;) %&gt;% 
-   unnest_tokens(output = &quot;word&quot;, input = text_clean) %&gt;% 
-   anti_join(stop_words)  %&gt;% 
-   mutate(word = text_tokens(word, stemmer = stem_hunspell) %&gt;% as.character()) %&gt;% 
-   drop_na(word) %&gt;% 
-   count(id, word) 
+test_term <span style="color:#f92672">&lt;-</span> data_test <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">rownames_to_column</span>(<span style="color:#e6db74">&#34;id&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">unnest_tokens</span>(output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;word&#34;</span>, input <span style="color:#f92672">=</span> text_clean) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">anti_join</span>(stop_words)  <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">mutate</span>(word <span style="color:#f92672">=</span> <span style="color:#a6e22e">text_tokens</span>(word, stemmer <span style="color:#f92672">=</span> stem_hunspell) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.character</span>()) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">drop_na</span>(word) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">count</span>(id, word) 
 
-test_bigram &lt;- data_test %&gt;% 
-   rownames_to_column(&quot;id&quot;) %&gt;% 
-   unnest_tokens(output = &quot;word&quot;, input = text_clean, token = &quot;ngrams&quot;, n = 2) %&gt;% 
-   drop_na(word) %&gt;% 
-   count(id, word)
-</code></pre>
+test_bigram <span style="color:#f92672">&lt;-</span> data_test <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">rownames_to_column</span>(<span style="color:#e6db74">&#34;id&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">unnest_tokens</span>(output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;word&#34;</span>, input <span style="color:#f92672">=</span> text_clean, token <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ngrams&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">drop_na</span>(word) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">count</span>(id, word)
+</code></pre></div><p>Here is the resulting DTM from the corpus of text data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dtm_train_review <span style="color:#f92672">&lt;-</span> train_term <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">bind_rows</span>(train_bigram) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">cast_dtm</span>(document <span style="color:#f92672">=</span> id, term <span style="color:#f92672">=</span> word, value <span style="color:#f92672">=</span> n)
 
-<p>Here is the resulting DTM from the corpus of text data.</p>
+dtm_test <span style="color:#f92672">&lt;-</span> test_term <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">bind_rows</span>(test_bigram) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">cast_dtm</span>(document <span style="color:#f92672">=</span> id, term <span style="color:#f92672">=</span> word, value <span style="color:#f92672">=</span> n)
 
-<pre><code class="language-r">dtm_train_review &lt;- train_term %&gt;% 
-   bind_rows(train_bigram) %&gt;% 
-   cast_dtm(document = id, term = word, value = n)
-
-dtm_test &lt;- test_term %&gt;% 
-   bind_rows(test_bigram) %&gt;% 
-   cast_dtm(document = id, term = word, value = n)
-
-inspect(dtm_train_review)
-</code></pre>
-
-<pre><code>#&gt; &lt;&lt;DocumentTermMatrix (documents: 6474, terms: 204309)&gt;&gt;
+<span style="color:#a6e22e">inspect</span>(dtm_train_review)
+</code></pre></div><pre><code>#&gt; &lt;&lt;DocumentTermMatrix (documents: 6474, terms: 204309)&gt;&gt;
 #&gt; Non-/sparse entries: 885025/1321811441
 #&gt; Sparsity           : 100%
 #&gt; Maximal term length: 48
@@ -1831,88 +1518,59 @@ inspect(dtm_train_review)
 #&gt;   4261      2      10        4      4      1      1      1     10    4    5
 #&gt;   4510      8       0        2      8      3      3      2      0    0   13
 #&gt;   694       0       1        3      0      1      1      4      5    0    4
-</code></pre>
-
-<h3 id="final-preprocessing">Final Preprocessing</h3>
-
+</code></pre><h3 id="final-preprocessing">Final Preprocessing</h3>
 <p>We will continue to reduce the number of terms used by only choose words that appear in at least 5 documents and maximum appear in 80% of all documents. We get the final number of terms about 260,000 terms in 6500 documents.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">word_freq <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">findFreqTerms</span>(dtm_train_review, lowfreq <span style="color:#f92672">=</span>  <span style="color:#ae81ff">5</span>, highfreq <span style="color:#f92672">=</span> <span style="color:#a6e22e">nrow</span>(dtm_train_review)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.8</span>)
 
-<pre><code class="language-r">word_freq &lt;- findFreqTerms(dtm_train_review, lowfreq =  5, highfreq = nrow(dtm_train_review)*0.8)
-
-dtm_train &lt;- dtm_train_review[ , word_freq ]
+dtm_train <span style="color:#f92672">&lt;-</span> dtm_train_review[ , word_freq ]
 
 dtm_train
-</code></pre>
-
-<pre><code>#&gt; &lt;&lt;DocumentTermMatrix (documents: 6474, terms: 25908)&gt;&gt;
+</code></pre></div><pre><code>#&gt; &lt;&lt;DocumentTermMatrix (documents: 6474, terms: 25908)&gt;&gt;
 #&gt; Non-/sparse entries: 621283/167107109
 #&gt; Sparsity           : 100%
 #&gt; Maximal term length: 30
 #&gt; Weighting          : term frequency (tf)
-</code></pre>
-
-<p><strong>LDA</strong></p>
-
+</code></pre><p><strong>LDA</strong></p>
 <p>We will build the LDA topic model for the document-term matrix. We will use number of topic (k) = 50, with 5000 iterations and 4000 burn-in. Since the process is relatively long, we also have saved the previously trained topic model in the next chunk.</p>
-
 <p>The topic distribution for each document ($\theta$) will be used as the features for the machine learning model. Using only 50 topics, we expect a 99.8% dimensionality reduction.</p>
-
 <p><code>$$Dimensionality\ reduction = 1 - \frac{50}{25908} = 0.998 = 99.8\%$$</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dtm_lda <span style="color:#f92672">&lt;-</span> Matrix<span style="color:#f92672">::</span><span style="color:#a6e22e">Matrix</span>(<span style="color:#a6e22e">as.matrix</span>(dtm_train), sparse <span style="color:#f92672">=</span> T)
 
-<pre><code class="language-r">dtm_lda &lt;- Matrix::Matrix(as.matrix(dtm_train), sparse = T)
-
-set.seed(123)
-lda_review &lt;- FitLdaModel(dtm = dtm_lda, 
-                        k = 50, 
-                        iterations = 5000,
-                        burnin = 4000
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+lda_review <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FitLdaModel</span>(dtm <span style="color:#f92672">=</span> dtm_lda, 
+                        k <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>, 
+                        iterations <span style="color:#f92672">=</span> <span style="color:#ae81ff">5000</span>,
+                        burnin <span style="color:#f92672">=</span> <span style="color:#ae81ff">4000</span>
                         )
-</code></pre>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">lda_review <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_rds</span>(<span style="color:#e6db74">&#34;data_input/lda review.Rds&#34;</span>)
+</code></pre></div><p>Finally, we prepare the features and the target variable of the training set for model fitting.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">train_y <span style="color:#f92672">&lt;-</span> data_train<span style="color:#f92672">$</span>sentiment[ <span style="color:#a6e22e">rownames</span>(lda_review<span style="color:#f92672">$</span>theta) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.numeric</span>() ]
 
-<pre><code class="language-r">lda_review &lt;- read_rds(&quot;data_input/lda review.Rds&quot;)
-</code></pre>
-
-<p>Finally, we prepare the features and the target variable of the training set for model fitting.</p>
-
-<pre><code class="language-r">train_y &lt;- data_train$sentiment[ rownames(lda_review$theta) %&gt;% as.numeric() ]
-
-train_x &lt;- lda_review$theta
-</code></pre>
-
-<p><strong>Bernoullie Convertion</strong></p>
-
+train_x <span style="color:#f92672">&lt;-</span> lda_review<span style="color:#f92672">$</span>theta
+</code></pre></div><p><strong>Bernoullie Convertion</strong></p>
 <p>For the conventional naive bayes, we will convert the numerical value (the frequency of each term in each document) into a categorical whether the term is presence in the document or not.</p>
-
-<pre><code class="language-r">bernoulli_conv &lt;- function(x){
-        x &lt;- as.factor(as.numeric(x &gt; 0))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">bernoulli_conv <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
+        x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.factor</span>(<span style="color:#a6e22e">as.numeric</span>(x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>))
 }
 
-train_bayes &lt;- Matrix::Matrix(as.matrix(dtm_train), sparse = T)
+train_bayes <span style="color:#f92672">&lt;-</span> Matrix<span style="color:#f92672">::</span><span style="color:#a6e22e">Matrix</span>(<span style="color:#a6e22e">as.matrix</span>(dtm_train), sparse <span style="color:#f92672">=</span> T)
 
-train_bn &lt;- apply(dtm_train, 2, bernoulli_conv)
-test_bn &lt;- apply(dtm_test, 2, bernoulli_conv)
-</code></pre>
-
-<h3 id="model-fitting-and-evaluation">Model Fitting and Evaluation</h3>
-
+train_bn <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">apply</span>(dtm_train, <span style="color:#ae81ff">2</span>, bernoulli_conv)
+test_bn <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">apply</span>(dtm_test, <span style="color:#ae81ff">2</span>, bernoulli_conv)
+</code></pre></div><h3 id="model-fitting-and-evaluation">Model Fitting and Evaluation</h3>
 <p>We will use Random Forest and Naive Bayes to fit the data from LDA. We will also compare the performance of the model with a baseline model of Naive Bayes without the dimensionality reduction from LDA.</p>
-
 <h4 id="lda-with-random-forest">LDA with Random Forest</h4>
-
 <p>The random forest model will be trained using 500 trees and <code>mtry</code> parameter of 2. The error rate from the Out of Bag (OOB) observation is around 6.3% or similar to 93% of accuracy.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(randomForest)
 
-<pre><code class="language-r">library(randomForest)
-
-set.seed(123)
-rf_lda &lt;- randomForest(x = train_x, 
-                       y = train_y, 
-                       ntree = 500, 
-                       mtry = 2)
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+rf_lda <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">randomForest</span>(x <span style="color:#f92672">=</span> train_x, 
+                       y <span style="color:#f92672">=</span> train_y, 
+                       ntree <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>, 
+                       mtry <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
 
 rf_lda
-</code></pre>
-
-<pre><code>#&gt; 
+</code></pre></div><pre><code>#&gt; 
 #&gt; Call:
 #&gt;  randomForest(x = train_x, y = train_y, ntree = 500, mtry = 2) 
 #&gt;                Type of random forest: classification
@@ -1924,225 +1582,189 @@ rf_lda
 #&gt;           negatives positives class.error
 #&gt; negatives      3135       102  0.03151066
 #&gt; positives       304      2933  0.09391412
-</code></pre>
+</code></pre><p>Next, we will prepare the testing dataset. To get the features of probability distribution of each topic for each document, we ran the topic model on the DTM of the testing set using only 100 iterations and burn-in of 80.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dtm_lda_test <span style="color:#f92672">&lt;-</span> Matrix<span style="color:#f92672">::</span><span style="color:#a6e22e">Matrix</span>(<span style="color:#a6e22e">as.matrix</span>(dtm_test), sparse <span style="color:#f92672">=</span> T)
 
-<p>Next, we will prepare the testing dataset. To get the features of probability distribution of each topic for each document, we ran the topic model on the DTM of the testing set using only 100 iterations and burn-in of 80.</p>
-
-<pre><code class="language-r">dtm_lda_test &lt;- Matrix::Matrix(as.matrix(dtm_test), sparse = T)
-
-# Get the topic probabilities for each document
-set.seed(123)
-test_x &lt;- predict(lda_review,
-                  newdata = dtm_lda_test,
-                  iterations = 100,
-                  burnin = 80
+<span style="color:#75715e"># Get the topic probabilities for each document</span>
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+test_x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(lda_review,
+                  newdata <span style="color:#f92672">=</span> dtm_lda_test,
+                  iterations <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>,
+                  burnin <span style="color:#f92672">=</span> <span style="color:#ae81ff">80</span>
                   )
-</code></pre>
+</code></pre></div><p>Next, we predict the testing set using the trained model and see the performance via confusion matrix.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+pred_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(rf_lda, test_x)
+pred_prob <span style="color:#f92672">&lt;-</span>  <span style="color:#a6e22e">predict</span>(rf_lda, test_x, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>)
 
-<p>Next, we predict the testing set using the trained model and see the performance via confusion matrix.</p>
+test_y <span style="color:#f92672">&lt;-</span> data_test<span style="color:#f92672">$</span>Sentiment[ <span style="color:#a6e22e">rownames</span>(dtm_test) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.numeric</span>() ]
 
-<pre><code class="language-r">set.seed(123)
-pred_test &lt;- predict(rf_lda, test_x)
-pred_prob &lt;-  predict(rf_lda, test_x, type = &quot;prob&quot;)
-
-test_y &lt;- data_test$Sentiment[ rownames(dtm_test) %&gt;% as.numeric() ]
-
-pred_lda &lt;- data.frame(predicted = factor(pred_test, levels = c(&quot;positives&quot;, &quot;negatives&quot;)),
-                       actual = factor(test_y, levels = c(&quot;positives&quot;, &quot;negatives&quot;))
+pred_lda <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(predicted <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(pred_test, levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;positives&#34;</span>, <span style="color:#e6db74">&#34;negatives&#34;</span>)),
+                       actual <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(test_y, levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;positives&#34;</span>, <span style="color:#e6db74">&#34;negatives&#34;</span>))
                        )
 
-conf_mat(pred_lda, 
-         truth = actual, 
-         estimate = predicted)
-</code></pre>
-
-<pre><code>#&gt;            Truth
+<span style="color:#a6e22e">conf_mat</span>(pred_lda, 
+         truth <span style="color:#f92672">=</span> actual, 
+         estimate <span style="color:#f92672">=</span> predicted)
+</code></pre></div><pre><code>#&gt;            Truth
 #&gt; Prediction  positives negatives
 #&gt;   positives       271        16
 #&gt;   negatives       175       793
-</code></pre>
-
-<p>We then translate the confusion matrix into several evaluation matrix, such as accuracy, recall/sensitivity, precision and F1 measure. We also calculate the area under curve (AUC) to check the model sensitivity toward change of classification threshold.</p>
-
-<pre><code class="language-r">result_lda_rf &lt;- data.frame(
-   accuracy = accuracy_vec( truth = pred_lda$actual, 
-                            estimate = pred_lda$predicted),
+</code></pre><p>We then translate the confusion matrix into several evaluation matrix, such as accuracy, recall/sensitivity, precision and F1 measure. We also calculate the area under curve (AUC) to check the model sensitivity toward change of classification threshold.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">result_lda_rf <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(
+   accuracy <span style="color:#f92672">=</span> <span style="color:#a6e22e">accuracy_vec</span>( truth <span style="color:#f92672">=</span> pred_lda<span style="color:#f92672">$</span>actual, 
+                            estimate <span style="color:#f92672">=</span> pred_lda<span style="color:#f92672">$</span>predicted),
    
-   recall = sens_vec( truth = pred_lda$actual, 
-                      estimate = pred_lda$predicted),
+   recall <span style="color:#f92672">=</span> <span style="color:#a6e22e">sens_vec</span>( truth <span style="color:#f92672">=</span> pred_lda<span style="color:#f92672">$</span>actual, 
+                      estimate <span style="color:#f92672">=</span> pred_lda<span style="color:#f92672">$</span>predicted),
    
-   precision = precision_vec( truth = pred_lda$actual, 
-                              estimate = pred_lda$predicted),
+   precision <span style="color:#f92672">=</span> <span style="color:#a6e22e">precision_vec</span>( truth <span style="color:#f92672">=</span> pred_lda<span style="color:#f92672">$</span>actual, 
+                              estimate <span style="color:#f92672">=</span> pred_lda<span style="color:#f92672">$</span>predicted),
    
-   F1 = f_meas_vec(truth = pred_lda$actual,
-                   estimate = pred_lda$predicted),
+   F1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">f_meas_vec</span>(truth <span style="color:#f92672">=</span> pred_lda<span style="color:#f92672">$</span>actual,
+                   estimate <span style="color:#f92672">=</span> pred_lda<span style="color:#f92672">$</span>predicted),
    
-   AUC = roc_auc_vec(truth = pred_lda$actual, 
-                     estimate = pred_prob[, 2])
-) %&gt;% 
-   mutate_all(scales::percent, accuracy = 0.01)
+   AUC <span style="color:#f92672">=</span> <span style="color:#a6e22e">roc_auc_vec</span>(truth <span style="color:#f92672">=</span> pred_lda<span style="color:#f92672">$</span>actual, 
+                     estimate <span style="color:#f92672">=</span> pred_prob[, <span style="color:#ae81ff">2</span>])
+) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">mutate_all</span>(scales<span style="color:#f92672">::</span>percent, accuracy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>)
 
 result_lda_rf
-</code></pre>
-
-<pre><code>#&gt;   accuracy recall precision     F1    AUC
+</code></pre></div><pre><code>#&gt;   accuracy recall precision     F1    AUC
 #&gt; 1   84.78% 60.76%    94.43% 73.94% 94.23%
-</code></pre>
-
-<h4 id="lda-with-naive-bayes">LDA with Naive Bayes</h4>
-
+</code></pre><h4 id="lda-with-naive-bayes">LDA with Naive Bayes</h4>
 <p>We will feed the same LDA dataset using the Naive Bayes as comparison.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">naive_lda <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">naiveBayes</span>(x <span style="color:#f92672">=</span> train_x,
+                        y <span style="color:#f92672">=</span> train_y)
 
-<pre><code class="language-r">naive_lda &lt;- naiveBayes(x = train_x,
-                        y = train_y)
+pred_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(naive_lda, test_x)
+pred_prob <span style="color:#f92672">&lt;-</span>  <span style="color:#a6e22e">predict</span>(naive_lda, test_x, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;raw&#34;</span>)
 
-pred_test &lt;- predict(naive_lda, test_x)
-pred_prob &lt;-  predict(naive_lda, test_x, type = &quot;raw&quot;)
-
-pred_lda_bayes &lt;- data.frame(predicted = factor(pred_test, levels = c(&quot;positives&quot;, &quot;negatives&quot;)),
-                             actual = factor(test_y, levels = c(&quot;positives&quot;, &quot;negatives&quot;))
+pred_lda_bayes <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(predicted <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(pred_test, levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;positives&#34;</span>, <span style="color:#e6db74">&#34;negatives&#34;</span>)),
+                             actual <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(test_y, levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;positives&#34;</span>, <span style="color:#e6db74">&#34;negatives&#34;</span>))
                              )
 
-conf_mat(pred_lda_bayes, 
-         truth = actual, 
-         estimate = predicted)
-</code></pre>
-
-<pre><code>#&gt;            Truth
+<span style="color:#a6e22e">conf_mat</span>(pred_lda_bayes, 
+         truth <span style="color:#f92672">=</span> actual, 
+         estimate <span style="color:#f92672">=</span> predicted)
+</code></pre></div><pre><code>#&gt;            Truth
 #&gt; Prediction  positives negatives
 #&gt;   positives       316        24
 #&gt;   negatives       130       785
-</code></pre>
-
-<p>Here are the evaluation metrics for the Naive Bayes model on LDA dataset.</p>
-
-<pre><code class="language-r">result_lda_bayes &lt;- data.frame(
-   accuracy = accuracy_vec( truth = pred_lda_bayes$actual, 
-                            estimate = pred_lda_bayes$predicted),
+</code></pre><p>Here are the evaluation metrics for the Naive Bayes model on LDA dataset.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">result_lda_bayes <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(
+   accuracy <span style="color:#f92672">=</span> <span style="color:#a6e22e">accuracy_vec</span>( truth <span style="color:#f92672">=</span> pred_lda_bayes<span style="color:#f92672">$</span>actual, 
+                            estimate <span style="color:#f92672">=</span> pred_lda_bayes<span style="color:#f92672">$</span>predicted),
    
-   recall = sens_vec( truth = pred_lda_bayes$actual, 
-                      estimate = pred_lda_bayes$predicted),
+   recall <span style="color:#f92672">=</span> <span style="color:#a6e22e">sens_vec</span>( truth <span style="color:#f92672">=</span> pred_lda_bayes<span style="color:#f92672">$</span>actual, 
+                      estimate <span style="color:#f92672">=</span> pred_lda_bayes<span style="color:#f92672">$</span>predicted),
    
-   precision = precision_vec( truth = pred_lda_bayes$actual, 
-                              estimate = pred_lda_bayes$predicted),
+   precision <span style="color:#f92672">=</span> <span style="color:#a6e22e">precision_vec</span>( truth <span style="color:#f92672">=</span> pred_lda_bayes<span style="color:#f92672">$</span>actual, 
+                              estimate <span style="color:#f92672">=</span> pred_lda_bayes<span style="color:#f92672">$</span>predicted),
    
-   F1 = f_meas_vec(truth = pred_lda_bayes$actual,
-                   estimate = pred_lda_bayes$predicted),
+   F1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">f_meas_vec</span>(truth <span style="color:#f92672">=</span> pred_lda_bayes<span style="color:#f92672">$</span>actual,
+                   estimate <span style="color:#f92672">=</span> pred_lda_bayes<span style="color:#f92672">$</span>predicted),
    
-   AUC = roc_auc_vec(truth = pred_lda_bayes$actual, 
-                     estimate = pred_prob[, 2])
-) %&gt;% 
-   mutate_all(scales::percent, accuracy = 0.01)
+   AUC <span style="color:#f92672">=</span> <span style="color:#a6e22e">roc_auc_vec</span>(truth <span style="color:#f92672">=</span> pred_lda_bayes<span style="color:#f92672">$</span>actual, 
+                     estimate <span style="color:#f92672">=</span> pred_prob[, <span style="color:#ae81ff">2</span>])
+) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">mutate_all</span>(scales<span style="color:#f92672">::</span>percent, accuracy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>)
 
 result_lda_bayes
-</code></pre>
-
-<pre><code>#&gt;   accuracy recall precision     F1    AUC
+</code></pre></div><pre><code>#&gt;   accuracy recall precision     F1    AUC
 #&gt; 1   87.73% 70.85%    92.94% 80.41% 94.91%
-</code></pre>
-
-<h4 id="n-gram-with-naive-bayes">N-gram with Naive Bayes</h4>
-
+</code></pre><h4 id="n-gram-with-naive-bayes">N-gram with Naive Bayes</h4>
 <p>Lastly, we will train a Naive Bayes model on the original document-term matrix dataset that consist of 25,000+ terms as a baseline or benchmark model. Since the prediction process of naive bayes is taking too much time, we&rsquo;ve prepared the prediction result in <code>Rds</code> format.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">naive_gram <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">naiveBayes</span>(x <span style="color:#f92672">=</span> train_bn, 
+                         y <span style="color:#f92672">=</span> train_y)
 
-<pre><code class="language-r">naive_gram &lt;- naiveBayes(x = train_bn, 
-                         y = train_y)
-
-pred_test_gram &lt;- predict(naive_gram, test_bn)
-pred_prob_gram &lt;-  predict(naive_gram, test_bn, type = &quot;raw&quot;)
-</code></pre>
-
-<pre><code class="language-r">pred_test_gram &lt;- read_rds(&quot;data_input/pred_test_gram.Rds&quot;)
-pred_prob_gram &lt;- read_rds(&quot;data_input/pred_prob_gram.Rds&quot;)
-pred_gram_bayes &lt;- data.frame(predicted = factor(pred_test_gram, levels = c(&quot;positives&quot;, &quot;negatives&quot;)),
-                             actual = factor(test_y, levels = c(&quot;positives&quot;, &quot;negatives&quot;))
+pred_test_gram <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(naive_gram, test_bn)
+pred_prob_gram <span style="color:#f92672">&lt;-</span>  <span style="color:#a6e22e">predict</span>(naive_gram, test_bn, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;raw&#34;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred_test_gram <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_rds</span>(<span style="color:#e6db74">&#34;data_input/pred_test_gram.Rds&#34;</span>)
+pred_prob_gram <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_rds</span>(<span style="color:#e6db74">&#34;data_input/pred_prob_gram.Rds&#34;</span>)
+pred_gram_bayes <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(predicted <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(pred_test_gram, levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;positives&#34;</span>, <span style="color:#e6db74">&#34;negatives&#34;</span>)),
+                             actual <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(test_y, levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;positives&#34;</span>, <span style="color:#e6db74">&#34;negatives&#34;</span>))
                              )
 
-conf_mat(pred_gram_bayes, 
-         truth = actual, 
-         estimate = predicted)
-</code></pre>
-
-<pre><code>#&gt;            Truth
+<span style="color:#a6e22e">conf_mat</span>(pred_gram_bayes, 
+         truth <span style="color:#f92672">=</span> actual, 
+         estimate <span style="color:#f92672">=</span> predicted)
+</code></pre></div><pre><code>#&gt;            Truth
 #&gt; Prediction  positives negatives
 #&gt;   positives       420        88
 #&gt;   negatives        26       721
-</code></pre>
-
-<p>Here are the evaluation metrics for the Naive Bayes model on the original dataset.</p>
-
-<pre><code class="language-r">result_gram_bayes &lt;- data.frame(
-   accuracy = accuracy_vec( truth = pred_gram_bayes$actual, 
-                            estimate = pred_lda_bayes$predicted),
+</code></pre><p>Here are the evaluation metrics for the Naive Bayes model on the original dataset.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">result_gram_bayes <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(
+   accuracy <span style="color:#f92672">=</span> <span style="color:#a6e22e">accuracy_vec</span>( truth <span style="color:#f92672">=</span> pred_gram_bayes<span style="color:#f92672">$</span>actual, 
+                            estimate <span style="color:#f92672">=</span> pred_lda_bayes<span style="color:#f92672">$</span>predicted),
    
-   recall = sens_vec( truth = pred_gram_bayes$actual, 
-                      estimate = pred_gram_bayes$predicted),
+   recall <span style="color:#f92672">=</span> <span style="color:#a6e22e">sens_vec</span>( truth <span style="color:#f92672">=</span> pred_gram_bayes<span style="color:#f92672">$</span>actual, 
+                      estimate <span style="color:#f92672">=</span> pred_gram_bayes<span style="color:#f92672">$</span>predicted),
    
-   precision = precision_vec( truth = pred_gram_bayes$actual, 
-                              estimate = pred_gram_bayes$predicted),
+   precision <span style="color:#f92672">=</span> <span style="color:#a6e22e">precision_vec</span>( truth <span style="color:#f92672">=</span> pred_gram_bayes<span style="color:#f92672">$</span>actual, 
+                              estimate <span style="color:#f92672">=</span> pred_gram_bayes<span style="color:#f92672">$</span>predicted),
    
-   F1 = f_meas_vec(truth = pred_gram_bayes$actual,
-                   estimate = pred_gram_bayes$predicted),
+   F1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">f_meas_vec</span>(truth <span style="color:#f92672">=</span> pred_gram_bayes<span style="color:#f92672">$</span>actual,
+                   estimate <span style="color:#f92672">=</span> pred_gram_bayes<span style="color:#f92672">$</span>predicted),
    
-   AUC = roc_auc_vec(truth = pred_gram_bayes$actual, 
-                     estimate = pred_prob_gram[, 2])
-) %&gt;% 
-   mutate_all(scales::percent, accuracy = 0.01)
+   AUC <span style="color:#f92672">=</span> <span style="color:#a6e22e">roc_auc_vec</span>(truth <span style="color:#f92672">=</span> pred_gram_bayes<span style="color:#f92672">$</span>actual, 
+                     estimate <span style="color:#f92672">=</span> pred_prob_gram[, <span style="color:#ae81ff">2</span>])
+) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">mutate_all</span>(scales<span style="color:#f92672">::</span>percent, accuracy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>)
 
 result_gram_bayes
-</code></pre>
-
-<pre><code>#&gt;   accuracy recall precision     F1    AUC
+</code></pre></div><pre><code>#&gt;   accuracy recall precision     F1    AUC
 #&gt; 1   87.73% 94.17%    82.68% 88.05% 97.29%
-</code></pre>
-
-<p>This is the recap of performances of all trained models. Using only 50 features (with 99.8% of dimensionality reduction) extracted from the original DTM using topic model, there are some interesting finding. The recall/sensitivity of the LDA models, both Random Forest and Naive Bayes, is far lower than the Naive Bayes using the original DTM. However, the LDA models has better precision with more than 93% precision on the testing dataset. The trade-off between dimensionality reduction and the model performance for this case is a worthy one, since the dimension is heavily reduced (again, 99.8% reduction) while the model still have an acceptable performance. The dimensionality reduction also result in faster computation. This is especially useful because the prediction process of Naive Bayes with many features take too much time.</p>
-
-<pre><code class="language-r">result_lda_rf %&gt;% 
-   bind_rows(result_lda_bayes, result_gram_bayes) %&gt;% 
-   mutate(
-      model = c(&quot;Random Forest&quot;, &quot;Naive Bayes&quot;, &quot;Naive Bayes&quot;),
-      method = c(&quot;LDA&quot;, &quot;LDA&quot;, &quot;n-Gram&quot;),
-      `n features` = c( 50, 50, ncol(dtm_train) )
-   ) %&gt;% 
-   select(method, model, everything()) %&gt;% 
-   rename_all(str_to_title) 
-</code></pre>
-
-<pre><code>#&gt;   Method         Model Accuracy Recall Precision     F1    Auc N Features
+</code></pre><p>This is the recap of performances of all trained models. Using only 50 features (with 99.8% of dimensionality reduction) extracted from the original DTM using topic model, there are some interesting finding. The recall/sensitivity of the LDA models, both Random Forest and Naive Bayes, is far lower than the Naive Bayes using the original DTM. However, the LDA models has better precision with more than 93% precision on the testing dataset. The trade-off between dimensionality reduction and the model performance for this case is a worthy one, since the dimension is heavily reduced (again, 99.8% reduction) while the model still have an acceptable performance. The dimensionality reduction also result in faster computation. This is especially useful because the prediction process of Naive Bayes with many features take too much time.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">result_lda_rf <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">bind_rows</span>(result_lda_bayes, result_gram_bayes) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">mutate</span>(
+      model <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Random Forest&#34;</span>, <span style="color:#e6db74">&#34;Naive Bayes&#34;</span>, <span style="color:#e6db74">&#34;Naive Bayes&#34;</span>),
+      method <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;LDA&#34;</span>, <span style="color:#e6db74">&#34;LDA&#34;</span>, <span style="color:#e6db74">&#34;n-Gram&#34;</span>),
+      `n features` <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>( <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">50</span>, <span style="color:#a6e22e">ncol</span>(dtm_train) )
+   ) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">select</span>(method, model, <span style="color:#a6e22e">everything</span>()) <span style="color:#f92672">%&gt;%</span> 
+   <span style="color:#a6e22e">rename_all</span>(str_to_title) 
+</code></pre></div><pre><code>#&gt;   Method         Model Accuracy Recall Precision     F1    Auc N Features
 #&gt; 1    LDA Random Forest   84.78% 60.76%    94.43% 73.94% 94.23%         50
 #&gt; 2    LDA   Naive Bayes   87.73% 70.85%    92.94% 80.41% 94.91%         50
 #&gt; 3 n-Gram   Naive Bayes   87.73% 94.17%    82.68% 88.05% 97.29%      25908
-</code></pre>
-
-<h1 id="reference">Reference</h1>
-<div class="footnotes">
-
-<hr />
-
+</code></pre><h1 id="reference">Reference</h1>
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><a href="https://tractica.omdia.com/newsroom/press-releases/natural-language-processing-is-a-key-engine-of-ai-market-growth-enabling-44-discrete-use-cases-across-17-industries/">Natural Language Processing Is a Key Engine of AI Market Growth, Enabling 44 Discrete Use Cases Across 17 Industries</a>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2"><a href="https://becominghuman.ai/a-simple-introduction-to-natural-language-processing-ea66a1747b32">A Simple Introduction to Natural Language Processing</a>
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-<li id="fn:3"><a href="https://www.nowpublishers.com/article/DownloadSummary/INR-030">Applications of Topic Models</a>
- <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-<li id="fn:4"><a href="http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf">Latent Dirichlet Allocation</a>
- <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
-<li id="fn:5"><a href="https://www.tidytextmining.com/topicmodeling.html">Text Mining with R</a>
- <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
-<li id="fn:6"><a href="https://statswithr.github.io/book/the-basics-of-bayesian-statistics.html">Bayesian Statistics</a>
- <a class="footnote-return" href="#fnref:6"><sup>[return]</sup></a></li>
-<li id="fn:7"><a href="https://github.com/ropensci/hunspell">Hunspell Stemmer</a>
- <a class="footnote-return" href="#fnref:7"><sup>[return]</sup></a></li>
-<li id="fn:8"><a href="http://snowball.tartarus.org/algorithms/porter/stemmer.html">Porter Stemming Algorithm</a>
- <a class="footnote-return" href="#fnref:8"><sup>[return]</sup></a></li>
-<li id="fn:9"><a href="http://www.cs.columbia.edu/~blei/papers/BleiLafferty2006a.pdf">Dynamic Topic Models</a>
- <a class="footnote-return" href="#fnref:9"><sup>[return]</sup></a></li>
-<li id="fn:10"><a href="https://juliasilge.com/blog/evaluating-stm/">Training, evaluating, and interpreting topic models</a>
- <a class="footnote-return" href="#fnref:10"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://tractica.omdia.com/newsroom/press-releases/natural-language-processing-is-a-key-engine-of-ai-market-growth-enabling-44-discrete-use-cases-across-17-industries/">Natural Language Processing Is a Key Engine of AI Market Growth, Enabling 44 Discrete Use Cases Across 17 Industries</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://becominghuman.ai/a-simple-introduction-to-natural-language-processing-ea66a1747b32">A Simple Introduction to Natural Language Processing</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="https://www.nowpublishers.com/article/DownloadSummary/INR-030">Applications of Topic Models</a> <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf">Latent Dirichlet Allocation</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p><a href="https://www.tidytextmining.com/topicmodeling.html">Text Mining with R</a> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6" role="doc-endnote">
+<p><a href="https://statswithr.github.io/book/the-basics-of-bayesian-statistics.html">Bayesian Statistics</a> <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7" role="doc-endnote">
+<p><a href="https://github.com/ropensci/hunspell">Hunspell Stemmer</a> <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8" role="doc-endnote">
+<p><a href="http://snowball.tartarus.org/algorithms/porter/stemmer.html">Porter Stemming Algorithm</a> <a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:9" role="doc-endnote">
+<p><a href="http://www.cs.columbia.edu/~blei/papers/BleiLafferty2006a.pdf">Dynamic Topic Models</a> <a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:10" role="doc-endnote">
+<p><a href="https://juliasilge.com/blog/evaluating-stm/">Training, evaluating, and interpreting topic models</a> <a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
   </div>
 

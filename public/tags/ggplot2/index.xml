@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ggplot2 on Algoritma Technical Blog</title>
@@ -17,7 +17,7 @@
       <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>/blog/rplicate-i-can-t-get-no/</guid>
-      <description>In this third article on Rplicate Series, We will share to you one way to replicate The Economist plot titled &amp;ldquo;I can&amp;rsquo;t get no &amp;hellip;&amp;rdquo;. The plot making will also demonstrate ways to converting smooth line into linear line, using guides for legend, and adding a text annotation to a plot. The raw dataset used for this graph was obtained from a PDF, so we will also use tibble package to copy-paste the data into R.</description>
+      <description>In this third article on Rplicate Series, We will share to you one way to replicate The Economist plot titled &amp;ldquo;I can&amp;rsquo;t get no &amp;hellip;&amp;quot;. The plot making will also demonstrate ways to converting smooth line into linear line, using guides for legend, and adding a text annotation to a plot. The raw dataset used for this graph was obtained from a PDF, so we will also use tibble package to copy-paste the data into R.</description>
     </item>
     
     <item>
@@ -27,8 +27,8 @@
       
       <guid>/blog/rplicate-series-cherry-bomb/</guid>
       <description>In this second article on Rplicate Series, We will share to you one way to replicate the plot titled Cherry Bomb from the article &amp;ldquo;Japan’s cherry blossoms are emerging increasingly early, 7th April 2017&amp;rdquo;. The raw dataset used for this graph was obtained from a phenological dataset that was previously collected by Dr. Yasuyuki Aono from Osaka Prefecture University12.
- {width=&amp;ldquo;60%&amp;rdquo;} 
-While replicating the plot, we will also learn how to:</description>
+While replicating the plot, we will also learn how to:
+ various data pre-processing tricks such as separate a column into several columns, create date data from several columns, and reverse levels of a categorical column create a scatterplot with a custom shape/image as points using geom_smooth() for visualizing trend in the data explore facets and various theme editing on ggplot2  Let&amp;rsquo;s dive in below!</description>
     </item>
     
     <item>

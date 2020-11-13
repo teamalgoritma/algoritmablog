@@ -24,7 +24,7 @@
         "datePublished": "2020-04-17 00:00:00 \x2b0000 UTC",
         "dateModified" : "2020-04-17 00:00:00 \x2b0000 UTC",
         "url" : "\/blog\/stock-cluster\/",
-        "wordCount" : "4168",
+        "wordCount" : "4170",
         "keywords" : [ "Unsupervised Learning","Clustering","Blog" ]
     }
     </script>
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.55.4" />
+        <meta name="generator" content="Hugo 0.69.0" />
         
   
     
@@ -73,26 +73,22 @@
 <meta property="og:description" content="body {text-align: justify}IntroductionSaham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/stock-cluster/" />
-<meta property="article:published_time" content="2020-04-17T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2020-04-17T00:00:00&#43;00:00"/>
+<meta property="article:published_time" content="2020-04-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-17T00:00:00+00:00" />
 
         <meta property="og:image" content="//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
-        
-<meta itemprop="name" content="Clustering Saham Indonesia">
+        <meta itemprop="name" content="Clustering Saham Indonesia">
 <meta itemprop="description" content="body {text-align: justify}IntroductionSaham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri.">
-
-
 <meta itemprop="datePublished" content="2020-04-17T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-04-17T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="4168">
+<meta itemprop="wordCount" content="4170">
 
 
 
 <meta itemprop="keywords" content="Unsupervised Learning,Clustering," />
-
         
 
         
@@ -494,6 +490,33 @@ if (!doNotTrack) {
   
 
   
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/stock-cluster/" class="image featured">
+            <img src="/img/2020/04/stock_clustering.png" alt="">
+        </a>
+    
+
 
   <div id="content">
     
@@ -547,14 +570,14 @@ library(cluster) #K-Medoid</code></pre>
   filter(year(ListingDate) &lt; 2017)
 head(profile)</code></pre>
 <pre><code>#&gt; # A tibble: 6 x 6
-#&gt;   Code  Name                      ListingDate    Shares ListingBoard sector
-#&gt;   &lt;chr&gt; &lt;chr&gt;                     &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; 
-#&gt; 1 ABBA  Mahaka Media Tbk.         2002-04-03     2.76e9 PENGEMBANGAN TRADE 
-#&gt; 2 AIMS  Akbar Indo Makmur Stimec… 2001-07-20     2.20e8 PENGEMBANGAN TRADE 
-#&gt; 3 AKKU  Anugerah Kagum Karya Uta… 2004-11-01     6.45e9 PENGEMBANGAN TRADE 
-#&gt; 4 APII  Arita Prima Indonesia Tb… 2013-10-29     1.08e9 PENGEMBANGAN TRADE 
-#&gt; 5 ARTA  Arthavest Tbk             2002-11-05     4.47e8 PENGEMBANGAN TRADE 
-#&gt; 6 BAYU  Bayu Buana Tbk            1989-10-30     3.53e8 Pengembangan TRADE</code></pre>
+#&gt;   Code  Name                           ListingDate    Shares ListingBoard sector
+#&gt;   &lt;chr&gt; &lt;chr&gt;                          &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; 
+#&gt; 1 ABBA  Mahaka Media Tbk.              2002-04-03     2.76e9 PENGEMBANGAN TRADE 
+#&gt; 2 AIMS  Akbar Indo Makmur Stimec Tbk   2001-07-20     2.20e8 PENGEMBANGAN TRADE 
+#&gt; 3 AKKU  Anugerah Kagum Karya Utama Tbk 2004-11-01     6.45e9 PENGEMBANGAN TRADE 
+#&gt; 4 APII  Arita Prima Indonesia Tbk.     2013-10-29     1.08e9 PENGEMBANGAN TRADE 
+#&gt; 5 ARTA  Arthavest Tbk                  2002-11-05     4.47e8 PENGEMBANGAN TRADE 
+#&gt; 6 BAYU  Bayu Buana Tbk                 1989-10-30     3.53e8 Pengembangan TRADE</code></pre>
 <p>Terdapat 6 kolom (variabel) dari data profil perusahaan yaitu :<br />
 - <code>Code</code> : Kode emiten perusahaan di bursa.<br />
 - <code>Name</code> : Nama perusahaan.<br />
@@ -624,14 +647,14 @@ profile %&gt;%
   ungroup() %&gt;% 
   head(6)</code></pre>
 <pre><code>#&gt; # A tibble: 6 x 3
-#&gt;   symbol `year(date)`  sdclose
-#&gt;   &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 AALI           2017 14.0    
-#&gt; 2 AALI           2018  0.0214 
-#&gt; 3 AALI           2019  0.0183 
-#&gt; 4 ABBA           2017  0.00756
-#&gt; 5 ABBA           2018  0.0699 
-#&gt; 6 ABBA           2019  0.0567</code></pre>
+#&gt;   symbol `year(date)` sdclose[,1]
+#&gt;   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+#&gt; 1 AALI           2017    14.0    
+#&gt; 2 AALI           2018     0.0214 
+#&gt; 3 AALI           2019     0.0183 
+#&gt; 4 ABBA           2017     0.00756
+#&gt; 5 ABBA           2018     0.0699 
+#&gt; 6 ABBA           2019     0.0567</code></pre>
 </div>
 <div id="likuiditas-liquidity" class="section level2">
 <h2>Likuiditas (Liquidity)</h2>
@@ -682,14 +705,14 @@ head(liq_stocks)</code></pre>
   rename(year = 2)
 head(stocks_agg)</code></pre>
 <pre><code>#&gt; # A tibble: 6 x 4
-#&gt;   symbol  year  sdclose    medvol
-#&gt;   &lt;chr&gt;  &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1 AALI    2017 14.0     0.0430   
-#&gt; 2 AALI    2018  0.0214  0.0445   
-#&gt; 3 AALI    2019  0.0183  0.0308   
-#&gt; 4 ABBA    2017  0.00756 0.0000817
-#&gt; 5 ABBA    2018  0.0699  0.0225   
-#&gt; 6 ABBA    2019  0.0567  0.601</code></pre>
+#&gt;   symbol  year sdclose[,1]    medvol
+#&gt;   &lt;chr&gt;  &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+#&gt; 1 AALI    2017    14.0     0.0430   
+#&gt; 2 AALI    2018     0.0214  0.0445   
+#&gt; 3 AALI    2019     0.0183  0.0308   
+#&gt; 4 ABBA    2017     0.00756 0.0000817
+#&gt; 5 ABBA    2018     0.0699  0.0225   
+#&gt; 6 ABBA    2019     0.0567  0.601</code></pre>
 <p>Hasil aggregasi data diatas mendapatkan 4 variabel yaitu <code>symbol</code>, <code>year</code>, <code>sdclose</code>, <code>medvol</code>. <code>sdclose</code> merupakan standar deviasi dari close price, dan <code>medvol</code> merupakan median dari volume saham yang sudah dibagi dengan total share dari masing masing emiten. Data diatas masih belum dapat digunakan dalam proses clustering dikarenakan setiap emiten blm diwakili oleh satu baris sehingga perlu dilakukan transformasi data menjadi <em>wide format dataframe</em> serta menambahakan data market cap.</p>
 <pre class="r"><code>data_final &lt;-  stocks_agg %&gt;% 
   rename(year = 2) %&gt;% 
@@ -762,20 +785,20 @@ data_anomaly %&gt;%
   select(-db_clust) %&gt;% 
   scale()
 tail(data_final_scale)</code></pre>
-<pre><code>#&gt;       market_cap sdclose_2017 sdclose_2018 sdclose_2019 medvol_2017
-#&gt; WSBP -0.09594534   -0.2898713   -0.2501830  -0.78107074   2.6534829
-#&gt; WSKT  0.11921277   -0.3109128   -0.1543827  -0.45493589   0.7487485
-#&gt; WTON -0.16844413   -0.2528324   -0.2395274  -0.22551437   0.6106544
-#&gt; YPAS -0.23142357   -0.2782496    0.6560785   2.75998113  -0.4504959
-#&gt; YULE -0.22876145   -0.2692605    0.1358728   2.69399375  -0.4456131
-#&gt; ZBRA -0.23659827   -0.2888215   -0.5748003   0.07454265  -0.4504959
-#&gt;      medvol_2018 medvol_2019
-#&gt; WSBP   1.7603059   1.0455536
-#&gt; WSKT   2.1476185   1.5479780
-#&gt; WTON   0.8025378   1.2339881
-#&gt; YPAS  -0.4460910  -0.4106457
-#&gt; YULE  -0.4460910  -0.4105052
-#&gt; ZBRA  -0.4460910  -0.4108071</code></pre>
+<pre><code>#&gt;       market_cap sdclose_2017 sdclose_2018 sdclose_2019 medvol_2017 medvol_2018
+#&gt; WSBP -0.09594534   -0.2898713   -0.2501830  -0.78107074   2.6534829   1.7603059
+#&gt; WSKT  0.11921277   -0.3109128   -0.1543827  -0.45493589   0.7487485   2.1476185
+#&gt; WTON -0.16844413   -0.2528324   -0.2395274  -0.22551437   0.6106544   0.8025378
+#&gt; YPAS -0.23142357   -0.2782496    0.6560785   2.75998113  -0.4504959  -0.4460910
+#&gt; YULE -0.22876145   -0.2692605    0.1358728   2.69399375  -0.4456131  -0.4460910
+#&gt; ZBRA -0.23659827   -0.2888215   -0.5748003   0.07454265  -0.4504959  -0.4460910
+#&gt;      medvol_2019
+#&gt; WSBP   1.0455536
+#&gt; WSKT   1.5479780
+#&gt; WTON   1.2339881
+#&gt; YPAS  -0.4106457
+#&gt; YULE  -0.4105052
+#&gt; ZBRA  -0.4108071</code></pre>
 </div>
 <div id="clustering" class="section level1">
 <h1>Clustering</h1>
