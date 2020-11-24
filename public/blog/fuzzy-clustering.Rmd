@@ -1,0 +1,446 @@
+---
+title: "Fuzzy C-Means Clustering"
+author: Inayatus Solikhah
+github: https://github.com/inytss/fuzzy-cmeans-clustering
+date: '2020-11-23'
+slug: fuzzy-clustering
+categories:
+  - R
+tags: 
+  - Machine Learning
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+<style>
+head {
+text-align: center
+}
+body {
+text-align: justify
+}
+</style>
+
+```{r setup, include=FALSE}
+rm(list = ls())
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align = "center",
+                      comment = "#>")
+options(scipen = 99)
+```
+
+# Introduction {.tabset}
+
+## Clustering
+
+Clustering merupakan salah satu metode machine learning dan termasuk dalam unsupervised learning. Unsupervised learning adalah metode machine learning di mana dalam data yang akan dianalisis tidak terdapat target variabel. Dalam unsupervised learning lebih fokus dalam melakukan eksplorasi data seperti mencari pola dalam data. Clustering sendiri bertujuan mencari pola data yang mirip sehingga memiliki kemungkinan dalam mengelompokkan data-data yang mirip tersebut. Dalam yang telah dikelompokkan dalam clustering biasanya disebut juga sebagai cluster. Dalam menentukan cluster yang baik adalah ketika suatu anggota dalam cluster memiliki kemiripan semirip mungkin sedangkan antar anggota cluster memiliki perbedaan yang cukup signifikan. Clustering banyak digunakan dalam berbagai bidang seperti segmentasi customer, rekomendasi produk, profiling data, dan masih banyak lagi.[^1]
+
+Ada dua jenis clustering yaitu non-fuzzy clustering (hard clustering) dan fuzzy clustering (soft clustering). Perbedaan yang paling mendasar diantara dua jenis clustering tersebut adalah dalam non-fuzzy clustering (hard custering), setiap data akan dibagi menjadi dalam beberapa kelompok dan setiap data poin hanya dapat dimiliki dalam 1 cluster saja. Berbeda dengan fuzzy clustering (soft clustering), setiap data poin memiliki kesempatan untuk dimiliki oleh lebih dari 1 cluster.[^2]
+
+Dalam fuzzy clustering, setiap data poin akan diberikan nilai seperti peluang atau bobot untuk masuk pada setiap cluster. Setiap data poin yang memiliki jarang paling dekat dengan suatu pusat cluster, akan memiliki nilai yang lebih tinggi untuk masuk ke cluster tersebut dibandingkan dengan cluster lain. Nilai yang diberikan untuk setiap data poin menjadi bagian suatu cluster berkisar dalam rentang 0 hingga 1 seperti nilai probabilitas.[^3] 
+
+Pada artikel ini akan dibahas mengenai bagaimana melakukan clustering menggunakan metode Fuzzy C-Means.
+
+## Training Objective
+
+Tujuan dari artikel ini adalah untuk :
+
+* Memahami konsep Fuzzy C-Means clustering
+* Memahami validasi cluster
+* Mengimplementasikan Fuzzy C-Means clustering
+
+## Setup
+
+Berikut ini beberapa package yang diperlukan untuk melakukan analisis clustering menggunakan Fuzzy C-Means.
+
+```{r}
+# Data wrangling
+library(dplyr)
+library(stringr)
+
+# Visualization
+library(factoextra)
+library(ggplot2)
+library(algothemes)
+
+# Fuzzy C-Means
+library(cluster)
+```
+
+# Fuzzy C-Means Clustering
+
+Fuzzy c-means clustering merupakan suatu metode clustering yang hampir mirip seperti k-means clustering. Karena metode clustering ini mirip dengan k-means clustering, ada yang menyebut metode ini fuzzy k-means clustering. Fuzzy c-means merupakan salah satu jenis soft clustering di mana dalam mengelompokan suatu data, setiap data bisa dimiliki lebih dari satu cluster. Contohnya sebuah tomat bisa dikelompokkan ke warna merah atau warna hijau jika dalam hard clustering, namun tomat bisa dikelompokkan ke warna merah **dan** hijau dalam fuzzy clustering. Tomat berwarna merah memiliki tingkatan yang sama dengan tomat berwarna hijau. Jika dimisalkan dengan angka dari 0 sampai 1, tomat warna merah 0.5 dan tomat warna hijau 0.5. 
+
+Cara kerja dari fuzzy c-means clustering dalam mengelompokkan datanya adalah sebagai berikut :
+
+1. Menentukan banyak cluster (k) yang akan dibuat.
+2. Menentukan nilai proporsi untuk setiap data poin secara random untuk masuk dalam suatu cluster.
+3. Menghitung nilai centroid. Dalam menghitung nilai centroid, kita menggunakan formula berikut :
+
+$$C_j = \frac{\sum u_{ij}^mx}{\sum u_{ij}^m}$$
+
+4. Menghitung kembali nilai proporsi untuk setiap data poin untuk masuk pada setiap cluster. Formula yang digunakan yaitu sebagai berikut :
+
+$$u_{ij}^m = \frac{1}{\sum (\frac{|x_i - c_j|}{|x_i - c_k|})^\frac{2}{m-1}}$$
+
+# Validasi Cluster
+
+Pada metode clustering, sangat sulit menentukan keakuratan dari cluster yang terbentuk. Oleh karena itu, terdapat validasi cluster yang dapat digunakan untuk mengukur kebaikan dari hasil clustering. Menurut paper yang ditulis oleh <a href="http://www.jstatsoft.org/v61/i06/paper"> Charrad et al. </a> validasi cluster dibedakan menjadi 3 macam yaitu[^4] :
+
+* Internal cluster validation 
+* External cluster validation 
+* Relative cluster validation 
+
+Perbedaan antara validasi cluster diatas adalah sebagai berikut :
+
+## Internal Cluster Validation {.tabset}
+
+Pada validasi cluster ini menggunakan informasi internal pada data untuk melakukan evaluasi cluster yang baik dan tepat tanpa menggunakan informasi eksternal data. Biasanya yang diukur pada validasi cluster ini adalah tingkat kepadatan (compactness), keterhubungan (connectedness), dan separasi yang ada pada cluster. 
+
+* **Compactness** mengukur seberapa dekat suatu objek pada cluster yang sama. Biasanya dilihat dari nilai *within-cluster variation* yang kecil atau rata-rata jarak antar cluster. 
+* **Connectivity** berhubungan dengan sejauh mana suatu data poin dikelompokkan menjadi satu cluster dengan tetangga terdekatnya (nearest neighbor).
+* **Separation** mengukur seberapa baik pemisah antar satu cluster dengan cluster yang lain. Biasanya dapat diukur berdasarkan jarak antar pusat cluster.
+
+Untuk mengukur internal cluster validation kita bisa menggunakan suatu indeks yaitu :
+
+### Silhouette coefficient
+
+Silhouette mengukur seberapa baik suatu observasi menjadi satu cluster atau memperkirakan nilai *rata-rata jarak antar cluster*. Nilai dari silhouette coefficient menginterpretasikan seberapa dekat suatu data pada satu cluster terhadap tetangga pada cluster yang lain. Semakin besar nilai silhouette (mendekati 1), maka semakin baik cluster tersebut.
+
+### Dunn index
+
+Dunn index menilai seberapa rapat anggota dalam suatu cluster dengan variansi yang kecil dan seberapa terpisah cluster yang satu dengan yang lainnya. Cluster yang baik adalah yang memiliki nilai dunn index besar. 
+
+
+## External Cluster Validation
+
+Dalam melakukan evaluasi cluster, validasi cluster ini menggunakan informasi eksternal pada suatu data seperti label kelas atau kelas target yang disediakan dari sumber eksternal. Hal ini biasanya digunakan untuk mengukur kecocokan label suatu cluster yang terbentuk dengan label kelas yang ada.
+
+## Relative Cluster Validation
+
+Dalam mengevaluasi suatu metode clustering, validasi cluster ini menggunakan pendekatan dengan memberikan beberapa variasi nilai parameter yang berbeda seperti banyaknya jumlah cluster (k) pada satu metode yang sama. Biasanya cara ini digunakan untuk menentukan banyak cluster yang paling optimal. 
+
+# Clustering Mood Berdasarkan Lagu
+
+Spotify merupakan salah satu platform musik yang dapat kita gunakan untuk mendengarkan lagu. Spotify sudah menyimpan banyak sekali jenis-jenis lagu baik dari genre pop, akustik, maupun metal. Spotify juga terdapat API yang dapat digunakan oleh developer untuk mendapatkan beberapa lagu dari platform tersebut. Namun, kali ini kita akan menggunakan data spotify yang sudah tersedia dari <a href="https://www.kaggle.com/zaheenhamidani/ultimate-spotify-tracks-db"> Kaggle </a>. 
+
+Menggunakan data Spotify ini kita akan coba melakukan clustering pada beberapa data yang ada kedalam beberapa kelompok mood yang nantinya bisa digunakan untuk membuat rekomendasi lagu dalam keadaan mood tertentu. Dalam melakukan clustering, kita akan terapkan metode clustering fuzzy c-means.
+
+## Import Data 
+
+Sebelum melakukan clustering, seperti biasa kita import terlebih dahulu data yang kita butuhkan. Untuk data Spotify yang tersedia, nantinya tidak akan digunakan semua karena datanya cukup besar, oleh karena itu pada artikel ini hanya akan menggunakan 1000 data saja (hal ini dikarenakan komputasi).
+
+```{r}
+spotify <- read.csv("data_input/fuzzy-clustering/SpotifyFeatures.csv", encoding = "UTF-8") %>% 
+  rename(genre = X.U.FEFF.genre)
+head(spotify)
+glimpse(spotify)
+```
+
+Data `spotify` terdapat 18 kolom dan 232,725 baris dengan deskripsi masing-masing kolom sebagai berikut:
+
+* `genre`: genre dari sebuah track lagu.
+* `artist_name`: nama penyanyi.
+* `track_name`: judul lagu.
+* `track_id`: nomor id dari track.
+* `popullarity`: rating popularitas track.
+* `acousticness`: ukuran kepercayaan bahwa lagu tersebut adalah akustik, rentang nilai 0-1.
+* `danceability`: menggambarkan seberapa cocok sebuah trek untuk menari berdasarkan kombinasi elemen musik termasuk tempo, stabilitas ritme, kekuatan ketukan, dan keteraturan keseluruhan. Nilai 0 paling tidak bisa menari dan 1 paling bisa membuat menari.
+* `duration_ms`: durasi lagu dalam millisecond
+* `energy`: mewakili ukuran persepsi dari intensitas dan aktivitas dengan rentang 0-1. Biasanya, trek energik terasa cepat, keras, dan berisik. Semakin mendekati ke rentang 1 artinya semakin cepat sedangkan yang mendekati angka 0 artinya sebuah lagu semakin bertempo pelan dan lembut.
+* `instrumentalness`: mendeteksi suatu lagu tidak berisi vokal. Bunyi “Ooh” dan “aah” diperlakukan sebagai instrumen dalam konteks ini. Suatu lagu yang terdapat rap atau track dengan kata disebut sebagai vocal. Semakin dekat nilai instrumen ke 1, semakin besar kemungkinan lagu tersebut tidak berisi konten vokal. Nilai di atas 0.5 dimaksudkan untuk mewakili trek instrumen, tetapi kepercayaan diri lebih tinggi saat nilai mendekati 1.
+* `key`: kunci keseluruhan trek yang diperkirakan. Pemetaan nilai ke pitch menggunakan notasi Pitch Class standar. Misalnya. 0 = C, 1 = C♯ / D♭, 2 = D, dan seterusnya. Jika tidak ada kunci yang terdeteksi, nilainya adalah -1.
+* `liveness`: mendeteksi kehadiran penonton dalam rekaman. Nilai kehidupan yang lebih tinggi menunjukkan peningkatan probabilitas bahwa lagu tersebut dimainkan secara langsung. Nilai di atas 0.8 memberikan kemungkinan yang kuat bahwa trek tersebut hidup.
+* `loudness`: kenyaringan keseluruhan trek dalam desibel (dB). Nilai kenyaringan dirata-ratakan di seluruh trek dan berguna untuk membandingkan kenyaringan relatif track.
+* `mode`: menunjukkan modalitas (major atau minor) dari sebuah track, jenis skala dari mana konten melodinya berasal. Major diwakili oleh 1 dan minor adalah 0.
+* `speechiness`: mendeteksi keberadaan kata-kata yang diucapkan di track. Rekaman yang lebih eksklusif menyerupai ucapan (misal Talk show, buku audio, puisi), semakin mendekati 1 nilai atributnya. Nilai di atas 0.66 menggambarkan track yang mungkin seluruhnya terbuat dari kata-kata yang diucapkan. Nilai antara 0.33 dan 0.66 menggambarkan track yang mungkin berisi musik dan ucapan, baik dalam bagian atau berlapis, termasuk kasus seperti musik rap. Nilai di bawah 0.33 kemungkinan besar mewakili musik dan track non-ucapan lainnya.
+* `tempo`: perkiraan tempo keseluruhan track dalam ketukan per menit (BPM). Dalam terminologi musik, tempo adalah kecepatan atau langkah dari suatu karya tertentu dan diturunkan langsung dari durasi ketukan rata-rata.
+* `time_signature`: perkiraan tanda birama keseluruhan suatu track. Tanda birama (meter) adalah konvensi notasi untuk menentukan berapa banyak ketukan di setiap batang (atau ukuran).
+* `valence`: ukuran dari 0-1 yang mendeskripsikan musik positif yang disampaikan oleh sebuah track. Track dengan valence tinggi terdengar lebih positif (misal bahagia, ceria, gembira), sedangkan trek dengan valence rendah terdengar lebih negatif (misal sedih, tertekan, marah).
+
+## Data Pre-Processing
+
+Pertama, kita akan cek seberapa bersih data yang kita miliki dari missing value. 
+```{r}
+colSums(is.na(spotify))
+```
+
+Seluruh kolom data `spotify` sudah bersih dari missing value. Selanjutnya kita akan melakukan data transformation dengan menyesuaikan beberapa tipe data pada kolom yang belum sesuai.
+```{r}
+glimpse(spotify)
+```
+
+* `genre`: tipe data factor
+* `key`: tipe data factor
+* `mode`: tipe data factor
+* `time_signature`: tipe data factor
+```{r}
+# cleansing
+spotify_clean <- spotify %>% 
+  mutate(genre = str_replace_all(genre, "[[:punct:]]", "")) %>% 
+  mutate(genre = as.factor(genre),
+         key = as.factor(key),
+         mode = as.factor(mode),
+         time_signature = as.factor(time_signature))
+# quick check
+head(spotify_clean)
+```
+
+## Exploratory Data
+
+Sebelum melakukan clustering, kita akan melakukan eksplorasi data terlebih dahulu. Hal ini akan penting dalam menentukan variabel mana saja yang akan kita gunakan dalam membuat clustering mood. 
+
+Klasifikasi mood berdasarkan musik berdasarkan tradisional model mood oleh seorang psikologis [Robert  Thanyer](https://sites.tufts.edu/eeseniordesignhandbook/2015/music-mood-classification/) membedakan setiap mood berdasarkan energi dan stres sebagai bentuk mood senang, sedih, tenang, dan energetik[^5]. Empat jenis mood ini yang akan kita jadikan acuan dalam mengelompokkan data lagu yang kita miliki untuk dikelompokkan menjadi 4 kelompok.
+
+<center> ![](/img/fuzzy-clustering/mood-classification.jpg) </center>
+
+Variabel `acousticness`, `danceability`, `energy`, `instrumentalness`, `loudness`, `tempo`, `time_signature`, dan `valence` adalah beberapa variabel yang bisa menjadi penunjang untuk membedakan suatu musik yang positif dan negatif dalam mengelompokkan suatu mood. Contohnya suatu musik yang positif memiliki nilai `valence` yang mendekati 1 sedangkan musik yang negatif memiliki nilai `valence` yang mendekati 0. Kita bisa lihat dari data yang kita miliki, seperti apa sebaran dari `valence` keseluruhan genre musik yang ada.
+```{r, echo=FALSE}
+spotify_clean %>% 
+  ggplot(aes(x = valence)) +
+  geom_density(fill = "#ba2727", alpha = 0.8)+
+  theme_algo(mode = "dark")+
+  labs(y = NULL, x = "Valence", title = "Valence distribution of tracks")+
+  theme(panel.grid.minor = element_line(linetype = "dashed"),
+        panel.grid.major = element_line(linetype = "dashed"))
+```
+
+```{r}
+summary(spotify_clean$valence)
+```
+
+Beberapa track yang ada pada data ternyata memiliki nilai valence 0 dan kebanyakan dari track memiliki nilai valence kurang dari 0.5. Hal ini bisa menjadi indikasi bahwa berdasarkan data yang kita miliki memungkinkan sebaran track yang bernuansa negatif (marah, sedih, tertekan) lebih banyak dibandingkan track dengan nuansa positif. 
+
+Jika kita lihat dari `tempo` dan `time_signature` pada suatu musik, semakin tinggi nilai `tempo` pada suatu musik bisa mengindikasikan bahwa musik tersebut memiliki nuansa senang maupun energetik. Apabila kita lihat berdasarkan `time_signature` yang memiliki tempo 4/4 mengindikasikan suatu musik yang memiliki tempo yang cepat.
+```{r, echo=FALSE}
+spotify_clean %>% 
+  ggplot(aes(x = tempo))+
+  geom_histogram(fill = "#ba2727", alpha = 0.8, col = "#e85733")+
+  theme_algo(mode = "dark")+
+  labs(y = NULL, x = "Tempo", title = "Tempo distribution of tracks")+
+  theme(panel.grid.minor = element_line(linetype = "dashed"),
+        panel.grid.major = element_line(linetype = "dashed"))
+```
+
+Ketika kita mengidentifikasi musik yang bernuansa negatif berdasarkan nilai `valence` hal ini juga didukung dengan persebaran nilai `tempo` yang condong lebih banyak dengan nilai tempo yang lebih rendah. Jika kita lihat berdasarkan pengelompokkan `time_signature` 
+
+```{r, echo=FALSE}
+spotify_clean %>% 
+  ggplot(aes(x = time_signature)) +
+  geom_density(aes(fill = time_signature), alpha = 0.8)+
+  theme_algo(mode = "dark")+
+  scale_fill_algo(mode = "dark", name = "Time Signature") +
+  labs(y = NULL, x = "Time Signature", title = "Time Signature distribution of tracks")+
+  theme(panel.grid.minor = element_line(linetype = "dashed"),
+        panel.grid.major = element_line(linetype = "dashed"))
+```
+Bisa dikatakan bahwa dari keseluruhan dataset, banyak musik yang memiliki time signature 1/4 - 4/4. 
+
+## Clustering Analysis
+
+Dikarenakan data yang ada sangat besar, sehingga untuk mengurangi komputasi dan untuk melakukan exploratory cluster yang akan terbentuk, maka akan digunakan sebanyak 1000 data random dari total keseluruhan data yang ada. 
+```{r}
+# pemilihan data untuk dilakukan clustering
+set.seed(100)
+intrain <- sample(nrow(spotify_clean), nrow(spotify_clean)*0.0043)
+spotify_sample <- spotify_clean[intrain,]
+```
+
+Perlu diingat bahwa clustering melakukan perhitungan jarak antar satu observasi dalam satu variabel dengan yang lainnya. Maka perlu diperhatikan juga mengenai kesamaan range data yang ada. Apabila diperhatikan, range data untuk keseluruhan variable numerik sangat beragam. Oleh karena itu, diperlukan proses scaling atau standarisasi data sehingga datanya lebih seragam.
+```{r}
+spotify_sample %>% select_if(is.numeric) %>% summary()
+```
+
+```{r}
+# scaling data untuk menyamakan range data untuk kolom numerik
+spotify_z <- spotify_sample %>% 
+  select_if(is.numeric) %>% 
+  scale()
+```
+
+Pada proses clustering menggunakan fuzzy c-means, kita bisa memanfaatkan fungsi `fanny()` dari package `cluster` dimana nama dari `fanny()` adalah kepanjangan dari **Fuzzy Analysis Clustering**.
+
+Argumen yang diperlukan dalam membuat clustering adalah:
+
+* `x`: data yang akan digunakan untuk clustering
+* `k`: banyak cluster yang akan dibentuk
+* `metric`: metric yang digunakan untuk mengukur ketidaksamaan antar observasi
+* `stand`: melakukan standarisasi dalam proses clustering, default = FALSE
+
+```{r}
+# clustering menggunakan funny()
+sp_clust <- fanny(x = spotify_z, k = 4, metric = "euclidean")
+```
+
+## Cluster Exploration
+
+Beberapa hal yang bisa dilakukan eksplorasi dalam clustering menggunakan fuzzy c-means adalah nilai keanggotaan dalam cluster, Dunn index, dan clustering yang terbentuk.
+
+```{r}
+# melihat matrix keanggotaan dalam masing-masing cluster
+sp_clust$membership %>% head()
+```
+Apabila kita perhatikan berdasarkan 6 data pertama yang akan dibuat clustering memiliki derajat keanggotaan yang sama sebesar 0.25. Hal ini tentunya akan biar dan membuat setiap data memiliki kesempatan yang sama untuk bisa masuk kedalam seluruh cluster yang terbentuk. Hal ini bisa disebabkan karena beberapa hal:
+
+a. menggunakan metric *Euclidean* distance belum mampu membedakan setiap karakteristik dari masing-masing cluster yang akan dibentuk. 
+b. banyak k yang digunakan belum optimal
+
+Oleh karena itu, kita akan coba ubah metric yang digunakan dalam membuat clustering menggunakan *SqEuclidean* distance atau square root dari euclidean distance dengan banyak k=4.
+```{r}
+sp_clust2 <- fanny(x = spotify_z, k = 4, metric = "SqEuclidean")
+# cek membership
+sp_clust2$membership %>% head()
+```
+Setelah kita ubah ukuran jarak yang digunakan, nilai derajat keangggotaan untuk setiap data dan masing-masing cluster lebih beragam dan lebih terlihat sebuah cluser akan masuk kedalam cluster yang mana. Contoh pada baris pertama akan lebih codong untuk di cluster 1 dengan derajat keanggotaan paling besar.
+
+Selanjutnya kita akan coba lihat nilai Dunn index pada cluster kedua yang telah kita bentuk.
+```{r}
+sp_clust2$coeff
+```
+
+Nilai Dunn index yang kita peroleh sebesar 0.295. Untuk mengetahui hasil cluster yang kita bentuk sudah baik berdasarkan nilai Dunn index yaitu dengan mendapatkan Dunn index yang semakin besar.
+
+Sebelum membuat visualisasi dari cluster, kita perlu mengetahui berapa banyak cluster yang terbentuk dari nilai derajat keanggotaan yang ada. 
+```{r}
+sp_clust2$clustering %>% unique()
+```
+
+Dari hasil pengelompokan menjadi 4 kelompok, ternyata hanya 3 kelompok yang berhasil terisi. Artinya bahwa dengan menggunakan k=4, fuzzy c-means hanya mampu menseparasikan data berdasarkan 3 kelompok yang berbeda. Apabila kita lihat berdasarkan visualisasi cluster yang terbentuk dari 1000 data yang digunakan yaitu sebagai berikut.
+```{r}
+fviz_cluster(sp_clust2, legend = "right", geom = "point")+
+  theme_algo(mode = "dark")+
+  scale_color_algo(mode = "dark")+
+  labs(title = "Cluster Plot of Spotify Dataset using k=4") +
+  theme(panel.grid.minor = element_line(linetype = "dashed"),
+        panel.grid.major = element_line(linetype = "dashed"))
+```
+
+Ternyata dari hasil visualisasi cluster dan berdasarkan sebaran data yang terlihat, data akan lebih condong apabila di kelompokkan menjadi 3 cluster. Bisa saja ketika kita paksakan menjadi 4 cluster, terdapat 2 cluster yang memiliki kesamaan didalamnya dan ini sangat bertentangan dalam tujuan clustering yaitu mengelompokkan data yang memiliki perbedaan yang signifikan.
+
+Kita akan coba buat clustering kembali dengan menggunakan k=3 dan memvisualisasikannya. 
+```{r}
+sp_clust3 <- fanny(x = spotify_z, k = 3, metric = "SqEuclidean")
+fviz_cluster(sp_clust3, legend = "right", geom = "point")+
+  theme_algo(mode = "dark")+
+  scale_color_algo(mode = "dark")+
+  labs(title = "Cluster Plot of Spotify Dataset using k=3") +
+  theme(panel.grid.minor = element_line(linetype = "dashed"),
+        panel.grid.major = element_line(linetype = "dashed"))
+```
+
+Boom!!! Hasilnya sama dengan ketika menggunakan k=4. Oleh karena itu, kita akan menggunakan k=3 yang artinya kita hanya akan mengklasifikasikan mood menjadi 3 jenis mood.Selain itu apabila kita lihat berdasarkan nilai Dunn index yang dihasilkan ketika membentuk 3 cluster, maka nilai Dunn index naik menjadi 0.388 yang artinya dengan k=3 lebih baik dibandingkan k=4. 
+```{r}
+sp_clust3$coeff
+```
+
+Untuk mengetahui karakteristik dari setiap cluster, kita akan coba lihat berdasarkan variabel yang kita gunakan dalam clustering.
+
+# Karakteristik Cluster
+
+Setiap cluster tentunya akan memiliki karakteristik yang berbeda-beda. Hal ini diperoleh berdasarkan kondisi data yang ada. Untuk mengetahuinya, kita akan lihat berdasarkan analisis secara deskriptif dari masing-masing clusternya.
+
+## Karakteristik General Cluster
+
+Cluster yang telah terbentuk terdapat 3 cluster. Anggota dari masing-masing cluster juga tentunya berbeda. Jika kita perhatikan, cluster yang paling banyak memiliki anggota adalah cluster 2 sebanyak 464 data, diikuti dengan cluster 3 sebanyak 301 data, dan cluster 1 sebanyak 235 data. 
+
+```{r, echo=FALSE}
+spotify_sample$cluster <- sp_clust3$clustering
+spotify_sample %>% 
+  group_by(cluster) %>% 
+  summarise(value = n()) %>% 
+  ggplot(aes(x = cluster, y = value, label = value)) +
+  geom_col(aes(fill = as.factor(cluster)), show.legend = F)+
+  geom_text(position = position_stack(vjust = 1.07), col = "white") +
+  scale_fill_algo(mode = "dark") +
+  labs(y = NULL, x = NULL, title = "Number of Cluster Member") +
+  theme_algo(mode = "dark") +
+  theme(panel.grid.minor = element_line(linetype = "dashed"),
+        panel.grid.major = element_line(linetype = "dashed"))
+
+```
+
+## Cluster 1
+
+### Cluster yang Menunjukkan Energetic
+
+Cluster 1 merupakan cluster yang memiliki tingkat valence, energy, danceability, loudness, tempo, dan popularity yang tinggi. Cluster ini memiliki banyak anggota 235 data. 
+
+```{r, echo=FALSE}
+library(FactoMineR)
+spo_pca <- PCA(spotify_z,  graph = FALSE)
+fviz_pca_biplot(spo_pca, geom.ind = "point", col.ind = spotify_sample$cluster) +
+  theme_algo(mode = "light")+
+  labs(title = "Cluster Characteristic")+
+  theme(legend.position = "none",
+        panel.grid.minor = element_line(linetype = "dashed"),
+        panel.grid.major = element_line(linetype = "dashed"))
+```
+
+## Cluster 2
+### Anggota Terbanyak
+
+Cluster 2 merupakan cluster yang memiliki anggota paling banyak dengan banyak anggota sebanyak 464 data. Cluster 2 ini dicirikan sebagai penggambaran mood happy. Nilai speechiness dan liveness terlihat sangat tinggi untuk cluster ini. 
+
+```{r, echo=FALSE}
+happy <- c("speechiness", "liveness")
+spotify_sample %>%
+  select_if(is.numeric) %>% 
+  tidyr::pivot_longer(-c(cluster), names_to = "variable", values_to = "value") %>%
+  filter(variable %in% happy) %>% 
+  ggplot(aes(x = as.factor(cluster), y = value))+
+  geom_boxplot(aes(fill = as.factor(cluster))) +
+  facet_wrap(~variable, ncol = 1) +
+  scale_fill_manual(values = c("darkgrey", "#ae2024", "darkgrey")) +
+  scale_color_manual(values = c("darkgrey", "#ae2024", "darkgrey")) +
+  labs(x = NULL, y = NULL, title = "Distribution of Happy Characteristic") +
+  theme_algo(mode = "dark") +
+    theme(legend.position = "none",
+        panel.grid.minor = element_line(linetype = "dashed"),
+        panel.grid.major = element_line(linetype = "dashed"))
+```
+
+## Cluster 3
+### Nilai Acousticness Tinggi
+
+Cluster 3 merupakan cluster dengan tingkat acousticness dan instrumentalness sangat tinggi. Hal ini bisa mengindikasikan bahwa tipe mood yang bisa diklasifikasikan adalah mood sad (sedih) atau mood calm. 
+
+```{r, echo=FALSE}
+sad <- c("acousticness", "instrumentalness")
+spotify_sample %>%
+  select_if(is.numeric) %>% 
+  tidyr::pivot_longer(-c(cluster), names_to = "variable", values_to = "value") %>%
+  filter(variable %in% sad) %>% 
+  ggplot(aes(x = as.factor(cluster), y = value))+
+  geom_boxplot(aes(fill = as.factor(cluster))) +
+  facet_wrap(~variable, ncol = 1) +
+  scale_fill_manual(values = c("#ae2024", "darkgrey", "darkgrey")) +
+  scale_color_manual(values = c("#ae2024", "darkgrey", "darkgrey")) +
+  labs(x = NULL, y = NULL, title = "Distribution of Energic Characteristic") +
+  theme_algo(mode = "dark") +
+    theme(legend.position = "none",
+        panel.grid.minor = element_line(linetype = "dashed"),
+        panel.grid.major = element_line(linetype = "dashed"))
+```
+
+Berdasarkan karakteristik mood tersebut, kita akan ubah nama label dari setiap cluster berdasarkan mood yang terbentuk
+```{r}
+spotify_sample <- spotify_sample %>% 
+  mutate(mood = ifelse(cluster == 1, "Energic", ifelse(cluster == 2, "Happy", "Energic")))
+```
+
+# Kesimpulan
+
+Clustering mood yang dilakukan pada beberapa lagu Spotify hanya menggunakan komponen pada suatu musik itu sendiri. Menggunakan 1000 lagu secara random yang diperoleh ternyata belum bisa mengelompokkan menjadi 4 mood yang diinginkan sebelumnya sehingga pada data yang digunakan lebih cocok dikelompokkan menjadi 3 mood: energic, happy, dan sad/calm. Menggunakan 3 cluster, setiap cluster memiliki karakteristik yang cukup berbeda walaupun untuk cluster dengan mood energic dan happy sedikit memiliki kemiripan secara karakteristik. Dalam kasus ini, cluster yang baik adalah cluster yang memiliki nilai Dunn index yang tinggi. 
+
+# Reference 
+
+[^1]: [DBScan Clustering](https://algotech.netlify.app/blog/dbscan-clustering/)
+[^2]: [Fuzzy Clustering](https://en.wikipedia.org/wiki/Fuzzy_clustering)
+[^3]: [Fuzzy Clustering Essentials](https://www.datanovia.com/en/lessons/fuzzy-clustering-essentials/)
+[^4]: [Cluster Validation](http://www.jstatsoft.org/v61/i06/paper)
+[^5]: [Music Mood Classification](https://sites.tufts.edu/eeseniordesignhandbook/2015/music-mood-classification/)

@@ -6,10 +6,28 @@
     <description>Recent content in Blog on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 26 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Boosting Algorithm (AdaBoost and XGBoost)</title>
+      <link>/blog/xgboost/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/xgboost/</guid>
+      <description>body {text-align: justify}IntroductionWhat is boosting?Boosting is an ensemble method of converting weak learners into strong learners. Weak and strong refer to a measure how correlated are the learners to the actual target variable[^1]. In boosting, each training sample are used to train one unit of decision tree and picked with replacement over-weighted data. The trees will learn from predecessors and updates the residuals error.</description>
+    </item>
+    
+    <item>
+      <title>Fuzzy C-Means Clustering</title>
+      <link>/blog/fuzzy-clustering/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/fuzzy-clustering/</guid>
+      <description>head {text-align: center}body {text-align: justify}IntroductionClusteringClustering merupakan salah satu metode machine learning dan termasuk dalam unsupervised learning. Unsupervised learning adalah metode machine learning di mana dalam data yang akan dianalisis tidak terdapat target variabel. Dalam unsupervised learning lebih fokus dalam melakukan eksplorasi data seperti mencari pola dalam data. Clustering sendiri bertujuan mencari pola data yang mirip sehingga memiliki kemungkinan dalam mengelompokkan data-data yang mirip tersebut.</description>
+    </item>
     
     <item>
       <title>Rplicate Series: I can&#39;t get no ...</title>
