@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-04-26 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2019-04-26 00:00:00 \x2b0000 UTC",
+        "datePublished": "2019-04-26 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2019-04-26 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/self-organizing-maps\/",
         "wordCount" : "2694",
         "keywords" : [ "SOM","Clustering","Unsupervised Learning","Machine Learning","Blog" ]
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -276,6 +276,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -317,18 +329,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-26'>
                                     October 26, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-10-21'>
-                                    October 21, 2020</time>
                             </header>
                             
 
@@ -595,7 +595,7 @@ if (!doNotTrack) {
 <span style="color:#a6e22e">levels</span>(ads<span style="color:#f92672">$</span>xyz_campaign_id)
 </code></pre></div><pre><code>#&gt; [1] &quot;916&quot;  &quot;936&quot;  &quot;1178&quot;
 </code></pre><p>As we know that if SOM used numerical data, so if we have categorical variables we must to change those variables to dummy variables.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># change the chategoric variables to a dummy variables</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># change the chategoric variables to a dummy variables</span>
 ads.s <span style="color:#f92672">&lt;-</span> ads <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(genderM <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(gender <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;M&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
          age2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;35-39&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
@@ -603,20 +603,20 @@ ads.s <span style="color:#f92672">&lt;-</span> ads <span style="color:#f92672">%
          age4 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;45-49&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>))
 
-<span style="color:#75715e"># make a train data sets that scaled and convert them to be a matrix cause kohonen function accept numeric matrix</span>
+<span style="color:#75715e"># make a train data sets that scaled and convert them to be a matrix cause kohonen function accept numeric matrix</span>
 ads.train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.matrix</span>(<span style="color:#a6e22e">scale</span>(ads.s[,<span style="color:#ae81ff">-1</span>]))
 </code></pre></div><p>We have dummy variables, then we make a SOM grid in order to make dimentioanlity reduction from our data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make stable sampling</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make stable sampling</span>
 <span style="color:#a6e22e">RNGkind</span>(sample.kind <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Rounding&#34;</span>)
-<span style="color:#75715e"># make a SOM grid</span>
+<span style="color:#75715e"># make a SOM grid</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 ads.grid <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">somgrid</span>(xdim <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, ydim <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, topo <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hexagonal&#34;</span>)
 
-<span style="color:#75715e"># make a SOM model</span>
+<span style="color:#75715e"># make a SOM model</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 ads.model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">som</span>(ads.train, ads.grid, rlen <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>, radius <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.5</span>, keep.data <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>,
                   dist.fcts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;euclidean&#34;</span>)
-<span style="color:#75715e"># str(ads.model)</span>
+<span style="color:#75715e"># str(ads.model)</span>
 </code></pre></div><p>From that summary of <code>ads.model</code> we know that our SOM grid has 10x10 dimension.</p>
 <h1 id="unsupervised-som">Unsupervised SOM</h1>
 <h2 class="tabset tabset-fade tabset-pills" id="visualize-of-som-">Visualize of SOM</h2>
@@ -677,8 +677,8 @@ ads.model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">s
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">kmeans</span>(ads.model<span style="color:#f92672">$</span>codes[[1]], <span style="color:#ae81ff">6</span>)
 
-<span style="color:#75715e"># clustering using hierarchial</span>
-<span style="color:#75715e"># cluster.som &lt;- cutree(hclust(dist(ads.model$codes[[1]])), 6)</span>
+<span style="color:#75715e"># clustering using hierarchial</span>
+<span style="color:#75715e"># cluster.som &lt;- cutree(hclust(dist(ads.model$codes[[1]])), 6)</span>
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Map&#34;</span>)
 <span style="color:#a6e22e">add.cluster.boundaries</span>(ads.model, clust<span style="color:#f92672">$</span>cluster)
 </code></pre></div><p><!-- raw HTML omitted --></p>
@@ -692,7 +692,7 @@ clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">kmean
 <li>Cluster 5 (turqois) : gender Male, age 45-49, interest high, clicks and spent low</li>
 <li>Cluster 6 (blue) : gender Female, age 45-49, interest, impression, clicks, spent, total_conversion low.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># know cluster each data</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># know cluster each data</span>
 ads.cluster <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(ads.s, cluster <span style="color:#f92672">=</span> clust<span style="color:#f92672">$</span>cluster[ads.model<span style="color:#f92672">$</span>unit.classif])
 <span style="color:#a6e22e">tail</span>(ads.cluster, <span style="color:#ae81ff">10</span>)
 </code></pre></div><pre><code>#&gt;      xyz_campaign_id interest Impressions Clicks  Spent Total_Conversion
@@ -719,24 +719,24 @@ ads.cluster <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
 #&gt; 1143                   2       0    0    0    1       5
 </code></pre><h1 id="supervised-som">Supervised SOM</h1>
 <p>In supervised SOM, we want to classify our SOM model with our dependent variable (<code>xyz_campaign_id</code>). In classification case, we have to do split train-test data in order to ensure our model is good enough to predict other data pattern. First, we split our data to train-test and do a scaling step to make the range of data same.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># split data</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># split data</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 int <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#a6e22e">nrow</span>(ads.s), <span style="color:#a6e22e">nrow</span>(ads.s)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.8</span>)
 train <span style="color:#f92672">&lt;-</span> ads.s[int,]
 test <span style="color:#f92672">&lt;-</span> ads.s[<span style="color:#f92672">-</span>int,]
 
-<span style="color:#75715e"># scaling data</span>
+<span style="color:#75715e"># scaling data</span>
 trainX <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(train[,<span style="color:#ae81ff">-1</span>])
 testX <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(test[,<span style="color:#ae81ff">-1</span>], center <span style="color:#f92672">=</span> <span style="color:#a6e22e">attr</span>(trainX, <span style="color:#e6db74">&#34;scaled:center&#34;</span>))
 </code></pre></div><p>After we have done in train-test split, we make a label for our target variable.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make label</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make label</span>
 train.label <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(train[,<span style="color:#ae81ff">1</span>])
 test.label <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(test[,<span style="color:#ae81ff">1</span>])
 test[,<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">916</span>
 testXY <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(independent <span style="color:#f92672">=</span> testX, dependent <span style="color:#f92672">=</span> test.label)
 </code></pre></div><h2 id="classification">Classification</h2>
 <p>To make an classification model implementing SOM algorithm, we can use <code>xyf()</code> function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># classification &amp; predict</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># classification &amp; predict</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xyf</span>(trainX, <span style="color:#a6e22e">classvec2classmat</span>(train.label), ads.grid, rlen <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>)
 </code></pre></div><p>We can plot the classification result by the type <code>change</code>.</p>

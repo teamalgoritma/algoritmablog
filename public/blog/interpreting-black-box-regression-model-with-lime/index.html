@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-10-20 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2020-10-20 00:00:00 \x2b0000 UTC",
+        "datePublished": "2020-10-20 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2020-10-20 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/interpreting-black-box-regression-model-with-lime\/",
         "wordCount" : "5496",
         "keywords" : [ "lime","Machine Learning","Capstone Ml","Blog" ]
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -276,6 +276,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -317,18 +329,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-26'>
                                     October 26, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-10-21'>
-                                    October 21, 2020</time>
                             </header>
                             
 
@@ -528,21 +528,21 @@ if (!doNotTrack) {
 <p>We will try to use black box model to solve regression problem and implement LIME to interpret how the model behave on various input. The dataset would be the <strong>Student Performance</strong> from UCI machine learning repository<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>. This data approach student achievement in secondary education of two Portuguese schools.</p>
 <h2 id="library">Library</h2>
 <p>The following library and setup will be used throughout the articles.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Data Wrangling</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Data Wrangling</span>
 <span style="color:#a6e22e">library</span>(tidyverse)
 
-<span style="color:#75715e"># Exploratory Data Analysis</span>
+<span style="color:#75715e"># Exploratory Data Analysis</span>
 <span style="color:#a6e22e">library</span>(GGally)
 
-<span style="color:#75715e"># Modeling and Evaluation</span>
+<span style="color:#75715e"># Modeling and Evaluation</span>
 <span style="color:#a6e22e">library</span>(randomForest)
 <span style="color:#a6e22e">library</span>(yardstick)
 <span style="color:#a6e22e">library</span>(lmtest)
 
-<span style="color:#75715e"># Model Interpretation</span>
+<span style="color:#75715e"># Model Interpretation</span>
 <span style="color:#a6e22e">library</span>(lime)
 
-<span style="color:#75715e"># Set theme for visualization</span>
+<span style="color:#75715e"># Set theme for visualization</span>
 <span style="color:#a6e22e">theme_set</span>(<span style="color:#a6e22e">theme_minimal</span>())
 
 <span style="color:#a6e22e">options</span>(scipen <span style="color:#f92672">=</span> <span style="color:#ae81ff">999</span>)
@@ -749,7 +749,7 @@ data_test <span style="color:#f92672">&lt;-</span> df_clean[ <span style="color:
 #&gt; Multiple R-squared:  0.8581,	Adjusted R-squared:  0.852 
 #&gt; F-statistic: 140.5 on 13 and 302 DF,  p-value: &lt; 0.00000000000000022
 </code></pre><p>The model has an <code>Adjusted R-Squared</code> of 85%, suggesting that the model can explain the data well enough. We might also interested in seeing how good the model will be on the testing dataset.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Function for evaluating model</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Function for evaluating model</span>
 eval_recap <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(truth, estimate){
   
   df_new <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(truth <span style="color:#f92672">=</span> truth,
@@ -889,17 +889,17 @@ explainer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">l
 </ul>
 <h2 id="explanation">Explanation</h2>
 <p>The next thing to do is to build the <code>explanation</code> for each data test. The explanation will give the interpretation of the model toward each observation. However, in these part we will only make explanation for the first 4 observation of the data for simplicity.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Select only the first 4 observations</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Select only the first 4 observations</span>
 selected_data <span style="color:#f92672">&lt;-</span> data_test <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>G3) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>)
 
-<span style="color:#75715e"># Explain the model</span>
+<span style="color:#75715e"># Explain the model</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">explain</span>(x <span style="color:#f92672">=</span> selected_data, 
                        explainer <span style="color:#f92672">=</span> explainer, 
-                       feature_select <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;auto&#34;</span>, <span style="color:#75715e"># Method of feature selection for lime</span>
-                       n_features <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#75715e"># Number of features to explain the model</span>
+                       feature_select <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;auto&#34;</span>, <span style="color:#75715e"># Method of feature selection for lime</span>
+                       n_features <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#75715e"># Number of features to explain the model</span>
                        )
 </code></pre></div><pre><code>#&gt; Error: The class of model must have a model_type method. See ?model_type to get an overview of models supported out of the box
 </code></pre><p>The explanation gave us an error. If you don&rsquo;t face the same error, congratulations, you can proceed to visualize the explanation using the <code>plot_features()</code> function below. However, I will explain how to handle the error first.</p>
@@ -912,12 +912,12 @@ explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
 </code></pre><p>The class of our Random Forest model is <code>randomForest</code>.</p>
 <p>The second step is to create a function named <code>model_type.</code> followed by the class of the model. In our model, the class is <strong>&ldquo;randomForest&rdquo;</strong>, so we need to create a function named <code>model_type.randomForest</code>. Since the problem is a regression problem, the function must return <strong>&ldquo;regression&rdquo;</strong>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_type.randomForest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
-  <span style="color:#a6e22e">return</span>(<span style="color:#e6db74">&#34;regression&#34;</span>) <span style="color:#75715e"># for regression problem</span>
+  <span style="color:#a6e22e">return</span>(<span style="color:#e6db74">&#34;regression&#34;</span>) <span style="color:#75715e"># for regression problem</span>
 }
 </code></pre></div><p>We also need a function to store the prediction value. Same with the <code>model_type.</code>, we need to create a <code>predict_model.</code> followed by the class of our model. The function would be <code>predict_model.randomForest</code>. The content of the function is the function to predict the model. In Random Forest, the function is predict(). We need to return the prediction value and convert them to data.frame, so the content would be <code>predict(x, newdata)</code>  to return the probability of the prediction and convert them with <code>as.data.frame()</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">predict_model.randomForest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x, newdata, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;response&#34;</span>) {
 
-    <span style="color:#75715e"># return prediction value</span>
+    <span style="color:#75715e"># return prediction value</span>
     <span style="color:#a6e22e">predict</span>(x, newdata) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.data.frame</span>()
     
 }
@@ -925,8 +925,8 @@ explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">explain</span>(x <span style="color:#f92672">=</span> selected_data, 
                        explainer <span style="color:#f92672">=</span> explainer, 
-                       n_features <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, <span style="color:#75715e"># Number of features to explain the model</span>
-                       feature_select <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;auto&#34;</span>, <span style="color:#75715e"># Method of feature selection for lime</span>
+                       n_features <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, <span style="color:#75715e"># Number of features to explain the model</span>
+                       feature_select <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;auto&#34;</span>, <span style="color:#75715e"># Method of feature selection for lime</span>
                        )
 </code></pre></div><h2 id="visualization-and-interpretation">Visualization and Interpretation</h2>
 <p>Finally, we will visualize the explanation using the <code>plot_features()</code> function.</p>
@@ -948,8 +948,8 @@ explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
                        explainer <span style="color:#f92672">=</span> explainer, 
                        dist_fun <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;manhattan&#34;</span>,
                        kernel_width <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>,
-                       n_features <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, <span style="color:#75715e"># Number of features to explain the model</span>
-                       feature_select <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;auto&#34;</span>, <span style="color:#75715e"># Method of feature selection for lime</span>
+                       n_features <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, <span style="color:#75715e"># Number of features to explain the model</span>
+                       feature_select <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;auto&#34;</span>, <span style="color:#75715e"># Method of feature selection for lime</span>
                        )
 
 <span style="color:#a6e22e">plot_features</span>(explanation)
@@ -973,12 +973,12 @@ explainer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">l
 </code></pre></div><pre><code>#&gt; [1] &quot;svm.formula&quot; &quot;svm&quot;
 </code></pre><p>Create SVR model specification for lime.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_type.svm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
-  <span style="color:#a6e22e">return</span>(<span style="color:#e6db74">&#34;regression&#34;</span>) <span style="color:#75715e"># for regression problem</span>
+  <span style="color:#a6e22e">return</span>(<span style="color:#e6db74">&#34;regression&#34;</span>) <span style="color:#75715e"># for regression problem</span>
 }
 
 predict_model.svm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x, newdata, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;response&#34;</span>) {
 
-    <span style="color:#75715e"># return prediction value</span>
+    <span style="color:#75715e"># return prediction value</span>
     <span style="color:#a6e22e">predict</span>(x, newdata) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.data.frame</span>()
     
 }
@@ -986,8 +986,8 @@ predict_model.svm <span style="color:#f92672">&lt;-</span> <span style="color:#a
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">explain</span>(x <span style="color:#f92672">=</span> selected_data, 
                        explainer <span style="color:#f92672">=</span> explainer, 
-                       feature_select <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;auto&#34;</span>, <span style="color:#75715e"># Method of feature selection for lime</span>
-                       n_features <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#75715e"># Number of features to explain the model</span>
+                       feature_select <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;auto&#34;</span>, <span style="color:#75715e"># Method of feature selection for lime</span>
+                       n_features <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#75715e"># Number of features to explain the model</span>
                        )
 
 <span style="color:#a6e22e">plot_features</span>(explanation)

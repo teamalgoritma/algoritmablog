@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-04-27 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2020-04-27 00:00:00 \x2b0000 UTC",
+        "datePublished": "2020-04-27 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2020-04-27 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/pengenalan-teori-antrian\/",
         "wordCount" : "3002",
         "keywords" : [ "Optimization","Queueing","Blog" ]
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -276,6 +276,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -317,18 +329,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-26'>
                                     October 26, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-10-21'>
-                                    October 21, 2020</time>
                             </header>
                             
 
@@ -693,7 +693,7 @@ if (!doNotTrack) {
 <p>       Kita akan coba untuk menganalisis antrian yang terdapat pada salah satu tempat service sepeda motor di daerah Yogyakarta. Pada tempat service tersebut terdapat 13 fasilitas pelayanan atau server dan waktu pelayanan dibuka dari pukul 07.00 AM - 16.00 PM.</p>
 <p>       Kita akan coba untuk analisis sistem antrian yanng ada pada hari tertentu. Untuk melakukan analisis antrian, kita perlu mengetahui ukuran-ukuran kinerja yang terjadi pada sistem antrian service tersebut. Oleh karena itu kita akan menggunakan bantuan package <code>queueing</code> untuk analisis lebih lanjut dari sistem antrian yang kita miliki.</p>
 <h2 id="load-package-dan-data">Load package dan data</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># read data</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># read data</span>
 antrian <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/service.csv&#34;</span>)
 
 <span style="color:#a6e22e">head</span>(antrian)
@@ -717,11 +717,11 @@ antrian <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rea
 <p>Untuk melakukan pengecekan distribusi, bisa menggunakan pengujian Kolmogorov-Smirnov test. Perintah yang akan kita gunakan disini yaitu <code>ks.test()</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(MASS)
 
-<span style="color:#75715e"># mendapatkan nilai rate </span>
+<span style="color:#75715e"># mendapatkan nilai rate </span>
 fit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fitdistr</span>(antrian<span style="color:#f92672">$</span>arrival, <span style="color:#e6db74">&#34;exponential&#34;</span>)
 fit2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fitdistr</span>(antrian<span style="color:#f92672">$</span>service, <span style="color:#e6db74">&#34;exponential&#34;</span>)
 
-<span style="color:#75715e"># goodness of fit test</span>
+<span style="color:#75715e"># goodness of fit test</span>
 <span style="color:#a6e22e">ks.test</span>(antrian<span style="color:#f92672">$</span>arrival, <span style="color:#e6db74">&#34;pexp&#34;</span>, fit<span style="color:#f92672">$</span>estimate)
 </code></pre></div><pre><code>#&gt; 
 #&gt; 	One-sample Kolmogorov-Smirnov test
@@ -755,22 +755,22 @@ fit2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fitdis
 <p>Selanjutnya kita melakukan analisis antrian dengan melihat nilai faktor utilisasi dan ukuran kinerja pada antriannya. Kita akan mencoba menghitung ukuran kinerja sistem antrian dengan suatu package yaitu <code>queueing</code> dengan model antrian (M/M/1):(FCFS/$\infty$/$\infty$) dan (M/M/c):(FCFS/$\infty$/$\infty$).<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(queueing)
 
-<span style="color:#75715e"># define input </span>
-server <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">13</span> <span style="color:#75715e"># banyak server</span>
-lambda <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">mean</span>(antrian<span style="color:#f92672">$</span>arrival) <span style="color:#75715e">#rata-rata waktu antar kedatangan</span>
-mu <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">mean</span>(antrian<span style="color:#f92672">$</span>service) <span style="color:#75715e">#rata-rata waktu pelayanan</span>
+<span style="color:#75715e"># define input </span>
+server <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">13</span> <span style="color:#75715e"># banyak server</span>
+lambda <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">mean</span>(antrian<span style="color:#f92672">$</span>arrival) <span style="color:#75715e">#rata-rata waktu antar kedatangan</span>
+mu <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">mean</span>(antrian<span style="color:#f92672">$</span>service) <span style="color:#75715e">#rata-rata waktu pelayanan</span>
 input_mm1 <span style="color:#f92672">&lt;-</span> queueing<span style="color:#f92672">::</span><span style="color:#a6e22e">NewInput.MM1</span>(lambda <span style="color:#f92672">=</span> lambda, mu <span style="color:#f92672">=</span> mu)
 input_mmc <span style="color:#f92672">&lt;-</span> queueing<span style="color:#f92672">::</span><span style="color:#a6e22e">NewInput.MMC</span>(lambda <span style="color:#f92672">=</span> lambda, mu <span style="color:#f92672">=</span> mu, c <span style="color:#f92672">=</span> server)
 
-<span style="color:#75715e"># check input</span>
+<span style="color:#75715e"># check input</span>
 <span style="color:#a6e22e">CheckInput.i_MM1</span>(input_mm1)
 <span style="color:#a6e22e">CheckInput.i_MMC</span>(input_mmc)
 
-<span style="color:#75715e"># create model</span>
+<span style="color:#75715e"># create model</span>
 model_mm1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">QueueingModel.i_MM1</span>(input_mm1)
 model_mmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">QueueingModel.i_MMC</span>(input_mmc)
 
-<span style="color:#75715e"># print model</span>
+<span style="color:#75715e"># print model</span>
 <span style="color:#a6e22e">summary</span>(model_mm1)
 </code></pre></div><pre><code>#&gt;      lambda       mu c  k  m        RO        P0       Lq       Wq         X
 #&gt; 1 0.8738726 1.039648 1 NA NA 0.8405462 0.1594538 4.430864 5.070377 0.8738726
@@ -781,7 +781,7 @@ model_mmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Q
 #&gt; 1 0.8738726 1.039648 13 NA NA 0.0646574 0.4314748 5.353684e-13 6.126389e-13
 #&gt;           X         L         W        Wqq      Lqq
 #&gt; 1 0.8738726 0.8405462 0.9618636 0.07910417 1.069127
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># mendapatkan nilai faktor utilisasi atau rho</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># mendapatkan nilai faktor utilisasi atau rho</span>
 <span style="color:#a6e22e">library</span>(queuecomputer)
 que <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">queue_step</span>(arrivals <span style="color:#f92672">=</span> antrian <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">pull</span>(arrival), 
                   service <span style="color:#f92672">=</span> antrian <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">pull</span>(service), servers <span style="color:#f92672">=</span> <span style="color:#ae81ff">13</span>)

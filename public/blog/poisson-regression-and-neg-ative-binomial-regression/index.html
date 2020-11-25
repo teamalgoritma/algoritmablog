@@ -13,7 +13,7 @@
         "articleSection" : "blog",
         "name" : "Poisson Regression and Negative Binomial Regression",
         "headline" : "Poisson Regression and Negative Binomial Regression",
-        "description" : "Introduction Regression analysis is a set of statistical processes for estimating the relationships among variables. It includes many techniques for modeling and analyzing several variables, when the focus is on the relationship between a dependent variable and one or more independent variables (or \x26lsquo;predictors\x26rsquo;).\nFor example   Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)\n  Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?",
+        "description" : "Introduction Regression analysis is a set of statistical processes for estimating the relationships among variables. It includes many techniques for modeling and analyzing several variables, when the focus is on the relationship between a dependent variable and one or more independent variables (or \u0026lsquo;predictors\u0026rsquo;).\nFor example   Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)\n  Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-10-22 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2019-10-22 00:00:00 \x2b0000 UTC",
+        "datePublished": "2019-10-22 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2019-10-22 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/poisson-regression-and-neg-ative-binomial-regression\/",
         "wordCount" : "3109",
         "keywords" : [ "Machine Learning","Blog" ]
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -282,6 +282,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -323,18 +335,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-26'>
                                     October 26, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-10-21'>
-                                    October 21, 2020</time>
                             </header>
                             
 
@@ -962,7 +962,7 @@ Look at the Q-Q plot residuals. The plot above is a residual plot whether spread
 we get the Negative Binomial model: $$ \hat{daysabs} = exp(2.615265   -0.005993math-0.440760progAcademic-1.278651progVocational)$$</p>
 <p>Intercept, math, progAcademic, and progVocational are significant to the model.</p>
 <p>And the AIC (Akaike Information Criterion) value is 1741.3</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#Negative Binomial</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#Negative Binomial</span>
 resnb <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">simulateResiduals</span>(modelnb, refit <span style="color:#f92672">=</span> T)
 <span style="color:#a6e22e">plot</span>(resnb)
 </code></pre></div><p><!-- raw HTML omitted --></p>
@@ -1063,10 +1063,10 @@ newdata1
 #&gt; math            0.9940249
 #&gt; progAcademic    0.6435471
 #&gt; progVocational  0.2784127
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#academic dan general</span>
-<span style="color:#ae81ff">10.236899</span><span style="color:#f92672">*</span><span style="color:#ae81ff">0.6435471</span> <span style="color:#75715e">#academic</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#academic dan general</span>
+<span style="color:#ae81ff">10.236899</span><span style="color:#f92672">*</span><span style="color:#ae81ff">0.6435471</span> <span style="color:#75715e">#academic</span>
 </code></pre></div><pre><code>#&gt; [1] 6.587927
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#vocational dan general</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#vocational dan general</span>
 <span style="color:#ae81ff">10.236899</span><span style="color:#f92672">*</span><span style="color:#ae81ff">0.2784127</span>
 </code></pre></div><pre><code>#&gt; [1] 2.850083
 </code></pre><p>From the results above it is proven that :</p>

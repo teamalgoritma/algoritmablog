@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-11-12 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2019-11-12 00:00:00 \x2b0000 UTC",
+        "datePublished": "2019-11-12 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2019-11-12 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/text-lstm\/",
         "wordCount" : "3980",
         "keywords" : [ "Machine Learning","deep learning","LSTM","Blog" ]
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -276,6 +276,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -317,18 +329,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-26'>
                                     October 26, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-10-21'>
-                                    October 21, 2020</time>
                             </header>
                             
 
@@ -531,7 +531,7 @@ if (!doNotTrack) {
 <h2 id="vanishing--exploding-gradient-descent">Vanishing / Exploding Gradient Descent</h2>
 <p><strong>Vanishing Gradient Descent</strong>: the update value obtained will exponentially decrease when heading to the input layer. Here are the illustrations, which I took from: <a href="https://towardsdatascience.com/illustrated-guide-to-recurrent-neural-networks-79e5eb8049c9">Michael Nguyen&rsquo;s article</a></p>
 <p><!-- raw HTML omitted --></p>
-<p>Gradient descent aims to adjust weights that allow the model to &lsquo;<strong>learn</strong>'. the nature of the gradient that is, the greater the value of the gradient in the current layer, will affect in the next layer getting bigger. and <em>vice versa</em>. This is the problem. When doing BP, each node will calculate the gradient value and update its weight according to the gradient effect on the previous layer. so if the previous layer is small, then adjusting the weights in the current layer will be small. it causes the gradient to shrink exponentially when it goes to the input layer. so that when in the input layer it fails to do the learning due to <em>vanishing gradient problems</em>. so the model <strong>fails to learn</strong> when a pass forward is made again to make predictions.</p>
+<p>Gradient descent aims to adjust weights that allow the model to &lsquo;<strong>learn</strong>&rsquo;. the nature of the gradient that is, the greater the value of the gradient in the current layer, will affect in the next layer getting bigger. and <em>vice versa</em>. This is the problem. When doing BP, each node will calculate the gradient value and update its weight according to the gradient effect on the previous layer. so if the previous layer is small, then adjusting the weights in the current layer will be small. it causes the gradient to shrink exponentially when it goes to the input layer. so that when in the input layer it fails to do the learning due to <em>vanishing gradient problems</em>. so the model <strong>fails to learn</strong> when a pass forward is made again to make predictions.</p>
 <p><strong>Exploding Gradient Descent</strong>: the update value obtained will exponentially increase when heading to the input layer. The characteristics of the model have an exploding gradient problem, which is when the cost function results are NaN.</p>
 <p><!-- raw HTML omitted --></p>
 <p>Here is a link duscussion regarding to exploding grgadient descent: <a href="https://stackoverflow.com/questions/37232782/nan-loss-when-training-regression-network">nan loss when training NN</a></p>
@@ -584,7 +584,7 @@ if (!doNotTrack) {
 <h1 id="lstm">LSTM</h1>
 <p>Just like RNN, LSTM has a sequential model which is illustrated with a green box. if unfolded the architecture becomes as below:</p>
 <p><!-- raw HTML omitted --></p>
-<p>The difference between RNN and LSTM is that it has additional signal information that is given from one time step to the next time step which is commonly called &ldquo;<strong>cell memory</strong>&quot;. LSTM is designed to overcome the problem of vanishing gradient, using the <strong>gate mechanism</strong>.</p>
+<p>The difference between RNN and LSTM is that it has additional signal information that is given from one time step to the next time step which is commonly called &ldquo;<strong>cell memory</strong>&rdquo;. LSTM is designed to overcome the problem of vanishing gradient, using the <strong>gate mechanism</strong>.</p>
 <h2 id="lstm-network">LSTM Network</h2>
 <p>So the components in LSTM consist of:</p>
 <ul>
@@ -613,7 +613,7 @@ if (!doNotTrack) {
 </ol>
 <!-- raw HTML omitted -->
 <blockquote>
-<p>value 1 means &ldquo;<em>really take care of this element</em>&rdquo; while 0 means &ldquo;<em>completely get rid of this element</em>&quot;.</p>
+<p>value 1 means &ldquo;<em>really take care of this element</em>&rdquo; while 0 means &ldquo;<em>completely get rid of this element</em>&rdquo;.</p>
 </blockquote>
 <ol start="2">
 <li>
@@ -625,7 +625,7 @@ if (!doNotTrack) {
 </ol>
 <!-- raw HTML omitted -->
 <h1 id="implementation-lstm-with-keras">Implementation LSTM with Keras</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># load packages required</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># load packages required</span>
 <span style="color:#a6e22e">library</span>(keras)
 <span style="color:#a6e22e">library</span>(RVerbalExpressions)
 <span style="color:#a6e22e">library</span>(magrittr)
@@ -636,10 +636,10 @@ if (!doNotTrack) {
 <span style="color:#a6e22e">library</span>(yardstick)
 <span style="color:#a6e22e">library</span>(caret)
 
-<span style="color:#75715e">#set seed keras for reproducible result</span>
+<span style="color:#75715e">#set seed keras for reproducible result</span>
 <span style="color:#a6e22e">use_session_with_seed</span>(<span style="color:#ae81ff">2</span>)
 
-<span style="color:#75715e"># set conda env</span>
+<span style="color:#75715e"># set conda env</span>
 <span style="color:#a6e22e">use_condaenv</span>(<span style="color:#e6db74">&#34;tensorflow&#34;</span>)
 </code></pre></div><h2 id="import-data">Import Data</h2>
 <p>In this example we will use a case study of sentiment tweets about airlines in the US obtained from Kaggle.</p>
@@ -799,7 +799,7 @@ dollar
 <p>Tokenizer aims to separate each word in the entire document into a token form. The <code>num_words</code> parameter is for setting the maximum number of words to be used, sorted according to the largest frequency order. words that rarely appear will be removed. from a total of 13291 unique words contained in the text data, we reduced it to 1024 which will be used to make the model. The lower parameter is a logic condition, if TRUE then all words will be transformed to lowercase (tolower).</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">num_words <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1024</span> 
 
-<span style="color:#75715e"># prepare tokenizers</span>
+<span style="color:#75715e"># prepare tokenizers</span>
 tokenizer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">text_tokenizer</span>(num_words <span style="color:#f92672">=</span> num_words,
                             lower <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">fit_text_tokenizer</span>(data<span style="color:#f92672">$</span>text_clean)
@@ -847,7 +847,7 @@ data_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">t
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">maxlen <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">str_count</span>(data<span style="color:#f92672">$</span>text_clean, <span style="color:#e6db74">&#34;\\w+&#34;</span>)) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> 
 <span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;maxiumum length words in data:&#34;</span>, maxlen)
 </code></pre></div><pre><code>## [1] &quot;maxiumum length words in data: 90&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># prepare x</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># prepare x</span>
 data_train_x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">texts_to_sequences</span>(tokenizer, data_train<span style="color:#f92672">$</span>text_clean) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">pad_sequences</span>(maxlen <span style="color:#f92672">=</span> maxlen)
 
@@ -857,7 +857,7 @@ data_val_x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 data_test_x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">texts_to_sequences</span>(tokenizer, data_test<span style="color:#f92672">$</span>text_clean) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">pad_sequences</span>(maxlen <span style="color:#f92672">=</span> maxlen)
 
-<span style="color:#75715e"># prepare y</span>
+<span style="color:#75715e"># prepare y</span>
 data_train_y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">to_categorical</span>(data_train<span style="color:#f92672">$</span>label, num_classes <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
 data_val_y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">to_categorical</span>(data_val<span style="color:#f92672">$</span>label, num_classes <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
 data_test_y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">to_categorical</span>(data_test<span style="color:#f92672">$</span>label, num_classes <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
@@ -902,12 +902,12 @@ data_test_y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
 <p>This output layer is the last layer in the deep learning architecture. At Keras use the layer_dense command where we need to set the unit parameters or how many neurons we want to build. In this case I use 3 units, because there are 3 classes we have (negative, neutral, positive).</p>
 <h3 id="random-initialization">Random Initialization</h3>
 <p>When the neural network / deep learning model train often results in different results. Why? because NN and DL use weigth which is generated randomly (randomness initialization). therefore we need to set the numbers (x-random models) in order to get a fixed result when repeated in the train (reproducible result). this can be done with the seed parameter in the <code>initializer_random_uniform</code> command. for more details, read the question and answer article in <a href="https://keras.rstudio.com/articles/faq.html">Keras studio</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># initiate keras model sequence</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># initiate keras model sequence</span>
 model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">keras_model_sequential</span>()
 
-<span style="color:#75715e"># model</span>
+<span style="color:#75715e"># model</span>
 model <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#75715e"># layer input</span>
+  <span style="color:#75715e"># layer input</span>
   <span style="color:#a6e22e">layer_embedding</span>(
     name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;input&#34;</span>,
     input_dim <span style="color:#f92672">=</span> num_words,
@@ -915,12 +915,12 @@ model <span style="color:#f92672">%&gt;%</span>
     output_dim <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>, 
     embeddings_initializer <span style="color:#f92672">=</span> <span style="color:#a6e22e">initializer_random_uniform</span>(minval <span style="color:#f92672">=</span> <span style="color:#ae81ff">-0.05</span>, maxval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
   ) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#75715e"># layer dropout</span>
+  <span style="color:#75715e"># layer dropout</span>
   <span style="color:#a6e22e">layer_dropout</span>(
     name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;embedding_dropout&#34;</span>,
     rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>
   ) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#75715e"># layer lstm 1</span>
+  <span style="color:#75715e"># layer lstm 1</span>
   <span style="color:#a6e22e">layer_lstm</span>(
     name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lstm&#34;</span>,
     units <span style="color:#f92672">=</span> <span style="color:#ae81ff">256</span>,
@@ -930,7 +930,7 @@ model <span style="color:#f92672">%&gt;%</span>
     recurrent_initializer <span style="color:#f92672">=</span> <span style="color:#a6e22e">initializer_random_uniform</span>(minval <span style="color:#f92672">=</span> <span style="color:#ae81ff">-0.05</span>, maxval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>),
     kernel_initializer <span style="color:#f92672">=</span> <span style="color:#a6e22e">initializer_random_uniform</span>(minval <span style="color:#f92672">=</span> <span style="color:#ae81ff">-0.05</span>, maxval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
   ) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#75715e"># layer output</span>
+  <span style="color:#75715e"># layer output</span>
   <span style="color:#a6e22e">layer_dense</span>(
     name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;output&#34;</span>,
     units <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>,
@@ -942,14 +942,14 @@ model <span style="color:#f92672">%&gt;%</span>
 </ul>
 <h3 id="compiling-model">Compiling Model</h3>
 <p>For two category classes, the lost function used is <code>binary_crossentropy</code> while for multiclass cases it uses <code>categorical_crossentropy</code>. There are not only 2 option, but the most common when working with classification cases, these 2 loss functions are used. Here are some loss function options from <a href="https://keras.io/losses/">Keras Documentation</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># compile the model</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># compile the model</span>
 model <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">compile</span>(
   optimizer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;adam&#34;</span>,
   metrics <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;accuracy&#34;</span>,
   loss <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;categorical_crossentropy&#34;</span>
 )
 
-<span style="color:#75715e"># model summary</span>
+<span style="color:#75715e"># model summary</span>
 <span style="color:#a6e22e">summary</span>(model)
 </code></pre></div><pre><code>## ___________________________________________________________________________
 ## Layer (type)                     Output Shape                  Param #     
@@ -967,11 +967,11 @@ model <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">comp
 ## Non-trainable params: 0
 ## ___________________________________________________________________________
 </code></pre><h2 id="train-the-model">Train the Model</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># model fit settings</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># model fit settings</span>
 epochs <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span>
 batch_size <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">512</span>
 
-<span style="color:#75715e"># fit the model</span>
+<span style="color:#75715e"># fit the model</span>
 history <span style="color:#f92672">&lt;-</span> model <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">fit</span>(
   data_train_x, data_train_y,
   batch_size <span style="color:#f92672">=</span> batch_size, 
@@ -982,31 +982,31 @@ history <span style="color:#f92672">&lt;-</span> model <span style="color:#f9267
   )
 )
 
-<span style="color:#75715e"># history plot</span>
+<span style="color:#75715e"># history plot</span>
 <span style="color:#a6e22e">plot</span>(history)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="model-evaluation">Model Evaluation</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># predict on train</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># predict on train</span>
 data_train_pred <span style="color:#f92672">&lt;-</span> model <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">predict_classes</span>(data_train_x) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">as.vector</span>()
 
-<span style="color:#75715e"># predict on val</span>
+<span style="color:#75715e"># predict on val</span>
 data_val_pred <span style="color:#f92672">&lt;-</span> model <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">predict_classes</span>(data_val_x) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">as.vector</span>()
 
-<span style="color:#75715e"># predict on test</span>
+<span style="color:#75715e"># predict on test</span>
 data_test_pred <span style="color:#f92672">&lt;-</span> model <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">predict_classes</span>(data_test_x) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">as.vector</span>()
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># accuracy on data train</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># accuracy on data train</span>
 <span style="color:#a6e22e">accuracy_vec</span>(
  truth <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(data_train<span style="color:#f92672">$</span>label,labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;negative&#34;</span>, <span style="color:#e6db74">&#34;neutral&#34;</span>, <span style="color:#e6db74">&#34;positive&#34;</span>)),
  estimate <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(data_train_pred, labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;negative&#34;</span>, <span style="color:#e6db74">&#34;neutral&#34;</span>, <span style="color:#e6db74">&#34;positive&#34;</span>))
 )
 </code></pre></div><pre><code>## [1] 0.8056534
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># accuracy on data test</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># accuracy on data test</span>
 <span style="color:#a6e22e">accuracy_vec</span>(
  truth <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(data_test<span style="color:#f92672">$</span>label,labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;negative&#34;</span>, <span style="color:#e6db74">&#34;neutral&#34;</span>, <span style="color:#e6db74">&#34;positive&#34;</span>)),
  estimate <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(data_test_pred, labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;negative&#34;</span>, <span style="color:#e6db74">&#34;neutral&#34;</span>, <span style="color:#e6db74">&#34;positive&#34;</span>))

@@ -11,9 +11,9 @@
              "@id": "\/"
         },
         "articleSection" : "blog",
-        "name" : "Bioinformatics: Decoding Nature\x27s Code of Life",
-        "headline" : "Bioinformatics: Decoding Nature\x27s Code of Life",
-        "description" : "It is inarguable that Data Science gives a tremendous impact on today\x26rsquo;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.",
+        "name" : "Bioinformatics: Decoding Nature\u0027s Code of Life",
+        "headline" : "Bioinformatics: Decoding Nature\u0027s Code of Life",
+        "description" : "It is inarguable that Data Science gives a tremendous impact on today\u0026rsquo;s industry. Furthermore, it also accelerates the development of basic science research including Biology. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-12-02 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2019-12-02 00:00:00 \x2b0000 UTC",
+        "datePublished": "2019-12-02 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2019-12-02 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/bio-intro\/",
         "wordCount" : "3445",
         "keywords" : [ "Bioinformatics","Bioconductor","msa","ape","Blog" ]
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -276,6 +276,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -317,18 +329,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-26'>
                                     October 26, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-10-21'>
-                                    October 21, 2020</time>
                             </header>
                             
 
@@ -603,9 +603,9 @@ if (!doNotTrack) {
 <li><code>seqinr</code> and <code>ape</code>: for phylogenetic analysis.</li>
 </ul>
 <p><code>msa</code> package is stored in Bioconductor repository, therefore we need to install it first with a different syntax:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># if (!requireNamespace(&#34;BiocManager&#34;, quietly=TRUE))</span>
-<span style="color:#75715e"># install.packages(&#34;BiocManager&#34;)</span>
-<span style="color:#75715e"># BiocManager::install(&#34;msa&#34;)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># if (!requireNamespace(&#34;BiocManager&#34;, quietly=TRUE))</span>
+<span style="color:#75715e"># install.packages(&#34;BiocManager&#34;)</span>
+<span style="color:#75715e"># BiocManager::install(&#34;msa&#34;)</span>
 </code></pre></div><p><code>BiocManager::install()</code> is a recommended way to install Bioconductor packages instead of using standard way in which R packages are installed via <code>install.packages()</code>. There are good reasons for that which you can read further in <a href="https://bioconductor.org/install/#why-biocmanagerinstall">here</a>.</p>
 <h3 id="read-data">Read Data</h3>
 <p>DNA sequences data is stored in a FASTA format, a text-based format for representing either nucleotide sequences or amino acid (protein) sequences. The nucleotides or amino acids are represented using single-letter codes. Sequence names and comments can also be added after <code>&gt;</code> one line before the sequence.</p>
@@ -690,15 +690,15 @@ myseq
 <p><img src="/img/biointro/biointro-msa.png" alt=""></p>
 <h3 id="phylogenetic-analysis">Phylogenetic Analysis</h3>
 <p>We can perform phylogenetic analysis to utilize and visualize better our MSA result. First, we need to convert <code>msa</code> object into an <code>alignment</code> object. After that, we can compute the distance matrix (the similarity/identity score between each of the DNA samples) using the <code>dist.alignment()</code> from the <code>seqinr</code> package.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># convert msa to alignment file</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># convert msa to alignment file</span>
 bc_align <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">msaConvert</span>(bc_msa, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;seqinr::alignment&#34;</span>)
 
 <span style="color:#a6e22e">library</span>(seqinr)
-<span style="color:#75715e">#getting identity score (match) </span>
+<span style="color:#75715e">#getting identity score (match) </span>
 bc_ident <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">dist.alignment</span>(bc_align, <span style="color:#e6db74">&#34;identity&#34;</span>)
 </code></pre></div><p>After we have the distance matrix object, we can use the object to build a phylogenetic tree. Below is an example in using the <a href="https://en.wikipedia.org/wiki/Neighbor_joining">Neighbor-Joining Algorithm</a> that is widely used for phylogenetic analysis from <code>ape</code> package. The Neighbor-Joining (NJ) algorithm allows for unequal rates of evolution for each organism thus resemble what actually happened in real life. Because NJ algorithm allows unequal rates of evolution, the branch lengths are proportional to the amount of change for each organism.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(ape)
-<span style="color:#75715e"># making phylogenetic tree using identity score</span>
+<span style="color:#75715e"># making phylogenetic tree using identity score</span>
 bcTree <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">nj</span>(bc_ident)
 <span style="color:#a6e22e">plot</span>(bcTree, main<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Phylogenetic Tree of Biocellulose Producing Bacteria&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>

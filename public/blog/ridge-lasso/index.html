@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-12-18 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2019-12-18 00:00:00 \x2b0000 UTC",
+        "datePublished": "2019-12-18 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2019-12-18 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/ridge-lasso\/",
         "wordCount" : "3718",
         "keywords" : [ "regression","Machine Learning","overfitting","Regularization","Blog" ]
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -282,6 +282,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -323,18 +335,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-26'>
                                     October 26, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-10-21'>
-                                    October 21, 2020</time>
                             </header>
                             
 
@@ -619,7 +619,7 @@ mtcars <span style="color:#f92672">&lt;-</span> mtcars <span style="color:#f9267
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">head</span>(mtcars,<span style="color:#ae81ff">24</span>)
 test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tail</span>(mtcars,<span style="color:#ae81ff">8</span>)[,<span style="color:#ae81ff">-1</span>]
 
-<span style="color:#75715e">## Split Data for Ridge and LASSO model</span>
+<span style="color:#75715e">## Split Data for Ridge and LASSO model</span>
 
 xtrain <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">model.matrix</span>(mpg<span style="color:#f92672">~</span>., train)[,<span style="color:#ae81ff">-1</span>]
 ytrain <span style="color:#f92672">&lt;-</span> train<span style="color:#f92672">$</span>mpg
@@ -915,7 +915,7 @@ lasso_cv <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cv
 best_lambda_lasso
 </code></pre></div><pre><code>#&gt; [1] 0.1668101
 </code></pre><h3 id="build-models-based-the-best-lambda">Build Models Based The Best Lambda</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Fit final model, get its sum of squared residuals and multiple R-squared</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Fit final model, get its sum of squared residuals and multiple R-squared</span>
 lasso_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, lambda <span style="color:#f92672">=</span> best_lambda_lasso)
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">predict.glmnet</span>(lasso_mod, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;coefficients&#39;</span>)
 </code></pre></div><pre><code>#&gt; 9 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
@@ -934,35 +934,35 @@ lasso_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">g
 <h2 id="model-comparison">Model Comparison</h2>
 <h3 id="compare-the-mse-value-of-data-train-and-test">Compare The MSE value of Data Train and Test</h3>
 <p><strong>OLS Regression</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (OLS)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (OLS)</span>
 ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> train)
 <span style="color:#a6e22e">mean</span>((ols_pred<span style="color:#f92672">-</span>ytrain)^2)
 </code></pre></div><pre><code>#&gt; [1] 4.072081
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (OLS)</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (OLS)</span>
 ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> test)
 <span style="color:#a6e22e">mean</span>((ols_pred<span style="color:#f92672">-</span>ytest)^2)
 </code></pre></div><pre><code>#&gt; [1] 22.15188
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (Stepwise)</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (Stepwise)</span>
 back_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(stepwise_mod, newdata <span style="color:#f92672">=</span> train)
 <span style="color:#a6e22e">mean</span>((back_pred<span style="color:#f92672">-</span>ytrain)^2)
 </code></pre></div><pre><code>#&gt; [1] 4.360721
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (Stepwise)</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (Stepwise)</span>
 back_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(stepwise_mod, newdata <span style="color:#f92672">=</span> test)
 <span style="color:#a6e22e">mean</span>((back_pred<span style="color:#f92672">-</span>ytest)^2)
 </code></pre></div><pre><code>#&gt; [1] 22.41245
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (Ridge)</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (Ridge)</span>
 ridge_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ridge_mod,  newx <span style="color:#f92672">=</span> xtrain)
 <span style="color:#a6e22e">mean</span>((ridge_pred<span style="color:#f92672">-</span>ytrain)^2)
 </code></pre></div><pre><code>#&gt; [1] 4.920852
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (Ridge)</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (Ridge)</span>
 ridge_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ridge_mod,  newx <span style="color:#f92672">=</span> xtest)
 <span style="color:#a6e22e">mean</span>((ridge_pred<span style="color:#f92672">-</span>ytest)^2)
 </code></pre></div><pre><code>#&gt; [1] 7.22441
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (LASSO)</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (LASSO)</span>
 lasso_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(lasso_mod,  newx <span style="color:#f92672">=</span> xtrain)
 <span style="color:#a6e22e">mean</span>((lasso_pred<span style="color:#f92672">-</span>ytrain)^2)
 </code></pre></div><pre><code>#&gt; [1] 4.269417
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (LASSO)</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (LASSO)</span>
 lasso_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(lasso_mod,  newx <span style="color:#f92672">=</span> xtest)
 <span style="color:#a6e22e">mean</span>((lasso_pred<span style="color:#f92672">-</span>ytest)^2)
 </code></pre></div><pre><code>#&gt; [1] 13.56875

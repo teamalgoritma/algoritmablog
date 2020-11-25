@@ -13,7 +13,7 @@
         "articleSection" : "blog",
         "name" : "Topic Modelling with Latent Dirichlet Allocation (LDA)",
         "headline" : "Topic Modelling with Latent Dirichlet Allocation (LDA)",
-        "description" : "Topic Modelling Background Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:\n SPAM email detection Sentiment Analysis Text summarization Text Generation Topic Modelling  On this occation, we will learn about Topic Modelling and it\x26rsquo;s application in a real case.",
+        "description" : "Topic Modelling Background Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:\n SPAM email detection Sentiment Analysis Text summarization Text Generation Topic Modelling  On this occation, we will learn about Topic Modelling and it\u0026rsquo;s application in a real case.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-10-26 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2020-10-26 00:00:00 \x2b0000 UTC",
+        "datePublished": "2020-10-26 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2020-10-26 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/topic-modeling-lda\/",
         "wordCount" : "21581",
         "keywords" : [ "Machine Learning","Topic Modelling","Blog" ]
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -279,6 +279,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -320,18 +332,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-26'>
                                     October 26, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-10-21'>
-                                    October 21, 2020</time>
                             </header>
                             
 
@@ -538,10 +538,10 @@ if (!doNotTrack) {
 </ul>
 <h2 id="library-and-setup">Library and Setup</h2>
 <p>Below is the required package to reproduce the code in this article.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Data Wrangling</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Data Wrangling</span>
 <span style="color:#a6e22e">library</span>(tidyverse)
 
-<span style="color:#75715e"># Text Processing</span>
+<span style="color:#75715e"># Text Processing</span>
 <span style="color:#a6e22e">library</span>(tm)
 <span style="color:#a6e22e">library</span>(corpus)
 <span style="color:#a6e22e">library</span>(tidytext)
@@ -552,10 +552,10 @@ if (!doNotTrack) {
 <span style="color:#a6e22e">library</span>(textmineR)
 <span style="color:#a6e22e">library</span>(scales)
 
-<span style="color:#75715e"># Visualization</span>
+<span style="color:#75715e"># Visualization</span>
 <span style="color:#a6e22e">library</span>(ggwordcloud)
 
-<span style="color:#75715e"># Modeling and Evaluation</span>
+<span style="color:#75715e"># Modeling and Evaluation</span>
 <span style="color:#a6e22e">library</span>(randomForest)
 <span style="color:#a6e22e">library</span>(e1071)
 <span style="color:#a6e22e">library</span>(yardstick)
@@ -880,20 +880,20 @@ b. randomly choose a word from the corresponding topic (distribution over the vo
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">covid_clean <span style="color:#f92672">&lt;-</span> covid_news <span style="color:#f92672">%&gt;%</span> 
    <span style="color:#a6e22e">mutate</span>(text_clean <span style="color:#f92672">=</span> text <span style="color:#f92672">%&gt;%</span> 
              <span style="color:#a6e22e">replace_non_ascii</span>() <span style="color:#f92672">%&gt;%</span> 
-             <span style="color:#a6e22e">replace_html</span>(symbol <span style="color:#f92672">=</span> F) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># remove html tag</span>
+             <span style="color:#a6e22e">replace_html</span>(symbol <span style="color:#f92672">=</span> F) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># remove html tag</span>
              <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34;[0-9]&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">%&gt;%</span> 
-             <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34;[-|]&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># replace &#34;-&#34; with space</span>
-             <span style="color:#a6e22e">tolower</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#lowercase</span>
-             <span style="color:#a6e22e">str_remove_all</span>(<span style="color:#e6db74">&#34;coronavirus|covid 19|covid|canadian|canadians&#34;</span>) <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e"># remove common words</span>
+             <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34;[-|]&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># replace &#34;-&#34; with space</span>
+             <span style="color:#a6e22e">tolower</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#lowercase</span>
+             <span style="color:#a6e22e">str_remove_all</span>(<span style="color:#e6db74">&#34;coronavirus|covid 19|covid|canadian|canadians&#34;</span>) <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e"># remove common words</span>
              <span style="color:#a6e22e">replace_symbol</span>() <span style="color:#f92672">%&gt;%</span>
              <span style="color:#a6e22e">replace_contraction</span>() <span style="color:#f92672">%&gt;%</span> 
-             <span style="color:#a6e22e">replace_word_elongation</span>() <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e"># lengthen shortened word</span>
-             <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34;[[:punct:]]&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># remove punctuation</span>
+             <span style="color:#a6e22e">replace_word_elongation</span>() <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e"># lengthen shortened word</span>
+             <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34;[[:punct:]]&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># remove punctuation</span>
              <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34; dr &#34;</span>, <span style="color:#e6db74">&#34; doctor &#34;</span>) <span style="color:#f92672">%&gt;%</span> 
              <span style="color:#a6e22e">make_plural</span>() <span style="color:#f92672">%&gt;%</span>
              <span style="color:#a6e22e">str_replace_all</span>(<span style="color:#e6db74">&#34; s &#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#f92672">%&gt;%</span>  
-             <span style="color:#a6e22e">str_squish</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># remove double whitespace</span>
-             <span style="color:#a6e22e">str_trim</span>() <span style="color:#75715e"># remove whitespace at the start and end of the text</span>
+             <span style="color:#a6e22e">str_squish</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># remove double whitespace</span>
+             <span style="color:#a6e22e">str_trim</span>() <span style="color:#75715e"># remove whitespace at the start and end of the text</span>
           )
 </code></pre></div><p>Let&rsquo;s see the remaining number of words on each document in our corpus.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">document_length <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sapply</span>(<span style="color:#a6e22e">strsplit</span>(covid_clean<span style="color:#f92672">$</span>text, <span style="color:#e6db74">&#34; &#34;</span>), length)
@@ -912,12 +912,12 @@ document_length <span style="color:#f92672">%&gt;%</span>
 <h3 id="document-term-matrix">Document-Term Matrix</h3>
 <p>The next step is to tokenize the text and create a Document-Term Matrix (DTM) from our text data. We will also remove any stop words such as <code>the</code> or <code>is</code> since they are irrelevant for this problem. We will also do stem words into their basic form, such as from <code>walking</code> into <code>walk</code>. To get better stemming, we also change all <code>positive</code> terms into <code>positives</code>. The stemming function is created manually by with <code>hunspell</code><sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> stemming at its core. <code>hunspell</code> stemming give better result compared to the basic stemming algorithm such as Porter stemming algorithm<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">stem_hunspell <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(term) {
-    <span style="color:#75715e"># look up the term in the dictionary</span>
+    <span style="color:#75715e"># look up the term in the dictionary</span>
     stems <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hunspell_stem</span>(term)[[1]]
     
-    <span style="color:#a6e22e">if </span>(<span style="color:#a6e22e">length</span>(stems) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) { <span style="color:#75715e"># if there are no stems, use the original term</span>
+    <span style="color:#a6e22e">if </span>(<span style="color:#a6e22e">length</span>(stems) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) { <span style="color:#75715e"># if there are no stems, use the original term</span>
         stem <span style="color:#f92672">&lt;-</span> term
-    } else { <span style="color:#75715e"># if there are multiple stems, use the last one</span>
+    } else { <span style="color:#75715e"># if there are multiple stems, use the last one</span>
         stem <span style="color:#f92672">&lt;-</span> stems[<span style="color:#a6e22e">[length</span>(stems)]]
     }
     <span style="color:#a6e22e">return</span>(stem)
@@ -1452,12 +1452,12 @@ data_train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 </code></pre><h3 id="document-term-matrix-1">Document-Term Matrix</h3>
 <p>Next, we create the document-term matrix (DTM) for each document. The term will be a combination of unigram (1-gram) and bigram (2-gram) for each documents.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">stem_hunspell <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(term) {
-    <span style="color:#75715e"># look up the term in the dictionary</span>
+    <span style="color:#75715e"># look up the term in the dictionary</span>
     stems <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hunspell_stem</span>(term)[[1]]
     
-    <span style="color:#a6e22e">if </span>(<span style="color:#a6e22e">length</span>(stems) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) { <span style="color:#75715e"># if there are no stems, use the original term</span>
+    <span style="color:#a6e22e">if </span>(<span style="color:#a6e22e">length</span>(stems) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) { <span style="color:#75715e"># if there are no stems, use the original term</span>
         stem <span style="color:#f92672">&lt;-</span> term
-    } else { <span style="color:#75715e"># if there are multiple stems, use the last one</span>
+    } else { <span style="color:#75715e"># if there are multiple stems, use the last one</span>
         stem <span style="color:#f92672">&lt;-</span> stems[<span style="color:#a6e22e">[length</span>(stems)]]
     }
     <span style="color:#a6e22e">return</span>(stem)
@@ -1585,7 +1585,7 @@ rf_lda
 </code></pre><p>Next, we will prepare the testing dataset. To get the features of probability distribution of each topic for each document, we ran the topic model on the DTM of the testing set using only 100 iterations and burn-in of 80.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dtm_lda_test <span style="color:#f92672">&lt;-</span> Matrix<span style="color:#f92672">::</span><span style="color:#a6e22e">Matrix</span>(<span style="color:#a6e22e">as.matrix</span>(dtm_test), sparse <span style="color:#f92672">=</span> T)
 
-<span style="color:#75715e"># Get the topic probabilities for each document</span>
+<span style="color:#75715e"># Get the topic probabilities for each document</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 test_x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(lda_review,
                   newdata <span style="color:#f92672">=</span> dtm_lda_test,

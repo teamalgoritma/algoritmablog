@@ -11,9 +11,9 @@
              "@id": "\/"
         },
         "articleSection" : "blog",
-        "name" : "Rplicate Series: I can\x27t get no ...",
-        "headline" : "Rplicate Series: I can\x27t get no ...",
-        "description" : "In this third article on Rplicate Series, We will share to you one way to replicate The Economist plot titled \x26ldquo;I can\x26rsquo;t get no \x26hellip;\x26quot;. The plot making will also demonstrate ways to converting smooth line into linear line, using guides for legend, and adding a text annotation to a plot. The raw dataset used for this graph was obtained from a PDF, so we will also use tibble package to copy-paste the data into R.",
+        "name" : "Rplicate Series: I can\u0027t get no ...",
+        "headline" : "Rplicate Series: I can\u0027t get no ...",
+        "description" : "In this third article on Rplicate Series, We will share to you one way to replicate The Economist plot titled \u0026ldquo;I can\u0026rsquo;t get no \u0026hellip;\u0026quot;. The plot making will also demonstrate ways to converting smooth line into linear line, using guides for legend, and adding a text annotation to a plot. The raw dataset used for this graph was obtained from a PDF, so we will also use tibble package to copy-paste the data into R.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -21,11 +21,11 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2020",
-        "datePublished": "2020-10-26 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2020-10-26 00:00:00 \x2b0000 UTC",
+        "datePublished": "2020-10-26 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2020-10-26 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/rplicate-i-can-t-get-no\/",
         "wordCount" : "2189",
-        "keywords" : [ "Data Visualization","ggplot2","Rplicate","Blog" ]
+        "keywords" : [ "Data Visualization","Rplicate","ggplot2","Blog" ]
     }
     </script>
         
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -88,7 +88,7 @@
 
 
 
-<meta itemprop="keywords" content="Data Visualization,ggplot2,Rplicate," />
+<meta itemprop="keywords" content="Data Visualization,Rplicate,ggplot2," />
         
 
         
@@ -276,6 +276,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -317,18 +329,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-26'>
                                     October 26, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-10-21'>
-                                    October 21, 2020</time>
                             </header>
                             
 
@@ -586,10 +586,10 @@ data2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tribb
        <span style="color:#e6db74">&#34;Venezuela&#34;</span>, <span style="color:#e6db74">&#34;Spring, 2017&#34;</span>, <span style="color:#ae81ff">14L</span>, <span style="color:#ae81ff">15L</span>, <span style="color:#ae81ff">24L</span>, <span style="color:#ae81ff">45L</span>,  <span style="color:#ae81ff">2L</span>, <span style="color:#ae81ff">100L</span>
   )
 
-<span style="color:#75715e"># adding colnames to data1</span>
+<span style="color:#75715e"># adding colnames to data1</span>
 <span style="color:#a6e22e">colnames</span>(data1) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Country&#34;</span>,<span style="color:#e6db74">&#34;Political_issues&#34;</span>, <span style="color:#e6db74">&#34;News about govt. leaders and officials&#34;</span>,<span style="color:#e6db74">&#34;News accurately&#34;</span>,<span style="color:#e6db74">&#34;Most important news events&#34;</span>)
 
-<span style="color:#75715e"># adding colnames to data2</span>
+<span style="color:#75715e"># adding colnames to data2</span>
 <span style="color:#a6e22e">colnames</span>(data2) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Country&#34;</span>,<span style="color:#e6db74">&#34;x&#34;</span>, <span style="color:#e6db74">&#34;A lot&#34;</span>, <span style="color:#e6db74">&#34;Somewhat&#34;</span>, <span style="color:#e6db74">&#34;Not much&#34;</span>, <span style="color:#e6db74">&#34;Not at all&#34;</span>, <span style="color:#e6db74">&#34;DK/Refused&#34;</span>, <span style="color:#e6db74">&#34;Total&#34;</span>)
 </code></pre></div><p>Below is a glimpse of our data:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data1, <span style="color:#ae81ff">3</span>)
@@ -608,9 +608,9 @@ data2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tribb
 #&gt; 3 France     Spring~       3       17         36           42            1   100
 </code></pre><h2 id="feature-selection">Feature Selection</h2>
 <p>There are some features that we need to add and also select for visualization. But before that, we should first join our data. Here, we can join our data using the function <code>merge()</code> from base R.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># join data</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># join data</span>
 dataset <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">merge</span>(data1, data2, by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Country&#34;</span>)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># feature engineering `gov`</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># feature engineering `gov`</span>
 data_f <span style="color:#f92672">&lt;-</span> dataset <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(gov <span style="color:#f92672">=</span> `A lot` <span style="color:#f92672">+</span> Somewhat) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(Country,Political_issues,gov)
@@ -620,7 +620,7 @@ data_f <span style="color:#f92672">&lt;-</span> dataset <span style="color:#f926
 #&gt; 1 Argentina               37  22
 #&gt; 2 Australia               48  48
 #&gt; 3    Brazil               45  24
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># preparing region-country labels</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># preparing region-country labels</span>
 Asia_Oceania <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Australia&#34;</span>, <span style="color:#e6db74">&#34;India&#34;</span>, <span style="color:#e6db74">&#34;Indonesia&#34;</span>, <span style="color:#e6db74">&#34;Japan&#34;</span>,
                   <span style="color:#e6db74">&#34;Philippines&#34;</span>, <span style="color:#e6db74">&#34;South Korea&#34;</span>, <span style="color:#e6db74">&#34;Vietnam&#34;</span>)
 Europe <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;France&#34;</span>, <span style="color:#e6db74">&#34;Germany&#34;</span>, <span style="color:#e6db74">&#34;Greece&#34;</span>, <span style="color:#e6db74">&#34;Hungary&#34;</span>, <span style="color:#e6db74">&#34;Italy&#34;</span>,
@@ -633,7 +633,7 @@ SubSaharaAfrica <span style="color:#f92672">&lt;-</span> <span style="color:#a6e
                      <span style="color:#e6db74">&#34;Senegal&#34;</span>, <span style="color:#e6db74">&#34;South Africa&#34;</span>, <span style="color:#e6db74">&#34;Tanzania&#34;</span>)
 NorthAmerica <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;United States&#34;</span>, <span style="color:#e6db74">&#34;Canada&#34;</span>)
 
-<span style="color:#75715e"># feature engineering `region`</span>
+<span style="color:#75715e"># feature engineering `region`</span>
 data_f <span style="color:#f92672">&lt;-</span> data_f <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(region <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(data_f<span style="color:#f92672">$</span>Country <span style="color:#f92672">%in%</span> Asia_Oceania, <span style="color:#e6db74">&#39;Asia &amp; Oceania&#39;</span>,
           <span style="color:#a6e22e">ifelse</span>(data_f<span style="color:#f92672">$</span>Country <span style="color:#f92672">%in%</span> Europe, <span style="color:#e6db74">&#39;Europe&#39;</span>,
@@ -643,7 +643,7 @@ data_f <span style="color:#f92672">&lt;-</span> data_f <span style="color:#f9267
           <span style="color:#a6e22e">ifelse</span>(data_f<span style="color:#f92672">$</span>Country <span style="color:#f92672">%in%</span> NorthAmerica, <span style="color:#e6db74">&#39;North America&#39;</span>,
           <span style="color:#66d9ef">NA</span>)))))))
 
-<span style="color:#75715e"># quick check</span>
+<span style="color:#75715e"># quick check</span>
 <span style="color:#a6e22e">head</span>(data_f, <span style="color:#ae81ff">3</span>)
 </code></pre></div><pre><code>#&gt;     Country Political_issues gov         region
 #&gt; 1 Argentina               37  22  South America
@@ -653,31 +653,31 @@ data_f <span style="color:#f92672">&lt;-</span> data_f <span style="color:#f9267
 <p>Before making anything, we can first load fonts from our locale to R using <strong>extrafont</strong> package. This will allow R to use custom fonts in its plot. Discussions about using custom font can be found in the previous <a href="https://algotech.netlify.app/tags/rplicate/">Rplicate Series articles</a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(extrafont)
 
-<span style="color:#75715e"># importing fonts to R</span>
-<span style="color:#75715e"># font_import() </span>
+<span style="color:#75715e"># importing fonts to R</span>
+<span style="color:#75715e"># font_import() </span>
 
-<span style="color:#75715e"># load all fonts so it can be used</span>
+<span style="color:#75715e"># load all fonts so it can be used</span>
 <span style="color:#a6e22e">loadfonts</span>(device <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;win&#34;</span>) 
 </code></pre></div><h2 id="basic-plot">Basic Plot</h2>
 <p>We can first make the Basic Plot using the code below:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> data_f, 
              <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> gov, y <span style="color:#f92672">=</span> Political_issues)) <span style="color:#f92672">+</span>
-  <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(colour <span style="color:#f92672">=</span> region, fill <span style="color:#f92672">=</span> region), <span style="color:#75715e"># we will edit the color &amp; fill manually later</span>
+  <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(colour <span style="color:#f92672">=</span> region, fill <span style="color:#f92672">=</span> region), <span style="color:#75715e"># we will edit the color &amp; fill manually later</span>
              shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.5</span>, stroke <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">scale_x_continuous</span>(breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">100</span>, by<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>), limits <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">100</span>)) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">scale_y_continuous</span>(breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">100</span>, by<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>), limits <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">100</span>),
-                     expand <span style="color:#f92672">=</span> <span style="color:#a6e22e">expansion</span>(add <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>))) <span style="color:#75715e"># adjusting spaces on the min-max y-axis)</span>
+                     expand <span style="color:#f92672">=</span> <span style="color:#a6e22e">expansion</span>(add <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>))) <span style="color:#75715e"># adjusting spaces on the min-max y-axis)</span>
 
 g1
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="add-linear-line">Add Linear Line</h2>
 <p>This is the more interesting part of making the plot. When using <code>geom_smooth()</code>, we usually aim to display a trend line following pattern in our data and ended up obtaining a slightly curved line. Little that we know, this function can also be used for <em>making a linear line</em>, we only need to adjust its parameter <code>method</code> on how to make the trend line using a specific algorithm.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g2 <span style="color:#f92672">&lt;-</span> g1 <span style="color:#f92672">+</span> 
-  <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(group <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>), <span style="color:#75715e"># making 1 line</span>
-              method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lm&#34;</span>, <span style="color:#75715e"># making a linear plot (using linear model)</span>
-              <span style="color:#75715e"># formula = y ~ x, # we can also edit the linear model formula manually here</span>
-              se <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, <span style="color:#75715e"># not displaying standard error</span>
-              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#77200b&#34;</span>) <span style="color:#75715e"># color of line </span>
+  <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(group <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>), <span style="color:#75715e"># making 1 line</span>
+              method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lm&#34;</span>, <span style="color:#75715e"># making a linear plot (using linear model)</span>
+              <span style="color:#75715e"># formula = y ~ x, # we can also edit the linear model formula manually here</span>
+              se <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, <span style="color:#75715e"># not displaying standard error</span>
+              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#77200b&#34;</span>) <span style="color:#75715e"># color of line </span>
 
 g2
 </code></pre></div><p><!-- raw HTML omitted --></p>
@@ -712,7 +712,7 @@ g3
        y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Satisfied with the news media in our country*, % of respondents&#34;</span>,
        caption <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Source: Pew Research Centre&#34;</span>,
        color <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
-       fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>) <span style="color:#75715e"># removing legend title</span>
+       fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>) <span style="color:#75715e"># removing legend title</span>
 
 g4
 </code></pre></div><p><!-- raw HTML omitted --></p>
@@ -720,7 +720,7 @@ g4
 <p>To further replicate the original plot, we can also set colors and fill manually for points using <code>scale_color/fill_manual()</code>. Note that to do that, we need to specify a point shape that consist of area and border, such as shape 21. In the function, we can add values of the color/fill and labels for its respective color. We should also note that the order is based on the original level order in the data.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g5 <span style="color:#f92672">&lt;-</span> g4 <span style="color:#f92672">+</span> <span style="color:#a6e22e">scale_color_manual</span>(values <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;#DE8321&#34;</span>,<span style="color:#e6db74">&#34;#1D84C6&#34;</span>,<span style="color:#e6db74">&#34;#0B743D&#34;</span>,
                                          <span style="color:#e6db74">&#34;#000000&#34;</span>, <span style="color:#e6db74">&#34;#DA3411&#34;</span>,<span style="color:#e6db74">&#34;#04452D&#34;</span>),
-                              <span style="color:#75715e"># we can provide custom label as well, respected to the data</span>
+                              <span style="color:#75715e"># we can provide custom label as well, respected to the data</span>
                               labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Asia &amp;\nOceania&#34;</span>, <span style="color:#e6db74">&#34;Europe&#34;</span>,<span style="color:#e6db74">&#34;Middle East &amp;\nNorth Africa&#34;</span>,
                                          <span style="color:#e6db74">&#34;North\nAmerica&#34;</span>, <span style="color:#e6db74">&#34;South America&#34;</span>, <span style="color:#e6db74">&#34;Sub-Sahara Africa&#34;</span>)
                               ) <span style="color:#f92672">+</span>
@@ -736,23 +736,23 @@ g5
 <p>Next, we can tidy our plot using themes using the codes below.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g6 <span style="color:#f92672">&lt;-</span> g5 <span style="color:#f92672">+</span> <span style="color:#a6e22e">theme</span>(
 
-  <span style="color:#75715e"># general</span>
+  <span style="color:#75715e"># general</span>
   text <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Segoe UI&#34;</span>),
   
-  <span style="color:#75715e"># legend</span>
-  legend.key.size <span style="color:#f92672">=</span> <span style="color:#a6e22e">unit</span>(<span style="color:#ae81ff">0.1</span>, <span style="color:#e6db74">&#34;lines&#34;</span>), <span style="color:#75715e"># set space between keys</span>
-  legend.key <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">NA</span>), <span style="color:#75715e"># removing backround of keys</span>
+  <span style="color:#75715e"># legend</span>
+  legend.key.size <span style="color:#f92672">=</span> <span style="color:#a6e22e">unit</span>(<span style="color:#ae81ff">0.1</span>, <span style="color:#e6db74">&#34;lines&#34;</span>), <span style="color:#75715e"># set space between keys</span>
+  legend.key <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">NA</span>), <span style="color:#75715e"># removing backround of keys</span>
   legend.text <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>),
   legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;top&#34;</span>,
   legend.direction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;horizontal&#34;</span>,
 
-  <span style="color:#75715e"># axis</span>
+  <span style="color:#75715e"># axis</span>
   axis.title <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(face <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;italic&#34;</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>),
   
-  <span style="color:#75715e"># plot (all plot area including title, axis, etc.)</span>
+  <span style="color:#75715e"># plot (all plot area including title, axis, etc.)</span>
   plot.title <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(face <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold&#34;</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>),
   plot.subtitle <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, 
-                               <span style="color:#75715e"># adding some space between subtitle &amp; legend</span>
+                               <span style="color:#75715e"># adding some space between subtitle &amp; legend</span>
                                margin <span style="color:#f92672">=</span> <span style="color:#a6e22e">margin</span>(t <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,  
                                                r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, 
                                                b <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, 
@@ -760,7 +760,7 @@ g5
                                                unit <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pt&#34;</span>)),
   plot.caption <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, vjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>),
   
-  <span style="color:#75715e"># panel (area where we map our geoms)</span>
+  <span style="color:#75715e"># panel (area where we map our geoms)</span>
   panel.border <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
   panel.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
   panel.grid.major.x <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
@@ -779,16 +779,16 @@ g7
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Last but not least, we can add text annotation into our plot using the function <code>annotate()</code> from ggplot2. There are various geoms you can annotate inside a plot, such as a rectangle, an arrow, a segment, etc. For a friendly introduction, you can refer to <a href="https://ggplot2.tidyverse.org/reference/annotate.html">R Graph Gallery - Annotations</a> or to the official <a href="https://ggplot2.tidyverse.org/reference/annotate.html">ggplot2 documentation</a>.</p>
 <p>Here, we will add annotations for the geometrical element <code>segment</code> and <code>text</code> for our trend line legend.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g8 <span style="color:#f92672">&lt;-</span> g7 <span style="color:#f92672">+</span> <span style="color:#a6e22e">annotate</span>(geom <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;segment&#34;</span>, <span style="color:#75715e"># making a line segment</span>
-              x <span style="color:#f92672">=</span> <span style="color:#ae81ff">67</span>, xend <span style="color:#f92672">=</span> <span style="color:#ae81ff">69</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">13</span>, yend <span style="color:#f92672">=</span> <span style="color:#ae81ff">13</span>, <span style="color:#75715e"># position of segment </span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g8 <span style="color:#f92672">&lt;-</span> g7 <span style="color:#f92672">+</span> <span style="color:#a6e22e">annotate</span>(geom <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;segment&#34;</span>, <span style="color:#75715e"># making a line segment</span>
+              x <span style="color:#f92672">=</span> <span style="color:#ae81ff">67</span>, xend <span style="color:#f92672">=</span> <span style="color:#ae81ff">69</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">13</span>, yend <span style="color:#f92672">=</span> <span style="color:#ae81ff">13</span>, <span style="color:#75715e"># position of segment </span>
               colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#77200b&#34;</span>, 
               size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
               ) <span style="color:#f92672">+</span>
-     <span style="color:#a6e22e">annotate</span>(geom <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;text&#34;</span>, <span style="color:#75715e"># making a text</span>
-              x <span style="color:#f92672">=</span> <span style="color:#ae81ff">70</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, <span style="color:#75715e"># position of text</span>
+     <span style="color:#a6e22e">annotate</span>(geom <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;text&#34;</span>, <span style="color:#75715e"># making a text</span>
+              x <span style="color:#f92672">=</span> <span style="color:#ae81ff">70</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, <span style="color:#75715e"># position of text</span>
               label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Line of best fit,\ncorrelation coefficient = 87%&#34;</span>,
               fontface <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;italic&#34;</span>, color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#77200b&#34;</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Segoe UI&#34;</span>, 
-              hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#75715e"># set the text on the right side of segment</span>
+              hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#75715e"># set the text on the right side of segment</span>
 </code></pre></div><h1 id="final-plot">Final Plot</h1>
 <p>Now let&rsquo;s display our final plot! We can display our plot with the desired height and width by specifying it in the R chunk setting. Below is the plot created with an R Markdown chunk setting <code>fig.height = 6, fig.width = 7</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g8
@@ -824,10 +824,10 @@ g7
                 <li><a class="article-category-link" href="/tags/data-visualization">Data Visualization</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/ggplot2">ggplot2</a></li>
-                
-                
                 <li><a class="article-category-link" href="/tags/rplicate">Rplicate</a></li>
+                
+                
+                <li><a class="article-category-link" href="/tags/ggplot2">ggplot2</a></li>
                 
             
         

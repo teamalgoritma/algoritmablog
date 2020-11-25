@@ -12,8 +12,8 @@ categories:
   - R
 tags: 
   - Data Visualization
-  - ggplot2
   - Rplicate
+  - ggplot2
 description: ''
 featured: ''
 featuredalt: ''

@@ -8,8 +8,9 @@ categories:
   - R
 tags:
   - Data Visualization
-  - ggplot2
   - Rplicate
+  - ggplot2
+  - ggimage
 description: ''
 featured: ''
 featuredalt: ''
@@ -96,12 +97,12 @@ sample_n(sakura,6) # sampling rows
 
 ```
 #>     AD full.flowering.date
-#> 1 1367                 407
-#> 2 1344                 411
-#> 3  886                  NA
-#> 4 1528                 415
-#> 5  978                  NA
-#> 6 1045                  NA
+#> 1 1144                  NA
+#> 2 1639                 418
+#> 3  967                 413
+#> 4 1155                  NA
+#> 5 1923                 407
+#> 6  829                  NA
 ```
 After some exploration, we find that most of the data came from early AD contain missing records of its full flowering date. Therefore, the next step is to obtain the data with no missing values on its `full.flowering.date`, and for better visualization, we can also rename the "AD" column to "Year".
 

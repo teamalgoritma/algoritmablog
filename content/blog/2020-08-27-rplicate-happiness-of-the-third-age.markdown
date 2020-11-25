@@ -8,8 +8,12 @@ categories:
   - R
 tags:
   - Data Visualization
-  - ggplot2
   - Rplicate
+  - ggplot2
+  - ggrepel
+  - extrafont
+  - ggthemes
+  - gridExtra
 description: ''
 featured: ''
 featuredalt: ''

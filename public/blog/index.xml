@@ -6,10 +6,21 @@
     <description>Recent content in Blog on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rplicate Series: Gone Baby Gone</title>
+      <link>/blog/rplicate-series-gone-baby-gone/</link>
+      <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/rplicate-series-gone-baby-gone/</guid>
+      <description>Welcome again to the Rplicate Series! In this 4th article of the series, we will replicate The Economist plot titled &amp;ldquo;Gone Baby Gone&amp;rdquo;. In the process, we will explore ways to use transformed value as our axes, adding horizontal/vertical line, and making an elbow line (and generally more flexible) annotation for repelled texts.
+Let&amp;rsquo;s dive in below!
+Load Packages These are the packages and some set up that we will use.</description>
+    </item>
     
     <item>
       <title>Boosting Algorithm (AdaBoost and XGBoost)</title>

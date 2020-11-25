@@ -13,7 +13,7 @@
         "articleSection" : "blog",
         "name" : "Causal Inference and Bayesian Network",
         "headline" : "Causal Inference and Bayesian Network",
-        "description" : "Introduction Cause has been people\x26rsquo;s curiosity for a long time, you can see that people often ask \x26ldquo;Why\x26rdquo; to things happening around them. But do we actually know how to explain \x26ldquo;cause\x26rdquo;?\nDo we jump to conclusion of causal relationship often too quickly?\nCan association between factors that we call mathematically \x26ldquo;correlation\x26rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn\x26rsquo;t mean it affects each other.",
+        "description" : "Introduction Cause has been people\u0026rsquo;s curiosity for a long time, you can see that people often ask \u0026ldquo;Why\u0026rdquo; to things happening around them. But do we actually know how to explain \u0026ldquo;cause\u0026rdquo;?\nDo we jump to conclusion of causal relationship often too quickly?\nCan association between factors that we call mathematically \u0026ldquo;correlation\u0026rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn\u0026rsquo;t mean it affects each other.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -21,8 +21,8 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2018",
-        "datePublished": "2018-07-26 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2018-07-26 00:00:00 \x2b0000 UTC",
+        "datePublished": "2018-07-26 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2018-07-26 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/causal-inference-and-bayesian-network\/",
         "wordCount" : "2891",
         "keywords" : [ "Bayesian","Causal Inference","Machine Learning","Blog" ]
@@ -36,7 +36,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.69.0" />
+        <meta name="generator" content="Hugo 0.72.0" />
         
   
     
@@ -282,6 +282,18 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
+                            </header>
+                            
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
                                 <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
                                 
                                 <time class="published" datetime=
@@ -323,18 +335,6 @@ if (!doNotTrack) {
                                 <time class="published" datetime=
                                     '2020-10-26'>
                                     October 26, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-10-21'>
-                                    October 21, 2020</time>
                             </header>
                             
 
@@ -668,30 +668,30 @@ After gathering some data, we know that:</p>
 <span style="color:#a6e22e">plot</span>(disease.dag)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Now we are going to make the Bayesian Network model</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># the possible values (all nodes are boolean vars - discrete with two category)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># the possible values (all nodes are boolean vars - discrete with two category)</span>
 yn <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;yes&#34;</span>,<span style="color:#e6db74">&#34;no&#34;</span>)
 
-<span style="color:#75715e"># specify the CPTs</span>
+<span style="color:#75715e"># specify the CPTs</span>
 node.D <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cptable</span>(<span style="color:#f92672">~</span> D, values<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">99</span>), levels<span style="color:#f92672">=</span>yn)
 node.T1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cptable</span>(<span style="color:#f92672">~</span> T1 <span style="color:#f92672">+</span> D, values<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">85</span>), levels<span style="color:#f92672">=</span>yn)
 node.T2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cptable</span>(<span style="color:#f92672">~</span> T2 <span style="color:#f92672">+</span> D, values<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">95</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">8</span>), levels<span style="color:#f92672">=</span>yn)
 
 
-<span style="color:#75715e"># create an intermediate representation of the CPTs</span>
+<span style="color:#75715e"># create an intermediate representation of the CPTs</span>
 plist <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">compileCPT</span>(<span style="color:#a6e22e">list</span>(node.D, node.T1, node.T2))
 plist
 </code></pre></div><pre><code>#&gt; CPTspec with probabilities:
 #&gt;  P( D )
 #&gt;  P( T1 | D )
 #&gt;  P( T2 | D )
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#kind of prop table</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#kind of prop table</span>
 plist<span style="color:#f92672">$</span>D
 </code></pre></div><pre><code>#&gt; D
 #&gt;  yes   no 
 #&gt; 0.01 0.99 
 #&gt; attr(,&quot;class&quot;)
 #&gt; [1] &quot;parray&quot; &quot;array&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create network</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create network</span>
 bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">grain</span>(plist)
 <span style="color:#a6e22e">summary</span>(bn.disease)
 </code></pre></div><pre><code>#&gt; Independence network: Compiled: FALSE Propagated: FALSE 
@@ -699,9 +699,9 @@ bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 </code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">bn.disease
 </code></pre></div><pre><code>#&gt; Independence network: Compiled: FALSE Propagated: FALSE 
 #&gt;   Nodes: chr [1:3] &quot;D&quot; &quot;T1&quot; &quot;T2&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#We can gain the probability of events using query</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#We can gain the probability of events using query</span>
 
-<span style="color:#75715e">#if we want to see the marginal probability (probability of individual event) of each node</span>
+<span style="color:#75715e">#if we want to see the marginal probability (probability of individual event) of each node</span>
 <span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;T1&#34;</span>, <span style="color:#e6db74">&#34;T2&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;marginal&#34;</span>)
 </code></pre></div><pre><code>#&gt; $D
 #&gt; D
@@ -717,7 +717,7 @@ bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 #&gt; T2
 #&gt;    yes     no 
 #&gt; 0.2075 0.7925
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#or</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#or</span>
 <span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;T1&#34;</span>, <span style="color:#e6db74">&#34;T2&#34;</span>))
 </code></pre></div><pre><code>#&gt; $D
 #&gt; D
@@ -733,13 +733,13 @@ bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 #&gt; T2
 #&gt;    yes     no 
 #&gt; 0.2075 0.7925
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># or if we want to see joint probability (probability of 2 or more events happening), for example P(D,T1)</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># or if we want to see joint probability (probability of 2 or more events happening), for example P(D,T1)</span>
 <span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;T1&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;joint&#34;</span>)
 </code></pre></div><pre><code>#&gt;      T1
 #&gt; D        yes     no
 #&gt;   yes 0.0090 0.0010
 #&gt;   no  0.1485 0.8415
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># or if we want to see conditional probability of T1 given D</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># or if we want to see conditional probability of T1 given D</span>
 <span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;T1&#34;</span>,<span style="color:#e6db74">&#34;D&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;conditional&#34;</span>)
 </code></pre></div><pre><code>#&gt;      T1
 #&gt; D      yes   no
@@ -767,24 +767,24 @@ bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 </code></pre><p>We are going to focus on<code>CAD</code> variable, which represent whether a person has CAD.
 First, we need some assumptions about how the variables relate in the dataset. This is usually gained from expert opinions and some common sense.
 Suppose we assume that <code>Smoker</code>,<code>Inherit</code>, and <code>Hyperchol</code> variables affect <code>CAD</code> and <code>CAD</code> affect <code>AngPec</code>,<code>Heartfail</code>,<code>QWave</code>. We create the DAG of the causal model we have.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create the DAG</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create the DAG</span>
 dag.cad <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">dag</span>(<span style="color:#f92672">~</span> CAD<span style="color:#f92672">:</span>Smoker<span style="color:#f92672">:</span>Inherit<span style="color:#f92672">:</span>Hyperchol <span style="color:#f92672">+</span> 
                  AngPec<span style="color:#f92672">:</span>CAD <span style="color:#f92672">+</span> 
                  Heartfail<span style="color:#f92672">:</span>CAD <span style="color:#f92672">+</span> 
                  QWave<span style="color:#f92672">:</span>CAD)
 <span style="color:#a6e22e">plot</span>(dag.cad)
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># smooth is a small positive number to avoid zero entries in the CPTs</span>
-<span style="color:#75715e"># (cf. Additive smoothing, http://en.wikipedia.org/wiki/Additive_smoothing)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># smooth is a small positive number to avoid zero entries in the CPTs</span>
+<span style="color:#75715e"># (cf. Additive smoothing, http://en.wikipedia.org/wiki/Additive_smoothing)</span>
 bn.cad <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">grain</span>(dag.cad, data <span style="color:#f92672">=</span> cad1, smooth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>)
-<span style="color:#75715e"># Let&#39;s ask some questions...</span>
+<span style="color:#75715e"># Let&#39;s ask some questions...</span>
 <span style="color:#a6e22e">querygrain</span>(bn.cad, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CAD&#34;</span>, <span style="color:#e6db74">&#34;Smoker&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;conditional&#34;</span>) 
 </code></pre></div><pre><code>#&gt;       CAD
 #&gt; Smoker        No       Yes
 #&gt;    No  0.7172084 0.2827916
 #&gt;    Yes 0.4933771 0.5066229
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># add some evidence and see how things get affected.</span>
-<span style="color:#75715e">#let say we know a person who is a smoker but he does not have hyperchol, and we want to know the probability of him gettinf CAD</span>
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># add some evidence and see how things get affected.</span>
+<span style="color:#75715e">#let say we know a person who is a smoker but he does not have hyperchol, and we want to know the probability of him gettinf CAD</span>
 bn.cad.1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">setFinding</span>(bn.cad, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Smoker&#34;</span>,<span style="color:#e6db74">&#34;Hyperchol&#34;</span>), states<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Yes&#34;</span>,<span style="color:#e6db74">&#34;No&#34;</span>))
 <span style="color:#a6e22e">querygrain</span>(bn.cad.1, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CAD&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;marginal&#34;</span>) 
 </code></pre></div><pre><code>#&gt; $CAD
