@@ -1,5 +1,5 @@
 ---
-title: "Boosting Algorithm (AdaBoost and XGBoost)"
+title: Boosting Algorithm (AdaBoost and XGBoost)
 author: Ajeng Prastiwi, David Tahi Ulubalang
 github: https://github.com/ajengprstw/xgboost
 date: '2020-11-23'
@@ -9,9 +9,9 @@ categories:
 tags: 
   - Machine Learning
 description: ''
-featured: ''
+featured: 'boosting-algorithm.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -26,7 +26,7 @@ text-align: justify}
 <h1>Introduction</h1>
 <div id="what-is-boosting" class="section level2">
 <h2>What is boosting?</h2>
-<p>Boosting is an ensemble method of converting weak learners into strong learners. Weak and strong refer to a measure how correlated are the learners to the actual target variable[^1]. In boosting, each training sample are used to train one unit of decision tree and picked with replacement over-weighted data. The trees will learn from predecessors and updates the residuals error.</p>
+<p>Boosting is an <strong>ensemble method</strong> of converting weak learners into strong learners. Weak and strong refer to a measure how correlated are the learners to the actual target variable[^1]. In boosting, each training sample are used to train one unit of decision tree and picked with replacement over-weighted data. The trees will learn from predecessors and updates the residuals error.</p>
 </div>
 <div id="learning-objectives" class="section level2">
 <h2>Learning Objectives</h2>
@@ -539,7 +539,7 @@ xgbcv &lt;- xgb.cv( params = params,
 #&gt;  iter train_error_mean train_error_std test_error_mean test_error_std
 #&gt;   114        0.1217898    0.0009316736       0.1317934    0.002072701</code></pre>
 <pre class="r"><code>toc()</code></pre>
-<pre><code>#&gt; 60.39 sec elapsed</code></pre>
+<pre><code>#&gt; 72.96 sec elapsed</code></pre>
 <pre class="r"><code>tic()
 xgb1 &lt;- xgb.train (params = params, 
                    data = dtrain, 
@@ -554,7 +554,7 @@ xgb1 &lt;- xgb.train (params = params,
 #&gt; [101]    val-error:0.125644  train-error:0.121533 
 #&gt; [114]    val-error:0.124011  train-error:0.119858</code></pre>
 <pre class="r"><code>toc()</code></pre>
-<pre><code>#&gt; 13.22 sec elapsed</code></pre>
+<pre><code>#&gt; 15.86 sec elapsed</code></pre>
 <pre class="r"><code>xgbpred_prob &lt;-predict(object = xgb1, newdata = dtest)
 xgbpred &lt;- ifelse (xgbpred_prob &gt; 0.5,1,0)</code></pre>
 <p>In this section, we evaluate the performance of XGBoost model</p>
