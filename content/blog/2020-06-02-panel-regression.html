@@ -1,11 +1,11 @@
 ---
-title: "Regression Model with Panel Data"
+title: Regression Model with Panel Data
 author: "Ajeng Prastiwi"
 date: '2020-06-02'
 description: ''
-featured: ''
+featured: 'reg-panel.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 github: https://github.com/ajengprstw/
 linktitle: ''
 slug: regression-with-panel-data
@@ -511,7 +511,7 @@ summary(random)</code></pre>
 <pre class="r"><code>productivity &lt;- read.csv(&quot;data_input/productivity.csv&quot;)
 str(productivity)</code></pre>
 <pre><code>#&gt; &#39;data.frame&#39;:    816 obs. of  10 variables:
-#&gt;  $ STATE: Factor w/ 48 levels &quot;ALABAMA&quot;,&quot;ARIZONA&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ STATE: chr  &quot;ALABAMA&quot; &quot;ALABAMA&quot; &quot;ALABAMA&quot; &quot;ALABAMA&quot; ...
 #&gt;  $ YR   : int  1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 ...
 #&gt;  $ P_CAP: num  15033 15502 15972 16406 16763 ...
 #&gt;  $ HWY  : num  7326 7526 7765 7908 8026 ...
@@ -587,7 +587,7 @@ summary(mod_pooling)</code></pre>
 #&gt; Residual Sum of Squares: 1.9502e+10
 #&gt; R-Squared:      0.99278
 #&gt; Adj. R-Squared: 0.9927
-#&gt; F-statistic: 12107.4 on 7 and 616 DF, p-value: &lt; 2.22e-16</code></pre>
+#&gt; F-statistic: 12121 on 7 and 616 DF, p-value: &lt; 2.22e-16</code></pre>
 <p>From the pooling model, all of independent variable significants to dependent variable and generate a value of 0.99 for adjusted R squared. The result of pooling model has intercept and slopes regardless of group and time period. Next, we will build within model:</p>
 <pre class="r"><code>mod_within &lt;- plm(GSP ~ P_CAP + HWY + WATER +
                      UTIL + PC + EMP + UNEMP,
@@ -625,7 +625,7 @@ summary(mod_within)</code></pre>
 #&gt; Residual Sum of Squares: 1563600000
 #&gt; R-Squared:      0.95548
 #&gt; Adj. R-Squared: 0.9502
-#&gt; F-statistic: 1707.69 on 7 and 557 DF, p-value: &lt; 2.22e-16</code></pre>
+#&gt; F-statistic: 1707.7 on 7 and 557 DF, p-value: &lt; 2.22e-16</code></pre>
 <p>To check the intercept for each cross-section and time period, we can used function <code>fixef()</code>.</p>
 <pre class="r"><code>fixef(mod_within)</code></pre>
 <pre><code>#&gt;        ALABAMA        ARIZONA       ARKANSAS     CALIFORNIA       COLORADO 
@@ -699,7 +699,7 @@ summary(mod_random)</code></pre>
 #&gt; Residual Sum of Squares: 2126900000
 #&gt; R-Squared:      0.96811
 #&gt; Adj. R-Squared: 0.96775
-#&gt; Chisq: 18700.3 on 7 DF, p-value: &lt; 2.22e-16</code></pre>
+#&gt; Chisq: 18701.2 on 7 DF, p-value: &lt; 2.22e-16</code></pre>
 <p>Variable private capital and employee rate have positively related to gross state product and other independent variable have negatively related to our target variable.</p>
 <pre class="r"><code>ranef(mod_random)</code></pre>
 <pre><code>#&gt;        ALABAMA        ARIZONA       ARKANSAS     CALIFORNIA       COLORADO 
@@ -804,11 +804,11 @@ summary(mod_random)</code></pre>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p><a href="https://www.iuj.ac.jp/faculty/kucc625/method/panel/panel_iuj.pdf">Practical Guides to Panel Data Modeling: A Step by Step Analysis Using Stata</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p><a href="https://www.uio.no/studier/emner/sv/oekonomi/ECON5103/v10/undervisningsmateriale/PDAppl_14.pdf">Panel Data Analysis-Advantages and Challenges</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p><a href="https://are.berkeley.edu/courses/EEP118/current/handouts/eep118_panel_data_fixed_effects.pdf">Introductory Applied Econometrics</a><a href="#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p><a href="http://www.princeton.edu/~otorres/Panel101R.pdf">Getting Started in Fixed/Random Effects Models using R</a><a href="#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p><a href="https://www.researchgate.net/publication/288254393_Fixed-effects_panel_regression">Regression Analysis and Causal Inference</a><a href="#fnref5" class="footnote-back">↩︎</a></p></li>
-<li id="fn6"><p><a href="https://books.google.co.id/books?id=EO40DAAAQBAJ&amp;pg=RA4-PA199&amp;lpg=RA4-PA199&amp;dq=The+advantages+of+random+effects+specification+are+The+number+of+parameters+stay+constant+when+sample+size+increases&amp;source=bl&amp;ots=8kd5H-wGl_&amp;sig=ACfU3U3GPCuzzfCpUMJUWK08SKV6zj-i6A&amp;hl=en&amp;sa=X&amp;ved=2ahUKEwjBqJ7XguLpAhV2H7cAHf2sDMIQ6AEwAHoECAcQAQ#v=onepage&amp;q=The%20advantages%20of%20random%20effects%20specification%20are%20The%20number%20of%20parameters%20stay%20constant%20when%20sample%20size%20increases&amp;f=false">The New Palgrave Dictionary of Economics</a><a href="#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p><a href="https://www.iuj.ac.jp/faculty/kucc625/method/panel/panel_iuj.pdf">Practical Guides to Panel Data Modeling: A Step by Step Analysis Using Stata</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p><a href="https://www.uio.no/studier/emner/sv/oekonomi/ECON5103/v10/undervisningsmateriale/PDAppl_14.pdf">Panel Data Analysis-Advantages and Challenges</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p><a href="https://are.berkeley.edu/courses/EEP118/current/handouts/eep118_panel_data_fixed_effects.pdf">Introductory Applied Econometrics</a><a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p><a href="http://www.princeton.edu/~otorres/Panel101R.pdf">Getting Started in Fixed/Random Effects Models using R</a><a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p><a href="https://www.researchgate.net/publication/288254393_Fixed-effects_panel_regression">Regression Analysis and Causal Inference</a><a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p><a href="https://books.google.co.id/books?id=EO40DAAAQBAJ&amp;pg=RA4-PA199&amp;lpg=RA4-PA199&amp;dq=The+advantages+of+random+effects+specification+are+The+number+of+parameters+stay+constant+when+sample+size+increases&amp;source=bl&amp;ots=8kd5H-wGl_&amp;sig=ACfU3U3GPCuzzfCpUMJUWK08SKV6zj-i6A&amp;hl=en&amp;sa=X&amp;ved=2ahUKEwjBqJ7XguLpAhV2H7cAHf2sDMIQ6AEwAHoECAcQAQ#v=onepage&amp;q=The%20advantages%20of%20random%20effects%20specification%20are%20The%20number%20of%20parameters%20stay%20constant%20when%20sample%20size%20increases&amp;f=false">The New Palgrave Dictionary of Economics</a><a href="#fnref6" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
