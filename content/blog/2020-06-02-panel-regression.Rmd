@@ -1,5 +1,5 @@
 ---
-title: "Regression Model with Panel Data"
+title: Regression Model with Panel Data
 author: "Ajeng Prastiwi"
 date: '2020-06-02'
 description: ''
