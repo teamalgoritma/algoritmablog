@@ -1,5 +1,5 @@
 ---
-title: "Boosting Algorithm (AdaBoost and XGBoost)"
+title: Boosting Algorithm (AdaBoost and XGBoost)
 author: Ajeng Prastiwi, David Tahi Ulubalang
 github: https://github.com/ajengprstw/xgboost
 date: '2020-11-23'
