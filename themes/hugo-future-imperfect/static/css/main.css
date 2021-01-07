@@ -752,6 +752,7 @@
 		border: 0;
 		display: inline-block;
 		position: relative;
+		filter: invert(100%);
 	}
 
 		.image img {
