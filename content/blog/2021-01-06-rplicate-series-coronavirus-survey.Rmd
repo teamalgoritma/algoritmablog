@@ -209,7 +209,7 @@ head(df_concern, 10)
 
 Finally, we create the interactive chart using `highcharter`. First, we will create the basic plot, including the scatter plot and the line chart. To remove the legend form the chart, we use the `hc_legend()` and set the color using the `hc_color`. The `hcaes` is where you will include the information regarding the x-Axis, y-Axis, and the color grouping based on the responses category.
 
-```{r}
+```{r eval = F}
 hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWidth = 4)  %>% 
   hc_add_series(data = df_infect, 
                 type = "scatter", hcaes(x = end_date, y = value, group = name)) %>% 
@@ -217,9 +217,22 @@ hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWi
   hc_legend(enabled = F) # Remove Legend
 ```
 
+```{r echo = F, eval = F}
+library(htmlwidgets)
+p1 <- hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWidth = 4)  %>% 
+  hc_add_series(data = df_infect, 
+                type = "scatter", hcaes(x = end_date, y = value, group = name)) %>% 
+  hc_colors(colors = color_group) %>% # Adjust Color
+  hc_legend(enabled = F) # Remove Legend
+
+saveWidget(p1, "covid1.html")
+```
+
+<iframe seamless src="/img/five_thirty/covid1.html" width="100%" height="500"></iframe>
+
 Next, we add the setting for the chart title, subtitle, x-Axis and y-Axis. During the creation of the x-axis, we also include the vertical line that correspond to important events related to COVID-19 using the `plotLines`.
 
-```{r}
+```{r eval = F}
 hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWidth = 4)  %>% 
   hc_add_series(data = df_infect, 
                 type = "scatter", hcaes(x = end_date, y = value, group = name)) %>% 
@@ -257,9 +270,50 @@ hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWi
            ) 
 ```
 
+```{r echo = F,eval=F}
+p2 <- hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWidth = 4)  %>% 
+  hc_add_series(data = df_infect, 
+                type = "scatter", hcaes(x = end_date, y = value, group = name)) %>% 
+  hc_colors(colors = color_group) %>% 
+  hc_legend(enabled = F) %>% 
+  hc_title(text = "How worried are Americans about infection?", 
+           style = list(fontWeight = "bold", fontSize = "19px")
+           ) %>% 
+  hc_subtitle(text = "How concerned Americans say they are that they, someone in their family or someone else they know will<br>become infected with the coronavirus",
+              style = list(fontSize = "12px", color = "black", fontFamily = "Roboto Slab")) %>% 
+  hc_yAxis(title = list(text = ""),
+           labels = list(style = list(fontFamily = "Roboto Slab", fontWeight = "bold", color = "#A2A2BF"),
+                         formatter = JS("function(){return(this.value + '%')}")), # Create % format for y-axis
+           tickInterval= 25 # Interval of x-Axis (0, 25, 50, 75)
+           ) %>% 
+  hc_xAxis(title = list(text = ""),
+           labels = list(style = list(fontFamily = "Roboto Slab", color = "#A2A2BF", fontWeight = "bold")),
+           dateTimeLabelFormats = list(month = "%m/%d", week = "%m/%d"), # Format of the date label
+           
+           plotLines = list(
+             list(value = event_date$date[1], color = "gray", 
+                  label = list(text = event_date$event[1], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[2], color = "gray", 
+                  label = list(text = event_date$event[2], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[3], color = "gray", 
+                  label = list(text = event_date$event[3], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[4], color = "gray", 
+                  label = list(text = event_date$event[4], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash")
+           )
+           
+           ) 
+saveWidget(p2, "covid2.html")
+```
+
+<iframe seamless src="/img/five_thirty/covid2.html" width="100%" height="500"></iframe>
+
 Finally, we add the setting for the tooltip. The tooltip is the most challenging part since the highcharter cannot fully replicate the tooltip from the original plot.
 
-```{r}
+```{r eval = F}
 hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWidth = 4)  %>% 
   hc_add_series(data = df_infect, 
                 type = "scatter", hcaes(x = end_date, y = value, group = name)) %>% 
@@ -305,5 +359,52 @@ hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWi
              )
 ```
 
+```{r echo=F, eval = F}
+p3 <- hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWidth = 4)  %>% 
+  hc_add_series(data = df_infect, 
+                type = "scatter", hcaes(x = end_date, y = value, group = name)) %>% 
+  hc_colors(colors = color_group) %>% 
+  hc_legend(enabled = F) %>% 
+  hc_title(text = "How worried are Americans about infection?", 
+           style = list(fontWeight = "bold", fontSize = "19px")
+           ) %>% 
+  hc_subtitle(text = "How concerned Americans say they are that they, someone in their family or someone else they know will<br>become infected with the coronavirus",
+              style = list(fontSize = "12px", color = "black", fontFamily = "Roboto Slab")) %>% 
+  hc_yAxis(title = list(text = ""),
+           labels = list(style = list(fontFamily = "Roboto Slab", fontWeight = "bold", color = "#A2A2BF"),
+                         formatter = JS("function(){return(this.value + '%')}")), 
+           tickInterval= 25 ) %>% 
+  hc_xAxis(title = list(text = ""),
+           labels = list(style = list(fontFamily = "Roboto Slab", color = "#A2A2BF", fontWeight = "bold")),
+           dateTimeLabelFormats = list(month = "%m/%d", week = "%m/%d"),
+           
+           plotLines = list(
+             list(value = event_date$date[1], color = "gray", 
+                  label = list(text = event_date$event[1], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[2], color = "gray", 
+                  label = list(text = event_date$event[2], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[3], color = "gray", 
+                  label = list(text = event_date$event[3], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[4], color = "gray", 
+                  label = list(text = event_date$event[4], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash")
+           )
+           
+           ) %>% 
+  hc_tooltip(crosshairs = TRUE,
+             backgroundColor = "white",
+             fillOpacity = 0.5,
+             shared = TRUE, 
+             borderWidth = 0,
+             useHTML = T,
+             headerFormat = "<b><span style='font-size:16px; font-family: Roboto Slab; color: gray;'>{point.x: %b %d, %Y}</span></b><br>",
+             pointFormat = "<b>{point.tooltip}</b><br>"
+             )
+saveWidget(p3, "covid3.html")
+```
 
+<iframe seamless src="/img/five_thirty/covid3.html" width="100%" height="500"></iframe>
 
