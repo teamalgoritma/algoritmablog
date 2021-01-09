@@ -1,0 +1,309 @@
+---
+title: "Rplicate Series: Interactive Plot of Coronavirus Survey"
+author: Arga Adyatama
+github: https://github.com/Argaadya
+date: '2021-01-06'
+slug: rplicate-series-coronavirus-survey
+categories:
+  - R
+tags:
+  - Data Visualization
+  - Rplicate
+description: ''
+featured: 'five_thirty.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = F)
+```
+
+Welcome again to the Rplicate Series! In this 5th article of the series. On this occassion, we will try to replicate the first interactive plot from the FiveThirtyEight article titled [How Americans View The Coronavirus Crisis And Trump's Response](https://projects.fivethirtyeight.com/coronavirus-polls/?cid=rrpromo). This time you'll learn how to build an interactive plot using `highcharter`.
+
+<center> ![](/img/five_thirty/plot_538.png) </center>
+
+# Library and Setup 
+
+Below is the required package that we will use during data wrangling and chart creation.
+
+```{r message=FALSE}
+# Data Wrangling
+library(tidyverse)
+library(lubridate)
+
+# Visualization
+library(highcharter)
+library(scales)
+```
+
+# Data Collection
+
+All data is available directly from the article below the plot. You can directly download them or visit [this link](https://github.com/fivethirtyeight/covid-19-polls/archive/master.zip).
+
+## Concern Top Line
+
+We load the data that correspond to the line for each survey responses. On the survey, people can choose between four different responses: *Not At All*, *Not Very*, *Somewhat*, and *Very* for both their concern about economic and the viral infection.
+
+```{r}
+concern_topline <- read.csv("data_input/covid/covid_concern_toplines.csv")
+
+head(concern_topline, 10)
+```
+
+In this part we will convert the data and do the following process:
+
+- Convert `modeldate` into date format
+- Filter data to only concern about *infection*
+- Create long format table from the four responses
+- Tidy the responses category name
+- Prepare the output for the chart tooltip
+- Create a new column that transform `modeldate` into proper timestamp format for `highcharter`
+
+```{r}
+df_concern <- concern_topline %>% 
+  
+  # convert modeldate into time format
+  mutate(
+    modeldate= mdy(modeldate)
+  ) %>% 
+  arrange(modeldate) %>% 
+  
+  # Filter data to only concern about infection
+  filter(subject %>% str_detect("infect")) %>% 
+  select(-c(subject, timestamp, party)) %>% 
+  
+  # Create long format table from the four responses
+  pivot_longer(-modeldate) %>% 
+  mutate( 
+    # Tidy the responses category name
+    name = name %>% 
+      str_remove_all("_estimate") %>% 
+      str_replace_all("_", " ") %>% 
+      str_to_title(), 
+    
+    # Prepare the output for the chart tooltip
+    tooltip = paste0(name, ": ", number(value, accuracy = 0.01, suffix = "%")),
+    
+    # Create timestamp for chart
+    timestamp = datetime_to_timestamp(modeldate)
+    )
+
+head(df_concern, 10)
+```
+
+## Survey Polls
+
+We will load the Survey Polls regarding poeple concern about COVID-19. 
+
+```{r}
+covid_concern <- read.csv("data_input/covid/covid_concern_polls.csv")
+
+glimpse(covid_concern)
+```
+
+There are two type of polls, concern related to economy and concern related to health risk and safety. We will use the later one.
+
+```{r}
+concern_infection <- covid_concern %>% 
+  filter(subject == "concern-infected")
+```
+
+We will do similar step to prepare the long format version of the data. For the date we will use the `end_date` of each survey. If the sponsor the survey is missing/*NA*, we will italic the data. The `<i>` symbol indicates that we will italic the text.
+
+```{r}
+df_infect <- concern_infection %>% 
+  mutate_at(vars(contains("date")), ymd) %>% 
+  select(end_date, very, somewhat, not_very, not_at_all, pollster, sponsor) %>% 
+  pivot_longer(-c(end_date, pollster, sponsor)) %>% 
+  mutate(name = name %>% 
+           str_remove_all("_estimate") %>% 
+           str_replace_all("_", " ") %>% 
+           str_to_title(),
+         sponsor = ifelse(sponsor == "", "<i>NA</i>", sponsor)
+         )
+
+df_infect <- df_infect %>% 
+  filter(end_date >= min(df_concern$modeldate)) %>% 
+  mutate(timestamp = datetime_to_timestamp(end_date))
+
+df_infect
+```
+
+## Event
+
+As the vertical line that notify important event, we will manually create the data.frame with information gained from the original plot.
+
+```{r}
+tribble(~event, ~date,
+        "First U.S. death reported", "2020-02-29",
+        "U.S. deaths surpass 10,000", "2020-04-06",
+        "U.S. deaths surpass 100,000", "2020-05-28",
+        "Trump diagnosed with COVID-19", "2020-10-2"
+        )
+```
+
+Here, I directly transform the event data into HTML format to suite the text shown in the original plot. The date are also transformed into timestamp so they will properly positioned in the `highcharter` x-axis.
+
+* `<i>`: italic
+* `<br>`: line break
+
+```{r}
+event_date <- tribble(~event, ~date,
+                      "<i>First U.S.<br><i>death<br><i>reported</i>", "2020-02-29",
+                      "<i>U.S. deaths<br><i>surpass<br><i>10,000</i>", "2020-04-06",
+                      "<i>U.S. deaths<br><i>surpass<br><i>100,000</i>", "2020-05-28",
+                      "<i>Trump<br><i>diagnosed<br><i>with<br><i>COVID-19</i>", "2020-10-2"
+                      ) %>% 
+  mutate(timestamp = ymd(date) %>% datetime_to_timestamp())
+
+event_date
+```
+
+## Prepare Color
+
+Here we will prepare the color of each responses category. For the scatter plot, we will use transparent color by transforming the color using `hex_to_rgba()` and set the transparency into 0.2. You can use the colorpick eyedropper extension from [Google Chrome](https://chrome.google.com/webstore/detail/colorpick-eyedropper/ohcpnigalekghcmgcdcenkpelffpdolg) if you want to get the color yourself.
+
+The `color_group` will be used to indicate the color both for the line chart and the scatter plot.
+
+```{r}
+df_color <- data.frame(name = unique(df_concern$name),
+                       color = c("#F56B38",  "#F9AA87", "#DAAFD6", "#BF7CCC")
+                       ) %>% 
+  mutate(color_opaque = hex_to_rgba(color, 0.2))
+
+df_concern <- df_concern %>% 
+  left_join(df_color) 
+
+df_infect <- df_infect %>% 
+  left_join(df_color) 
+
+# Final Color Scheme
+scatter_color <- df_color$color_opaque[4:1]
+line_color <- df_color$color[4:1]
+color_group <- c(line_color, scatter_color)
+```
+
+# Tooltip
+
+Finally, we create the tooltip for each data. For the line chart, we set the font size to *14 pixels* using font type of `Roboto Slab` (you can see all available font from [Google Font API](https://fonts.google.com/)). For the scatter plot, we will show the responses and the percentage, the pollster and the sponsor. This part is different from the original plot that completely remove all tooltip from the scatter plot. All fonts from the Five Thirty Eight are commisioned fonts we can't get them directly.
+
+```{r}
+df_concern <- df_concern %>% 
+   mutate(
+    tooltip = paste0("<span style='font-size: 14px; font-family: Roboto Slab; color: ",color,"'>", name, ": ", number(value, accuracy = 0.01, suffix = "%"), "</span>")
+    )
+
+df_infect <- df_infect %>% 
+   mutate(
+    tooltip = paste0("<span style='color: ",color,"'>", name, ": ", number(value, accuracy = 0.01, suffix = "%"), "</span><br>",
+                     "Pollster: ", pollster, "<br>", "Sponsor: ", sponsor)
+    )
+
+head(df_concern, 10)
+```
+
+# Visualization
+
+Finally, we create the interactive chart using `highcharter`. First, we will create the basic plot, including the scatter plot and the line chart. To remove the legend form the chart, we use the `hc_legend()` and set the color using the `hc_color`. The `hcaes` is where you will include the information regarding the x-Axis, y-Axis, and the color grouping based on the responses category.
+
+```{r}
+hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWidth = 4)  %>% 
+  hc_add_series(data = df_infect, 
+                type = "scatter", hcaes(x = end_date, y = value, group = name)) %>% 
+  hc_colors(colors = color_group) %>% # Adjust Color
+  hc_legend(enabled = F) # Remove Legend
+```
+
+Next, we add the setting for the chart title, subtitle, x-Axis and y-Axis. During the creation of the x-axis, we also include the vertical line that correspond to important events related to COVID-19 using the `plotLines`.
+
+```{r}
+hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWidth = 4)  %>% 
+  hc_add_series(data = df_infect, 
+                type = "scatter", hcaes(x = end_date, y = value, group = name)) %>% 
+  hc_colors(colors = color_group) %>% 
+  hc_legend(enabled = F) %>% 
+  hc_title(text = "How worried are Americans about infection?", 
+           style = list(fontWeight = "bold", fontSize = "19px")
+           ) %>% 
+  hc_subtitle(text = "How concerned Americans say they are that they, someone in their family or someone else they know will<br>become infected with the coronavirus",
+              style = list(fontSize = "12px", color = "black", fontFamily = "Roboto Slab")) %>% 
+  hc_yAxis(title = list(text = ""),
+           labels = list(style = list(fontFamily = "Roboto Slab", fontWeight = "bold", color = "#A2A2BF"),
+                         formatter = JS("function(){return(this.value + '%')}")), # Create % format for y-axis
+           tickInterval= 25 # Interval of x-Axis (0, 25, 50, 75)
+           ) %>% 
+  hc_xAxis(title = list(text = ""),
+           labels = list(style = list(fontFamily = "Roboto Slab", color = "#A2A2BF", fontWeight = "bold")),
+           dateTimeLabelFormats = list(month = "%m/%d", week = "%m/%d"), # Format of the date label
+           
+           plotLines = list(
+             list(value = event_date$date[1], color = "gray", 
+                  label = list(text = event_date$event[1], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[2], color = "gray", 
+                  label = list(text = event_date$event[2], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[3], color = "gray", 
+                  label = list(text = event_date$event[3], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[4], color = "gray", 
+                  label = list(text = event_date$event[4], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash")
+           )
+           
+           ) 
+```
+
+Finally, we add the setting for the tooltip. The tooltip is the most challenging part since the highcharter cannot fully replicate the tooltip from the original plot.
+
+```{r}
+hchart(df_concern, "line", hcaes(x = modeldate, y = value, group = name), lineWidth = 4)  %>% 
+  hc_add_series(data = df_infect, 
+                type = "scatter", hcaes(x = end_date, y = value, group = name)) %>% 
+  hc_colors(colors = color_group) %>% 
+  hc_legend(enabled = F) %>% 
+  hc_title(text = "How worried are Americans about infection?", 
+           style = list(fontWeight = "bold", fontSize = "19px")
+           ) %>% 
+  hc_subtitle(text = "How concerned Americans say they are that they, someone in their family or someone else they know will<br>become infected with the coronavirus",
+              style = list(fontSize = "12px", color = "black", fontFamily = "Roboto Slab")) %>% 
+  hc_yAxis(title = list(text = ""),
+           labels = list(style = list(fontFamily = "Roboto Slab", fontWeight = "bold", color = "#A2A2BF"),
+                         formatter = JS("function(){return(this.value + '%')}")), 
+           tickInterval= 25 ) %>% 
+  hc_xAxis(title = list(text = ""),
+           labels = list(style = list(fontFamily = "Roboto Slab", color = "#A2A2BF", fontWeight = "bold")),
+           dateTimeLabelFormats = list(month = "%m/%d", week = "%m/%d"),
+           
+           plotLines = list(
+             list(value = event_date$date[1], color = "gray", 
+                  label = list(text = event_date$event[1], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[2], color = "gray", 
+                  label = list(text = event_date$event[2], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[3], color = "gray", 
+                  label = list(text = event_date$event[3], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash"),
+             list(value = event_date$date[4], color = "gray", 
+                  label = list(text = event_date$event[4], rotation = 0, align="center"),
+                  zIndex = 1000, dashStyle = "longdash")
+           )
+           
+           ) %>% 
+  hc_tooltip(crosshairs = TRUE,
+             backgroundColor = "white",
+             fillOpacity = 0.5,
+             shared = TRUE, 
+             borderWidth = 0,
+             useHTML = T,
+             headerFormat = "<b><span style='font-size:16px; font-family: Roboto Slab; color: gray;'>{point.x: %b %d, %Y}</span></b><br>",
+             pointFormat = "<b>{point.tooltip}</b><br>"
+             )
+```
+
+
+
