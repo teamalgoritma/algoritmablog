@@ -18,7 +18,9 @@ type: post
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = F)
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = F,
+                      warning = F)
 ```
 
 Welcome again to the Rplicate Series! In this 5th article of the series. On this occassion, we will try to replicate the first interactive plot from the FiveThirtyEight article titled [How Americans View The Coronavirus Crisis And Trump's Response](https://projects.fivethirtyeight.com/coronavirus-polls/?cid=rrpromo). This time you'll learn how to build an interactive plot using `highcharter`.
