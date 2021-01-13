@@ -1,5 +1,5 @@
 ---
-title: "Fuzzy C-Means Clustering"
+title: Fuzzy C-Means Clustering
 author: Inayatus Solikhah
 github: https://github.com/inytss/fuzzy-cmeans-clustering
 date: '2020-11-23'
@@ -9,9 +9,9 @@ categories:
 tags: 
   - Machine Learning
 description: ''
-featured: ''
+featured: 'fuzzy-cmeans.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---

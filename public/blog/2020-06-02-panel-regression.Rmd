@@ -1,11 +1,11 @@
 ---
-title: "Regression Model with Panel Data"
+title: Regression Model with Panel Data
 author: "Ajeng Prastiwi"
 date: '2020-06-02'
 description: ''
-featured: ''
+featured: 'reg-panel.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 github: https://github.com/ajengprstw/
 linktitle: ''
 slug: regression-with-panel-data

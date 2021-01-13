@@ -1,0 +1,506 @@
+---
+title: Rselenium Intro
+author: Joe Cristian
+github: https://github.com/western11/RSelenium-Intro
+date: '2021-01-11'
+slug: JavaScripted-web-scrapping-in-R-with-Rselenium
+categories:
+  - R
+tags: 
+  - Web Scraping
+  - Rselenium
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+```{r setup, include=FALSE}
+# clean up the environment
+rm(list = ls())
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+```
+
+
+In this markdown we will learn to do web scraping using RSelenium. RSelenium provides R bindings for the Selenium Webdriver API. Selenium is a project focused on automating web browsers. RSelenium allows you to carry out unit testing and regression testing on your webapps and webpages across a range of browser/OS combinations. You can access full vignettes of RSelenium [here](https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html).
+
+R also provide web scrapping tools like the famous `rvest` but RSelenium gives more advantages thant rvest, for example:   
+- Java scripted web scrapping   
+- Running on selenium server with [Docker](https://www.docker.com/) container   
+- Running on local by Webdriver Manager or [wdman](https://docs.ropensci.org/wdman/) wrapper   
+- Injectting java script to transform HTML structure    
+- Sending Events to elements (click, choose dropdown menu, scrolling, sending text, etc.)   
+- Live browsing navigation   
+
+Web scrapinging is just on of various data gathering technique. Why it's important to do data gathering?  well.. doesn't matter how 'expert' you're as data scientist, if there's no data, what you gonna do? 
+
+<center> ![](/img/Rselenium/rsel.jpg){width="60%"} </center>
+
+# Background {.tabset}
+## Objective
+The goal(s) from this project is **gather information as much as possible** from [Shopee](https://shopee.co.id/) product review. Shopee is a well-known marketplace in Indonesia and Asia. Every content in Shopee website are built using java script so its almost imposible to do web scraping using HTML page source based tools like Rvest. We also want to do custom interaction like clicking next button or scrolling through the review. We'll scrapp all product with keyword **Iphone X** in Smartphone category. After we scrap the data, we will try to do a simple EDA to gain new information from the product reviews. 
+
+If you have no idea what is the difference between java scripted web than regular ones, you can try to scrap the shopee page using rvest and you will found nothing
+
+```{r warning=FALSE, message=FALSE}
+library(rvest)
+main <- "https://shopee.co.id/search?category=40&keyword=iphone%20x&subcategory=1211"
+read_test <- read_html(main)
+html_nodes(read_test,"a")
+```
+
+In this case, you need to use web browser simulation tools like Selenium
+
+## Libraries
+You can load the package into your workspace using the library() function
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(rvest)
+library(RSelenium)
+```
+
+# Let's begin
+## Prerequisites
+From the vignettes, the author of RSelenium suggest to run selenium server by using Docker container rather than standalone binary. But is kinda hard to integrate Docker in our local pc and not all device (read: potato pc) can meet docker minimum requirements. So in this article we will run RSelenium with our default local browser. In this case, we will use Chrome
+
+We dont need to install chrome webdriver to use RSelenium because this package provide `rsDriver` function which will manage the binaries needed for running a Selenium Server. In a simple words, it will download and install webdrive (based on your preferences) in your R environment. 
+
+First take a look at your chrome version Settings > About Chrome
+
+<center> ![](/img/Rselenium/chrome_ver.PNG){width="60%"} </center>
+
+I'm using Version 87.0.4280.66. we need to install webdriver with same version as our default browser. I also provide the main link to scrap the product.  
+```{r,eval=FALSE}
+main <- "https://shopee.co.id/search?category=40&keyword=iphone%20x&subcategory=1211"
+
+# install webdriver and launh it in port 4444.
+rsDriver(browser = "chrome",chromever = "87.0.4280.20",port = 4444L)
+
+```
+
+you can change the chrome version based on your default browser version. you can see the avaliable version of webdriver using `binman::list_versions()` function.
+
+If there's a browser popped up, You can ignore the warning message above
+
+```{r,eval=FALSE}
+# assign the remote driver in rmdr object. rmdr will be your browser remote
+rmdr <- remoteDriver(browserName = "chrome")
+# open the browser
+rmdr$open()
+# navigate to main link
+rmdr$navigate(main)
+```
+
+<center> ![](/img/Rselenium/pic1.PNG){width="60%"} </center>
+
+# Information Gathering
+## Gather Product Pages
+
+The chunk below provides functions to scrap the product. RSelenium also match elements by its css or xpath style. It really works like rvest. So if you already familiar with rvest, you can use selenium easily. Fear not if you don't. You can learn how rvest works from my previous article [here](https://rpubs.com/jojoecp/635826). The thing is we need to know css/xpath stly from coresponding elements to gather the data or sending event like click or scrolling.
+
+In the chunk below, we combine Rselenium to interact with the browser and rvest to gather the information.
+
+```{r,eval=FALSE}
+shop <- "https://shopee.co.id"
+# how many page you want to scrap
+paged <- 10
+# link container
+link_base <- data.frame()
+
+for(i in 1:paged){
+  message("Getting product link #",i,"/",paged)
+  
+  # go to main page and wait for 5 second
+  if(i == 1){
+    rmdr$navigate(main)
+    Sys.sleep(10)
+    }
+  
+  # scroll to bottom and wait for 5 second
+  webElem <- rmdr$findElement("css", "body")
+  webElem$sendKeysToElement(list(key = "end"))
+  Sys.sleep(5)
+  
+  # get page source
+  pages <- rmdr$getPageSource()[[1]]
+  # get link with rvest
+  read1 <- read_html(pages)
+  linkx <- html_nodes(read1,".shopee-search-item-result__item") %>% 
+  html_nodes("a") %>% html_attr("href")
+  
+  linkget <- paste(shop,linkx,sep = "") %>% data.frame()
+  link_base <- rbind(link_base,linkget)
+  
+  # next page
+  rmdr$findElement("css",".shopee-icon-button--right")$clickElement()
+  Sys.sleep(5)
+}
+```
+
+RSelenium with live browser also have a crucial disadvantage, time. Scraping using Selenium is like running a browser simulation with robot to do the task repeatedly. It takes a lot of time to load a lot of webpages. You can encounter this by using headless browser (Phantomjs) but it needs different vignette that (maybe) i'll provide later. 
+
+```{r}
+# link_product <- link_base %>% distinct() %>% 
+#   rename("link" = ".")
+
+link_product <- readRDS("data_input/Rselenium-intro/product_link.rds")
+head(link_product)
+```
+
+## Gather Product Review and Details
+
+Same as before, i already build a long function to scrap information including: product name, price, rating, description, and review. every line of code will be explained so you can re-use it on your own project
+
+```{r,eval=FALSE}
+desc_product <- data.frame()
+datt <- data.frame()
+review_product <- vector(mode = "list",length = nrow(link_product))
+
+
+for(i in 1:nrow(link_product)){
+  message("Getting product description #",i,"/",nrow(link_product))
+  # go to the link in the list
+  rmdr$navigate(link_product$link[i])
+  Sys.sleep(5)
+  
+  # check if rating is exist. if there is no rating we will assume
+  # that the product is never been sold and fill the value as "none"
+  add_null_a <- FALSE
+  tryCatch(rmdr$findElement("css","._2z6cUg")$getElementText(),
+           error = function(e){add_null_a <<- TRUE})
+  if(add_null_a){rating <- "none"}else{
+    # get product rating
+    rating <- rmdr$findElement("css","._2z6cUg")$getElementText()[[1]]
+  }
+  
+  # check if sold is exist. if there is no rating we will assume
+  # that the product is never been sold and fill the value as "none"
+  add_null_b <- FALSE
+  tryCatch(rmdr$findElement("css","._22sp0A")$getElementText(),
+           error = function(e){add_null_b <<- TRUE})
+  if(add_null_b){sold <- "none"}else{
+    # get product sold
+    sold <- rmdr$findElement("css","._22sp0A")$getElementText()[[1]]
+  }
+  
+  # get product name
+  name <- rmdr$findElement("css",".qaNIZv span")$getElementText()[[1]]
+  # get product price
+  price <- rmdr$findElement("css","._3n5NQx")$getElementText()[[1]]
+  # get product description
+  description <- rmdr$findElement("css","._2u0jt9 span")$getElementText()[[1]]
+  # save the product details to dataframe
+  temp <- data.frame(Name = name, Rating = rating, Price = price,
+                     Sold = sold, desc = description, Link = link_product$link[i])
+  desc_product <- rbind(desc_product,temp)
+  
+  # review
+  ## check how many review are listed. if there is no review,
+  ## the loop will skip to next iteration
+  add_null_c <- FALSE
+  tryCatch(rmdr$findElement("css",".M3KjhJ+ .M3KjhJ ._3Oj5_n")$getElementText(),
+           error = function(e){add_null_c <<- TRUE})
+  ## if review are existed, count the review to calculate how many
+  ## next-button click is needed
+  if(add_null_c){next}else{
+    rev <- rmdr$findElement("css",".M3KjhJ+ .M3KjhJ ._3Oj5_n")$getElementText() %>%
+      unlist() %>% as.numeric()
+    rev <- ifelse(rev <= 6, 0, ifelse(rev <= 8 & rev >6, 1,round(rev/6)))
+
+
+    # scroll to bottom to load the review and wait for 10 second
+    webElem <- rmdr$findElement("css", "body")
+    webElem$sendKeysToElement(list(key = "end"))
+    Sys.sleep(3)
+    webElem$sendKeysToElement(list(key = "page_up"))
+    Sys.sleep(10)
+
+
+    ## code if there are only < 6 review. we don't need to click next
+    if(rev == 0){
+      if(length(rmdr$findElements("css",".shopee-product-rating__content")) == 0){next}else{
+        # review text
+        reviewx <- rmdr$findElements("css",".shopee-product-rating__content")
+        review <- unlist(lapply(reviewx,function(x) x$getElementText()))
+        # review time
+        timex <- rmdr$findElements("css",".shopee-product-rating__time")
+        time <- unlist(lapply(timex,function(x) x$getElementText()))
+
+        rev_temp <- data.frame(Review = review,
+                               Time = time,
+                               Product = rep(name))
+        datt <- rbind(datt,rev_temp)
+      }
+    }else{
+      # get review from all review pages if there are more than 6 review
+      for(j in 1:rev){
+        # review text
+        reviewx <- rmdr$findElements("css",".shopee-product-rating__content")
+        review <- unlist(lapply(reviewx,function(x) x$getElementText()))
+        # review time
+        timex <- rmdr$findElements("css",".shopee-product-rating__time")
+        time <- unlist(lapply(timex,function(x) x$getElementText()))
+
+        rev_temp <- data.frame(Review = review,
+                               Time = time,
+                               Product = rep(name))
+        datt <- rbind(datt,rev_temp)
+
+        # next review button
+        rmdr$findElement("css",".shopee-icon-button--right")$clickElement()
+        Sys.sleep(3)
+      }
+    }
+    # append all product review to list
+    review_product[[i]] <- datt
+
+  }
+}
+```
+
+There's a chance you can't extract the data in one go. You can save recent data and bind it to newest data using rbind.
+```{r,eval=FALSE}
+#desc_product_full <- data.frame()
+
+desc_product_full <- rbind(desc_product_full,desc_product)
+saveRDS(desc_product_full,"details.rds")
+```
+
+
+Return the review to dataframe based on its id
+```{r,eval=FALSE}
+temp_nonmul <- bind_rows(review_product,.id = "id")
+
+#new_nonmul_rev <- data.frame()
+#new_nonmul_rev <- rbind(new_nonmul_rev,temp_nonmul)
+saveRDS(new_nonmul_rev,"review_1.rds")
+```
+
+load saved data for publication purposes
+```{r}
+desc_product_full <- readRDS("data_input/Rselenium-intro/details.rds")
+new_nonmul_rev <- readRDS("data_input/Rselenium-intro/review_1.rds")
+```
+
+
+product details
+```{r}
+head(desc_product_full)
+```
+
+product review
+```{r}
+head(new_nonmul_rev)
+```
+
+# Data Analysis
+Now we have the data, next you can do whatever you want to analyze the data. Here i provide some example in analyzing review data such as: analyzing trend, best product/store, and sentiment analysis
+
+## Wrangling
+```{r}
+desc_clean <- desc_product_full %>% 
+  mutate(Rating = ifelse(str_detect(Rating,"none"),0,Rating)) %>% 
+  mutate(Rating = as.numeric(Rating),
+         Sold = as.numeric(Sold),
+         Price = str_remove(Price,"^.*-"),
+         Price = str_remove_all(Price,"\\D+"),
+         Price = as.numeric(Price)) %>% 
+  filter(Price > 5000000)
+  
+head(desc_clean)
+```
+
+```{r,message=FALSE,warning=FALSE}
+library(lubridate)
+library(ggplot2)
+
+plot_trend <- new_nonmul_rev %>% 
+  filter(Product %in% unique(desc_clean$Name)) %>% 
+  mutate(date = date(ymd_hm(Time))) %>% 
+  group_by(date) %>% 
+  summarise(phone_sold = n()) %>% 
+  mutate(month = month(date,label = T),
+         year = year(date)) %>% 
+  group_by(month,year) %>% 
+  mutate(ismax = max(phone_sold),
+         ismax = ifelse(phone_sold==ismax,T,F)) %>% 
+  ggplot(aes(x = date, y = phone_sold)) +
+  geom_line(aes(group = 1)) +
+  geom_point(aes(col = ismax),show.legend = F) +
+  geom_smooth(col = "#e02509",method = "loess") +
+  scale_color_manual(values = c("black","#e02509")) +
+  labs(title = "Iphone X Buying Trend",
+       x = "Date",y = "Phone Sold") +
+  theme_minimal()
+
+plot_trend
+```
+
+Products sold most consistently
+```{r,message=FALSE}
+most_product <- new_nonmul_rev %>% 
+  filter(Product %in% unique(desc_clean$Name)) %>% 
+  mutate(date = date(ymd_hm(Time))) %>% 
+  group_by(Product) %>% 
+  summarise(f = n()) %>% 
+  arrange(-f) %>% 
+  head(6) %>% 
+  pull(Product)
+
+new_nonmul_rev %>% 
+  filter(Product %in% most_product) %>% 
+  mutate(date = date(ymd_hm(Time))) %>% 
+  group_by(date,Product) %>% 
+  summarise(freq = n()) %>% 
+  arrange() %>% 
+  # padr::pad(start_val = as.Date("2019-10-01"),end_val = as.Date("2020-11-23"),
+  #           group = "Product",interval = "day") %>% 
+  # mutate(freq = replace_na(freq,0)) %>% 
+  ggplot(aes(x = date, y = freq,group = Product, col = Product)) +
+  geom_line() + geom_point() +
+  scale_x_date(date_labels = "%b-%y") + 
+  theme_minimal() +
+  facet_wrap(~Product,scales = "free_x") +
+  labs(title = "Highest Selling Product Trend",
+       x = "", y = "Frequency") +
+  theme(legend.position = "none",
+        strip.background = element_rect(fill = "#781212"),
+        strip.text.x = element_text(colour = "white"))
+  
+  
+```
+
+Best product with highest positive sentiment
+
+```{r,message=FALSE,warning=FALSE}
+library(textclean)
+library(stringr)
+library(katadasaR)
+library(tm)
+library(SnowballC)
+
+# slang word indo
+indo_stem <- read.csv("data_input/Rselenium-intro/colloquial-indonesian-lexicon.csv")
+
+# add custom bahasa stopwords
+bahasa.sw <- read.csv("data_input/Rselenium-intro/Bahasa.stopwords.csv", header = F,fileEncoding = "UTF-8-BOM")
+bahasa.sw <- as.character(bahasa.sw$V1)
+bahasa.sw <- c(bahasa.sw, stopwords())
+
+# senti-strength bahasa score
+bahasa.sentiment <- read.delim("data_input/Rselenium-intro/sentiwords_id.txt",sep = ":",header = F)
+bahasa.sentiment <- bahasa.sentiment %>% setNames(c("words","weight")) %>% 
+  mutate(words = str_trim(words))
+```
+
+text cleaner
+```{r}
+# stemming function using package katadasaR
+stemming_bahasa <- function(x){
+  paste(lapply(x,katadasar),collapse = " ")
+}
+
+# function textcleaner
+textcleaner <- function(x){
+  x <- as.character(x)
+  
+  x <- x %>%
+    str_to_lower() %>%  # convert all the string to low alphabet
+    replace_contraction() %>% # replace contraction to their multi-word forms
+    replace_internet_slang() %>% # replace internet slang to normal words
+    replace_emoji() %>% # replace emoji to words
+    replace_emoticon() %>% # replace emoticon to words
+    replace_hash(replacement = "") %>% # remove hashtag
+    replace_word_elongation() %>% # replace informal writing with known semantic replacements
+    replace_internet_slang(slang = paste0("\\b",
+                                          indo_stem$slang,"\\b"),
+                           replacement = indo_stem$formal,ignore.case = T) %>%  # bahasa slang word
+    lapply(stemming_bahasa) %>% # bahasa stemming
+    replace_number(remove = T) %>% # remove number
+    replace_date(replacement = "") %>% # remove date
+    replace_time(replacement = "") %>% # remove time
+    str_replace_all(pattern = "[[:punct:]]",replacement = " ") %>% # remove punctuation
+    str_replace_all(pattern = "[^\\s]*[0-9][^\\s]*",replacement = " ") %>% # remove mixed string n number
+    removeWords(bahasa.sw) %>% # apply bahasa stopwords
+    str_squish() %>% # reduces repeated whitespace inside a string.
+    str_trim() # removes whitespace from start and end of string
+  
+  return(as.data.frame(x))
+}
+
+```
+
+```{r,eval=FALSE}
+review_filter <- new_nonmul_rev %>% 
+  filter(Product %in% unique(desc_clean$Name))
+
+clean_review <- textcleaner(review_filter$Review)
+
+```
+
+```{r}
+clean_review <- readRDS("data_input/Rselenium-intro/review_clean.rds")
+head(clean_review)
+```
+
+
+```{r,eval=FALSE}
+# function sentiment scoring
+sentiment_matching <- function(x){
+  x <- str_split(x,"\\s+") %>%                    # seperate the words from sentence
+    unlist()
+  x <- match(x,bahasa.sentiment$words)            # match seperated words to bahasa.sentiment words
+  bin <- matrix(ncol = 1,nrow = length(x))        # create empty matrix to collect the score from each review
+  for(i in seq_along(x)){                         # build loop function to apply the match function to every rows
+    if(is.na(x[i] == T)){
+      bin[i] <- 0}else{
+        bin[i] <- bahasa.sentiment$weight[x[i]]   # match the score by its weight
+      }
+  }
+  return(as.numeric(sum(bin)))                    # sum the score from each row and return as numeric value
+}
+
+clean_review <- clean_review %>% 
+  rowwise() %>% 
+  mutate(score = sentiment_matching(x)) %>%
+  mutate(sentiment = ifelse(score <= 0,"negative","positive"))
+
+```
+
+```{r}
+clean_review <- readRDS("data_input/Rselenium-intro/sent_review.rds")
+```
+
+
+```{r,message=FALSE}
+review_sen <- new_nonmul_rev %>% 
+  filter(Product %in% unique(desc_clean$Name)) %>% 
+  mutate(score = clean_review$score,
+         sentiment = clean_review$sentiment)
+
+plot_sentiment <- table(review_sen$Product,review_sen$sentiment) %>% data.frame() %>% 
+  setNames(c("Product","sentiment","freq")) %>% 
+  filter(sentiment == "positive") %>% 
+  arrange(-freq) %>% 
+  mutate(text = paste(Product,"\n positive:",freq)) %>% 
+  head(10) %>% 
+  ggplot(aes(x = reorder(Product,freq), y= freq, fill = freq,text=text)) + 
+  geom_col() +
+  labs(title = "Product with highest sentiment review",x = "Product", y = "Freq") +
+  theme_minimal() +
+  scale_x_discrete(label = NULL) +
+  theme(legend.position = "none")
+
+library(plotly)
+ggplotly(plot_sentiment,tooltip = "text")
+```
+

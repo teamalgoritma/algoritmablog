@@ -6,10 +6,30 @@
     <description>Recent content on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rselenium Intro</title>
+      <link>/blog/javascripted-web-scrapping-in-r-with-rselenium/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/javascripted-web-scrapping-in-r-with-rselenium/</guid>
+      <description>In this markdown we will learn to do web scraping using RSelenium. RSelenium provides R bindings for the Selenium Webdriver API. Selenium is a project focused on automating web browsers. RSelenium allows you to carry out unit testing and regression testing on your webapps and webpages across a range of browser/OS combinations. You can access full vignettes of RSelenium here.
+R also provide web scrapping tools like the famous rvest but RSelenium gives more advantages thant rvest, for example:</description>
+    </item>
+    
+    <item>
+      <title>Rplicate Series: Interactive Plot of Coronavirus Survey</title>
+      <link>/blog/rplicate-series-coronavirus-survey/</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/rplicate-series-coronavirus-survey/</guid>
+      <description>Welcome again to the Rplicate Series! In this 5th article of the series. On this occassion, we will try to replicate the first interactive plot from the FiveThirtyEight article titled How Americans View The Coronavirus Crisis And Trump’s Response. This time you’ll learn how to build an interactive plot using highcharter.
+Library and SetupBelow is the required package that we will use during data wrangling and chart creation.</description>
+    </item>
     
     <item>
       <title>Rplicate Series: Gone Baby Gone</title>
@@ -47,6 +67,15 @@ Load Packages These are the packages and some set up that we will use.</descript
       
       <guid>/blog/rplicate-i-can-t-get-no/</guid>
       <description>In this third article on Rplicate Series, We will share to you one way to replicate The Economist plot titled &amp;ldquo;I can&amp;rsquo;t get no &amp;hellip;&amp;quot;. The plot making will also demonstrate ways to converting smooth line into linear line, using guides for legend, and adding a text annotation to a plot. The raw dataset used for this graph was obtained from a PDF, so we will also use tibble package to copy-paste the data into R.</description>
+    </item>
+    
+    <item>
+      <title>Topic Modelling with Latent Dirichlet Allocation (LDA)</title>
+      <link>/blog/topic-modeling-lda/</link>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/topic-modeling-lda/</guid>
+      <description></description>
     </item>
     
     <item>

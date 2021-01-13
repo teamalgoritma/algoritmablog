@@ -11,9 +11,9 @@ tags:
   - Recommender System
   - Collaborative Filtering
 description: ''
-featured: ''
+featured: 'skincare-rec.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---

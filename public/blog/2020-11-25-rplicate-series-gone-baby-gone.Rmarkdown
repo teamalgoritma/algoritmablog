@@ -1,5 +1,5 @@
 ---
-title: 'Rplicate Series: Gone Baby Gone'
+title: "Rplicate Series: Gone Baby Gone"
 author: Arga Adyatama
 github: https://github.com/Argaadya
 date: '2020-11-25'
@@ -11,9 +11,9 @@ tags:
   - Rplicate
   - ggplot2
 description: ''
-featured: ''
+featured: 'gone-baby-gone.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---

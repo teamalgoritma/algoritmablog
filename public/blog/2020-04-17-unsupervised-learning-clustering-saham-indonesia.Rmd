@@ -10,7 +10,7 @@ tags:
   - Unsupervised Learning
   - Clustering
 description: ''
-featured: 'stock_clustering.png'
+featured: 'stock-clustering.png'
 featuredalt: ''
 featuredpath: 'date'
 linktitle: ''
