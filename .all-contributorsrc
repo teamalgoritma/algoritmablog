@@ -114,6 +114,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "western11",
+      "name": "Joe Cristian",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/61571811?v=4",
+      "profile": "https://medium.com/@joenathanchristian",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
