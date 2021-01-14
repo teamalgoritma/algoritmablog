@@ -163,18 +163,19 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/HafizahIlma"><img src="https://avatars0.githubusercontent.com/u/36740222?v=4" width="100px;" alt=""/><br /><sub><b>HafizahIlma</b></sub></a><br /><a href="#content-HafizahIlma" title="Content">🖋</a></td>
-    <td align="center"><a href="http://algorit.ma"><img src="https://avatars0.githubusercontent.com/u/51941102?v=4" width="100px;" alt=""/><br /><sub><b>Nabiilah Ardini Fauziyyah</b></sub></a><br /><a href="#content-NabiilahArdini" title="Content">🖋</a></td>
-    <td align="center"><a href="https://github.com/Argaadya"><img src="https://avatars1.githubusercontent.com/u/51928527?v=4" width="100px;" alt=""/><br /><sub><b>Argaadya</b></sub></a><br /><a href="#content-Argaadya" title="Content">🖋</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/iqbalbasyar"><img src="https://avatars3.githubusercontent.com/u/15415968?v=4" width="100px;" alt=""/><br /><sub><b>iqbalbasyar</b></sub></a><br /><a href="#content-iqbalbasyar" title="Content">🖋</a></td>
-    <td align="center"><a href="http://Rpubs.com/david21"><img src="https://avatars2.githubusercontent.com/u/22296835?v=4" width="100px;" alt=""/><br /><sub><b>David</b></sub></a><br /><a href="#content-Davidlimbong" title="Content">🖋</a></td>
-    <td align="center"><a href="https://github.com/inytss"><img src="https://avatars2.githubusercontent.com/u/49224928?v=4" width="100px;" alt=""/><br /><sub><b>Inayatus</b></sub></a><br /><a href="#content-inytss" title="Content">🖋</a></td>
-    <td align="center"><a href="https://github.com/ysitta"><img src="https://avatars1.githubusercontent.com/u/30137330?v=4" width="100px;" alt=""/><br /><sub><b>Yaumil Sitta</b></sub></a><br /><a href="#content-ysitta" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/HafizahIlma"><img src="https://avatars0.githubusercontent.com/u/36740222?v=4?s=100" width="100px;" alt=""/><br /><sub><b>HafizahIlma</b></sub></a><br /><a href="#content-HafizahIlma" title="Content">🖋</a></td>
+    <td align="center"><a href="http://algorit.ma"><img src="https://avatars0.githubusercontent.com/u/51941102?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nabiilah Ardini Fauziyyah</b></sub></a><br /><a href="#content-NabiilahArdini" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/Argaadya"><img src="https://avatars1.githubusercontent.com/u/51928527?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Argaadya</b></sub></a><br /><a href="#content-Argaadya" title="Content">🖋</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/iqbalbasyar"><img src="https://avatars3.githubusercontent.com/u/15415968?v=4?s=100" width="100px;" alt=""/><br /><sub><b>iqbalbasyar</b></sub></a><br /><a href="#content-iqbalbasyar" title="Content">🖋</a></td>
+    <td align="center"><a href="http://Rpubs.com/david21"><img src="https://avatars2.githubusercontent.com/u/22296835?v=4?s=100" width="100px;" alt=""/><br /><sub><b>David</b></sub></a><br /><a href="#content-Davidlimbong" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/inytss"><img src="https://avatars2.githubusercontent.com/u/49224928?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Inayatus</b></sub></a><br /><a href="#content-inytss" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/ysitta"><img src="https://avatars1.githubusercontent.com/u/30137330?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yaumil Sitta</b></sub></a><br /><a href="#content-ysitta" title="Content">🖋</a> <a href="#projectManagement-ysitta" title="Project Management">📆</a></td>
   </tr>
 </table>
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
