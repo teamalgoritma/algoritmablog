@@ -1,4 +1,4 @@
-# :star2: Overview Algotech
+﻿# :star2: Overview Algotech
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5ceca968-68f6-4458-90e3-5b72bf373c20/deploy-status)](https://app.netlify.com/sites/algotech/deploys) [![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 
@@ -124,6 +124,15 @@ knitr::opts_chunk$set(
 )
 ```
 
+### Insert Article rmd and Data Input
+1. Make sure your article' rmd is in accordance with the settings in the previous step
+2. Move your article to `/content/blog/`
+3. Create new folder and save your data input on `/content/blog/data_input/*your topic article*
+
+```{r}
+some_object <- read.csv("data_input/article-topic/filename.csv")
+```
+
 ### Insert Images
 
 1. Create new folder *your topic article* on `/public/img/`.
@@ -140,6 +149,8 @@ knitr::include_graphics('/img/article-topic/imgname.png')
 <center> ![](/img/article-topic/imgname.png){width="60%"} </center>
 ```
 
+5. Convert your rmd to html by running `blogdown::serve_site()`. The HTML need to be save in same directory with the rmd
+
 ## 3. Submit Pull Request! :grin:
 
 * Save your article
@@ -152,8 +163,6 @@ knitr::include_graphics('/img/article-topic/imgname.png')
 
 
 ## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->

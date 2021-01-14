@@ -1,5 +1,5 @@
 ---
-title: "Boosting Algorithm (AdaBoost and XGBoost)"
+title: Boosting Algorithm (AdaBoost and XGBoost)
 author: Ajeng Prastiwi, David Tahi Ulubalang
 github: https://github.com/ajengprstw/xgboost
 date: '2020-11-23'
@@ -9,9 +9,9 @@ categories:
 tags: 
   - Machine Learning
 description: ''
-featured: ''
+featured: 'boosting-algorithm.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -39,7 +39,7 @@ options(scipen = 99)
 
 ## What is boosting?
 
-Boosting is an ensemble method of converting weak learners into strong learners. Weak and strong refer to a measure how correlated are the learners to the actual target variable[^1]. In boosting, each training sample are used to train one unit of decision tree and picked with replacement over-weighted data. The trees will learn from predecessors and updates the residuals error.
+Boosting is an **ensemble method** of converting weak learners into strong learners. Weak and strong refer to a measure how correlated are the learners to the actual target variable[^1]. In boosting, each training sample are used to train one unit of decision tree and picked with replacement over-weighted data. The trees will learn from predecessors and updates the residuals error.
 
 
 ## Learning Objectives

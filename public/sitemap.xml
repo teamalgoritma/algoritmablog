@@ -4,22 +4,57 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-11-25T00:00:00+00:00</lastmod>
+    <lastmod>2021-01-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2020-11-25T00:00:00+00:00</lastmod>
+    <lastmod>2021-01-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-11-25T00:00:00+00:00</lastmod>
+    <lastmod>2021-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/r/</loc>
+    <lastmod>2021-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/rselenium/</loc>
+    <lastmod>2021-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/javascripted-web-scrapping-in-r-with-rselenium/</loc>
+    <lastmod>2021-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2021-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/web-scraping/</loc>
+    <lastmod>2021-01-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/data-visualization/</loc>
-    <lastmod>2020-11-25T00:00:00+00:00</lastmod>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/rplicate/</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/rplicate-series-coronavirus-survey/</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -28,22 +63,7 @@
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2020-11-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/rplicate/</loc>
-    <lastmod>2020-11-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/blog/rplicate-series-gone-baby-gone/</loc>
-    <lastmod>2020-11-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-11-25T00:00:00+00:00</lastmod>
   </url>
   
@@ -69,6 +89,11 @@
   
   <url>
     <loc>/tags/topic-modelling/</loc>
+    <lastmod>2020-10-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/topic-modeling-lda/</loc>
     <lastmod>2020-10-26T00:00:00+00:00</lastmod>
   </url>
   

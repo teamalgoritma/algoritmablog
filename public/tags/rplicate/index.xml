@@ -6,10 +6,20 @@
     <description>Recent content in Rplicate on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/rplicate/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rplicate Series: Interactive Plot of Coronavirus Survey</title>
+      <link>/blog/rplicate-series-coronavirus-survey/</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/rplicate-series-coronavirus-survey/</guid>
+      <description>Welcome again to the Rplicate Series! In this 5th article of the series. On this occassion, we will try to replicate the first interactive plot from the FiveThirtyEight article titled How Americans View The Coronavirus Crisis And Trump’s Response. This time you’ll learn how to build an interactive plot using highcharter.
+Library and SetupBelow is the required package that we will use during data wrangling and chart creation.</description>
+    </item>
     
     <item>
       <title>Rplicate Series: Gone Baby Gone</title>
