@@ -31,9 +31,10 @@ knitr::opts_chunk$set(
 ```
 
 
-In this markdown we will learn to do web scraping using RSelenium. RSelenium provides R bindings for the Selenium Webdriver API. Selenium is a project focused on automating web browsers. RSelenium allows you to carry out unit testing and regression testing on your webapps and webpages across a range of browser/OS combinations. You can access full vignettes of RSelenium [here](https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html).
+In this article, we will learn to do web scraping using RSelenium. RSelenium provides R bindings for the Selenium Webdriver API. Selenium is a project focused on automating web browsers. RSelenium allows you to carry out unit testing and regression testing on your webapps and webpages across a range of browser/OS combinations. You can access full vignettes of RSelenium [here](https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html).
 
-R also provide web scrapping tools like the famous `rvest` but RSelenium gives more advantages thant rvest, for example:   
+R also provide web scrapping tools like the famous `rvest` but RSelenium gives more advantages than rvest, for example:   
+
 - Java scripted web scrapping   
 - Running on selenium server with [Docker](https://www.docker.com/) container   
 - Running on local by Webdriver Manager or [wdman](https://docs.ropensci.org/wdman/) wrapper   
@@ -41,15 +42,15 @@ R also provide web scrapping tools like the famous `rvest` but RSelenium gives m
 - Sending Events to elements (click, choose dropdown menu, scrolling, sending text, etc.)   
 - Live browsing navigation   
 
-Web scrapinging is just on of various data gathering technique. Why it's important to do data gathering?  well.. doesn't matter how 'expert' you're as data scientist, if there's no data, what you gonna do? 
+Web scraping is just on of various data gathering technique. Why it's important to do data gathering?  well.. doesn't matter how 'expert' you're as data scientist, if there's no data, what you gonna do? 
 
 <center> ![](/img/Rselenium/rsel.jpg){width="60%"} </center>
 
 # Background {.tabset}
 ## Objective
-The goal(s) from this project is **gather information as much as possible** from [Shopee](https://shopee.co.id/) product review. Shopee is a well-known marketplace in Indonesia and Asia. Every content in Shopee website are built using java script so its almost imposible to do web scraping using HTML page source based tools like Rvest. We also want to do custom interaction like clicking next button or scrolling through the review. We'll scrapp all product with keyword **Iphone X** in Smartphone category. After we scrap the data, we will try to do a simple EDA to gain new information from the product reviews. 
+The goal of this project is **gather information as much as possible** from [Shopee](https://shopee.co.id/) product review. Shopee is a well-known marketplace in Indonesia and Asia. Every content in Shopee website are built using java script so it is almost impossible to do web scraping using HTML page source based tools like Rvest. We also want to do custom interaction like clicking next button or scrolling through the review. We'll scrape all product with keyword **Iphone X** in Smartphone category. After we scrape the data, we will try to do a simple Exploratory Data Analysis to gain new information from the product reviews. 
 
-If you have no idea what is the difference between java scripted web than regular ones, you can try to scrap the shopee page using rvest and you will found nothing
+If you have no idea what is the difference between java scripted web than regular ones, you can try to scrape the shopee page using rvest and you will found nothing
 
 ```{r warning=FALSE, message=FALSE}
 library(rvest)
@@ -70,15 +71,15 @@ library(RSelenium)
 
 # Let's begin
 ## Prerequisites
-From the vignettes, the author of RSelenium suggest to run selenium server by using Docker container rather than standalone binary. But is kinda hard to integrate Docker in our local pc and not all device (read: potato pc) can meet docker minimum requirements. So in this article we will run RSelenium with our default local browser. In this case, we will use Chrome
+From the vignettes, the author of RSelenium suggest to run selenium server by using Docker container rather than standalone binary. But is kinda hard to integrate Docker in our local pc and not all device (read: potato pc) can meet docker minimum requirements. So in this article we will run RSelenium with our default local browser. In this case, we will use Google Chrome as the browser.
 
-We dont need to install chrome webdriver to use RSelenium because this package provide `rsDriver` function which will manage the binaries needed for running a Selenium Server. In a simple words, it will download and install webdrive (based on your preferences) in your R environment. 
+We don't need to install chrome webdriver to use RSelenium because this package provide `rsDriver` function which will manage the binaries needed for running a Selenium Server. In a simple words, it will download and install webdrive (based on your preferences) in your R environment. 
 
 First take a look at your chrome version Settings > About Chrome
 
 <center> ![](/img/Rselenium/chrome_ver.PNG){width="60%"} </center>
 
-I'm using Version 87.0.4280.66. we need to install webdriver with same version as our default browser. I also provide the main link to scrap the product.  
+I'm using Version 87.0.4280.66. we need to install webdriver with same version as our default browser. I also provide the main link to scrape the product.   
 ```{r,eval=FALSE}
 main <- "https://shopee.co.id/search?category=40&keyword=iphone%20x&subcategory=1211"
 
@@ -105,7 +106,7 @@ rmdr$navigate(main)
 # Information Gathering
 ## Gather Product Pages
 
-The chunk below provides functions to scrap the product. RSelenium also match elements by its css or xpath style. It really works like rvest. So if you already familiar with rvest, you can use selenium easily. Fear not if you don't. You can learn how rvest works from my previous article [here](https://rpubs.com/jojoecp/635826). The thing is we need to know css/xpath stly from coresponding elements to gather the data or sending event like click or scrolling.
+The chunk below provides functions to scrape the product. RSelenium also match elements by its css or xpath style. It really works like rvest. So if you already familiar with rvest, you can use selenium easily. Fear not if you don't. You can learn how rvest works from my previous article [here](https://rpubs.com/jojoecp/635826). The thing is we need to know css/xpath style from coresponding elements to gather the data or sending event like click or scrolling.
 
 In the chunk below, we combine Rselenium to interact with the browser and rvest to gather the information.
 
@@ -146,7 +147,7 @@ for(i in 1:paged){
 }
 ```
 
-RSelenium with live browser also have a crucial disadvantage, time. Scraping using Selenium is like running a browser simulation with robot to do the task repeatedly. It takes a lot of time to load a lot of webpages. You can encounter this by using headless browser (Phantomjs) but it needs different vignette that (maybe) i'll provide later. 
+RSelenium with live browser also have a crucial disadvantage, that is time. Scrape the data using Selenium is like running a browser simulation with robot to do the task repeatedly. It takes a lot of time to load a lot of webpages. You can encounter this by using headless browser (Phantomjs) but it needs different vignette that (maybe) i'll provide later. 
 
 ```{r}
 # link_product <- link_base %>% distinct() %>% 
@@ -158,7 +159,7 @@ head(link_product)
 
 ## Gather Product Review and Details
 
-Same as before, i already build a long function to scrap information including: product name, price, rating, description, and review. every line of code will be explained so you can re-use it on your own project
+Same as before, I already build a long function to scrape information including: product name, price, rating, description, and review. Every line of code will be explained to you, so you can re-use it on your own project.
 
 ```{r,eval=FALSE}
 desc_product <- data.frame()
@@ -303,7 +304,7 @@ head(new_nonmul_rev)
 ```
 
 # Data Analysis
-Now we have the data, next you can do whatever you want to analyze the data. Here i provide some example in analyzing review data such as: analyzing trend, best product/store, and sentiment analysis
+Now we have the data, next you can do whatever you want to analyze the data. Here I provide some example in analyzing review data such as: analyzing trend, best product/store, and sentiment analysis
 
 ## Wrangling
 ```{r}
@@ -504,3 +505,4 @@ library(plotly)
 ggplotly(plot_sentiment,tooltip = "text")
 ```
 
+<iframe seamless src="/img/rselenium/p.html" width="100%" height="500"></iframe>

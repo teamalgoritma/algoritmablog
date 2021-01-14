@@ -17,8 +17,8 @@
       <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>/blog/javascripted-web-scrapping-in-r-with-rselenium/</guid>
-      <description>In this markdown we will learn to do web scraping using RSelenium. RSelenium provides R bindings for the Selenium Webdriver API. Selenium is a project focused on automating web browsers. RSelenium allows you to carry out unit testing and regression testing on your webapps and webpages across a range of browser/OS combinations. You can access full vignettes of RSelenium here.
-R also provide web scrapping tools like the famous rvest but RSelenium gives more advantages thant rvest, for example:</description>
+      <description>In this article, we will learn to do web scraping using RSelenium. RSelenium provides R bindings for the Selenium Webdriver API. Selenium is a project focused on automating web browsers. RSelenium allows you to carry out unit testing and regression testing on your webapps and webpages across a range of browser/OS combinations. You can access full vignettes of RSelenium here.
+R also provide web scrapping tools like the famous rvest but RSelenium gives more advantages than rvest, for example:</description>
     </item>
     
     <item>
