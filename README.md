@@ -183,6 +183,7 @@ knitr::include_graphics('/img/article-topic/imgname.png')
     <td align="center"><a href="https://github.com/ajengprstw"><img src="https://avatars0.githubusercontent.com/u/42662706?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ajengprstw</b></sub></a><br /><a href="#content-ajengprstw" title="Content">🖋</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/tomytjandra/"><img src="https://avatars2.githubusercontent.com/u/48079239?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tomy Tjandra</b></sub></a><br /><a href="#content-tomytjandra" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/Litaa"><img src="https://avatars2.githubusercontent.com/u/6070234?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dyah Nurlita</b></sub></a><br /><a href="#content-Litaa" title="Content">🖋</a></td>
+    <td align="center"><a href="https://medium.com/@joenathanchristian"><img src="https://avatars1.githubusercontent.com/u/61571811?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Joe Cristian</b></sub></a><br /><a href="#content-western11" title="Content">🖋</a></td>
   </tr>
 </table>
 
