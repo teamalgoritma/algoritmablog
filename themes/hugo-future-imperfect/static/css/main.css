@@ -1363,7 +1363,7 @@
 		#content p,
 		#content ul{
         font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-        font-size: 15px;
+        font-size: 0.9em;
         display: block;
         margin-block-start: 1em;
         margin-block-end: 1em;
@@ -2221,11 +2221,12 @@
 			text-decoration: none;
 		}
 
-		#header ul {
-			list-style: none;
-			margin: 0;
-			padding-left: 0;
-		}
+    #header ul {
+        list-style: none;
+        margin: 0;
+        padding-left: 0;
+        font-size: x-large;
+    }
 
 			#header ul li {
 				display: inline-block;
