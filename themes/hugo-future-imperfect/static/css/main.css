@@ -2306,8 +2306,8 @@
 				#header .links ul li a {
 					border-bottom: 0;
 					font-family: "Raleway", Helvetica, sans-serif;
-					font-size: 0.7em;
-					font-weight: 400;
+					font-size: 1.0em;
+					font-weight: bold;
 					letter-spacing: 0.25em;
 					text-transform: uppercase;
 				}
