@@ -3,7 +3,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5ceca968-68f6-4458-90e3-5b72bf373c20/deploy-status)](https://app.netlify.com/sites/algotech/deploys) [![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
 
 
-*Algotech* is a Website for technical blog Algoritma. To serve the website locally and to view a live version run the following command:
+*Algotech* is a website that host the technical blog of [Algoritma](https://algorit.ma). To serve the website locally, use the following R command:
 
 ```
 blogdown::serve_site()
@@ -19,10 +19,10 @@ blogdown::serve_site()
 Please follow the submission guidelines below:
 
 1. Fork the repository.
-2. Make a some development version or added a new article.
+2. Make a development version and add your article.
 3. Submit a *pull request*.
 
-If the project owner agrees with your work, they might merged your request into the original repository.
+If the project owner agrees with your work, they will merge your request into the original repository.
 
 ## 1. Fork a Repo 
 
@@ -91,7 +91,7 @@ type: post
 
 **OR**:
 
-Create a new article by using `New Post` addins on your Rstudio (make sure you already installed *blogdown* packages first).
+Create a new article by using the `New Post` addins on Rstudio (make sure you have already installed the *blogdown* package first).
 
 <center> <img src="public/img/main/newpost.png" title="A cute kitten" width="500" height="400" /> </center>
 
@@ -105,7 +105,7 @@ Create a new article by using `New Post` addins on your Rstudio (make sure you a
 * `Data Manipulation`
 * `Capstone ML`
 
-*Note*: Please add `Capstone ML` tags on your YAML options, if you are making an article that aims to help student on capstone project.
+*Note*: Please add `Capstone ML` tags on your YAML options, if you are making an article that aims to help students on their capstone project.
 
 ### Setup Chunk
 
@@ -127,7 +127,7 @@ knitr::opts_chunk$set(
 ### Insert Article rmd and Data Input
 1. Make sure your article' rmd is in accordance with the settings in the previous step
 2. Move your article to `/content/blog/`
-3. Create new folder and save your data input on `/content/blog/data_input/*your topic article*
+3. Create a new folder and save your data input onto the path: `/content/blog/data_input/*your topic article*
 
 ```{r}
 some_object <- read.csv("data_input/article-topic/filename.csv")
@@ -135,21 +135,21 @@ some_object <- read.csv("data_input/article-topic/filename.csv")
 
 ### Insert Images
 
-1. Create new folder *your topic article* on `/public/img/`.
-2. Save your images on `/public/img/ARTICLE-TOPIC` with a template `imgname.png`.
+1. Create a new folder with *your topic article* in this directory: `/public/img/`.
+2. Save your images in `/public/img/ARTICLE-TOPIC` with the following name: `imgname.png`.
 3. Embed the images with the following command, and options `echo = FALSE`.
 
 ```
 knitr::include_graphics('/img/article-topic/imgname.png')
 ```
 
-4. If, the images does not appear, change the command on your Rmd (narration) file (not in code chunk) to:
+4. If the images does not appear, remove the code chunk above and replace it with:
 
 ```
 <center> ![](/img/article-topic/imgname.png){width="60%"} </center>
 ```
 
-5. Convert your rmd to html by running `blogdown::serve_site()`. The HTML need to be save in same directory with the rmd
+5. Convert your RMarkdown to html by running `blogdown::serve_site()`. The HTML need to be saved in the same directory as where your RMarkdown file is.
 
 ## 3. Submit Pull Request! :grin:
 
