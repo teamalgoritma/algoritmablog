@@ -3,7 +3,7 @@ title: Introduction to Hierarchical Clustering
 author: Inayatus S & Nabiilah A F
 github: https://github.com/inytss/hierarchical-clustering
 date: '2021-02-22'
-slug: introduction-to-hierarchical clustering
+slug: introduction-to-hierarchical-clustering
 categories:
   - R
 tags:
@@ -24,11 +24,11 @@ Clustering merupakan salah satu metode Unsupervised Learning yang bertujuan untu
 
 **Partitional Clustering** umumnya bertujuan untuk mengelompokkan data menjadi beberapa cluster yang lebih kecil[^2]. Pada prosesnya, setiap cluster akan memiliki titik pusat cluster (*centroid*) dan mencoba menghitung setiap data yang paling dekat dengan centroid tersebut. Metode dalam partitional clustering diantaranya *k-means*, *fuzzy k-means*, dan *mixture modeling*.
 
-<img src="img/intro_hc/partitional.png" width="80%" style="display: block; margin: auto;" />
+<center> ![](/img/intro_hc/partitional.png){width="80%"} </center>
 
 Sedangkan dalam **Hierarchical Clustering**, pengelompokan data dilakukan dengan membuat suatu bagan hirarki (**dendrogram**) dengan tujuan menunjukkan kemiripan antar data. Setiap data yang mirip akan memiliki hubungan hirarki yang dekat dan menbentuk cluster data. Bagan hirarki akan terus terbentuk hingga seluruh data terhubung dalam bagan hirarki tersebut. Cluster dapat dihasilkan dengan memotong bagan hirarki pada level tertentu. Beberapa metode dalam hierarchical clustering yaitu *single linkage*, *complete linkage*, *average linkage*, dan *ward's minimum variance*.
 
-<img src="img/intro_hc/hc.png" width="80%" style="display: block; margin: auto;" />
+<center> ![](/img/intro_hc/hc.png){width="80%"} </center>
 
 Pada kesempatan kali ini kita akan mendalami terkait **Hierarchical Clustering** serta aplikasinya untuk pengolahan data.
 
@@ -48,7 +48,7 @@ Secara umum, *hierarchical clustering* dibagi menjadi dua jenis yaitu **agglomer
 
 Berikut adalah ilustrasi mengenai bagaimana agglomerative dan divisive clustering bekerja.
 
-<img src="img/intro_hc/agnes-vs-diana.png" width="80%" style="display: block; margin: auto;" />
+<center> ![](/img/intro_hc/agnes-vs-diana.png){width="80%"} </center>
 
 Selain memahami pendekatan dalam pembuatan dendrogram, mari memahami bagaimana setiap cluster dapat dibuat dan digabungkan.
 
@@ -130,7 +130,7 @@ Pada metode ini, di tiap iterasinya akan dibentuk cluster-cluster yang kemudian 
 
 Berikut adalah ilustrasi untuk kelima jenis linkage di atas[^5]:
 
-<img src="img/intro_hc/linkage.png" width="80%" style="display: block; margin: auto;" />
+<center> ![](/img/intro_hc/linkage.png){width="80%"} </center>
 
 Linkage method akan menentukan rupa dari dendrogram yang terbentuk. Telah dilakukan diskusi terkait beragam linkage method dan pemilihannya [disini](https://stats.stackexchange.com/questions/195446/choosing-the-right-linkage-method-for-hierarchical-clustering)
 
@@ -138,7 +138,7 @@ Linkage method akan menentukan rupa dari dendrogram yang terbentuk. Telah dilaku
 
 Setelah menghasilkan dendrogram dari hierarchical clustering, sudah sepatutnya kita perlu mampu membaca dendrogram tersebut. Sebagai contoh, berikut adalah gambar kedekatan beberapa instrumen musik yang digambarkan dengan dendrogram:
 
-<img src="img/intro_hc/dendrogram.jpg" width="80%" style="display: block; margin: auto;" />
+<center> ![](/img/intro_hc/dendrogram.jpg){width="80%"} </center>
 
 Dendrogram sejatinya merupakan struktur yang menggambarkan kemiripan antar data. Tiap data pada awalnya diletakan di suatu level dasar dimana tiap data berdiri sendiri sebagai satu cluster tunggal. Pada contoh di atas, tiap instrumen musik merupakan satu cluster tunggal di bagian dasar dendrogram. 
 
@@ -355,7 +355,7 @@ fviz_dend(us_hc_complete, cex = 0.5,
           main = "Cluster Dendrogram Complete Linkage")
 ```
 
-<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-17-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-12-1.png" width="768" style="display: block; margin: auto;" />
 
 Pada dendrogram tersebut, setiap observasi yang memiliki kemiripan akan dihubungkan oleh sebuah garis dan bersatu pada suatu titik. Panjang garis tersebut disebut juga **cophenetic distance** dan berbeda-beda untuk tiap observasi. Panjang garis tersebut merupakan "Height" (y-axis) yang menggambarkan (dis)similarity/jarak antar kedua observasi.
 
@@ -398,7 +398,7 @@ fviz_dend(us_hc_complete, k = 4, k_colors = "jco", rect = T,
           main = "Complete Linkage Cluster")
 ```
 
-<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-20-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-15-1.png" width="768" style="display: block; margin: auto;" />
 
 Cara membaca cluster pada dendrogram sebagai berikut :
 
@@ -429,7 +429,7 @@ fviz_dend(us_hc_single, cex = 0.5,
           main = "Cluster Dendrogram Single Linkage")
 ```
 
-<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-22-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-17-1.png" width="768" style="display: block; margin: auto;" />
 
 Hasil dendrogram yang terbentuk pada model single linkage terlihat lebih lebar dimana antar anggota cluster yang berbeda pun terlihat memiliki Height / (dis)similarity yang rendah. Cluster yang terbut terlihat rapat dan sangat dekat sehingga **partisi dari tiap cluster tidak tervisualisasikan dengan maksimal**. Hal ini dikarenakan proses pembuatan hirarki dendrogram menggunakan minimum (dis)similarity pada setiap clusternya.
 
@@ -467,7 +467,7 @@ fviz_dend(us_hc_single, k = 4, k_colors = "jco", rect = T,
           main = "Single Linkage Cluster")
 ```
 
-<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-25-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-20-1.png" width="768" style="display: block; margin: auto;" />
 
 Cara membaca cluster pada dendrogram yaitu  sebagai berikut :
 
@@ -495,7 +495,7 @@ cor(single_coph, us_dist)
 fviz_dend(us_hc_avg, cex = 0.5, main = "Cluster Dendrogram Average Linkage")
 ```
 
-<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-27-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-22-1.png" width="768" style="display: block; margin: auto;" />
 
 Hasil dendrogram yang terbentuk pada model average linkage terlihat hampir mirip seperti complete linkage, yaitu terlihat compact. Model average linkage biasa digunakan karena menghasilkan nilai validasi cluster tree yang lebih baik dibandingkan metode linkage yang lain. 
 
@@ -532,7 +532,7 @@ Berikut visualisasi dendrogram yang terbentuk pada masing-masing cluster.
 fviz_dend(us_hc_avg, k = 4, k_colors = "jco", rect = T, main = "Average Linkage Cluster")
 ```
 
-<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-30-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-25-1.png" width="768" style="display: block; margin: auto;" />
 
 Cara membaca cluster pada dendrogram yaitu  sebagai berikut :
 
@@ -548,7 +548,7 @@ Cara membaca cluster pada dendrogram yaitu  sebagai berikut :
 fviz_dend(us_hc_centroid, cex = 0.5, main = "Cluster Dendrogram Centroid Linkage")
 ```
 
-<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-31-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-26-1.png" width="768" style="display: block; margin: auto;" />
 
 Dendrogram yang terbentuk sangat berbeda dengan dedrogram pada model sebelumnya. Terdapat ketidak teraturan distance pada dendrogram di beberapa cabang, dimana nilai distance antar cluster yang lebih rendah dibandingkan nilai distance antar observasinya. Kondisi ini disebut juga **inversion**.
 
@@ -588,7 +588,7 @@ fviz_dend(us_hc_centroid, k = 4, k_colors = "jco", rect = T,
           main = "Centroid Linkage Cluster")
 ```
 
-<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-34-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-29-1.png" width="768" style="display: block; margin: auto;" />
 
 Hasil partisi cluster yang terbentuk tidak sesuai dengan yang seharusnya. Berikut deskripsi anggota cluster yang seharusnya:
 
@@ -607,7 +607,7 @@ fviz_dend(us_hc_ward, cex = 0.5,
           main = "Cluster Dendrogram Ward's Minimum Variance")
 ```
 
-<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-35-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-30-1.png" width="768" style="display: block; margin: auto;" />
 
 Dendrogram yang diperoleh dari metode ward's minimum variance terlihat **terpartisi dengan sangat baik**. Pada tiap cluster, terlihat nilai height yang rendah atau similarity yang amat tinggi antar observasinya. Hal ini dikarenakan cara kerja metode ward's minimum variance yang meminimumkan nilai within sum of squared (wss) tiap cluster. Umumnya, dendrogram metode ini menghasilkan partisi yang baik dan dikatkan yang paling menyerupai hasil *k-means clustering* (salah satu metode partitional clustering).
 
@@ -645,7 +645,7 @@ fviz_dend(us_hc_ward, k = 4, k_colors = "jco", rect = T,
           main = "Ward's Minimum Variance Cluster")
 ```
 
-<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-38-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-33-1.png" width="768" style="display: block; margin: auto;" />
 
 Cara membaca cluster pada dendrogram sebagai berikut :
 
@@ -779,7 +779,7 @@ fviz_dend(us_hc_complete, k = 4, k_colors = "jco", rect = T,
           main = "Complete Linkage Cluster")
 ```
 
-<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-42-1.png" width="768" style="display: block; margin: auto;" />
+<img src="/blog/2021-02-22-introduction-to-hierarchical-clustering_files/figure-html/unnamed-chunk-37-1.png" width="768" style="display: block; margin: auto;" />
 
 Terdapat 2 cluster besar dan tiap cluster besar dapat dipecah kembali menjadi 2 cluster yang lebih kecil. Kemiripan antara negara bagian berdasarkan tingkat kriminalitasnya dapat terlihat, dan pasangan negara bagian yang paling serupa adalah Iowa & New Hampshire.
 
