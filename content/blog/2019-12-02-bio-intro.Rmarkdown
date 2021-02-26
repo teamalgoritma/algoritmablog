@@ -93,7 +93,7 @@ Research on Bioinformatics has produced numerous amounts of data and is right no
 
 * ENA
 
-The [European Nucleotide Archive](www.ebi.ac.uk/ena)) (ENA) is a repository providing free and unrestricted access to annotated DNA and RNA sequences. The ENA is maintained by the European Bioinformatics Institute.
+The [European Nucleotide Archive](www.ebi.ac.uk/ena) (ENA) is a repository providing free and unrestricted access to annotated DNA and RNA sequences. The ENA is maintained by the European Bioinformatics Institute.
 
 * DDBJ
 
@@ -169,7 +169,7 @@ DNA sequences data is stored in a FASTA format, a text-based format for represen
  
 This below is an example:
 
-<center>![](/img/biointro/biointro-fasta.png)<center>
+<center>![](/img/biointro/biointro-fasta.png)</center>
 
 
 For this article, I have prepared a dummy data containing real DNA sequence data from GenBank, and some dummy DNA sequence for analysis. This data stored in a fasta format and named `bioc.fasta`. To read the data we can use `readDNAStringSet()` function from Biostrings package that already loaded as the dependencies for msa package.

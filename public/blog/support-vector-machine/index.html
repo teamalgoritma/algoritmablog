@@ -2,6 +2,175 @@
 
 <html>
     <head>
+      
+     <br>
+      
+      <div class="js-toggle-wrapper">
+  <div class="js-toggle">
+    <div class="js-toggle-track">
+      <div class="js-toggle-track-check">
+        <img src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16">
+          </div>
+          <div class="js-toggle-track-x">
+            <img src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16">
+              </div>
+              </div>
+              <div class="js-toggle-thumb"></div>
+                <input class="js-toggle-screenreader-only" type="checkbox" aria-label="Switch between Dark and Light mode">
+                  </div>
+                  </div>
+  
+  <style>
+
+ 
+
+.js-toggle-wrapper {
+    display: table;
+    margin: 0 auto;
+}
+
+.js-toggle {
+    touch-action: pan-x;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .js-toggle-screenreader-only {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  .js-toggle-track {
+    width: 50px;
+    height: 24px;
+    padding: 0;
+    border-radius: 30px;
+    background-color: hsl(222, 14%, 7%);
+    transition: all 0.2s ease;
+  }
+  
+  .js-toggle-track-check {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 5px;
+    top: 0px;
+    bottom: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 0;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  
+  .js-toggle--checked .js-toggle-track-check {
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
+  
+  .js-toggle-track-x {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    right: 5px;
+    top: 0px;
+    bottom: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 0;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
+  
+  .js-toggle--checked .js-toggle-track-x {
+    opacity: 0;
+  }
+  
+  .js-toggle-thumb {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    transform: translateX(0);
+  }
+  
+  .js-toggle--checked .js-toggle-thumb {
+    transform: translateX(26px);
+    border-color: #19ab27;
+  }
+  
+  .js-toggle--focus .js-toggle-thumb {
+    box-shadow: 0px 0px 2px 3px rgb(255, 167, 196);
+  }
+  
+  .js-toggle:active .js-toggle-thumb {
+    box-shadow: 0px 0px 5px 5px rgb(255, 167, 196);
+  }
+  
+  body.dark-mode , 
+body.dark-mode :not(img) main * {
+    background-color: #0d0d0d;
+    color: #000000;
+     filter: invert(40%) hue-rotate(0deg) brightness(105%) contrast(75%);
+    -webkit-filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(90%);
+    
+}
+
+
+
+</style>
+
+<script>
+    var body = document.body;
+	var switcher = document.getElementsByClassName('js-toggle')[0];
+
+	
+	switcher.addEventListener("click", function() {
+        this.classList.toggle('js-toggle--checked');
+        this.classList.add('js-toggle--focus');
+		
+		if (this.classList.contains('js-toggle--checked')) {
+			body.classList.add('dark-mode');
+			
+			localStorage.setItem('darkMode', 'true');
+		} else {
+			body.classList.remove('dark-mode');
+			setTimeout(function() {
+				localStorage.removeItem('darkMode');
+			}, 100);
+		}
+	})
+
+	
+	if (localStorage.getItem('darkMode')) {
+		
+        switcher.classList.add('js-toggle--checked');
+        body.classList.add('dark-mode');
+	}
+
+</script>
+
+
+      
         <script type="application/ld+json">
     {
         "@context" : "http://schema.org",
@@ -21,10 +190,10 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2018",
-        "datePublished": "2018-02-07 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2018-02-07 00:00:00 \x2b0000 UTC",
+        "datePublished": "2018-02-07 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2018-02-07 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/support-vector-machine\/",
-        "wordCount" : "2176",
+        "wordCount" : "2166",
         "keywords" : [ "SVM","Machine Learning","Blog" ]
     }
     </script>
@@ -36,8 +205,23 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.64.0" />
+        <meta name="generator" content="Hugo 0.74.3" />
         
+  
+    
+  
+
+  
+
+  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='/favicon/favicon.png'>
+  
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
+  <meta name="application-name" content="Algoritma Technical Blog">
+  <meta name="msapplication-tooltip" content="To learn more about our approach to data science problems, feel free to hop over to our blog.">
+  <meta name="msapplication-config" content='/favicon/ieconfig.xml'>
+
 
 
         
@@ -45,7 +229,7 @@
         
         
             
-                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+                <meta name="description" content="To learn more about our approach to data science problems, feel free to hop over to our blog.">
             
         
 
@@ -70,13 +254,14 @@ So how does SVM find the right hyperplane?" />
         <meta itemprop="name" content="Support Vector Machine">
 <meta itemprop="description" content="Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.
 So how does SVM find the right hyperplane?">
-<meta itemprop="datePublished" content="2018-02-07T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2018-02-07T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2176">
+<meta itemprop="datePublished" content="2018-02-07T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-02-07T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2166">
 
 
 
 <meta itemprop="keywords" content="SVM,Machine Learning," />
+
         
 
         
@@ -85,13 +270,18 @@ So how does SVM find the right hyperplane?">
 
         
         
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+        
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
             <link rel="stylesheet" href="/css/main.css">
             <link rel="stylesheet" href="/css/add-on.css">
             <link rel="stylesheet" href="/css/academicons.min.css">
+            <link href="/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
+            <link href="/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
         
 
         
@@ -99,7 +289,7 @@ So how does SVM find the right hyperplane?">
                 
             
                 
-                    <link rel="stylesheet" href="/css/night-owl.css">
+                    <link rel="stylesheet" href="/css/main.css">
                 
             
         
@@ -107,13 +297,26 @@ So how does SVM find the right hyperplane?">
 
   
     
-      <link rel="stylesheet" href="/css/night-owl.css" rel="stylesheet" id="theme-stylesheet">
+      <link rel="stylesheet" href="/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
       <script src="/js/highlight.pack.js"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   
 
 
       
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-164959107-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
 
 
 
@@ -247,11 +450,11 @@ So how does SVM find the right hyperplane?">
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/stock-cluster/">Clustering Saham Indonesia</a></h3>
+                                <h3><a href="/blog/javascripted-web-scrapping-in-r-with-rselenium/">Rselenium Intro</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-04-17'>
-                                    April 17, 2020</time>
+                                    '2021-01-11'>
+                                    January 11, 2021</time>
                             </header>
                             
 
@@ -259,35 +462,11 @@ So how does SVM find the right hyperplane?">
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/time-and-accuracy-improvement-using-pca/">Time Efficiency and Accuracy Improvement using PCA</a></h3>
+                                <h3><a href="/blog/rplicate-series-coronavirus-survey/">Rplicate Series: Interactive Plot of Coronavirus Survey</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-04-13'>
-                                    April 13, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/text-generating-with-markov-chains/">Text Generation with Markov Chains</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-04-02'>
-                                    April 2, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/text-lime/">Interpreting Text Classification Model with LIME</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-03-13'>
-                                    March 13, 2020</time>
+                                    '2021-01-06'>
+                                    January 6, 2021</time>
                             </header>
                             
     
@@ -312,8 +491,8 @@ So how does SVM find the right hyperplane?">
         
         
 
-        <a href="/blog/text-lime/" class="image featured">
-            <img src="/img/2020/03/lime.png" alt="">
+        <a href="/blog/rplicate-series-coronavirus-survey/" class="image featured">
+            <img src="/img/2021/01/five_thirty.png" alt="">
         </a>
     
 
@@ -322,11 +501,11 @@ So how does SVM find the right hyperplane?">
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/dbscan-clustering/">DBSCAN Clustering</a></h3>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-02-07'>
-                                    February 7, 2020</time>
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
                             </header>
                             
     
@@ -351,8 +530,86 @@ So how does SVM find the right hyperplane?">
         
         
 
-        <a href="/blog/dbscan-clustering/" class="image featured">
-            <img src="/img/2020/02/dbscan.jpg" alt="">
+        <a href="/blog/rplicate-series-gone-baby-gone/" class="image featured">
+            <img src="/img/2020/112020/11/gone-baby-gone.png" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-23'>
+                                    November 23, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/xgboost/" class="image featured">
+            <img src="/img/2020/112020/11/boosting-algorithm.png" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/fuzzy-clustering/">Fuzzy C-Means Clustering</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-23'>
+                                    November 23, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/fuzzy-clustering/" class="image featured">
+            <img src="/img/2020/112020/11/fuzzy-cmeans.png" alt="">
         </a>
     
 
@@ -385,7 +642,7 @@ So how does SVM find the right hyperplane?">
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Support%20Vector%20Machine&amp;url=%2fblog%2fsupport-vector-machine%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Support%20Vector%20Machine by Efa%20Hazna%20Latiefah&amp;url=%2fblog%2fsupport-vector-machine%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -467,7 +724,7 @@ So how does SVM find the right hyperplane?">
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Support%20Vector%20Machine&amp;url=%2fblog%2fsupport-vector-machine%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Support%20Vector%20Machine by Efa%20Hazna%20Latiefah&amp;url=%2fblog%2fsupport-vector-machine%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -515,6 +772,33 @@ So how does SVM find the right hyperplane?">
   
 
   
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/support-vector-machine/" class="image featured">
+            <img src="/img/2018/02/banner_SVM.jpg" alt="">
+        </a>
+    
+
 
   <div id="content">
     <h2 id="support-vector-machine-svm">Support Vector Machine (SVM)</h2>
@@ -524,29 +808,29 @@ So how does SVM find the right hyperplane?">
 <blockquote>
 <p>Which line do you think separates the data?</p>
 </blockquote>
-<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <blockquote>
 <p>And obviously the line B is the one that segregates the two classes better.</p>
 </blockquote>
 <p><strong>Identify the right hyper-plane (Scenario-2)</strong></p>
 <p>Check the line that you think best separates the data. Obviously all three of them seem   to separates the data, but one is the best?</p>
-<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <p>And SVM would choose the line C as the best separator. What this line does that the     other ones don&rsquo;t do, it maximizes the distance to the nearest point and it does this     relative to both classes. It&rsquo;s a line that maximizes the distance to the nearest points   in either class, that distance is often called margin.</p>
 <p><strong>Identify the right hyper-plane (Scenario-3)</strong></p>
-<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <p>SVM selects the hyper-plane which classifies the classes accurately prior to maximizing   margin.So For SVM , you are triying to classify correctly and subject to that         constraint, you maximize the margin. Here, hyper-plane B has a classification error and A   has classified all correctly. Therefore, the right hyper-plane is A.</p>
 <p><strong>Identify the right hyper-plane (Scenario-4)</strong></p>
 <p>So sometimes for SVM, it seems impossible to do right job. For example, you might have   a data set just like this. In which clearly no decision surface exist that would   separate the two classes, you can think of the point down here as an outlier</p>
-<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <p>SVM has a feature to ignore outliers and find the hyper-plane that has maximum margin. Hence, we can say, SVM is robust to outliers.</p>
-<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <h3 id="the-kernel-trick">The Kernel Trick</h3>
 <p>In the scenario below, we can&rsquo;t have linear hyper-plane between the two classes, so how does SVM classify these two classes? Till now, we have only looked at the linear hyper-plane.</p>
-<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <p>SVM can solve this problem Easily! It solves this problem by introducing additional feature. Here, we will add a new feature z=x^2+y^2. Now, let&rsquo;s plot the data points on axis x and z.</p>
-<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <p>When we look at the hyper-plane in original input space it looks like a circle.</p>
-<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <p>SVM has a technique called the kernel trick. These are functions which takes low dimensional input space and transform it to a higher dimensional space i.e. it converts not separable problem to separable problem, these functions are called kernels.</p>
 <p>In R, there are 4 various options available with kernel. They are linear, radial, polynomial and sigmoid.</p>
 <h3 id="parameters-in-svm">Parameters in SVM</h3>
@@ -572,7 +856,7 @@ So how does SVM find the right hyperplane?">
 <p>The e1071 package in R is used to create Support Vector Machines with ease.</p>
 <h3 id="svm-for-classification">SVM for Classification</h3>
 <p>Let&rsquo;s apply what we learn above to do classification using 1000 past records of bank loans, each with a variable <code>default</code> that indicates whether the applicant did default on the loan.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">loans <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">data_input/loan.csv&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">loans <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/loan.csv&#34;</span>)
 <span style="color:#a6e22e">colnames</span>(loans)
 </code></pre></div><pre><code>##  [1] &quot;checking_balance&quot;     &quot;months_loan_duration&quot; &quot;credit_history&quot;      
 ##  [4] &quot;purpose&quot;              &quot;amount&quot;               &quot;savings_balance&quot;     
@@ -586,10 +870,9 @@ rand.vec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sa
 loans.train <span style="color:#f92672">&lt;-</span> loans[rand.vec, ] 
 loans.test <span style="color:#f92672">&lt;-</span> loans[<span style="color:#f92672">-</span>rand.vec, ]
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(e1071)
-</code></pre></div><pre><code>## Warning: package 'e1071' was built under R version 3.5.3
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(gmodels)
-modelsvm1<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">linear&#34;</span>)
-modelsvm2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">radial&#34;</span>)
+<span style="color:#a6e22e">library</span>(gmodels)
+modelsvm1<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;linear&#34;</span>)
+modelsvm2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radial&#34;</span>)
 
 preds1<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predict</span>(modelsvm1,loans.test[,<span style="color:#ae81ff">-17</span>])
 preds2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predict</span>(modelsvm2,loans.test[,<span style="color:#ae81ff">-17</span>])
@@ -612,20 +895,20 @@ preds2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predic
 ##              | loans.test$default 
 ##       preds1 |        no |       yes | Row Total | 
 ## -------------|-----------|-----------|-----------|
-##           no |        61 |        12 |        73 | 
-##              |     1.115 |     3.016 |           | 
-##              |     0.836 |     0.164 |     0.730 | 
-##              |     0.836 |     0.444 |           | 
-##              |     0.610 |     0.120 |           | 
+##           no |        63 |        26 |        89 | 
+##              |     0.640 |     1.139 |           | 
+##              |     0.708 |     0.292 |     0.890 | 
+##              |     0.984 |     0.722 |           | 
+##              |     0.630 |     0.260 |           | 
 ## -------------|-----------|-----------|-----------|
-##          yes |        12 |        15 |        27 | 
-##              |     3.016 |     8.154 |           | 
-##              |     0.444 |     0.556 |     0.270 | 
-##              |     0.164 |     0.556 |           | 
-##              |     0.120 |     0.150 |           | 
+##          yes |         1 |        10 |        11 | 
+##              |     5.182 |     9.213 |           | 
+##              |     0.091 |     0.909 |     0.110 | 
+##              |     0.016 |     0.278 |           | 
+##              |     0.010 |     0.100 |           | 
 ## -------------|-----------|-----------|-----------|
-## Column Total |        73 |        27 |       100 | 
-##              |     0.730 |     0.270 |           | 
+## Column Total |        64 |        36 |       100 | 
+##              |     0.640 |     0.360 |           | 
 ## -------------|-----------|-----------|-----------|
 ## 
 ## 
@@ -648,25 +931,25 @@ preds2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predic
 ##              | loans.test$default 
 ##       preds2 |        no |       yes | Row Total | 
 ## -------------|-----------|-----------|-----------|
-##           no |        69 |        17 |        86 | 
-##              |     0.616 |     1.666 |           | 
-##              |     0.802 |     0.198 |     0.860 | 
-##              |     0.945 |     0.630 |           | 
-##              |     0.690 |     0.170 |           | 
+##           no |        63 |        29 |        92 | 
+##              |     0.288 |     0.513 |           | 
+##              |     0.685 |     0.315 |     0.920 | 
+##              |     0.984 |     0.806 |           | 
+##              |     0.630 |     0.290 |           | 
 ## -------------|-----------|-----------|-----------|
-##          yes |         4 |        10 |        14 | 
-##              |     3.786 |    10.235 |           | 
-##              |     0.286 |     0.714 |     0.140 | 
-##              |     0.055 |     0.370 |           | 
-##              |     0.040 |     0.100 |           | 
+##          yes |         1 |         7 |         8 | 
+##              |     3.315 |     5.894 |           | 
+##              |     0.125 |     0.875 |     0.080 | 
+##              |     0.016 |     0.194 |           | 
+##              |     0.010 |     0.070 |           | 
 ## -------------|-----------|-----------|-----------|
-## Column Total |        73 |        27 |       100 | 
-##              |     0.730 |     0.270 |           | 
+## Column Total |        64 |        36 |       100 | 
+##              |     0.640 |     0.360 |           | 
 ## -------------|-----------|-----------|-----------|
 ## 
 ## 
 </code></pre><p>the svm radial kernel perform better with the 79% accuracy. Let&rsquo;s tune the c and gamma parameter using &lsquo;tune.svm()&rsquo; function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">svmmodel<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">tune.svm</span>(default<span style="color:#f92672">~</span>., data <span style="color:#f92672">=</span> loans.test, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">radial&#34;</span>,gamma <span style="color:#f92672">=</span><span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,len<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>), cost<span style="color:#f92672">=</span><span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">50</span>,len<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>),tunecontrol<span style="color:#f92672">=</span><span style="color:#a6e22e">tune.control</span>(cross<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">svmmodel<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">tune.svm</span>(default<span style="color:#f92672">~</span>., data <span style="color:#f92672">=</span> loans.test, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radial&#34;</span>,gamma <span style="color:#f92672">=</span><span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,len<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>), cost<span style="color:#f92672">=</span><span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">50</span>,len<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>),tunecontrol<span style="color:#f92672">=</span><span style="color:#a6e22e">tune.control</span>(cross<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>))
 <span style="color:#a6e22e">summary</span>(svmmodel)
 </code></pre></div><pre><code>## 
 ## Parameter tuning of 'svm':
@@ -675,114 +958,114 @@ preds2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predic
 ## 
 ## - best parameters:
 ##  gamma cost
-##   0.03    5
+##   0.04    5
 ## 
-## - best performance: 0.27 
+## - best performance: 0.28 
 ## 
 ## - Detailed performance results:
 ##     gamma cost error dispersion
-## 1    0.01    5  0.32 0.07582875
-## 2    0.02    5  0.28 0.08366600
-## 3    0.03    5  0.27 0.07582875
-## 4    0.04    5  0.28 0.07582875
-## 5    0.05    5  0.28 0.07582875
-## 6    0.06    5  0.29 0.08215838
-## 7    0.07    5  0.33 0.10954451
-## 8    0.08    5  0.33 0.10954451
-## 9    0.09    5  0.33 0.07582875
-## 10   0.10    5  0.32 0.04472136
-## 11   0.01   10  0.29 0.08215838
-## 12   0.02   10  0.28 0.08366600
-## 13   0.03   10  0.28 0.08366600
-## 14   0.04   10  0.32 0.10368221
-## 15   0.05   10  0.34 0.06519202
-## 16   0.06   10  0.35 0.05000000
-## 17   0.07   10  0.37 0.05700877
-## 18   0.08   10  0.37 0.08366600
-## 19   0.09   10  0.35 0.06123724
-## 20   0.10   10  0.34 0.05477226
-## 21   0.01   15  0.27 0.07582875
-## 22   0.02   15  0.27 0.07582875
-## 23   0.03   15  0.32 0.09082951
-## 24   0.04   15  0.34 0.06519202
-## 25   0.05   15  0.34 0.04183300
-## 26   0.06   15  0.35 0.05000000
-## 27   0.07   15  0.36 0.04183300
-## 28   0.08   15  0.37 0.08366600
-## 29   0.09   15  0.35 0.06123724
-## 30   0.10   15  0.34 0.05477226
-## 31   0.01   20  0.27 0.07582875
-## 32   0.02   20  0.30 0.07905694
-## 33   0.03   20  0.37 0.07582875
-## 34   0.04   20  0.36 0.06519202
-## 35   0.05   20  0.36 0.06519202
-## 36   0.06   20  0.35 0.05000000
-## 37   0.07   20  0.36 0.04183300
-## 38   0.08   20  0.37 0.08366600
-## 39   0.09   20  0.35 0.06123724
-## 40   0.10   20  0.34 0.05477226
-## 41   0.01   25  0.27 0.07582875
-## 42   0.02   25  0.32 0.08366600
-## 43   0.03   25  0.36 0.06519202
-## 44   0.04   25  0.37 0.05700877
-## 45   0.05   25  0.36 0.06519202
-## 46   0.06   25  0.35 0.05000000
-## 47   0.07   25  0.36 0.04183300
-## 48   0.08   25  0.37 0.08366600
-## 49   0.09   25  0.35 0.06123724
-## 50   0.10   25  0.34 0.05477226
-## 51   0.01   30  0.28 0.05700877
-## 52   0.02   30  0.32 0.10368221
-## 53   0.03   30  0.38 0.05700877
-## 54   0.04   30  0.37 0.05700877
-## 55   0.05   30  0.36 0.06519202
-## 56   0.06   30  0.35 0.05000000
-## 57   0.07   30  0.36 0.04183300
-## 58   0.08   30  0.37 0.08366600
-## 59   0.09   30  0.35 0.06123724
-## 60   0.10   30  0.34 0.05477226
-## 61   0.01   35  0.28 0.05700877
-## 62   0.02   35  0.35 0.10000000
-## 63   0.03   35  0.37 0.04472136
-## 64   0.04   35  0.37 0.05700877
-## 65   0.05   35  0.36 0.06519202
-## 66   0.06   35  0.35 0.05000000
-## 67   0.07   35  0.36 0.04183300
-## 68   0.08   35  0.37 0.08366600
-## 69   0.09   35  0.35 0.06123724
-## 70   0.10   35  0.34 0.05477226
-## 71   0.01   40  0.28 0.05700877
-## 72   0.02   40  0.37 0.05700877
-## 73   0.03   40  0.37 0.04472136
-## 74   0.04   40  0.37 0.05700877
-## 75   0.05   40  0.36 0.06519202
-## 76   0.06   40  0.35 0.05000000
-## 77   0.07   40  0.36 0.04183300
-## 78   0.08   40  0.37 0.08366600
-## 79   0.09   40  0.35 0.06123724
-## 80   0.10   40  0.34 0.05477226
-## 81   0.01   45  0.28 0.05700877
-## 82   0.02   45  0.37 0.05700877
-## 83   0.03   45  0.37 0.04472136
-## 84   0.04   45  0.37 0.05700877
-## 85   0.05   45  0.36 0.06519202
-## 86   0.06   45  0.35 0.05000000
-## 87   0.07   45  0.36 0.04183300
-## 88   0.08   45  0.37 0.08366600
-## 89   0.09   45  0.35 0.06123724
-## 90   0.10   45  0.34 0.05477226
-## 91   0.01   50  0.29 0.06519202
-## 92   0.02   50  0.37 0.05700877
-## 93   0.03   50  0.37 0.04472136
-## 94   0.04   50  0.37 0.05700877
-## 95   0.05   50  0.36 0.06519202
-## 96   0.06   50  0.35 0.05000000
-## 97   0.07   50  0.36 0.04183300
-## 98   0.08   50  0.37 0.08366600
-## 99   0.09   50  0.35 0.06123724
-## 100  0.10   50  0.34 0.05477226
+## 1    0.01    5  0.35 0.13228757
+## 2    0.02    5  0.34 0.11401754
+## 3    0.03    5  0.31 0.12942179
+## 4    0.04    5  0.28 0.14832397
+## 5    0.05    5  0.30 0.11180340
+## 6    0.06    5  0.30 0.09354143
+## 7    0.07    5  0.29 0.12449900
+## 8    0.08    5  0.30 0.12247449
+## 9    0.09    5  0.29 0.11401754
+## 10   0.10    5  0.30 0.09354143
+## 11   0.01   10  0.35 0.12747549
+## 12   0.02   10  0.30 0.16201852
+## 13   0.03   10  0.32 0.10954451
+## 14   0.04   10  0.35 0.11180340
+## 15   0.05   10  0.34 0.13874437
+## 16   0.06   10  0.34 0.13874437
+## 17   0.07   10  0.32 0.10368221
+## 18   0.08   10  0.31 0.08944272
+## 19   0.09   10  0.31 0.08944272
+## 20   0.10   10  0.30 0.07905694
+## 21   0.01   15  0.34 0.12449900
+## 22   0.02   15  0.31 0.12942179
+## 23   0.03   15  0.36 0.09617692
+## 24   0.04   15  0.35 0.14142136
+## 25   0.05   15  0.35 0.11726039
+## 26   0.06   15  0.33 0.10954451
+## 27   0.07   15  0.32 0.08366600
+## 28   0.08   15  0.31 0.08944272
+## 29   0.09   15  0.31 0.08944272
+## 30   0.10   15  0.30 0.07905694
+## 31   0.01   20  0.34 0.14747881
+## 32   0.02   20  0.34 0.10839742
+## 33   0.03   20  0.37 0.12549900
+## 34   0.04   20  0.33 0.13509256
+## 35   0.05   20  0.34 0.11937336
+## 36   0.06   20  0.33 0.10954451
+## 37   0.07   20  0.32 0.08366600
+## 38   0.08   20  0.31 0.08944272
+## 39   0.09   20  0.31 0.08944272
+## 40   0.10   20  0.30 0.07905694
+## 41   0.01   25  0.33 0.18234583
+## 42   0.02   25  0.35 0.11726039
+## 43   0.03   25  0.36 0.15572412
+## 44   0.04   25  0.35 0.11726039
+## 45   0.05   25  0.34 0.11937336
+## 46   0.06   25  0.33 0.10954451
+## 47   0.07   25  0.32 0.08366600
+## 48   0.08   25  0.31 0.08944272
+## 49   0.09   25  0.31 0.08944272
+## 50   0.10   25  0.30 0.07905694
+## 51   0.01   30  0.35 0.16201852
+## 52   0.02   30  0.37 0.09746794
+## 53   0.03   30  0.34 0.13874437
+## 54   0.04   30  0.33 0.11510864
+## 55   0.05   30  0.34 0.11937336
+## 56   0.06   30  0.33 0.10954451
+## 57   0.07   30  0.32 0.08366600
+## 58   0.08   30  0.31 0.08944272
+## 59   0.09   30  0.31 0.08944272
+## 60   0.10   30  0.30 0.07905694
+## 61   0.01   35  0.34 0.14747881
+## 62   0.02   35  0.37 0.09746794
+## 63   0.03   35  0.35 0.14577380
+## 64   0.04   35  0.33 0.11510864
+## 65   0.05   35  0.34 0.11937336
+## 66   0.06   35  0.33 0.10954451
+## 67   0.07   35  0.32 0.08366600
+## 68   0.08   35  0.31 0.08944272
+## 69   0.09   35  0.31 0.08944272
+## 70   0.10   35  0.30 0.07905694
+## 71   0.01   40  0.32 0.13038405
+## 72   0.02   40  0.38 0.10954451
+## 73   0.03   40  0.36 0.12449900
+## 74   0.04   40  0.33 0.11510864
+## 75   0.05   40  0.34 0.11937336
+## 76   0.06   40  0.33 0.10954451
+## 77   0.07   40  0.32 0.08366600
+## 78   0.08   40  0.31 0.08944272
+## 79   0.09   40  0.31 0.08944272
+## 80   0.10   40  0.30 0.07905694
+## 81   0.01   45  0.30 0.11726039
+## 82   0.02   45  0.36 0.13416408
+## 83   0.03   45  0.35 0.12247449
+## 84   0.04   45  0.33 0.11510864
+## 85   0.05   45  0.34 0.11937336
+## 86   0.06   45  0.33 0.10954451
+## 87   0.07   45  0.32 0.08366600
+## 88   0.08   45  0.31 0.08944272
+## 89   0.09   45  0.31 0.08944272
+## 90   0.10   45  0.30 0.07905694
+## 91   0.01   50  0.31 0.09617692
+## 92   0.02   50  0.37 0.14404860
+## 93   0.03   50  0.35 0.12247449
+## 94   0.04   50  0.33 0.11510864
+## 95   0.05   50  0.34 0.11937336
+## 96   0.06   50  0.33 0.10954451
+## 97   0.07   50  0.32 0.08366600
+## 98   0.08   50  0.31 0.08944272
+## 99   0.09   50  0.31 0.08944272
+## 100  0.10   50  0.30 0.07905694
 </code></pre><p>The methods above give gamma= 0.03 and c=5 as optimal paramters. lets apply this result to our svm model to know wether the model would perform better or not.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">svmmodelrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">radial&#34;</span>, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">0.03</span>,cost<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">svmmodelrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radial&#34;</span>, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">0.03</span>,cost<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
 predsrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predict</span>(svmmodelrad,loans.test[,<span style="color:#ae81ff">-17</span>])
 
 <span style="color:#a6e22e">CrossTable</span>(predsrad,loans.test<span style="color:#f92672">$</span>default)
@@ -804,20 +1087,20 @@ predsrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">pred
 ##              | loans.test$default 
 ##     predsrad |        no |       yes | Row Total | 
 ## -------------|-----------|-----------|-----------|
-##           no |        62 |        10 |        72 | 
-##              |     1.695 |     4.584 |           | 
-##              |     0.861 |     0.139 |     0.720 | 
-##              |     0.849 |     0.370 |           | 
-##              |     0.620 |     0.100 |           | 
+##           no |        61 |        23 |        84 | 
+##              |     0.975 |     1.733 |           | 
+##              |     0.726 |     0.274 |     0.840 | 
+##              |     0.953 |     0.639 |           | 
+##              |     0.610 |     0.230 |           | 
 ## -------------|-----------|-----------|-----------|
-##          yes |        11 |        17 |        28 | 
-##              |     4.360 |    11.788 |           | 
-##              |     0.393 |     0.607 |     0.280 | 
-##              |     0.151 |     0.630 |           | 
-##              |     0.110 |     0.170 |           | 
+##          yes |         3 |        13 |        16 | 
+##              |     5.119 |     9.100 |           | 
+##              |     0.188 |     0.812 |     0.160 | 
+##              |     0.047 |     0.361 |           | 
+##              |     0.030 |     0.130 |           | 
 ## -------------|-----------|-----------|-----------|
-## Column Total |        73 |        27 |       100 | 
-##              |     0.730 |     0.270 |           | 
+## Column Total |        64 |        36 |       100 | 
+##              |     0.640 |     0.360 |           | 
 ## -------------|-----------|-----------|-----------|
 ## 
 ## 
@@ -890,13 +1173,10 @@ predsrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">pred
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression/"
-                class="button big previous"></a></li>
-    
 
     
-        <li><a href="/blog/support-vector-machine/"
-                class="button big next">Support Vector Machine</a></li>
+        <li><a href="/blog/causal-inference-and-bayesian-network/"
+                class="button big next">Causal Inference and Bayesian Network</a></li>
     
 </ul>
 
@@ -1014,7 +1294,31 @@ predsrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">pred
     
   </section>
 
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Upcoming Workshop</h3>
+      </header>
+      <div class="posts-container">
+          <article class="mini-post">
+            <header>
+              <h3>
+                
+                                <img src="/img/2020/ads/dss.png", alt="alternatetext", width="270" height="340">
+                <a href="https://algorit.ma/text-analysis/?utm_source=algotech">More details</a>
+                
+                <img src="/img/2020/ads/ddt.png", alt="alternatetext", width="270" height="340">
+                <a href="https://algorit.ma/data-driven-2/?utm_source=algotech">More details</a>
+              </h3>
+            </header>
+          </article>
+      </div>
 
+      
+      
+    </div>
+  </section>
 
   
   
@@ -1027,7 +1331,7 @@ predsrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">pred
   <section id="footer">
     <p class="copyright">
       
-        &copy; 2020
+        &copy; 2021
         
           Algoritma Technical Blog
         
@@ -1039,6 +1343,33 @@ predsrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">pred
 
     </div>
     <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    <style>
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height:50px; 
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 50px;
+        padding-right: 50px;
+}
+      }
+
+
+      </style>
+
+      <div class="footer">
+        <p>
+          Want to know more about our workshop?
+          <a href="https://algorit.ma/?utm_source=algotech&utm_medium=content&utm_campaign=support-vector-machine" style="color: rgb(197, 38, 38)"> Visit our main website here</a> <br>
+        </p>
+          
+      </div>
     
 
     

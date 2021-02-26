@@ -29,7 +29,27 @@
     {{ end }}
   </section>
 
+  <!-- Posts List -->
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Upcoming Workshop</h3>
+      </header>
+      <div class="posts-container">
+          <article class="mini-post">
+            <header>
+              <h3>
+                <a href="https://algorit.ma/kickstart-elang?utm_source=algotech"><img src="/img/2021/ads/ks-nlp.png", alt="Kickstart series - Elang",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dss-sentiment-analysis/?utm_source=algotech"><img src="/img/2021/ads/dss-sa.png", alt="DSS - Sentiment Analysis",  width="270" height="340">More details</a>
+              </h3>
+            </header>
+          </article>
+      </div>
 
+      {{ if ge (len (where .Site.Pages "Type" "post")) ($.Scratch.Get "postLimit") }}
+      {{ end }}
+    </div>
+  </section>
 
   <!-- This if statement only applies if someone goes to the /categories url -->
   <!-- Otherwise this section is shown for all other links -->

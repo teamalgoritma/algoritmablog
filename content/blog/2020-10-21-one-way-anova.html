@@ -1,0 +1,227 @@
+---
+title: One-Way ANOVA Test in R
+author: Wulan Andriyani
+github: https://github.com/wulanandriyani
+date: '2020-10-21'
+slug: one-way-anova-test-in-r
+categories:
+  - R
+tags: 
+  - Capstone ML
+description: ''
+featured: 'anova-test.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+
+
+<style>
+body { 
+text-align: justify}
+</style>
+<div id="pengantar" class="section level1 tabset">
+<h1>Pengantar</h1>
+<div id="latar-belakang" class="section level2">
+<h2>Latar Belakang</h2>
+<p><strong>Percobaan</strong> adalah kegiatan yang dilakukan untuk menguji hipotesis atau menganalisa hubungan sebab akibat antara respon (y) dan prediktor/perlakuan (x). <strong>Perancangan percobaan (Design of Experiment)</strong> adalah penentuan kerangka dasar (framework) langkah-langkah pengumpulan informasi terhadap objek yang memiliki variasi berdasarkan prinsip-prinsip statistika.</p>
+<p>Perencanaan suatu percobaan berguna untuk memperoleh informasi yang relevan dengan tujuan penelitian. Percobaan perlu dirancang untuk memperoleh kesimpulan yang tidak bias (systematic error) dan meningkatkan presisi kesimpulan, sehingga dihasilkan generalisasi populasi yang mendekati nilai sebenarnya.</p>
+<p>Tujuan Perancangan Percobaan adalah menentukan prediktor yang paling berpengaruh terhadap respon dan menghasilkan error yang paling kecil. Prinsip dasar perancangan percobaan yang perlu diperhatikan, yaitu:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Pengacakan (Randomization)</strong>: setiap observasi memiliki peluang yang sama untuk diterapkan suatu perlakuan.</p></li>
+<li><p><strong>Ulangan (Replication)</strong>: penerapan perlakuan terhadap beberapa observasi. Jika terlalu banyak ulangan akan terjadi pemborosan waktu dan biaya. Namun, jika terlalu sedikit ulangan perbedaan antar perlakuan dikhawatirkan akan tertutup oleh perbedaan karakteristik (faktor lain) antar observasi.</p></li>
+<li><p><strong>Pengendalian lingkungan (Local control)</strong>: pengendalian kondisi-kondisi lingkungan yang berpotensi mempengaruhi respon (hanya prediktor yang telah ditetapkan yang seharusnya berpengaruh besar terhadap respon). Strategi yang dapat dilakukan adalah melakukan pengelompokkan sebagai pengganti ulangan jika terdapat keheterogenan karakteristik antar observasi, mengontrol pengaruh-pengaruh lingkungan (selain prediktor yang telah ditetapkan) sehingga pengaruhnya sekecil &amp; seseragam mungkin (variansi faktor lain mendekati 0).</p></li>
+</ol>
+</div>
+<div id="tujuan" class="section level2">
+<h2>Tujuan</h2>
+<p>Artikel ini dimaksudkan untuk:</p>
+<ul>
+<li>Membahas tentang One-Way ANOVA test</li>
+<li>Membahas perbedaan Pairwise Mean Comparison pada variabel kualitatif dan kuantitatif</li>
+<li>Membahas asumsi One-Way ANOVA test</li>
+</ul>
+<center>
+<img src="/img/anova/mindmap.png" />
+</center>
+<p><strong>Latihan:</strong></p>
+<p>Seorang peneliti agronomi melakukan percobaan pada tanaman jagung varietas Arjuna, untuk mengetahui apakah penerapan prediktor/perlakuan yang berbeda akan mempengaruhi pertumbuhan tinggi tanaman jagung dan produksi jagung varietas Arjuna. Jarak tanam diatur berbeda-beda yaitu 20 x 30 cm2, 30 x 30 cm2 dan 30 x 40 cm2. Jenis pupuk yang diberikan selama penelitian adalah pupuk campuran NPK dengan dosis 100 kg/ha, 200 kg/ha, 300 kg/ha dan 400 kg/ha. Untuk semua observasi dilakukan penyiangan sebanyak 2 kali yaitu pada umur 3 minggu setelah tanam (mst) dan 5 mst.</p>
+<ol style="list-style-type: decimal">
+<li><p>Apa <strong>respon</strong> (y) yang diukur ?</p></li>
+<li><p>Apa <strong>prediktor</strong> (x) yang diterapkan ?</p></li>
+<li><p>Sebutkan <strong>kategori</strong> untuk masing-masing prediktor ?</p></li>
+<li><p>Definisikan <strong>observasi</strong> yang akan diterapkan perlakuan ?</p></li>
+</ol>
+</div>
+</div>
+<div id="one-way-anova" class="section level1">
+<h1>One-Way ANOVA</h1>
+<p><strong>One-Way ANOVA</strong> atau yang lebih dikenal dengan sebutan <strong>ANOVA satu faktor</strong> adalah perkembangan dari uji-t dua sampel (two sample t-test) untuk membandingkan rataan dimana terdapat lebih dari dua kategori. Secara sederhana, ingin membandingkan apakah terdapat perbedaan respon dari kategori yang berbeda (lebih dari dua kategori). Pada one-way ANOVA data disusun menjadi beberapa kelompok (kategori) berdasarkan satu variabel (prediktor).</p>
+<p><strong>One-way ANOVA hypothesis</strong></p>
+<ul>
+<li>Null hypothesis (H0): Prediktor tidak berpengaruh terhadap respon (Semua kategori menghasilkan respon yang sama).</li>
+<li>Alternative hypothesis (H1): Terdapat minimal 1 kategori yang menghasilkan respon yang berbeda.</li>
+</ul>
+<p><strong>Latihan:</strong></p>
+<p>Karantina tumbuhan ingin mengetahui pengaruh Fumigan <em>Methyl Bromide</em> (CH3Br) terhadap daya tumbuh benih kacang hijau, dilakukan percobaan sebagai berikut: Benih kacang hijau diberi fumigan dengan dosis 16 gr/m3, 32 gr/m3 , 48 gr/m3, 64 gr/m3 dan kontrol (tanpa fumigan) yang masing-masing diulang sebanyak 8 kali. Fumigasi dilakukan selama 2 jam. Benih kacang hijau yang sudah difumigasi dikecambahkan denganmetode kertas hisap (blotter test).</p>
+<ol style="list-style-type: decimal">
+<li><p>Apa <strong>respon</strong> (y) yang diukur ?</p></li>
+<li><p>Apa <strong>prediktor</strong> (x) yang diterapkan ?</p></li>
+<li><p>Sebutkan <strong>kategori</strong> pada prediktor ?</p></li>
+<li><p>Definisikan <strong>observasi</strong> yang akan diterapkan perlakuan ?</p></li>
+<li><p>Tentukan <strong>hipotesis</strong> untuk permasalahan di atas ?</p></li>
+</ol>
+<div id="import-libraries" class="section level2">
+<h2>Import Libraries</h2>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+library(car)</code></pre>
+</div>
+<div id="import-data" class="section level2">
+<h2>Import Data</h2>
+<p>Untuk mengimport <code>file.csv</code> ke R bisa menggunakan fungsi <code>read.csv()</code>.</p>
+<pre class="r"><code>benih &lt;- read.csv(&quot;data_input/anova/benih.csv&quot;)
+
+glimpse(benih)</code></pre>
+<pre><code>#&gt; Rows: 40
+#&gt; Columns: 2
+#&gt; $ dosis       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 16, 16, 16, 16, 16, 16, 16, 16,...
+#&gt; $ daya_tumbuh &lt;int&gt; 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, ...</code></pre>
+<p>Data di atas terdiri dari 40 petak lahan yang berisis kumpulan benih kacang hijau. Benih-benih tersebut diukur daya tumbuhnya terhadap pengaruh fumigasi dengan dosis yang berbeda-beda.</p>
+<ul>
+<li><code>dosis</code>: dosis Fumigan <em>Methyl Bromide</em> (CH3Br) yang diberikan, dalam gr/m3.</li>
+<li><code>data_tumbuh</code>: data tumbuh benih kacang hijau setelah dilakukan fumigasi selama 2 jam.</li>
+</ul>
+</div>
+<div id="data-cleansing" class="section level2">
+<h2>Data Cleansing</h2>
+<p>Pada permasalahan ini tipe data yang digunakan masih belum sesuai, sehingga perlu disesuaikan terlebih dahulu. Kita bisa menggunakan fungsi <code>mutate()</code> untuk melakukan manipulasi pada kolom tertentu dan fungsi <code>as.factor()</code> untuk mengubah tipe data menjadi faktor.</p>
+<pre class="r"><code>benih &lt;- benih %&gt;% 
+  mutate(dosis = as.factor(dosis))</code></pre>
+</div>
+<div id="data-exploration" class="section level2">
+<h2>Data Exploration</h2>
+<p>Menghitung ringkasan statistik untuk setiap dosis (nilai minimum, mean, median, nilai maksimum, standar deviasi, dan jumlah observasi).</p>
+<pre class="r"><code>benih %&gt;% 
+  group_by(dosis) %&gt;% 
+  summarise(minimum = min(daya_tumbuh),
+            rataan = mean(daya_tumbuh),
+            Q2 = median(daya_tumbuh),
+            maksimum = max(daya_tumbuh),
+            st.dev = sd(daya_tumbuh),
+            count = n())</code></pre>
+<pre><code>#&gt; # A tibble: 5 x 7
+#&gt;   dosis minimum rataan    Q2 maksimum st.dev count
+#&gt;   &lt;fct&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;
+#&gt; 1 0         100  100     100      100   0        8
+#&gt; 2 16        100  100     100      100   0        8
+#&gt; 3 32         86   90.2    90       94   2.92     8
+#&gt; 4 48         76   80      80       84   2.62     8
+#&gt; 5 64         76   85      85       94   6.85     8</code></pre>
+<p>Membuat visualisasi sebaran data dari setiap dosis. Kita bisa menggunakan fungsi-fungsi yang terdapat pada package <code>ggplot2</code>.</p>
+<pre class="r"><code>ggplot(data = benih, aes(x = dosis, y = daya_tumbuh)) +
+  geom_boxplot() +
+  geom_jitter(aes(color = dosis), show.legend = F) +
+  labs(x = &quot;Dosis Fumigan Methyl Bromide (CH3Br) per gr/m3&quot;,
+       y = &quot;Daya Tumbuh Benih Kacang Hijau&quot;) +
+  theme_minimal()</code></pre>
+<center>
+<img src="/img/anova/boxplot.png" />
+</center>
+<p>Berdasarkan hasil ringkasan statistik dan visualisasi sebaran daya tumbuh benih kacang hijau dari setiap dosis fumigasi di atas, diketahui bahwa perbedaan pemberian dosis fumigasi menyebabkan perbedaan daya tumbuh benih kacang hijau. Pemberian dosis Fumigan <em>Methyl Bromide</em> (CH3Br) 0 gr/m3 (kontrol) dan 16 gr/m3 menyebabkan daya tumbuh benih kacang hijau yang serupa, yaitu 100. Namun, pemberian dosis Fumigan <em>Methyl Bromide</em> (CH3Br) dengan ukuran yang lebih besar, yaitu 32, 48, dan 64 gr/m3 justru menyebabkan penurunan daya tumbuh benih kacang hijau. Rata-rata daya tumbuh benih kacang hijau yang diberikan dosis Fumigan <em>Methyl Bromide</em> (CH3Br) 32, 48, dan 64 gr/m3, yaitu 90.25, 80, dan 85. Untuk membuktikan hipotesis tersebut berdasarkan data yang ada akan dilakukan one-way ANOVA.</p>
+</div>
+<div id="aplikasi-one-way-anova" class="section level2">
+<h2>Aplikasi One-Way ANOVA</h2>
+<p>Untuk melakukan one-way ANOVA kita bisa menggunakan fungsi <code>aov()</code>.</p>
+<pre class="r"><code>ANOVA_benih &lt;- aov(formula = daya_tumbuh ~ dosis, data = benih)</code></pre>
+<p>Untuk melihat output hasil one-way ANOVA bisa dengan print objek <code>ANOVA_benih</code> atau menggunakan fungsi <code>summary()</code>.</p>
+<pre class="r"><code>summary(ANOVA_benih)</code></pre>
+<pre><code>#&gt;             Df Sum Sq Mean Sq F value            Pr(&gt;F)    
+#&gt; dosis        4 2556.4   639.1   51.36 0.000000000000036 ***
+#&gt; Residuals   35  435.5    12.4                              
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Karena nilai p kurang dari tingkat signifikansi (alpha), yaitu 5% atau 0.05, kita dapat menyimpulkan bahwa terdapat perbedaan yang signifikan antara dosis-dosis fumigasi yang diterapkan terhadap daya tumbuh benih kacang hijau.</p>
+</div>
+</div>
+<div id="pairwise-mean-comparison" class="section level1">
+<h1>Pairwise Mean Comparison</h1>
+<p>Pada one-way ANOVA nilai p yang signifikan, menunjukkan bahwa terdapat perbedaan antara dosis-dosis fumigasi yang diterapkan terhadap daya tumbuh benih kacang hijau. Tetapi, kita tidak dapat mengetahui antara dosis berapa dan dosis berapa yang signifikan menyebabkan perbedaan daya tumbuh benih kacang hijau.</p>
+<p>Oleh karena itu, perlu diketahui antara dosis berapa dan dosis berapa yang signifikan menyebabkan perbedaan daya tumbuh benih kacang hijau. Hal tersebut dapat dilakukan dengan tes lanjutan (uji lanjut). Uji lanjut yang biasa digunakan terbagi menjadi 2 berdasarkan tipe prediktor yang digunakan, yaitu:</p>
+<ol style="list-style-type: decimal">
+<li><p>Prediktor kualitatif: Fisher’s LSD (BNT), Tukey’s HSD (BNJ), DMRT, Dunnett.</p></li>
+<li><p>Prediktor kuantitatif: Kontras polynomial ortogonal, KurvaRespon (Response Surface).</p></li>
+</ol>
+<p>Kita akan mencoba melakukan tes lanjutan dengan Tukey’s HSD untuk mengetahui antara dosis berapa dan dosis berapa yang signifikan menyebabkan perbedaan daya tumbuh benih kacang hijau. Untuk melakukan Tukey’s HSD test kita bisa menggunakan fungsi <code>TukeyHSD()</code></p>
+<pre class="r"><code>TukeyHSD(ANOVA_benih)</code></pre>
+<pre><code>#&gt;   Tukey multiple comparisons of means
+#&gt;     95% family-wise confidence level
+#&gt; 
+#&gt; Fit: aov(formula = daya_tumbuh ~ dosis, data = benih)
+#&gt; 
+#&gt; $dosis
+#&gt;                           diff         lwr         upr     p adj
+#&gt; 16-0    0.00000000000002842171  -5.0708064   5.0708064 1.0000000
+#&gt; 32-0   -9.74999999999997157829 -14.8208064  -4.6791936 0.0000306
+#&gt; 48-0  -19.99999999999997157829 -25.0708064 -14.9291936 0.0000000
+#&gt; 64-0  -14.99999999999997157829 -20.0708064  -9.9291936 0.0000000
+#&gt; 32-16  -9.75000000000000000000 -14.8208064  -4.6791936 0.0000306
+#&gt; 48-16 -20.00000000000000000000 -25.0708064 -14.9291936 0.0000000
+#&gt; 64-16 -15.00000000000000000000 -20.0708064  -9.9291936 0.0000000
+#&gt; 48-32 -10.25000000000000000000 -15.3208064  -5.1791936 0.0000130
+#&gt; 64-32  -5.25000000000000000000 -10.3208064  -0.1791936 0.0393966
+#&gt; 64-48   5.00000000000000000000  -0.0708064  10.0708064 0.0548433</code></pre>
+<p>Hampir semua nilai p kurang dari tingkat signifikansi (alpha), yaitu 5% atau 0.05, kecuali dosis fumigasi antara 0 gr/m3 dan 16 gr/m3 serta 64 gr/m3 dan 48 gr/m3. Kita dapat menyimpulkan bahwa daya tumbuh benih kacang hijau paling baik ketika tidak dilakukan fumigasi (kontrol).</p>
+</div>
+<div id="asumsi-anova" class="section level1">
+<h1>Asumsi ANOVA</h1>
+<p>Pengecekan asumsi pada hasil one-way ANOVA dilakukan untuk meyakinkan bahwa kesimpulan yang diambil sudah presisi dan dapat digeneralisasikan ke populasi (dapat diterapkan secara universal). Pada kasus ini menetapkan bahwa tidak melakukan fumigasi terhadap benih kacang hijau akan membuat daya tumbuh benih kacang hijau jauh lebih baik dibandingkan dengan melakukan fumigasi.</p>
+<div id="homogeneity-of-variance" class="section level2">
+<h2>Homogeneity of Variance</h2>
+<p><strong>Homogeneity of Variance hypothesis</strong></p>
+<ul>
+<li>Null hypothesis (H0): Antar kategori memiliki variance yang homogen.</li>
+<li>Alternative hypothesis (H1): Antar kategori memiliki variance yang heterogen.</li>
+</ul>
+<p>Kehomogenan variance antar kategori dapat dicek melalui levene’s test dengan fungsi <code>leveneTest()</code> dari package <code>car</code>.</p>
+<pre class="r"><code>leveneTest(daya_tumbuh ~ dosis, benih)</code></pre>
+<pre><code>#&gt; Levene&#39;s Test for Homogeneity of Variance (center = median)
+#&gt;       Df F value         Pr(&gt;F)    
+#&gt; group  4  22.298 0.000000003214 ***
+#&gt;       35                           
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Karena nilai p kurang dari tingkat signifikansi (alpha), yaitu 5% atau 0.05, kita dapat menyimpulkan bahwa antar kategori memiliki variance yang heterogen.</p>
+</div>
+<div id="normality-residuals" class="section level2">
+<h2>Normality Residuals</h2>
+<p><strong>Normality Residuals hypothesis</strong></p>
+<ul>
+<li>Null hypothesis (H0): Residual menyebar normal.</li>
+<li>Alternative hypothesis (H1): Residual tidak menyebar normal.</li>
+</ul>
+<p>normality residuals dapat dicek melalui Shapiro-Wilk test dengan fungsi <code>shapiro.test()</code>.</p>
+<pre class="r"><code>shapiro.test(ANOVA_benih$residuals)</code></pre>
+<pre><code>#&gt; 
+#&gt;  Shapiro-Wilk normality test
+#&gt; 
+#&gt; data:  ANOVA_benih$residuals
+#&gt; W = 0.91395, p-value = 0.004995</code></pre>
+<p>Karena nilai p kurang dari tingkat signifikansi (alpha), yaitu 5% atau 0.05, kita dapat menyimpulkan bahwa residual tidak meyebar normal.</p>
+</div>
+</div>
+<div id="kesimpulan" class="section level1">
+<h1>Kesimpulan</h1>
+<p>One-Way ANOVA adalah pengujian yang dapat digunakan untuk melihat efektivitas/pengaruh lebih dari satu perlakuan (variabel) yang dicobakan. Selain itu, kita juga dapat mengetahui kategori/level setiap variabel yang paling efektif responnya dengan melakukan uji lanjutan atau yang sering disebut dengan pairwise mean comparison. Namun, one-way ANOVA termasuk pada jenis pengujian parametrik. Sehingga, harus memenuhi beberapa asumsi supaya hasil yang diperoleh dapat dikatakan objektif.</p>
+</div>
+<div id="referensi" class="section level1">
+<h1>Referensi</h1>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://datascienceplus.com/oneway-anova-explanation-and-example-in-r-part-1/">Oneway ANOVA Explanation and Example in R; Part 1</a></p></li>
+<li><p><a href="https://www.r-bloggers.com/performing-anova-test-in-r-results-and-interpretation/">Performing ANOVA Test in R: Results and Interpretation</a></p></li>
+<li><p><a href="http://www.sthda.com/english/wiki/one-way-anova-test-in-r">One-Way ANOVA Test in R</a></p></li>
+<li><p><a href="https://www.statmethods.net/stats/anova.html">ANOVA</a></p></li>
+</ol>
+</div>

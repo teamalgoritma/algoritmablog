@@ -1,0 +1,298 @@
+---
+title: "Skincare Recommendation System"
+author: "Dyah Nurlita"
+date: '2020-09-01'
+github: https://github.com/Litaa
+slug: skincare-recommender-system
+categories: 
+  - Python
+tags:
+  - Machine Learning
+  - Recommender System
+  - Collaborative Filtering
+description: ''
+featured: 'skincare-rec.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r, echo=FALSE}
+rm(list = ls())
+
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+```
+Have you ever imagine how Netflix give you recommendation for movies you have never watch before?
+If you're familiar with machine learning, you can find the answer. Yappps.. that's right. The answer is "Recommendation System".
+Recommendation system or recommender system is subclass of information filtering system that seeks to predict the "rating" or "preference" a user would give to an item. Recommendation system aims to telling us which movies to watch (Netflix), which product to buy (Amazone), or which songs to listen (Spotify) based on our historical data.<br>
+
+
+```{r, echo=FALSE}
+Sys.setenv(RETICULATE_PYTHON = "C:/Users/dyahn/anaconda3/envs/dataanalytics/python.exe")
+library(reticulate)
+py_run_string("import os")
+py_run_string("os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = 'C:/Users/dyahn/anaconda3/Library/plugins/platforms'")
+```
+
+
+# Skincare Recommendation System using Collaborative Filtering (Matrix Factorization)
+
+## Introduction
+
+**Collaborative filtering** is one of basic models for recommendation system which are based on assumption that people like things similar to other things they like, or things that are liked by other people which have similar taste with them.<br>
+The ilustration given below :
+
+<center> ![](/img/skincare-recommender-system/New Project.png){width="80%"} </center>
+
+From the ilustration above, information given that Kiki (girl with black cat) likes to buy apple, banana, and watermelon. While Satsuki (girl with yellow shirt) likes to buy apple and banana. They have similar taste in apple and banana, so we can recommend Satsuki to buy watermelon.<br>
+
+In **collaborative filtering**method there are two approaches which can be implemented :<br>
+
+**1. Memory-based approach: **create recommendation system by calculated closest users or items using cosine similarity or pearson correlation coefficients.<br>
+
+**2. Model-based approach: **create recommendation system by given predict user's rating value of unrated items.<br>
+<br>
+
+In this notebook, I will create simply recommender system to recommend skincare product to the customers which have never buy before. I'll predict the unrated items using Singular Value Decomposition (SVD) of **Matrix Factorization** algorithm. The data used comes from scraping result in Femaledaily Website. Data contains information about review product given by customers. There are several attribut inside, for more details, let's check it out!
+
+## Data Preparation
+
+#### Import library
+```{python}
+import pandas as pd
+from scipy.sparse.linalg import svds
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+```
+
+#### Read the data
+
+```{python}
+data = pd.read_csv("data_input/Female Daily Skincare Review Final.csv")
+```
+
+#### Check and drop missing values
+
+```{python}
+data.isna().sum()
+```
+
+```{python}
+data = data.dropna()
+```
+
+#### Check and drop duplicated values
+
+```{python}
+data.duplicated().sum()
+data.drop_duplicates(keep = "first", inplace = True)
+```
+
+#### Filter the data
+<br>
+In this section I will do filtering on the data where customer only rated the product once. Since those data having less information in recommendation system.
+
+```{python}
+id_count = pd.crosstab(index=data.Reviewer,columns='count').sort_values(by='count',ascending=True)
+```
+
+```{python}
+name_r = id_count[id_count['count']>1]
+name_u = name_r.index.to_list()
+data = data[data.Reviewer.isin(name_u)]
+data.to_csv('femdaily.csv',index=False,header=True)
+```
+
+#### Drop unused columns
+
+```{python}
+data = pd.read_csv("femdaily.csv")
+data.drop_duplicates(keep = "first", inplace = True)
+data.drop(['Recommend','Date','Date Scrape','Url','Category'], axis=1, inplace=True)
+data.rename(columns={'Reviewer':'reviewer','Product':'product','Stars':'rating'}, inplace=True)
+data = (data[~(data['reviewer'] == ' ')])
+```
+
+```{python}
+data
+```
+
+## Data Exploration
+
+Since in the next step (modelling) we will define and create matrix based on Product X User, so we need to understanding about size of both unique product and user.
+
+#### Number of uniq product
+
+```{python}
+uniq_product = data['product'].nunique()
+print("Number of uniq product :",uniq_product)
+```
+
+Here above, product have 3297 unique number, this number will become number of columns matrix in modelling step.
+
+#### Number of uniq users
+
+```{python}
+uniq_reviewer = data['reviewer'].nunique()
+print("Number of uniq reviewer :",uniq_reviewer)
+```
+
+Here above, user have 22359 unique number, this number will become number of rows matrix in modelling step.
+
+#### Distribution rating given by users
+
+```{python}
+plt.subplots(figsize = (7,6))
+plt.hist(data['rating'],color="orange")
+```
+
+From the visualization above, bar plot shown that users frequently give rating in 5 or 4, which mean that they are satisfied with the product.
+
+## Build Recommendation System
+
+### Matrix Factorization
+
+If you see the pivot matrix below, you will find that pivot matrix have so many zero value (missing value). Why did it happen? It can be happen because not every user give a rating in a every product, this condition called <b>sparse matrix.</b>Sparse matrix is limitation in collaborative filtering models, because sparse matrix gives bias information in our recommender system. There will be popularity bias in the recommendation given by the system to user, system will give recommends the product with the most interactions without any personalization.<br>
+**Matrix Factorization** is one way to handle those issue. Matrix factorization will breaking down of one matrix into a product of multiple matrices and give predictive rating in sparse matrix. Basic idea from matrix factorization is that attitudes or preferences of a user can be determined by a small number of hidden factors.<br>
+Illustration given below:
+
+<center> ![](/img/skincare-recommender-system/matrix.JPG){width="80%"} </center>
+
+
+Intuitively, we can understand hidden factors for items and users from illustration above. Say that U is low dimensional matrix for Users features and V is low dimensional matrix for Product features. Every matrix values represent different characteristics about the users and the product. For e.g I have 3 features in Product matrix *(i) what kind categories of the product? (ii) Does the product contains dangerous addictive substance? (iii)How the product give impact in our skin?*  Likewise, in Users matrix might represent *(i)how sensitive the user's skin into the product substances? (ii)Does the user like "X" category product, an so on*. We can get the predictive ratings by calculate the dot product between matrix U and matrix V.
+
+### Singular Value Decomposition (SVD)
+
+**Singular Value Decomposition** is one of type Matrix Factorization. SVD algorithm will decomposes a matrix R into the best lower rank approximation of the original matrix R. Matematically SVD produce by the formula below :
+
+<center> ![](/img/skincare-recommender-system/svd.JPG){width="50%"} </center>
+
+
+<div style="text-align:justify">where U and V are orthogonal matrix with orthonormal eigenvectors and $\sum$ is the diagonal matrix of singular values (essentially weights). The matrix can be factorized as :</div>
+
+<center> ![](/img/skincare-recommender-system/matrix_.jpg){width="80%"} </center>
+
+
+We can arrange eigenvectors in different orders to produce U and V.
+
+### Implementation Recommender System in Python Code
+
+#### a. Create matrix pivot
+<br>
+Create matrix pivot where the vertical value is users name, horizontal value is product name, and the value inside matrix is rating given by users.
+
+```{python}
+matrix_pivot = pd.pivot_table(data,values='rating',index='reviewer',columns='product').fillna(0)
+matrix_pivot.head()
+```
+#### b. Normalize rating values
+<br>
+Why we do need to normalize the rating?
+<br>
+Because it starts with the fact that people rate often on very different scales. Say that Kiki and Satsuki use a product B, and Kiki gives rating value 5 on that product, because Satsuki has a high standart she only gives 3 on that product. Here is, the 5 from Kiki is 3 from Satsuki. To make the model better is, we can increase the efficiency of this algorithm if we normalize user’s rating by substract rating value given by user in each product with mean rating in each product.
+
+```{python}
+matrix_pivot_ = matrix_pivot.values
+user_ratings_mean = np.mean(matrix_pivot_, axis = 1)
+user_rating = matrix_pivot_ - user_ratings_mean.reshape(-1,1)
+```
+
+#### c. Singular Value Decomposition (SVD)
+<br>
+Create matrix U and Vt using library scipy.
+
+```{python}
+from scipy.sparse.linalg import svds
+U, sigma, Vt = svds(user_rating, k = 50)
+```
+
+```{python}
+sigma = np.diag(sigma)
+```
+
+#### d. Create predictive rating
+<br>
+After we get the value from decomposition matrix above, we can create product ratings predictions for every user. 
+
+```{python}
+all_user_predicted_ratings = np.dot(np.dot(U, sigma), Vt) + user_ratings_mean.reshape(-1, 1)
+```
+
+And, here below matrix is result of predictive rating from each user in each product. 
+
+```{python}
+preds_df = pd.DataFrame(all_user_predicted_ratings, columns = matrix_pivot.columns, index=matrix_pivot.index)
+preds_df
+```
+
+#### e. Create recommendation
+<br>
+In this final step we will create recommendation product. I'll return the product with the 5 highest predicted rating that the user hasn’t already rated. 
+
+```{python}
+def recommend_product(predictions_df, user, data_, num_recommendations):
+   
+    user_row_number = user
+    sorted_user_predictions = preds_df.loc[user_row_number].sort_values(ascending=False)
+
+    user_data = data_[data_.reviewer == (user)]
+    user_full = user_data
+
+
+    print('User {0} has already rated {1} product'.format(user, user_full.shape[0]))
+
+    a = data.drop_duplicates(subset='product', keep='last')
+    recommendations = (a[~a['product'].isin(user_full['product'])].
+         merge(pd.DataFrame(sorted_user_predictions).reset_index(), how = 'left',
+               left_on = 'product',
+               right_on = 'product').
+         rename(columns = {user_row_number: 'Predictions'}).
+         sort_values('Predictions', ascending = False).
+                       iloc[:num_recommendations, :-1]
+                      )
+
+    return user_full, recommendations
+```
+
+Input the user id to whom you want recommend the product.
+
+```{python}
+user = 'zzulia'
+already_rated, predictions = recommend_product(preds_df, user, data,5)
+```
+
+Result below shown that "zzulia" already rate 3 product. Twice for Facial Mask with different rating in each product, and once for Pembersih Two In One Bengkoang Whitening.
+
+```{python}
+already_rated
+```
+
+And, here below 5 highest predicted rating from user id "zzulia". The recommendation system suggest "zzulia" to buy Prominent Essence Facial Mask, Facial Mask Bedak Dingin, Oil Control Mask, White Aqua Serum Sheet Mask, and Essential Vitamin. Suggested products are dominated with "Mask" product, because from historical data above "zzulia" already rate 2 product with category "Mask.
+
+```{python}
+prod_pred = predictions['product']
+```
+
+```{python}
+prod_pred
+```
+
+## Conclusion
+
+From the result above, we can conclude that:<br>
+1. Based on recommendation system above, Femaledaily website can provide product recommendation in the main dashboard when targeted users access the website.<br>
+2. Low dimensional matrix in Matrix factorization tried to capture the underlying features or hidden factors from the users and items.<br>
+3. This model is the right choice if you have many sparcity data.<br>
+

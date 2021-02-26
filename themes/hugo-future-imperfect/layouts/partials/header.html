@@ -6,6 +6,11 @@
 -->
 <html>
     <head>
+      
+     <br>
+      
+      {{ partial "toogle.html" . }}
+      
         {{ partial "seo_schema" . }}
         {{ with $.Scratch.Get "generalTitle" }}
             <title>{{ . }}</title>
@@ -51,13 +56,18 @@
         <!-- If the value "default" is passed into the param then we will first
              load the standard css files associated with the theme -->
         {{ if or (in ($.Scratch.Get "cssFiles") "default") (eq ($.Scratch.Get "cssFiles") false) }}
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+            <link disabled id="dark-mode-theme" rel="stylesheet" href="{{ "css/dark.css" | relURL }}">
+            <link rel="stylesheet" href="{{ "css/monokai-sublime.css" | relURL }}">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
             <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
             <link rel="stylesheet" href="{{ "css/add-on.css" | relURL }}">
             <link rel="stylesheet" href="{{ "css/academicons.min.css" | relURL }}">
+            <link href="{{ "/lib/datatables-css-0.0.0/datatables-crosstalk.css" | relURL }}" rel="stylesheet">
+            <link href="{{ "/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" | relURL }}" rel="stylesheet">
+            <link href="{{ "/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" | relURL }}" rel="stylesheet">
+            <link href="{{ "/lib/crosstalk-1.0.0/css/crosstalk.css" | relURL }}" rel="stylesheet">
         {{ end }}
 
         {{ if ne ($.Scratch.Get "cssFiles") false }}
@@ -71,7 +81,7 @@
 {{ if (not .Params.disable_highlight) }}
   {{ $highTheme := .Site.Params.highlightjsTheme }}
     {{ with .Site.Params.highlightjsVersion }}
-      <link rel="stylesheet" href="{{"css/night-owl.css" | absURL}}" rel="stylesheet" id="theme-stylesheet">
+      <link rel="stylesheet" href="{{"css/monokai-sublime.css" | absURL}}" rel="stylesheet" id="theme-stylesheet">
       <script src="{{ "js/highlight.pack.js" | absURL }}"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   {{ end }}

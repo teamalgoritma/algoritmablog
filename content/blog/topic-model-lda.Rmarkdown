@@ -1,0 +1,1163 @@
+---
+title: Topic Modelling with Latent Dirichlet Allocation (LDA)
+author: Arga Adyatama, Joe Nathan
+github: https://github.com/Argaadya/Topic_Modelling
+date: '2020-10-26'
+slug: topic-modeling-lda
+categories:
+  - R
+tags:
+  - Machine Learning
+  - Topic Modelling
+description: ''
+featured: 'topic-modelling.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+```{r include=FALSE}
+# clean up the environment
+rm(list = ls())
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+```
+
+# Topic Modelling
+
+## Background
+
+Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values[^1]. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable[^2]. The are many applications of NLP in various industries, such as:
+
+* SPAM email detection
+* Sentiment Analysis
+* Text summarization
+* Text Generation
+* Topic Modelling
+
+On this occation, we will learn about Topic Modelling and it's application in a real case. Before we start the journey, let's consider a simple example.
+
+Suppose that we have the following word cloud, can you guess what these words have in common?
+
+<center> ![](/img/topic_model_lda/politic.png){width="100%"} </center>
+
+The interpretation may differ from one persone to another, but most of you must be agree that the word cloud has a common theme or topic. Perhaps you might say that it is related to economics, or politics, or business. The real theme of the words is unkown, but we as the observer are giving the group of words a meaningful and understandable topic. This activity is what we call as **Topic Modelling**.
+
+> In text mining, we often have collections of documents, such as blog posts or news articles, that we’d like to divide into natural groups so that we can understand them separately. Topic modeling is a method for unsupervised classification of such documents, similar to clustering on numeric data, which finds natural groups of items even when we’re not sure what we’re looking for.
+> `r tufte::quote_footer(' Julia Silge and David Robinson')`
+
+There are many application of Topic Modelling, even outside of the field of NLP. Some applications of Topic Modelling derived from *Boyd-Graber et al.*[^3] and *Blei et al.*[^4] includes:
+
+* Discover different topic in large corpus of document
+* Sentiment Analysis
+* Understanding Stance and Polarization in Social Media
+* Identify new innovation/discovery in scientific research paper
+* Document Classification
+* Recommender System
+
+Below is another example of topic modeling from *Blei et al.* where the top words for each topic (arts, budgets, children, and education) are shown. The colored text on the lower part of the figure illustrate that a single document is a collection of words with various topic.
+
+<center> ![](/img/topic_model_lda/topic.PNG){width="100%"} </center>
+
+The popular algorithm for Topic Modeling is **Latent Dirichlet Allocation (LDA)**, which is developed by <a href = "http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf"> **Blei et al.** </a>. This algorithm can be understood in this two simple properties[^5]:
+
+* **Every document is a mixture of topics**. We imagine that each document may contain words from several topics in particular proportions. For example, in a two-topic model we could say “Document 1 is 90% topic A and 10% topic B, while Document 2 is 30% topic A and 70% topic B.”
+* **Every topic is a mixture of words**. For example, we could imagine a two-topic model of American news, with one topic for “politics” and one for “entertainment.” The most common words in the politics topic might be “President”, “Congress”, and “government”, while the entertainment topic may be made up of words such as “movies”, “television”, and “actor”. Importantly, words can be shared between topics; a word like “budget” might appear in both equally.
+
+**The objective** of this article is as follows:
+
+* Understand the advantage and disadvantage of LDA
+* Understand how to train and evaluate Topic Modelling with LDA
+* Learn how to implement Topic Modeling in a corpus of document
+* Learn how to interpret and explore the output of LDA
+
+## Library and Setup
+
+Below is the required package to reproduce the code in this article. 
+
+```{r message=FALSE, warning=FALSE}
+# Data Wrangling
+library(tidyverse)
+
+# Text Processing
+library(tm)
+library(corpus)
+library(tidytext)
+library(textclean)
+library(lubridate)
+library(hunspell)
+library(SnowballC)
+library(textmineR)
+library(scales)
+
+# Visualization
+library(ggwordcloud)
+
+# Modeling and Evaluation
+library(randomForest)
+library(e1071)
+library(yardstick)
+
+options(scipen = 999)
+```
+
+# General Concept
+
+This section illustrate the first principle and the workflow of Topic Modelling with LDA
+
+## Latent Dirichlet Allocation (LDA)
+
+LDA is a generative probabilistic model of a corpus. Compared to other topic modelling methods such as the unigram model, Latent Semantic Analysis (LSA), and Probabilistic Latent Semantic Analysis (pLSA), the advantage and disadvantage of LDA is as follows:
+
+**Advantages**
+
+- Can find latent topic inside documents
+- Supervised learning requires a true label, which may not be available
+- LDA is easy to train
+- LDA can be paired with word2vec to retain the word representation.
+- LDA give interpretable topics
+
+**Disadvantages**
+
+- Only considers document as a bag of words and ignore syntactic information (e.g. word order) and semantic information (e.g. the multiplicity of meanings of a given word)
+- Fixed number of topics
+- Uncorrelated topics (Dirichlet topic distribution cannot capture correlations)
+- Static (no evolution of topics over time)
+
+We will break the concept one step at a time. Back to the last section, the main principle of LDA is these 2 concepts:
+
+* **Every document is a mixture of topics**
+* **Every topic is a mixture of words**
+
+We will go to the first concept. LDA does not give a clear answer wether a document belong to a certain topics because a document is considered as a mixture of topics. In a single document, we may find several topics. A news about the financial crisis of 2008 may consists of economics, politics and social topics, blended in a single article that discuss about the market value, the government response and the impact of high unemployment rate. Thus, as an example, a document may consists of 30% economics, 60% politics, and 10% social topics. The percentage of each topic represent the probability of the document to belong a certain topic. Therefore, we can imagine the mixture of topics as a probability distribution such as the following table:
+
+```{r}
+set.seed(123)
+data.frame(news = 1:5,
+           economics = runif(5, max = 0.5),
+           politics = runif(5, max = 0.5)) %>% 
+   mutate(social = 1 - (economics + politics))
+```
+
+The first news has a 14% chance to be an economics news, 2% of politics news and 83% of social news. The second news has a 39% chance to be an economics news, 26% of politics news and 34% of social news and so on. Higher probability means that the document can be represented by the topic.
+
+The word *Latent* in Latent Dirichlet Allocation refers to the latent or hidden structure inside a document. As we have seen in the previous section, we intuively think that a group of words can have a central theme or topics. Therefore, according to the second principle, a topic is a mixture of words, where a certain words have a strong association with a certain topic. For example, the word *President* have a strong signal that it belong to the topic of politics, or the word *Loan* and *Interest* have a strong signal toward economics topic. Just as a document has a probability distribution for each topic, a topic also has a probability distribution for each words/terms. LDA assume that a document is a bag of words, thus we do not care about the word sequence.
+
+An LDA model is built based on these two principles and has the following graphical structures. 
+
+<center> ![](/img/topic_model_lda/lda_model.jpg){width="100%"} </center>
+
+Notation:
+
+* $\alpha$ = The dirichlet parameter for per-document topic proportion
+* $\theta_d$ = Topic distribution of document $d$
+* $Z_{d,n}$ = Topic assignment of the $n^{th}$ word in document $d$
+* $W_{d,n}$ = Observed word of the $n^{th}$ word in document $d$
+* $\eta$ = 
+* $\beta_k$ = Words distribution of topic $k$
+* $K$ = Collection of topics
+* $N$ = Collection of words within documents
+* $D$ = Collection of document in the corpus
+
+LDA belong to a hierarchical bayesian model. A bayesian model has a prior and a posterior. A prior means the probability distribution of certain things before we see the data. For example, we may belief that the probability distribution for a roll of dice is uniformly distributed with every value have the same probability to appear. We have this assumption before we try to roll the dice. Meanwhile, the posterior probability reflects the probability distribution after we see the data, after we roll the dice. For example, after we toss the dice for 10,000 times, the number 5 appears for more than 5,000 tosses. This may change our belief that the value for each side is uniformly distributed, since a single side of the dice has a high chance to appear and we might be suspicious that the dice is not fair. We can calculate the posterior probability using the Bayes Theorem[^6], which we will not discuss on this article. The concept of prior and posterior probability is important to the understanding of the LDA process.
+
+The LDA model consists of 2 different priors distribution: probability distribution of topic to document (topic-document probability) and probability distribution of words to topics (word-topic probability). The probability distribution for the two priors are not uniform or normal distribution, but a Dirichlet distribution with the $\alpha$ and $\beta$ parameters as well as the number of topics as the input. 
+
+The following figure is the illustration of the Dirichlet distribution for each topic to each document. Suppose we have a collection of documents and we are confident that on the corpus we have 3 different topics. Each dot represent a single document and each side of the triangle represent a single topics. The position of each document represent the probability distribution for each topic. We randomly assign the position of each document based on its probability distribution. We can see that document A has a close proximity to the topic of Science. This indicate that document A has a high probability of belong to topic Science and low probability ot belong to Politics or Economy. Meanwhile, document B has a high probability to belong to the topic Economy. Document C is located between Science and Politics, so it has a rather equal probability for those topics and low probability for the topic Economy. The topic D is located at the center of the triangle, which means that it has an equal probability for the three topics. 
+
+<center> ![](/img/topic_model_lda/dirichlet1.png){width="100%"} </center>
+
+The goal of LDA is to make each document as close as possible toward a certain topics, although it may not always be achieved for all document. If the above graphics represent our prior probability for each document to each topics, the following graphic illustrate the posterior probability where all document is having a strong relation with a certain topics.
+
+<center> ![](/img/topic_model_lda/dirichlet2.png){width="100%"} </center>
+
+We may translate the probability distribution into the following table:
+
+```{r}
+data.frame(document = c("A","B","C","D"),
+           sciences = c(0.8, 0.1, 0.1, 0.1),
+           politics = c(0.1, 0.05, 0.85, 0.8),
+           economy = c(0.1, 0.85, 0.05, 0.1))
+```
+
+The second prior distribution is the probability of a topics belong to certain words: word-topic probability. This prior is concerned with what terms that represent what topic? Is there any terms that have strong connection with certain topics? Let's say we have 4 terms: *President*, *Planet*, *Market*, and *Energy*. Each terms will act as the edge of the triangle. However, since we have more than 3 terms, the shape of the distribution is not a triangle anymore, but a tetrahedron. The following figures illustrate a random assignment of Dirichlet distribution between topics and words.
+
+<center> ![](/img/topic_model_lda/dirichlet3.png){width="100%"} </center>
+
+If we translate the position of each topic into a probabilistic value, we get the following table:
+
+```{r}
+data.frame(topic = c("Politics", "Science", "Economy"),
+           president = c(0.8, 0.15, 0.1),
+           planet = c(0.05, 0.5, 0.05),
+           energy = c(0.1, 0.3, 0.15),
+           market = c(0.05, 0.05, 0.7))
+```
+
+Based on the table, the terms *President* has strong association with the word politics, *Planet* with Science and *Market* with Economy.
+
+These prior distribution will be used to generate word samples to calculate the posterior probability or the estimate of the true probability.
+
+Let's go back toward the LDA structure.
+
+<center> ![](/img/topic_model_lda/lda_model.jpg){width="100%"} </center>
+
+The generative process is the process of generating a document by randomly selecting words from each topic. The rough description of the process is as follows:
+
+1. Randomly choose a distribution over topics
+
+2. For each word in the document
+
+   a. randomly choose a topic from the distribution over topics
+   b. randomly choose a word from the corresponding topic (distribution over the vocabulary)
+
+In order to estimate the posterior probability of the topic-document and word-topic distribution, we need to use Gibbs-sampling or Variational Expectation Maximation (VEM). Both are approximate inference method and has its own characteristic.
+
+## Gibbs Sampling
+
+The Gibbs sampling is one of many method to sample data in Bayesian Statistics. The concept of Gibbs sampling in topic modeling is that we assume that all documents and all terms have a prior topics except for a single word, which we will calculate the posterior probability of belonging to certain topics. The algorithm of Gibbs sampling is as follows:
+
+_____________________________
+
+1. For each iteration $i$:
+
+1.1 For each document $d$ and word $n$ currently assigned to $z_{old}$ :
+
+1.1.1 Decrement $n_{d,z_{old}}$ and $v_{z_{old}, w_{d,n}}$
+
+1.1.2 Sample $z_{new} = k$ with probability proportional to $\frac{n_{d,k} + \alpha_k\ v_{k,w_{d,n}} + \lambda_{w_{d,n}}}{\Sigma_i=k^K n_{d,i} +\alpha_i\ \Sigma_i v_{k,i} + \lambda_i}$
+
+1.1.3 Increment $n_{d,z_{new}}$ and $v_{z_{old}, w_{d,n}}$
+
+_____________________________
+
+Notation :
+
+$z_{old}$ : prior/early topic assignment
+
+$z_{new}$ : updated topic assignment
+
+$n_{d,k}$ : Number of times document $d$ uses topic $k$
+
+$v_{k, w_{d,n}}$ : Number of times topic $k$ uses word type $w_{d,n}$
+
+$\alpha_k$ : Dirichlet parameter for document to topic distribution
+
+$\lambda_{w_{d,n}}$ : Dirichlet parameter for topic to word distribution
+
+We will try with an example. Suppose we have a corpus of documents, with one of them is as follows:
+
+> The government put curfew during pandemic
+
+Suppose that the document has a pre-determined topic assignment:
+
+```{r}
+data.frame(
+   topic = c(1, 2, 2, 3, 1, 3),
+   term = c("the", "government", "put", "curfew", "during", "pandemic")
+) %>% 
+   t() %>% 
+   as.data.frame()
+```
+
+The following is the count of words for each topics from all documents inside the corpus:
+
+```{r}
+data.frame(
+   term = c("the", "government", "put", "curfew", "during", "pandemic"),
+   topic_1 = c(200, 10, 30 ,20, 5, 8),
+   topic_2 = c(40, 30, 10, 5, 3, 2),
+   topic_3 = c(10, 2, 1, 8, 17, 30)
+)
+```
+
+For the first iteration and the first term, we would like to update the topic assignment for the word *government*. 
+
+```{r}
+data.frame(
+   topic = c(1, "?", 2, 3, 1, 3),
+   document = c("The", "government", "put", "curfew", "during", "pandemic")
+) %>% 
+   t() %>% 
+   as.data.frame()
+```
+
+1.1.1 Decrement $n_{d,z_{old}}$ and $v_{z_{old}, w_{d,n}}$
+
+The word *government* was assigned as topic 2 earlier so we would omit that assignment and reduce the count of word *government* from the topic 2 by 1 (from 30 to 29).
+
+```{r}
+data.frame(
+   term = c("the", "government", "put", "curfew", "during", "pandemic"),
+   topic_1 = c(200, 10, 30 ,20, 5, 8),
+   topic_2 = c(40, 29, 10, 5, 3, 2),
+   topic_3 = c(10, 2, 1, 8, 17, 30)
+)
+```
+
+1.1.2 Sample $z_{new} = k$ with probability proportional to $\frac{n_{d,k} + \alpha_k\ v_{k,w_{d,n}} + \lambda_{w_{d,n}}}{\Sigma_i=k^K n_{d,i} +\alpha_i\ \Sigma_i v_{k,i} + \lambda_i}$
+
+Now we update the topic assignment using the earlier formula. We will get the probability for each topic (k) and then sample the topic. Higher probability means that the word will be likely assigned to that topic.
+
+$$z_{new} = \frac{n_{d,k} + \alpha_k\ v_{k,w_{d,n}} + \lambda_{w_{d,n}}}{\Sigma_{i=k}^K n_{d,i} +\alpha_i\ \Sigma_i v_{k,i} + \lambda_i}$$
+
+Long story short, after we get the sample, we update the topic assignment for the word. For example, based on the sample, the new topic assignment for the word *government* is topic 1.
+
+```{r}
+data.frame(
+   topic = c(1, 1, 2, 3, 1, 3),
+   document = c("The", "government", "put", "curfew", "during", "pandemic")
+) %>% 
+   t() %>% 
+   as.data.frame()
+```
+
+1.1.3 Increment $n_{d,z_{new}}$ and $v_{z_{old}, w_{d,n}}$
+
+We increment the counts for each word to each topic based on the newly updated assignment and we continue to update the topic for the next words. The count for word *government* for topic 1 is increased from 10 to 1.
+
+```{r}
+data.frame(
+   term = c("the", "government", "put", "curfew", "during", "pandemic"),
+   topic_1 = c(200, 11, 30 ,20, 5, 8),
+   topic_2 = c(40, 29, 10, 5, 3, 2),
+   topic_3 = c(10, 2, 1, 8, 17, 30)
+)
+```
+
+# Case Studies
+
+## COVID-19 CBC News
+
+We will try to do a document modelling to find different topics in **CBC News/COVID-19 Articles**. The dataset is acquired from <a href = "https://www.kaggle.com/ryanxjhan/cbc-news-coronavirus-articles-march-26"> Kaggle </a>. The context of the dataset is that has the news media been overreacting or under-reacting during the development of COVID-19? What are the media's main focuses? 
+
+We will try to answer this problem by finding latent information inside corpus using Latent Dirichlet Allocation.
+
+### Import Data
+
+The dataset consists of more than 2,725 articles with 7 columns. To read 'big' data with fast running time, we can use `fread()` function from `data.table` package.
+
+```{r }
+covid_news <- data.table::fread("data_input/covid_news.csv", header = T, encoding = "Latin-1")
+
+glimpse(covid_news)
+```
+
+Data description:
+
+* **V1**: Document index
+* **authors**: The author of the news/articles
+* **title**: The title of the news/articles
+* **publish_date**: The date when the news/article is published
+* **description**: The subtitle or headline of the news/article
+* **text**: The full text of the news/article
+* **url**: The link of the news/article
+
+Below is the sample of the data.
+
+```{r }
+head(covid_news, 10)
+```
+
+Based on the title of the sample news, some article reported about the virus spread and transmission while some others talk about what the government does in response to the COVID-19. We will explore it further using the topic modelling.
+
+### Text Cleansing
+
+We will clean the text first before proceed further. The text cleansing process includes:
+
+* lowercase all text
+* remove html tag 
+* lengthen shortened words (don't, I'll)
+* replace all `-` with white space
+* remove the common word of `coronavirus`, `covid 19`, and `covid`
+* remove all punctuation
+* replace all numeric character into words
+* remove double white space
+* remove white space at the start and the end of text
+
+```{r}
+covid_clean <- covid_news %>% 
+   mutate(text_clean = text %>% 
+             replace_non_ascii() %>% 
+             replace_html(symbol = F) %>% # remove html tag
+             str_replace_all("[0-9]", " ") %>% 
+             str_replace_all("[-|]", " ") %>% # replace "-" with space
+             tolower() %>% #lowercase
+             str_remove_all("coronavirus|covid 19|covid|canadian|canadians") %>%  # remove common words
+             replace_symbol() %>%
+             replace_contraction() %>% 
+             replace_word_elongation() %>%  # lengthen shortened word
+             str_replace_all("[[:punct:]]", " ") %>% # remove punctuation
+             str_replace_all(" dr ", " doctor ") %>% 
+             make_plural() %>%
+             str_replace_all(" s ", " ") %>%  
+             str_squish() %>% # remove double whitespace
+             str_trim() # remove whitespace at the start and end of the text
+          )
+
+```
+
+Let's see the remaining number of words on each document in our corpus.
+
+```{r}
+document_length <- sapply(strsplit(covid_clean$text, " "), length)
+
+document_length %>% 
+   summary()
+```
+
+The shortest document has 14 words while the longest has 5100 words. LDA will works better if the text input has a lot of words inside the sentence. We will filter document that has at least consists of 100 words.
+
+```{r}
+covid_clean <- covid_clean %>% 
+   slice(which(document_length > 100))
+
+dim(covid_clean)
+```
+
+We have 2,710 number of documents remanining.
+
+### Document-Term Matrix
+
+The next step is to tokenize the text and create a Document-Term Matrix (DTM) from our text data. We will also remove any stop words such as `the` or `is` since they are irrelevant for this problem. We will also do stem words into their basic form, such as from `walking` into `walk`. To get better stemming, we also change all `positive` terms into `positives`. The stemming function is created manually by with `hunspell`[^7] stemming at its core. `hunspell` stemming give better result compared to the basic stemming algorithm such as Porter stemming algorithm[^8].
+
+```{r message=FALSE}
+stem_hunspell <- function(term) {
+    # look up the term in the dictionary
+    stems <- hunspell_stem(term)[[1]]
+    
+    if (length(stems) == 0) { # if there are no stems, use the original term
+        stem <- term
+    } else { # if there are multiple stems, use the last one
+        stem <- stems[[length(stems)]]
+    }
+    return(stem)
+}
+
+news_term <- covid_clean %>% 
+   unnest_tokens(output = "word", input = text_clean) %>% 
+   anti_join(stop_words)  %>% 
+   mutate(word = ifelse(word == "positive", "positives", word),
+          word = text_tokens(word, stemmer = stem_hunspell) %>% as.character() ) %>% 
+   drop_na(word) %>% 
+   count(V1, word)
+```
+
+Next, we will transform the data into document-term matrix (DTM). The value inside the matrix represent the `term frequency` or the number of terms appear inside each document.
+
+```{r}
+dtm_news <- news_term %>% 
+   cast_dtm(document = V1, term = word, value = n)
+
+inspect(dtm_news)
+```
+
+We have 2,710 documents with total terms of more than 28,000 terms. We will remove rare word that occur only in less than 5 documents and also the common words that appear in more than 90% of all documents. This is intended to give us a collections of terms that is common enough and shared by several documents to indicate a shared topics/latent information but also unique enough that it is not shared by all documents.
+
+```{r}
+word_freq <- findFreqTerms(dtm_news, 
+                           lowfreq = 5, 
+                           highfreq = nrow(dtm_news)*0.9
+                           )
+
+dtm_news <- dtm_news[ , word_freq]
+dtm_news
+```
+
+The number of terms drastically drop from 29,000 to around 9,000 terms. We will use this data to train the LDA model.
+
+### Topic Modelling with LDA
+
+We will create an LDA model with `k = 3` topics. The choice of number of topics is arbitrary, but we will show you how to find the optimal number of topics later. We will use Gibbs-sampling to estimate the parameter using 5000 iterations of sampling and 4000 burn-in iterations. The burn-in iteration means that we only collecting samples starting from iteration of 4000, since the earlier iteration is still unstable and may not reflect the actual distribution of the data.
+
+Since the computation is quite long (around 30-60 minutes), I have prepared the pre-trained model in the next chunk.
+
+```{r eval=FALSE}
+dtm_lda <- Matrix::Matrix(as.matrix(dtm_news), sparse = T)
+
+set.seed(123)
+lda_news <- FitLdaModel(dtm = dtm_lda, 
+                        k = 3, 
+                        iterations = 5000,
+                        burnin = 4000, 
+                        calc_coherence = T
+                        )
+```
+
+The details about the parameter of `FitLdaModel()` function is as follows:
+
+* dtm = input data, must be in the form of document-term matrix (dtm)
+* k = number of topics
+* iterations = maximum number of iterations
+
+```{r echo=FALSE}
+lda_news <- read_rds("data_input/model_lda.Rds")
+
+glimpse(lda_news)
+```
+
+Below are some important attribute acquired from the LDA Model:
+
+* **phi** : Posterior per-topic-per-word probabilities
+* **theta** : Posterior per-document-per-topic probabilities
+* **alpha** : Prior per-document-per-topic probabilities
+* **beta** : Prior per-document-per-topic probabilities
+* **coherence** : The probabilistic coherence of each topic
+
+If a term has a high value of theta, it has a high probability of that term being generated from that topic. This also indicates that the term has a high association toward a certain topic.
+
+```{r}
+lda_news$theta %>% 
+   head() %>% 
+   as.data.frame() %>% 
+   set_names(paste("Topic", 1:3)) %>% 
+   rownames_to_column("document")  
+```
+
+Remember that LDA assumes that a topic is a mixture of words. The posterior probability for per-topic-per-word assignment is represented by the *phi* value. The sum of all phi for a topic is 1.
+
+```{r message=FALSE}
+lda_news$phi %>% 
+   rowSums()
+```
+
+To get the top terms for each topic, we can use the `GetTopTerms` function.
+
+```{r}
+GetTopTerms(lda_news$phi, 10) %>% 
+   as.data.frame()
+```
+
+### Exploration
+
+As we have stated earlier, LDA merely give us the hidden/latent structure inside the corpus of our documents. It is our job as the user to interpret the latent information and assign labels for each generated topic.
+
+#### Word-Topic Probabilities
+
+Below is the top words for each topic. LDA doesn't specifically inform us about what each topic is about. By looking at the representative words of each topic, we as the human will give meaning to each topic. The top terms in the first topic seems to tells us about the impact of the virus outbreak, as indicated by the word `school`, `social distance`, `store`, and `student`. The second topic talks about the politics and economy regarding the COVID-19, since we see the presence of words `cent`, `federal`, `minister`, and `company`. The third topic tell us about the spread and transmission of COVID-19, indicated by the word `patient`, `dr` (doctor), `quarantine`, and `flight`.
+
+As we can see, by using LDA, even though we don't have the true labels or class, the model can generate association between words and topics by assigning probabilities. Using k = 3, we have 3 topics that can easily interpreted since they are quite different from each other.
+
+```{r message=FALSE}
+news_word_topic <- GetTopTerms(lda_news$phi, 30) %>% 
+   as.data.frame() %>% 
+   set_names(paste("Topic", 1:3))
+
+news_word_topic
+```
+
+We can also present top words in each topic using visualization. Here, we will visualize the top 50 terms in each topics using word cloud.
+
+```{r message=FALSE, warning=FALSE, out.width="100%"}
+news_word_topic %>% 
+   rownames_to_column("id") %>%
+   mutate(id = as.numeric(id)) %>% 
+   pivot_longer(-id, names_to = "topic", values_to = "term") %>% 
+   ggplot(aes(label = term, size = rev(id), color = topic, alpha = rev(id))) +
+   geom_text_wordcloud(seed = 123) +
+   facet_wrap(~topic, scales = "free") +
+   scale_alpha_continuous(range = c(0.4, 1)) +
+   scale_color_manual(values = c( "dodgerblue4", "firebrick4", "darkgreen")) +
+   theme_minimal() +
+   theme(strip.background = element_rect(fill = "firebrick"),
+         strip.text.x = element_text(colour = "white"))
+```
+
+#### Document-Topic Probabilities {.tabset}
+
+We can also acquire the probability of a document belong to certain topics. We will use this metric to check whether our guest about the interpretation of each topic is make sense and if each topic is different enough subjectively. 
+
+##### Social Issues
+
+The following table shows the top 10 news title that has the highest probability to the topic of social issues of coronavirus.
+
+```{r message=FALSE}
+news_doc_topic <- lda_news$theta %>% 
+   as.data.frame() %>% 
+   rownames_to_column("id") 
+
+news_doc_topic %>% 
+   arrange(desc(t_1)) %>% 
+   left_join(covid_clean %>% 
+                mutate(V1 = as.character(V1)) %>% 
+                select(V1, title), 
+             by = c("id" = "V1")) %>% 
+   column_to_rownames("id") %>% 
+   select(title, everything()) %>% 
+   head(10)
+```
+
+##### Politics and Economy
+
+The following table shows the top 10 news title that has the highest probability to belong the topic of politics and economy.
+
+```{r}
+news_doc_topic %>% 
+   arrange(desc(t_2)) %>% 
+   left_join(covid_clean %>% 
+                mutate(V1 = as.character(V1)) %>% 
+                select(V1, title), 
+             by = c("id" = "V1")) %>% 
+   column_to_rownames("id") %>% 
+   select(title, everything()) %>% 
+   head(10)
+```
+
+##### Virus Transmission
+
+The following table shows the top 10 news title that has the highest probability to belong the topic of virus transmission.
+
+```{r}
+news_doc_topic %>% 
+   arrange(desc(t_3)) %>% 
+   left_join(covid_clean %>% 
+                mutate(V1 = as.character(V1)) %>% 
+                select(V1, title), 
+             by = c("id" = "V1")) %>% 
+   column_to_rownames("id") %>% 
+   select(title, everything()) %>% 
+   head(10)
+```
+
+#### Topic Proportion over Time
+
+We will illustrate a distant view on the topics in the data over time. Let's see the range of date when each article is published.
+
+```{r}
+range(covid_clean$publish_date)
+```
+
+The first article start at the end of December 2019 and the latest article is on March 2020. We will group the data into weekly interval and see the proportion of each topic across the weeks.
+
+```{r message=FALSE}
+news_doc_topic %>% 
+   left_join(covid_clean %>% 
+                mutate(V1 = as.character(V1)) %>% 
+                select(V1, title, publish_date), 
+             by = c("id" = "V1")) %>% 
+   select(-id) %>% 
+   select(title, everything()) %>% 
+   pivot_longer(c(t_1, t_2, t_3), names_to = "topic", values_to = "theta") %>% 
+   mutate(topic = case_when( topic == "t_1" ~ "Social Issues",
+                             topic == "t_2" ~ "Virus Transmission",
+                             TRUE ~ "Politics and Economy") %>% 
+             factor(levels = c("Virus Transmission", "Social Issues", "Politics and Economy")),
+          publish_date = ymd_hms(publish_date),
+          time = floor_date(publish_date, unit = "week") %>% as.Date()
+          ) %>% 
+   group_by(time, topic) %>% 
+   summarise(theta = mean(theta)) %>% 
+   ggplot(aes(time, theta, fill = topic, color = topic)) +
+   geom_line() +
+   geom_point(show.legend = F) +
+   theme_minimal() +
+   theme(legend.position = "top") +
+   scale_x_date(date_breaks = "1 weeks", 
+                labels = date_format(format = "%d\n%b")) +
+   scale_y_continuous() +
+   scale_fill_manual(values = c("firebrick", "orange", "dodgerblue3")) +
+   labs(x = NULL, y = expression(theta), color = NULL, 
+        title = "Topic Proportions Over Time on Weekly Interval")
+```
+
+As we can see, for COVID-19 case (late 2019-2020), as the time goes, more articles are reporting more about the social issues of the coronavirus. There is a one week time gap between in the late December to early January where no news are collected. News regarding the source of the virus or new cases is less reported on March since almost all country have been contracted by the virus and thus people and the government are more concerned about their survival and well-being.
+
+However, LDA can't accurately track the change inside the topic over time since LDA assume that the order of the document does not matter. This assumption may be unrealistic when analyzing long-running collections that span years or centuries, since a topic may change from time to time. For example, the topic Virus Transmission may containt mostly about the transmission and new cases in early 2020 and more about the virus source and characteristics in the later period. These kind of change inside the topic is not detected by LDA. A more advanced and improved version LDA that can accomodate this is the Dynamic Topic Model[^9], a model that respects the ordering of the documents and gives a richer posterior topical structure than LDA.
+
+### Evaluating LDA
+
+Although LDA is an unsupervised learning, we can still measure some of its performance. Traditionally, and still for many practical applications, to evaluate if “the correct thing” has been learned about the corpus, an implicit knowledge and “eyeballing” approaches are used. Ideally, we’d like to capture this information in a single metric that can be maximized, and compared.
+
+#### Eye-Balling Test
+
+The evaluation of a topic model can be done by looking at the content directly, such as the top-n words like what we previously did. We can decide whether the collection of words inside each topic make sense or contain certain similarity.
+
+```{r}
+news_word_topic
+```
+
+#### Intrinsic Measures
+
+One of the most popular metric to evaluate a topic model is by looking at the topic coherence. Topic Coherence measures the degree of semantic similarity between the top words in a single topic. The `textmineR` implements a new topic coherence measure based on probability theory. Probabilistic coherence measures how associated words are in a topic, controlling for statistical independence.
+
+> "Suppose you have a corpus of articles from the sports section of a newspaper. A topic with the words {sport, sports, ball, fan, athlete} would look great if you look at correlation, without correcting for independence. But we actually know that it’s a terrible topic because the words are so frequent in this corpus as to be meaningless. In other words, they are highly correlated with each other but they are statistically-independent of each other."
+> `r tufte::quote_footer(' Thomas W. Jones')`
+
+The intuition of the probabilistic coherence is that it measure how probable a pair of words will come from the same documents than from a random document in the corpus. For example, if we the top 3 words of a topic is `apple`, `banana`, and `cheese`, we can calculate the topic coherence by averaging the following numbers:
+
+1. $P(apple|banana) - P(banana)$
+
+2. $P(apple|cheese) - P(cheese)$
+
+3. $P(banana|cheese) - P(cheese)$
+
+Description:
+
+- $P(apple|banana)$ : The probability that words apple and banana appear together in the same documents
+- $P(banana)$ : The probability that the word banana appear in the corpus as a whole
+
+You can get the coherence for each topic by calling the `coherence` object from the LDA models. By default, the topic coherence only look for the top 5 words of each topic.
+
+```{r}
+lda_news$coherence
+```
+
+We will try to find the optimal number of topics by finding the average probabilistic coherence for several number of topics, ranging from k = 10 to k = 100 with interval of 10. To speed up the computation, we will only use 200 sampling iterations with burnin iteration of 180 for the sake of illustration since higher number of iterations can run for hours or even days.
+
+```{r eval=FALSE}
+dtm_lda <- Matrix::Matrix(as.matrix(dtm_news), sparse = T)
+k_list <- seq(10, 100, by = 10)
+
+model_list <- TmParallelApply(X = k_list, FUN = function(k){
+
+  m <- FitLdaModel(dtm = dtm_lda, 
+                   k = k, 
+                   iterations = 500, 
+                   burnin = 200,
+                   calc_coherence = TRUE)
+  
+  m <- mean(m$coherence)
+  
+  return(m)
+}, 
+cpus = 4
+)
+```
+
+
+```{r }
+k_list <- seq(10, 100, by = 10)
+
+model_list <- read_rds("data_input/coherence result.Rds")
+
+iter_k <- data.frame(
+   k = k_list,
+   coherence = model_list %>% unlist()
+)
+
+iter_k %>%
+   mutate(max_k = which(coherence == max(coherence)) * 10) %>% 
+   ggplot(aes(k, coherence)) +
+   geom_vline(aes(xintercept = max_k), alpha = 0.5, lty = "dashed") +
+   geom_line(color = "skyblue4") +
+   geom_point() +
+   scale_x_continuous(breaks = seq(0, 200, 20)) +
+   labs(x = "Number of Topics", y = "Coherence", title = "Coherence Score over Number of Topics") +
+   theme_minimal() +
+   theme(panel.grid.minor = element_blank())
+```
+
+The optimal number of topics can be chosen by picking the number of topics that give the highest average coherence.
+
+There are also other methods to evaluate the topic model. It will be too much to discuss them on this article. You can visit Julia Silge blogpost[^10] to see some of the evaluation metrics.
+
+#### Extrinsic Measures
+
+Model performance toward a specific task, such as text classification. If the topics is regarded as a feature for classification model, we can use accuracy or any other classification metrics to check if the topic model is good enough to do the job.
+
+
+## Document Classification
+
+LDA can also be treated as a model for dimensionality reduction. Each document can be reduce into its associated gamma values. Dimensionality reduction is crucial in text mining since using each word as a feature will result in large dataset and longer computation. In this section, we will compare the performance of text classification using different treatment of dimensionality reduction.
+
+### Import Data
+
+We will import data about workplace review. The data consists of 60,672 observations with the review text and the sentiment.
+
+```{r echo=FALSE}
+rm(list = ls())
+```
+
+```{r}
+df <- data.table::fread("data_input/review.csv")
+glimpse(df)
+```
+
+### Text Cleansing
+
+We will do the usual data cleansing:
+
+- Lowecase all text
+- Replace all html symbol
+- Replace word elongation
+- Remove all puncuations and numbers
+- Remove extra white space
+
+
+```{r}
+df_clean <- df %>% 
+   mutate(text_clean = Review %>% 
+             tolower() %>% 
+             replace_html() %>% 
+             replace_word_elongation() %>% 
+             str_replace_all("-", " ") %>% 
+             str_remove_all("[[:punct:]]") %>% 
+             str_remove_all("[[0-9]]") %>% 
+             str_squish() %>% 
+             str_trim())
+
+df_clean %>% head()
+```
+
+Next, we inspect the summary of the length of each document. The maximum number of words in a document is 2161 terms.
+
+```{r}
+document_length <- sapply(strsplit(df_clean$text_clean, " "), length)
+
+document_length %>% 
+   summary()
+```
+
+We will only take documents with more than 50 terms/words.
+
+```{r}
+df_clean <- df_clean %>% 
+   slice(which(document_length > 50))
+
+dim(df_clean)
+```
+
+### Cross-Validation
+
+We split the data into the training set (80%) and the testing set (20%). We will also check the class proportion of the target variable in the training set.
+
+```{r}
+set.seed(123)
+index <- sample(nrow(df_clean), nrow(df_clean)*0.8)
+
+data_train <- df_clean[index, ]
+data_test <- df_clean[-index, ]
+
+table(df_clean$Sentiment) %>% prop.table()
+```
+
+As we can see, there is a class imbalance between the negative and postive sentiment, so we will upsample the minority class first.
+
+```{r message=FALSE}
+library(caret)
+set.seed(123)
+data_train <- upSample(x = data_train %>% select(-Sentiment), 
+                       y = as.factor(data_train$Sentiment), yname = "sentiment") 
+
+glimpse(data_train)
+```
+
+### Document-Term Matrix
+
+Next, we create the document-term matrix (DTM) for each document. The term will be a combination of unigram (1-gram) and bigram (2-gram) for each documents.
+
+```{r message=FALSE}
+stem_hunspell <- function(term) {
+    # look up the term in the dictionary
+    stems <- hunspell_stem(term)[[1]]
+    
+    if (length(stems) == 0) { # if there are no stems, use the original term
+        stem <- term
+    } else { # if there are multiple stems, use the last one
+        stem <- stems[[length(stems)]]
+    }
+    return(stem)
+}
+
+train_term <- data_train %>% 
+   rownames_to_column("id") %>% 
+   unnest_tokens(output = "word", input = text_clean) %>% 
+   anti_join(stop_words)  %>% 
+   mutate(word = text_tokens(word, stemmer = stem_hunspell) %>% as.character()) %>% 
+   drop_na(word) %>% 
+   count(id, word)
+
+train_bigram <- data_train %>% 
+   rownames_to_column("id") %>% 
+   unnest_tokens(output = "word", input = text_clean, token = "ngrams", n = 2) %>% 
+   drop_na(word) %>% 
+   count(id, word)
+
+test_term <- data_test %>% 
+   rownames_to_column("id") %>% 
+   unnest_tokens(output = "word", input = text_clean) %>% 
+   anti_join(stop_words)  %>% 
+   mutate(word = text_tokens(word, stemmer = stem_hunspell) %>% as.character()) %>% 
+   drop_na(word) %>% 
+   count(id, word) 
+
+test_bigram <- data_test %>% 
+   rownames_to_column("id") %>% 
+   unnest_tokens(output = "word", input = text_clean, token = "ngrams", n = 2) %>% 
+   drop_na(word) %>% 
+   count(id, word)
+```
+
+Here is the resulting DTM from the corpus of text data. 
+
+```{r}
+dtm_train_review <- train_term %>% 
+   bind_rows(train_bigram) %>% 
+   cast_dtm(document = id, term = word, value = n)
+
+dtm_test <- test_term %>% 
+   bind_rows(test_bigram) %>% 
+   cast_dtm(document = id, term = word, value = n)
+
+inspect(dtm_train_review)
+```
+
+### Final Preprocessing
+
+We will continue to reduce the number of terms used by only choose words that appear in at least 5 documents and maximum appear in 80% of all documents. We get the final number of terms about 260,000 terms in 6500 documents.
+
+```{r}
+word_freq <- findFreqTerms(dtm_train_review, lowfreq =  5, highfreq = nrow(dtm_train_review)*0.8)
+
+dtm_train <- dtm_train_review[ , word_freq ]
+
+dtm_train
+```
+
+**LDA**
+
+We will build the LDA topic model for the document-term matrix. We will use number of topic (k) = 50, with 5000 iterations and 4000 burn-in. Since the process is relatively long, we also have saved the previously trained topic model in the next chunk. 
+
+The topic distribution for each document ($\theta$) will be used as the features for the machine learning model. Using only 50 topics, we expect a 99.8% dimensionality reduction.
+
+$$Dimensionality\ reduction = 1 - \frac{50}{25908} = 0.998 = 99.8\%$$
+
+```{r eval=FALSE}
+dtm_lda <- Matrix::Matrix(as.matrix(dtm_train), sparse = T)
+
+set.seed(123)
+lda_review <- FitLdaModel(dtm = dtm_lda, 
+                        k = 50, 
+                        iterations = 5000,
+                        burnin = 4000
+                        )
+```
+
+```{r}
+lda_review <- read_rds("data_input/lda review.Rds")
+```
+
+Finally, we prepare the features and the target variable of the training set for model fitting.
+
+```{r}
+train_y <- data_train$sentiment[ rownames(lda_review$theta) %>% as.numeric() ]
+
+train_x <- lda_review$theta
+```
+
+**Bernoullie Convertion**
+
+For the conventional naive bayes, we will convert the numerical value (the frequency of each term in each document) into a categorical whether the term is presence in the document or not.
+
+```{r eval=FALSE}
+bernoulli_conv <- function(x){
+        x <- as.factor(as.numeric(x > 0))
+}
+
+train_bayes <- Matrix::Matrix(as.matrix(dtm_train), sparse = T)
+
+train_bn <- apply(dtm_train, 2, bernoulli_conv)
+test_bn <- apply(dtm_test, 2, bernoulli_conv)
+```
+
+### Model Fitting and Evaluation
+
+We will use Random Forest and Naive Bayes to fit the data from LDA. We will also compare the performance of the model with a baseline model of Naive Bayes without the dimensionality reduction from LDA.
+
+#### LDA with Random Forest
+
+The random forest model will be trained using 500 trees and `mtry` parameter of 2. The error rate from the Out of Bag (OOB) observation is around 6.3% or similar to 93% of accuracy.
+
+```{r}
+library(randomForest)
+
+set.seed(123)
+rf_lda <- randomForest(x = train_x, 
+                       y = train_y, 
+                       ntree = 500, 
+                       mtry = 2)
+
+rf_lda
+```
+
+Next, we will prepare the testing dataset. To get the features of probability distribution of each topic for each document, we ran the topic model on the DTM of the testing set using only 100 iterations and burn-in of 80.
+
+```{r}
+dtm_lda_test <- Matrix::Matrix(as.matrix(dtm_test), sparse = T)
+
+# Get the topic probabilities for each document
+set.seed(123)
+test_x <- predict(lda_review,
+                  newdata = dtm_lda_test,
+                  iterations = 100,
+                  burnin = 80
+                  )
+```
+
+Next, we predict the testing set using the trained model and see the performance via confusion matrix.
+
+```{r}
+set.seed(123)
+pred_test <- predict(rf_lda, test_x)
+pred_prob <-  predict(rf_lda, test_x, type = "prob")
+
+test_y <- data_test$Sentiment[ rownames(dtm_test) %>% as.numeric() ]
+
+pred_lda <- data.frame(predicted = factor(pred_test, levels = c("positives", "negatives")),
+                       actual = factor(test_y, levels = c("positives", "negatives"))
+                       )
+
+conf_mat(pred_lda, 
+         truth = actual, 
+         estimate = predicted)
+```
+
+We then translate the confusion matrix into several evaluation matrix, such as accuracy, recall/sensitivity, precision and F1 measure. We also calculate the area under curve (AUC) to check the model sensitivity toward change of classification threshold.
+
+```{r}
+result_lda_rf <- data.frame(
+   accuracy = accuracy_vec( truth = pred_lda$actual, 
+                            estimate = pred_lda$predicted),
+   
+   recall = sens_vec( truth = pred_lda$actual, 
+                      estimate = pred_lda$predicted),
+   
+   precision = precision_vec( truth = pred_lda$actual, 
+                              estimate = pred_lda$predicted),
+   
+   F1 = f_meas_vec(truth = pred_lda$actual,
+                   estimate = pred_lda$predicted),
+   
+   AUC = roc_auc_vec(truth = pred_lda$actual, 
+                     estimate = pred_prob[, 2])
+) %>% 
+   mutate_all(scales::percent, accuracy = 0.01)
+
+result_lda_rf
+```
+
+#### LDA with Naive Bayes
+
+We will feed the same LDA dataset using the Naive Bayes as comparison.
+
+```{r}
+naive_lda <- naiveBayes(x = train_x,
+                        y = train_y)
+
+pred_test <- predict(naive_lda, test_x)
+pred_prob <-  predict(naive_lda, test_x, type = "raw")
+
+pred_lda_bayes <- data.frame(predicted = factor(pred_test, levels = c("positives", "negatives")),
+                             actual = factor(test_y, levels = c("positives", "negatives"))
+                             )
+
+conf_mat(pred_lda_bayes, 
+         truth = actual, 
+         estimate = predicted)
+```
+Here are the evaluation metrics for the Naive Bayes model on LDA dataset.
+
+```{r}
+result_lda_bayes <- data.frame(
+   accuracy = accuracy_vec( truth = pred_lda_bayes$actual, 
+                            estimate = pred_lda_bayes$predicted),
+   
+   recall = sens_vec( truth = pred_lda_bayes$actual, 
+                      estimate = pred_lda_bayes$predicted),
+   
+   precision = precision_vec( truth = pred_lda_bayes$actual, 
+                              estimate = pred_lda_bayes$predicted),
+   
+   F1 = f_meas_vec(truth = pred_lda_bayes$actual,
+                   estimate = pred_lda_bayes$predicted),
+   
+   AUC = roc_auc_vec(truth = pred_lda_bayes$actual, 
+                     estimate = pred_prob[, 2])
+) %>% 
+   mutate_all(scales::percent, accuracy = 0.01)
+
+result_lda_bayes
+```
+
+#### N-gram with Naive Bayes
+
+Lastly, we will train a Naive Bayes model on the original document-term matrix dataset that consist of 25,000+ terms as a baseline or benchmark model. Since the prediction process of naive bayes is taking too much time, we've prepared the prediction result in `Rds` format.
+
+```{r eval=FALSE}
+naive_gram <- naiveBayes(x = train_bn, 
+                         y = train_y)
+
+pred_test_gram <- predict(naive_gram, test_bn)
+pred_prob_gram <-  predict(naive_gram, test_bn, type = "raw")
+```
+
+```{r}
+pred_test_gram <- read_rds("data_input/pred_test_gram.Rds")
+pred_prob_gram <- read_rds("data_input/pred_prob_gram.Rds")
+pred_gram_bayes <- data.frame(predicted = factor(pred_test_gram, levels = c("positives", "negatives")),
+                             actual = factor(test_y, levels = c("positives", "negatives"))
+                             )
+
+conf_mat(pred_gram_bayes, 
+         truth = actual, 
+         estimate = predicted)
+```
+
+Here are the evaluation metrics for the Naive Bayes model on the original dataset.
+
+```{r}
+result_gram_bayes <- data.frame(
+   accuracy = accuracy_vec( truth = pred_gram_bayes$actual, 
+                            estimate = pred_lda_bayes$predicted),
+   
+   recall = sens_vec( truth = pred_gram_bayes$actual, 
+                      estimate = pred_gram_bayes$predicted),
+   
+   precision = precision_vec( truth = pred_gram_bayes$actual, 
+                              estimate = pred_gram_bayes$predicted),
+   
+   F1 = f_meas_vec(truth = pred_gram_bayes$actual,
+                   estimate = pred_gram_bayes$predicted),
+   
+   AUC = roc_auc_vec(truth = pred_gram_bayes$actual, 
+                     estimate = pred_prob_gram[, 2])
+) %>% 
+   mutate_all(scales::percent, accuracy = 0.01)
+
+result_gram_bayes
+```
+
+This is the recap of performances of all trained models. Using only 50 features (with 99.8% of dimensionality reduction) extracted from the original DTM using topic model, there are some interesting finding. The recall/sensitivity of the LDA models, both Random Forest and Naive Bayes, is far lower than the Naive Bayes using the original DTM. However, the LDA models has better precision with more than 93% precision on the testing dataset. The trade-off between dimensionality reduction and the model performance for this case is a worthy one, since the dimension is heavily reduced (again, 99.8% reduction) while the model still have an acceptable performance. The dimensionality reduction also result in faster computation. This is especially useful because the prediction process of Naive Bayes with many features take too much time.
+
+```{r}
+result_lda_rf %>% 
+   bind_rows(result_lda_bayes, result_gram_bayes) %>% 
+   mutate(
+      model = c("Random Forest", "Naive Bayes", "Naive Bayes"),
+      method = c("LDA", "LDA", "n-Gram"),
+      `n features` = c( 50, 50, ncol(dtm_train) )
+   ) %>% 
+   select(method, model, everything()) %>% 
+   rename_all(str_to_title) 
+```
+
+
+# Reference
+
+[^1]: [Natural Language Processing Is a Key Engine of AI Market Growth, Enabling 44 Discrete Use Cases Across 17 Industries](https://tractica.omdia.com/newsroom/press-releases/natural-language-processing-is-a-key-engine-of-ai-market-growth-enabling-44-discrete-use-cases-across-17-industries/)
+[^2]: [A Simple Introduction to Natural Language Processing](https://becominghuman.ai/a-simple-introduction-to-natural-language-processing-ea66a1747b32)
+[^3]: [Applications of Topic Models](https://www.nowpublishers.com/article/DownloadSummary/INR-030)
+[^4]: [Latent Dirichlet Allocation](http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf)
+[^5]: [Text Mining with R](https://www.tidytextmining.com/topicmodeling.html)
+[^6]: [Bayesian Statistics](https://statswithr.github.io/book/the-basics-of-bayesian-statistics.html)
+[^7]: [Hunspell Stemmer](https://github.com/ropensci/hunspell)
+[^8]: [Porter Stemming Algorithm](http://snowball.tartarus.org/algorithms/porter/stemmer.html)
+[^9]: [Dynamic Topic Models](http://www.cs.columbia.edu/~blei/papers/BleiLafferty2006a.pdf)
+[^10]: [Training, evaluating, and interpreting topic models](https://juliasilge.com/blog/evaluating-stm/)

@@ -9,9 +9,9 @@ categories:
 tags: 
   - Machine Learning
 description: ''
-featured: ''
+featured: 'pca-use-case.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -195,13 +195,8 @@ ctrl <- trainControl(method = "repeatedcv", number = 5, repeats = 3)
 model <- train(Revenue ~ ., data = train, method = "rf", trControl = ctrl)
 toc()
 ```
-<center>
 
-```{r echo = F}
-knitr::include_graphics('img/tictoc_pca.PNG')
-```
-
-</center>
+<center> ![](/img/pca_use_case/tictoc_pca.PNG) </center>
 
 After running the model, the time consumed to build the model is 1608.41 or around 26 minutes.
 
@@ -261,13 +256,7 @@ model2 <- train(Revenue ~ ., data = train2, method = "rf", trControl = ctrl)
 toc()
 ```
 
-<center>
-
-```{r echo = F}
-knitr::include_graphics('img/tictoc_tnp_pca.PNG')
-```
-
-</center>
+<center> ![](/img/pca_use_case/tictoc_tnp_pca.PNG) </center>
 
 ```{r echo = F}
 # saveRDS(model2, "model_RF2.RDS")
@@ -396,13 +385,7 @@ toc()
 model_cancer_pca <- readRDS("pca_use_case/rf_cancer.rds")
 ```
 
-<center>
-
-```{r echo = F}
-knitr::include_graphics('img/cancer+pca.PNG')
-```
-
-</center>
+<center> ![](/img/pca_use_case/cancer+pca.PNG) </center>
 
 The time consumed when using PCA is 4.88 seconds on training the dataset. Next, we can predict the test dataset from the `model_cancer_pca`.
 
@@ -449,13 +432,7 @@ toc()
 model_cancer <- readRDS("pca_use_case/rf_cancer2.rds")
 ```
 
-<center>
-
-```{r echo = F}
-knitr::include_graphics('img/cancer+tnp+pca.PNG')
-```
-
-</center>
+<center> ![](/img/pca_use_case/cancer+tnp+pca.PNG) </center>
 
 The time consuming without PCA in processing data is 11.21 seconds, means it is almost 3x faster than the model that is using PCA in the preprocessing data. 
 

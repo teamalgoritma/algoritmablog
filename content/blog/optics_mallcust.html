@@ -1,0 +1,304 @@
+---
+title: "Algoritma OPTICS (Ordering Points to Identify the Clustering Structure)"
+author: "Fafilia Masrofin"
+date: '2021-01-28'
+github: https://github.com/fafilia
+slug: algoritma-optics
+categories:
+  - Python
+tags:
+  - Machine Learning
+  - Clustering
+description: ''
+featured: 'optics.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Pada postingan Algoritma Technical Blog sebelumnya, Anda mungkin telah membaca tentang Algoritma <a href="https://algotech.netlify.app/blog/dbscan-clustering/">DBSCAN</a> (Density-based Spatial Clustering of Application with Noise) yang merupakan sebuah algoritma untuk mengelompokkan data (clustering) berbasis kepadatan. DBSCAN sendiri memiliki keunggulan dari metode clustering yang paling umum digunakan yaitu K-Means, dimana DBSCAN tidak akan memasukkan data yang dianggap noise kedalam cluster manapun. Tentunya ini menjadi keuunggulan sendiri mengingat data noise bisa jadi memiliki karakteristik yang jauh berbeda dengan kumpulan data pada umumnya. Akan tetapi, DBSCAN ternyata kurang begitu bagus digunakan ketika ukuran kepadatan data berbeda-beda. Oleh karena itu, munculah algoritma OPTICS(Ordering Points to Identify the Clustering Structure) yang didesain untuk menjangkau berbagai macam variansi dari kepadatan data yang ada. Sama halnya seperti DBSCAN, algoritma OPTICS bisa dimanfaatkan dalam berbagai bidang seperti segmentasi pasar, cluster profiling, data spatial dll.</p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p><strong>Clustering</strong> adalah salah satu metode pengelompokan data yang bersifat unsupervised learning. Tujuan utama dari metode clustering ini adalah untuk mengelompokkan data menjadi kelompok-kelompok tertentu dimana anggota dalam satu kelompok memiliki karakteristik/kemiripan yang sama dan berbeda dengan cluster yang lainnya.
+Clustering memiliki berbagai macam metode, beberapa yang banyak digunakan adalah Partitioning Clustering (K-Means dan K-Medoids), Hierarchical Clustering, dan Density Clustering.</p>
+<p><strong>Density Clustering</strong> adalah metode clustering yang memanfaatkan tingkat kerapatan object untuk dilakukan pengelompokan. Salah satu algoritma density clustering yang paling terkenal adalah DBSCAN (Density-based Spatial Clustering of Application with Noise). Dimana algoritma ini memiliki dua parameter utama yang akan dijadikan input ketika melakukan proses clustering, yaitu parameter epsilon (eps) dan minimum points (minPts).
+Konsep utama dari algoritma DBSCAN adalah mengelompokkan data dengan tetangganya dalam satu/beberapa cluster, dimana dalam satu cluster harus terdapat jumlah anggota yang memenuhi nilai dari minimum points (minPts). Selain itu, jarak antara titik utama (core point) dengan anggota dalam satu cluster tidak boleh lebih dari nilai epsilonnya. Titik utama (core point) akan dipilih secara acak pada iterasi pertama.
+Dikarenakan jangkauan nilai epsilon yang konstan pada setiap clusternya, algoritma DBSCAN ini memiliki kekurangan, yaitu kesulitan untuk menjangkau titik dengan kepadatan yang berbeda-beda (<em>varying density</em>). Padahal sangat memungkinkan titik yang tidak dapat terjangkau tersebut termasuk dalam kategori <em>meaningful cluster</em>.</p>
+<p>Hal tersebut inilah yang menginisiasi terciptanya algortima OPTICS. Algoritma OPTICS dapat mengatasi kekurangan algoritma DBSCAN untuk melakukan clustering dengan tingkat kepadatan yang berbeda (<em>varying density</em>).</p>
+</div>
+<div id="optics-algorithm" class="section level2">
+<h2>OPTICS Algorithm</h2>
+<p>Secara umum, cara kerja algoritma OPTICS sama dengan cara kerja algoritma DBSCAN. Parameter yang dimilikipun sama yaitu parameter epsilon (eps) dan parameter minimum points (minPts). Namun, pada algoritma OPTICS ini terdapat dua terminologi baru yang sebelumnya tidak ada pada algoritma DBSCAN, yaitu <em>core distance</em> dan <em>reachability distance</em>.
+Berikut d adalah pengertian dari kedua terminologi tersebut :</p>
+<p><strong>Core distance</strong> : Jarak/radius minimum dari core point p (yang di identifikasikan sebagai core point) dengan anggota <em>neighborhood</em> dalam satu cluster.</p>
+<p><strong>Reachability distance</strong> : Jarak minimum titik q dari core point p di luar dari bagian core objek (memenuhi minPts).</p>
+<div id="bagaimana-minpts-dan-epsilon-mengambil-peran-dalam-pembentukan-cluster" class="section level3">
+<h3>Bagaimana <em>minPts</em> dan <em>epsilon</em> mengambil peran dalam pembentukan cluster?</h3>
+<p>Sama halnya dengan DBSCAN, pada OPTICS kita dapat memanfaatkan parameter <em>minPts</em> dan <em>epsilon</em> sebagai unsur pembentukan cluster. Akan tetapi jika pada DBSCAN <em>epsilon</em> dianggap sebagai jarak konstan untuk membentuk sebuah cluster, pada OPTICS nantinya kita akan mempertimbangkan jarak antara titik-titik yang berdekatan untuk membuat reachability distance yang kemudian digunakan untuk memisahkan cluster dengan kepadatan yang bervariasi dari noise.</p>
+<center>
+<img src="/img/optics/OPTICS_SEarch_Distance.PNG" style="width:80.0%" />
+</center>
+<p>Parameter <em>minPts</em> pada OPTICS digunakan untuk menentukan jumlah minimum fitur/titik yang diperlukan untuk mempertimbangkan pengelompokan titik-titik pada sebuah cluster. Misalnya jika kita memiliki sejumlah cluster berbeda dengan ukuran mulai dari 10 titik hingga 50 titik dan kita menetapkan nilai <em>minPts</em> sebanyak 20, maka untuk semua cluster yang memiliki anggota kurang dari 20 titik akan dianggap sebagai noise karena tidak membentuk pengelompokan yang cukup besar untuk dianggap sebagai cluster atau titik-titik tersebut akan digabungkan dengan cluster terdekat untuk memenuhi jumlah minimum titik yang diperlukan.</p>
+<p>Pada OPTICS, epsilon diperlakukan sebagai jarak maksimum yang akan dibandingkan dengan jarak inti (core distance). OPTICS menggunakan konsep jarak jangkauan maksimum, yaitu jarak dari titik ke tetangga terdekatnya yang belum pernah dikunjungi oleh pencarian (titik-titik pada boundary 2). OPTICS akan mencari semua jarak tetangga dalam jangkauan epsilon yang ditentukan, kemudian membandingkan masing-masing titik tersebut dengan core distance. Jika ada jarak yang lebih kecil dari jarak inti(semua titik yang masuk pada boundary 1), maka titik tersebut menetapkan core distance sebagai reachability distance-nya (CD=RD). Jika semua jarak lebih besar dari jarak inti(semua titik yang ada di boundary 2), maka jarak terkecil ditetapkan sebagai reachability distancenya. Jarak ini kemudian digunakan untuk membuat reachable plot, yang merupakan plot terurut dari reachability distance yang digunakan untuk mendeteksi cluster.</p>
+</div>
+<div id="bagaimana-reachability-distance-berperan-dalam-pembentukan-reachable-plot" class="section level3">
+<h3>Bagaimana reachability distance berperan dalam pembentukan reachable plot?</h3>
+<p>Untuk semua titik pada dataset akan dihitung reachability distancenya karena jarak ini nantinya akan digunakan dan dipetakan pada reachability plot. Gambar di bawah ini menggambarkan ilustrasi pembentukan cluster dari reachability plot.</p>
+<center>
+<img src="/img/optics/Reachability_Plot.PNG" style="width:80.0%" />
+</center>
+<p>Lembah dalam reachability plot mewakili cluster yang berbeda untuk setiap pola dari titik-titik tertentu. Semakin padat sebuah cluster, semakin rendah reachability distance-nya, dan semakin rendah lembah pada plot (cluster warna pink adalah contoh cluster yang paling padat diantara cluster lainnya). Cluster yang kurang padat memiliki reachability distance yang lebih tinggi dan bentuk lembah yang lebih tinggi pada plot (contohnya pada cluster hijau tua adalah yang paling tidak padat). Selain lembah kita juga melihat puncak pada reachability plot. Puncak mewakili jarak yang diperlukan dari satu cluster ke cluster lain, atau dari cluster ke titik noise kemudian ke cluster lainnya, tergantung pada konfigurasi himpunan titik-titik pada sebuah data(urutan reachability plotnya).</p>
+<center>
+<img src="/img/optics/ilustrasi_lembah_puncak.PNG" style="width:80.0%" />
+</center>
+<p>Puncak dapat terjadi di reachability plot ketika epsilon kurang dari core distance terbesar. Aspek penting dalam pengelompokan OPTICS adalah menentukan cara mendeteksi cluster dari reachability plot yang dapat dilakukan dengan menggunakan parameter Sensitivitas Cluster.</p>
+</div>
+<div id="cluster-sensitivity-optics" class="section level3">
+<h3>Cluster Sensitivity (OPTICS)</h3>
+<p>Di dalam algoritma OPTICS terdapat parameter <em>sensitivity</em> yang dapat digunakan untuk menentukan sedikit atau banyaknya cluster yang terbentuk. Parameter tersebut adalah <em>low cluster sensitivity</em> dan <em>high cluster sensitivity</em>.</p>
+<p>Konsep dari <em>high cluster sensitivity</em> adalah memperlakukan setiap puncak pada urutan <em>reachability distance</em> yang terbentuk sebagai pemisah antara tiap cluster. Sehingga hal ini memungkinkan jumlah cluster yang terbentuk semakin banyak. Sedangkan <em>low cluster sensitivity</em> bersifat sebaliknya, <em>low sensitivity</em> hanya mempertimbangkan puncak yang bentuknya signifikan. Sehingga jumlah cluster yang terbentuk akan lebih sedikit jika dibandingkan dengan <em>high sensitivity</em>.</p>
+<p>Agar memudahkan dalam memahami <em>cluster sensitivity</em> berikut di bawah ini adalah ilustrasinya :</p>
+<center>
+<img src="/img/optics/sensitivity.JPG" style="width:80.0%" />
+</center>
+</div>
+<div id="membandingkan-method-dbscan-dengan-optics" class="section level3">
+<h3>Membandingkan method DBSCAN dengan OPTICS</h3>
+<p>Sebelumnya, sudah dijelaskan bahwa perbedaan mendasar antara DBSCAN dan OPTICS terletak pada terminologi <em>reachability distance</em> dan <em>core distance</em> nya. Dimana dengan adanya <em>reachability distance</em> yang terurut, OPTICS dapat mengatasi kelemahan DBSCAN saat menjangkau titik yang berpotensi sebagai <em>meaningful cluster</em>. Berikut di bawah ini, dijelaskan perbandingan konsep keduanya dalam bentuk ilustrasi gambar.</p>
+<div id="dbscan" class="section level4">
+<h4>1. DBSCAN</h4>
+<center>
+<img src="/img/optics/dbscan.JPG" style="width:80.0%" />
+</center>
+<p>Kekurangan dari algoritma DBSCAN adalah menjadikan nilai epsilonnya sebagai parameter <em>cut off</em> atau <em>threshold</em>, sehingga apabila diperhatikan pada gambar diatas, nilai diatas batas <em>cut off</em> akan diidentifikasi sebagai <em>noise</em>. Padahal sangat memungkinkan <em>noise</em> tersebut sebenarnya adalah <em>meaningful cluster</em>.</p>
+</div>
+<div id="optics" class="section level4">
+<h4>2. OPTICS</h4>
+<center>
+<img src="/img/optics/optics.JPG" style="width:80.0%" />
+</center>
+<p>Berbeda dengan DBSCAN, dikarenakan OPTICS menerapkan konsep <em>reachability distance</em> dan tidak mempertimbangkan nilai <em>epsilon</em> maka algoritma ini mampu menjangkau object-object yang berpotensi untuk dikategorikan sebagai cluster. Apabila diperhatikan pada ilustrasi diatas, noise yang dianggap oleh DBSCAN akan dianggap sebagai cluster baru pada algoritma ini.</p>
+</div>
+</div>
+<div id="contoh-implementasi-optics-pada-python" class="section level3">
+<h3>Contoh Implementasi OPTICS pada Python</h3>
+<div id="import-libraries" class="section level4">
+<h4>Import Libraries</h4>
+<p>Sebelum kita jauh ke analisis selanjutnya, pertama import terlebih dahulu semua library yang dibutuhkan diantaranya yaitu:
+- <code>pandas</code> : digunakan untuk data analisis
+- <code>numpy</code> : digunakan untuk melakukan komputasi scientific
+- <code>matplotlib</code> : digunakan untuk visualisasi data
+- <code>sklearn</code> : digunakan untuk pemrosesan unsupervised learning (clustering)</p>
+<pre class="python"><code>import pandas as pd 
+import numpy as np 
+import matplotlib.pyplot as plt 
+import seaborn as sns
+from matplotlib import gridspec 
+from sklearn.cluster import OPTICS, cluster_optics_dbscan 
+from sklearn.preprocessing import normalize, StandardScaler </code></pre>
+</div>
+<div id="exploratory-data-analysis" class="section level4">
+<h4>Exploratory Data Analysis</h4>
+<p>Sebagai contoh yang paling sederhana, kita akan mencoba untuk melakukan segmentasi pelanggan dari data custmoer pada sebuah pusat perbelanjaan.</p>
+<pre class="python"><code>data = pd.read_csv(&#39;data_input/Mall_Customers.csv&#39;) 
+data.head()</code></pre>
+<pre><code>#&gt;    CustomerID  Gender  Age  Annual Income (k$)  Spending Score (1-100)
+#&gt; 0           1    Male   19                  15                      39
+#&gt; 1           2    Male   21                  15                      81
+#&gt; 2           3  Female   20                  16                       6
+#&gt; 3           4  Female   23                  16                      77
+#&gt; 4           5  Female   31                  17                      40</code></pre>
+<p>Berikut ini deskripsi untuk masing-masing kolom yang ada pada data <code>mall_customer.csv</code>:</p>
+<ul>
+<li><code>CustomerID</code> : ID pelanggan</li>
+<li><code>Gender</code> : jenis kelamin pelanggan</li>
+<li><code>Age</code> : umur pelanggan</li>
+<li><code>Annual Income</code> : pendapatan per tahun pelanggan (dalam satuan dollar)</li>
+<li><code>Spending score</code> : parameter yang diberikan berdasarkan perilaku pelanggan dan data pembelian (1-100)</li>
+</ul>
+<div id="distribusi-age-vs.-spending-score" class="section level5">
+<h5>1. Distribusi Age vs. Spending Score</h5>
+<pre class="python"><code>plt.figure(figsize=(10,8))
+sns.scatterplot(data=data, x=&quot;Age&quot;, y=&quot;Spending Score (1-100)&quot;, hue=&quot;Gender&quot;)</code></pre>
+<p><img src="/blog/optics_mallcust_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>Hasil visualisasi di atas menunjukkan bahwa kebanyakan pelanggan laki-laki ataupun perempuan pada rentang usia 20-40 tahun memiliki spending score yang beragam mulai dari yang paling kecil hingga mendekati 100. Sementara pelanggan laki-laki atau perempuan pada rentang usia &gt;40 tahun cenderung memiliki spending score yang tidak terlalu tinggi yaitu maksimal pada score &lt;65. Itu artinya, orang-orang yang sering berbelanja di mall didominasi oleh kalangan remaja dan dewasa.</p>
+</div>
+<div id="distribusi-annual-income-vs.-spending-score" class="section level5">
+<h5>2. Distribusi Annual Income vs. Spending Score</h5>
+<pre class="python"><code>plt.figure(figsize=(10,8))
+sns.scatterplot(data=data, x=&quot;Spending Score (1-100)&quot;, y=&quot;Annual Income (k$)&quot;, hue=&quot;Gender&quot;)</code></pre>
+<p><img src="/blog/optics_mallcust_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>Hasil visualisasi di atas menunjukkan tidak ada trend tertentu yang menggambarkan pola hubungan spending score dengan annual income karena data pelanggan menyebar ke semua nilai.</p>
+</div>
+</div>
+<div id="normalisasi-data" class="section level4">
+<h4>Normalisasi data</h4>
+<p>Untuk tujuan analisis selanjutnya, kolom <code>CustomerID</code> dan <code>Gender</code> tidak akan diikutsertakan mengingat perhitungan clustering hanya membutuhkan kolom-kolom numerik. Selain itu, kita juga melakukan normalisasi terhadap data dikarenakan rentang nilai pada setiap kolom berbeda-beda.</p>
+<pre class="python"><code>
+drop_features = [&#39;CustomerID&#39;, &#39;Gender&#39;] 
+data = data.drop(drop_features, axis = 1) 
+data.fillna(method =&#39;ffill&#39;, inplace = True) 
+
+# Melakukan proses scaling untuk standarisasi nilai 
+scaler = StandardScaler() 
+X_scaled = scaler.fit_transform(data) 
+
+# Melakukan normalisasi untuk membuat normal distribusi
+X_normalized = normalize(X_scaled) 
+
+# Converting numpy ke dalam data frame
+X_normalized = pd.DataFrame(X_normalized) 
+
+# Melakukan rename kolom
+X_normalized.columns = data.columns 
+
+X_normalized.head() </code></pre>
+<pre><code>#&gt;         Age  Annual Income (k$)  Spending Score (1-100)
+#&gt; 0 -0.622173           -0.759499               -0.189897
+#&gt; 1 -0.518894           -0.704396                0.484330
+#&gt; 2 -0.488556           -0.614244               -0.619691
+#&gt; 3 -0.495541           -0.740949                0.453247
+#&gt; 4 -0.313049           -0.923896               -0.220036</code></pre>
+</div>
+<div id="membuat-model-clustering" class="section level4">
+<h4>Membuat model Clustering</h4>
+<p>Pada tahap ini dibuat 3 model clustering sebagai perbandingan, yaitu:
+- Model Optics
+- Model DBSCAN dengan epsilon = 0.5
+- Model DBSCAN dengan epsilon = 0.25</p>
+<pre class="python"><code>optics_model = OPTICS(min_samples = 10, xi = 0.05) 
+
+optics_model.fit(X_normalized) </code></pre>
+<pre><code>#&gt; OPTICS(min_samples=10)</code></pre>
+<p>Untuk membuat model OPTICS seperti di atas dapat memanfaatkan fungsi <code>OPTICS()</code> yang terdapat pada <code>sklearn</code> dengan beberapa parameter yang dapat digunakan seperti:
+- <code>min_samples</code> : banyaknya observasi/point untuk menentukan sebuah titik tertentu dijadikan sebagai core point.
+- <code>xi</code> : menentukan kecuraman minimum pada <em>reachability plot</em> yang merupakan batas cluster (parameter ini digunakan ketika parameter <code>cluster_method</code> di set sebagai <code>xi</code>/secara default untuk OPTICS nilainya adalah <code>xi</code>.</p>
+<pre class="python"><code># Membuat label berdasarkan model DBSCAN dengan eps = 0.5 
+labels1 = cluster_optics_dbscan(reachability = optics_model.reachability_, 
+    core_distances = optics_model.core_distances_, 
+    ordering = optics_model.ordering_, eps = 0.5) 
+
+# Membuat label berdasarkan model DBSCAN dengan eps = 0.5  eps = 0.25 
+labels2 = cluster_optics_dbscan(reachability = optics_model.reachability_, 
+    core_distances = optics_model.core_distances_, 
+    ordering = optics_model.ordering_, eps = 0.25) 
+
+space = np.arange(len(X_normalized)) 
+
+# Menyimpan reachability distance dari setiap titik /point
+reachability = optics_model.reachability_[optics_model.ordering_] 
+
+# Menyimpan label cluster dari setiap titik/point 
+labels = optics_model.labels_[optics_model.ordering_] 
+
+print(labels)</code></pre>
+<pre><code>#&gt; [-1 -1 -1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+#&gt;   0  0  0  0  0  0  0  0 -1 -1 -1 -1  1  1  1  1  1  1  1  1  1  1  1  1
+#&gt;   1  1  1  1  1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1  2  2  2  2  2
+#&gt;   2  2  2  2  2  2  2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+#&gt;  -1  3  3  3  3  3  3  3  3  3  3  3  3  3 -1 -1 -1 -1 -1  4  4  4  4  4
+#&gt;   4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4
+#&gt;   4 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1  5  5  5  5  5  5  5  5
+#&gt;   5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
+#&gt;   5  5  5  5  5  5  5  5]</code></pre>
+<pre class="python"><code>print(labels1)</code></pre>
+<pre><code>#&gt; [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+#&gt;  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+#&gt;  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+#&gt;  0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1
+#&gt;  0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+#&gt;  1 0 1 0 1 0 1 0 1 0 1 0 1 0 1]</code></pre>
+<pre class="python"><code>print(labels2)</code></pre>
+<pre><code>#&gt; [-1  0 -1  0 -1  0 -1  0 -1  0 -1 -1  2  0 -1  0 -1  0  2 -1 -1  0 -1  0
+#&gt;   2  0 -1  0 -1  0  2  0  2  0  2  0 -1  0 -1  0 -1  0  2  0  2  0 -1 -1
+#&gt;  -1 -1 -1  0  0  3 -1  2 -1  3 -1 -1  3 -1  3  3  3 -1 -1  3 -1 -1  3  2
+#&gt;   3  3  3 -1 -1 -1  1 -1  3  0  3 -1  1  3  3  1 -1  3  3  1  3 -1 -1  1
+#&gt;   3  1 -1  1  1  3  3  1  3  1  3  3  3  3  3  1 -1  1  1  1  3 -1  3 -1
+#&gt;  -1 -1 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4
+#&gt;  -1  4 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4 -1  4
+#&gt;  -1 -1 -1  4 -1  4 -1  4 -1 -1 -1  4 -1  4 -1  4 -1  4 -1 -1 -1  4 -1 -1
+#&gt;  -1  4 -1 -1 -1 -1 -1 -1]</code></pre>
+<pre class="python"><code># Membuat framework untuk tujuan visualisasi 
+plt.figure(figsize =(15, 10)) 
+G = gridspec.GridSpec(2, 3) 
+ax1 = plt.subplot(G[0, :]) 
+ax2 = plt.subplot(G[1, 0]) 
+ax3 = plt.subplot(G[1, 1]) 
+ax4 = plt.subplot(G[1, 2]) 
+
+# Visualisasi Plot Reachability-Distance  
+colors = [&#39;c.&#39;, &#39;b.&#39;, &#39;r.&#39;, &#39;y.&#39;, &#39;g.&#39;] 
+for Class, colour in zip(range(0, 5), colors): 
+    Xk = space[labels == Class] 
+    Rk = reachability[labels == Class] 
+    ax1.plot(Xk, Rk, colour, alpha = 0.3) 
+ax1.plot(space[labels == -1], reachability[labels == -1], &#39;k.&#39;, alpha = 0.3) 
+ax1.plot(space, np.full_like(space, 2., dtype = float), &#39;k-&#39;, alpha = 0.5) 
+ax1.plot(space, np.full_like(space, 0.5, dtype = float), &#39;k-.&#39;, alpha = 0.5) 
+ax1.set_ylabel(&#39;Reachability Distance&#39;) 
+ax1.set_title(&#39;Reachability Plot&#39;) 
+
+# Visualisasi OPTICS Clustering 
+colors = [&#39;c.&#39;, &#39;b.&#39;, &#39;r.&#39;, &#39;y.&#39;, &#39;g.&#39;] 
+for Class, colour in zip(range(0, 5), colors): 
+    Xk = X_normalized[optics_model.labels_ == Class] 
+    ax2.plot(Xk.iloc[:, 1], Xk.iloc[:, 2], colour, alpha = 0.3) 
+
+ax2.plot(X_normalized.iloc[optics_model.labels_ == -1, 0], 
+        X_normalized.iloc[optics_model.labels_ == -1, 1], 
+    &#39;k+&#39;, alpha = 0.1) 
+ax2.set_title(&#39;OPTICS Clustering&#39;) 
+
+# Visualisasi DBSCAN Clustering dengan eps = 0.5 
+colors = [&#39;c.&#39;, &#39;b.&#39;, &#39;r.&#39;, &#39;y.&#39;, &#39;g.&#39;] 
+for Class, colour in zip(range(0, 6), colors): 
+    Xk = X_normalized[labels1 == Class] 
+    ax3.plot(Xk.iloc[:, 1], Xk.iloc[:, 2], colour, alpha = 0.3, marker =&#39;.&#39;) 
+
+ax3.plot(X_normalized.iloc[labels1 == -1, 0], 
+        X_normalized.iloc[labels1 == -1, 1], 
+    &#39;k+&#39;, alpha = 0.1) 
+ax3.set_title(&#39;DBSCAN clustering with eps = 0.5&#39;) 
+
+# Visualisasi DBSCAN Clustering dengan eps = 0.25 
+colors = [&#39;c.&#39;, &#39;y.&#39;, &#39;m.&#39;, &#39;g.&#39;] 
+for Class, colour in zip(range(0, 4), colors): 
+    Xk = X_normalized.iloc[labels2 == Class] 
+    ax4.plot(Xk.iloc[:, 1], Xk.iloc[:, 2], colour, alpha = 0.3) 
+
+ax4.plot(X_normalized.iloc[labels2 == -1, 0], 
+        X_normalized.iloc[labels2 == -1, 1], 
+    &#39;k+&#39;, alpha = 0.1) 
+ax4.set_title(&#39;DBSCAN Clustering with eps = 0.25&#39;) 
+
+plt.tight_layout() 
+plt.show() </code></pre>
+<p><img src="/blog/optics_mallcust_files/figure-html/unnamed-chunk-12-1.png" width="1440" style="display: block; margin: auto;" /></p>
+<p>DAri hasil Visualisasi ketiga model dapat dilihat bahwa:</p>
+<ul>
+<li><p>Custering OPTICS menghasilkan 5 cluster dengan beberapa outlier. Clustering DBSCAN menggunakan epsilon 0.5 menghasilkan 2 cluster tanpa adanya outlier. Clustering DBSCAN dengan menggunakan epsilon 0.25 menghasilkan 4 cluster dengan beberapa outlier.</p></li>
+<li><p>Pada OPTICS, kelompok atau cluster amatan yang memiliki annual income tinggi dan spending score rendah dapat menjadi perhatian pihak Mall karena kelompok orang ini bisa menjadi customer yang berpotensi menghasilkan revenue tinggi di masa depan(profitable)</p></li>
+<li><p>Pada OPTICS, kelompok cluster dengan annual income cenderung rendah dan nilai spending score rendah dapat menjadi sasaran pasar untuk meningkatkan revenue dengan memberikan banyak promosi.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="kesimpulan" class="section level1">
+<h1>Kesimpulan</h1>
+<p>Baik algoritma DBSCAN ataupun OPTICS baik digunakan untuk mengelompokkan data yang mengandung <em>noise</em>. Akan tetapi, algoritma OPTICS jauh lebih baik digunakan untuk data yang memiliki tingkat kepadatan yang beragam. Karena tidak seperti DBSCAN yang menganggap setiap kepadatan sama, oleh karenanya kompleksitas algoritma OPTICS-pun juga jauh lebih besar karena perhitungan dalam mencari <em>core point</em> dan <em>reachability distance</em> akan sangat memakan waktu. Selain itu, untuk kebutuhan clustering algoritma OPTICS juga dianjurkan digunakan untuk ukuran data yang lebih besar.</p>
+</div>
+<div id="referensi" class="section level1">
+<h1>Referensi</h1>
+<ul>
+<li><p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.OPTICS.html">Dokumentasi OPTICS pada library sklearn</a></p></li>
+<li><p><a href="https://www.kaggle.com/vjchoudhary7/customer-segmentation-tutorial-in-python">Mall Customer Dataset</a></p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/OPTICS_algorithm">OPTICS Algorithm</a></p></li>
+</ul>
+</div>

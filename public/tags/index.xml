@@ -6,10 +6,190 @@
     <description>Recent content in Tags on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rselenium</title>
+      <link>/tags/rselenium/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rselenium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web Scraping</title>
+      <link>/tags/web-scraping/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/web-scraping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Visualization</title>
+      <link>/tags/data-visualization/</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/data-visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rplicate</title>
+      <link>/tags/rplicate/</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rplicate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggplot2</title>
+      <link>/tags/ggplot2/</link>
+      <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>/tags/machine-learning/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Topic Modelling</title>
+      <link>/tags/topic-modelling/</link>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/topic-modelling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Capstone Ml</title>
+      <link>/tags/capstone-ml/</link>
+      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/capstone-ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lime</title>
+      <link>/tags/lime/</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/lime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggimage</title>
+      <link>/tags/ggimage/</link>
+      <pubDate>Fri, 02 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggimage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Collaborative Filtering</title>
+      <link>/tags/collaborative-filtering/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/collaborative-filtering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Recommender System</title>
+      <link>/tags/recommender-system/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/recommender-system/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>extrafont</title>
+      <link>/tags/extrafont/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/extrafont/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggrepel</title>
+      <link>/tags/ggrepel/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggrepel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggthemes</title>
+      <link>/tags/ggthemes/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggthemes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gridExtra</title>
+      <link>/tags/gridextra/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/gridextra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gensim</title>
+      <link>/tags/gensim/</link>
+      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/gensim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Panel Data</title>
+      <link>/tags/panel-data/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/panel-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Optimization</title>
+      <link>/tags/optimization/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/optimization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Queueing</title>
+      <link>/tags/queueing/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/queueing/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Clustering</title>
@@ -26,15 +206,6 @@
       <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/unsupervised-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Machine Learning</title>
-      <link>/tags/machine-learning/</link>
-      <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/machine-learning/</guid>
       <description></description>
     </item>
     
@@ -66,38 +237,11 @@
     </item>
     
     <item>
-      <title>Capstone Ml</title>
-      <link>/tags/capstone-ml/</link>
-      <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/capstone-ml/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lime</title>
-      <link>/tags/lime/</link>
-      <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/lime/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Genetic Algorithm</title>
       <link>/tags/genetic-algorithm/</link>
       <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/genetic-algorithm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Optimization</title>
-      <link>/tags/optimization/</link>
-      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/optimization/</guid>
       <description></description>
     </item>
     
@@ -215,15 +359,6 @@
       <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/tidyverse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Visualization</title>
-      <link>/tags/data-visualization/</link>
-      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/data-visualization/</guid>
       <description></description>
     </item>
     

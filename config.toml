@@ -5,7 +5,7 @@ theme = "hugo-future-imperfect"
 preserveTaxonomyNames = true
 paginate = 3
 disqusShortname = "https-algotech-netlify-com"
-googleAnalytics = ""
+googleAnalytics = "UA-164959107-2"
 pluralizeListTitles = false
 # Set the followings to true as part of your site SEO
 enableRobotsTXT = true
@@ -13,7 +13,7 @@ canonifyURLs = true
 
 [params]
   # Sets the meta tag description
-  description          = "HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo"
+  description          = "To learn more about our approach to data science problems, feel free to hop over to our blog."
   # Sets the navbarTitle that appears in the top left of the navigation bar
   navbarTitle          = "Algotech"
   # Sets where "View More Posts" links
@@ -38,7 +38,7 @@ canonifyURLs = true
   # apple-touch-icon-precomposed.png, favicon.png, favicon.ico, and mstile.png.
   # These are stored in the favicon folder. See the following for more information:
   # https://github.com/audreyr/favicon-cheat-sheet
-  loadFavicon          = false
+  loadFavicon          = true
   faviconVersion       = ""
   # Sets Social Share links to appear on posts
   socialShare          = true
@@ -57,7 +57,7 @@ canonifyURLs = true
   # files by adding the value, "default".
   # customCSS            = ["default", "/path/to/file"]
   # customJS             = ["default", "/path/to/file"]
-  customCSS            = ["default", "/css/night-owl.css"]
+  customCSS            = ["default", "/css/main.css"]
   customJS             = ["default", "/js/bootstrap.min.js"]
 
   # options for highlight.js (version, additional languages, and theme)

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rselenium on Algoritma Technical Blog</title>
+    <link>/tags/rselenium/</link>
+    <description>Recent content in Rselenium on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/rselenium/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rselenium Intro</title>
+      <link>/blog/javascripted-web-scrapping-in-r-with-rselenium/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/javascripted-web-scrapping-in-r-with-rselenium/</guid>
+      <description>In this article, we will learn to do web scraping using RSelenium. RSelenium provides R bindings for the Selenium Webdriver API. Selenium is a project focused on automating web browsers. RSelenium allows you to carry out unit testing and regression testing on your webapps and webpages across a range of browser/OS combinations. You can access full vignettes of RSelenium here.
+R also provide web scrapping tools like the famous rvest but RSelenium gives more advantages than rvest, for example:</description>
+    </item>
+    
+  </channel>
+</rss>

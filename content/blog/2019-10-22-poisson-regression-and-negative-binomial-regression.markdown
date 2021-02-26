@@ -9,9 +9,9 @@ categories:
 tags:
   - Machine Learning
 description: ''
-featured: ''
+featured: 'banner_poisson.jpg'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -35,8 +35,7 @@ Regression analysis is a set of statistical processes for estimating the relatio
 
 ## Some Types of Regression 
 
-<img src="/img/biomial-negatif/pic.png" style="display: block; margin: auto;" />
-
+<center> <img src="/img/binomial-negatif/Pic.png"> </center>
 
 ## Why OLS is not Suitable for Discrete Data ?
 
@@ -101,7 +100,7 @@ plot(storeA$cost, storeA$visitor)
 abline(modelols1$coefficients[1], modelols1$coefficients[2], col="red")
 ```
 
-<img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" />
 
 The red line in the visualization above is the line of the regression model. And the model formed is  
 
@@ -304,7 +303,7 @@ ggplot(dat, aes(daysabs, fill = prog)) + geom_histogram(binwidth = 1, breaks=1:9
     ., margins = TRUE, scales = "free")
 ```
 
-<img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
 In the plots above is a distribution of each program has 314 observations and the distribution seems quite reasonable. The average of our outcome variables is much lower than the variance. It can be seen that the accumulation of data is close to 0, this condition indicates the data are overdispersion. There is no negative data. Because the number of days of absence cannot be negative.
 
 ## Build the Model
@@ -428,8 +427,8 @@ testDispersion(resp, plot = F)
 
 ```
 #> 
-#> 	DHARMa nonparametric dispersion test via mean deviance residual
-#> 	fitted vs. simulated-refitted
+#> 	DHARMa nonparametric dispersion test via mean deviance residual fitted
+#> 	vs. simulated-refitted
 #> 
 #> data:  resp
 #> dispersion = 6.5899, p-value < 2.2e-16
@@ -444,7 +443,7 @@ On this occasion, I only discussed when data is overdispersion. Because generall
 plot(resp)
 ```
 
-<img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
 Look at the Q-Q plot residuals. The plot above is a residual plot whether spreads normally or not. When the residual points have followed the diagonal line, then the residuals are normally distributed.
 
 However, Q-Q plot residuals from the Poisson regression model above show that residuals do not follow the normal distribution
@@ -551,7 +550,7 @@ resnb <- simulateResiduals(modelnb, refit = T)
 plot(resnb)
 ```
 
-<img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" />
+<img src="/blog/2019-10-22-poisson-regression-and-negative-binomial-regression_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" />
 
 In the Q-Q Plot Residuals above, it can be seen that the residual point has followed a diagonal line (almost perfect). Therefore the residuals are normally distributed.
 
@@ -563,8 +562,8 @@ testDispersion(resnb, plot=F)
 
 ```
 #> 
-#> 	DHARMa nonparametric dispersion test via mean deviance residual
-#> 	fitted vs. simulated-refitted
+#> 	DHARMa nonparametric dispersion test via mean deviance residual fitted
+#> 	vs. simulated-refitted
 #> 
 #> data:  resnb
 #> dispersion = 1.0913, p-value = 0.216

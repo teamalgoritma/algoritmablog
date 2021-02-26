@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>extrafont on Algoritma Technical Blog</title>
+    <link>/tags/extrafont/</link>
+    <description>Recent content in extrafont on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/extrafont/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rplicate Series: Happiness of The Third Age</title>
+      <link>/blog/rplicate-happiness-of-the-third-age/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/rplicate-happiness-of-the-third-age/</guid>
+      <description>Have you ever wonder how far ggplot2 and other packages in R can go for data visualization? Here, we are introducing the Rplicate Series: a series of articles for data visualization in R using ggplot2 and other packages, in aim to replicate The Economist plot. The Economist is an international weekly newspaper that focuses on current affairs, international business, politics, and technology. Along with its article, various graphs were displayed with visuals that is captivating to the eye.</description>
+    </item>
+    
+  </channel>
+</rss>

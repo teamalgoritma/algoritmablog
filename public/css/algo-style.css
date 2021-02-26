@@ -1,0 +1,45 @@
+
+code > span.kw {
+	color:#54b4eb;
+}
+
+p > code {
+    background-color: #ecf0f1!important;
+    padding: 1%;
+    margin: 0.4%;
+    font-weight: 600;
+}
+
+pre {
+	font-size:16px;
+	background-color: #1a242f;
+    border: 1px solid #e74c3c;
+}
+
+pre > code {
+    color: #656565;
+}
+
+code.sourceCode.r {
+    color: white;
+}
+
+code > span.ot {
+    color: #ef6d5f;
+}
+
+code > span.st {
+    color: #e74c3c;
+}
+
+code > span.dt {
+    color: #e74c3c;
+}
+
+code > span.dv {
+    color: #e74c3c;
+}
+
+code > span.fl {
+    color: #18bc9c;
+}

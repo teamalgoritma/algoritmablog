@@ -9,9 +9,9 @@ categories:
 tags:
   - Machine Learning
 description: ''
-featured: ''
+featured: 'banner_poisson.jpg'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -46,10 +46,7 @@ Regression analysis is a set of statistical processes for estimating the relatio
 
 ## Some Types of Regression 
 
-```{r, echo=FALSE, fig.width=5, fig.height=3}
-knitr::include_graphics('/img/biomial-negatif/pic.png')
-```
-
+<center> <img src="/img/binomial-negatif/Pic.png"> </center>
 
 ## Why OLS is not Suitable for Discrete Data ?
 

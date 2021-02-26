@@ -2,6 +2,175 @@
 
 <html>
     <head>
+      
+     <br>
+      
+      <div class="js-toggle-wrapper">
+  <div class="js-toggle">
+    <div class="js-toggle-track">
+      <div class="js-toggle-track-check">
+        <img src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16">
+          </div>
+          <div class="js-toggle-track-x">
+            <img src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16">
+              </div>
+              </div>
+              <div class="js-toggle-thumb"></div>
+                <input class="js-toggle-screenreader-only" type="checkbox" aria-label="Switch between Dark and Light mode">
+                  </div>
+                  </div>
+  
+  <style>
+
+ 
+
+.js-toggle-wrapper {
+    display: table;
+    margin: 0 auto;
+}
+
+.js-toggle {
+    touch-action: pan-x;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .js-toggle-screenreader-only {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  .js-toggle-track {
+    width: 50px;
+    height: 24px;
+    padding: 0;
+    border-radius: 30px;
+    background-color: hsl(222, 14%, 7%);
+    transition: all 0.2s ease;
+  }
+  
+  .js-toggle-track-check {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 5px;
+    top: 0px;
+    bottom: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 0;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  
+  .js-toggle--checked .js-toggle-track-check {
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
+  
+  .js-toggle-track-x {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    right: 5px;
+    top: 0px;
+    bottom: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 0;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
+  
+  .js-toggle--checked .js-toggle-track-x {
+    opacity: 0;
+  }
+  
+  .js-toggle-thumb {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    transform: translateX(0);
+  }
+  
+  .js-toggle--checked .js-toggle-thumb {
+    transform: translateX(26px);
+    border-color: #19ab27;
+  }
+  
+  .js-toggle--focus .js-toggle-thumb {
+    box-shadow: 0px 0px 2px 3px rgb(255, 167, 196);
+  }
+  
+  .js-toggle:active .js-toggle-thumb {
+    box-shadow: 0px 0px 5px 5px rgb(255, 167, 196);
+  }
+  
+  body.dark-mode , 
+body.dark-mode :not(img) main * {
+    background-color: #0d0d0d;
+    color: #000000;
+     filter: invert(40%) hue-rotate(0deg) brightness(105%) contrast(75%);
+    -webkit-filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(90%);
+    
+}
+
+
+
+</style>
+
+<script>
+    var body = document.body;
+	var switcher = document.getElementsByClassName('js-toggle')[0];
+
+	
+	switcher.addEventListener("click", function() {
+        this.classList.toggle('js-toggle--checked');
+        this.classList.add('js-toggle--focus');
+		
+		if (this.classList.contains('js-toggle--checked')) {
+			body.classList.add('dark-mode');
+			
+			localStorage.setItem('darkMode', 'true');
+		} else {
+			body.classList.remove('dark-mode');
+			setTimeout(function() {
+				localStorage.removeItem('darkMode');
+			}, 100);
+		}
+	})
+
+	
+	if (localStorage.getItem('darkMode')) {
+		
+        switcher.classList.add('js-toggle--checked');
+        body.classList.add('dark-mode');
+	}
+
+</script>
+
+
+      
         <script type="application/ld+json">
     {
         "@context" : "http://schema.org",
@@ -13,7 +182,7 @@
         "articleSection" : "blog",
         "name" : "Self-Organizing Maps",
         "headline" : "Self-Organizing Maps",
-        "description" : "Introduction SOM Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction. SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations.",
+        "description" : "Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -21,10 +190,10 @@
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2019",
-        "datePublished": "2019-04-26 00:00:00 \x2b0000 UTC",
-        "dateModified" : "2019-04-26 00:00:00 \x2b0000 UTC",
+        "datePublished": "2019-04-26 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2019-04-26 00:00:00 \u002b0000 UTC",
         "url" : "\/blog\/self-organizing-maps\/",
-        "wordCount" : "2895",
+        "wordCount" : "2694",
         "keywords" : [ "SOM","Clustering","Unsupervised Learning","Machine Learning","Blog" ]
     }
     </script>
@@ -36,8 +205,23 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.64.0" />
+        <meta name="generator" content="Hugo 0.74.3" />
         
+  
+    
+  
+
+  
+
+  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='/favicon/favicon.png'>
+  
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
+  <meta name="application-name" content="Algoritma Technical Blog">
+  <meta name="msapplication-tooltip" content="To learn more about our approach to data science problems, feel free to hop over to our blog.">
+  <meta name="msapplication-config" content='/favicon/ieconfig.xml'>
+
 
 
         
@@ -45,17 +229,17 @@
         
         
             
-                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+                <meta name="description" content="To learn more about our approach to data science problems, feel free to hop over to our blog.">
             
         
 
         <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Self-Organizing Maps"/>
-<meta name="twitter:description" content="Introduction SOM Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction. SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations."/>
+<meta name="twitter:description" content="Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations."/>
 <meta name="twitter:site" content="@teamalgoritma"/>
 
         <meta property="og:title" content="Self-Organizing Maps" />
-<meta property="og:description" content="Introduction SOM Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction. SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations." />
+<meta property="og:description" content="Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blog/self-organizing-maps/" />
 <meta property="article:published_time" content="2019-04-26T00:00:00+00:00" />
@@ -66,14 +250,15 @@
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Self-Organizing Maps">
-<meta itemprop="description" content="Introduction SOM Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction. SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations.">
-<meta itemprop="datePublished" content="2019-04-26T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-04-26T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2895">
+<meta itemprop="description" content="Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations.">
+<meta itemprop="datePublished" content="2019-04-26T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-04-26T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2694">
 
 
 
 <meta itemprop="keywords" content="SOM,Clustering,Unsupervised Learning,Machine Learning," />
+
         
 
         
@@ -82,13 +267,18 @@
 
         
         
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+        
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
             <link rel="stylesheet" href="/css/main.css">
             <link rel="stylesheet" href="/css/add-on.css">
             <link rel="stylesheet" href="/css/academicons.min.css">
+            <link href="/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
+            <link href="/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
         
 
         
@@ -96,7 +286,7 @@
                 
             
                 
-                    <link rel="stylesheet" href="/css/night-owl.css">
+                    <link rel="stylesheet" href="/css/main.css">
                 
             
         
@@ -104,13 +294,26 @@
 
   
     
-      <link rel="stylesheet" href="/css/night-owl.css" rel="stylesheet" id="theme-stylesheet">
+      <link rel="stylesheet" href="/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
       <script src="/js/highlight.pack.js"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   
 
 
       
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-164959107-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
 
 
 
@@ -244,11 +447,11 @@
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/stock-cluster/">Clustering Saham Indonesia</a></h3>
+                                <h3><a href="/blog/javascripted-web-scrapping-in-r-with-rselenium/">Rselenium Intro</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-04-17'>
-                                    April 17, 2020</time>
+                                    '2021-01-11'>
+                                    January 11, 2021</time>
                             </header>
                             
 
@@ -256,35 +459,11 @@
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/time-and-accuracy-improvement-using-pca/">Time Efficiency and Accuracy Improvement using PCA</a></h3>
+                                <h3><a href="/blog/rplicate-series-coronavirus-survey/">Rplicate Series: Interactive Plot of Coronavirus Survey</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-04-13'>
-                                    April 13, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/text-generating-with-markov-chains/">Text Generation with Markov Chains</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-04-02'>
-                                    April 2, 2020</time>
-                            </header>
-                            
-
-                        </article>
-                
-                        <article class="mini-post">
-                            <header>
-                                <h3><a href="/blog/text-lime/">Interpreting Text Classification Model with LIME</a></h3>
-                                
-                                <time class="published" datetime=
-                                    '2020-03-13'>
-                                    March 13, 2020</time>
+                                    '2021-01-06'>
+                                    January 6, 2021</time>
                             </header>
                             
     
@@ -309,8 +488,8 @@
         
         
 
-        <a href="/blog/text-lime/" class="image featured">
-            <img src="/img/2020/03/lime.png" alt="">
+        <a href="/blog/rplicate-series-coronavirus-survey/" class="image featured">
+            <img src="/img/2021/01/five_thirty.png" alt="">
         </a>
     
 
@@ -319,11 +498,11 @@
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/dbscan-clustering/">DBSCAN Clustering</a></h3>
+                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-02-07'>
-                                    February 7, 2020</time>
+                                    '2020-11-25'>
+                                    November 25, 2020</time>
                             </header>
                             
     
@@ -348,8 +527,86 @@
         
         
 
-        <a href="/blog/dbscan-clustering/" class="image featured">
-            <img src="/img/2020/02/dbscan.jpg" alt="">
+        <a href="/blog/rplicate-series-gone-baby-gone/" class="image featured">
+            <img src="/img/2020/11/gone-baby-gone.png" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-23'>
+                                    November 23, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/xgboost/" class="image featured">
+            <img src="/img/2020/11/boosting-algorithm.png" alt="">
+        </a>
+    
+
+
+                        </article>
+                
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="/blog/fuzzy-clustering/">Fuzzy C-Means Clustering</a></h3>
+                                
+                                <time class="published" datetime=
+                                    '2020-11-23'>
+                                    November 23, 2020</time>
+                            </header>
+                            
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="/blog/fuzzy-clustering/" class="image featured">
+            <img src="/img/2020/11/fuzzy-cmeans.png" alt="">
         </a>
     
 
@@ -382,7 +639,7 @@
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Self-Organizing%20Maps&amp;url=%2fblog%2fself-organizing-maps%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Self-Organizing%20Maps by Inayatus%20Sholikhah&amp;url=%2fblog%2fself-organizing-maps%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -449,7 +706,7 @@
             April 26, 2019</time>
         <span class="author"><a href="https://github.com/inytss">Inayatus Sholikhah</a></span>
         
-            <p>14 minute read</p>
+            <p>13 minute read</p>
         
         
     </div>
@@ -464,7 +721,7 @@
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Self-Organizing%20Maps&amp;url=%2fblog%2fself-organizing-maps%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Self-Organizing%20Maps by Inayatus%20Sholikhah&amp;url=%2fblog%2fself-organizing-maps%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -541,79 +798,61 @@
 
 
   <div id="content">
-    <h1 id="introduction-som">Introduction SOM</h1>
-<p>Self-Organizing Maps first introduce by Teuvo Kohonen. According to the <code>Wiki</code>, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction. SOM are an unsupervised data visualisation technique that can be used to visualise high-dimensional data sets in lower (typically 2) dimensional representations. SOM also represent clustering concept by grouping the similar features together. So, SOM can use to cluster high-dimensional data sets by doing dimensionality reduction and visualize it using maps.</p>
-<p><!-- raw HTML omitted --></p>
-<p>Each data point in the data set recognizes themselves by competeting for representation. SOM mapping steps starts from initializing the weight vectors. From there a sample vector is selected randomly and the map of weight vectors is searched to find which weight best represents that sample. Each weight vector has neighborhood weights that are close to it. The weight that is chosen is rewarded by being able to become more like that randomly selected sample vector. The neighbors of that weight are also rewarded by being able to become more like the chosen sample vector. This allows the map to grow and form different shapes. Most generally, they form square/rectangular/hexagonal/L shapes in 2D feature space.</p>
-<p>SOM calculate the distance of each input vector by each weight of nodes. Distance that usually used is Euclidean distance.</p>
-<p><em>Algoritma SOM :</em></p>
-<ul>
+    <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h1 id="introduction-self-organizing-maps-som">Introduction Self-Organizing Maps (SOM)</h1>
+<p>Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> SOM also represent clustering concept by groupingsimilar features together. So, SOM can use to cluster high-dimensional data sets by doing dimensionality reduction and visualize it using maps.</p>
+<!-- raw HTML omitted -->
+<p>Each data point in the data set recognizes themselves by competing for representation. SOM mapping steps startfrom initializing the weight vectors. From there a sample vector is selected randomly and the map of weight vectors is searched to find which weight best represents that sample. Each weight vector has neighborhood weights that are close to it. The weight that is chosen is rewarded by being able to become more like that randomly selected sample vector. The neighbors of that weight are also rewarded by being able to become more like the chosen sample vector. This allows the map to grow and form different shapes. Most generally, they form square/rectangular/hexagonal/L shapes in the 2D feature space.</p>
+<p>SOM calculatesthe distance of each input vector by each weight of nodes. The distance that usually used is Euclidean distance.</p>
+<p><strong>This how SOM algorithm work :<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></strong></p>
+<ol>
 <li>Preparing input data for training data sets.</li>
 <li>Each node’s weights are initialized. A vector is chosen at random from the set of training data.</li>
-<li>Calculate the distance of each node. The winning node is commonly known as the Best Matching Unit (BMU).</li>
-<li>Updating of weight, then calculate again which one&rsquo;s weights are most like the input vectors.</li>
-<li>Every BMU has a neighbour then calculated. The amout of neighbour is decrease over time.</li>
-<li>The winning weight is rewarded with becoming more like the sample vector. The nighbors also become more like the sample vector. The closer a node is to the BMU, the more its weights get altered and the farther away the neighbor is from the BMU, the less it learns.</li>
+<li>Calculate the distance of each node. The winning node is commonly known as theBest Matching Unit (BMU).</li>
+<li>Updating of weight, then calculate again which one’s weights are most like the input vectors.</li>
+<li>Every BMU has a neighbor then calculated. The amount of neighbor is decreasedover time.</li>
+<li>The winning weight is rewarded with becoming more like the sample vector. The neighbors also become more like the sample vector. The closer a node is to the BMU, the more its weights get altered and the farther away the neighbor is from the BMU, the less it learns.</li>
 <li>Repeat the 2-5 step until every node getting close to input vectors.</li>
-</ul>
-<p><!-- raw HTML omitted --></p>
-<p><em>Implementation use case for SOM algorithm :</em></p>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>There are a lot of use case that implement SOM algorithm :<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></strong></p>
 <ol>
 <li>Customer segmentation</li>
 <li>Fantasy league analysis</li>
 <li>Cyber profilling criminals</li>
 <li>Identifying crime</li>
-<li>Etc</li>
+<li>etc.</li>
 </ol>
 <h1 id="som-analysis">SOM Analysis</h1>
-<p>On this article, we want to use <code>web analytics</code> dataset in San Francisco. We want to learn <em>how to use SOM to identify characteristics of each cluster</em> in many web on San Francisco by some features.</p>
+<p>In this article, we want to use web analytics dataset in San Francisco. We want to learn <em>how to use SOM to identify characteristics of each cluster</em> in many webs on San Francisco by some features.</p>
 <h2 id="library-used">Library Used</h2>
-<p>On this article, we used <code>kohonen</code> package for making a SOM algorithm. Since we know that <code>kohonen</code> packages are from <code>class</code>, we use it to make many key function such as :</p>
+<p>In this article, we used <code>kohonen</code> package for making a SOM algorithm. Since we know that <code>kohonen</code> packages are from <code>class</code>, we use it to make many key function such as :</p>
 <ul>
-<li><em>somgrid()</em> : initialized SOM node set</li>
-<li><em>som()</em> : making a SOM model, change the radius of neighbourhood, learning rate, and iteration</li>
-<li><em>plot.kohonen()</em> / <em>plot()</em> : visualisation of resulting SOM</li>
+<li><code>somgrid()</code> : initialized SOM node-set</li>
+<li><code>som()</code> : making a SOM model, change the radius of neighbourhood, learning rate, and iteration</li>
+<li><code>plot.kohonen()</code> / <code>plot()</code> : visualization of resulting SOM</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(kohonen)
-<span style="color:#a6e22e">library</span>(rmdformats)
 <span style="color:#a6e22e">library</span>(dplyr)
-</code></pre></div><p>In this article, we want to use <code>ads data</code> from xyz company that make an ads on Facebook.</p>
+</code></pre></div><p>In this article, we want to use <code>ads data</code> from xyz company that makes ads on Facebook.</p>
 <h2 id="data-pre-processing">Data Pre-Processing</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">data_input/KAG_conversion_data.csv&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+<p>First of all we want to import the data in this workspace.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/KAG_conversion_data.csv&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">glimpse</span>()
 </code></pre></div><pre><code>#&gt; Observations: 1,143
 #&gt; Variables: 11
-#&gt; $ ad_id               &lt;int&gt; 708746, 708749, 708771, 708815, 708818, 70...
-#&gt; $ xyz_campaign_id     &lt;int&gt; 916, 916, 916, 916, 916, 916, 916, 916, 91...
-#&gt; $ fb_campaign_id      &lt;int&gt; 103916, 103917, 103920, 103928, 103928, 10...
-#&gt; $ age                 &lt;fct&gt; 30-34, 30-34, 30-34, 30-34, 30-34, 30-34, ...
-#&gt; $ gender              &lt;fct&gt; M, M, M, M, M, M, M, M, M, M, M, M, M, M, ...
-#&gt; $ interest            &lt;int&gt; 15, 16, 20, 28, 28, 29, 15, 16, 27, 28, 31...
-#&gt; $ Impressions         &lt;int&gt; 7350, 17861, 693, 4259, 4133, 1915, 15615,...
-#&gt; $ Clicks              &lt;int&gt; 1, 2, 0, 1, 1, 0, 3, 1, 1, 3, 0, 0, 0, 0, ...
-#&gt; $ Spent               &lt;dbl&gt; 1.43, 1.82, 0.00, 1.25, 1.29, 0.00, 4.77, ...
-#&gt; $ Total_Conversion    &lt;int&gt; 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-#&gt; $ Approved_Conversion &lt;int&gt; 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, ...
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads <span style="color:#f92672">&lt;-</span> ads <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate</span>(ad_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(ad_id),
-         xyz_campaign_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(xyz_campaign_id),
-         fb_campaign_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(fb_campaign_id)) <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">glimpse</span>()
-</code></pre></div><pre><code>#&gt; Observations: 1,143
-#&gt; Variables: 11
-#&gt; $ ad_id               &lt;fct&gt; 708746, 708749, 708771, 708815, 708818, 70...
-#&gt; $ xyz_campaign_id     &lt;fct&gt; 916, 916, 916, 916, 916, 916, 916, 916, 91...
-#&gt; $ fb_campaign_id      &lt;fct&gt; 103916, 103917, 103920, 103928, 103928, 10...
-#&gt; $ age                 &lt;fct&gt; 30-34, 30-34, 30-34, 30-34, 30-34, 30-34, ...
-#&gt; $ gender              &lt;fct&gt; M, M, M, M, M, M, M, M, M, M, M, M, M, M, ...
-#&gt; $ interest            &lt;int&gt; 15, 16, 20, 28, 28, 29, 15, 16, 27, 28, 31...
-#&gt; $ Impressions         &lt;int&gt; 7350, 17861, 693, 4259, 4133, 1915, 15615,...
-#&gt; $ Clicks              &lt;int&gt; 1, 2, 0, 1, 1, 0, 3, 1, 1, 3, 0, 0, 0, 0, ...
-#&gt; $ Spent               &lt;dbl&gt; 1.43, 1.82, 0.00, 1.25, 1.29, 0.00, 4.77, ...
-#&gt; $ Total_Conversion    &lt;int&gt; 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-#&gt; $ Approved_Conversion &lt;int&gt; 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, ...
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">levels</span>(ads<span style="color:#f92672">$</span>xyz_campaign_id)
-</code></pre></div><pre><code>#&gt; [1] &quot;916&quot;  &quot;936&quot;  &quot;1178&quot;
+#&gt; $ ad_id               &lt;int&gt; 708746, 708749, 708771, 708815, 708818, 708820,...
+#&gt; $ xyz_campaign_id     &lt;int&gt; 916, 916, 916, 916, 916, 916, 916, 916, 916, 91...
+#&gt; $ fb_campaign_id      &lt;int&gt; 103916, 103917, 103920, 103928, 103928, 103929,...
+#&gt; $ age                 &lt;fct&gt; 30-34, 30-34, 30-34, 30-34, 30-34, 30-34, 30-34...
+#&gt; $ gender              &lt;fct&gt; M, M, M, M, M, M, M, M, M, M, M, M, M, M, M, M,...
+#&gt; $ interest            &lt;int&gt; 15, 16, 20, 28, 28, 29, 15, 16, 27, 28, 31, 7, ...
+#&gt; $ Impressions         &lt;int&gt; 7350, 17861, 693, 4259, 4133, 1915, 15615, 1095...
+#&gt; $ Clicks              &lt;int&gt; 1, 2, 0, 1, 1, 0, 3, 1, 1, 3, 0, 0, 0, 0, 7, 0,...
+#&gt; $ Spent               &lt;dbl&gt; 1.43, 1.82, 0.00, 1.25, 1.29, 0.00, 4.77, 1.27,...
+#&gt; $ Total_Conversion    &lt;int&gt; 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
+#&gt; $ Approved_Conversion &lt;int&gt; 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1,...
 </code></pre><ul>
 <li><code>ad_id</code> : an unique ID of each ad</li>
 <li><code>xyz_campaign_id</code> : an ID associated with each ad campaign of XYZ company</li>
@@ -627,150 +866,110 @@
 <li><code>Total_Conversion</code> : total number of people who enquired about the product after seeing the ad</li>
 <li><code>approved_Conversion</code> : total number of people who bougth the product after seeing the ad</li>
 </ul>
-<p>As we know that if SOM used numerical data, so if we have chategorical variables we must to change those variable to dummy variables.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads <span style="color:#f92672">&lt;-</span> ads <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(ad_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(ad_id),
+         xyz_campaign_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(xyz_campaign_id),
+         fb_campaign_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(fb_campaign_id))
+
+<span style="color:#a6e22e">levels</span>(ads<span style="color:#f92672">$</span>xyz_campaign_id)
+</code></pre></div><pre><code>#&gt; [1] &quot;916&quot;  &quot;936&quot;  &quot;1178&quot;
+</code></pre><p>As we know that if SOM used numerical data, so if we have categorical variables we must to change those variables to dummy variables.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># change the chategoric variables to a dummy variables</span>
 ads.s <span style="color:#f92672">&lt;-</span> ads <span style="color:#f92672">%&gt;%</span> 
-  <span style="color:#a6e22e">mutate</span>(genderF <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(gender <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">F&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
-         genderM <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(gender <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">M&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
-         age1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">30-34&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
-         age2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">35-39&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
-         age3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">40-44&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
-         age4 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">45-49&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(genderM <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(gender <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;M&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
+         age2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;35-39&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
+         age3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;40-44&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
+         age4 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;45-49&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>))
 
 <span style="color:#75715e"># make a train data sets that scaled and convert them to be a matrix cause kohonen function accept numeric matrix</span>
 ads.train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.matrix</span>(<span style="color:#a6e22e">scale</span>(ads.s[,<span style="color:#ae81ff">-1</span>]))
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make a SOM grid</span>
+</code></pre></div><p>We have dummy variables, then we make a SOM grid in order to make dimentioanlity reduction from our data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make stable sampling</span>
+<span style="color:#a6e22e">RNGkind</span>(sample.kind <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Rounding&#34;</span>)
+<span style="color:#75715e"># make a SOM grid</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
-ads.grid <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">somgrid</span>(xdim <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, ydim <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, topo <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">hexagonal&#34;</span>)
+ads.grid <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">somgrid</span>(xdim <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, ydim <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, topo <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hexagonal&#34;</span>)
 
 <span style="color:#75715e"># make a SOM model</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
-ads.model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">som</span>(ads.train, ads.grid, rlen <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>, keep.data <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>,
-                  dist.fcts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">euclidean&#34;</span>)
+ads.model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">som</span>(ads.train, ads.grid, rlen <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>, radius <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.5</span>, keep.data <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>,
+                  dist.fcts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;euclidean&#34;</span>)
 <span style="color:#75715e"># str(ads.model)</span>
-</code></pre></div><p>From that summary of <code>ads.model</code> we know that our som grid has 10x10 dimension.</p>
+</code></pre></div><p>From that summary of <code>ads.model</code> we know that our SOM grid has 10x10 dimension.</p>
 <h1 id="unsupervised-som">Unsupervised SOM</h1>
-<h2 id="visualize-of-som">Visualize of SOM</h2>
-<p>Before visualize SOM model, let&rsquo;s explore list of SOM model. If we want to know that our data position in maps, we look it in <code>unit.classif</code>. Each values represent the node number to which this application belong. For example, in first value of application, 1 means that in first application has been claaified into 1 particular nodes.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads.model<span style="color:#f92672">$</span>unit.classif
-</code></pre></div><p>And we can see the classification of each nodes by codes plot and we can see the values of each nodes using the mapping plot.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">mapping&#34;</span>, pchs <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>, shape <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">round&#34;</span>)
+<h2 class="tabset tabset-fade tabset-pills" id="visualize-of-som">Visualize of SOM</h2>
+<p>Before visualizingSOM model, let’s explore a list of SOM model. If we want to know that our data position in maps, we look it in <code>unit.classif</code>. Each value represent the node number to which this application belongs. For example, in the first value of the application, 12 means that in the first application has been classified into 12 particular node.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(ads.model<span style="color:#f92672">$</span>unit.classif)
+</code></pre></div><pre><code>#&gt; [1] 12 13 13 23 22 22
+</code></pre><p>And we can see the classification of each nodes by codes plot and we can see the values of each nodes using the mapping plot.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mapping&#34;</span>, pchs <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>, shape <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;round&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(<span style="color:#a6e22e">data.frame</span>(ads.train), <span style="color:#ae81ff">20</span>)
-</code></pre></div><pre><code>#&gt;       interest Impressions     Clicks      Spent Total_Conversion
-#&gt; 1  -0.65918365  -0.5735416 -0.5693235 -0.5745204       -0.1908387
-#&gt; 2  -0.62208084  -0.5399346 -0.5517465 -0.5700329       -0.1908387
-#&gt; 3  -0.47366957  -0.5948262 -0.5869005 -0.5909745       -0.4138741
-#&gt; 4  -0.17684703  -0.5834245 -0.5693235 -0.5765915       -0.4138741
-#&gt; 5  -0.17684703  -0.5838274 -0.5693235 -0.5761313       -0.4138741
-#&gt; 6  -0.13974421  -0.5909191 -0.5869005 -0.5909745       -0.4138741
-#&gt; 7  -0.65918365  -0.5471158 -0.5341694 -0.5360891       -0.4138741
-#&gt; 8  -0.62208084  -0.5620281 -0.5693235 -0.5763614       -0.4138741
-#&gt; 9  -0.21394984  -0.5895122 -0.5693235 -0.5737149       -0.4138741
-#&gt; 10 -0.17684703  -0.5666610 -0.5341694 -0.5546144       -0.4138741
-#&gt; 11 -0.06553857  -0.5931284 -0.5869005 -0.5909745       -0.4138741
-#&gt; 12 -0.95600620  -0.5946919 -0.5869005 -0.5909745       -0.4138741
-#&gt; 13 -0.62208084  -0.5806812 -0.5869005 -0.5909745       -0.4138741
-#&gt; 14 -0.62208084  -0.5806717 -0.5869005 -0.5909745       -0.4138741
-#&gt; 15 -0.47366957  -0.5501405 -0.4638613 -0.4726890       -0.4138741
-#&gt; 16 -0.17684703  -0.5930740 -0.5869005 -0.5909745       -0.4138741
-#&gt; 17 -0.10264139  -0.5896721 -0.5693235 -0.5844158       -0.4138741
-#&gt; 18 -0.06553857  -0.5937679 -0.5869005 -0.5909745       -0.4138741
-#&gt; 19 -0.65918365  -0.5822479 -0.5693235 -0.5715287       -0.4138741
-#&gt; 20 -0.62208084  -0.5298151 -0.5165924 -0.5377000       -0.1908387
-#&gt;    Approved_Conversion    genderF   genderM      age1       age2
-#&gt; 1           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 2          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 3          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 4          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 5           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 6           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 7          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 8           0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 9          -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 10         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 11         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 12         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 13         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 14         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 15          0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 16          0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 17         -0.54324835 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 18          0.03222233 -0.9643282 0.9643282  1.296775 -0.5261678
-#&gt; 19         -0.54324835 -0.9643282 0.9643282 -0.770469  1.8988717
-#&gt; 20          0.03222233 -0.9643282 0.9643282 -0.770469  1.8988717
-#&gt;          age3       age4
-#&gt; 1  -0.4742188 -0.5410454
-#&gt; 2  -0.4742188 -0.5410454
-#&gt; 3  -0.4742188 -0.5410454
-#&gt; 4  -0.4742188 -0.5410454
-#&gt; 5  -0.4742188 -0.5410454
-#&gt; 6  -0.4742188 -0.5410454
-#&gt; 7  -0.4742188 -0.5410454
-#&gt; 8  -0.4742188 -0.5410454
-#&gt; 9  -0.4742188 -0.5410454
-#&gt; 10 -0.4742188 -0.5410454
-#&gt; 11 -0.4742188 -0.5410454
-#&gt; 12 -0.4742188 -0.5410454
-#&gt; 13 -0.4742188 -0.5410454
-#&gt; 14 -0.4742188 -0.5410454
-#&gt; 15 -0.4742188 -0.5410454
-#&gt; 16 -0.4742188 -0.5410454
-#&gt; 17 -0.4742188 -0.5410454
-#&gt; 18 -0.4742188 -0.5410454
-#&gt; 19 -0.4742188 -0.5410454
-#&gt; 20 -0.4742188 -0.5410454
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">codes&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Codes Plot&#34;</span>, palette.name <span style="color:#f92672">=</span> rainbow)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(<span style="color:#a6e22e">data.frame</span>(ads.train), <span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>#&gt;     interest Impressions     Clicks      Spent Total_Conversion
+#&gt; 1 -0.6591837  -0.5735416 -0.5693235 -0.5745204       -0.1908387
+#&gt; 2 -0.6220808  -0.5399346 -0.5517465 -0.5700329       -0.1908387
+#&gt; 3 -0.4736696  -0.5948262 -0.5869005 -0.5909745       -0.4138741
+#&gt; 4 -0.1768470  -0.5834245 -0.5693235 -0.5765915       -0.4138741
+#&gt; 5 -0.1768470  -0.5838274 -0.5693235 -0.5761313       -0.4138741
+#&gt;   Approved_Conversion   genderM       age2       age3       age4
+#&gt; 1          0.03222233 0.9643282 -0.5261678 -0.4742188 -0.5410454
+#&gt; 2         -0.54324835 0.9643282 -0.5261678 -0.4742188 -0.5410454
+#&gt; 3         -0.54324835 0.9643282 -0.5261678 -0.4742188 -0.5410454
+#&gt; 4         -0.54324835 0.9643282 -0.5261678 -0.4742188 -0.5410454
+#&gt; 5          0.03222233 0.9643282 -0.5261678 -0.4742188 -0.5410454
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Codes Plot&#34;</span>, palette.name <span style="color:#f92672">=</span> rainbow)
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<p>At the first node, we can say that the input data entered on the first node is characterized from the major variable tat have gender M and age range of 30-34. For the second node there is characterized of major variables that have gender M and age range 30-34. Here we can conclude that the node will have neighbors that have similar characteristics to it, that is, like nodes 1 and 2 that are close together because they have gender M and an age range of 30-34 that same.</p>
+<p>At the first node, we can say that the input data entered on the first node is characterized bythe major variable that hasgender M and age range of 30-34. For the second node,there is characterized by major variables that have gender M and age range 30-34. Here we can conclude that the node will have neighbors that have similar characteristics to it, that is, like nodes 1 and 2 that are close together because they have gender M and an age range of 30-34 that same.</p>
 <h3 id="training-progress">Training Progress</h3>
-<p>As the SOM training iterations progress, the distance from each node’s weights to the samples represented by that node is reduced. Ideally, this distance should reach a minimum plateau. This plot option shows the progress over time. If the curve is continually decreasing, more iterations are required.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">changes&#34;</span>)
+<p>As the SOM training iterations progress, the distance from each node’s weights to the samples represented by that node is reduced. Ideally, this distance should reach a minimum of plateau. This plot option shows progress over time. If the curve is continually decreasing, more iterations are required.<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;changes&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h3 id="node-counts">Node Counts</h3>
-<p>The Kohonen packages allows us to visualise the count of how many samples are mapped to each node on the map. This metric can be used as a measure of map quality – ideally the sample distribution is relatively uniform. Large values in some map areas suggests that a larger map would be benificial. Empty nodes indicate that your map size is too big for the number of samples. Aim for at least 5-10 samples per node when choosing map size.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">counts&#34;</span>)
+<p>The Kohonen package allows us to visualize the count of how many samples are mapped to each node on the map. This metric can be used as a measure of map quality–ideally, the sample distribution is relatively uniform. Large values in some map areas suggest that a larger map would be beneficial. Empty nodes indicate that your map size is too big for the number of samples. Aim for at least 5-10 samples per node when choosing map size.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;counts&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Nodes that colored by red mean nodes that have the least number of input values, such as in the second nodes. If the color nodes are brighter indicating the nodes have a lot of input values, such as in the 31 nodes. For nodes that have gray colors, that means the nodes do not have input values at all.</p>
 <h3 id="neighbours-nodes">Neighbours Nodes</h3>
-<p>If we want to see nodes that have the closest or farthest neighbours, we can plot a plot based on <code>dist.neighbours</code>. Nodes that have darker colors mean that the nodes have a vector input that is closer, whereas nodes that have lighter colors mean that the nodes have vector inputs that are farther apart.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">dist.neighbours&#34;</span>)
+<p>If we want to see nodes that have the closest or farthest neighbors, we can plot a plot based on <code>dist.neighbours</code>. Nodes that have darker colors mean that the nodes have a closer vector input, whereas nodes that have lighter colors mean that the nodes have vector inputs that are farther apart.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dist.neighbours&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h3 id="heatmaps">Heatmaps</h3>
-<p>Heatmaps are perhaps the most important visualisation possible for Self-Organising Maps.  A SOM heatmap allows the visualisation of the distribution of a single variable across the map. Typically, a SOM investigative process involves the creation of multiple heatmaps, and then the comparison of these heatmaps to identify interesting areas on the map. It is important to remember that the individual sample positions do not move from one visualisation to another, the map is simply coloured by different variables.
-The default Kohonen heatmap is created by using the type “heatmap”, and then providing one of the variables from the set of node weights. In this case we visualise the average education level on the SOM.</p>
+<p>Heatmaps are perhaps the most important visualization possible for Self-Organising Maps. A SOM heatmap allows the visualization of the distribution of a single variable across the map. Typically, a SOM investigative process involves the creation of multiple heatmaps and then the comparison of these heatmaps to identify interesting areas on the map. It is important to remember that the individual sample positions do not move from one visualization to another, the map is simply colored by different variables.</p>
+<p>The default Kohonen heatmap is created by using the type “heatmap”, and then providing one of the variables from the set of node weights. In this case, we visualize the average education level on the SOM.</p>
+<p>The default Kohonen heatmap is created by using the type “heatmap”, and then providing one of the variables from the set of node weights. In this case, we visualize the average education level on the SOM.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">heatmap.som <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(model){
-  <span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">12</span>) {
-   <span style="color:#a6e22e">plot</span>(model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">property&#34;</span>, property <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCodes</span>(model)[,i], 
+  <span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>) {
+  <span style="color:#a6e22e">plot</span>(model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;property&#34;</span>, property <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCodes</span>(model)[,i], 
         main <span style="color:#f92672">=</span> <span style="color:#a6e22e">colnames</span>(<span style="color:#a6e22e">getCodes</span>(model))[i]) 
   }
 }
 <span style="color:#a6e22e">heatmap.som</span>(ads.model)
-</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p>From the heatmap that is formed, we can know which nodes have the characteristics of each variable whose value is high and the value is low.</p>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>From the heatmap that is formed, we can know which nodes have the characteristics of each variablewhose value is high and the value is low.</p>
 <h3 id="clustering">Clustering</h3>
-<p>Then we want to try to clustering every observation that we have without looking the labels of <code>xyz_campaign_id</code>. Like making cluster using k-means, we must determine the number of cluster that we want to make. In this case, we want to use elbow method to determine number of cluster.</p>
+<p>Then we want to try to clustering every observation that we have without looking at the labels of <code>xyz_campaign_id</code>. Like making clusters using k-means, we must determine the number of cluster that we want tomake. In this case, we want to use the elbow method to determine the number of clusters.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(factoextra)
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
-<span style="color:#a6e22e">fviz_nbclust</span>(ads.model<span style="color:#f92672">$</span>codes[[1]], kmeans, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">wss&#34;</span>)
+<span style="color:#a6e22e">fviz_nbclust</span>(ads.model<span style="color:#f92672">$</span>codes[[1]], kmeans, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wss&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">kmeans</span>(ads.model<span style="color:#f92672">$</span>codes[[1]], <span style="color:#ae81ff">6</span>)
 
+<span style="color:#75715e"># clustering using hierarchial</span>
 <span style="color:#75715e"># cluster.som &lt;- cutree(hclust(dist(ads.model$codes[[1]])), 6)</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Cluster Map&#34;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Map&#34;</span>)
 <span style="color:#a6e22e">add.cluster.boundaries</span>(ads.model, clust<span style="color:#f92672">$</span>cluster)
-</code></pre></div><p><!-- raw HTML omitted -->
-At this part, to do the profiling of the clusters that we made, we do not need to look at the descriptive results of the cluster or look deeper into the data, we only need to look at the cluster map above.</p>
+</code></pre></div><p><!-- raw HTML omitted --></p>
+<p>At this part, to do the profiling of the clusters that we made, we do not need to look at the descriptive results of the cluster or look deeper into the data, we only need to look at the cluster map above.</p>
 <p>The characteristics for each cluster :</p>
 <ul>
 <li>Cluster 1 (red) : gender Male, age 30-34</li>
 <li>Cluster 2 (orange) : gender Female, gender Male, age 40-44, interest middle</li>
 <li>Cluster 3 (green light) : gender Female, gender Male,  age 45-49, interest high, impression middle, clicks middle</li>
 <li>Cluster 4 (green) : interest high, impression high, clicks high, spent high, gender Male, age 30-34, total conversion high, approved conversion high</li>
-<li>Cluster 5 (turqois) : gender Female, age 45-49, interest middle, clicks and spent low</li>
-<li>Cluster 6 (blue) : gender Female, age 30-34, interest high</li>
+<li>Cluster 5 (turqois) : gender Male, age 45-49, interest high, clicks and spent low</li>
+<li>Cluster 6 (blue) : gender Female, age 45-49, interest, impression, clicks, spent, total_conversion low.</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># know cluster each data</span>
 ads.cluster <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(ads.s, cluster <span style="color:#f92672">=</span> clust<span style="color:#f92672">$</span>cluster[ads.model<span style="color:#f92672">$</span>unit.classif])
@@ -786,19 +985,19 @@ ads.cluster <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
 #&gt; 1141            1178      111      151531     28  40.29                2
 #&gt; 1142            1178      113      790253    135 198.71                8
 #&gt; 1143            1178      114      513161    114 165.61                5
-#&gt;      Approved_Conversion genderF genderM age1 age2 age3 age4 cluster
-#&gt; 1134                   5       1       0    0    0    0    1       3
-#&gt; 1135                   4       1       0    0    0    0    1       3
-#&gt; 1136                   0       1       0    0    0    0    1       5
-#&gt; 1137                   4       1       0    0    0    0    1       3
-#&gt; 1138                   1       1       0    0    0    0    1       5
-#&gt; 1139                   2       1       0    0    0    0    1       3
-#&gt; 1140                   0       1       0    0    0    0    1       5
-#&gt; 1141                   0       1       0    0    0    0    1       5
-#&gt; 1142                   2       1       0    0    0    0    1       3
-#&gt; 1143                   2       1       0    0    0    0    1       3
+#&gt;      Approved_Conversion genderM age2 age3 age4 cluster
+#&gt; 1134                   5       0    0    0    1       5
+#&gt; 1135                   4       0    0    0    1       4
+#&gt; 1136                   0       0    0    0    1       5
+#&gt; 1137                   4       0    0    0    1       4
+#&gt; 1138                   1       0    0    0    1       5
+#&gt; 1139                   2       0    0    0    1       4
+#&gt; 1140                   0       0    0    0    1       5
+#&gt; 1141                   0       0    0    0    1       5
+#&gt; 1142                   2       0    0    0    1       5
+#&gt; 1143                   2       0    0    0    1       5
 </code></pre><h1 id="supervised-som">Supervised SOM</h1>
-<p>In supervised SOM, we want to classify our SOM model with our dependent variable (xyz_campaign_id).</p>
+<p>In supervised SOM, we want to classify our SOM model with our dependent variable (<code>xyz_campaign_id</code>). In classification case, we have to do split train-test data in order to ensure our model is good enough to predict other data pattern. First, we split our data to train-test and do a scaling step to make the range of data same.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># split data</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 int <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#a6e22e">nrow</span>(ads.s), <span style="color:#a6e22e">nrow</span>(ads.s)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.8</span>)
@@ -807,21 +1006,24 @@ test <span style="color:#f92672">&lt;-</span> ads.s[<span style="color:#f92672">
 
 <span style="color:#75715e"># scaling data</span>
 trainX <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(train[,<span style="color:#ae81ff">-1</span>])
-testX <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(test[,<span style="color:#ae81ff">-1</span>], center <span style="color:#f92672">=</span> <span style="color:#a6e22e">attr</span>(trainX, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">scaled:center&#34;</span>))
-
-
-<span style="color:#75715e"># make label</span>
+testX <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(test[,<span style="color:#ae81ff">-1</span>], center <span style="color:#f92672">=</span> <span style="color:#a6e22e">attr</span>(trainX, <span style="color:#e6db74">&#34;scaled:center&#34;</span>))
+</code></pre></div><p>After we have done in train-test split, we make a label for our target variable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make label</span>
 train.label <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(train[,<span style="color:#ae81ff">1</span>])
 test.label <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(test[,<span style="color:#ae81ff">1</span>])
 test[,<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">916</span>
 testXY <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(independent <span style="color:#f92672">=</span> testX, dependent <span style="color:#f92672">=</span> test.label)
 </code></pre></div><h2 id="classification">Classification</h2>
+<p>To make an classification model implementing SOM algorithm, we can use <code>xyf()</code> function.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># classification &amp; predict</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xyf</span>(trainX, <span style="color:#a6e22e">classvec2classmat</span>(train.label), ads.grid, rlen <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(class, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">changes&#34;</span>)
+</code></pre></div><p>We can plot the classification result by the type <code>change</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(class, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;changes&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
+<p><code>Matrix 1</code> shows iteration of training progress of real data and the <code>Matrix 2</code> shows iteration of training progress in predict data.</p>
 <h2 id="predict">Predict</h2>
+<p>To make sure our model is fit enough, we predict our test data <code>testXY</code> using <code>class</code> model. We got the confusion matrix of the prediction. In this data, we get 100% accuracy to predict each class.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(class, newdata <span style="color:#f92672">=</span> testXY)
 <span style="color:#a6e22e">table</span>(Predict <span style="color:#f92672">=</span> pred<span style="color:#f92672">$</span>predictions[[2]], Actual <span style="color:#f92672">=</span> test.label)
 </code></pre></div><pre><code>#&gt;        Actual
@@ -830,32 +1032,54 @@ class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xyf</
 #&gt;    936    0 101    0
 #&gt;    1178   0   0  114
 </code></pre><h2 id="cluster-boundaries">Cluster Boundaries</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Cluster SOM&#34;</span>)
+<p>We can visualize each class by each cluster using cluster boundaries.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster SOM&#34;</span>)
 <span style="color:#a6e22e">add.cluster.boundaries</span>(ads.model, clust<span style="color:#f92672">$</span>cluster)
 </code></pre></div><p><!-- raw HTML omitted --></p>
+<p>To ensure our classification prediction and each cluster, we can see the visualization of each class and each cluster using cluster bounderies.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">c.class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">kmeans</span>(class<span style="color:#f92672">$</span>codes[[2]], <span style="color:#ae81ff">3</span>)
 <span style="color:#a6e22e">par</span>(mfrow <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>))
-<span style="color:#a6e22e">plot</span>(class, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">codes&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Unsupervised SOM&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Supervised SOM&#34;</span>), 
+<span style="color:#a6e22e">plot</span>(class, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Unsupervised SOM&#34;</span>, <span style="color:#e6db74">&#34;Supervised SOM&#34;</span>), 
      bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">3</span>)[c.class<span style="color:#f92672">$</span>cluster])
 <span style="color:#a6e22e">add.cluster.boundaries</span>(class, c.class<span style="color:#f92672">$</span>cluster)
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<p>From the results of SOM clustering using unsupervised and supervised, we can conclude that for xyz_campaign_id 916 more interested in the ads displayed are Male and Female aged 30-49 and they are interested in existing ads and then make payments after seeing the ads.
-For xyz_campaign_id 936, those who see the ads is Male and Female in ranging age from 30-39 and they are only interested in the ads that are displayed but to make payments after seeing the ads are small.
-For xyz_campaign_id 1178, which saw more ads for Female and aged 30-34 years.</p>
-<p><em>Advantage using SOM :</em></p>
+<h1 id="conclusion">Conclusion</h1>
+<ul>
+<li>From the results of SOM clustering using unsupervised and supervised, we can conclude that for <code>xyz_campaign_id</code> 916 more interested in the ads displayed are Male and Female aged 30-49 and they are interested in existing ads and then make payments after seeing the ads.</li>
+<li>For <code>xyz_campaign_id</code> 936, those who see the ads is Male and Female in ranging age from 30-39 and they are only interested in the ads that are displayed but to make payments after seeing the ads are small.</li>
+<li>For <code>xyz_campaign_id</code> 1178, which saw moreads for femalesand aged 30-34 years.</li>
+</ul>
+<p>There are pros and cons using this algorithm. <em>The advantage using SOM :</em></p>
 <ul>
 <li>Intuitive method to develop profilling</li>
 <li>Easy to explain the result with the maps</li>
 <li>Can visualize high-dimensional data by two-dimensional maps</li>
 </ul>
-<p><em>Disadvantage using SOM :</em></p>
+<p><em>The disadvantage using SOM :</em></p>
 <ul>
 <li>Requires clean, numeric data</li>
 </ul>
 <h1 id="annotation">Annotation</h1>
-<p>[1] <a href="https://en.wikipedia.org/wiki/Self-organizing_map">Wikipedia. Self-organizing Maps.</a></p>
-<p>[2] <a href="https://towardsdatascience.com/self-organizing-maps-ff5853a118d4">Ralhan, A. 2018. <em>Self Organizing Maps</em>.</a></p>
-<p>[3] <a href="https://www.shanelynn.ie/self-organising-maps-for-customer-segmentation-using-r/">Lynn, Shane. Self-Organizing Maps for Customer Segementation using R.</a></p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://en.wikipedia.org/wiki/Self-organizing_map">Wikipedia. Self-organizing Maps.</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://towardsdatascience.com/self-organizing-maps-ff5853a118d4">Ralhan, A. 2018. <em>Self Organizing Maps</em>.</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="https://www.shanelynn.ie/self-organising-maps-for-customer-segmentation-using-r/">Lynn, Shane. Self-Organizing Maps for Customer Segementation using R.</a> <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="https://www.superdatascience.com/blogs/self-organizing-maps-soms-how-do-self-organizing-maps-learn-part-1/">Self Organizing Maps</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p><a href="https://www.superdatascience.com/blogs/the-ultimate-guide-to-self-organizing-maps-soms">The Ultimate Guide to Self Organizing Maps (SOMs)</a> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
 
   </div>
 
@@ -1054,7 +1278,31 @@ For xyz_campaign_id 1178, which saw more ads for Female and aged 30-34 years.</p
     
   </section>
 
+  
+  <section class="recent-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Upcoming Workshop</h3>
+      </header>
+      <div class="posts-container">
+          <article class="mini-post">
+            <header>
+              <h3>
+                
+                                <img src="/img/2020/ads/dss.png", alt="alternatetext", width="270" height="340">
+                <a href="https://algorit.ma/text-analysis/?utm_source=algotech">More details</a>
+                
+                <img src="/img/2020/ads/ddt.png", alt="alternatetext", width="270" height="340">
+                <a href="https://algorit.ma/data-driven-2/?utm_source=algotech">More details</a>
+              </h3>
+            </header>
+          </article>
+      </div>
 
+      
+      
+    </div>
+  </section>
 
   
   
@@ -1067,7 +1315,7 @@ For xyz_campaign_id 1178, which saw more ads for Female and aged 30-34 years.</p
   <section id="footer">
     <p class="copyright">
       
-        &copy; 2020
+        &copy; 2021
         
           Algoritma Technical Blog
         
@@ -1079,6 +1327,33 @@ For xyz_campaign_id 1178, which saw more ads for Female and aged 30-34 years.</p
 
     </div>
     <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    <style>
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height:50px; 
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 50px;
+        padding-right: 50px;
+}
+      }
+
+
+      </style>
+
+      <div class="footer">
+        <p>
+          Want to know more about our workshop?
+          <a href="https://algorit.ma/?utm_source=algotech&utm_medium=content&utm_campaign=self-organizing-maps" style="color: rgb(197, 38, 38)"> Visit our main website here</a> <br>
+        </p>
+          
+      </div>
     
 
     

@@ -1,5 +1,32 @@
     </div>
     <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    <style>
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height:50px; 
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 50px;
+        padding-right: 50px;
+}
+      }
+
+
+      </style>
+
+      <div class="footer">
+        <p>
+          Want to know more about our workshop?
+          <a href="https://algorit.ma/?utm_source=algotech&utm_medium=content&utm_campaign={{ .Slug | html }}" style="color: rgb(197, 38, 38)"> Visit our main website here</a> <br>
+        </p>
+          
+      </div>
     <!-- Scripts -->
 
     {{ if isset .Site.Params "customjs" }}

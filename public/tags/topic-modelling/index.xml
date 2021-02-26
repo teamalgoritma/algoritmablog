@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Topic Modelling on Algoritma Technical Blog</title>
+    <link>/tags/topic-modelling/</link>
+    <description>Recent content in Topic Modelling on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 26 Oct 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/topic-modelling/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Topic Modelling with Latent Dirichlet Allocation (LDA)</title>
+      <link>/blog/topic-modeling-lda/</link>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/topic-modeling-lda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Topic Modelling with Latent Dirichlet Allocation (LDA)</title>
+      <link>/blog/topic-modeling-lda/</link>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/topic-modeling-lda/</guid>
+      <description>Topic Modelling Background Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:
+ SPAM email detection Sentiment Analysis Text summarization Text Generation Topic Modelling  On this occation, we will learn about Topic Modelling and it&amp;rsquo;s application in a real case.</description>
+    </item>
+    
+    <item>
+      <title>Song2Vec: Music Recommender</title>
+      <link>/blog/song2vec-music-recommender/</link>
+      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/song2vec-music-recommender/</guid>
+      <description>body {text-align: justify}BackgroundThe behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music,Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -11,9 +11,9 @@ tags:
   - Adversarial
   - Generative Model
 description: ''
-featured: ''
+featured: 'banner_gan.jpg'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -32,9 +32,8 @@ knitr::opts_chunk$set(
 In 2018 a  paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie's. This made Chritie's the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
 
 # Intro
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg')
-```
+
+<center> <img src="/img/intro-to-gan/edmond-de-belamy-framed-cropped.jpg"> </center>
 
 >Is artificial intelligence set to become art’s next medium? - Chritie's
 
@@ -51,70 +50,54 @@ As discovered by Ian Goodfellow[^ian_GAN] , GAN is consisted of **two** neural n
 ## Motivational Examples
 Before we go into implementation of GAN, let's see how GAN(s) changes overtime. 
 
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/gan-tweet.PNG')
-```
+
+<center> <img src="/img/intro-to-gan/gan-tweet.PNG"> </center>
 
 Since it's first appearance in 2014, and with the rising of Computer Vision - CNN, GAN grew rapidly. It's now able to generate a stunning images, that even our eyes cannot distinguish whether it's real or fake! Current most state-of-the-art GAN are StyleGAN, and you can check it's result in [thispersondoesntexist.com](thispersondoesntexist.com). Let's see several types of GANs
 
 ### CGAN (Conditional GAN, 2014)
-___
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/cgan.PNG')
-```
-___
+
+<center> <img src="/img/intro-to-gan/cgan.PNG"> </center>
+
+
 GAN was originally created to be trainable with only **ONE** class. If you train your GAN with dog images, it can generate dog images. If you train your GAN with cat images, it can generate cat images. But, what if your GAN was trained into both cat and dog images ? It will generate a blurry animal. To overcome this, Mirza[^CGAN] created CGAN that can diffrentiate multiple output. 
 
 This work also make it possible to guide an image into something else like example below 
-___
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/pose-guide.png')
-```
+
+<center> <img src="/img/intro-to-gan/pose-guide.png"> </center>
+
 <sub>*source: https://papers.nips.cc/paper/6644-pose-guided-person-image-generation.pdf*</sub>
 
-___
+
 ### CycleGAN, 2018
 
 In 2018, Zu[^CycleGAN] create a CycleGAN, A GAN that **Doesn't Generate Fake Images**. Instead, it transfer styles between images. 
 
 Have you ever imagine a horse with zebra lines ? 
 
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/zebra-horse.gif')
-```
+<center> <img src="/img/intro-to-gan/zebra-house.gif"> </center>
 
 Or, playing Fortnite with PUBG style?
 
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/fortnite-pubg.gif')
-```
-
-
+<center> <img src="/img/intro-to-gan/fortnite-pubg.gif"> </center>
 
 Unlike [Style Transfer](https://towardsdatascience.com/style-transfer-styling-images-with-convolutional-neural-networks-7d215b58f461), cycle gan is not limited by domain, wich means, you can do text-to-image style transfer!
 
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/text-image.png')
-```
+<center> <img src="/img/intro-to-gan/text-image.png"> </center>
 
 <sub>Sources: [Zebra-Horse](https://junyanz.github.io/CycleGAN/),[Fortnite-PUBG](https://towardsdatascience.com/turning-fortnite-into-pubg-with-deep-learning-cyclegan-2f9d339dcdb0), [text-image](https://arxiv.org/pdf/1808.04538.pdf) 
 </sub>
 
 ### SAGAN (Self Attention GAN, 2018)
 After Computer Vision takes over ML's attentions for years, eventually it face a saturation phase, where it's considered as State-of-the-art model for Image Classifiation, Detection, Segmentations, etc. There's nothing such a new architecture, everything is CNN. That's when NLP kicks in. Thanks for [Transformers](https://blog.scaleway.com/2019/building-a-machine-reading-comprehension-system-using-the-latest-advances-in-deep-learning-for-nlp/), NLP started to find a new hope, and generated a model called [Attention](https://medium.com/@joealato/attention-in-nlp-734c6fa9d983). This idea then inspired Zhang[^SAGAN] to create a Self Attention GAN that can help them focus on the context of the images. His model then considered as the state-of-the art GAN. But not for a long time.
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/sagan.png')
-```
+
+<center> <img src="/img/intro-to-gan/sagan.png"> </center>
 
 ### ProGAN (2018)
 
 Training GAN is hard. Knowing that the Generator and Discriminator fighting each other, GAN losses somethimes become unstable and can jumped just after the model started to look converge. 
 
-
-
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/progan.gif')
-```
+<center> <img src="/img/intro-to-gan/progan.gif"> </center>
 
 <sub>Source: [Medium](https://cdn-images-1.medium.com/max/1600/1*tUhgr3m54Qc80GU2BkaOiQ.gif)
 </sub>
@@ -124,10 +107,7 @@ In order to face that, Karras[^ProGAN] and his mates from NVIDIA started to buil
 ### BigGAN (2019)
 In 2019, Brock[^BigGAN] and his teammates from Google Deepmind attempted to create a GAN that run on a large scale of TPU cluster. Hence the name, BigGAN. No one have ever tried to train GAN on such a large cluster of machine. Now you know the power of Google. 
 
-
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/big-gan.png')
-```
+<center> <img src="/img/intro-to-gan/big-gan.png"> </center>
 
 <sub>Source: Brock's Paper
 </sub>
@@ -141,11 +121,7 @@ GANs already reach its point wich it can generate a hyper-realistic images. But 
 Still from NVIDIA instead of continue creating more realistic images, Karras[^StyleGAN] focused on making GAN that can be controlled over a style, hence the name StyleGAN. This mean you have big control of what image will you generate. Or more likely, How do you want the image to be. 
 
 
-
-
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/stylegan2.png')
-```
+<center> <img src="/img/intro-to-gan/stylegan2.png"> </center>
 
 
 <sub>Source: Karras's Paper
@@ -187,12 +163,8 @@ X_test = X_test[:, :, :, None]
 ```
 The Mnist images are 28x28x1 grayscale of handwritten digits. It contains 60000 set of train data and 10000 set of test data. If you haven't seen it before, here's what they looks like
 
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/mnist-reseachgate.png')
-```
 
-
-
+<center> <img src="/img/intro-to-gan/mnist-reseachgate.png"> </center>
 
 
 
@@ -209,10 +181,7 @@ So, in order to help you build the GAN, We prepared several helpful function. Yo
 This function will arrange several images into one frame so that it will be easier to see. This is the sample result:
 
 
-
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/mnist-reseachgate.png')
-```
+<center> <img src="/img/intro-to-gan/mnist-reseachgate.png"> </center>
 
 
 ```python
@@ -393,11 +362,9 @@ g_model, d_model = train_gan(X_train,y_train, batch, epochs, g_model, d_model)
 Here's how our model fake images after trained for each epoch
 
 
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/GAN-train.PNG')
-knitr::include_graphics('/img/intro-to-gan/GAN-train-2.PNG')
-```
+<center> <img src="/img/intro-to-gan/GAN-train.PNG> </center>
 
+<center> <img src="/img/intro-to-gan/GAN-train-2"> </center>
 
 ### Generate Images
 Now that our model have the understanding of how to draw an mnist image, let's try to generate one. 
@@ -422,12 +389,7 @@ plt.axis('off')
 plt.show()
 ```
 
-
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/generator-test.PNG')
-```
-
-
+<center> <img src="/img/intro-to-gan/generator-test.PNG"> </center>
 
 #### Generate images from generator with discriminator check
 Basically our Generator is capable enough to do the job. But is there any possible way to make the generated images looks more realistic?. You're right ! Pass them to the Discriminator. Previously, our Discriminator has the capability to classify fake images. So, let's use it as QA agent. If our fake image is classified as real, then, by concept, it should be more realistic than images that clasified as fake. Without furder ado, let's try it !
@@ -465,10 +427,7 @@ plt.axis('off')
 plt.show()
 ```
 
-```{r, echo=FALSE}
-knitr::include_graphics('/img/intro-to-gan/discriminator-test.PNG')
-```
-
+<center> <img src="/img/intro-to-gan/discriminator-test.PNG"> </center>
 
 Congratulations! you now can generate realistic handwritten images using Generator and Discriminator simultaneuosly. What? you want to generate specific number? 
 

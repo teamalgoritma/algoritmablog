@@ -10,9 +10,9 @@ tags:
   - Genetic Algorithm
   - Optimization
 description: ''
-featured: ''
+featured: 'banner_genetic.jpg'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -96,15 +96,15 @@ Evolution by natural selection is first proposed by Charles Darwin through his b
 Genetic Algorithm is an optimization algorithm that use the concept of evolution by natural selection. Evolution by natural selection, as proposed by Darwin, is the mechanism on how many varieties of living things are adapting to their environment to survive, through 2 main principles: natural selection and random mutation. The genetic algorithm (GA) borrowed the concept and use it to gain optimal solutions by selecting the best or the fittest solution alongside the rare and random occurence of mutation. 
 
 Suppose we have a non-convex function. If we use a derivative-based method such as gradient descend, it would potentially fall into local optima at $x_1$. Genetic Algorithm can overcome the local optima, thus it can provide better solution. Combined with machine learning such as neural network, GA can create an arfiticial intelligence system that can play game, like <a href = "https://www.youtube.com/watch?v=aeWmdojEJf0"> Flappy Bird </a>
-```{r out.width="50%", echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/nonconvex.png")
-```
+
+
+
+<center> <img src="/img/genetic-algo/nonconvex.png" width="50%"> </center>
+
 
 The general flow of the algorithm is shown below:
 
-```{r out.width="30%", echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/ga_flow.png")
-```
+<center> <img src="/img/genetic-algo/ga_flow.png" width="30%"> </center>
 
 1. There will be a population of randomly selected chromosomes or solutions. 
 2. The fitness values or the objective function values from each solutions are calculated. 
@@ -130,33 +130,27 @@ There exist 3 main elements of GA: Population, Chromosomes, and Genes.
 
 Population is a group of individuals or solutions, mainly called chromosomes. A chromosomes consists of a sequence of genes, with each or multiple genes (depend on the encoding) represent a single decision variables that will be fitted on the objective functions.
 
-```{r out.width="60%", echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/ga_element.png")
-```
+<center> <img src="/img/genetic-algo/ga_element.png" width="60%"> </center>
+
 
 A gene can be represented or encoded in various ways, including:
 
 * Binary Encoding
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/ga3.png")
-```
+<center> <img src="/img/genetic-algo/ga3.png"> </center>
 
 Binary encoding mean that our genes are encoded into binary number, this is the earliest and the most common form of GA encoding.
 
 * Real-Valued Encoding
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/ga4.png")
-```
+<center> <img src="/img/genetic-algo/ga4.png"> </center>
+
 
 Real-valued encoding mean that our genes are encoded in a floating point or decimal number. Real-valued encoding can be used to optimize a process parameter, since it consists of floating point number and are not suited for integer-based optimization.
 
 * Permutation Encoding
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/ga5.png")
-```
+<center> <img src="/img/genetic-algo/ga5.png"> </center>
 
 Permutation encoding mean that our genes are encoded into a sequence of number, each number is uniquely assigned to a gene so no 2 genes that will have the same number or value. This encoding is often used in a scheduling or routing problem, where each permutation represent one location or unique points.
 
@@ -168,9 +162,7 @@ Parents selections are done in order to select two solutions that will be used f
 
 Parents will be selected randomly based on the fitness value. Higher fitness value mean higher chance to be chosen.
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/ga9.png")
-```
+<center> <img src="/img/genetic-algo/ga9.png"> </center>
 
 * Linear Ranking Selection
 
@@ -192,17 +184,15 @@ Crossover is the process of mating between the two selected individuals, the pro
 
 Split the parent based on a randomly generated single point. The first child would have gene from the first parent for the position 1 up to the point, while the rest is filled with genes from the second parent. The second child is opposite, position 1 up to the point is filled with genes from the second parent.
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/gabin_cross.png")
-```
+
+<center> <img src="/img/genetic-algo/gabin_cross.png"> </center>
 
 * Uniform Crossover
 
 Every gene is exchanged between the a pair of randomly selected chromosomes with a certain probability, called as the swapping probability. Usually, the swapping probability value is taken to be 0.5.
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/gabin_cross2.png")
-```
+
+<center> <img src="/img/genetic-algo/gabin_cross2.png"> </center>
 
 #### Real-Valued
 
@@ -215,7 +205,8 @@ $$Child \ 2 = weight \ * y + (2-weight) \ * x$$
 
 If the weight = 0.5 two offspring are identical
 
-![](/img/genetic-algo/gareal_cross.png)
+
+<center> <img src="/img/genetic-algo/gareal_cross.png"> </center>
 
 * Local Arithmetic Crossover
 
@@ -227,17 +218,13 @@ The local crossover is similar to the whole artihmetic crossover, but uses a ran
 
 One-point crossover use only one random point as the marker where crossover should happen.
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/ga6.png")
-```
+<center> <img src="/img/genetic-algo/ga6.png"> </center>
 
 * Position-Based crossover
 
 A number of positions from the first parent is randomly selected and fill the remaining position from the second parent. 
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/pb_cross.png")
-```
+<center> <img src="/img/genetic-algo/pb_cross.png"> </center>
 
 ### Mutation
 
@@ -249,9 +236,7 @@ A mutation means change in one or several genes inside the chromosome. Just like
 
 Genes are randomly flipped from 1 to 0 or vice versa with uniform probability for each gene, meaning that each gene has the same chance to mutate with mutation rate or mutation probability set by the user.
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/gabin_mutation.png")
-```
+<center> <img src="/img/genetic-algo/gabin_mutation.png"> </center>
 
 #### Real Valued
 
@@ -269,17 +254,14 @@ Select a random gene/position from a chromosome and assign a non-uniform random 
 
 Two adjacent genes are swapped randomly.
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/ga10.png")
-```
+
+<center> <img src="/img/genetic-algo/ga10.png"> </center>
 
 * Inverse Mutation
 
 Inverse mutation is done by inversing the sequence between two random points.
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/ga13.png")
-```
+<center> <img src="/img/genetic-algo/ga13.png"> </center>
 
 
 ## Application
@@ -290,9 +272,7 @@ Genetic Algorithm can be applied in various business problem. Since the algorith
 
 Let's illustrate step-by-step how Genetic Algorithm works. Let's say I have a set of item with respective point and weight (kg). I want to maximize the point, but the rules said that I can not bring items with total weight more than 15 kg. Whice items then should I choose in order to maximize my point?
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/step1.png")
-```
+<center> <img src="/img/genetic-algo/step1.png"> </center>
 
 ### Define Encoding and Fitness Function
 
@@ -319,17 +299,15 @@ $$Maximize\ Total\ Point = \Sigma_{i=1}^{k} \ P_k \ chosen_k - 2 \ (total\ weigh
 
 First, GA will randomly generate a population of solution. Here, we have a population of 4 solutions/indviduals. The binary value on each individuals are generated randomly.
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/step2.png")
-```
+
+<center> <img src="/img/genetic-algo/step2.png"> </center>
 
 ### Fitness Assignment
 
 Now we calculate the fitness value (total point) of each individuals based on the fitness function above. We can see that solution that violate the constraint (have total weight > 15) will have worse fitness function.
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/step3.png")
-```
+<center> <img src="/img/genetic-algo/step3.png"> </center>
+
 
 ### Selection
 
@@ -341,15 +319,12 @@ Linear ranking selection work as follows:
 * Calculate the probability of each individuals based on their rank. The sum of the rank is 10, so the probability of each solution is $Rank_i/10$.
 * Chose solution randomly based on the probability. Solution with higher fitness function will naturally has higher chance to be chosen.
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/step4.png")
-```
+<center> <img src="/img/genetic-algo/step4.png"> </center>
 
 Let's say for example, the first and second solution are chosen as the `parent`
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/step5.png")
-```
+<center> <img src="/img/genetic-algo/step5.png"> </center>
+
 
 ### Crossover
 
@@ -357,17 +332,14 @@ Crossover means exchanging genes between two `parents` two create new solution c
 
 Let's say the point is chosen to be between position 2 and 3. For the first child, it will have the first and second gene from the first parent, while the rest will be filled from the second parent. For the second child, it is the opposite, it will have the first and second gene from the second parent, while the rest will be filled from the first parent. 
 
-```{r echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/step6.png")
-```
+<center> <img src="/img/genetic-algo/step6.png"> </center>
 
 ### Mutation
 
 Mutation is the change of value in the gene. Here we use random mutation. It will randomly swap the value of gene. If the gene in position 3 have value of 1, it would be switched into 0 and vice versa. Mutation is rarely occur, its probability can be set manually, but generally people use mutation probability of 0.1.
 
-```{r out.width="50%", echo=FALSE, eval =TRUE}
-knitr::include_graphics("/img/genetic-algo/step7.png")
-```
+
+<center> <img src="/img/genetic-algo/step7.png" width="50%"> </center>
 
 The selection, crossover, and mutation process will be repeated by choosing different parent until the number of children are the same with the population size of the parent. If the parent have population size of 4, then we would have a children population of 4. 
 

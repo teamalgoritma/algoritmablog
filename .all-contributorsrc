@@ -1,0 +1,134 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "HafizahIlma",
+      "name": "HafizahIlma",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/36740222?v=4",
+      "profile": "https://github.com/HafizahIlma",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "NabiilahArdini",
+      "name": "Nabiilah Ardini Fauziyyah",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/51941102?v=4",
+      "profile": "http://algorit.ma",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "Argaadya",
+      "name": "Argaadya",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/51928527?v=4",
+      "profile": "https://github.com/Argaadya",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "iqbalbasyar",
+      "name": "iqbalbasyar",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/15415968?v=4",
+      "profile": "https://www.linkedin.com/in/iqbalbasyar",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "Davidlimbong",
+      "name": "David",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/22296835?v=4",
+      "profile": "http://Rpubs.com/david21",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "inytss",
+      "name": "Inayatus",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/49224928?v=4",
+      "profile": "https://github.com/inytss",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "ysitta",
+      "name": "Yaumil Sitta",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/30137330?v=4",
+      "profile": "https://github.com/ysitta",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "ahmadhusain",
+      "name": "Ahmad Husain Abdullah",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/33796928?v=4",
+      "profile": "http://hsnabd.netlify.com",
+      "contributions": [
+        "maintenance",
+        "code"
+      ]
+    },
+    {
+      "login": "AltruiMetavasi",
+      "name": "shelloren",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/20962339?v=4",
+      "profile": "https://github.com/AltruiMetavasi",
+      "contributions": [
+        "projectManagement",
+        "design"
+      ]
+    },
+    {
+      "login": "ajengprstw",
+      "name": "ajengprstw",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/42662706?v=4",
+      "profile": "https://github.com/ajengprstw",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "tomytjandra",
+      "name": "Tomy Tjandra",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/48079239?v=4",
+      "profile": "https://www.linkedin.com/in/tomytjandra/",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "Litaa",
+      "name": "Dyah Nurlita",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6070234?v=4",
+      "profile": "https://github.com/Litaa",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "western11",
+      "name": "Joe Cristian",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/61571811?v=4",
+      "profile": "https://medium.com/@joenathanchristian",
+      "contributions": [
+        "content"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "algoritmablog",
+  "projectOwner": "teamalgoritma",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
