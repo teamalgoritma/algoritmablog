@@ -18,18 +18,6 @@ type: post
 ---
 
 
-```r
-# clean up the environment
-rm(list = ls())
-
-# setup chunk options
-knitr::opts_chunk$set(
-  message = FALSE,
-  warning = FALSE,
-  fig.align = "center",
-  comment = "#>"
-)
-```
 
 Welcome again to the Rplicate Series! In this 6th article of the series, we will replicate The Economist plot titled _"Marvellous"_. In the process, we will explore ways to use **bold text and characters for our axes**. Let's dive in below!
 
@@ -51,7 +39,7 @@ library(png) # import plot to image
 library(extrafont) # font library
 
 # load font from local
-font_import()
+font_import() # type y when asked to import
 ```
 
 ```

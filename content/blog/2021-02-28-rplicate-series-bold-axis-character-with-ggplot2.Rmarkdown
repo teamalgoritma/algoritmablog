@@ -17,7 +17,7 @@ linktitle: ''
 type: post
 ---
 
-```{r}
+```{r include=FALSE}
 # clean up the environment
 rm(list = ls())
 
@@ -38,7 +38,7 @@ Welcome again to the Rplicate Series! In this 6th article of the series, we will
 
 These are the packages and some set up that we will use.
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse) # for data wrangling
 library(ggplot2) # for data visualization
 library(scales) # to customize axes in plot
@@ -49,7 +49,7 @@ library(png) # import plot to image
 library(extrafont) # font library
 
 # load font from local
-font_import()
+font_import() # type y when asked to import
 loadfonts(device = "win")
 
 # to prevent R displaying scientific notation
