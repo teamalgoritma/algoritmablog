@@ -37,11 +37,11 @@ Clustering merupakan salah satu metode Unsupervised Learning yang bertujuan untu
 
 **Partitional Clustering** umumnya bertujuan untuk mengelompokkan data menjadi beberapa cluster yang lebih kecil[^2]. Pada prosesnya, setiap cluster akan memiliki titik pusat cluster (*centroid*) dan mencoba menghitung setiap data yang paling dekat dengan centroid tersebut. Metode dalam partitional clustering diantaranya *k-means*, *fuzzy k-means*, dan *mixture modeling*.
 
-<center> ![](img/intro_hc/partitional.png){width="80%"} </center>
+<center> ![](/img/intro_hc/partitional.png){width="80%"} </center>
 
 Sedangkan dalam **Hierarchical Clustering**, pengelompokan data dilakukan dengan membuat suatu bagan hirarki (**dendrogram**) dengan tujuan menunjukkan kemiripan antar data. Setiap data yang mirip akan memiliki hubungan hirarki yang dekat dan menbentuk cluster data. Bagan hirarki akan terus terbentuk hingga seluruh data terhubung dalam bagan hirarki tersebut. Cluster dapat dihasilkan dengan memotong bagan hirarki pada level tertentu. Beberapa metode dalam hierarchical clustering yaitu *single linkage*, *complete linkage*, *average linkage*, dan *ward's minimum variance*.
 
-<center> ![](img/intro_hc/hc.png){width="80%"} </center>
+<center> ![](/img/intro_hc/hc.png){width="80%"} </center>
 
 Pada kesempatan kali ini kita akan mendalami terkait **Hierarchical Clustering** serta aplikasinya untuk pengolahan data.
 
@@ -61,7 +61,7 @@ Secara umum, *hierarchical clustering* dibagi menjadi dua jenis yaitu **agglomer
 
 Berikut adalah ilustrasi mengenai bagaimana agglomerative dan divisive clustering bekerja.
 
-<center> ![](img/intro_hc/agnes-vs-diana.png){width="80%"} </center>
+<center> ![](/img/intro_hc/agnes-vs-diana.png){width="80%"} </center>
 
 Selain memahami pendekatan dalam pembuatan dendrogram, mari memahami bagaimana setiap cluster dapat dibuat dan digabungkan.
 
@@ -143,7 +143,7 @@ Pada metode ini, di tiap iterasinya akan dibentuk cluster-cluster yang kemudian 
 
 Berikut adalah ilustrasi untuk kelima jenis linkage di atas[^5]:
 
-<center> ![](img/intro_hc/linkage.png){width="80%"} </center>
+<center> ![](/img/intro_hc/linkage.png){width="80%"} </center>
 
 Linkage method akan menentukan rupa dari dendrogram yang terbentuk. Telah dilakukan diskusi terkait beragam linkage method dan pemilihannya [disini](https://stats.stackexchange.com/questions/195446/choosing-the-right-linkage-method-for-hierarchical-clustering)
 
@@ -151,7 +151,7 @@ Linkage method akan menentukan rupa dari dendrogram yang terbentuk. Telah dilaku
 
 Setelah menghasilkan dendrogram dari hierarchical clustering, sudah sepatutnya kita perlu mampu membaca dendrogram tersebut. Sebagai contoh, berikut adalah gambar kedekatan beberapa instrumen musik yang digambarkan dengan dendrogram:
 
-<center> ![](img/intro_hc/dendrogram.jpg){width="80%"} </center>
+<center> ![](/img/intro_hc/dendrogram.jpg){width="80%"} </center>
 
 Dendrogram sejatinya merupakan struktur yang menggambarkan kemiripan antar data. Tiap data pada awalnya diletakan di suatu level dasar dimana tiap data berdiri sendiri sebagai satu cluster tunggal. Pada contoh di atas, tiap instrumen musik merupakan satu cluster tunggal di bagian dasar dendrogram. 
 
