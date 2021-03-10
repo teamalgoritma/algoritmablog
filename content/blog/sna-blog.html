@@ -1,0 +1,898 @@
+---
+title: Social Network Analysis
+author: Joe Cristian
+github: https://github.com/western11/Social-Network-Analysis-Twitter-Network
+date: '2021-03-10'
+slug: Social-Network-Analysis-in-R
+categories:
+  - R
+tags: 
+  - SNA
+  - Twitter
+  - Graph
+  - Network Analysis
+  - Data Visualization
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>In this article, we will learn about <code>Social Network Analysis</code> using <code>tidygraph</code> (including <code>igraph</code> and <code>ggraph</code>). We’ll not only learn about the visualizing stuff but also the metrics. We’ll analyze Twitter network as our study case using <code>rtweet</code> package. After this internal training, I hope we will be able to do:</p>
+<ul>
+<li>Analyze <em>Ego Network</em> from specific account/user<br />
+</li>
+<li>Analyze <em>Information Activity Network</em> from something that goes viral</li>
+</ul>
+<center>
+<img src="/img/SNA/mindmap.png" />
+</center>
+<div id="background" class="section level1">
+<h1>Background</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p><strong>What is Social Network Analysis (SNA)</strong><br />
+A social network is a structure composed of a set of actors, some of which are connected by a set of one or more relations. <em>Social network analysis</em> work at describing underlying patterns of social structure, explaining the impact of such patterns in behavior and attitudes. Social network analysis has 4 main types of network metrics, namely:</p>
+<ul>
+<li>Network Models: Describe how to model the relationship between users<br />
+</li>
+<li>Key Players: To identify the most influential users in the network based on a different context<br />
+</li>
+<li>Tie Strength: To measure the strength of a user’s relationship<br />
+</li>
+<li>Network Cohesion: To measure how cohesive entities in the networks towards network behavior.</li>
+</ul>
+<p><strong>So what? Why do we need them?</strong><br />
+Humans are social beings. Even when you sleep, you’re still connected to everyone in the world by your smartphone. Your smartphone keeps sending and receive information like weather information, incoming whatsapp messages, late-night One Piece update, and social media notification from your favorite bias. We’re always connected and there’s network everywhere. Somehow, some smart dudes behind the famous <a href="https://en.wikipedia.org/wiki/Small-world_network">Small World Theory</a> found something from the network that quite exciting.</p>
+<p>Did you know you only <a href="https://en.wikipedia.org/wiki/Six_degrees_of_separation">seperates by six steps</a> from your favorite person in the world? We are able to quantify the what-so-called network and can be implemented in many fields. In this study, we’ll only focus on identify network metrics with <code>key player</code> as the expected output (see the 4 main types of network metrics above). Here’s some implementation of SNA to enlight your knowledge about SNA a bit:</p>
+<ul>
+<li>Business:
+<ul>
+<li><a href="https://www.researchgate.net/publication/320653694_Social_network_data_analytics_for_market_segmentation_in_Indonesian_telecommunications_industry">Social media segmentation</a><br />
+</li>
+<li><a href="https://ieeexplore.ieee.org/abstract/document/5076278">Information spreading through network (for marketing purpose)</a><br />
+</li>
+<li><a href="https://www.researchgate.net/profile/Walter_Kosters/publication/267711959_Identifying_Prominent_Actors_in_Online_Social_Networks_using_Biased_Random_Walks/links/5550870208ae956a5d24d2c2.pdf">Identify prominent person of a society (for identify best endorsment)</a><br />
+</li>
+<li><a href="dl.acm.org/doi/abs/10.1145/1961189.1961194">Mapping potential customer</a><br />
+</li>
+<li><a href="https://www.tandfonline.com/doi/abs/10.1080/13683500.2014.990422">Mapping tourism flow</a></li>
+</ul></li>
+<li>Non-business:
+<ul>
+<li>Analyzing how something goes viral in social media<br />
+</li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0167587703000758">Identify diseases spread</a><br />
+</li>
+<li>Word embedding stuff<br />
+</li>
+<li>Implementation of small-world theory and Six degree separation of Kevin Bacon</li>
+</ul></li>
+</ul>
+</div>
+<div id="libraries" class="section level2">
+<h2>Libraries</h2>
+<p>Let’s install required library for this study.</p>
+<pre class="r"><code># for data wrangling. very helpfull for preparing nodes and edges data
+library(tidyverse) 
+library(lubridate)
+
+# for building network and visualization 
+library(tidygraph)
+library(graphlayouts)
+# already included in tidygraph but just fyi
+library(igraph)
+library(ggraph)
+
+# for crawling Twitter data 
+library(rtweet)</code></pre>
+</div>
+</div>
+<div id="lets-begin" class="section level1">
+<h1>Let’s Begin !</h1>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
+<p>We’ll crawl Twitter data using Twitter’s rest API. Thus, we need authentication to use the API. To access the API, you will need to create a Twitter Developer Account here: <a href="https://developer.twitter.com/en" class="uri">https://developer.twitter.com/en</a> (make sure you already have Twitter account). Creating a Twitter developer account is simple and tends to be fast but it depend on how you describe what you will do with the API.</p>
+<p>Good news! recent update of <code>rtweet</code> allows you to interact with Twitter API without creatin your own Twitter developer account. But it’s better if you have one because it gives you more stability and permissions. If you need further explanation, you can head over rtweet’s official website <a href="https://rtweet.info/">here</a>.</p>
+<pre class="r"><code>apikey &lt;- &quot;A5csjkdrS2xxxxxxxxxxx&quot;
+apisecret &lt;- &quot;rNXrBbaRFVRmuHgEM5AMpdxxxxxxxxxxxxxxxxxxxxxxx&quot;
+acctoken &lt;- &quot;1149867938477797376-xB3rmjqxxxxxxxxxxxxxxxxxxx&quot;
+tokensecret &lt;- &quot;Dyf3VncHDtJZ8FhtnQ5Gxxxxxxxxxxxxxxxxxxxxxx&quot;
+
+token &lt;- create_token(app = &quot;Automated Twitter SNA&quot;,
+                      consumer_key = apikey,
+                      consumer_secret = apisecret,
+                      access_token = acctoken,
+                      access_secret = tokensecret)</code></pre>
+<pre class="r"><code># Note: Only run one this code if you cant crawl the data without using any access token
+mytoken_1 &lt;- readRDS(&quot;data_input/SNA/token_1.rds&quot;)
+
+#mytoken_2 &lt;- readRDS(&quot;data_input/token_2.rds&quot;)
+
+# check if the token is active
+get_token()</code></pre>
+<pre><code>#&gt; &lt;Token&gt;
+#&gt; &lt;oauth_endpoint&gt;
+#&gt;  request:   https://api.twitter.com/oauth/request_token
+#&gt;  authorize: https://api.twitter.com/oauth/authenticate
+#&gt;  access:    https://api.twitter.com/oauth/access_token
+#&gt; &lt;oauth_app&gt; Automated Twitter SNA
+#&gt;   key:    A5csjkdrS24vJ5ktiKYtgasFY
+#&gt;   secret: &lt;hidden&gt;
+#&gt; &lt;credentials&gt; oauth_token, oauth_token_secret
+#&gt; ---</code></pre>
+</div>
+<div id="graph-theory" class="section level2">
+<h2>Graph Theory</h2>
+<p>In mathematics, graph theory is the study of graphs, which are mathematical structures used to model pairwise relations between objects. A graph in this context is made up of <strong>vertices</strong> (also called nodes or points) which are connected by <strong>edges</strong> (also called links or lines). In general, A connection between nodes are separated by 2 types: <a href="https://www.mathworks.com/help/matlab/math/directed-and-undirected-graphs.html">Directed and Undirected</a>.</p>
+<ul>
+<li><p>Directed is a relationship between nodes that the edges have a direction (The edges have orientations). You will recognize it as edges that have an arrow in it. Directed network also separated into 2 types based on its direction, namely: in-degree and out-degree. In-degree represents the number of edges incoming to a vertex/node. In below directed graph, In-degree of A is 1 and degree of D is 2. Out-degree represents the number of edges outgoing from a vertex. In below directed graph, out-degree of A is 1 and out-degree of C is 3.
+<img src="/blog/sna-blog_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Undirected indicates a two-way relationship, the edges are unidirectional, with no direction associated with them. Hence, the graph can be traversed in either direction. The absence of an arrow tells us that the graph is undirected.
+<img src="/blog/sna-blog_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ul>
+</div>
+</div>
+<div id="case-1-teamalgoritma-ego-network" class="section level1">
+<h1>Case 1: TeamAlgoritma Ego Network</h1>
+<p>Ego network is a concept indicates the amount of all the nodes to which an ego/node is directly connected and includes all of the ties among nodes in a network. You take any random username/company/person you want to analyze, gather all their neighborhood, and analyze it. sometimes you’ll find interesting patterns like this person has a lot of different communities and none of them are look-alike, or you can also found a person who can spread information most widely around your target-person network.</p>
+<p>Case objectives:<br />
+- Analyze <strong>Ego Network</strong> from <span class="citation">@TeamAlgoritma</span> Twitter account<br />
++ Visualize top cluster from TeamAlgoritma mutual account<br />
++ find out which account has the potential to spread information widely<br />
++ Calculate the metrics, and find out who is the <code>key player</code> in TeamAlgoritma network</p>
+<p>Here’s the step to do this case:<br />
+1. Gather TeamAlgoritma detail Twitter data<br />
+2. Gather all TeamAlgoritma followers<br />
+3. From the follower, filter to active account only and gather their follower and following<br />
+4. Create Mutual data from following and follower data<br />
+5. Build communities, Calculate SNA metrics, and identify which user is important<br />
+6. Visualize the ego network</p>
+<center>
+<img src="img/SNA/ego_network.png" title="fig:" alt="Picture 1: Ego network" />
+</center>
+<div id="gather-teamalgoritma-data" class="section level2">
+<h2>Gather <span class="citation">@TeamAlgoritma</span> data</h2>
+<pre class="r"><code>algo &lt;- lookup_users(&quot;teamalgoritma&quot;)</code></pre>
+</div>
+<div id="gather-teamalgoritma-followers" class="section level2">
+<h2>Gather TeamAlgoritma followers</h2>
+<pre class="r"><code># get teamalgoritma followers
+folower &lt;- get_followers(&quot;teamalgoritma&quot;,n = algo$followers_count,retryonratelimit = T)
+
+# get the detail from algoritma follower lists
+detail_folower &lt;- lookup_users(folower$user_id)
+detail_folower &lt;- data.frame(lapply(detail_folower,as.character),stringsAsFactors = F)
+
+detail_folower %&gt;% 
+  arrange(-as.numeric(followers_count)) %&gt;% 
+  select(screen_name,followers_count, friends_count, favourites_count) %&gt;% 
+  head()</code></pre>
+<pre><code>#&gt;       screen_name followers_count friends_count favourites_count
+#&gt; 1          btekno          331655           326               49
+#&gt; 2 machinelearnflx           92622         35395              161
+#&gt; 3        DD_FaFa_           23530         16155            51226
+#&gt; 4       NgeeAnnNP           12200           186             9912
+#&gt; 5        TheMLHub           10457          9372              859
+#&gt; 6  CintaNegeri_ID            9127          8786             2975</code></pre>
+<p>TeamAlgoritma Twitter account has 524 followers (on 2 February 2021). We need to gather all of their follower and following but Twitter rest API has (kinda stingy) limitation.</p>
+<pre class="r"><code>rate_limit()</code></pre>
+<pre><code>#&gt; # A tibble: 217 x 7
+#&gt;    query   limit remaining reset  reset_at            timestamp           app   
+#&gt;    &lt;chr&gt;   &lt;int&gt;     &lt;int&gt; &lt;drtn&gt; &lt;dttm&gt;              &lt;dttm&gt;              &lt;chr&gt; 
+#&gt;  1 lists/~    15        15 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
+#&gt;  2 lists/~    75        75 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
+#&gt;  3 lists/~    15        15 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
+#&gt;  4 lists/~   900       900 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
+#&gt;  5 lists/~    15        15 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
+#&gt;  6 lists/~    75        75 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
+#&gt;  7 lists/~    15        15 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
+#&gt;  8 lists/~   180       180 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
+#&gt;  9 lists/~    15        15 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
+#&gt; 10 lists/~   900       900 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
+#&gt; # ... with 207 more rows</code></pre>
+<p>We can only gather 15 users (both following and follower) and 5k retrieved for every 15 minutes, so you can imagine if we want to retrieve thousand of them.. In order to minimize the time consumption, we need to filter the users to active users only. The criteria of ‘active users’ depend on your data. You need to lookup which kind of users your follower is and build your own criteria. In this case, the top 8 of Algoritma’s followers is a media account. Accounts like ‘btekno’ and ‘machinelearnflx’ only repost link to their own media and never retweet other account tweets. So if our goal is to map the potential information spreading around TeamAlgoritma ego network, we need to exclude them for that reason.</p>
+<p>After a long inspection, i propose several criteria for filtering active account: <code>Followers_count</code> &gt; 100 and &lt; 6000, <code>following_count</code> &gt; 75, <code>favourites_count</code> &gt; 10, and create a <code>new tweet</code> at least 2 months ago. I also want to exclude protected accounts because we actually can’t do anything about it, we can’t gather their following and followers.</p>
+<pre class="r"><code>active_fol &lt;- detail_folower %&gt;% 
+  select(user_id,screen_name,created_at,followers_count,friends_count,favourites_count) %&gt;%
+  mutate(created_at = ymd_hms(created_at),
+         followers_count = as.numeric(followers_count),
+         friends_count = as.numeric(friends_count),
+         favourites_count = as.numeric(favourites_count)) %&gt;%
+  filter((followers_count &gt; 100 &amp; followers_count &lt; 6000), friends_count &gt; 75, favourites_count &gt; 10, 
+         created_at &gt; &quot;2020-03-15&quot;) %&gt;%
+  arrange(-followers_count)</code></pre>
+<pre class="r"><code># TeamAlgoritma followers is always changing. we will use data i gathered at 5 March 2021
+active_fol &lt;- read.csv(&quot;data_input/SNA/active_fol_new.csv&quot;)</code></pre>
+</div>
+<div id="gather-teamalgoritma-followers-follower" class="section level2">
+<h2>Gather TeamAlgoritma follower’s follower</h2>
+<p>I build a loop function to gather followers from a list. Actually, we can gather the follower with this simple code</p>
+<pre class="r"><code>get_followers(active_fol$screen_name, n = &quot;all&quot;,
+              retryonratelimit = T)</code></pre>
+<p>But we want to minimize the total user we want to retrieve (<code>n</code> parameter). i build a simple function to retrieve half of the followers if they have more than 1500 followers, and 75% followers if they have less than 1500</p>
+<pre class="r"><code>flt_n &lt;- function(x){
+  if(x &gt; 1500){
+    x*0.5
+  }else{x*0.75}
+}</code></pre>
+<p>We also want to avoid SSL/TLS bug while we gather the followers. Sometimes when you reach the rate limit, the loop tends to crash and stop running. To avoid that, i order the loop to sleep every 5 gathered account (it doesn’t always solve the problem, but it way much better)</p>
+<pre class="r"><code># Create empty list and name it after their screen name
+foler &lt;- vector(mode = &#39;list&#39;, length = length(active_fol$screen_name))
+names(foler) &lt;- active_fol$screen_name
+
+# 
+for (i in 1:length(active_fol$screen_name)) {
+  message(&quot;Getting followers for user #&quot;, i, &quot;/&quot;, nrow(active_fol))
+  foler[[i]] &lt;- get_followers(active_fol$screen_name[i], 
+                                  n = round(flt_n(active_fol$followers_count[i])), 
+                                retryonratelimit = TRUE)
+  
+  if(i %% 5 == 0){
+    message(&quot;sleep for 5 minutes&quot;)
+    Sys.sleep(5*60)
+    }
+}</code></pre>
+<p>After gathering, bind the list to dataframe, convert the username to user_id by left_join from active_fol data, and build clean data frame without NA</p>
+<pre class="r"><code># convert list to dataframe
+folerx &lt;- bind_rows(foler, .id = &quot;screen_name&quot;)
+active_fol_x &lt;- active_fol %&gt;% select(user_id,screen_name)
+
+# left join to convert screen_name into its user id
+foler_join &lt;- left_join(folerx, active_fol_x, by=&quot;screen_name&quot;)
+
+# subset to new dataframe with new column name and delete NA
+algo_follower &lt;- foler_join %&gt;% 
+  select(user_id.x,screen_name) %&gt;%
+  setNames(c(&quot;follower&quot;,&quot;active_user&quot;)) %&gt;% 
+  na.omit()</code></pre>
+<p>The loop need a looong time to be done. To speed up our progress, i already gather the followers and we’ll use it for analysis.</p>
+<pre class="r"><code>algo_follower_df &lt;- read.csv(&quot;data_input/SNA/follower_algo_new.csv&quot;) </code></pre>
+</div>
+<div id="gather-teamalgoritma-followers-following" class="section level2">
+<h2>Gather TeamAlgoritma follower’s following</h2>
+<p>Same as before, we build a loop function to gather the following. in <code>rtweet</code> package, following is also called as <code>friend</code>.</p>
+<pre class="r"><code>active_fol %&gt;% 
+  arrange(-friends_count) %&gt;% 
+  head(5)</code></pre>
+<pre><code>#&gt;               user_id     screen_name          created_at followers_count
+#&gt; 1           447003337 YaromeerNedoman 2021-03-05 06:44:29             735
+#&gt; 2 1044599799058780160     SheShrugged 2021-03-04 14:38:16             414
+#&gt; 3          1451573756      ZanaPekmez 2021-02-25 22:05:20            1012
+#&gt; 4             5734262      alexajoyce 2021-03-04 20:13:41            2617
+#&gt; 5          2348301866      ameliazein 2021-03-05 05:53:43            1843
+#&gt;   friends_count favourites_count
+#&gt; 1          5002             6530
+#&gt; 2          5001             6013
+#&gt; 3          4413             1546
+#&gt; 4          4065              578
+#&gt; 5          3991             5023</code></pre>
+<p>As you can see, friends_count is way more higher than followers_count. Thus, we need to specify how many users we want to retrieve (<code>n</code> parameter). We want to minimize it, i change <code>flt_n</code> function to gather only 40% if they have more than 2k following, and 65% if less than 2k.</p>
+<pre class="r"><code>flt_n_2 &lt;- function(x){
+  if(x &gt; 2000){
+    x*0.4
+  }else{x*0.65}
+}</code></pre>
+<p>The loop is also a bit different. instead of list, we store the data to dataframe. <code>get_friends()</code> function gives 2 columns as their output; friend list and the query. we can easily just row bind them.</p>
+<pre class="r"><code>friend &lt;- data.frame()
+
+for (i in seq_along(active_fol$screen_name)) {
+  message(&quot;Getting following for user #&quot;, i ,&quot;/&quot;,nrow(active_fol))
+  kk &lt;- get_friends(active_fol$screen_name[i],
+                        n = round(flt_n_2(active_fol$friends_count[i])),
+                        retryonratelimit = TRUE)
+  
+  friend &lt;- rbind(friend,kk)
+
+  if(i %% 15 == 0){
+    message(&quot;sleep for 15 minutes&quot;)
+    Sys.sleep(15*60+1)
+    }
+}</code></pre>
+<pre class="r"><code>all_friend &lt;- friend %&gt;% setNames(c(&quot;screen_name&quot;,&quot;user_id&quot;))
+all_friendx &lt;- left_join(all_friend, active_fol_x, by=&quot;screen_name&quot;)
+
+algo_friend &lt;- all_friendx %&gt;% select(user_id.x,screen_name) %&gt;%
+  setNames(c(&quot;following&quot;,&quot;active_user&quot;))</code></pre>
+<p>This loop also takes a long time to run. Again, to speed up our progress, we will use the following data i already gathered.</p>
+<pre class="r"><code>algo_friend_df &lt;- read.csv(&quot;data_input/SNA/following_algo_new.csv&quot;)</code></pre>
+<p>We need to make sure all unique active user in algo_friend is available in algo_following and vice versa</p>
+<pre class="r"><code>algo_friend_df %&gt;% 
+  filter(!active_user %in% algo_follower_df$active_user)</code></pre>
+<pre><code>#&gt; [1] following   active_user
+#&gt; &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+<div id="create-mutual-dataframe" class="section level2">
+<h2>Create Mutual dataframe</h2>
+<p>Now we have both following and follower data. We need to build ‘mutual’ data to make sure the network is a strong two-side-connection network. Mutual is my terms of people who follow each other. we can found that by: split algo_friend data by every unique active_user, then we find every account in the following column that also appears in algo_follower$follower. The presence in both column indicates the user is following each other</p>
+<pre class="r"><code># collect unique user_id in algo_friend df
+un_active &lt;- unique(algo_friend_df$active_user) %&gt;% 
+  data.frame(stringsAsFactors = F) %&gt;%
+  setNames(&quot;active_user&quot;)
+
+# create empty dataframe
+algo_mutual &lt;- data.frame()
+
+# loop function to filter the df by selected unique user, then find user that presence 
+# in both algo_friend$following and algo_follower$follower column
+# set column name, and store it to algo_mutual df
+
+for (i in seq_along(un_active$active_user)){
+  aa &lt;- algo_friend_df %&gt;% 
+    filter(active_user == un_active$active_user[i])
+  bb &lt;- aa %&gt;% filter(aa$following %in% algo_follower_df$follower) %&gt;%
+    setNames(c(&quot;mutual&quot;,&quot;active_user&quot;))
+  
+  algo_mutual &lt;- rbind(algo_mutual,bb)
+}</code></pre>
+<pre class="r"><code>head(algo_mutual)</code></pre>
+<pre><code>#&gt;                mutual active_user
+#&gt; 1 1078759789839011840     donkomo
+#&gt; 2 1294216335581310976     donkomo
+#&gt; 3          3739640056     donkomo
+#&gt; 4  955715941756583936     donkomo
+#&gt; 5           117810351     donkomo
+#&gt; 6           113292385     donkomo</code></pre>
+<p>ID represents user’s twitter id. We can get along with it but for me its not so interpretable. It will be better if we use their screen name. before that we need to lookup the profil detail using <code>lookup_users()</code></p>
+<pre class="r"><code>detail_friend &lt;- lookup_users(algo_mutual$mutual)</code></pre>
+<pre class="r"><code>detail_friend &lt;- read.csv(&quot;data_input/SNA/detail_friend.csv&quot;)</code></pre>
+<p>Then join the dataframe by user id and remove missing value</p>
+<pre class="r"><code>algo_mutual &lt;- algo_mutual %&gt;% 
+  left_join(detail_friend,by = c(&quot;mutual&quot; = &quot;user_id&quot;)) %&gt;% 
+  na.omit()
+
+head(algo_mutual)</code></pre>
+<pre><code>#&gt;                mutual active_user     screen_name
+#&gt; 1 1078759789839011840     donkomo        alxmnt87
+#&gt; 3          3739640056     donkomo      UvACORPNET
+#&gt; 5           117810351     donkomo    WSWS_Updates
+#&gt; 6           113292385     donkomo    airasia_indo
+#&gt; 7 1195245026831323136     donkomo      AIswinarto
+#&gt; 8            33167774     donkomo benoistrousseau</code></pre>
+<p>It isn’t done yet. this is an ego network for TeamAlgoritma account, we want that account to appear on our screen. since TeamAlgoritma barely follows back its followers, it’s not a surprise if we can’t found it in mutual dataframe</p>
+<pre class="r"><code># check if TeamAlgoritma is presence
+algo_mutual %&gt;% 
+  filter(mutual == &quot;943736953274482688&quot;)</code></pre>
+<pre><code>#&gt; [1] mutual      active_user screen_name
+#&gt; &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<p>So we need to add them manually. we already have un_active dataframe contain unique value of active users. we can simply add extra column contain ’TeamAlgoritma" then bind them with algo_mutual df</p>
+<pre class="r"><code>un_active &lt;- un_active %&gt;% 
+  mutate(mutual = rep(&quot;TeamAlgoritma&quot;))
+# swap column oreder
+un_active &lt;- un_active[,c(2,1)]
+un_active &lt;- un_active %&gt;% 
+  setNames(c(&quot;active_user&quot;,&quot;screen_name&quot;))
+
+# rbind to algo_mutual df
+algo_mutual &lt;- rbind(algo_mutual %&gt;% select(-mutual),un_active)
+
+head(algo_mutual)</code></pre>
+<pre><code>#&gt;   active_user     screen_name
+#&gt; 1     donkomo        alxmnt87
+#&gt; 3     donkomo      UvACORPNET
+#&gt; 5     donkomo    WSWS_Updates
+#&gt; 6     donkomo    airasia_indo
+#&gt; 7     donkomo      AIswinarto
+#&gt; 8     donkomo benoistrousseau</code></pre>
+<p>phew, we finished the data gathering step! next, we’ll jump into SNA process</p>
+</div>
+<div id="build-nodes-edges-and-graph-dataframe" class="section level2">
+<h2>Build nodes, edges, and graph dataframe</h2>
+<p>A network consists of nodes and edges. nodes (also called vertices) indicates every unique object in network and edges is a relation between nodes (object). We’ll build nodes dataframe from every unique account in algo_mutual df. and edges dataframe that contains pair of accounts, we can use algo_mutual df for that.</p>
+<pre class="r"><code>nodes &lt;- data.frame(V = unique(c(algo_mutual$screen_name,algo_mutual$active_user)),
+                    stringsAsFactors = F)</code></pre>
+<pre class="r"><code>edges &lt;- algo_mutual %&gt;% 
+  setNames(c(&quot;from&quot;,&quot;to&quot;))</code></pre>
+<p>after that, we can simply create graph dataframe using <code>graph_from_data_frame</code> function from <code>igraph</code> package.</p>
+<pre class="r"><code>network_ego1 &lt;- graph_from_data_frame(d = edges, vertices = nodes, directed = F) %&gt;%
+  as_tbl_graph()</code></pre>
+</div>
+<div id="build-communities-and-calculate-metrics" class="section level2">
+<h2>Build communities and calculate metrics</h2>
+<p>I need to remind you we’ll do the analysis using <code>tidygraph</code> style. There are lots of different code styles to build a network but i found <code>tidygraph</code> package is the easiest. <code>tidygraph</code> are just wrappers for <code>igraph</code> packages.</p>
+<p><code>igraph</code> code example:</p>
+<pre class="r"><code># build communities and its member from graph
+cw &lt;- cluster_walktrap(network_ego1)
+member &lt;- data.frame(v = 1:vcount(network_ego1), member = as.numeric(membership(cw)))
+
+# measure betweenness centrality using igraph
+V(network_ego1)$betwenness &lt;- betweenness(network_ego1, v = V(network_ego1),directed = F)</code></pre>
+<p>Create communities using <code>group_louvain()</code> algorithm, and calculate lots of metrics using <code>tidygraph</code> style</p>
+<pre class="r"><code>set.seed(123)
+network_ego1 &lt;- network_ego1 %&gt;% 
+  activate(nodes) %&gt;% 
+  mutate(community = as.factor(group_louvain())) %&gt;%
+  mutate(degree_c = centrality_degree()) %&gt;%
+  mutate(betweenness_c = centrality_betweenness(directed = F,normalized = T)) %&gt;%
+  mutate(closeness_c = centrality_closeness(normalized = T)) %&gt;%
+  mutate(eigen = centrality_eigen(directed = F))
+
+network_ego1</code></pre>
+<pre><code>#&gt; # A tbl_graph: 14841 nodes and 17542 edges
+#&gt; #
+#&gt; # An undirected multigraph with 1 component
+#&gt; #
+#&gt; # Node Data: 14,841 x 6 (active)
+#&gt;   name            community degree_c betweenness_c closeness_c     eigen
+#&gt;   &lt;chr&gt;           &lt;fct&gt;        &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+#&gt; 1 alxmnt87        48               1      0              0.251 0.0000642
+#&gt; 2 UvACORPNET      48               1      0              0.251 0.0000642
+#&gt; 3 WSWS_Updates    48               1      0              0.251 0.0000642
+#&gt; 4 airasia_indo    48               6      0.000436       0.256 0.000759 
+#&gt; 5 AIswinarto      48               1      0              0.251 0.0000642
+#&gt; 6 benoistrousseau 48               1      0              0.251 0.0000642
+#&gt; # ... with 14,835 more rows
+#&gt; #
+#&gt; # Edge Data: 17,542 x 2
+#&gt;    from    to
+#&gt;   &lt;int&gt; &lt;int&gt;
+#&gt; 1     1 14675
+#&gt; 2     2 14675
+#&gt; 3     3 14675
+#&gt; # ... with 17,539 more rows</code></pre>
+<p>We can easily convert it to dataframe using <code>as.data.frame()</code> function. We need to this to specify who is the <code>key player</code> in TeamAlgoritma ego network</p>
+<pre class="r"><code>network_ego_df &lt;- as.data.frame(network_ego1)
+network_ego_df %&gt;% head(5)</code></pre>
+<pre><code>#&gt;           name community degree_c betweenness_c closeness_c        eigen
+#&gt; 1     alxmnt87        48        1  0.0000000000   0.2510361 0.0000642216
+#&gt; 2   UvACORPNET        48        1  0.0000000000   0.2510361 0.0000642216
+#&gt; 3 WSWS_Updates        48        1  0.0000000000   0.2510361 0.0000642216
+#&gt; 4 airasia_indo        48        6  0.0004356603   0.2556285 0.0007594522
+#&gt; 5   AIswinarto        48        1  0.0000000000   0.2510361 0.0000642216</code></pre>
+</div>
+<div id="graph-metrics" class="section level2">
+<h2>Graph Metrics</h2>
+<p>Before we make a conclusion from the table above, let’s take a time to learn what’s the idea behind those metrics. We’ll build a network from Algoritma Product Team as dummy network to make the explanation easier, and just to inform you how SNA works in real case</p>
+<pre class="r"><code>product_df &lt;- read.csv(&quot;data_input/SNA/product_exnet.csv&quot;,stringsAsFactors = F)
+
+nodes_dum &lt;- data.frame(V = unique(c(product_df$from,product_df$to)),
+                        stringsAsFactors = F)
+edge_dum &lt;- product_df
+
+product_net &lt;- graph_from_data_frame(d = edge_dum, vertices = nodes_dum, directed = T) %&gt;%
+  as_tbl_graph()</code></pre>
+<pre class="r"><code>library(extrafont)
+# font_import()
+loadfonts(device = &quot;win&quot;)
+# windowsFonts()</code></pre>
+<div id="degree-centrality" class="section level3">
+<h3>Degree Centrality</h3>
+<p>The easiest centrality among them all. It’s just <strong>how many ties that a node has</strong>. The calculation for directed and undirected are kinda different but it has the same idea: how many nodes are connected to a node.</p>
+<pre class="r"><code>product_net %&gt;% 
+  mutate(degree = centrality_degree(mode = &quot;in&quot;)) %&gt;%
+  ggraph(layout = &quot;fr&quot;) +
+  geom_edge_fan(alpha = 0.25) +
+  geom_node_point(aes(size = degree,color = degree)) +
+  geom_node_text(aes(size = degree,label = name),
+                 repel = T,show.legend = F) +
+  scale_color_continuous(guide = &quot;legend&quot;) +
+  theme_graph() + labs(title = &quot;Product Team Network&quot;,
+                       subtitle = &quot;Based on Degree Centrality&quot;)</code></pre>
+<p><img src="/blog/sna-blog_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Tiara network neighbors
+g_ti &lt;- induced.subgraph(product_net, c(2, neighbors(product_net,2)))
+g_ti %&gt;% plot(edge.arrow.size = 0.5,layout = layout.star(g_ti,center = V(g_ti)[1]))</code></pre>
+<p><img src="/blog/sna-blog_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="closeness-centrality" class="section level3">
+<h3>Closeness centrality</h3>
+<p>The closeness centrality of a node is the <strong>average length of the shortest path (geodesic)</strong> between the node and all other nodes in the graph. Thus the more central a node is, the closer it is to all other nodes.
+<span class="math display">\[C(i) = \frac{N-1}{\sum_{j}d(j,i)}\]</span>
+<span class="math inline">\(d(j,i)\)</span> is the distance between vertices <span class="math inline">\(j\)</span> and <span class="math inline">\(i\)</span>. This centrality divide total number of nodes minus 1(<span class="math inline">\(N-1\)</span>) by total number of every shorthest path between one node to every node in the graph.</p>
+<pre class="r"><code>product_net %&gt;% 
+  mutate(closeness = centrality_closeness()) %&gt;%
+  ggraph(layout = &quot;nicely&quot;) +
+  geom_edge_fan(alpha = 0.25) +
+  geom_node_point(aes(size = closeness,color = closeness)) +
+  geom_node_text(aes(size = closeness, label = name),
+                 repel = T, show.legend = F) +
+  scale_color_continuous(guide = &quot;legend&quot;) +
+  theme_graph() + labs(title = &quot;Product Team Network&quot;,
+                       subtitle = &quot;Based on Closeness Centrality&quot;)</code></pre>
+<p><img src="/blog/sna-blog_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="betweenness-centrality" class="section level3">
+<h3>Betweenness centrality</h3>
+<p>Betweenness centrality quantifies the number of times a node acts as a bridge along the shortest path between two other nodes/groups.<br />
+<span class="math display">\[C_{B}(v) = \sum_{ij}\frac{\sigma_{ij}(v)}{\sigma_{ij}}\]</span>
+Where <span class="math inline">\(\sigma_{ij}\)</span> is total number of shortest paths from node <span class="math inline">\(i\)</span> to node <span class="math inline">\(j\)</span> and <span class="math inline">\(\sigma_{ij}(v)\)</span> is the number of those paths that pass through <span class="math inline">\(v\)</span></p>
+<pre class="r"><code>product_net %&gt;% 
+  mutate(betweenness = centrality_betweenness()) %&gt;%
+  ggraph(layout = &quot;kk&quot;) +
+  geom_edge_fan(alpha = 0.25) +
+  geom_node_point(aes(size = betweenness,color = betweenness)) +
+  geom_node_text(aes(size = betweenness, label = name),
+                 repel = T, show.legend = F) +
+  scale_color_continuous(guide = &quot;legend&quot;) +
+  theme_graph() + 
+  labs(title = &quot;Product Team Network&quot;, 
+                       subtitle = &quot;Based on Betweenness Centrality&quot;)</code></pre>
+<p><img src="/blog/sna-blog_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="eigenvector-centrality" class="section level3">
+<h3>Eigenvector centrality</h3>
+<p>Eigenvector centrality is a measure of the influence of a node in a network. The relative score that is assigned to the nodes in the network is based on the concept that <strong>connections to high-scoring contributes more to the score</strong> of the node in question than equal connections to low-scoring nodes. This amazing <a href="http://matrixcalc.org/en/vectors.html">link</a> will help you with the calculation.</p>
+<p>if <span class="math inline">\(A\)</span> is the adjency matrix of a graph and <span class="math inline">\(\lambda\)</span> is the largest eigenvalue of <span class="math inline">\(A\)</span> and <span class="math inline">\(x\)</span> is the corresponding eigenvector then <span class="math inline">\(Ax = \lambda x\)</span>. it can be transformed to <span class="math inline">\(x = \frac{1}{\lambda}Ax\)</span>. where <span class="math inline">\(Ax\)</span> can be defined <span class="math inline">\(\sum_{j=1}^{N}A_{i,j}x_{j}\)</span> therefore:
+<span class="math display">\[C_{E}(i) = x_{i} = \frac{1}{\lambda}\sum_{j=1}^{N}A_{i,j}x_{j}\]</span></p>
+<pre class="r"><code>product_net %&gt;% 
+  mutate(eigen = centrality_eigen()) %&gt;%
+  ggraph(layout = &quot;nicely&quot;) +
+  geom_edge_fan(alpha = 0.25) +
+  geom_node_point(aes(size = eigen,color = eigen)) +
+  geom_node_text(aes(size = eigen, label = name),
+                 repel = T, show.legend = F) +
+  scale_color_continuous(guide = &quot;legend&quot;) +
+  theme_graph() + labs(title = &quot;Product Team Network&quot;,
+                       subtitle = &quot;Based on Eigenvector Centrality&quot;)</code></pre>
+<p><img src="/blog/sna-blog_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="community-and-modularity" class="section level3">
+<h3>Community and Modularity</h3>
+<p>Building community in graph theory is a bit different than clustering in machine learning.<code>igraph</code> package implements a number of community detection methods, community structure detection algorithms try to find dense subgraphs in directed or undirected graphs, by optimizing some criteria and usually using heuristics. Community detection algorithm like <code>group_walktrap()</code>, <code>group_fast_greedy()</code>, and <code>group_louvain()</code> has their own way to create communities in the network. One of the common use community detection algorithm is <code>group_walktrap()</code>. This function tries to find densely connected subgraphs, also called communities in a graph via random walks. The idea is that short random walks tend to stay in the same community.</p>
+<p>Modularity in the other hand, is a measure of how good the division is, or <strong>how separated are the different vertex types from each other</strong>
+<span class="math display">\[Q = \frac{1}{2m}\sum_{ij}(A_{ij}-\frac{k_{i}k_{j}}{2m})\delta(c_{i},c_{j})\]</span>
+here <span class="math inline">\(m\)</span> is the number of edges, <span class="math inline">\(A_{ij}\)</span> is the element of the <span class="math inline">\(A\)</span> adjacency matrix in row <span class="math inline">\(i\)</span> and column <span class="math inline">\(j\)</span>, <span class="math inline">\(k_{i}\)</span> is the degree of <span class="math inline">\(i\)</span>, <span class="math inline">\(k_{j}\)</span> is the degree of <span class="math inline">\(j\)</span>, <span class="math inline">\(c_{i}\)</span> is the type (or component) of <span class="math inline">\(i\)</span>, <span class="math inline">\(c_{j}\)</span> that of <span class="math inline">\(j\)</span>, and <span class="math inline">\(\delta(c_{i},c_{j})\)</span> is the Kronecker delta, which returns 1 if the operands are equal and 0 otherwise. In summary, <strong>networks with high modularity have dense connections between the nodes within community but sparse connections between nodes in different community</strong></p>
+<pre class="r"><code>product_net %&gt;% 
+  mutate(community = group_spinglass()) %&gt;%
+  ggraph(layout = &quot;nicely&quot;) +
+  geom_edge_fan(alpha = 0.25) +
+  geom_node_point(aes(color = factor(community)),size = 5, show.legend = F) +
+  geom_node_text(aes(label = name),repel = T) +
+  theme_graph() + theme(legend.position = &quot;none&quot;) +
+  labs(title = &quot;Product Team Network&quot;, subtitle = &quot;Seperated by cluster&quot;)</code></pre>
+<p><img src="/blog/sna-blog_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" />
+Now let’s check if this network has high or low modularity score</p>
+<pre class="r"><code># first build communities using any cluster detection algorithm
+cw_net &lt;- igraph::cluster_walktrap(product_net)
+modularity(cw_net)</code></pre>
+<pre><code>#&gt; [1] 0.08518007</code></pre>
+<p>low modularity score indicates the community in the network actually don’t have much difference. There are dense connections between nodes in both communities. The community member might be different depends on what algorithm you use. you can try different algorithms and compare them using <code>compare()</code> function. By default, <code>compare()</code> returns a score by its Variance Information (method = "vi), which counts whether or not any two vertices are members of the same community. A lower score means that the two community structures are more similar</p>
+<pre class="r"><code>sp_net &lt;- cluster_spinglass(product_net)
+compare(comm1 = cw_net,comm2 = sp_net,method = &quot;vi&quot;)</code></pre>
+<pre><code>#&gt; [1] 0.6614012</code></pre>
+</div>
+</div>
+<div id="identify-prominent-user-in-the-network" class="section level2">
+<h2>Identify prominent user in the network</h2>
+<p>So at this point, i hope you understand the concept of graph, nodes &amp; edges, centrality, community &amp; modularity, and how to use it. We will move back to our Twitter network. We already convert the table_graph to data frame. Last thing we need to do is to find top account in each centrality and pull the key player</p>
+<pre class="r"><code>network_ego_df %&gt;% head(5)</code></pre>
+<pre><code>#&gt;           name community degree_c betweenness_c closeness_c        eigen
+#&gt; 1     alxmnt87        48        1  0.0000000000   0.2510361 0.0000642216
+#&gt; 2   UvACORPNET        48        1  0.0000000000   0.2510361 0.0000642216
+#&gt; 3 WSWS_Updates        48        1  0.0000000000   0.2510361 0.0000642216
+#&gt; 4 airasia_indo        48        6  0.0004356603   0.2556285 0.0007594522
+#&gt; 5   AIswinarto        48        1  0.0000000000   0.2510361 0.0000642216</code></pre>
+<p>ey player is a term for the most influential users in the network based on different contexts. ‘Different context’ in this case is different centrality metrics. Each centrality have different use and interpretation, a user that appears in the top of most centrality will be considered as the key player of the whole network.</p>
+<pre class="r"><code>kp_ego &lt;- data.frame(
+  network_ego_df %&gt;% arrange(-degree_c) %&gt;% select(name) %&gt;% slice(1:6),
+  network_ego_df %&gt;% arrange(-betweenness_c) %&gt;% select(name) %&gt;% slice(1:6),
+  network_ego_df %&gt;% arrange(-closeness_c) %&gt;% select(name) %&gt;% slice(1:6),
+  network_ego_df %&gt;% arrange(-eigen) %&gt;% select(name) %&gt;% slice(1:6)
+) %&gt;% 
+  setNames(c(&quot;degree&quot;,&quot;betweenness&quot;,&quot;closeness&quot;,&quot;eigen&quot;))
+
+kp_ego</code></pre>
+<pre><code>#&gt;        degree   betweenness     closeness         eigen
+#&gt; 1  NgajiHyung TeamAlgoritma TeamAlgoritma     rykarlsen
+#&gt; 2   jasonrob_    NgajiHyung    NgajiHyung   chimberland
+#&gt; 3  alexajoyce     jasonrob_     jasonrob_        doroii
+#&gt; 4 bodoamatewh    alexajoyce       shoofa_ ailourosphile
+#&gt; 5      Reuiap   bodoamatewh    alexajoyce     megylogen
+#&gt; 6     shoofa_        Reuiap   bodoamatewh   haririshafa</code></pre>
+<p>We will exclude TeamAlgoritma from analysis because that’s our main querry, of course it has the highest centrality. “NgajiHyung” has the highest degree, betweenness, and closeness centrality, it means he has the most relation (edges) with the other nodes in the network. He also can spread information the most wide than the other. He’s the person who can spread information fastest than everyone. “rykarlsen” has the highest eigenvector centrality, he’s surrounded by important persons among the network. From the table above we can say that NgajiHyung is the key player of TeamAlgoritma ego network</p>
+</div>
+<div id="visualize-network" class="section level2">
+<h2>Visualize Network</h2>
+<p>Let’s try to visualize the network. I’ll scale the nodes by degree centrality, and color it by community.</p>
+<pre class="r"><code>network_ego_df %&gt;% 
+  count(community,sort = T) %&gt;% 
+  head()</code></pre>
+<pre><code>#&gt;   community    n
+#&gt; 1         1 1257
+#&gt; 2         2  735
+#&gt; 3         3  672
+#&gt; 4         4  570
+#&gt; 5         5  561
+#&gt; 6         6  514</code></pre>
+<p>since our network is too large (approximately 14k nodes and 15k edges), i’ll filter by only showing community 1 - 3. As the table above, community 1, 2, 3 has the highest frequency of member sequentially</p>
+<pre class="r"><code>options(ggrepel.max.overlaps = Inf)</code></pre>
+<pre class="r"><code>network_viz &lt;- network_ego1 %&gt;%
+  filter(community %in% 1:3) %&gt;%
+  mutate(node_size = ifelse(degree_c &gt;= 50,degree_c,0)) %&gt;%
+  mutate(node_label = ifelse(betweenness_c &gt;= 0.01,name,NA))</code></pre>
+<pre class="r"><code>plot_ego &lt;- network_viz %&gt;% 
+  ggraph(layout = &quot;stress&quot;) +
+  geom_edge_fan(alpha = 0.05) +
+  geom_node_point(aes(color = as.factor(community),size = node_size)) +
+  geom_node_label(aes(label = node_label),nudge_y = 0.1,
+                 show.legend = F, fontface = &quot;bold&quot;, fill = &quot;#ffffff66&quot;) +
+  theme_graph() + 
+  theme(legend.position = &quot;none&quot;) +
+  labs(title = &quot;TeamAlgoritma Mutual Communities&quot;,
+       subtitle = &quot;Top 3 Community&quot;)</code></pre>
+<pre class="r"><code>plot_ego</code></pre>
+<p><img src="/blog/sna-blog_files/figure-html/unnamed-chunk-51-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>What can we get from this visualization?</p>
+<p>This obviously doesn’t tell much of a story (we need further inspection in the data, matching it to the visualization), but it shows that the “spinglass” community detection algorithm is picking up on the same structure as “stress” layout algorithm. TeamAlgoritma as our ego appears in the middle, act as a bridge who connects all cluster. we only show user label who has high betweenness centrality value. a mushroom-shaped nodes behind them are their mutual friends who don’t follow TeamAlgoritma account. That user is our potential reader if their ‘bridge’ retweeting or mentioning something about TeamAlgoritma account. user in the same community or who close to each other maybe know each other in real life. they create their own community. The key player is in community #1 (red), which is TeamAlgoritma’s most important community because they have the most potential to spread information fast and widely.</p>
+</div>
+</div>
+<div id="case-2-activity-network" class="section level1">
+<h1>Case 2: Activity Network</h1>
+<p>Activity network analyzes how information is spread around the network. From this analysis, we can found how something goes viral and how people interact with it. Because this network contains all forms of Twitter communication (even a single retweet), the visualization will most likely become a hairball. You will need a lot of data featuring or filtering for visualization purposes, but in the end it will be up to your preferences.</p>
+<div id="case-objective" class="section level2">
+<h2>Case Objective</h2>
+<ul>
+<li>Analyze <strong>Activity Network</strong> given random keyword(s) or hashtag
+<ul>
+<li>Visualize the activity/information network<br />
+</li>
+<li>find out which cluster talk about which topic regarding the keyword<br />
+</li>
+<li>Calculate the metrics, and find out who is the <code>key player</code> in the whole conversation network</li>
+</ul></li>
+</ul>
+<p>Here’s the step to do this case:<br />
+1. Gather any trending keywords or hashtag (in this case i’ll use #NewNormal)<br />
+2. Filter the data, use tweet with lots of interaction (retweet or mention)<br />
+3. Specify which column is communicating with which, then create edges df<br />
+4. Create nodes df and the network<br />
+5. Build communities, Calculate SNA metrics, and identify which user is important<br />
+6. Visualize the network</p>
+</div>
+<div id="gather-tweets-data" class="section level2">
+<h2>Gather tweets data</h2>
+<p>You can always choose other keywords or hashtags. in this example, i’ll use #NewNormal as the query.</p>
+<pre class="r"><code>womenday &lt;- search_tweets(&quot;#InternationalWomensDay&quot;,n = 18000,include_rts = T,retryonratelimit = T)
+womenday &lt;- data.frame(lapply(womenday,as.character),stringsAsFactors = F)</code></pre>
+<p>it’ll take approximately 4-5 minutes and there’s a possibility of failure (sls/tls, or simply bad connection). so i provide the output in csv for us to continue the analysis.</p>
+<pre class="r"><code>womenday &lt;- read.csv(&quot;data_input/SNA/womenday.csv&quot;, stringsAsFactors = F)
+head(womenday,1)</code></pre>
+<pre><code>#&gt;      user_id           status_id          created_at     screen_name
+#&gt; 1 2936710628 1369203572487819264 2021-03-09 08:29:04 Minseokkyyy_799
+#&gt;                                                                                                                                                                                                                                                                                   text
+#&gt; 1 Saluting the brave women of Hong Kong, Thailand, and Myanmar who are bravely participating in protests in defense of democracy, and fighting against the twin authoritarian forces of establishment and patriarchy. We stand as one. #InternationalWomensDay https://t.co/qMW36VN53Q
+#&gt;               source display_text_width reply_to_status_id reply_to_user_id
+#&gt; 1 Twitter for iPhone                140                 NA               NA
+#&gt;   reply_to_screen_name is_quote is_retweet favorite_count retweet_count
+#&gt; 1                 &lt;NA&gt;    FALSE       TRUE              0          2171
+#&gt;   quote_count reply_count hashtags symbols urls_url urls_t.co urls_expanded_url
+#&gt; 1          NA          NA     &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;              &lt;NA&gt;
+#&gt;   media_url media_t.co media_expanded_url media_type ext_media_url
+#&gt; 1      &lt;NA&gt;       &lt;NA&gt;               &lt;NA&gt;       &lt;NA&gt;          &lt;NA&gt;
+#&gt;   ext_media_t.co ext_media_expanded_url ext_media_type mentions_user_id
+#&gt; 1           &lt;NA&gt;                   &lt;NA&gt;             NA        578780183
+#&gt;   mentions_screen_name lang quoted_status_id quoted_text quoted_created_at
+#&gt; 1           SophieMak1   en               NA        &lt;NA&gt;              &lt;NA&gt;
+#&gt;   quoted_source quoted_favorite_count quoted_retweet_count quoted_user_id
+#&gt; 1          &lt;NA&gt;                    NA                   NA             NA
+#&gt;   quoted_screen_name quoted_name quoted_followers_count quoted_friends_count
+#&gt; 1               &lt;NA&gt;        &lt;NA&gt;                     NA                   NA
+#&gt;   quoted_statuses_count quoted_location quoted_description quoted_verified
+#&gt; 1                    NA            &lt;NA&gt;               &lt;NA&gt;              NA
+#&gt;     retweet_status_id
+#&gt; 1 1368849900171980800
+#&gt;                                                                                                                                                                                                                                                                           retweet_text
+#&gt; 1 Saluting the brave women of Hong Kong, Thailand, and Myanmar who are bravely participating in protests in defense of democracy, and fighting against the twin authoritarian forces of establishment and patriarchy. We stand as one. #InternationalWomensDay https://t.co/qMW36VN53Q
+#&gt;    retweet_created_at  retweet_source retweet_favorite_count
+#&gt; 1 2021-03-08 09:03:42 Twitter Web App                   2430
+#&gt;   retweet_retweet_count retweet_user_id retweet_screen_name retweet_name
+#&gt; 1                  2171       578780183          SophieMak1   Sophie Mak
+#&gt;   retweet_followers_count retweet_friends_count retweet_statuses_count
+#&gt; 1                    7511                   453                    500
+#&gt;   retweet_location
+#&gt; 1                 
+#&gt;                                                                                               retweet_description
+#&gt; 1 digitally monitoring human rights abuses in &lt;U+0001F1ED&gt;&lt;U+0001F1F0&gt; and elsewhere for @humanrightshku @amnesty
+#&gt;   retweet_verified place_url place_name place_full_name place_type country
+#&gt; 1            FALSE      &lt;NA&gt;       &lt;NA&gt;            &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;
+#&gt;   country_code geo_coords coords_coords                       bbox_coords
+#&gt; 1         &lt;NA&gt;  c(NA, NA)     c(NA, NA) c(NA, NA, NA, NA, NA, NA, NA, NA)
+#&gt;                                                       status_url
+#&gt; 1 https://twitter.com/Minseokkyyy_799/status/1369203572487819264
+#&gt;                                                                                                                                                    name
+#&gt; 1 &lt;U+0001D564&gt;&lt;U+0001D565&gt;&lt;U+0001D552&gt;&lt;U+0001D563&gt;&lt;U+0001D563&gt;&lt;U+0001D56A&gt; &lt;U+0001D55F&gt;&lt;U+0001D55A&gt;&lt;U+0001D558&gt;&lt;U+0001D559&gt;&lt;U+0001D565&gt;&lt;U+0001F4AB&gt; |||
+#&gt;               location
+#&gt; 1 Lat Krabang, Bangkok
+#&gt;                                                                                                                                                                                                                                                          description
+#&gt; 1 N&lt;U+0001D546&gt;&lt;U+0001D54E&gt; : &lt;U+0001D538&gt;P&lt;U+0001D540&gt;N&lt;U+0001D542&gt; | &lt;U+0001D53C&gt;&lt;U+0001D54F&gt;&lt;U+0001D546&gt; | &lt;U+0001D53E&gt;&lt;U+0001D546&gt;&lt;U+0001D54B&gt;7 | NC&lt;U+0001D54B&gt; | &lt;U+0001D54D&gt;&lt;U+0001D540&gt;C&lt;U+0001D54B&gt;&lt;U+0001D546&gt;N &lt;U+2661&gt;´&lt;U+FF65&gt;&lt;U+1D17&gt;&lt;U+FF65&gt;`&lt;U+2661&gt;
+#&gt;                       url protected followers_count friends_count listed_count
+#&gt; 1 https://t.co/7hVHIn7Stc     FALSE             255           900            6
+#&gt;   statuses_count favourites_count  account_created_at verified
+#&gt; 1         372630            49770 2014-12-20 05:14:00    FALSE
+#&gt;               profile_url               profile_expanded_url account_lang
+#&gt; 1 https://t.co/7hVHIn7Stc https://twitter.com/m_itsu_ha?s=21           NA
+#&gt;                                            profile_banner_url
+#&gt; 1 https://pbs.twimg.com/profile_banners/2936710628/1585838104
+#&gt;                             profile_background_url
+#&gt; 1 http://abs.twimg.com/images/themes/theme5/bg.gif
+#&gt;                                                             profile_image_url
+#&gt; 1 http://pbs.twimg.com/profile_images/1251526099470696450/alWvrXec_normal.jpg</code></pre>
+</div>
+<div id="build-edges-nodes-and-graph-dataframe" class="section level2">
+<h2>Build edges, nodes, and graph dataframe</h2>
+<p>mentions_screen_name column contains user screen_name we interact with. it’ll be our “to” column in edges. however, by default the column is list type (that i convert to character). We need to remove unused string first. Here’s a function to remove all symbols except letter, number and comma ’ , ’. it also remove first letter in the string (c in our case)</p>
+<pre class="r"><code>mention_clean &lt;- function(x){
+  if(grepl(&quot;,&quot;,x) == TRUE){
+    gsub(&#39;^.|[^[:alnum:][:blank:]_,?&amp;/\\-]&#39;,&quot;&quot;,x)
+  } else{
+    x
+  }
+}</code></pre>
+<p>then we simply apply it to the column</p>
+<pre class="r"><code># apply mention_clean function to mentions_screen_name column using sapply()
+edge_nn &lt;- womenday %&gt;% 
+  select(screen_name,is_retweet,mentions_screen_name) %&gt;%
+  mutate(mentions_screen_name = sapply(mentions_screen_name,mention_clean))
+
+# specify interaction type
+edge_nn &lt;- edge_nn %&gt;% 
+  mutate(type = ifelse(is_retweet == TRUE,&quot;retweet&quot;,&quot;mention&quot;))
+
+# seperate value in mention_screen_name by comma
+edge_nn &lt;- edge_nn %&gt;% 
+  select(screen_name,mentions_screen_name,type) %&gt;%
+  separate_rows(mentions_screen_name,sep = &quot;,&quot;) %&gt;% 
+  setNames(c(&quot;from&quot;,&quot;to&quot;,&quot;type&quot;)) %&gt;% 
+  count(from,to,type)
+
+# create nodes dataframe by unique value in both edges column
+nodes_nn &lt;- data.frame(V = unique(c(edge_nn$from,edge_nn$to)),
+                        stringsAsFactors = F)
+
+# build graph data
+network_nn &lt;- graph_from_data_frame(d = edge_nn, vertices = nodes_nn, directed = T) %&gt;%
+  as_tbl_graph()
+
+# create community, calculate centrality and remove loop edge
+set.seed(123)
+network_nn &lt;- network_nn %&gt;% 
+  activate(nodes) %&gt;%
+  mutate(community = tidygraph::group_infomap(),
+         degree = centrality_degree(),
+         between = centrality_betweenness(),
+         closeness = centrality_closeness(),
+         eigen = centrality_eigen()) %&gt;%
+  activate(edges) %&gt;%
+  filter(!edge_is_loop())
+
+network_act_df &lt;- as.data.frame(network_nn %&gt;% activate(nodes))</code></pre>
+</div>
+<div id="identify-a-prominent-person-in-the-network" class="section level2">
+<h2>Identify a prominent person in the network</h2>
+<p>Key players in the ego network and activity network have different interpretation. In this case, the key player will be considered as a person who makes this specific keyword viral. We also can identify which person whose opinions are widely agreed upon by others.</p>
+<pre class="r"><code>kp_activity &lt;- data.frame(
+  network_act_df %&gt;% arrange(-degree) %&gt;% select(name) %&gt;% slice(1:6),
+  network_act_df %&gt;% arrange(-between) %&gt;% select(name) %&gt;% slice(1:6),
+  network_act_df %&gt;% arrange(-closeness) %&gt;% select(name) %&gt;% slice(1:6),
+  network_act_df %&gt;% arrange(-eigen) %&gt;% select(name) %&gt;% slice(1:6)
+) %&gt;% setNames(c(&quot;degree&quot;,&quot;betweenness&quot;,&quot;closeness&quot;,&quot;eigen&quot;))
+
+kp_activity</code></pre>
+<pre><code>#&gt;            degree     betweenness       closeness           eigen
+#&gt; 1   womeninstemSA       ABVPVoice   womeninstemSA              NA
+#&gt; 2 AbhiTha84389697     nowthisnews AbhiTha84389697     abbasali210
+#&gt; 3        ir_child      BedeleBuno        ir_child   lindsay_joker
+#&gt; 4 YuliyaInopinaPR        EBCharts YuliyaInopinaPR 4freedominiran2
+#&gt; 5   Mona3Dimaging       DelhiAipc   Mona3Dimaging     nowthisnews
+#&gt; 6    Wackelkasper VijayPU00200338    Wackelkasper   redfishstream</code></pre>
+<p>We got interesting results here. almost every top centrality has a different account. Ignore NA in eigen centrality, it because we calculate centrality from missing directed graph. It means every top user is great in their own ‘job’ on the network. From the table above, “womeninstemSA” grab my attention the most. he appears in 2 centrality Thus we can conclude she is the key player in #InternationalWomensDay Twitter activity network. Let’s see his tweets</p>
+<pre class="r"><code>womenday %&gt;% 
+  filter(screen_name == &quot;womeninstemSA&quot;) %&gt;% 
+  arrange(-retweet_count) %&gt;% 
+  select(created_at,text,retweet_count) %&gt;% 
+  head(3)</code></pre>
+<pre><code>#&gt;            created_at
+#&gt; 1 2021-03-09 08:09:58
+#&gt; 2 2021-03-09 08:08:24
+#&gt; 3 2021-03-09 08:00:59
+#&gt;                                                                                                                                                                                                                                                                                                                          text
+#&gt; 1                                                           My commitment to refuse invitations to academic conferences with all-male lineup is in its 5th year. I stick to this &amp;amp; I encourage other scientists to join. The fight for equality is far from over.\n#InternationalWomensDay \n#WomenInScience #WomenInSTEM
+#&gt; 2 Buckle in for an #InternationalWomensDay&lt;U+0001F9F5&gt;, highlighting the work of women in science. \nTo start: Katie Bouman, who led the creation of an algorithm that helped capture the first ever image of a black hole. Here she is speaking about the breakthrough in 2019 #IWD2021 #womeninstem https://t.co/0KmjkfFHD1
+#&gt; 3                                                                                                                                     As women in #STEM, we #ChooseToChallenge stereotypes, gender bias, and discrimination and celebrate #InternationalWomensDay \n\n#IWD2021  #WomenInSTEM @BTS_twt https://t.co/86WmNT7aaH
+#&gt;   retweet_count
+#&gt; 1           200
+#&gt; 2           110
+#&gt; 3            67</code></pre>
+</div>
+<div id="visualize-network-1" class="section level2">
+<h2>Visualize network</h2>
+<p>let’s try to visualize the network. the network consist of 45k+ nodes and 42k+ degree. we need to filter it otherwise it’ll be just hairball of nodes and edges. here i just plot top 3 community and filter the label by nodes with degree centrality &gt;= 3 or betweenness centrality &gt;= 100. The edges color are separated by interaction type.</p>
+<pre class="r"><code>network_nn %&gt;%
+  activate(nodes) %&gt;%
+  mutate(ids = row_number()) %&gt;%
+  filter(community %in% 1:3) %&gt;% 
+  arrange(community,ids) %&gt;%
+  mutate(node_label = ifelse(degree &gt;= 3 | between &gt;= 8,name,&quot;&quot;)) %&gt;%
+  mutate(node_size = ifelse(degree &gt;= 3 | between &gt;= 8,degree,0)) %&gt;%
+  ggraph(layout = &quot;linear&quot;, circular = T) +
+  geom_edge_arc(alpha = 0.05, aes(col = as.factor(type), edge_width = n*0.5)) +
+  # geom_node_label(aes(label = node_label, size = node_size),repel = T,
+  #                show.legend = F, fontface = &quot;bold&quot;, label.size = 0,
+  #                segment.colour=&quot;slateblue&quot;, fill = &quot;#ffffff66&quot;) +
+  ggrepel::geom_label_repel(aes(x = x, y = y, label = node_label,size = node_size),
+                            fontface = &quot;bold&quot;, label.size = 0,show.legend = F,
+                            segment.colour=&quot;slateblue&quot;, fill = &quot;#ffffff66&quot;) +
+  labs(title = &quot;Twitter Activity Network #InternationalWomensDay&quot;,
+       subtitle = &quot;Retweets and mention between 3 top communities&quot;) +
+  theme_graph() + 
+  guides(edge_width = F,
+         edge_colour = guide_legend(title = &quot;Tweet Type&quot;,
+                                    override.aes = list(edge_alpha = 1))) +
+  theme(legend.position = &quot;bottom&quot;)</code></pre>
+<p><img src="/blog/sna-blog_files/figure-html/unnamed-chunk-58-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>What can we get from this visualization?</p>
+<p>First, lets see this table</p>
+<pre class="r"><code>network_act_df %&gt;% 
+  arrange(-degree) %&gt;%
+  group_by(community) %&gt;% 
+  slice(1:5)</code></pre>
+<pre><code>#&gt; # A tibble: 28,362 x 6
+#&gt; # Groups:   community [9,461]
+#&gt;    name            community degree between closeness       eigen
+#&gt;    &lt;chr&gt;               &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+#&gt;  1 DevAn90700841           1      4       0  4.93e-10 0.00217    
+#&gt;  2 BFujer                  1      2       0  4.92e-10 0.0276     
+#&gt;  3 LAHSGwalior             1      2       0  4.92e-10 0.0276     
+#&gt;  4 RaviBhai2705            1      2       2  4.92e-10 0.0276     
+#&gt;  5 TeamAlbanians           1      2      21  4.92e-10 0.0280     
+#&gt;  6 GentlemanShrink         2      2       0  4.93e-10 0.000722   
+#&gt;  7 __crbr                  2      1       0  4.92e-10 0.000000947
+#&gt;  8 __malea__               2      1       0  4.92e-10 0.000000947
+#&gt;  9 _chxline                2      1       0  4.92e-10 0.000000947
+#&gt; 10 _dnbss                  2      1       0  4.92e-10 0.000000947
+#&gt; # ... with 28,352 more rows</code></pre>
+<p>Now we can identify which person belongs to which community based on highest degree. The plot is arranged by community and id (row number), so user in the same community are placed near to each other. community #1 (highest community by frequency) is the only community with 2 interaction types (you can detect community in the plot by add geom_node_label() and set the aes color to community. lots of them are retweeting (or quoting) “DevAn90700841” tweet, and the others mentioning to each other. Users in community #2 and #3 are just retweeting each other, or maybe some of them make a quote tweet that also goes viral. I can conclude that the top 3 community (by highest frequency) in Twitter activity network is well separated by its tweet types (interaction types). maybe there’s another interesting insight in another community since it creates fewer accounts by each community.</p>
+</div>
+</div>
+<div id="additional-business-case-competition-network" class="section level1">
+<h1>Additional business case: Competition network</h1>
+<p>Competition network gathers all person/user who has connection to specific official account. The main idea is mapping the whole network of accounts in the same industry. for example, we want to see marketing competition in Indonesian private colleges. We gather all of their followers and from that follower, gather all their following. Build community and calculate the metrics, thus we will get important persons who has information from all competing accounts. we also can found which community is a potential ‘unreached’ market to several companies and how to reach them.</p>
+<center>
+<img src="/img/SNA/network1.png" />
+</center>
+<p>The graph above shows 21 Indonesian private college Instagram admission of new student network. The network is separated by 3 community, green for Muslim college, purple for Catholic/Christian college, and fuzzy cluster in the middle is what we can say as a ‘neutral’ college. We can conclude that these days people still looking for education based on their religion. Let’s say we’re a social media analyst from Binus, then we can find out how to reach UII/UMY/UMM cluster based on important person in their community (endorsement). It will give Binus a lot of engagement right?</p>
+<p>Well, the problem is Twitter rate limitation makes it impossible to do this analysis in a short time. So i’ll tell you how to do it. It’s pretty simple, but takes a loong time:</p>
+<ol style="list-style-type: decimal">
+<li>Select several accounts in the same industry<br />
+</li>
+<li>Gather all of their followers<br />
+</li>
+<li>From the follower, gather all of their following<br />
+</li>
+<li>Filter to active user only (if possible)<br />
+</li>
+<li>Build a network, create community and centrality<br />
+</li>
+<li>Identify prominent user based on your case<br />
+</li>
+<li>Visualize</li>
+</ol>
+<p>Case Objectives:</p>
+<ul>
+<li>Analyze <strong>Competition Network</strong> from (for example) <span class="citation">@kfc_id</span>, <span class="citation">@mcd_id</span>, <span class="citation">@wendys</span>, <span class="citation">@phd</span> account
+<ul>
+<li>Visualize the whole competition network<br />
+</li>
+<li>Identify fanbase cluster in each account<br />
+</li>
+<li>Calculate the metrics, and find out who is the <code>key player</code> in the whole network</li>
+</ul></li>
+</ul>
+</div>
+<div id="reference" class="section level1">
+<h1>Reference</h1>
+<p><strong>SNA with R:</strong><br />
+- <a href="https://rtweet.info/">Rtweet homepage</a><br />
+- <a href="https://www.data-imaginist.com/2017/introducing-tidygraph/">Tidygraph introduction</a><br />
+- <a href="http://mr.schochastics.net/netVizR.html">Tidygraph introduction 2</a><br />
+- <a href="https://perrystephenson.me/2018/09/29/the-r-twitter-network/">R Twitter network example (my main reference)</a><br />
+- <a href="https://www.jessesadler.com/post/network-analysis-with-r/">Various R packages for SNA</a><br />
+- <a href="https://igraph.org/r/doc/">igraph manual pages</a><br />
+- <a href="https://www.r-graph-gallery.com/network.html">R-graph gallery</a></p>
+<p><strong>Thank you !</strong></p>
+</div>
