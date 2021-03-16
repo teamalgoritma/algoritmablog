@@ -36,12 +36,12 @@ options(scipen = 99999)
 ```
 
 
-In this article, we will learn about `Social Network Analysis` using `tidygraph` (including `igraph` and `ggraph`). We'll not only learn about the visualizing stuff but also the metrics. We'll analyze Twitter network as our study case using `rtweet` package. After this internal training, I hope we will be able to do:   
+In this article, we will learn about `Social Network Analysis` using `tidygraph` (including `igraph` and `ggraph`). We'll not only learn about the visualizing stuff but also the metrics. We'll analyze Twitter network as our study case using `rtweet` package. In this article, I hope we will be able to do:   
    
 - Analyze *Ego Network* from specific account/user    
 - Analyze *Information Activity Network* from something that goes viral   
 
-<center> ![](/img/SNA/mindmap.png) </center>
+<center> ![](/img/SNA/mindmap.png){width="60%"} </center>
 
 # Background 
 ## Introduction
@@ -158,7 +158,8 @@ Here's the step to do this case:
 5. Build communities, Calculate SNA metrics, and identify which user is important   
 6. Visualize the ego network   
 
-<center> ![Picture 1: Ego network](img/SNA/ego_network.png) </center>
+<center> ![](img/SNA/ego_network.png){width="60%"} </center>
+
 
 ## Gather @TeamAlgoritma data
 ```{r}
@@ -809,7 +810,7 @@ Now we can identify which person belongs to which community based on highest deg
 # Additional business case: Competition network 
 Competition network gathers all person/user who has connection to specific official account. The main idea is mapping the whole network of accounts in the same industry. for example, we want to see marketing competition in Indonesian private colleges. We gather all of their followers and from that follower, gather all their following. Build community and calculate the metrics, thus we will get important persons who has information from all competing accounts. we also can found which community is a potential 'unreached' market to several companies and how to reach them. 
 
-<center> ![](/img/SNA/network1.png) </center>
+<center> ![](/img/SNA/network1.png){width="60%"} </center>
 
 The graph above shows 21 Indonesian private college Instagram admission of new student network. The network is separated by 3 community, green for Muslim college, purple for Catholic/Christian college, and fuzzy cluster in the middle is what we can say as a 'neutral' college. We can conclude that these days people still looking for education based on their religion. Let's say we're a social media analyst from Binus, then we can find out how to reach UII/UMY/UMM cluster based on important person in their community (endorsement). It will give Binus a lot of engagement right?
 

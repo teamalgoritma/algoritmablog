@@ -23,14 +23,14 @@ type: post
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<p>In this article, we will learn about <code>Social Network Analysis</code> using <code>tidygraph</code> (including <code>igraph</code> and <code>ggraph</code>). We’ll not only learn about the visualizing stuff but also the metrics. We’ll analyze Twitter network as our study case using <code>rtweet</code> package. After this internal training, I hope we will be able to do:</p>
+<p>In this article, we will learn about <code>Social Network Analysis</code> using <code>tidygraph</code> (including <code>igraph</code> and <code>ggraph</code>). We’ll not only learn about the visualizing stuff but also the metrics. We’ll analyze Twitter network as our study case using <code>rtweet</code> package. In this article, I hope we will be able to do:</p>
 <ul>
 <li>Analyze <em>Ego Network</em> from specific account/user<br />
 </li>
 <li>Analyze <em>Information Activity Network</em> from something that goes viral</li>
 </ul>
 <center>
-<img src="/img/SNA/mindmap.png" />
+<img src="/img/SNA/mindmap.png" style="width:60.0%" />
 </center>
 <div id="background" class="section level1">
 <h1>Background</h1>
@@ -154,7 +154,7 @@ get_token()</code></pre>
 5. Build communities, Calculate SNA metrics, and identify which user is important<br />
 6. Visualize the ego network</p>
 <center>
-<img src="img/SNA/ego_network.png" title="fig:" alt="Picture 1: Ego network" />
+<img src="img/SNA/ego_network.png" style="width:60.0%" />
 </center>
 <div id="gather-teamalgoritma-data" class="section level2">
 <h2>Gather <span class="citation">@TeamAlgoritma</span> data</h2>
@@ -174,27 +174,27 @@ detail_folower %&gt;%
   select(screen_name,followers_count, friends_count, favourites_count) %&gt;% 
   head()</code></pre>
 <pre><code>#&gt;       screen_name followers_count friends_count favourites_count
-#&gt; 1          btekno          331655           326               49
-#&gt; 2 machinelearnflx           92622         35395              161
-#&gt; 3        DD_FaFa_           23530         16155            51226
-#&gt; 4       NgeeAnnNP           12200           186             9912
-#&gt; 5        TheMLHub           10457          9372              859
-#&gt; 6  CintaNegeri_ID            9127          8786             2975</code></pre>
+#&gt; 1          btekno          331624           326               49
+#&gt; 2 machinelearnflx           93630         35370              160
+#&gt; 3        DD_FaFa_           23531         16268            51250
+#&gt; 4       NgeeAnnNP           12198           186             9910
+#&gt; 5        TheMLHub           10454          9369              859
+#&gt; 6  CintaNegeri_ID            9116          8755             2975</code></pre>
 <p>TeamAlgoritma Twitter account has 524 followers (on 2 February 2021). We need to gather all of their follower and following but Twitter rest API has (kinda stingy) limitation.</p>
 <pre class="r"><code>rate_limit()</code></pre>
 <pre><code>#&gt; # A tibble: 217 x 7
 #&gt;    query   limit remaining reset  reset_at            timestamp           app   
 #&gt;    &lt;chr&gt;   &lt;int&gt;     &lt;int&gt; &lt;drtn&gt; &lt;dttm&gt;              &lt;dttm&gt;              &lt;chr&gt; 
-#&gt;  1 lists/~    15        15 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
-#&gt;  2 lists/~    75        75 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
-#&gt;  3 lists/~    15        15 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
-#&gt;  4 lists/~   900       900 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
-#&gt;  5 lists/~    15        15 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
-#&gt;  6 lists/~    75        75 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
-#&gt;  7 lists/~    15        15 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
-#&gt;  8 lists/~   180       180 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
-#&gt;  9 lists/~    15        15 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
-#&gt; 10 lists/~   900       900 15.00~ 2021-03-10 18:20:01 2021-03-10 18:05:01 Autom~
+#&gt;  1 lists/~    15        15 15.00~ 2021-03-16 16:38:57 2021-03-16 16:23:57 Autom~
+#&gt;  2 lists/~    75        75 15.00~ 2021-03-16 16:38:57 2021-03-16 16:23:57 Autom~
+#&gt;  3 lists/~    15        15 15.00~ 2021-03-16 16:38:57 2021-03-16 16:23:57 Autom~
+#&gt;  4 lists/~   900       900 15.00~ 2021-03-16 16:38:57 2021-03-16 16:23:57 Autom~
+#&gt;  5 lists/~    15        15 15.00~ 2021-03-16 16:38:57 2021-03-16 16:23:57 Autom~
+#&gt;  6 lists/~    75        75 15.00~ 2021-03-16 16:38:57 2021-03-16 16:23:57 Autom~
+#&gt;  7 lists/~    15        15 15.00~ 2021-03-16 16:38:57 2021-03-16 16:23:57 Autom~
+#&gt;  8 lists/~   180       180 15.00~ 2021-03-16 16:38:57 2021-03-16 16:23:57 Autom~
+#&gt;  9 lists/~    15        15 15.00~ 2021-03-16 16:38:57 2021-03-16 16:23:57 Autom~
+#&gt; 10 lists/~   900       900 15.00~ 2021-03-16 16:38:57 2021-03-16 16:23:57 Autom~
 #&gt; # ... with 207 more rows</code></pre>
 <p>We can only gather 15 users (both following and follower) and 5k retrieved for every 15 minutes, so you can imagine if we want to retrieve thousand of them.. In order to minimize the time consumption, we need to filter the users to active users only. The criteria of ‘active users’ depend on your data. You need to lookup which kind of users your follower is and build your own criteria. In this case, the top 8 of Algoritma’s followers is a media account. Accounts like ‘btekno’ and ‘machinelearnflx’ only repost link to their own media and never retweet other account tweets. So if our goal is to map the potential information spreading around TeamAlgoritma ego network, we need to exclude them for that reason.</p>
 <p>After a long inspection, i propose several criteria for filtering active account: <code>Followers_count</code> &gt; 100 and &lt; 6000, <code>following_count</code> &gt; 75, <code>favourites_count</code> &gt; 10, and create a <code>new tweet</code> at least 2 months ago. I also want to exclude protected accounts because we actually can’t do anything about it, we can’t gather their following and followers.</p>
@@ -853,7 +853,7 @@ kp_activity</code></pre>
 <h1>Additional business case: Competition network</h1>
 <p>Competition network gathers all person/user who has connection to specific official account. The main idea is mapping the whole network of accounts in the same industry. for example, we want to see marketing competition in Indonesian private colleges. We gather all of their followers and from that follower, gather all their following. Build community and calculate the metrics, thus we will get important persons who has information from all competing accounts. we also can found which community is a potential ‘unreached’ market to several companies and how to reach them.</p>
 <center>
-<img src="/img/SNA/network1.png" />
+<img src="/img/SNA/network1.png" style="width:60.0%" />
 </center>
 <p>The graph above shows 21 Indonesian private college Instagram admission of new student network. The network is separated by 3 community, green for Muslim college, purple for Catholic/Christian college, and fuzzy cluster in the middle is what we can say as a ‘neutral’ college. We can conclude that these days people still looking for education based on their religion. Let’s say we’re a social media analyst from Binus, then we can find out how to reach UII/UMY/UMM cluster based on important person in their community (endorsement). It will give Binus a lot of engagement right?</p>
 <p>Well, the problem is Twitter rate limitation makes it impossible to do this analysis in a short time. So i’ll tell you how to do it. It’s pretty simple, but takes a loong time:</p>
