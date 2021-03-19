@@ -12,9 +12,9 @@ tags:
   - ggplot2
   - ggimage
 description: ''
-featured: ''
+featured: 'cherry-bomb.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -97,12 +97,12 @@ sample_n(sakura,6) # sampling rows
 
 ```
 #>     AD full.flowering.date
-#> 1 1144                  NA
-#> 2 1639                 418
-#> 3  967                 413
-#> 4 1155                  NA
-#> 5 1923                 407
-#> 6  829                  NA
+#> 1 1367                 407
+#> 2 1589                 415
+#> 3 1957                 413
+#> 4  995                  NA
+#> 5  939                  NA
+#> 6 1590                 412
 ```
 After some exploration, we find that most of the data came from early AD contain missing records of its full flowering date. Therefore, the next step is to obtain the data with no missing values on its `full.flowering.date`, and for better visualization, we can also rename the "AD" column to "Year".
 
@@ -197,8 +197,8 @@ unique(sakura.plot$month)
 ```
 
 ```
-#> [1] April Maret Mei  
-#> 12 Levels: Januari < Februari < Maret < April < Mei < Juni < ... < Desember
+#> [1] April March May  
+#> 12 Levels: January < February < March < April < May < June < ... < December
 ```
 
 If we look at the order of our `month` column, it is still in the reverse format. We can reverse the order of the levels by using the function `fct_rev()` from **forcats** package. Forcats package itself contains many functions form working with categorical variables/factors.
@@ -212,8 +212,8 @@ unique(sakura.plot$month)
 ```
 
 ```
-#> [1] April Maret Mei  
-#> 12 Levels: Desember < November < Oktober < September < Agustus < ... < Januari
+#> [1] April March May  
+#> 12 Levels: December < November < October < September < August < ... < January
 ```
 
 We have now obtained the data ready for plotting.
