@@ -15,9 +15,9 @@ tags:
   - Rplicate
   - ggplot2
 description: ''
-featured: ''
+featured: 'i-cant-get-no.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---

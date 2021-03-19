@@ -32,7 +32,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, eval=FALSE}
 Sys.setenv(RETICULATE_PYTHON = "C:/Users/fafiliam/.conda/envs/kkp/python.exe") #isi env
 library(reticulate)
 py_run_string("import os")
@@ -63,7 +63,7 @@ Berikut d adalah pengertian dari kedua terminologi tersebut :
 
 Sama halnya dengan DBSCAN, pada OPTICS kita dapat memanfaatkan parameter *minPts* dan *epsilon* sebagai unsur pembentukan cluster. Akan tetapi jika pada DBSCAN *epsilon* dianggap sebagai jarak konstan untuk membentuk sebuah cluster, pada OPTICS nantinya kita akan mempertimbangkan jarak antara titik-titik yang berdekatan untuk membuat reachability distance yang kemudian digunakan untuk memisahkan cluster dengan kepadatan yang bervariasi dari noise.
 
-<center> ![](/img/optics/OPTICS_SEarch_Distance.PNG){width="80%"} </center>
+<center> ![](/img/optics/OPTICS_SEarch_Distance.PNG){width="60%"} </center>
 
 Parameter *minPts* pada OPTICS digunakan untuk menentukan jumlah minimum fitur/titik yang diperlukan untuk mempertimbangkan pengelompokan titik-titik pada sebuah cluster. Misalnya jika kita memiliki sejumlah cluster berbeda dengan ukuran mulai dari 10 titik hingga 50 titik dan kita menetapkan nilai *minPts* sebanyak 20, maka untuk semua cluster yang memiliki anggota kurang dari 20 titik akan dianggap sebagai noise karena tidak membentuk pengelompokan yang cukup besar untuk dianggap sebagai cluster atau titik-titik tersebut akan digabungkan dengan cluster terdekat untuk memenuhi jumlah minimum titik yang diperlukan.
 
@@ -72,11 +72,11 @@ Pada OPTICS, epsilon diperlakukan sebagai jarak maksimum yang akan dibandingkan 
 ### Bagaimana reachability distance berperan dalam pembentukan reachable plot?
 Untuk semua titik pada dataset akan dihitung reachability distancenya karena jarak ini nantinya akan digunakan dan dipetakan pada reachability plot. Gambar di bawah ini menggambarkan ilustrasi pembentukan cluster dari reachability plot.
 
-<center> ![](/img/optics/Reachability_Plot.PNG){width="80%"} </center>
+<center> ![](/img/optics/Reachability_Plot.PNG){width="60%"} </center>
 
 Lembah dalam reachability plot mewakili cluster yang berbeda untuk setiap pola dari titik-titik tertentu. Semakin padat sebuah cluster, semakin rendah reachability distance-nya, dan semakin rendah lembah pada plot (cluster warna pink adalah contoh cluster yang paling padat diantara cluster lainnya). Cluster yang kurang padat memiliki reachability distance yang lebih tinggi dan bentuk lembah yang lebih tinggi pada plot (contohnya pada cluster hijau tua adalah yang paling tidak padat). Selain lembah kita juga melihat puncak pada reachability plot. Puncak mewakili jarak yang diperlukan dari satu cluster ke cluster lain, atau dari cluster ke titik noise kemudian ke cluster lainnya, tergantung pada konfigurasi himpunan titik-titik pada sebuah data(urutan reachability plotnya).
 
-<center> ![](/img/optics/ilustrasi_lembah_puncak.PNG){width="80%"} </center>
+<center> ![](/img/optics/ilustrasi_lembah_puncak.PNG){width="60%"} </center>
 
 Puncak dapat terjadi di reachability plot ketika epsilon kurang dari core distance terbesar. Aspek penting dalam pengelompokan OPTICS adalah menentukan cara mendeteksi cluster dari reachability plot yang dapat dilakukan dengan menggunakan parameter Sensitivitas Cluster.
 
@@ -88,7 +88,7 @@ Konsep dari *high cluster sensitivity* adalah memperlakukan setiap puncak pada u
 
 Agar memudahkan dalam memahami *cluster sensitivity* berikut di bawah ini adalah ilustrasinya :
 
-<center> ![](/img/optics/sensitivity.JPG){width="80%"} </center>
+<center> ![](/img/optics/sensitivity.JPG){width="60%"} </center>
 
 ### Membandingkan method DBSCAN dengan OPTICS
 
@@ -96,13 +96,13 @@ Sebelumnya, sudah dijelaskan bahwa perbedaan mendasar antara DBSCAN dan OPTICS t
 
 #### 1. DBSCAN
 
-<center> ![](/img/optics/dbscan.JPG){width="80%"} </center>
+<center> ![](/img/optics/dbscan.JPG){width="60%"} </center>
 
 Kekurangan dari algoritma DBSCAN adalah menjadikan nilai epsilonnya sebagai parameter *cut off* atau *threshold*, sehingga apabila diperhatikan pada gambar diatas, nilai diatas batas *cut off* akan diidentifikasi sebagai *noise*. Padahal sangat memungkinkan *noise* tersebut sebenarnya adalah *meaningful cluster*.
 
 #### 2. OPTICS
 
-<center> ![](/img/optics/optics.JPG){width="80%"} </center>
+<center> ![](/img/optics/optics.JPG){width="60%"} </center>
 
 Berbeda dengan DBSCAN, dikarenakan OPTICS menerapkan konsep *reachability distance* dan tidak mempertimbangkan nilai *epsilon* maka algoritma ini mampu menjangkau object-object yang berpotensi untuk dikategorikan sebagai cluster. Apabila diperhatikan pada ilustrasi diatas, noise yang dianggap oleh DBSCAN akan dianggap sebagai cluster baru pada algoritma ini. 
 
