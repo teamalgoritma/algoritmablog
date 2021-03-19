@@ -10,9 +10,9 @@ tags:
   - Data Visualization
   - Rplicate
 description: ''
-featured: ''
+featured: 'marvellous.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
