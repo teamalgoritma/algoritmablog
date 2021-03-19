@@ -43,7 +43,8 @@ In this article, we will learn about `Social Network Analysis` using `tidygraph`
 
 <center> ![](/img/SNA/mindmap.png){width="60%"} </center>
 
-# Background 
+# Background
+
 ## Introduction
 **What is Social Network Analysis (SNA)**    
 A social network is a structure composed of a set of actors, some of which are connected by a set of one or more relations. *Social network analysis* work at describing underlying patterns of social structure, explaining the impact of such patterns in behavior and attitudes. Social network analysis has 4 main types of network metrics, namely:     
