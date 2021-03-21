@@ -11,9 +11,9 @@ tags:
   - Unsupervised Learning
   - Hierarchical Clustering
 description: ''
-featured: ''
+featured: 'hc.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
