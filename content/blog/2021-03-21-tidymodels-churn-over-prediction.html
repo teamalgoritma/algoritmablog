@@ -1,0 +1,446 @@
+---
+title: 'Tidymodels: Churn Over Prediction'
+author: David
+date: '2021-03-21'
+slug: tidymodels-churn-over-prediction
+categories:
+  - R
+tags:
+  - tidymodels
+  - tidyverse
+  - Machine Learning
+  - Capstone ML
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Untuk membuat sebuah model machine learning diperlukan beberapa proses seperti praproses data, modeling, sampai model evaluation. R memiliki banyak sekali packages yang dapat digunakan dalam proses pemodelan. Untuk mempermudah seorang data scientist dalam membuat model, Rstudio mengembangkan kumpulan packages yang diberi nama <strong>Tidymodels</strong>.</p>
+<p>Tidymodels merupakan framework yang berisi kumpulan packages untuk membuat model machine learning menggunakan konsep <strong>Tidyverse</strong>. Beberapa packages seperti <code>rsample</code>, <code>recipes</code>, <code>parsnip</code>, <code>dials</code>, <code>tune</code>, <code>yardstick</code>, <code>workflows</code> sudah saling terintegrasi untuk membuat satu proses pemodelan yang utuh.</p>
+<p>Artikel ini berfokus membahas bagaimana cara menggunakan <code>tidymodels</code> dalam proses pemodelan machine learning. Artikel ini mengasumsikan pembaca sudah mengetahui konsep dasar dari <code>tidyverse</code> (piping) dan proses pembuatan model machine learning seperti praproses data, cross validation, modeling, model evaluation dll.</p>
+<p>Jika anda belum menginstall packages tidymodels, silahkan install terlebih dahulu.</p>
+<pre class="r"><code>install.packages(&quot;tidymodels&quot;)</code></pre>
+<div id="data-exploration" class="section level1">
+<h1>Data Exploration</h1>
+<pre class="r"><code>library(tidyverse) # data wrangling
+library(inspectdf) # data exploration
+library(tidymodels) # modeling
+library(themis)</code></pre>
+<div id="read-data" class="section level2">
+<h2>Read Data</h2>
+<p>Data yang digunakan pada artikel ini adalah data <a href="https://www.kaggle.com/blastchar/telco-customer-churn">Telco Customer Churn</a> yang diperoleh dari kaggle. Pada kasus ini model yang dibuat untuk memprediksi apakah seorang pelanggan akan <em>churn</em> dari produk yang digunakan atau tidak (klasifikasi biner).</p>
+<pre class="r"><code>churn &lt;- read_csv(&quot;data_input/tidymodels/watson-churn.csv&quot;)
+head(churn)</code></pre>
+<pre><code>#&gt; # A tibble: 6 x 19
+#&gt;   customerID gender SeniorCitizen Partner Dependents tenure MultipleLines
+#&gt;   &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;        
+#&gt; 1 5575-GNVDE Male               0 No      No             34 No           
+#&gt; 2 3668-QPYBK Male               0 No      No              2 No           
+#&gt; 3 9237-HQITU Female             0 No      No              2 No           
+#&gt; 4 9305-CDSKC Female             0 No      No              8 Yes          
+#&gt; 5 1452-KIOVK Male               0 No      Yes            22 Yes          
+#&gt; 6 7892-POOKP Female             0 Yes     No             28 Yes          
+#&gt; # … with 12 more variables: OnlineSecurity &lt;chr&gt;, OnlineBackup &lt;chr&gt;,
+#&gt; #   DeviceProtection &lt;chr&gt;, TechSupport &lt;chr&gt;, StreamingTV &lt;chr&gt;,
+#&gt; #   StreamingMovies &lt;chr&gt;, Contract &lt;chr&gt;, PaperlessBilling &lt;chr&gt;,
+#&gt; #   PaymentMethod &lt;chr&gt;, MonthlyCharges &lt;dbl&gt;, TotalCharges &lt;dbl&gt;, Churn &lt;chr&gt;</code></pre>
+</div>
+<div id="data-structure" class="section level2">
+<h2>Data Structure</h2>
+<p>Dilihat secara sekilas, data yang digunakan terdiri dari 19 kolom, dimana mayoritas kolom adalah kategorikal. Untuk melihat lebih detail struktur data bisa menggunakan fungsi <code>glimpse()</code>.</p>
+<pre class="r"><code>glimpse(churn)</code></pre>
+<pre><code>#&gt; Rows: 4,835
+#&gt; Columns: 19
+#&gt; $ customerID       &lt;chr&gt; &quot;5575-GNVDE&quot;, &quot;3668-QPYBK&quot;, &quot;9237-HQITU&quot;, &quot;9305-CDSK…
+#&gt; $ gender           &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;…
+#&gt; $ SeniorCitizen    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+#&gt; $ Partner          &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Y…
+#&gt; $ Dependents       &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;…
+#&gt; $ tenure           &lt;dbl&gt; 34, 2, 2, 8, 22, 28, 62, 13, 58, 49, 25, 69, 71, 10,…
+#&gt; $ MultipleLines    &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;…
+#&gt; $ OnlineSecurity   &lt;chr&gt; &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, …
+#&gt; $ OnlineBackup     &lt;chr&gt; &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;…
+#&gt; $ DeviceProtection &lt;chr&gt; &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;…
+#&gt; $ TechSupport      &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No…
+#&gt; $ StreamingTV      &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;…
+#&gt; $ StreamingMovies  &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Y…
+#&gt; $ Contract         &lt;chr&gt; &quot;One year&quot;, &quot;Month-to-month&quot;, &quot;Month-to-month&quot;, &quot;Mon…
+#&gt; $ PaperlessBilling &lt;chr&gt; &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;…
+#&gt; $ PaymentMethod    &lt;chr&gt; &quot;Mailed check&quot;, &quot;Mailed check&quot;, &quot;Electronic check&quot;, …
+#&gt; $ MonthlyCharges   &lt;dbl&gt; 56.95, 53.85, 70.70, 99.65, 89.10, 104.80, 56.15, 49…
+#&gt; $ TotalCharges     &lt;dbl&gt; 1889.50, 108.15, 151.65, 820.50, 1949.40, 3046.05, 3…
+#&gt; $ Churn            &lt;chr&gt; &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, …</code></pre>
+<p>Dari informasi diatas diketahui bahwa data terdiri dari 19 kolom dan 4835 observasi yang didominasi oleh kategorikal. Untuk melihat persebaran data yang bertipe kategorikal lebih jelas, kita dapat menggunakan fungsi <code>inspect_cat()</code> dari package <code>inspectdf</code>.</p>
+<pre class="r"><code>inspect_cat(churn)</code></pre>
+<pre><code>#&gt; # A tibble: 15 x 5
+#&gt;    col_name           cnt common           common_pcnt levels              
+#&gt;    &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;                  &lt;dbl&gt; &lt;named list&gt;        
+#&gt;  1 Churn                2 No                   67.2    &lt;tibble [2 × 3]&gt;    
+#&gt;  2 Contract             3 Month-to-month       61.5    &lt;tibble [3 × 3]&gt;    
+#&gt;  3 customerID        4835 0002-ORFBO            0.0207 &lt;tibble [4,835 × 3]&gt;
+#&gt;  4 Dependents           2 No                   73.9    &lt;tibble [2 × 3]&gt;    
+#&gt;  5 DeviceProtection     2 No                   56.2    &lt;tibble [2 × 3]&gt;    
+#&gt;  6 gender               2 Male                 50.2    &lt;tibble [2 × 3]&gt;    
+#&gt;  7 MultipleLines        2 Yes                  54.4    &lt;tibble [2 × 3]&gt;    
+#&gt;  8 OnlineBackup         2 No                   55.7    &lt;tibble [2 × 3]&gt;    
+#&gt;  9 OnlineSecurity       2 No                   64.1    &lt;tibble [2 × 3]&gt;    
+#&gt; 10 PaperlessBilling     2 Yes                  69.0    &lt;tibble [2 × 3]&gt;    
+#&gt; 11 Partner              2 No                   51.3    &lt;tibble [2 × 3]&gt;    
+#&gt; 12 PaymentMethod        4 Electronic check     41.7    &lt;tibble [4 × 3]&gt;    
+#&gt; 13 StreamingMovies      2 Yes                  50.3    &lt;tibble [2 × 3]&gt;    
+#&gt; 14 StreamingTV          2 Yes                  50.1    &lt;tibble [2 × 3]&gt;    
+#&gt; 15 TechSupport          2 No                   63.7    &lt;tibble [2 × 3]&gt;</code></pre>
+<p>Dari 19 kolom yang ada 15 diantaranya merupakan kategorikal. semua data kategorikal akan diubah menjadi factor kecuali <code>customerID</code>. <code>customerID</code> merupakan ID dari pelanggan oleh yang bersifat unique sehingga tidak diubah menjadi factor. Persebaran data yang bertipe numerik dapat dilihat juga menggunakan fungsi <code>inspect_num()</code>.</p>
+<pre class="r"><code>inspect_num(churn)</code></pre>
+<pre><code>#&gt; # A tibble: 4 x 10
+#&gt;   col_name      min    q1 median     mean     q3   max      sd pcnt_na hist     
+#&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;named l&gt;
+#&gt; 1 SeniorCiti…   0     0      0      0.204    0      1  4.03e-1  0      &lt;tibble …
+#&gt; 2 tenure        0     9     30     33.0     56     72  2.46e+1  0      &lt;tibble …
+#&gt; 3 MonthlyCha…  42.9  69.8   82.5   81.8     95.7  119. 1.83e+1  0      &lt;tibble …
+#&gt; 4 TotalCharg…  42.9 660.  2351.  2902.    4871.  8685. 2.42e+3  0.0620 &lt;tibble …</code></pre>
+<p>Kolom <code>SeniorCitizen</code> memiliki sebaran yang perlu dicurigai karena nilai min dan q3 nya sama yaitu 0 dan nilai maksimumnya adalah 1, ada kemungkinan kolom ini seharusnya factor yang berisi 0 dan 1 saja.</p>
+<pre class="r"><code>churn %&gt;% 
+  count(SeniorCitizen, name = &quot;freq&quot;)</code></pre>
+<pre><code>#&gt; # A tibble: 2 x 2
+#&gt;   SeniorCitizen  freq
+#&gt;           &lt;dbl&gt; &lt;int&gt;
+#&gt; 1             0  3849
+#&gt; 2             1   986</code></pre>
+<p>Setelah dilihat lebih detail ternyata benar bahwa nilai pada kolom <code>SeniorCitizen</code> hanya berisi 2 nilai yaitu 1 (Yes) dan 0 (No), oleh sebab itu kolom ini akan di ubah menjadi factor.</p>
+</div>
+<div id="missing-values" class="section level2">
+<h2>Missing Values</h2>
+<p>Pengecekan missing value dapat dilakukan untuk setiap kolom dengan menggabungkan fungsi <code>is.na()</code> dan <code>colsum()</code>.</p>
+<pre class="r"><code>churn %&gt;% 
+  is.na() %&gt;% 
+  colSums()</code></pre>
+<pre><code>#&gt;       customerID           gender    SeniorCitizen          Partner 
+#&gt;                0                0                0                0 
+#&gt;       Dependents           tenure    MultipleLines   OnlineSecurity 
+#&gt;                0                0                0                0 
+#&gt;     OnlineBackup DeviceProtection      TechSupport      StreamingTV 
+#&gt;                0                0                0                0 
+#&gt;  StreamingMovies         Contract PaperlessBilling    PaymentMethod 
+#&gt;                0                0                0                0 
+#&gt;   MonthlyCharges     TotalCharges            Churn 
+#&gt;                0                3                0</code></pre>
+<p>Dilihat dari hasil diatas terdapat 3 missing value pada kolom <code>TotalCharges</code>. Proses imputasi akan dilakukan untuk mengisi missing value.</p>
+</div>
+<div id="class-proportion" class="section level2">
+<h2>Class Proportion</h2>
+<p>Sebelum melakukan pemodelan penting untuk melihat seberapa seimbang proporsi kelas target. Data yang tidak seimbang akan membuat model lebih banyak belajar dari kelas mayoritas, sehingga model tidak mengenali ciri dari kelas minoritas.</p>
+<pre class="r"><code>churn %&gt;% 
+  pull(Churn) %&gt;% 
+  table() %&gt;% 
+  prop.table() %&gt;% 
+  round(3)</code></pre>
+<pre><code>#&gt; .
+#&gt;    No   Yes 
+#&gt; 0.672 0.328</code></pre>
+<p>Kelas target didominasi oleh kelas <em>No</em> sebanyak 67.2%, pada kondisi seperti ini data tidak seimbang namun tidak terlalu ekstream. Teknik resampling seperti downsampling atau upsampling dapat digunakan untuk menyeimbangkan kelas.</p>
+</div>
+</div>
+<div id="data-preprocessing" class="section level1">
+<h1>Data Preprocessing</h1>
+<center>
+<img src="/img/tidymodels/prepro2.png" style="width:60.0%" />
+</center>
+<p><em>Data Preprocessing</em> atau sering disebut sebagai <em>data cleansing</em> merupakan tahapan yang cukup penting dilakukan sebelum melakukan pemodelan. Pada tahap ini data akan dibersihkan berdasarkan informasi yang didapat pada tahap <em>data exploration</em>.</p>
+<div id="cross-validation-training-and-testing" class="section level2">
+<h2>Cross Validation (Training and Testing)</h2>
+<p>Sebelum melakukan <em>data cleansing</em>, data perlu dibagi menjadi 2 bagian yaitu <em>training data</em> dan <em>testing data</em>. <em>Training data</em> digunakan dalam proses pemodelan, sedangkan <em>testing data</em> digunakan dalam proses pengujian model.</p>
+<p>Kenapa <em>splitting data</em> dilakukan sebelum <em>data cleansing</em>? Kenapa tidak setelahnya? Jawabannya adalah karena kita ingin menjaga originalitas dari <em>testing data</em> yang diasumsikan sebagai data “apa adanya”, karena data yang akan datang (unseen data) tidak dapat ketahui tingkat kebersihannya.</p>
+<p><em>cross validation</em> dapat dilakukan dengan fungsi <code>initial_split()</code> dari package <a href="https://rsample.tidymodels.org/"><code>rsample</code></a> yang merupakan bagian dari tidymodels. Fungsi tersebut memiliki 3 paramater yaitu :<br />
+* <code>data</code> : Data yang digunakan<br />
+* <code>prop</code> : Proporsi data training<br />
+* <code>Strata</code> : Kolom target<br />
+setelah melakukan <em>cross validation</em>, training data dan testing data dapat dipisahkan dengan fungsi <code>training()</code> dan <code>testing()</code>.</p>
+<pre class="r"><code>set.seed(123)
+churn_split &lt;- initial_split(data = churn,prop = 0.8, strata = Churn)
+churn_train &lt;- training(churn_split)
+churn_test &lt;- testing(churn_split)</code></pre>
+</div>
+<div id="data-preprocessing-1" class="section level2">
+<h2>Data Preprocessing</h2>
+<p>Informasi yang didapatkan pada <em>data exploration</em> akan digunakan pada tahap ini, beberapa praproses yang dibutuhkan sebelum melakukan pemodelan yaitu:</p>
+<ul>
+<li>Mengubah role <code>customerID</code> menjadi Id<br />
+</li>
+<li>Mengubah tipe data chr menjadi factor<br />
+</li>
+<li>Mengubah tipe data <code>SeniorCitizen</code> menjadi factor<br />
+</li>
+<li>Melakukan imputation terhadapap missing value<br />
+</li>
+<li>melakukan resampling</li>
+</ul>
+<p>Proses cleansing data sebenarnya bisa dilakukan dengan data wrangling sederhana menggunakan tidyverse, namun cara tersebut tidak <em>scalable</em> sehingga sulit untuk diterapkan pada unseen data nantinya. Permasalahan tersebut bisa diselesaikan dengan package <code>recipes</code>.</p>
+<p><code>Recipes</code> bertugas membuat sebuah <em>blueprint</em> praproses data. Proses pembuatan <em>blueprint</em> menggunakan <code>recipes</code> diawali dengan function <code>recipes()</code> yang didalamnya terdapat parameter <code>formula</code> dan <code>data</code>, setelah itu dilanjutkan dengan tahapan praproses yang diinginkan. Fungsi praproses yang dilakukan selalu diawali dengan <code>step_</code>.</p>
+<pre class="r"><code>churn_rec &lt;- recipe(formula = Churn~., data = churn_train) %&gt;% 
+  update_role(customerID, new_role = &quot;ID&quot;) %&gt;%
+  step_string2factor(all_nominal(), -customerID, skip = TRUE) %&gt;%
+  step_num2factor(SeniorCitizen, transform = function(x) x +1, levels = c(&quot;No&quot;, &quot;Yes&quot;)) %&gt;%
+  step_medianimpute(TotalCharges) %&gt;% 
+  step_upsample(Churn,over_ratio = 4/5)</code></pre>
+<p>Rincian dari praproses diatas adalah sebagai berikut:</p>
+<ul>
+<li>Pada data <code>churn_train</code> kolom <code>Churn</code> merupakan target dan sisanya menjadi prediktor.<br />
+</li>
+<li>Mengubah <em>role</em> <code>customerID</code> menjadi <code>ID</code>, sehingga kolom tersebut tidak digunakan dalam proses pemodelan, namun tidak dibuang dari data.<br />
+</li>
+<li>Mengubah semua data yang bertipe kategorikal (<code>all_nominal()</code>) kecuali <code>CustomerID</code> yang semula bertipe data string menjadi factor.<br />
+</li>
+<li>Mengubah <code>SeniorCitizen</code> yang semula numerik menjadi factor. Bila nilainya 0 ubah menjadi No bila 1 menjadi Yes.<br />
+</li>
+<li>Mengisi <em>missing value</em> pada <code>TotalCharge</code> dengan nilai median.<br />
+</li>
+<li>Melakukan upsampling sehingga perbandingan kelas Yes dan No menjadi 4 : 5</li>
+<li>Setelah semua proses itu dilakukan simpan blueprint kedalam objek <code>churn_rec</code>.</li>
+</ul>
+<p>Hasil dari proses diatas hanya berupa <em>design metrics</em> saja bukan sebuah dataframe yang sudah dilakukan praproses. Objek recipe yang sudah dibuat bisa digunakan langsung dengan dengan menggunakan fungsi <code>prep()</code> lalu diikuti oleh fungsi <code>juice()</code> untuk data train dan <code>bake()</code> untuk data test.</p>
+<pre class="r"><code># praproses pada data train
+churn_rec %&gt;% 
+  prep() %&gt;% 
+  juice() %&gt;% 
+  head()</code></pre>
+<pre><code>#&gt; # A tibble: 6 x 19
+#&gt;   customerID gender SeniorCitizen Partner Dependents tenure MultipleLines
+#&gt;   &lt;fct&gt;      &lt;fct&gt;  &lt;fct&gt;         &lt;fct&gt;   &lt;fct&gt;       &lt;dbl&gt; &lt;fct&gt;        
+#&gt; 1 8160-HOWOX Female No            No      No              7 No           
+#&gt; 2 0679-TDGAK Male   No            Yes     Yes            50 No           
+#&gt; 3 9620-ENEJV Female No            No      No              6 No           
+#&gt; 4 5575-TPIZQ Male   No            No      No             46 Yes          
+#&gt; 5 7105-MXJLL Female Yes           Yes     No             26 No           
+#&gt; 6 5343-SGUBI Female No            No      No             52 Yes          
+#&gt; # … with 12 more variables: OnlineSecurity &lt;fct&gt;, OnlineBackup &lt;fct&gt;,
+#&gt; #   DeviceProtection &lt;fct&gt;, TechSupport &lt;fct&gt;, StreamingTV &lt;fct&gt;,
+#&gt; #   StreamingMovies &lt;fct&gt;, Contract &lt;fct&gt;, PaperlessBilling &lt;fct&gt;,
+#&gt; #   PaymentMethod &lt;fct&gt;, MonthlyCharges &lt;dbl&gt;, TotalCharges &lt;dbl&gt;, Churn &lt;fct&gt;</code></pre>
+<pre class="r"><code># praproses pada data test
+churn_rec %&gt;% 
+  prep() %&gt;% 
+  bake(churn_test) %&gt;% 
+  head()</code></pre>
+<pre><code>#&gt; # A tibble: 6 x 19
+#&gt;   customerID gender SeniorCitizen Partner Dependents tenure MultipleLines
+#&gt;   &lt;fct&gt;      &lt;fct&gt;  &lt;fct&gt;         &lt;fct&gt;   &lt;fct&gt;       &lt;dbl&gt; &lt;fct&gt;        
+#&gt; 1 &lt;NA&gt;       Female No            No      No              2 No           
+#&gt; 2 &lt;NA&gt;       Male   No            No      Yes            22 Yes          
+#&gt; 3 &lt;NA&gt;       Female No            Yes     Yes            10 No           
+#&gt; 4 &lt;NA&gt;       Female No            No      No             46 No           
+#&gt; 5 &lt;NA&gt;       Female No            No      No             11 Yes          
+#&gt; 6 &lt;NA&gt;       Male   No            No      No              2 No           
+#&gt; # … with 12 more variables: OnlineSecurity &lt;fct&gt;, OnlineBackup &lt;fct&gt;,
+#&gt; #   DeviceProtection &lt;fct&gt;, TechSupport &lt;fct&gt;, StreamingTV &lt;fct&gt;,
+#&gt; #   StreamingMovies &lt;fct&gt;, Contract &lt;fct&gt;, PaperlessBilling &lt;fct&gt;,
+#&gt; #   PaymentMethod &lt;fct&gt;, MonthlyCharges &lt;dbl&gt;, TotalCharges &lt;dbl&gt;, Churn &lt;fct&gt;</code></pre>
+<p>Fungsi <code>juice</code> dan <code>bake</code> akan mengembalikan data yang sudah dilakukan praproses, namun pada artikel ini kedua fungsi tersebut tidak akan digunakan. Pada artikel ini object recipes yang sudah dibuat akan digunakan langsung pada saat proses pemodelan.</p>
+</div>
+</div>
+<div id="modeling" class="section level1">
+<h1>Modeling</h1>
+<center>
+<img src="/img/tidymodels/modeling.png" style="width:60.0%" />
+</center>
+<p>Pada umumnya ketika melakukan pemodelan di R cukup dengan satu fungsi saja seperti code dibawah ini adalah pemodelan menggunakan metode Random Forest.</p>
+<pre class="r"><code>randomForest::randomForest(x = .., y = .., ntree = ..., mtry = ...)</code></pre>
+<p>atau apabila anda sudah terbiasa dengan packages <code>caret</code> bisa ditambahkan K-Fold dan tunning seperti code dibawah ini</p>
+<pre class="r"><code>ctrl &lt;- trainControl(method=&quot;repeatedcv&quot;, number=5, repeats=2)
+fb_forest &lt;- train(formula = y ~ ., data=..., method=&quot;rf&quot;, trControl = ctrl)</code></pre>
+<p>Dua cara diatas merupakan cara yang cukup mudah untuk digunakan, namun pada proses penggunaanya model tersebut tidak <em>scalable</em>. <strong>Tidymodels membuat proses pemodelan menjadi modular sehingga setiap proses dibuat secara terpisah</strong>.</p>
+<div id="model-interface" class="section level2">
+<h2>Model Interface</h2>
+<p>Tahap awal dalam pemodelan yaitu membuat model interface menggunakan package <a href="https://parsnip.tidymodels.org/"><code>parsnip</code></a> dari <code>tidymodels</code>. Ada banyak function dengan berbagai macam parameter yang biasa digunakan untuk membuat model, <code>parsnip</code> melakukan standarisasi interface dan output dari setiap function.</p>
+<p>Terdapat 3 hal yang harus didefinisikan ketika membuat model interface yaitu:<br />
+- Metode yang digunakan<br />
+- Engine atau package yang digunakan<br />
+- Jenis pemodelan<br />
+Pada pemodelan kali ini metode yang digunakan adalah Random Forest yang berasal dari pacakges <code>ranger</code></p>
+<pre class="r"><code>model_rf &lt;- rand_forest(mtry = tune(),
+                        trees = tune(), 
+                        min_n =tune()) %&gt;% 
+  set_engine(&quot;ranger&quot;) %&gt;% 
+  set_mode(&quot;classification&quot;)
+model_rf</code></pre>
+<pre><code>#&gt; Random Forest Model Specification (classification)
+#&gt; 
+#&gt; Main Arguments:
+#&gt;   mtry = tune()
+#&gt;   trees = tune()
+#&gt;   min_n = tune()
+#&gt; 
+#&gt; Computational engine: ranger</code></pre>
+<p>Fungsi <code>rand_forest()</code> digunakan untuk membuat model Random Forest, didalamnya terdapat 3 parameter yaitu :<br />
+- <code>mtry</code> : Jumlah prediktor yang akan dipilih secara acak pada setiap kali tree ingin membuat cabang.<br />
+- <code>trees</code> : Jumlah tree yang digunakan pada Random Forest.<br />
+- <code>min_n</code>: Jumlah minimum data yang dibutuhkan pada setiap node untuk membuat percabangan.<br />
+Ketiga parameter tersebut akan ditunning untuk mencari nilai yang paling optimal menggunakan <em>grid search</em>.</p>
+<p><code>set_engine()</code> digunakan untuk memberitahu mesin package apa yang digunakan dalam pembuatan model. Pada kasus ini model Random Forest akan dibuat menggunakan package <code>ranger</code>. Terakhir kita harus memberitahu jenis pemodelan yang akan dilakukan menggunakan fungsi <code>set_mode()</code>. Terdapat 2 jenis mode yaitu “classification” dan “regression”.</p>
+</div>
+<div id="grid-search" class="section level2">
+<h2>Grid Search</h2>
+<p>Salah satu bagian paling “menyenangkan” dari pembuatan model machine learning adalah tunning parameter. Tujuan dari tunning parameter adalah mendapatkan nilai optimum parameter yang dapat menghasilkan model terbaik. <a href="https://dials.tidymodels.org/"><code>dials</code></a> merupakan package yang digunakan untuk tunning parameter.</p>
+<p>Terdapat beberapa jenis grid yang bisa digunakan untuk tunning parameter, pada artikel ini grid yang digunakan adalah <code>grid_max_entropy()</code>. Grid tersebut akan digunakan untuk tunning 3 parameter yang ada pada <code>model_rf</code> yaitu <code>mtry</code>, <code>tree</code>, dan <code>min_n</code>.</p>
+<pre class="r"><code>set.seed(123)
+model_grid &lt;- grid_max_entropy(x=finalize(object = mtry(),x = churn_train[,-19]), 
+                               trees(), 
+                               min_n(), 
+                               size = 20)
+model_grid %&gt;% 
+  summary()</code></pre>
+<pre><code>#&gt;       mtry           trees            min_n      
+#&gt;  Min.   : 1.00   Min.   :   7.0   Min.   : 2.00  
+#&gt;  1st Qu.: 5.75   1st Qu.: 261.8   1st Qu.: 9.50  
+#&gt;  Median :11.50   Median :1104.0   Median :18.00  
+#&gt;  Mean   : 9.90   Mean   : 959.9   Mean   :18.60  
+#&gt;  3rd Qu.:15.25   3rd Qu.:1467.5   3rd Qu.:23.75  
+#&gt;  Max.   :17.00   Max.   :1979.0   Max.   :40.00</code></pre>
+<p>Parameter yang ada dalam fungsi <code>grid_max_entropy()</code> adalah parameter yang ingin ditunning pada model. Parameter <code>size</code> menunjukkan seberapa banyak kombinasi yang ingin dibuat.</p>
+<p>parameter <code>trees</code> dan <code>min_n</code> dapat digunakan secara langsung karena range nilainya tidak dipengaruhi oleh dimensi data. Parameter <code>mtry</code> tidak dapat digunakan secara langsung karena jumalah mtry dipengaruhi oleh banyaknya kolom, oleh sebab itu perlu disesuaikan dengan fungsi <code>finalize()</code>. Hasil dari pembuatan grid adalah sebuah dataframe yang berisi nilai yang akan digunakan pada proses tunning parameter.</p>
+</div>
+<div id="metrics-evaluation" class="section level2">
+<h2>Metrics Evaluation</h2>
+<p>Sebelum melakukan fitting model, penentuan metrics evaluasi perlu dilakukan, pada kasus ini metrics yang dilihat adalah specificity (recall untuk kelas Yes) dan AUC dari ROC. Metrics tersebut dapat dibuat dengan fungsi <code>metric_set</code> dari package <a href="https://yardstick.tidymodels.org/"><code>yardstick</code></a>.</p>
+<pre class="r"><code>model_metrics &lt;- metric_set(roc_auc, specificity)</code></pre>
+</div>
+<div id="k-fold-cross-validation-training-and-validation" class="section level2">
+<h2>K-Fold Cross Validation (Training and validation)</h2>
+<p>K-Fold merupakan bentuk berkembangan dari cross validation. K-Fold akan membagi <em>training data</em> menjadi K bagian (fold) dimana setiap fold akan dijadikan train dan test secara bergantian. Tujuan dari proses ini adalah untuk mencari parameter yang menghasilkan model terbaik. Untuk melakukan K-Fold bisa menggunakan fungsi <code>vfold()</code>.</p>
+<pre class="r"><code>churn_folds &lt;- vfold_cv(data = churn_train, v = 5)</code></pre>
+</div>
+<div id="tunning-parameters" class="section level2">
+<h2>Tunning Parameters</h2>
+<p>Sejauh ini sudah ada beberapa bagian yang berhasil dibuat yaitu :<br />
+- Praproses menggunakan <code>recipes</code><br />
+- Model interface menggunakan <code>parsnip</code><br />
+- Grid search menggunakan <code>dials</code><br />
+- Metrics evaluation menggunakan <code>yardstick</code><br />
+- K-Fold menggunakan <code>rsamples</code><br />
+Pada tahap ini semua bagian yang sudah dibuat akan digabungkan untuk mencari parameter terbaik, proses ini disebut sebagai <em>tunning parameters</em>. function yang digunakan yaitu <code>tune_grid()</code> dari <code>tune</code>.
+Untuk mempercepat proses komputasi bisa menggunakan pemprosesan pararel dari package <code>doParallel</code>.</p>
+<pre class="r"><code>doParallel::registerDoParallel()
+set.seed(123)
+rf_result &lt;- tune_grid(object = model_rf,
+                       preprocessor = churn_rec,
+                       resamples = churn_folds,
+                       grid = model_grid, 
+                       metrics = model_metrics)</code></pre>
+<p>untuk melihat kombinasi parameter terbaik yang dihasilkan berdasarkan metrics yang dipilih bisa menggunakan fungsi <code>collect_metrics()</code></p>
+<pre class="r"><code>rf_result %&gt;% 
+  collect_metrics() %&gt;% 
+  group_by(.metric) %&gt;% 
+  slice_max(mean,n = 2)</code></pre>
+<pre><code>#&gt; # A tibble: 4 x 9
+#&gt; # Groups:   .metric [2]
+#&gt;    mtry trees min_n .metric .estimator  mean     n std_err .config
+#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;  
+#&gt; 1     2  1040    17 roc_auc binary     0.811     5 0.00763 Model06
+#&gt; 2     6  1314    36 roc_auc binary     0.809     5 0.00926 Model01
+#&gt; 3     1   283    21 spec    binary     0.668     5 0.0261  Model05
+#&gt; 4     1   487     4 spec    binary     0.663     5 0.0261  Model02</code></pre>
+<p>Nilai Recall tertinggi dihasilkan oleh <code>Model19</code> yaitu 0.79 sedangkan nilai AUC tertinggi sebesar 0.81 yang dihasilkan oleh <code>Model06</code>.</p>
+</div>
+<div id="finalization" class="section level2">
+<h2>Finalization</h2>
+<p>Tahap terakhir dari pemodelan yaitu menggabungkan semua komponen menjadi satu kerangka yang utuh menggunakan package <code>workflows</code>. Package <code>workflow</code> menggabungkan <em>pre-processing</em>, <em>modeling</em>, dan <em>post-processing</em>.</p>
+<pre class="r"><code>churn_wf &lt;- workflow() %&gt;% 
+  add_model(model_rf) %&gt;% 
+  add_recipe(churn_rec) %&gt;% 
+  finalize_workflow(rf_result %&gt;% 
+                      show_best(&quot;roc_auc&quot;, 1)
+                    )
+churn_wf</code></pre>
+<pre><code>#&gt; ══ Workflow ════════════════════════════════════════════════════════════════════
+#&gt; Preprocessor: Recipe
+#&gt; Model: rand_forest()
+#&gt; 
+#&gt; ── Preprocessor ────────────────────────────────────────────────────────────────
+#&gt; 4 Recipe Steps
+#&gt; 
+#&gt; ● step_string2factor()
+#&gt; ● step_num2factor()
+#&gt; ● step_medianimpute()
+#&gt; ● step_upsample()
+#&gt; 
+#&gt; ── Model ───────────────────────────────────────────────────────────────────────
+#&gt; Random Forest Model Specification (classification)
+#&gt; 
+#&gt; Main Arguments:
+#&gt;   mtry = 2
+#&gt;   trees = 1040
+#&gt;   min_n = 17
+#&gt; 
+#&gt; Computational engine: ranger</code></pre>
+<p>Fungsi <code>add_model()</code> menambahkan model interface kedalam workflow, fungsi <code>add_recipe()</code> menambahkan objek recipe kedalam workflow, dan fungsi <code>finalize_workflow()</code> menambahkan parameters terbaik berdasarkan metrics yang dipilih dari hasil tunning parameters sebelumnya. Setelah semuanya digabungkan model terakhir dapat dibentuk menggunakan fungsi <code>fit()</code>.</p>
+<pre class="r"><code>set.seed(123)
+final_model_rf &lt;- fit(object = churn_wf, data = churn_train)</code></pre>
+</div>
+</div>
+<div id="model-evaluation" class="section level1">
+<h1>Model Evaluation</h1>
+<p>Setelah membuat final model tahap terakhir adalah menguji performa model terhadap data test dengan melakukan prediksi. Ketika melakukan prediksi menggunakan fungsi <code>predict()</code> terdapat 2 jenis type yang digunakan yaitu “prob” yang mengembalikan berupa peluang, sedangkan “class” menghasilkan kelas prediksi.</p>
+<pre class="r"><code>pred_prob &lt;- predict(final_model_rf, churn_test, type = &quot;prob&quot;)
+pred_class &lt;- predict(final_model_rf, churn_test, type = &quot;class&quot;)
+
+churn_results &lt;- churn_test %&gt;% 
+  transmute(truth = as.factor(Churn)) %&gt;% 
+  bind_cols(pred_prob, pred_class)
+churn_results %&gt;% 
+  head()</code></pre>
+<pre><code>#&gt; # A tibble: 6 x 4
+#&gt;   truth .pred_No .pred_Yes .pred_class
+#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;      
+#&gt; 1 Yes      0.228     0.772 Yes        
+#&gt; 2 No       0.433     0.567 Yes        
+#&gt; 3 Yes      0.662     0.338 No         
+#&gt; 4 No       0.686     0.314 No         
+#&gt; 5 Yes      0.212     0.788 Yes        
+#&gt; 6 No       0.374     0.626 Yes</code></pre>
+<div id="confusion-matrix" class="section level2">
+<h2>Confusion Matrix</h2>
+<p>Hasil prediksi dapat di evaluasi menggunakan confusion matrix untuk mengetahui seberapa banyak data yang berhasil atau gagal diprediksi.</p>
+<pre class="r"><code>churn_results %&gt;% 
+  conf_mat(truth, .pred_class) %&gt;% 
+  autoplot(type = &quot;heatmap&quot;)</code></pre>
+<p><img src="/blog/2021-03-21-tidymodels-churn-over-prediction_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="specificity" class="section level2">
+<h2>Specificity</h2>
+<p>Specificity yang dihasilkan sebesar 0.65 angka ini menunjukkan seberapa baik model dalam memprediksi kelas <code>Yes</code> bila dibandingkan dengan data aktual.</p>
+<pre class="r"><code>churn_results %&gt;% 
+  specificity(truth, .pred_class) </code></pre>
+<pre><code>#&gt; # A tibble: 1 x 3
+#&gt;   .metric .estimator .estimate
+#&gt;   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+#&gt; 1 spec    binary         0.653</code></pre>
+</div>
+<div id="roc-curve" class="section level2">
+<h2>ROC Curve</h2>
+<p>Sedangkan untuk melihat seberapa baik model dalam membedakan kedua kelas dapat dilihat dari nilai ROC AUC nya. Nilai AUC dari ROC curve didapat sebesar 0.79.</p>
+<pre class="r"><code>churn_results %&gt;% 
+  roc_auc(truth, .pred_Yes, event_level = &#39;second&#39;)</code></pre>
+<pre><code>#&gt; # A tibble: 1 x 3
+#&gt;   .metric .estimator .estimate
+#&gt;   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+#&gt; 1 roc_auc binary         0.799</code></pre>
+</div>
+</div>
+<div id="closing" class="section level1">
+<h1>Closing</h1>
+<p>Tidymodels merupakan kumpulan packages yang digunakan dalam pembuatan model machine lerning. Beberapa kelebihan menggunakan tidymodels adalah:<br />
+- Fleksibilitas dalam mengubah setiap komponen karena setiap proses dibuat secara modular.<br />
+- Dapat menggabungkan praproses data hingga model menjadi satu objek <code>workflows</code>.<br />
+- Model interface yang dibuat bisa digunakan pada kasus yang berbeda sehingga code yang dibuat menjadi <em>reusable</em>.</p>
+<p>Full code dari artikel ini bisa ditemukan pada (repositori github saya)[]</p>
+</div>
