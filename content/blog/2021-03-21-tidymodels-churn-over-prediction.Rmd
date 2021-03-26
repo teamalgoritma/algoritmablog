@@ -1,6 +1,7 @@
 ---
 title: 'Tidymodels: Churn Over Prediction'
 author: David
+github: https://github.com/Davidlimbong
 date: '2021-03-21'
 slug: tidymodels-churn-over-prediction
 categories:
@@ -11,9 +12,9 @@ tags:
   - Machine Learning
   - Capstone ML
 description: ''
-featured: ''
+featured: 'tidymodels.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---

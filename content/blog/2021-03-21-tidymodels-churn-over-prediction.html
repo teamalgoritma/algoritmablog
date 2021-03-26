@@ -1,6 +1,7 @@
 ---
 title: 'Tidymodels: Churn Over Prediction'
 author: David
+github: https://github.com/Davidlimbong
 date: '2021-03-21'
 slug: tidymodels-churn-over-prediction
 categories:
@@ -11,9 +12,9 @@ tags:
   - Machine Learning
   - Capstone ML
 description: ''
-featured: ''
+featured: 'tidymodels.png'
 featuredalt: ''
-featuredpath: ''
+featuredpath: 'date'
 linktitle: ''
 type: post
 ---
@@ -50,7 +51,7 @@ head(churn)</code></pre>
 #&gt; 4 9305-CDSKC Female             0 No      No              8 Yes          
 #&gt; 5 1452-KIOVK Male               0 No      Yes            22 Yes          
 #&gt; 6 7892-POOKP Female             0 Yes     No             28 Yes          
-#&gt; # … with 12 more variables: OnlineSecurity &lt;chr&gt;, OnlineBackup &lt;chr&gt;,
+#&gt; # ... with 12 more variables: OnlineSecurity &lt;chr&gt;, OnlineBackup &lt;chr&gt;,
 #&gt; #   DeviceProtection &lt;chr&gt;, TechSupport &lt;chr&gt;, StreamingTV &lt;chr&gt;,
 #&gt; #   StreamingMovies &lt;chr&gt;, Contract &lt;chr&gt;, PaperlessBilling &lt;chr&gt;,
 #&gt; #   PaymentMethod &lt;chr&gt;, MonthlyCharges &lt;dbl&gt;, TotalCharges &lt;dbl&gt;, Churn &lt;chr&gt;</code></pre>
@@ -61,54 +62,54 @@ head(churn)</code></pre>
 <pre class="r"><code>glimpse(churn)</code></pre>
 <pre><code>#&gt; Rows: 4,835
 #&gt; Columns: 19
-#&gt; $ customerID       &lt;chr&gt; &quot;5575-GNVDE&quot;, &quot;3668-QPYBK&quot;, &quot;9237-HQITU&quot;, &quot;9305-CDSK…
-#&gt; $ gender           &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;…
-#&gt; $ SeniorCitizen    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-#&gt; $ Partner          &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Y…
-#&gt; $ Dependents       &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;…
-#&gt; $ tenure           &lt;dbl&gt; 34, 2, 2, 8, 22, 28, 62, 13, 58, 49, 25, 69, 71, 10,…
-#&gt; $ MultipleLines    &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;…
-#&gt; $ OnlineSecurity   &lt;chr&gt; &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, …
-#&gt; $ OnlineBackup     &lt;chr&gt; &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;…
-#&gt; $ DeviceProtection &lt;chr&gt; &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;…
-#&gt; $ TechSupport      &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No…
-#&gt; $ StreamingTV      &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;…
-#&gt; $ StreamingMovies  &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Y…
-#&gt; $ Contract         &lt;chr&gt; &quot;One year&quot;, &quot;Month-to-month&quot;, &quot;Month-to-month&quot;, &quot;Mon…
-#&gt; $ PaperlessBilling &lt;chr&gt; &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;…
-#&gt; $ PaymentMethod    &lt;chr&gt; &quot;Mailed check&quot;, &quot;Mailed check&quot;, &quot;Electronic check&quot;, …
-#&gt; $ MonthlyCharges   &lt;dbl&gt; 56.95, 53.85, 70.70, 99.65, 89.10, 104.80, 56.15, 49…
-#&gt; $ TotalCharges     &lt;dbl&gt; 1889.50, 108.15, 151.65, 820.50, 1949.40, 3046.05, 3…
-#&gt; $ Churn            &lt;chr&gt; &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, …</code></pre>
+#&gt; $ customerID       &lt;chr&gt; &quot;5575-GNVDE&quot;, &quot;3668-QPYBK&quot;, &quot;9237-HQITU&quot;, &quot;9305-CD...
+#&gt; $ gender           &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Femal...
+#&gt; $ SeniorCitizen    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
+#&gt; $ Partner          &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, ...
+#&gt; $ Dependents       &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;,...
+#&gt; $ tenure           &lt;dbl&gt; 34, 2, 2, 8, 22, 28, 62, 13, 58, 49, 25, 69, 71, 1...
+#&gt; $ MultipleLines    &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;,...
+#&gt; $ OnlineSecurity   &lt;chr&gt; &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;...
+#&gt; $ OnlineBackup     &lt;chr&gt; &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;,...
+#&gt; $ DeviceProtection &lt;chr&gt; &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;,...
+#&gt; $ TechSupport      &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;...
+#&gt; $ StreamingTV      &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;,...
+#&gt; $ StreamingMovies  &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, ...
+#&gt; $ Contract         &lt;chr&gt; &quot;One year&quot;, &quot;Month-to-month&quot;, &quot;Month-to-month&quot;, &quot;M...
+#&gt; $ PaperlessBilling &lt;chr&gt; &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Ye...
+#&gt; $ PaymentMethod    &lt;chr&gt; &quot;Mailed check&quot;, &quot;Mailed check&quot;, &quot;Electronic check&quot;...
+#&gt; $ MonthlyCharges   &lt;dbl&gt; 56.95, 53.85, 70.70, 99.65, 89.10, 104.80, 56.15, ...
+#&gt; $ TotalCharges     &lt;dbl&gt; 1889.50, 108.15, 151.65, 820.50, 1949.40, 3046.05,...
+#&gt; $ Churn            &lt;chr&gt; &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;...</code></pre>
 <p>Dari informasi diatas diketahui bahwa data terdiri dari 19 kolom dan 4835 observasi yang didominasi oleh kategorikal. Untuk melihat persebaran data yang bertipe kategorikal lebih jelas, kita dapat menggunakan fungsi <code>inspect_cat()</code> dari package <code>inspectdf</code>.</p>
 <pre class="r"><code>inspect_cat(churn)</code></pre>
 <pre><code>#&gt; # A tibble: 15 x 5
 #&gt;    col_name           cnt common           common_pcnt levels              
 #&gt;    &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;                  &lt;dbl&gt; &lt;named list&gt;        
-#&gt;  1 Churn                2 No                   67.2    &lt;tibble [2 × 3]&gt;    
-#&gt;  2 Contract             3 Month-to-month       61.5    &lt;tibble [3 × 3]&gt;    
-#&gt;  3 customerID        4835 0002-ORFBO            0.0207 &lt;tibble [4,835 × 3]&gt;
-#&gt;  4 Dependents           2 No                   73.9    &lt;tibble [2 × 3]&gt;    
-#&gt;  5 DeviceProtection     2 No                   56.2    &lt;tibble [2 × 3]&gt;    
-#&gt;  6 gender               2 Male                 50.2    &lt;tibble [2 × 3]&gt;    
-#&gt;  7 MultipleLines        2 Yes                  54.4    &lt;tibble [2 × 3]&gt;    
-#&gt;  8 OnlineBackup         2 No                   55.7    &lt;tibble [2 × 3]&gt;    
-#&gt;  9 OnlineSecurity       2 No                   64.1    &lt;tibble [2 × 3]&gt;    
-#&gt; 10 PaperlessBilling     2 Yes                  69.0    &lt;tibble [2 × 3]&gt;    
-#&gt; 11 Partner              2 No                   51.3    &lt;tibble [2 × 3]&gt;    
-#&gt; 12 PaymentMethod        4 Electronic check     41.7    &lt;tibble [4 × 3]&gt;    
-#&gt; 13 StreamingMovies      2 Yes                  50.3    &lt;tibble [2 × 3]&gt;    
-#&gt; 14 StreamingTV          2 Yes                  50.1    &lt;tibble [2 × 3]&gt;    
-#&gt; 15 TechSupport          2 No                   63.7    &lt;tibble [2 × 3]&gt;</code></pre>
+#&gt;  1 Churn                2 No                   67.2    &lt;tibble [2 x 3]&gt;    
+#&gt;  2 Contract             3 Month-to-month       61.5    &lt;tibble [3 x 3]&gt;    
+#&gt;  3 customerID        4835 0002-ORFBO            0.0207 &lt;tibble [4,835 x 3]&gt;
+#&gt;  4 Dependents           2 No                   73.9    &lt;tibble [2 x 3]&gt;    
+#&gt;  5 DeviceProtection     2 No                   56.2    &lt;tibble [2 x 3]&gt;    
+#&gt;  6 gender               2 Male                 50.2    &lt;tibble [2 x 3]&gt;    
+#&gt;  7 MultipleLines        2 Yes                  54.4    &lt;tibble [2 x 3]&gt;    
+#&gt;  8 OnlineBackup         2 No                   55.7    &lt;tibble [2 x 3]&gt;    
+#&gt;  9 OnlineSecurity       2 No                   64.1    &lt;tibble [2 x 3]&gt;    
+#&gt; 10 PaperlessBilling     2 Yes                  69.0    &lt;tibble [2 x 3]&gt;    
+#&gt; 11 Partner              2 No                   51.3    &lt;tibble [2 x 3]&gt;    
+#&gt; 12 PaymentMethod        4 Electronic check     41.7    &lt;tibble [4 x 3]&gt;    
+#&gt; 13 StreamingMovies      2 Yes                  50.3    &lt;tibble [2 x 3]&gt;    
+#&gt; 14 StreamingTV          2 Yes                  50.1    &lt;tibble [2 x 3]&gt;    
+#&gt; 15 TechSupport          2 No                   63.7    &lt;tibble [2 x 3]&gt;</code></pre>
 <p>Dari 19 kolom yang ada 15 diantaranya merupakan kategorikal. semua data kategorikal akan diubah menjadi factor kecuali <code>customerID</code>. <code>customerID</code> merupakan ID dari pelanggan oleh yang bersifat unique sehingga tidak diubah menjadi factor. Persebaran data yang bertipe numerik dapat dilihat juga menggunakan fungsi <code>inspect_num()</code>.</p>
 <pre class="r"><code>inspect_num(churn)</code></pre>
 <pre><code>#&gt; # A tibble: 4 x 10
 #&gt;   col_name      min    q1 median     mean     q3   max      sd pcnt_na hist     
 #&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;named l&gt;
-#&gt; 1 SeniorCiti…   0     0      0      0.204    0      1  4.03e-1  0      &lt;tibble …
-#&gt; 2 tenure        0     9     30     33.0     56     72  2.46e+1  0      &lt;tibble …
-#&gt; 3 MonthlyCha…  42.9  69.8   82.5   81.8     95.7  119. 1.83e+1  0      &lt;tibble …
-#&gt; 4 TotalCharg…  42.9 660.  2351.  2902.    4871.  8685. 2.42e+3  0.0620 &lt;tibble …</code></pre>
+#&gt; 1 SeniorCiti~   0     0      0      0.204    0      1  4.03e-1  0      &lt;tibble ~
+#&gt; 2 tenure        0     9     30     33.0     56     72  2.46e+1  0      &lt;tibble ~
+#&gt; 3 MonthlyCha~  42.9  69.8   82.5   81.8     95.7  119. 1.83e+1  0      &lt;tibble ~
+#&gt; 4 TotalCharg~  42.9 660.  2351.  2902.    4871.  8685. 2.42e+3  0.0620 &lt;tibble ~</code></pre>
 <p>Kolom <code>SeniorCitizen</code> memiliki sebaran yang perlu dicurigai karena nilai min dan q3 nya sama yaitu 0 dan nilai maksimumnya adalah 1, ada kemungkinan kolom ini seharusnya factor yang berisi 0 dan 1 saja.</p>
 <pre class="r"><code>churn %&gt;% 
   count(SeniorCitizen, name = &quot;freq&quot;)</code></pre>
@@ -223,7 +224,7 @@ churn_rec %&gt;%
 #&gt; 4 5575-TPIZQ Male   No            No      No             46 Yes          
 #&gt; 5 7105-MXJLL Female Yes           Yes     No             26 No           
 #&gt; 6 5343-SGUBI Female No            No      No             52 Yes          
-#&gt; # … with 12 more variables: OnlineSecurity &lt;fct&gt;, OnlineBackup &lt;fct&gt;,
+#&gt; # ... with 12 more variables: OnlineSecurity &lt;fct&gt;, OnlineBackup &lt;fct&gt;,
 #&gt; #   DeviceProtection &lt;fct&gt;, TechSupport &lt;fct&gt;, StreamingTV &lt;fct&gt;,
 #&gt; #   StreamingMovies &lt;fct&gt;, Contract &lt;fct&gt;, PaperlessBilling &lt;fct&gt;,
 #&gt; #   PaymentMethod &lt;fct&gt;, MonthlyCharges &lt;dbl&gt;, TotalCharges &lt;dbl&gt;, Churn &lt;fct&gt;</code></pre>
@@ -241,7 +242,7 @@ churn_rec %&gt;%
 #&gt; 4 &lt;NA&gt;       Female No            No      No             46 No           
 #&gt; 5 &lt;NA&gt;       Female No            No      No             11 Yes          
 #&gt; 6 &lt;NA&gt;       Male   No            No      No              2 No           
-#&gt; # … with 12 more variables: OnlineSecurity &lt;fct&gt;, OnlineBackup &lt;fct&gt;,
+#&gt; # ... with 12 more variables: OnlineSecurity &lt;fct&gt;, OnlineBackup &lt;fct&gt;,
 #&gt; #   DeviceProtection &lt;fct&gt;, TechSupport &lt;fct&gt;, StreamingTV &lt;fct&gt;,
 #&gt; #   StreamingMovies &lt;fct&gt;, Contract &lt;fct&gt;, PaperlessBilling &lt;fct&gt;,
 #&gt; #   PaymentMethod &lt;fct&gt;, MonthlyCharges &lt;dbl&gt;, TotalCharges &lt;dbl&gt;, Churn &lt;fct&gt;</code></pre>
@@ -343,12 +344,12 @@ rf_result &lt;- tune_grid(object = model_rf,
   slice_max(mean,n = 2)</code></pre>
 <pre><code>#&gt; # A tibble: 4 x 9
 #&gt; # Groups:   .metric [2]
-#&gt;    mtry trees min_n .metric .estimator  mean     n std_err .config
-#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;  
-#&gt; 1     2  1040    17 roc_auc binary     0.811     5 0.00763 Model06
-#&gt; 2     6  1314    36 roc_auc binary     0.809     5 0.00926 Model01
-#&gt; 3     1   283    21 spec    binary     0.668     5 0.0261  Model05
-#&gt; 4     1   487     4 spec    binary     0.663     5 0.0261  Model02</code></pre>
+#&gt;    mtry trees min_n .metric .estimator  mean     n std_err .config              
+#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;                
+#&gt; 1     2  1040    17 roc_auc binary     0.812     5 0.00846 Preprocessor1_Model06
+#&gt; 2     1  1836     8 roc_auc binary     0.809     5 0.00847 Preprocessor1_Model04
+#&gt; 3     1   487     4 spec    binary     0.677     5 0.0257  Preprocessor1_Model02
+#&gt; 4     1   283    21 spec    binary     0.676     5 0.0241  Preprocessor1_Model05</code></pre>
 <p>Nilai Recall tertinggi dihasilkan oleh <code>Model19</code> yaitu 0.79 sedangkan nilai AUC tertinggi sebesar 0.81 yang dihasilkan oleh <code>Model06</code>.</p>
 </div>
 <div id="finalization" class="section level2">
@@ -361,19 +362,19 @@ rf_result &lt;- tune_grid(object = model_rf,
                       show_best(&quot;roc_auc&quot;, 1)
                     )
 churn_wf</code></pre>
-<pre><code>#&gt; ══ Workflow ════════════════════════════════════════════════════════════════════
+<pre><code>#&gt; == Workflow ====================================================================
 #&gt; Preprocessor: Recipe
 #&gt; Model: rand_forest()
 #&gt; 
-#&gt; ── Preprocessor ────────────────────────────────────────────────────────────────
+#&gt; -- Preprocessor ----------------------------------------------------------------
 #&gt; 4 Recipe Steps
 #&gt; 
-#&gt; ● step_string2factor()
-#&gt; ● step_num2factor()
-#&gt; ● step_medianimpute()
-#&gt; ● step_upsample()
+#&gt; * step_string2factor()
+#&gt; * step_num2factor()
+#&gt; * step_medianimpute()
+#&gt; * step_upsample()
 #&gt; 
-#&gt; ── Model ───────────────────────────────────────────────────────────────────────
+#&gt; -- Model -----------------------------------------------------------------------
 #&gt; Random Forest Model Specification (classification)
 #&gt; 
 #&gt; Main Arguments:
