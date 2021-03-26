@@ -68,7 +68,113 @@
             <link href="{{ "/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" | relURL }}" rel="stylesheet">
             <link href="{{ "/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" | relURL }}" rel="stylesheet">
             <link href="{{ "/lib/crosstalk-1.0.0/css/crosstalk.css" | relURL }}" rel="stylesheet">
-        {{ end }}
+        
+            <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                      integrity=
+            "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+                      crossorigin="anonymous">
+                <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+                </script>
+                <script src=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+                </script>
+              
+                <style>
+                    
+                    /* Styling modal */
+
+
+                    .modal:before {
+                        content: '';
+                        display: inline-block;
+                        height: 20%;
+                        vertical-align: middle;
+                    }
+                      
+                    .modal-dialog {
+                        
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    -webkit-flex-direction: column;
+                        -ms-flex-direction: column;
+                            flex-direction: column;
+                    -webkit-box-pack: center;
+                    -webkit-justify-content: center;
+                        -ms-flex-pack: center;
+                            justify-content: center;
+                    }
+
+                      
+                    .modal .modal-content {
+                        padding: 20px 20px 20px 20px;
+                        -webkit-animation-name: modal-animation;
+                        -webkit-animation-duration: 0.5s;
+                        animation-name: modal-animation;
+                        animation-duration: 1.5s;
+                    }
+
+                
+
+                    .modal .leadin-button {
+                        -webkit-border-radius: 0.25em;
+                        -moz-border-radius: 0.25em;
+                        -ms-border-radius: 0.25em;
+                        -o-border-radius: 0.25em;
+                        border-radius: 0.25em;
+                        -webkit-appearance: none;
+                        cursor: pointer;
+                        font-size: 1em;
+                        font-weight: bold;
+                        line-height: 1;
+                        padding: 1em 1.5em;
+                        width: 100%;
+                        text-decoration: none;
+                    }
+                    .modal .leadin-button-primary {
+                        background: #a90606 !important;
+                        color: #FFFFFF !important;
+                    }
+                      
+                    @-webkit-keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                      
+                    @keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                </style>
+
+            <script src="content/bootstrapJS/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+            <script type="text/javascript">
+                $(window).load(function(){
+                    $('#signupModal').modal('show');
+                });
+            </script>
+        
+            {{ end }}
 
         {{ if ne ($.Scratch.Get "cssFiles") false }}
             {{ range $.Scratch.Get "cssFiles" }}
@@ -91,10 +197,45 @@
 
 
 
-
-
+      
     </head>
     <body>
+
+        <div class="modal" id="signupModal"
+        role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+ 
+       <div class="modal-dialog">
+           <div class="modal-content">
+ 
+               <!-- Modal root -->
+               <div class="m-header">
+                   <button class="close" data-dismiss="modal">
+                       ×
+                   </button>
+                   <h2 class="myModalLabel"> Upcoming Workshop! </h2>
+               </div>
+ 
+               <!-- Modal body -->
+               <div class="inputs">
+ 
+                <a href="https://algorit.ma/ds-course/dss-analytics-python/?utm_source=algotech"><img src="/img/2021/ads/dss-dash.png",
+                     alt="Developing Analytics dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p> This 3-day online workshop is a beginner-friendly introduction to Developing 
+                    Analytics Dashboard in Python With Dash. Throughout the online course, we will provide you with 
+                    hands-on examples and a rich interactive experience. </p>
+                <div class="advance-wrapper callout-special-font">
+                    <a href="https://algorit.ma/ds-course/dss-analytics-python/?utm_source=algotech" target="_blank" 
+                    class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
+                </div>
+               </div>
+ 
+ 
+           </div>
+       </div>
+   </div>
+
+    </body>
 
       <!-- Wrapper -->
       <div id="wrapper">
