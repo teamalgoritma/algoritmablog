@@ -82,6 +82,11 @@
                 <script src=
             "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
                 </script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.0/js.cookie.js">
+                </script>
+                
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
+                </script>
               
                 <style>
                     
@@ -169,9 +174,20 @@
             <script src="content/bootstrapJS/jquery-2.1.1.min.js" type="text/javascript"></script>
 
             <script type="text/javascript">
-                $(window).load(function(){
-                    $('#signupModal').modal('show');
-                });
+                
+                
+                $( document ).ready(function() {
+  if (document.cookie.indexOf('visited=true') == -1){
+    // load the overlay
+                      $('#signupModal').modal('show');
+    
+                  var year = 1000*60*60*24*365;
+    var expires = new Date((new Date()).valueOf() + year);
+    document.cookie = "visited=true;expires=" + expires.toUTCString();
+
+  }
+}); 
+
             </script>
         
             {{ end }}
