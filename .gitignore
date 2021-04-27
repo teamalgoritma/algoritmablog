@@ -2,4 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+.DS_Store
 content/blog/data_input/image-colorization/train_img
