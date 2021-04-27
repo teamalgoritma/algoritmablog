@@ -1,0 +1,306 @@
+---
+title: 'Image Colorization '
+author: "Dwi Gustin Nurdialit"
+date: "4/26/2021"
+github: https://github.com/dwiknrd
+slug: image-colorization-cnn
+categories: Python
+tags:
+- Deep Learning
+- Convolutional Neural Network
+- Image Processing
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: date
+linktitle: ''
+type: post
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<div id="image-colorization-deep-learning---convolutional-neural-network" class="section level1">
+<h1>Image Colorization Deep Learning - Convolutional Neural Network</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p><strong>Image colorization</strong> is the process of assingning colors to a grayscale image to make it more aesthetically appealing and perceptually meaningful. These are recognized as sophisticated tasks than often require prior knowledge of image content and manual adjustments to achieve artefact-free quality. Also, since objects can have different colors, there are many possible ways to assign colors to pixels in an image, which means there is no unique solution to this problem.<br>
+Nowadays, image colorization is usually done by hand in Photoshop. Many institutions use image colorization services for assigning colors to grayscale historic images. There is also for colorization purposes in the documentation image. However, using Photoshop for this purpose requires more energy and time. One solution to this problem is to use machine learning / deep learning techniques.<br>
+Recently, deep learning has gained increasing attention among researchers in the field of computer vision and image processing. As a typical technique, <strong>convolutional neural network (CNNs)</strong> have been well-studied and successfully applied to several tasks such as image recognition, image reconstruction, image generation, etc. (Nguyen et al., 2016)<br></p>
+<center>
+<img src="img/image-colorization/image-colorization.jpeg" style="width:60.0%" />
+</center>
+<p><br>
+A CNN consists of multiple layers of small computational units that only process portions of the input image in a feed-forward fashion. Each layer is the result of applying various image filters, each of which extracts a certain feature of the input image, to the previous layer. Thus, each layer may contain useful information about the input image at different levels of abstraction.<br></p>
+<div id="color-representation" class="section level3">
+<h3>Color Representation</h3>
+<p>So, how do we render an image, the basics of digital colors, and the main logic for our neural network. We can say that grayscale images can be represented in grids of pixels.<br></p>
+<center>
+<img src="img/image-colorization/grayscale_img.png" style="width:80.0%" />
+</center>
+<p>Source: <a href="https://gsp.humboldt.edu/OLM/Courses/GSP_216_Online/lesson3-1/raster-models.html" class="uri">https://gsp.humboldt.edu/OLM/Courses/GSP_216_Online/lesson3-1/raster-models.html</a>
+<br></p>
+<p>Each pixel has a value that corresponds to its brightness. The values span from 0–255, from black to white. While, a color image consist of three layers: Red, Green, Blue (RGB) layer. Let’s imagine splitting a green leaf on a white background into three channels. As we know that the color of the leaf is only consist of the green layer. But, the leaf actually present in all three layers. The layes not only determine color, but also brightness.<br></p>
+<center>
+<img src="img/image-colorization/rgb_img.png" style="width:80.0%" />
+</center>
+<p>Source: <a href="https://emilwallner.medium.com/colorize-b-w-photos-with-a-100-line-neural-network-53d9b4449f8d" class="uri">https://emilwallner.medium.com/colorize-b-w-photos-with-a-100-line-neural-network-53d9b4449f8d</a>
+<br></p>
+<p>Just like grayscale images, each layes in a color image has value from 0-255. The value 0 means that it has no color in that layer. If the value is 0 for all color channels, then the image pixel is black. A neural network creates a relatioship between an input value and output value. In this project the network needs to find the traits that link grayscale images with colored ones. So, we should search for the features that link a grid od grayscale values to the three color grids.<br></p>
+<center>
+<img src="img/image-colorization/grayscale_to_rgb.png" style="width:80.0%" />
+</center>
+<p>Source: <a href="https://emilwallner.medium.com/colorize-b-w-photos-with-a-100-line-neural-network-53d9b4449f8d" class="uri">https://emilwallner.medium.com/colorize-b-w-photos-with-a-100-line-neural-network-53d9b4449f8d</a>
+<br></p>
+</div>
+<div id="defining-the-colorization-problem" class="section level3">
+<h3>Defining the Colorization Problem</h3>
+<p>Our final output is a colored image. We have a grayscale image for the input and we want to predict two color layers, the ab in Lab. To create the final color image we’ll include the L/grayscale image we used for the input. The result will be creating a Lab image.<br></p>
+<p>How we turn one layer into two layer? We use a convolutional filters. Let’s say them as the red and blue filter in 3D glasses. They can hightlight or remove something to extract information out of the picture. The network can either create a new image from a filter or combine several filters into one image.<br></p>
+</div>
+</div>
+<div id="experiment" class="section level2">
+<h2>Experiment</h2>
+<div id="library-setup" class="section level3">
+<h3>Library Setup</h3>
+<p>Before we get into detail how it works, lets import the necessary library:</p>
+<ul>
+<li><code>skimage</code> to convert RGB into lab format</li>
+<li><code>keras.layers</code> to made a layers for the model</li>
+<li><code>Sequential</code> for build the model</li>
+<li><code>ImageDataGenerator</code> to read / decode the image</li>
+</ul>
+<pre class="python"><code>import numpy as np
+import matplotlib.pyplot as plt
+
+from skimage.color import rgb2lab, lab2rgb
+from skimage.transform import resize
+from skimage.io import imsave
+
+import tensorflow as tf
+from keras.layers import Conv2D, UpSampling2D
+from keras.models import Sequential
+from keras.preprocessing.image import ImageDataGenerator, img_to_array, load_img</code></pre>
+</div>
+<div id="data-preprocessing" class="section level3">
+<h3>Data Preprocessing</h3>
+<p><br>
+<strong>Normalize and Resize the Image</strong>
+<br>Since the image we want to colour is a historic portrait image, the train data we use is also human image data that we can find in Kaggle. Our data train consist of 10.000+ images. Then we create image generators using <code>ImageDataGenerator</code> to read / decode the images and convert them into floating point tensors. Use the rescale argument to rescale / normilize the tensors from values between 0 and 255 to values between 0 and 1.<br>
+The methods of <code>ImageDataGenerator</code> class we using <code>flow_from_directory</code> method. This method is useful when the images are sorted and placed in there respective class/label folders. This method will identify classes automatically from the folder name.</p>
+<pre class="python"><code>train_dir = &quot;data_input/image-colorization/train_img/&quot;
+
+#Resize images
+img_width = 224
+img_height = 224
+image_size = (img_width, img_height)</code></pre>
+<p><br>
+<strong>Create Augmented Images</strong>
+<br>Since there are a small number of training examples there is a risk of overfitting. One way to fix this problem is by creating more training data from existing training examples by using random transformations. We can add 4-6 random transformations as arguments to <code>ImageDataGenerator</code>. Make sure to rescale the same as before.<br></p>
+<pre class="python"><code>train_datagen = ImageDataGenerator(
+        rotation_range=15,
+        rescale=1./255,
+        shear_range=0.1,
+        zoom_range=0.2,
+        horizontal_flip=True,
+        featurewise_center=True)
+        
+train = train_datagen.flow_from_directory(batch_size=128,
+                                                     directory=train_dir,
+                                                     target_size=image_size,
+                                                     class_mode=None)</code></pre>
+<pre><code>#&gt; Found 10964 images belonging to 1 classes.</code></pre>
+<p><br>
+<strong>Convert the image from RGB to Lab</strong>
+<br>This part is important because we working on color images anyway or we working on RGB image, meaning every image is very important and every channel is very important and we need to predict the value in every channel. So instead of doing that, for this project the easy way is by converting the RGB to Lab. Before we jump into the code, we should know about the CIELAB color space into this diagram.<br></p>
+<center>
+<img src="img/image-colorization/cielab.png" style="width:80.0%" />
+</center>
+<p>Source: <a href="https://www.researchgate.net/figure/The-CIELAB-color-space-diagram-The-CIELAB-or-CIE-L-a-b-color-system-represents_fig1_338303610" class="uri">https://www.researchgate.net/figure/The-CIELAB-color-space-diagram-The-CIELAB-or-CIE-L-a-b-color-system-represents_fig1_338303610</a></p>
+<p><br>The CIELAB, or CIE L* a* b, color system represents quantitative relationship of colors on three axes: L value indicates lightness, and a* and b* are chromaticity coordinates. On the color space diagram, L* is represented on a vertical axis with values from 0 (black) to 100 (white). The a* value indicates red-green component of a color, where +a* (positive) and -a* (negative) indicate red and green values, respectively. The yellow and blue components are represented on the b* axis as +b* (positive) and -b* (negative) values, respectively. At the center of the plane is neutral or achromatic. The distance from the central axis represents the chroma (C), or saturation of the color. The angle on the chromaticity axes represents the hue (ho ). The L, a, and b values can be transcribed to dermatological parameters. The L* value correlates with the level of pigmentation of the skin. The a* value correlates with erythema. The b* value correlates with pigmentation and tanning.<br>
+Now, let’s first define the colorization problem in terms of the CIE Lab color space. Like the RGB color space, it is a 3-channel color space, but unlike the RGB color space, color information is encoded only in the a (green-red component) and b (blue-yellow component) channels. The L (lightness) channel encodes intensity information only.<br>
+By iterating on each image, we convert the RGB to Lab. Think of Lab image as a grey image in L channel and all color info stored in A and B channels. The input to the network will be the L channel, so we assign L channel to X vector. And assign A and B to Y.<br>
+To change the RGB into Lab image we using <code>rgb2lab()</code> function from <code>skimage</code> library.<br>
+After converting the color space using the function <code>rgb2lab()</code> we select the grayscale layer with: <code>[ : , : , 0]</code>. This is our input for the neural network. <code>[ : , : , 1: ]</code> selects the two color layers, green–red and blue–yellow.<br>
+The Lab color space has a different range in comparison to RGB. The color spectrum ab in Lab ranges from -128 to 128. By dividing all values in the output layer by 128, we bound the range between -1 and 1. We match it with our neural network, which also returns values between -1 and 1.<br></p>
+<pre class="python"><code>#Convert from RGB to LAB
+X = []
+y = []
+for img in train[0]:
+  try:
+    lab = rgb2lab(img)
+    X.append(lab[:,:,0])
+    y.append(lab[:,:,1:] / 128)
+  except:
+    print(&#39;error&#39;)</code></pre>
+<pre><code>#&gt; /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/keras_preprocessing/image/image_data_generator.py:720: UserWarning: This ImageDataGenerator specifies `featurewise_center`, but it hasn&#39;t been fit on any training data. Fit it first by calling `.fit(numpy_data)`.
+#&gt;   warnings.warn(&#39;This ImageDataGenerator specifies &#39;</code></pre>
+<pre class="python"><code>X = np.array(X)
+y = np.array(y)
+
+X = X.reshape(X.shape+(1,)) #dimensions to be the same for X and Y
+print(X.shape)</code></pre>
+<pre><code>#&gt; (128, 224, 224, 1)</code></pre>
+<pre class="python"><code>print(y.shape)</code></pre>
+<pre><code>#&gt; (128, 224, 224, 2)</code></pre>
+</div>
+<div id="model-architecture" class="section level3">
+<h3>Model Architecture</h3>
+<p><strong>CNN Architecture for Colorization</strong>
+<br>The architecture proposed by Zhang et al is a VGG-style network with multiple convolutional blocks. Each block has two or three convolutional layers followed by a Rectified Linear Unit (ReLU) and terminating in a Batch Normalization layer. Unlike the VGG net, there are no pooling or fully connected layers.<br></p>
+<center>
+<img src="img/image-colorization/cnn_architecture.png" style="width:80.0%" />
+</center>
+<p>Source: <a href="https://github.com/baldassarreFe/deep-koalarization" class="uri">https://github.com/baldassarreFe/deep-koalarization</a></p>
+<p><br> Image above is about CNN architecture for colorization.<br>
+<strong>Encoder</strong> As we can see from the image above, the input image is rescaled to 224x224. The input represented by <code>H x W x 1</code> (L component) a grayscale images. While the output <code>H/8 x W/8 x 512</code> feature reperestation. It uses 8 Convolutional layers with 3x3 kernels that alternate stride 1 and padding to preserve teh input size, stride 2 to halve the input size. The encoder network, each convolutional layer uses a ReLu activation function.<br>
+<strong>Decoder</strong> To create convolutional layers to up-sampling. The final output H x W x 2 (ab component) that applies a series of convolutional layers. For the last layer we use tanh instead of Relu. This is because we are colorizing the image in this layer using 2 filters, A and B. A and B values range between -1 and 1 so tanh (or hyperbolic tangent) is used as it also has the range between -1 and 1. Other functions go from 0 to 1.<br></p>
+<center>
+<img src="img/image-colorization/decoder_img.png" style="width:80.0%" />
+</center>
+<p>Source: <a href="https://emilwallner.medium.com/colorize-b-w-photos-with-a-100-line-neural-network-53d9b4449f8d" class="uri">https://emilwallner.medium.com/colorize-b-w-photos-with-a-100-line-neural-network-53d9b4449f8d</a></p>
+<p><br>From the left side we have the grayscale input, our filters, and the prediction from our neural network. We map the predicted values and the real values within the same interval. This way, we can compare the values. The interval ranges from -1 to 1. To map the predicted values, we use a tanh activation function. For any value you give the tanh function, it will return -1 to 1. The true color values range between -128 and 128. This is the default interval in the Lab color space. By dividing them by 128, they too fall within the -1 to 1 interval. This “normalization” enables us to compare the error from our prediction. After calculating the final error, the network updates the filters to reduce the total error. The network continues in this loop until the error is as low as possible.<br></p>
+<pre class="python"><code>#Built model
+
+#Encoder
+model = Sequential()
+model.add(Conv2D(64, (3, 3), activation=&#39;relu&#39;, padding=&#39;same&#39;, strides=2, input_shape=(224, 224, 1)))
+model.add(Conv2D(128, (3, 3), activation=&#39;relu&#39;, padding=&#39;same&#39;))
+model.add(Conv2D(128, (3,3), activation=&#39;relu&#39;, padding=&#39;same&#39;, strides=2))
+model.add(Conv2D(256, (3,3), activation=&#39;relu&#39;, padding=&#39;same&#39;))
+model.add(Conv2D(256, (3,3), activation=&#39;relu&#39;, padding=&#39;same&#39;, strides=2))
+model.add(Conv2D(512, (3,3), activation=&#39;relu&#39;, padding=&#39;same&#39;))
+model.add(Conv2D(512, (3,3), activation=&#39;relu&#39;, padding=&#39;same&#39;))
+model.add(Conv2D(256, (3,3), activation=&#39;relu&#39;, padding=&#39;same&#39;))
+
+#Decoder
+model.add(Conv2D(128, (3,3), activation=&#39;relu&#39;, padding=&#39;same&#39;))
+model.add(UpSampling2D((2, 2)))
+model.add(Conv2D(64, (3,3), activation=&#39;relu&#39;, padding=&#39;same&#39;))
+model.add(UpSampling2D((2, 2)))
+model.add(Conv2D(32, (3,3), activation=&#39;relu&#39;, padding=&#39;same&#39;))
+model.add(Conv2D(16, (3,3), activation=&#39;relu&#39;, padding=&#39;same&#39;))
+model.add(Conv2D(2, (3, 3), activation=&#39;tanh&#39;, padding=&#39;same&#39;))
+model.add(UpSampling2D((2, 2)))
+model.compile(optimizer=&#39;adam&#39;, loss=&#39;mse&#39; , metrics=[&#39;accuracy&#39;])
+model.summary()
+
+history = model.fit(x=X,y=y,validation_split=0.2, epochs=2, batch_size=128, verbose=0)</code></pre>
+<p><br>Because here we only want to display the code, so we set the epoch for the model which is 2. But the actual model we have made with the epoch is 1000.<br></p>
+</div>
+<div id="model-fitting" class="section level3">
+<h3>Model Fitting</h3>
+<p>After we build the model, we can fit the model into the data. We will let the data train with more epochs since we have small numbers of data. We can see the history of our model through this chart.<br>
+<strong>History of Losses</strong>
+<br></p>
+<center>
+<img src="img/image-colorization/loses.png" style="width:60.0%" />
+</center>
+<br>
+<strong>History of Accuracy</strong>
+<br>
+<center>
+<img src="img/image-colorization/accuracy.png" style="width:60.0%" />
+</center>
+<p><br>
+## Result and Discussion</p>
+<p>After we train and save the model, finally we can use to colorize the grayscale image by load the saved model using <code>load_model()</code> function.<br></p>
+<pre class="python"><code># Load saved model
+models = tf.keras.models.load_model(
+    &#39;/content/drive/MyDrive/algoritma/project1-colorization/colorization.model&#39;,
+    custom_objects=None,
+    compile=True)</code></pre>
+<p><br> Open the data test and preprocess the image. It almost the same treatment with the train dataset. We should resize the image size into 224x224 and normalize the image using <code>ImageDataGenerator</code>. We use the rescale argument to rescale / normilize the tensors from values between 0 and 255 to values between 0 and 1.<br></p>
+<pre class="python"><code># Load and preprocessing the test images
+test_dir = &#39;/content/drive/MyDrive/algoritma/project1-colorization/test_img/test_images&#39;
+
+#Resize images
+img_width = 224
+img_height = 224
+image_size = (img_width, img_height)
+
+test_datagen = ImageDataGenerator(
+        rescale=1./255,
+        )
+
+test = test_datagen.flow_from_directory(batch_size=128,
+                                                     directory=test_dir,
+                                                     target_size=image_size,
+                                                     class_mode=None)</code></pre>
+<p><strong>Convert into LAB</strong></p>
+<pre class="python"><code>#Convert to LAB
+test_img = []
+for img in test[0]:
+  try:
+    lab = rgb2lab(img)
+    test_img.append(lab[:,:,0])
+  except:
+    print(&#39;error&#39;)
+test_img = np.array(test_img)
+
+test_img = test_img.reshape(test_img.shape+(1,)) #dimensions to be the same for test_img
+
+grayscale = np.zeros((224, 224, 3))
+grayscale[:,:,0] = test_img[0][:,:,0]
+grayscale = resize(grayscale, (800,600))
+gray_img = lab2rgb(grayscale)
+
+output1 = models.predict(test_img)
+output1 = output1*128
+
+result = np.zeros((224, 224, 3))
+result[:,:,0] = test_img[0][:,:,0]
+result[:,:,1:] = output1[0]
+result = resize(result, (800,600))
+color_img = lab2rgb(result)
+
+titles = [&#39;Grayscale Image&#39;, &#39;Colored Image&#39;]
+images = [gray_img, color_img]</code></pre>
+<br>
+<center>
+<img src="img/image-colorization/result_1.png" style="width:60.0%" />
+</center>
+<br>
+<center>
+<img src="img/image-colorization/result_2.png" style="width:60.0%" />
+</center>
+<br>
+<center>
+<img src="img/image-colorization/result_3.png" style="width:60.0%" />
+</center>
+<br>
+<center>
+<img src="img/image-colorization/result_4.png" style="width:60.0%" />
+</center>
+<br>
+<center>
+<img src="img/image-colorization/result_5.png" style="width:60.0%" />
+</center>
+<br>
+<center>
+<img src="img/image-colorization/result_6.png" style="width:60.0%" />
+</center>
+<p><br></p>
+<p><br> Once trained, we fed out network with some images. The result turned out to be quite good for some of the portrait images. For instance, natural element such as skin color and hair color to be well recognized. However, specific object are not colored. Figure above illustrates results for some examples where out network produces alternative colored estimates.<br></p>
+</div>
+</div>
+<div id="conclusion-and-future-work" class="section level2">
+<h2>Conclusion and Future Work</h2>
+<p><br>This project validates that an end-to-end deep learning architecture could be suitable for some image colorization tasks. Overall, we believe that while image colorization might require some degree of human intervention it still a huge potential in the future and could eventually reduce hours of supervised work.<br></p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p><br>
+[^1]: <a href="https://www.researchgate.net/publication/301817406_Image_Colorization_Using_a_Deep_Convolutional_Neural_Network">Nguyen. Tung, Mori. Kazuki, Thowanmas. Ruck, 2016; Image Colorization Using a Deep Convolutional Neural Network</a>
+<br>
+[^2]: <a href="https://www.kaggle.com/laurentmih/aisegmentcom-matting-human-datasets">AISegment.com - Matting Human Datasets, Kaggle</a>
+<br>
+[^3]: <a href="https://richzhang.github.io/" class="uri">https://richzhang.github.io/</a>
+<br>
+[^4]: <a href="https://github.com/baldassarreFe/deep-koalarization" class="uri">https://github.com/baldassarreFe/deep-koalarization</a></p>
+</div>
+</div>
