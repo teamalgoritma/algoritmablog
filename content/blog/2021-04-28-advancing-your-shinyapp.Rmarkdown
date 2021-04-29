@@ -8,8 +8,8 @@ categories:
   - R
 tags:
   - Data Visualization
-  - Shiny
-  - bslib
+  - Shiny App
+  - Shiny Dashboard
 description: ''
 featured: ''
 featuredalt: ''
