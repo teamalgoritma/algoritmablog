@@ -188,6 +188,7 @@ knitr::include_graphics('/img/article-topic/imgname.png')
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/HafizahIlma"><img src="https://avatars0.githubusercontent.com/u/36740222?v=4?s=100" width="100px;" alt=""/><br /><sub><b>HafizahIlma</b></sub></a><br /><a href="#content-HafizahIlma" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/dwiknrd"><img src="https://avatars.githubusercontent.com/u/56432446?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dwi Nurdialit</b></sub></a><br /><a href="#content-dwiknrd" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/AltruiMetavasi"><img src="https://avatars0.githubusercontent.com/u/20962339?v=4?s=100" width="100px;" alt=""/><br /><sub><b>shelloren</b></sub></a><br /><a href="#design-AltruiMetavasi" title="Design">🎨</a></td>
   </tr>
 </table>
