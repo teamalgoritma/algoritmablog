@@ -54,8 +54,7 @@ Digunakan untuk menilai suatu jawaban isian singkat dalam suatu soal tes atau as
 4. Plagiarism Detection \
 Menggunakan ukuran kemiripan untuk mendeteksi penjiplakan suatu karya orang lain dan menjadikannya seolah seperti karya sendiri.
 
-[<img src="img/similarity/similarity.png" width="300"/>](img/similarity/similarity.png)
-
+<center> ![](/img/similarity/similarity.png){width="80%"} </center>
 
 Ukuran kemiripan teks atau Text Similarity adalah suatu ukuran yang menggambarkan tingkat kemiripan antara satu teks dengan teks lainnya. Teks dapat terdiri dari beberapa kata, namun dapat pula terdiri dari milyaran kata yang tertulis 
 dalam sebuah naskah. Secara umum, terdapat dua kategori cara untuk mengukur hal tesebut.
@@ -78,7 +77,9 @@ Seperti namanya, ukuran ini menghitung nilai cosinus sudut antar dua vektor. Vek
 
 dengan **a** adalah vektor teks pertama dan **b** adalah vektor teks kedua 
 
-<img src="img/similarity/cosine.png">
+
+<center> ![](/img/similarity/cosine.png){width="80%"} </center>
+
 
 Rentang nilai cosine similarity adalah dari -1 hingga 1. Terdapat tiga kemungkinan kategori yang ada dalam ukuran ini :
 
@@ -104,7 +105,9 @@ Kalimat  1 : Classification produce discrete value \
 Kalimat 2 : Discrete value on classification
 
 Maka Bag Of Wordnya berupa : 
-<img src="img/similarity/rsz_bow1.png">
+
+<center> ![](/img/similarity/rsz_bow1.png){width="80%"} </center>
+
 
 Vektor Kalimat 1 adalah **a** = [1,1,1,1,0] 
 
@@ -166,8 +169,7 @@ d(\vec{v}, \vec{w})=\sqrt{\sum_{i=1}^{n}\left(v_{i}-w_{i}\right)^{2}}
 
 di mana $\vec{v}$ adalah vektor teks 1, $\vec{w}$ adalah vektor teks 2, n adalah dimensi dari vektor tersebut.
 
-
-[<img src="img/similarity/euclid.png" width="300"/>](img/similarity/euclid.png)
+<center> ![](/img/similarity/euclid.png){width="80%"} </center>
 
 Contoh perhitungannya adalah
 
@@ -212,7 +214,7 @@ Overlap coefficient, disebut juga dengan Szymkiewicz-Simpson Coefficient adalah 
 
 dengan $D_1$ adalah vektor teks 1 dan $D_2$ adalah vektor teks 2.
 
-[<img src="img/similarity/rsz_overlap.png" width="250"/>](img/similarity/rsz_overlap.png)
+<center> ![](/img/similarity/rsz_overlap.png){width="80%"} </center>
 
 
 Contoh perhitungannya adalah sebagai berikut:
