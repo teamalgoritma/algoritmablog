@@ -34,7 +34,9 @@ Digunakan untuk menilai suatu jawaban isian singkat dalam suatu soal tes atau as
 <li><p>Plagiarism Detection<br />
 Menggunakan ukuran kemiripan untuk mendeteksi penjiplakan suatu karya orang lain dan menjadikannya seolah seperti karya sendiri.</p></li>
 </ol>
-<p><a href="img/similarity/similarity.png"><img src="img/similarity/similarity.png" width="300"/></a></p>
+<center>
+<img src="/img/similarity/similarity.png" style="width:80.0%" />
+</center>
 <p>Ukuran kemiripan teks atau Text Similarity adalah suatu ukuran yang menggambarkan tingkat kemiripan antara satu teks dengan teks lainnya. Teks dapat terdiri dari beberapa kata, namun dapat pula terdiri dari milyaran kata yang tertulis
 dalam sebuah naskah. Secara umum, terdapat dua kategori cara untuk mengukur hal tesebut.</p>
 <ol style="list-style-type: decimal">
@@ -51,7 +53,9 @@ Jenis ukuran kemiripan yang kedua adalah Corpus-Based Similarity. Pengukuran ini
 \cos \theta=\frac{\mathbf{a} . \mathbf{b}}{\|\mathbf{a}\|\|\mathbf{b}\|}
 \end{equation}\]</span></p>
 <p>dengan <strong>a</strong> adalah vektor teks pertama dan <strong>b</strong> adalah vektor teks kedua</p>
-<p><img src="img/similarity/cosine.png"></p>
+<center>
+<img src="/img/similarity/cosine.png" style="width:80.0%" />
+</center>
 <p>Rentang nilai cosine similarity adalah dari -1 hingga 1. Terdapat tiga kemungkinan kategori yang ada dalam ukuran ini :</p>
 <pre><code>(i) Kedua teks mirip, 
 yaitu ketika sudut antar vektornya mendekati nol dan nilai cosinusnya mendekati 1.
@@ -67,8 +71,10 @@ yaitu ketika sudut antar vektornya mendekati 180 derajat dan nilai cosinusnya ne
 <p>Contoh :</p>
 <p>Kalimat 1 : Classification produce discrete value<br />
 Kalimat 2 : Discrete value on classification</p>
-<p>Maka Bag Of Wordnya berupa :
-<img src="img/similarity/rsz_bow1.png"></p>
+<p>Maka Bag Of Wordnya berupa :</p>
+<center>
+<img src="/img/similarity/rsz_bow1.png" style="width:80.0%" />
+</center>
 <p>Vektor Kalimat 1 adalah <strong>a</strong> = [1,1,1,1,0]</p>
 <p>Vektor Kalimat 2 adalah <strong>b</strong> = [1,0,1,1,1]</p>
 <p>Setelah data telah bertipe vektor, maka kemudian dapat dihitung cosine similarity-nya:</p>
@@ -119,7 +125,9 @@ cosine_sim(numOfWordsA.values(),numOfWordsB.values())</code></pre>
 d(\vec{v}, \vec{w})=\sqrt{\sum_{i=1}^{n}\left(v_{i}-w_{i}\right)^{2}}
 \end{equation}\]</span></p>
 <p>di mana <span class="math inline">\(\vec{v}\)</span> adalah vektor teks 1, <span class="math inline">\(\vec{w}\)</span> adalah vektor teks 2, n adalah dimensi dari vektor tersebut.</p>
-<p><a href="img/similarity/euclid.png"><img src="img/similarity/euclid.png" width="300"/></a></p>
+<center>
+<img src="/img/similarity/euclid.png" style="width:80.0%" />
+</center>
 <p>Contoh perhitungannya adalah</p>
 <p>Misal kita menggunakan contoh sebelumnya di mana<br />
 Kalimat 1 : Classification produce discrete value<br />
@@ -152,7 +160,9 @@ d</code></pre>
 \operatorname{Overlap}\left(D_{1}, D_{2}\right)=\frac{\left|D_{1} \cap D_{2}\right|}{\min \left(\left|D_{1}\right|,\left|D_{2}\right|\right)}
 \end{equation}\]</span></p>
 <p>dengan <span class="math inline">\(D_1\)</span> adalah vektor teks 1 dan <span class="math inline">\(D_2\)</span> adalah vektor teks 2.</p>
-<p><a href="img/similarity/rsz_overlap.png"><img src="img/similarity/rsz_overlap.png" width="250"/></a></p>
+<center>
+<img src="/img/similarity/rsz_overlap.png" style="width:80.0%" />
+</center>
 <p>Contoh perhitungannya adalah sebagai berikut:</p>
 <ol style="list-style-type: decimal">
 <li><p>A = {Siti, Mau, Tidur}<br />
