@@ -2,15 +2,16 @@
 title: "Introduction to Text Similarity in Python : Term-Based Distance Measure"
 author: "Sarah Shabrina"
 date: '2021-05-20'
-slug: "text-similarity-in-python"
+github: https://github.com/rahshabrina/algoritmablog
+slug: text-similarity-in-python
 categories:
-  - 'Python'
+  - Python
 tags: 
-  - 'Text Similarity'
-  - 'Cosine Similarity'
-  - 'Euclidean Distance'
-  - 'Overlap Coefficient'
-  - 'Natural Language Processing'
+  - Text Similarity
+  - Cosine Similarity
+  - Euclidean Distance
+  - Overlap Coefficient
+  - Natural Language Processing
 description: ''
 featured: ''
 featuredalt: ''
@@ -18,7 +19,6 @@ featuredpath: ''
 linktitle: ''
 type: post
 ---
-```{r}
 ```{r setup, include=FALSE}
 # clear-up the environment
 rm(list = ls())
