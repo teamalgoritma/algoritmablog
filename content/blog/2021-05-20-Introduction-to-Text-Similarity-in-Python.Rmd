@@ -1,0 +1,253 @@
+---
+title: "Pengenalan Kemiripan Teks (Text Similarity) di Python"
+author: "Sarah Shabrina"
+date: '2021-05-20'
+github: https://github.com/rahshabrina/algoritmablog
+slug: kemiripan-teks
+categories:
+  - Python
+tags: 
+  - Text Similarity
+  - Cosine Similarity
+  - Euclidean Distance
+  - Overlap Coefficient
+  - Natural Language Processing
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+```{r setup, include=FALSE}
+# clear-up the environment
+rm(list = ls())
+
+# chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+
+Sys.setenv(RETICULATE_PYTHON = "C:/Users/Sarah/anaconda3/envs/$PYTHON36_ENV_NAME/python.exe")
+library(reticulate)
+py_run_string("import os")
+py_run_string("os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = 'C:/Users/Sarah/anaconda3/Library/plugins/platforms'")
+
+```
+
+
+
+Dalam pemrosesan data berbentuk teks, kita dapat menggunakan fitur text similarity (ukuran kemiripan teks) untuk mendukung model yang kita bangun. Beberapa contoh aplikasi text similarity yang dapat digunakan yaitu: 
+
+1. Search Engine (Mesin Pencarian) \
+Dalam mesin pencarian, dapat digunakan text similarity untuk mengukur kemiripan antara hal yang ingin dicari dengan data yang dimiliki.
+
+2. Chatbot \
+Ukuran kemiripannya digunakan untuk memilih jawaban bot yang tepat berdasarkan kemiripan pertanyaan atau pernyataan yang ditulis pengguna dengan database yang ada.
+
+3. Short Answer Scoring \
+Digunakan untuk menilai suatu jawaban isian singkat dalam suatu soal tes atau assesment secara otomatis dengan melihat kemiripan antara jawaban pengerja soal dengan jawaban pada kunci jawaban.
+
+4. Plagiarism Detection \
+Menggunakan ukuran kemiripan untuk mendeteksi penjiplakan suatu karya orang lain dan menjadikannya seolah seperti karya sendiri.
+
+[<img src="img/similarity/similarity.png" width="300"/>](img/similarity/similarity.png)
+
+
+Ukuran kemiripan teks atau Text Similarity adalah suatu ukuran yang menggambarkan tingkat kemiripan antara satu teks dengan teks lainnya. Teks dapat terdiri dari beberapa kata, namun dapat pula terdiri dari milyaran kata yang tertulis 
+dalam sebuah naskah. Secara umum, terdapat dua kategori cara untuk mengukur hal tesebut.
+
+1. String Based Similarity \
+Jenis yang pertama adalah ukuran kemiripan yang berdasarkan string (String-Based Similarity). String adalah beberapa rangkaian dari karakter (huruf, angka, simbol) yang dipisahkan oleh spasi. String-Based Similarity memiliki 2 macam kategori, Character-Based Distance Measure dan Term-Based Distance Measure. Dua kategori ini megukur kemiripan berdasarkan jarak antar teks. Character-Based Distance Measure  mengukur jaraknya berdasarkan karakter, sedangkan Term-Based Distance Measure mengukurnya berdasarkan jarak antar termnya.
+
+2. Corpus Based Similarity \
+Jenis ukuran kemiripan yang kedua adalah Corpus-Based Similarity. Pengukuran ini adalah mempertimbangkan kemiripan dari sisi semantik yang menentukan kemiripan antar kata berdasarkan informasi yang ada. Berbeda dengan jenis kemiripan sebelumnya yang hanya melihat kemiripan secara permukaan saja, jenis ini mengukur kemiripan dari segi makna kata atau kalimat yang ada. 
+
+Dalam tulisan ini, akan diberi 2 contoh ukuran kemiripan dari jenis **Term-Based Distance Measure**, diantaranya:
+
+### 1. Cosine Similarity
+
+Seperti namanya, ukuran ini menghitung nilai cosinus sudut antar dua vektor. Vektor yang digunakan dalam perhitungan ini adalah vektor merepresentasikan teks yang ada. Persamaan matematikanya adalah sebagai berikut:
+
+\begin{equation}
+\cos \theta=\frac{\mathbf{a} . \mathbf{b}}{\|\mathbf{a}\|\|\mathbf{b}\|}
+\end{equation}
+
+dengan **a** adalah vektor teks pertama dan **b** adalah vektor teks kedua 
+
+<img src="img/similarity/cosine.png">
+
+Rentang nilai cosine similarity adalah dari -1 hingga 1. Terdapat tiga kemungkinan kategori yang ada dalam ukuran ini :
+
+    (i) Kedua teks mirip, 
+    yaitu ketika sudut antar vektornya mendekati nol dan nilai cosinusnya mendekati 1.
+    (ii) Kedua teks tidak berkaitan atau tidak mirip,
+    yaitu ketika sudut antar vektornya mendekati 90 derajat dan nilai cosinusnya mendekati nol.
+    (iii) Kedua teks berlawanan, 
+    yaitu ketika sudut antar vektornya mendekati 180 derajat dan nilai cosinusnya negatif dan mendekati minus 1.
+
+Karena perhitungan cosine similarity membutuhkan tipe data berbentuk vektor, maka perlu dilakukan transformasi data teks dengan vektor (Vektorisasi Teks). Vektorisasi Teks adalah teknik untuk mengubah teks menjadi bentuk yang mudah dipahami oleh mesin yaitu vektor, susunan dari angka-angka bilangan bulat. Setiap kalimat yang ada, diekstrak dan direpresentasikan dalam bentuk vektor.  Untuk vektorisasi teks dapat dilakukan dengan beberapa cara, salah satunya dengan melakukan pembentukan Bag Of Word.
+
+BoW merupakan salah satu teknik vektorisasi teks yang membangun vektor berdasarkan banyaknya kata unik yang terdapat dalam kalimat. Secara fundamental, BoW  lebih berperan dalam mengekstrak informasi berdasarkan banyaknya kemunculan kata daripada di mana kata itu muncul dalam suatu teks. Alur pembentukan vektornya adalah: \
+    1. Menyusun setiap kata yang unik ke angka dan didaftarkan. \
+    2. Dalam setiap kalimat kemudian dihitung banyaknya setiap kata unik yang ada. \
+    3. Terbentuklah vektor BoW dari masing-masing teks. 
+    
+Contoh : 
+
+
+
+Kalimat  1 : Classification produce discrete value \
+Kalimat 2 : Discrete value on classification
+
+Maka Bag Of Wordnya berupa : 
+<img src="img/similarity/rsz_bow1.png">
+
+Vektor Kalimat 1 adalah **a** = [1,1,1,1,0] 
+
+Vektor Kalimat 2 adalah **b** = [1,0,1,1,1] 
+
+Setelah data telah bertipe vektor, maka kemudian dapat dihitung cosine similarity-nya:
+
+\begin{equation}
+\cos \theta=\frac{\mathbf{a} . \mathbf{b}}{\|\mathbf{a}\|\|\mathbf{b}\|}=\frac{1 \times 1+1 \times 0+1 \times 1+1 \times 1+0 \times 1}{\sqrt{4} \sqrt{4}}=0.75
+\end{equation}
+
+Jadi, berdasarkan perhitungan cosine similarity, tingkat kemiripan antar 2 kalimat tersebut sebesar 0.75
+
+Dalam python, kita dapat membangun algoritma untuk transformasi teks ke dalam vektor dengan Bag Of Word dan melakukan perhitungan cosine similarity.
+
+```{python}
+#Import Package
+import math
+
+#Definisi Fungsi Cosine Similarity
+def cosine_sim(vec1, vec2):
+    vec1 = list(vec1)
+    vec2 = list(vec2)
+    dot_prod = 0
+    for i, v in enumerate(vec1):
+        dot_prod += v * vec2[i]
+    mag_1 = math.sqrt(sum([x**2 for x in vec1]))
+    mag_2 = math.sqrt(sum([x**2 for x in vec2]))
+    return dot_prod / (mag_1 * mag_2)
+
+#2 Kalimat yang ingin dihitung cosine similaritynya 
+kalimat1 = 'classification produce discrete value'
+kalimat2 = 'discrete value on classification'
+
+#Pembentukan Vektor Bag Of Word
+cosineBoW=[]
+bagOfWordsA = kalimat1.split(' ')
+bagOfWordsB = kalimat2.split(' ')
+uniqueWords = set(bagOfWordsA).union(set(bagOfWordsB))
+numOfWordsA = dict.fromkeys(uniqueWords, 0)
+for word in bagOfWordsA:
+    numOfWordsA[word] += 1
+numOfWordsB = dict.fromkeys(uniqueWords, 0)
+for word in bagOfWordsB:
+    numOfWordsB[word] += 1
+    
+#Perhitungan Cosine Similarity
+cosine_sim(numOfWordsA.values(),numOfWordsB.values())
+```
+
+NB : ketika melakukan vektorisasi teks dengan menggunakan Bag Of Word (BoW), maka nilai cosine similarity akan selalu bernilai non-negatif karena elemen-elemen dalam vektor adalah banyaknya suatu kata bernilai non-negatif. Akibatnya, Cosine Similarity dengan BoW terbatas untuk mendeteksi kemiripan suatu teks dari segi permukaan atau leksikal saja. Ia belum bisa mendeteksi apakah 2 kalimat itu memiliki informasi yang berlawanan.
+
+### 2. Euclidean Distance
+
+Euclidean distance mengidentifikasi seberapa jauh dua vektor terpisah satu sama lain. Artinya dia melihat jarak kedekatan antara dua teks. Jika cosine similarity memperhatikan sudut antar vektor, euclidean distance lebih memperhatikan jarak antar vektor dalam euclidean space. Persamaan matematika dalam menghitung jaraknya adalah :
+\begin{equation}
+d(\vec{v}, \vec{w})=\sqrt{\sum_{i=1}^{n}\left(v_{i}-w_{i}\right)^{2}}
+\end{equation}
+
+di mana $\vec{v}$ adalah vektor teks 1, $\vec{w}$ adalah vektor teks 2, n adalah dimensi dari vektor tersebut.
+
+
+[<img src="img/similarity/euclid.png" width="300"/>](img/similarity/euclid.png)
+
+Contoh perhitungannya adalah
+
+Misal kita menggunakan contoh sebelumnya di mana \
+Kalimat 1 : Classification produce discrete value \
+Kalimat 2 : Discrete value on classification 
+
+Kemudian kita dapatkan vektor teks dari masing-masing kalimat yaitu : 
+$ \vec{v}$ = [1,1,1,1,0]
+dan
+$ \vec{w}$= [1,0,1,1,1]
+
+maka $$d(\vec{v}, \vec{w})=\sqrt{\sum_{i=1}^{n}\left(v_{i}-w_{i}\right)^{2}} = \sqrt{(1-1)^{2}+(1-0)^{2}+(1-1)^{2}+(1-1)^{2} + (0-1)^{2}} = \sqrt{2} = 1.414 $$
+
+didapat jarak antara 2 kalimat adalah 1.414, artinya antar 2 vektor tersebut memiliki jarak yang cukup dekat.
+
+dengan menggunakan python, dapat digunakan perhitungan euclidean distance dengan :
+
+```{python}
+#Import Package 
+
+import numpy as np
+
+#definisi array dari masing-masing kalimat
+kalimat1array= np.array(list(numOfWordsA.values()))
+kalimat2array= np.array(list(numOfWordsB.values()))
+
+#euclidean distance
+d = np.linalg.norm(kalimat1array - kalimat2array)
+d
+```
+
+Seperti yang kita lihat, euclidean distance tidak seperti cosine similarity yang berada pada batas tertentu. Sehingga untuk menentukan apakah jaraknya sudah cukup dekat apa belum sebaiknya digunakan vektor-vektor lain sebagai pembanding atau bisa dilakukan penentuan batas/threshold sendiri oleh pembuat model.
+
+### 3. Overlap Coefficient
+
+Overlap coefficient, disebut juga dengan Szymkiewicz-Simpson Coefficient adalah ukuran yang menghitung overlap dari dua himpunan. Ukurannya dihitung dengan melakukan pembagian panjang irisan dari dua himpunan dengan panjang himpunan yang paling kecil. Jika himpunan pertama adalah subset atau subhimpunan dari himpunan kedua, vice versa, maka nilai overlap coefficientnya akan menjadi 1. Jika tidak ada kata yang sama antara teks pertama dan kedua, maka nilai overlap coefficientnya akan bernilai nol.
+
+\begin{equation}
+\operatorname{Overlap}\left(D_{1}, D_{2}\right)=\frac{\left|D_{1} \cap D_{2}\right|}{\min \left(\left|D_{1}\right|,\left|D_{2}\right|\right)}
+\end{equation}
+
+dengan $D_1$ adalah vektor teks 1 dan $D_2$ adalah vektor teks 2.
+
+[<img src="img/similarity/rsz_overlap.png" width="250"/>](img/similarity/rsz_overlap.png)
+
+
+Contoh perhitungannya adalah sebagai berikut:
+
+1. A = {Siti, Mau, Tidur} \
+   B = {Siti, Mau, Tidur, Siang}\
+   Maka,  Overlap(A,B)=3/3=1. 
+   
+2. X = {Siti, Belajar}\
+   Y = {Siti, Mau, Tidur, Siang}\
+   Maka,  Overlap(A,B)=½. 
+   
+3. P = {Makan, Nasi, Kuning} \
+   Q = {Minum, Air, Putih}\
+   Maka, Overlap(P,Q)=0. 
+
+dengan menggunakan python :
+
+```{python}
+#Definisikan kalimat yang akan dihitung overlappingnya
+A={'Siti','Mau','Tidur'}
+B={'Siti','Mau','Tidur','Siang'}
+
+#Definisikan fungsi Overlap
+def overlap(A,B):
+    up=len(A.intersection(B))
+    do=min(len(A),len(B))
+    return up/do
+
+overlap(A,B)    
+```
+
+### Reference
+1. M.K.Vijaymeena, K.Kavitha, A Survey on Similarity Measures In Text Mining, 2016
+2. https://docs.python.org/3/library/math.html
+3. https://www.semanticscholar.org/topic/Overlap-coefficient/1578196
+4. https://en.wikipedia.org/wiki/Euclidean_distance
+
