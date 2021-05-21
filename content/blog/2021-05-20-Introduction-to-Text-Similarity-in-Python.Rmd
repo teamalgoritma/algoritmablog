@@ -1,9 +1,9 @@
 ---
-title: "Introduction to Text Similarity in Python : Term-Based Distance Measure"
+title: "Pengenalan Kemiripan Teks (Text Similarity) di Python"
 author: "Sarah Shabrina"
 date: '2021-05-20'
 github: https://github.com/rahshabrina/algoritmablog
-slug: text-similarity-in-python
+slug: kemiripan-teks
 categories:
   - Python
 tags: 
@@ -100,7 +100,7 @@ Contoh :
 
 
 
-Kalimat  1 :  Classification produce discrete value \
+Kalimat  1 : Classification produce discrete value \
 Kalimat 2 : Discrete value on classification
 
 Maka Bag Of Wordnya berupa : 
