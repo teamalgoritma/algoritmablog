@@ -20,10 +20,10 @@ linktitle: ''
 type: post
 ---
 ```{r setup, include=FALSE}
-# clear-up the environment
+# clean up the environment
 rm(list = ls())
 
-# chunk options
+# setup chunk options
 knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE,
