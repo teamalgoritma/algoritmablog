@@ -1,0 +1,221 @@
+---
+title: Advancing Your Shiny Application
+author: Nabiilah Ardini Fauziyyah
+github: https://github.com/NabiilahArdini/Shiny-Box
+date: '2021-04-28'
+slug: advancing-your-shinyapp
+categories:
+  - R
+tags:
+  - Data Visualization
+  - Shiny App
+  - Shiny Dashboard
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Shiny is a very convenient tool that helps us create an app using R. It provides a wide range of layouts and widgets that you can add to an app. Common features in shiny may have been explained in many tutorials and courses, but other features that are more advanced require more exploration from the users with only brief documentation. In this article, let’s discuss some advanced features in shiny that commonly asked by users that may help you build better app.</p>
+<div id="what-we-will-learn" class="section level2">
+<h2>What We Will Learn</h2>
+<p>There are many interesting features in Shiny. To ease our learning, let’s split this exploration in several article. In this first article, we will be focusing on polishing the Shiny app interface! Below are the topics that we will explore:</p>
+<ul>
+<li>Navigation Bar</li>
+<li>Add Image</li>
+<li>Formatted Text &amp; Paragraph</li>
+<li>Themes</li>
+</ul>
+</div>
+<div id="navigation-bar" class="section level2">
+<h2>Navigation Bar</h2>
+<p>Making navigation bar (tab list on the top of the page) in Shiny is quite easy. You can use <code>navbarPage()</code> before making any fluid page and layouting function. Here’s some example:</p>
+<pre><code># global
+library(shiny)
+
+# ui
+navbarPage(title = &quot;Shiny-Box&quot;,
+           tabPanel(title = &quot;Home&quot;, 
+                    &quot;content 1&quot;),
+           tabPanel(title = &quot;Sales Overview&quot;,
+                    &quot;content 2&quot;),
+           tabPanel(title = &quot;Interactive Map&quot;,
+                    &quot;content 3&quot;)
+          )
+
+# server
+function(input, output) {
+    
+}</code></pre>
+<center>
+<img src="/img/shiny-box/navbar1.png" style="width:80.0%" />
+</center>
+<p>You can also inverse the color of navigation bar so that the bar fill will be black and have a white font color. Just use argument <code>inverse = T</code>:</p>
+<pre><code>navbarPage(title = &quot;Shiny-Box&quot;,
+           tabPanel(title = &quot;Home&quot;, 
+                    &quot;content 1&quot;),
+           tabPanel(title = &quot;Sales Overview&quot;,
+                    &quot;content 2&quot;),
+           tabPanel(title = &quot;Interactive Map&quot;,
+                    &quot;content 3&quot;),
+           inverse = T
+           )</code></pre>
+<center>
+<img src="/img/shiny-box/navbar2.png" style="width:80.0%" />
+</center>
+<p>Even more, you can customize the whole app color palette and visuals with the help of additional package. But, we will discuss this in a separate section in this article.</p>
+<p>If you want to custom the content for each page, you can use <code>fluidPage()</code> function inside the <code>tabPanel()</code> as usual and work with layout functions, positioning inputs and outputs.</p>
+<pre><code>navbarPage(title = &quot;Shiny-Box&quot;,
+           tabPanel(title = &quot;Home&quot;, 
+                    &quot;content 1&quot;),
+           
+           # fill content for tab 2
+           tabPanel(title = &quot;Sales Overview&quot;,
+                    fluidPage(
+                        sidebarLayout(
+                            sidebarPanel(
+                                selectInput(&quot;status&quot;, label = &quot;Status of Purchase:&quot;,
+                                            choices = c(&quot;Purchased&quot;, &quot;Cancelled&quot;)),
+                            ),
+                            mainPanel(
+                                p(&quot;There will be plot here&quot;)
+                            )
+                        )
+                    )),
+           
+           tabPanel(title = &quot;Interactive Map&quot;,
+                    &quot;content 3&quot;),
+           inverse = T
+)</code></pre>
+<center>
+<img src="/img/shiny-box/navbar3.png" style="width:80.0%" />
+</center>
+<p>There it is the navbar! Meanwhile, if you prefer the navbar on the left side of the app (most similar to sidebar but can contain several tabPanels), you can use the <code>navlistPage()</code> function instead. Here’s the detailed <a href="https://shiny.rstudio.com/articles/layout-guide.html">documentation</a> on application layout in Shiny. Another option is to use <a href="https://rstudio.github.io/shinydashboard/"><strong>shinydashboard</strong></a> package instead and use the templates they already provided, with side note that you cannot use navbar on the top of the page.</p>
+</div>
+<div id="adding-image" class="section level2">
+<h2>Adding Image</h2>
+<p>To add an image in Shiny is done by using <code>renderImage()</code> function. The official documentation can be found <a href="https://shiny.rstudio.com/articles/images.html">here</a>, but perhaps a more detailed example below can help you understand how it works.</p>
+<p>The most efficient way to add an image is by storing the image file in a sub-directory named <code>www</code> inside your app folder. Below is an example:</p>
+<center>
+<img src="/img/shiny-box/image1.png" style="width:80.0%" />
+</center>
+<p>And then we can display it in the app with function <code>renderImage()</code> and <code>imageOutput()</code>:</p>
+<pre><code># ui: code in the first tabPanel 
+tabPanel(title = &quot;Home&quot;,
+         imageOutput(&quot;home_img&quot;)
+         )
+
+# add output in server
+output$home_img &lt;- renderImage({
+    
+    list(src = &quot;www/header_img.png&quot;,
+         width = &quot;100%&quot;,
+         height = 330)
+    
+  }, deleteFile = F)</code></pre>
+<center>
+<img src="/img/shiny-box/image2.png" style="width:80.0%" />
+</center>
+<p>Notice that the <code>renderImage()</code> function will source the image file from our <code>www</code> folder (yes, it has to be named “www” so that we can camouflage it as an URL). We can also set the width and height of the image in percent or in pixel. In the code, we can also set argument <code>deleteFile = F</code> so that the image will not be deleted once it has been rendered.</p>
+</div>
+<div id="formatting-text-paragraph" class="section level2">
+<h2>Formatting Text &amp; Paragraph</h2>
+<p>We can add formatted text easily in shiny by using <strong>HTML tags</strong> that are listed on the page 2 of Shiny cheat sheet. Common tags also have wrapper function that will ease your way with formatting text and paragraph. Below are some example:</p>
+<p><strong>1. Add paragraph</strong></p>
+<p>The most common task is to add a paragraph by using <code>p()</code>. You can add text inside with a quotation marks <code>""</code>. You can also add text with specific font face (bold, italic, ect.), links and other forms of formatted text.</p>
+<p>Inside the function, before adding any text, you can also set <strong>css attributes</strong> that will be applied to all text inside the paragraph. This is done by using <code>style = ...</code> argument. Here’s an example below:</p>
+<pre><code>p(style = &quot;text-align: justify; font-size = 16px&quot;,
+  &quot;text here&quot;)</code></pre>
+<p><strong>2. Font face &amp; links</strong></p>
+<ul>
+<li>Bold: by adding wrapper functions <code>strong("text here")</code></li>
+<li>Italic: by adding wrapper functions <code>em("text here")</code></li>
+<li>Code: by adding wrapper functions <code>code("text here")</code></li>
+<li>Link: by adding wrapper functions <code>a(href = "text here", "link")</code></li>
+</ul>
+<p><strong>3. Horizontal line &amp; breaks</strong></p>
+<ul>
+<li>Horizontal line: <code>hr()</code></li>
+<li>Breaks (add a new line): <code>br()</code></li>
+</ul>
+<p><strong>4. Header</strong></p>
+<p>You can add header 1 until header 6 by using function <code>h1()</code> and so on until <code>h6()</code>.</p>
+<p><strong>5. Blockquote</strong></p>
+<p>Blockquote is not a common HTML tags and therefore shiny have not provided function for it. We can use the HTML tags <code>tags$blockquote</code> instead. You can find other HTML tags in the Shiny cheat sheet. Below is an example code:</p>
+<pre><code>tags$blockquote(&quot;This is a nice quote&quot;, cite = &quot;Anonymous&quot;)</code></pre>
+<p>As you can see above, using HTML tags is no difference than using the HTML wrapper function. Use can use what is easier for you.</p>
+<p>Below is the example code to add formatted text and paragraph in Shiny:</p>
+<pre><code># ui: code in the first tabPanel
+
+tabPanel(title = &quot;Home&quot;,
+         imageOutput(&quot;home_img&quot;, height = &quot;320px&quot;),
+         br(),
+         hr(),
+         h4(strong(&quot;Project Description&quot;)),
+         p(style=&quot;text-align: justify; font-size = 25px&quot;,
+          &quot;Shiny-Box is a Shiny application made with 
+          the purpose of&quot;, 
+          em(&quot;demonstrating various use of shiny features&quot;), 
+          &quot;that are frequently asked by users but rarely 
+          discussed in a beginner or formal class environment. 
+          With an example app and its code, Shiny-Box hopefully 
+          will ease your understanding on the mechanism 
+          of various Shiny features. Go to&quot;,
+          a(href = &quot;https://github.com/NabiilahArdini/Shiny-Box&quot;,
+            &quot;Shiny-Box GitHub Page&quot;),
+          &quot;to find more details on the source code.&quot;),
+                    
+         tags$blockquote(&quot;Shiny-Box is still under continuous development. 
+           Please look forward to future updates!&quot;),
+         hr()
+  )</code></pre>
+<center>
+<img src="/img/shiny-box/text1.png" style="width:80.0%" />
+</center>
+</div>
+<div id="themes" class="section level2">
+<h2>Themes</h2>
+<p>A great user interface is the one that pleases the user’s eyes. Applying themes to our Shiny app will significantly boost the appearance of our app. Applying themes in shiny can be done using additional package. Previously common used package includes:</p>
+<ul>
+<li><a href="https://rstudio.github.io/shinythemes/"><strong>shinythemes</strong></a>: for Shiny app</li>
+<li><a href="https://github.com/nik01010/dashboardthemes"><strong>dashboardthemes</strong></a> for Shiny dashboard</li>
+</ul>
+<p>But in the last February 2021, newer package called <a href="https://rstudio.github.io/bslib/index.html"><strong>bslib</strong></a> was introduced in the official <a href="https://shiny.rstudio.com/articles/themes.html">Shiny documentation</a>.</p>
+<p>bslib package allows users to apply modern versions of Bootstrap, Bootswatch themes, as well as custom themes in the app, and each theme be modified in real time! Below is the very basic way of using Bootswatch theme with bslib package. You may refer to the official documentation above while understanding the example code below:</p>
+<pre><code># global
+library(shiny)
+library(bslib)
+
+# ui
+navbarPage(title = &quot;Shiny-Box&quot;, 
+           theme = bs_theme(bootswatch = &quot;lux&quot;),
+           
+           # &lt;add tabPanels etc. from here on&gt;
+    )</code></pre>
+<p>The code above will instruct Shiny to use Bootswatch theme “Lux”. Here’s the result:</p>
+<center>
+<img src="/img/shiny-box/theme1.png" style="width:80.0%" />
+</center>
+<p>Quite fascinating is it?! You can find other <strong>Bootswatch theme</strong> <a href="https://bootswatch.com/">here</a>, or you can create your own theme easily by setting parameters within <code>bs_theme()</code> function. You can edit the main background color (bg), foreground color (fg), accent colors (primary, secondary, etc), and fonts (base_font, heading_font, code_font, etc). Below is some example code and its result.</p>
+<pre><code># ui 
+navbarPage(title = &quot;Shiny-Box&quot;, 
+           theme = bs_theme(bg = &quot;white&quot;,
+                            fg = &quot;black&quot;,
+                            primary = &quot;maroon&quot;,
+                            base_font = font_google(&quot;Montserrat&quot;)
+                            ),
+           
+           # &lt;add tabPanels etc. from here on&gt;
+  )</code></pre>
+<center>
+<img src="/img/shiny-box/theme2.png" style="width:80.0%" />
+</center>
+<p>For more features of bslib package such as customizing theme in real time, you can refer to the <a href="https://rstudio.github.io/bslib/articles/bslib.html">official documentation</a> which thankfully quite easy to read!</p>
+<p>Last but not least, take a note here that the bslib package is originally made to be applied in Shiny app. If you wish to add theme to your Shiny dashboard, you still have to use the dashboardtheme package we’ve mentioned earlier.</p>
+<p>There are many other features of Shiny that can make your app more interesting, but we will finish it here for the part one of our exploration. Please look forward to the next article that will be focused on exploring the reactive mechanism, inputs and outputs of Shiny. Until later!</p>
+</div>
