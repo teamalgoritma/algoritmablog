@@ -66,7 +66,7 @@ function(input, output) {
 }
 ```
 
-<center> ![](/img/shiny-box/navbar1.png){width="60%"} </center>
+<center> ![](/img/shiny-box/navbar1.png){width="80%"} </center>
 
 You can also inverse the color of navigation bar so that the bar fill will be black and have a white font color. Just use argument `inverse = T`:
 
@@ -82,7 +82,7 @@ navbarPage(title = "Shiny-Box",
            )
 ```
 
-<center> ![](/img/shiny-box/navbar2.png){width="60%"} </center>
+<center> ![](/img/shiny-box/navbar2.png){width="80%"} </center>
 
 Even more, you can customize the whole app color palette and visuals with the help of additional package. But, we will discuss this in a separate section in this article.
 
@@ -102,7 +102,7 @@ navbarPage(title = "Shiny-Box",
                                             choices = c("Purchased", "Cancelled")),
                             ),
                             mainPanel(
-                                plotlyOutput("trend_col")
+                                p("There will be plot here")
                             )
                         )
                     )),
@@ -113,7 +113,7 @@ navbarPage(title = "Shiny-Box",
 )
 ```
 
-<center> ![](/img/shiny-box/navbar3.png){width="60%"} </center>
+<center> ![](/img/shiny-box/navbar3.png){width="80%"} </center>
 
 There it is the navbar! Meanwhile, if you prefer the navbar on the left side of the app (most similar to sidebar but can contain several tabPanels), you can use the `navlistPage()` function instead. Here's the detailed [documentation](https://shiny.rstudio.com/articles/layout-guide.html) on application layout in Shiny. Another option is to use [**shinydashboard**](https://rstudio.github.io/shinydashboard/) package instead and use the templates they already provided, with side note that you cannot use navbar on the top of the page.
 
@@ -123,7 +123,7 @@ To add an image in Shiny is done by using `renderImage()` function. The official
 
 The most efficient way to add an image is by storing the image file in a sub-directory named `www` inside your app folder. Below is an example:
 
-<center> ![](/img/shiny-box/image1.png){width="60%"} </center>
+<center> ![](/img/shiny-box/image1.png){width="80%"} </center>
 
 And then we can display it in the app with function `renderImage()` and `imageOutput()`:
 
@@ -143,7 +143,7 @@ output$home_img <- renderImage({
   }, deleteFile = F)
 ```
 
-<center> ![](/img/shiny-box/image2.png){width="60%"} </center>
+<center> ![](/img/shiny-box/image2.png){width="80%"} </center>
 
 Notice that the `renderImage()` function will source the image file from our `www` folder (yes, it has to be named "www" so that we can camouflage it as an URL). We can also set the width and height of the image in percent or in pixel. In the code, we can also set argument `deleteFile = F` so that the image will not be deleted once it has been rendered.
 
@@ -217,7 +217,7 @@ tabPanel(title = "Home",
   )
 ```
 
-<center> ![](/img/shiny-box/text1.png){width="60%"} </center>
+<center> ![](/img/shiny-box/text1.png){width="80%"} </center>
 
 ## Themes
 
@@ -245,7 +245,7 @@ navbarPage(title = "Shiny-Box",
 
 The code above will instruct Shiny to use Bootswatch theme "Lux". Here's the result:
 
-<center> ![](/img/shiny-box/theme1.png){width="60%"} </center>
+<center> ![](/img/shiny-box/theme1.png){width="80%"} </center>
 
 Quite fascinating is it?! You can find other **Bootswatch theme** [here](https://bootswatch.com/), or you can create your own theme easily by setting parameters within `bs_theme()` function. You can edit the main background color (bg), foreground color (fg), accent colors (primary, secondary, etc), and fonts (base_font, heading_font, code_font, etc). Below is some example code and its result.  
 
@@ -262,7 +262,7 @@ navbarPage(title = "Shiny-Box",
   )
 ```
 
-<center> ![](/img/shiny-box/theme2.png){width="60%"} </center>
+<center> ![](/img/shiny-box/theme2.png){width="80%"} </center>
 
 For more features of bslib package such as customizing theme in real time, you can refer to the [official documentation](https://rstudio.github.io/bslib/articles/bslib.html) which thankfully quite easy to read!
 
