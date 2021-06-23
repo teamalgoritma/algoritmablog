@@ -8,7 +8,7 @@ categories:
   - R
 tags:
   - Data Visualization
-  - Shiny App
+  - Shiny
   - Shiny Dashboard
 description: ''
 featured: ''

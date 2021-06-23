@@ -264,11 +264,11 @@ However, please note that if you use `observeEvent()`, the action button effect 
 
 <center> ![](/img/shiny-box2/actionbutton2.gif){width="100%"} </center>
 
-This is because `observeEvent()` only act as a **trigger** to apply side effects to outputs. Maybe this is the reason it only works 1 time. Further discussion on about this can be found [here](https://stackoverflow.com/questions/33519816/shiny-what-is-the-difference-between-observeevent-and-eventreactive). 
+This is because `observeEvent()` only act as a **trigger** to apply side effects to outputs. Maybe this is the reason it only works 1 time. Further discussion on about this can be found [here](https://stackoverflow.com/questions/33519816/shiny-what-is-the-difference-between-observeevent-and-eventreactive). Still, it is possible to utilize observeEvent, for example by having 2 dueling button that each react with different observeEvent, just as demonstrated in the official documentation [here](https://shiny.rstudio.com/articles/action-buttons.html). 
 
 ## Maximize Its Use
 
-Additionally, there are some occasion where you still need to use `observeEvent()`. For example, notice that the plot and metrics did not show up when we initially open our app. This is sometimes not appropriate. If you want to have **an initial information / plots appear on the landing page** and it only updates after after users give inputs, you can use combination of `eventReactive()` and `observeEvent()`.
+Additionally, there are some occasion where you need to use `observeEvent()`. For example, notice that the plot and metrics did not show up when we initially open our app. This is sometimes not appropriate. If you want to have **an initial information / plots appear on the landing page** and it only updates after after users give inputs, you can use combination of `eventReactive()` and `observeEvent()`.
 
 First, we need to provide an **initial state of outputs** and then provide the code to create **updated version**. We provide the initial state of outputs using **static data**, then we provide the code to update the data (**reactive data**) in `eventReactive()` and the code to update the outputs in `observeEvent()`. Below is an example:
 
