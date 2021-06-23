@@ -268,4 +268,4 @@ For more features of bslib package such as customizing theme in real time, you c
 
 Last but not least, take a note here that the bslib package is originally made to be applied in Shiny app. If you wish to add theme to your Shiny dashboard, you still have to use the dashboardtheme package we've mentioned earlier.
 
-There are many other features of Shiny that can make your app more interesting, but we will finish it here for the part one of our exploration. Please look forward to the next article that will be focused on exploring the reactive mechanism, inputs and outputs of Shiny. Until later!
+There are many other features of Shiny that can make your app more interesting, but we will finish it here for the part one of our exploration. Full code of the app demonstrated here can be found in the [GitHub Page](https://github.com/NabiilahArdini/Shiny-Box). Please look forward to the next article that will be focused on exploring the reactive mechanism, inputs and outputs of Shiny. Until later!
