@@ -1,0 +1,452 @@
+---
+title: Advancing Your Shiny Application II
+author: Nabiilah Ardini Fauziyyah
+github: https://github.com/NabiilahArdini/Shiny-Box
+date: '2021-06-03'
+slug: advancing-your-shinyapp-ii
+categories:
+  - R
+tags:
+  - Data Visualization
+  - Dashboard
+  - Shiny
+  - Reactive elements
+  - Reactive UI
+  - Action Button
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+```{r setup, include=FALSE}
+# clean up the environment
+rm(list = ls())
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+
+```
+
+Shiny is a very convenient tool that helps us create an app using R. It provides a wide range of layouts and widgets that you can add to an app. Common features in shiny may have been explained in many tutorials and courses, but other features that are more advanced require more exploration from the users with only brief documentation. In this article, let's discuss some advanced features in shiny that commonly asked by users that may help you build better app.
+
+# What We Will Learn
+
+From the [previous article](https://algotech.netlify.app/blog/advancing-your-shinyapp/), we have explored various ways in improving our User Interface. In this second article, we will be focusing on **Reactive Elements** in Shiny! Below are the topics that we will explore:
+
+* Using `reactive()`
+* Action button
+* `eventReactive()` vs `observeEvent()` 
+* Reactive UI
+
+# Using `reactive()`
+
+> A reactive expression is an R expression that uses widget input and returns a value. The reactive expression will update this value whenever the original widget changes. - Shiny Get Started
+
+Simply said, a **reactive expression** help us to create a value--or in most cases, a data--based on the input given. This allow us to effectively use codes, so that *the data that needs to be used in multiple render function can be made only with a single run*. Below is example.
+
+When we have `retail` data, that records online purchases of a store and plan to **visualize its trend** and also displays the **total unique purchases** and **total sales obtained** throughout a period. We can prepare one data that will be used for all of our outputs.
+
+In UI, we can prepare inputs and outputs as usual: 
+
+```{r eval = F}
+# UI
+
+sidebarLayout(
+  sidebarPanel(
+    
+    # select period
+    dateRangeInput("date", label = "Sales Period:",
+                   min = min(retail_clean$invoice_date), 
+                   max = max(retail_clean$invoice_date),
+                   start = min(retail_clean$invoice_date),
+                   end = max(retail_clean$invoice_date)),
+    
+    # select purchase status
+    selectInput("status", label = "Status of Purchase:",
+                choices = c("Purchased", "Cancelled"),
+                selected = "Purchased", multiple = T),
+    
+    # output 1
+    h2(strong(textOutput("unique_purchases"))),
+      h5("Total Unique Purchases"),
+    
+    # output 2
+    h2(strong(textOutput("total_sales"))),
+       h5("Total Sales")
+    ),
+                          
+  mainPanel(
+    
+    # output 3
+    plotlyOutput("trend_line", height = "450px")
+            )
+)
+```
+
+In the server, we will first use reactive expression `reactive()` to create data. In this example we store it in `trend_data`. After that, the reactive data can be called just like calling a function `trend_data()` in each of our render function.
+
+```{r eval = F}
+# SERVER
+
+## prepare reactive data
+trend_data <- reactive({
+  
+  # `validate()` is additional; to prepare friendly message for error
+  validate(
+    need(input$status != "", "Please fill all inputs provided.")
+  )
+  
+  retail_clean %>% 
+    filter(status %in% input$status,
+           invoice_date >= input$date[1], 
+           invoice_date <= input$date[2]) %>% 
+    mutate(invoice_dt = floor_date(invoice_date, unit = "week"))
+  
+})
+
+## output 1
+output$unique_purchases <- renderText({
+  
+  overview <- trend_data()
+  scales::comma(length(unique(overview$invoice)))
+  
+})
+
+## output 2
+output$total_sales <- renderText({
+  
+  overview <- trend_data()
+  scales::comma(sum(overview$sales))
+  
+})
+
+# output 3
+output$trend_line <- renderPlotly({
+  
+  plot_line <- trend_data() %>%
+    group_by(invoice_dt) %>%
+    summarise(n_purchase = n()) %>%
+    mutate(text = glue("Date: {invoice_dt}
+                     Number of Purchases: {n_purchase}")
+    ) %>%
+    ggplot(aes(x = invoice_dt, y = n_purchase)) +
+    geom_line(lwd = 0.5) +
+    geom_point(aes(text = text), color = "salmon", size = 3) +
+    scale_y_continuous(labels = scales::comma) +
+    labs(x = NULL, y = NULL, 
+         title = "Trend of Weekly Purchases") +
+    theme_minimal()
+  
+  ggplotly(plot_line, tooltip = "text") %>% 
+    layout(title = list(x = 0.5)) %>% # adjust title to the center
+    config(displayModeBar = F) # removing menu bar
+  
+})
+```
+
+Notice that we do not have to repeat the same code again (filter data based on inputs) in each of our outputs because we already use the reactive expression above. This will ease our work in Shiny especially when creating many outputs.
+
+Additionally, there is also `validate()` that help us prepare friendly error message in case of error caused by users do not provide all the inputs needed. In this case it says, *If the `input$status` is blank, give the message "Please fill all inputs provided."*.
+
+Below is the result:
+
+<center> ![](/img/shiny-box2/reactive.gif){width="100%"} </center>
+
+# Action button
+
+Now, suppose that we only want the output to change after clicking a specific button. This is usually used when we have so many inputs to fill. Watching the output changed every time we accidentally changed an input can be a hindrance, moreover if it result in a slow-loading app. We can use **Action Button** to handle that. 
+
+Action button works together with either `eventReactive()` and `observeEvent()`. `eventReactive()` usually used when the action button is used to **create a data**, and works similarly with `reactive()`. Meanwhile `observeEvent()` is used when the action button directly **affect an output**. Below is an example.
+
+## `eventReactive()`
+
+Suppose that we want our original inputs above (`input$status` & `input$date`) to be processed only after the user click a "Submit" button. Let's add the action button in the ui, and modify our server code with `eventReactive()`:
+
+```{r eval = F}
+# UI
+
+sidebarLayout(
+  sidebarPanel(
+
+    # inputs
+    dateRangeInput(), # fill with the previous code
+    selectInput(), # fill with the previous code
+    
+    # add action button
+    actionButton("action1", label = "Submit"),
+    
+    # output 1 & 2
+    h2(strong(textOutput("unique_purchases"))),
+      h5("Total Unique Purchases"),
+    h2(strong(textOutput("total_sales"))),
+       h5("Total Sales")
+    ),
+                          
+  mainPanel(
+    
+    # output 3
+    plotlyOutput("trend_line", height = "450px")
+            )
+)
+```
+
+```{r eval = F}
+# SERVER
+function(input, output) {
+  
+# change reactive({}) -> eventReactive(input, {})
+  
+trend_data <- eventReactive(input$action1, { 
+  
+  validate(
+    need(input$status != "", "Please fill all inputs provided.")
+  )
+  
+  retail_clean %>% ...
+    # fill with the previous code
+
+})
+
+  # output 1 (fill with the previous code)
+  output$unique_purchases <- renderText({...}) 
+  # output 2 (fill with the previous code)
+  output$total_sales <- renderText({...})
+  # output 3 (fill with the previous code)
+  output$trend_line <- renderPlotly({...})
+   
+}
+```
+
+Below is the output before and after we click the submit button (`input$action1`):
+
+<center> ![](/img/shiny-box2/actionbutton.gif){width="100%"} </center>
+
+## `observeEvent()`
+
+Alternatively, if you did not use `reactive()` when preparing the data (for example when you directly put inputs in the render function), you can use `observeEvent()` instead. This is done by wrapping your render function with `observeEvent()`. Below is an example code for making text output "unique_purchases" without `reactive()` function.
+
+```{r eval = F}
+# SERVER
+
+observeEvent(input$action1, { # start observeEvent
+
+  output$unique_purchases <- renderText({
+  
+    # prepare data
+    validate(
+      need(input$status != "", "Please fill all inputs provided.")
+    )
+  
+    trend_data <- retail_clean %>% 
+      filter(status %in% input$status, 
+            invoice_date >= input$date[1], 
+            invoice_date <= input$date[2]) %>% 
+      mutate(invoice_dt = floor_date(invoice_date, unit = "week"))
+  
+    # create output
+    overview <- trend_data
+    scales::comma(length(unique(overview$invoice)))
+  
+  })
+
+}) # end observe event
+```
+
+However, please note that if you use `observeEvent()`, the action button effect only last 1 time. After you click the button one time, the output behavior will return to its normal state (output changes every time an input changes). Please look at the example below for the `unique_purchases` output:
+
+<center> ![](/img/shiny-box2/actionbutton2.gif){width="100%"} </center>
+
+This is because `observeEvent()` only act as a **trigger** to apply side effects to outputs. Maybe this is the reason it only works 1 time. Further discussion on about this can be found [here](https://stackoverflow.com/questions/33519816/shiny-what-is-the-difference-between-observeevent-and-eventreactive). Still, it is possible to utilize observeEvent, for example by having 2 dueling button that each react with different observeEvent, just as demonstrated in the official documentation [here](https://shiny.rstudio.com/articles/action-buttons.html). 
+
+## Maximize Its Use
+
+Additionally, there are some occasion where you need to use `observeEvent()`. For example, notice that the plot and metrics did not show up when we initially open our app. This is sometimes not appropriate. If you want to have **an initial information / plots appear on the landing page** and it only updates after after users give inputs, you can use combination of `eventReactive()` and `observeEvent()`.
+
+First, we need to provide an **initial state of outputs** and then provide the code to create **updated version**. We provide the initial state of outputs using **static data**, then we provide the code to update the data (**reactive data**) in `eventReactive()` and the code to update the outputs in `observeEvent()`. Below is an example:
+
+```{r eval = F}
+# SERVER
+
+## -------------------------------------- PREPARE INITIAL STATE
+
+### prepare data (non-reactive)
+  
+trend_data <- retail_clean %>%
+    filter(status %in% "Purchased",
+           invoice_date >= min(invoice_date),
+           invoice_date <= max(invoice_date)) %>%
+    mutate(invoice_dt = floor_date(invoice_date, unit = "week"))
+    
+### create output
+
+output$unique_purchases <- renderText({
+  overview <- trend_data
+  scales::comma(length(unique(overview$invoice)))
+})
+
+output$total_sales <- renderText({
+  overview <- trend_data
+  scales::comma(sum(overview$sales))
+})
+
+output$trend_line <- renderPlotly({
+  plot_line <- trend_data %>%
+    group_by(invoice_dt) %>%
+    summarise(n_purchase = n()) %>%
+    mutate(text = glue("Date: {invoice_dt}
+                     Number of Purchases: {n_purchase}")
+    ) %>%
+    ggplot(aes(x = invoice_dt, y = n_purchase)) +
+    geom_line(lwd = 0.5) +
+    geom_point(aes(text = text), color = "salmon", size = 3) +
+    scale_y_continuous(labels = scales::comma) +
+    labs(x = NULL, y = NULL,
+         title = "Trend of Weekly Purchases") +
+    theme_minimal()
+  ggplotly(plot_line, tooltip = "text") %>%
+    layout(title = list(x = 0.5)) %>% # adjust title to the center
+    config(displayModeBar = F) # removing menu bar
+})
+
+## --------------------------------------- REACTIVE TO `ACTION1`
+
+### prepare data (reactive)
+
+temp <- eventReactive(input$action1, { # save using different name
+
+  validate(
+    need(input$status != "", "Please fill all inputs provided."))
+
+  retail_clean %>%
+    filter(status %in% input$status,
+           invoice_date >= input$date[1],
+           invoice_date <= input$date[2]) %>%
+    mutate(invoice_dt = floor_date(invoice_date, unit = "week"))
+
+})
+
+### create outputs
+
+observeEvent(input$action1,{ # start observe event
+
+  # outputId is the same but using updated data `temp()`
+  output$unique_purchases <- renderText({
+    overview <- temp() 
+    scales::comma(length(unique(overview$invoice)))
+  })
+  
+  output$total_sales <- renderText({
+    overview <- temp()
+    scales::comma(sum(overview$sales))
+  })
+
+  output$trend_line <- renderPlotly({
+    plot_line <- temp() %>%
+      group_by(invoice_dt) %>%
+      summarise(n_purchase = n()) %>%
+      mutate(text = glue("Date: {invoice_dt}
+                     Number of Purchases: {n_purchase}")
+      ) %>%
+      ggplot(aes(x = invoice_dt, y = n_purchase)) +
+        geom_line(lwd = 0.5) +
+        geom_point(aes(text = text), color = "salmon", size = 3) +
+        scale_y_continuous(labels = scales::comma) +
+        labs(x = NULL, y = NULL,
+             title = "Trend of Weekly Purchases") +
+        theme_minimal()
+    ggplotly(plot_line, tooltip = "text") %>%
+      layout(title = list(x = 0.5)) %>% # adjust title to the center
+      config(displayModeBar = F) # removing menu bar
+
+  })
+  
+}) # end observe event
+
+```
+
+Below is the final look of our app:
+
+<center> ![](/img/shiny-box2/actionbutton3.gif){width="100%"} </center>
+
+# Reactive UI
+
+**selectInput** is already a common widget in Shiny but selectInput that can provide reactive options based on other inputs is quite interesting. To do that, we need to get familiar with `uiOutput()` and `renderUI()`. Both function works relatively similar to any outputs function in Shiny, only this time we will create UI as an output.
+
+In our data, we have column named "country" that records the country where the sales come from and "category_id" that records the category id of each product purchased. We will try to obtain the top purchased product per country and category id. This time, the options for category id will be based on the country input. Let's create the code below:
+
+```{r eval = F}
+# UI
+# continuing from last code, still in TAB 2
+
+fluidPage(
+  sidebarLayout(position = "right",
+    sidebarPanel(
+      
+      h3("Top Product Analysis"),
+      selectInput("country", label = "Select Country:",
+        choices = unique(retail_clean$country), 
+        selected = unique(retail_clean$country)[1]),
+      
+      uiOutput("select_category")
+    
+    ),
+    mainPanel(tableOutput("top_product"))
+  )
+)
+  
+```
+
+From the code above, we will make the first selecInput `country` and then uiOutput `select_category` below it. Next to it will be the table of the top purchased product. Below is the code for the server side:
+
+```{r eval = F}
+# SERVER
+
+output$select_category <- renderUI({
+  
+  selectInput("category_id", label = "Select Category ID:",
+              
+              # the choices below is filtered based on input$country
+              choices = retail_clean %>% 
+                filter(country == input$country) %>% 
+                pull(category_id) %>% unique()
+              )
+  
+})
+
+output$top_product <- renderTable({
+  
+  # standard data wrangling
+  retail_clean %>% 
+    filter(country == input$country,
+           category_id == input$category_id) %>% 
+    group_by(description) %>% 
+    summarize(quantity = sum(quantity),
+              sales = sum(sales),
+              stock_code = unique(stock_code)) %>% 
+    arrange(desc(quantity)) %>% 
+    rename(Product = description,
+           'Quantity Purchased' = quantity,
+           Sales = sales,
+           'Stock Code' = stock_code) %>%
+    head(10)
+
+})
+
+```
+
+Below is the reactive UI we have created:
+
+<center> ![](/img/shiny-box2/reactiveui.gif){width="100%"} </center>
+
+And with that we have finally finished our journey to understand more about the reactivity feature of Shiny. Full code of this [app](https://nardini.shinyapps.io/shinybox/) can be found in the [GitHub Page](https://github.com/NabiilahArdini/Shiny-Box). Hopefully this article will help you further utilize Shiny and have a delightful time with it! 
+
+
+

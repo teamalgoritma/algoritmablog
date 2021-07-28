@@ -2,633 +2,791 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Algoritma Technical Blog</title>
-    <link>/tags/</link>
+    <link>https://algotech.netlify.com/tags/</link>
     <description>Recent content in Tags on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 03 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Rselenium</title>
-      <link>/tags/rselenium/</link>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <title>Action Button</title>
+      <link>https://algotech.netlify.com/tags/action-button/</link>
+      <pubDate>Thu, 03 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/rselenium/</guid>
+      <guid>https://algotech.netlify.com/tags/action-button/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Web Scraping</title>
-      <link>/tags/web-scraping/</link>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <title>Dashboard</title>
+      <link>https://algotech.netlify.com/tags/dashboard/</link>
+      <pubDate>Thu, 03 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/web-scraping/</guid>
+      <guid>https://algotech.netlify.com/tags/dashboard/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Data Visualization</title>
-      <link>/tags/data-visualization/</link>
-      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      <link>https://algotech.netlify.com/tags/data-visualization/</link>
+      <pubDate>Thu, 03 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/data-visualization/</guid>
+      <guid>https://algotech.netlify.com/tags/data-visualization/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Rplicate</title>
-      <link>/tags/rplicate/</link>
-      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      <title>Reactive elements</title>
+      <link>https://algotech.netlify.com/tags/reactive-elements/</link>
+      <pubDate>Thu, 03 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/rplicate/</guid>
+      <guid>https://algotech.netlify.com/tags/reactive-elements/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>ggplot2</title>
-      <link>/tags/ggplot2/</link>
-      <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+      <title>Reactive UI</title>
+      <link>https://algotech.netlify.com/tags/reactive-ui/</link>
+      <pubDate>Thu, 03 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/ggplot2/</guid>
+      <guid>https://algotech.netlify.com/tags/reactive-ui/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Machine Learning</title>
-      <link>/tags/machine-learning/</link>
-      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      <title>Shiny</title>
+      <link>https://algotech.netlify.com/tags/shiny/</link>
+      <pubDate>Thu, 03 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/machine-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Topic Modelling</title>
-      <link>/tags/topic-modelling/</link>
-      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/topic-modelling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Capstone Ml</title>
-      <link>/tags/capstone-ml/</link>
-      <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/capstone-ml/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lime</title>
-      <link>/tags/lime/</link>
-      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/lime/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ggimage</title>
-      <link>/tags/ggimage/</link>
-      <pubDate>Fri, 02 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/ggimage/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Collaborative Filtering</title>
-      <link>/tags/collaborative-filtering/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/collaborative-filtering/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Recommender System</title>
-      <link>/tags/recommender-system/</link>
-      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/recommender-system/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>extrafont</title>
-      <link>/tags/extrafont/</link>
-      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/extrafont/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ggrepel</title>
-      <link>/tags/ggrepel/</link>
-      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/ggrepel/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ggthemes</title>
-      <link>/tags/ggthemes/</link>
-      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/ggthemes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gridExtra</title>
-      <link>/tags/gridextra/</link>
-      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/gridextra/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gensim</title>
-      <link>/tags/gensim/</link>
-      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/gensim/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Panel Data</title>
-      <link>/tags/panel-data/</link>
-      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/panel-data/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Optimization</title>
-      <link>/tags/optimization/</link>
-      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/optimization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Queueing</title>
-      <link>/tags/queueing/</link>
-      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/queueing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Clustering</title>
-      <link>/tags/clustering/</link>
-      <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/clustering/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Unsupervised Learning</title>
-      <link>/tags/unsupervised-learning/</link>
-      <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/unsupervised-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Markov Chains</title>
-      <link>/tags/markov-chains/</link>
-      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/markov-chains/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>NLP</title>
-      <link>/tags/nlp/</link>
-      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/nlp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Text Generation</title>
-      <link>/tags/text-generation/</link>
-      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/text-generation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Genetic Algorithm</title>
-      <link>/tags/genetic-algorithm/</link>
-      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/genetic-algorithm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Adversarial</title>
-      <link>/tags/adversarial/</link>
-      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/adversarial/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>deep learning</title>
-      <link>/tags/deep-learning/</link>
-      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/deep-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Generative Model</title>
-      <link>/tags/generative-model/</link>
-      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/generative-model/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>overfitting</title>
-      <link>/tags/overfitting/</link>
-      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/overfitting/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>regression</title>
-      <link>/tags/regression/</link>
-      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/regression/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Regularization</title>
-      <link>/tags/regularization/</link>
-      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/regularization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ape</title>
-      <link>/tags/ape/</link>
-      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/ape/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bioconductor</title>
-      <link>/tags/bioconductor/</link>
-      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/bioconductor/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bioinformatics</title>
-      <link>/tags/bioinformatics/</link>
-      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/bioinformatics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>msa</title>
-      <link>/tags/msa/</link>
-      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/msa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidymodels</title>
-      <link>/tags/tidymodels/</link>
-      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tidymodels/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>LSTM</title>
-      <link>/tags/lstm/</link>
-      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/lstm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidyverse</title>
-      <link>/tags/tidyverse/</link>
-      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tidyverse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Geocoding</title>
-      <link>/tags/geocoding/</link>
-      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/geocoding/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Leaflet</title>
-      <link>/tags/leaflet/</link>
-      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/leaflet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Map</title>
-      <link>/tags/map/</link>
-      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/map/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mapshaper</title>
-      <link>/tags/mapshaper/</link>
-      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/mapshaper/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SOM</title>
-      <link>/tags/som/</link>
-      <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/som/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>APC</title>
-      <link>/tags/apc/</link>
-      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/apc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>graph</title>
-      <link>/tags/graph/</link>
-      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/graph/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>network analysis</title>
-      <link>/tags/network-analysis/</link>
-      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/network-analysis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>time series</title>
-      <link>/tags/time-series/</link>
-      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/time-series/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>twinetverse</title>
-      <link>/tags/twinetverse/</link>
-      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/twinetverse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>twitter</title>
-      <link>/tags/twitter/</link>
-      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/twitter/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>forecast</title>
-      <link>/tags/forecast/</link>
-      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/forecast/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>purrr</title>
-      <link>/tags/purrr/</link>
-      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/purrr/</guid>
+      <guid>https://algotech.netlify.com/tags/shiny/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Data Manipulation</title>
-      <link>/tags/data-manipulation/</link>
-      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
+      <link>https://algotech.netlify.com/tags/data-manipulation/</link>
+      <pubDate>Sat, 22 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/data-manipulation/</guid>
+      <guid>https://algotech.netlify.com/tags/data-manipulation/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>dplyr</title>
-      <link>/tags/dplyr/</link>
-      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Feature Extraction</title>
+      <link>https://algotech.netlify.com/tags/feature-extraction/</link>
+      <pubDate>Sat, 22 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/dplyr/</guid>
+      <guid>https://algotech.netlify.com/tags/feature-extraction/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>feature engineering</title>
-      <link>/tags/feature-engineering/</link>
-      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      <title>GridSearchCV</title>
+      <link>https://algotech.netlify.com/tags/gridsearchcv/</link>
+      <pubDate>Sat, 22 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/feature-engineering/</guid>
+      <guid>https://algotech.netlify.com/tags/gridsearchcv/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>text preprocessiong</title>
-      <link>/tags/text-preprocessiong/</link>
-      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Machine Learning</title>
+      <link>https://algotech.netlify.com/tags/machine-learning/</link>
+      <pubDate>Sat, 22 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/text-preprocessiong/</guid>
+      <guid>https://algotech.netlify.com/tags/machine-learning/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>textclean</title>
-      <link>/tags/textclean/</link>
-      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Cosine Similarity</title>
+      <link>https://algotech.netlify.com/tags/cosine-similarity/</link>
+      <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/textclean/</guid>
+      <guid>https://algotech.netlify.com/tags/cosine-similarity/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>RNN</title>
-      <link>/tags/rnn/</link>
-      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Euclidean Distance</title>
+      <link>https://algotech.netlify.com/tags/euclidean-distance/</link>
+      <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/rnn/</guid>
+      <guid>https://algotech.netlify.com/tags/euclidean-distance/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>accuracy</title>
-      <link>/tags/accuracy/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Natural Language Processing</title>
+      <link>https://algotech.netlify.com/tags/natural-language-processing/</link>
+      <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/accuracy/</guid>
+      <guid>https://algotech.netlify.com/tags/natural-language-processing/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>metrics evaluation</title>
-      <link>/tags/metrics-evaluation/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Overlap Coefficient</title>
+      <link>https://algotech.netlify.com/tags/overlap-coefficient/</link>
+      <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/metrics-evaluation/</guid>
+      <guid>https://algotech.netlify.com/tags/overlap-coefficient/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>precision</title>
-      <link>/tags/precision/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Text Similarity</title>
+      <link>https://algotech.netlify.com/tags/text-similarity/</link>
+      <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/precision/</guid>
+      <guid>https://algotech.netlify.com/tags/text-similarity/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>recall</title>
-      <link>/tags/recall/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Convolutional Neural Network</title>
+      <link>https://algotech.netlify.com/tags/convolutional-neural-network/</link>
+      <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/recall/</guid>
+      <guid>https://algotech.netlify.com/tags/convolutional-neural-network/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Troubleshoot</title>
-      <link>/tags/troubleshoot/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      <title>deep learning</title>
+      <link>https://algotech.netlify.com/tags/deep-learning/</link>
+      <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/troubleshoot/</guid>
+      <guid>https://algotech.netlify.com/tags/deep-learning/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>yardstick</title>
-      <link>/tags/yardstick/</link>
-      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Image Processing</title>
+      <link>https://algotech.netlify.com/tags/image-processing/</link>
+      <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/yardstick/</guid>
+      <guid>https://algotech.netlify.com/tags/image-processing/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>multiple seasonal</title>
-      <link>/tags/multiple-seasonal/</link>
-      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Shiny Dashboard</title>
+      <link>https://algotech.netlify.com/tags/shiny-dashboard/</link>
+      <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/multiple-seasonal/</guid>
+      <guid>https://algotech.netlify.com/tags/shiny-dashboard/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>tbats</title>
-      <link>/tags/tbats/</link>
-      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Capstone Ml</title>
+      <link>https://algotech.netlify.com/tags/capstone-ml/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/tbats/</guid>
+      <guid>https://algotech.netlify.com/tags/capstone-ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyverse</title>
+      <link>https://algotech.netlify.com/tags/tidyverse/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidymodels</title>
+      <link>https://algotech.netlify.com/tags/tidymodels/</link>
+      <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/tidymodels/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>graph</title>
+      <link>https://algotech.netlify.com/tags/graph/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/graph/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>network analysis</title>
+      <link>https://algotech.netlify.com/tags/network-analysis/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/network-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SNA</title>
+      <link>https://algotech.netlify.com/tags/sna/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/sna/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>twitter</title>
+      <link>https://algotech.netlify.com/tags/twitter/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/twitter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bayesian</title>
-      <link>/tags/bayesian/</link>
-      <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
+      <link>https://algotech.netlify.com/tags/bayesian/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/bayesian/</guid>
+      <guid>https://algotech.netlify.com/tags/bayesian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Statistics</title>
+      <link>https://algotech.netlify.com/tags/statistics/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rplicate</title>
+      <link>https://algotech.netlify.com/tags/rplicate/</link>
+      <pubDate>Sun, 28 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/rplicate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hierarchical Clustering</title>
+      <link>https://algotech.netlify.com/tags/hierarchical-clustering/</link>
+      <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/hierarchical-clustering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unsupervised Learning</title>
+      <link>https://algotech.netlify.com/tags/unsupervised-learning/</link>
+      <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/unsupervised-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Clustering</title>
+      <link>https://algotech.netlify.com/tags/clustering/</link>
+      <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/clustering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rselenium</title>
+      <link>https://algotech.netlify.com/tags/rselenium/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/rselenium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web Scraping</title>
+      <link>https://algotech.netlify.com/tags/web-scraping/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/web-scraping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggplot2</title>
+      <link>https://algotech.netlify.com/tags/ggplot2/</link>
+      <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Topic Modelling</title>
+      <link>https://algotech.netlify.com/tags/topic-modelling/</link>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/topic-modelling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lime</title>
+      <link>https://algotech.netlify.com/tags/lime/</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/lime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggimage</title>
+      <link>https://algotech.netlify.com/tags/ggimage/</link>
+      <pubDate>Fri, 02 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/ggimage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Collaborative Filtering</title>
+      <link>https://algotech.netlify.com/tags/collaborative-filtering/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/collaborative-filtering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Recommender System</title>
+      <link>https://algotech.netlify.com/tags/recommender-system/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/recommender-system/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>extrafont</title>
+      <link>https://algotech.netlify.com/tags/extrafont/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/extrafont/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggrepel</title>
+      <link>https://algotech.netlify.com/tags/ggrepel/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/ggrepel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggthemes</title>
+      <link>https://algotech.netlify.com/tags/ggthemes/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/ggthemes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gridExtra</title>
+      <link>https://algotech.netlify.com/tags/gridextra/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/gridextra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gensim</title>
+      <link>https://algotech.netlify.com/tags/gensim/</link>
+      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/gensim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Panel Data</title>
+      <link>https://algotech.netlify.com/tags/panel-data/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/panel-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Optimization</title>
+      <link>https://algotech.netlify.com/tags/optimization/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/optimization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Queueing</title>
+      <link>https://algotech.netlify.com/tags/queueing/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/queueing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Markov Chains</title>
+      <link>https://algotech.netlify.com/tags/markov-chains/</link>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/markov-chains/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NLP</title>
+      <link>https://algotech.netlify.com/tags/nlp/</link>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/nlp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Text Generation</title>
+      <link>https://algotech.netlify.com/tags/text-generation/</link>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/text-generation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Genetic Algorithm</title>
+      <link>https://algotech.netlify.com/tags/genetic-algorithm/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/genetic-algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Adversarial</title>
+      <link>https://algotech.netlify.com/tags/adversarial/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/adversarial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Generative Model</title>
+      <link>https://algotech.netlify.com/tags/generative-model/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/generative-model/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>overfitting</title>
+      <link>https://algotech.netlify.com/tags/overfitting/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/overfitting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>regression</title>
+      <link>https://algotech.netlify.com/tags/regression/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regularization</title>
+      <link>https://algotech.netlify.com/tags/regularization/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/regularization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ape</title>
+      <link>https://algotech.netlify.com/tags/ape/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/ape/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bioconductor</title>
+      <link>https://algotech.netlify.com/tags/bioconductor/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/bioconductor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bioinformatics</title>
+      <link>https://algotech.netlify.com/tags/bioinformatics/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/bioinformatics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>msa</title>
+      <link>https://algotech.netlify.com/tags/msa/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/msa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LSTM</title>
+      <link>https://algotech.netlify.com/tags/lstm/</link>
+      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/lstm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Geocoding</title>
+      <link>https://algotech.netlify.com/tags/geocoding/</link>
+      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/geocoding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Leaflet</title>
+      <link>https://algotech.netlify.com/tags/leaflet/</link>
+      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/leaflet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Map</title>
+      <link>https://algotech.netlify.com/tags/map/</link>
+      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/map/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mapshaper</title>
+      <link>https://algotech.netlify.com/tags/mapshaper/</link>
+      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/mapshaper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SOM</title>
+      <link>https://algotech.netlify.com/tags/som/</link>
+      <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/som/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>APC</title>
+      <link>https://algotech.netlify.com/tags/apc/</link>
+      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/apc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>time series</title>
+      <link>https://algotech.netlify.com/tags/time-series/</link>
+      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/time-series/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>twinetverse</title>
+      <link>https://algotech.netlify.com/tags/twinetverse/</link>
+      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/twinetverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>forecast</title>
+      <link>https://algotech.netlify.com/tags/forecast/</link>
+      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/forecast/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>purrr</title>
+      <link>https://algotech.netlify.com/tags/purrr/</link>
+      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/purrr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dplyr</title>
+      <link>https://algotech.netlify.com/tags/dplyr/</link>
+      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/dplyr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>feature engineering</title>
+      <link>https://algotech.netlify.com/tags/feature-engineering/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/feature-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>text preprocessiong</title>
+      <link>https://algotech.netlify.com/tags/text-preprocessiong/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/text-preprocessiong/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>textclean</title>
+      <link>https://algotech.netlify.com/tags/textclean/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/textclean/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RNN</title>
+      <link>https://algotech.netlify.com/tags/rnn/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/rnn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>accuracy</title>
+      <link>https://algotech.netlify.com/tags/accuracy/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/accuracy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>metrics evaluation</title>
+      <link>https://algotech.netlify.com/tags/metrics-evaluation/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/metrics-evaluation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>precision</title>
+      <link>https://algotech.netlify.com/tags/precision/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/precision/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>recall</title>
+      <link>https://algotech.netlify.com/tags/recall/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/recall/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Troubleshoot</title>
+      <link>https://algotech.netlify.com/tags/troubleshoot/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/troubleshoot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>yardstick</title>
+      <link>https://algotech.netlify.com/tags/yardstick/</link>
+      <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/yardstick/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>multiple seasonal</title>
+      <link>https://algotech.netlify.com/tags/multiple-seasonal/</link>
+      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/multiple-seasonal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tbats</title>
+      <link>https://algotech.netlify.com/tags/tbats/</link>
+      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/tbats/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Causal Inference</title>
-      <link>/tags/causal-inference/</link>
+      <link>https://algotech.netlify.com/tags/causal-inference/</link>
       <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/causal-inference/</guid>
+      <guid>https://algotech.netlify.com/tags/causal-inference/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SVM</title>
-      <link>/tags/svm/</link>
+      <link>https://algotech.netlify.com/tags/svm/</link>
       <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/svm/</guid>
+      <guid>https://algotech.netlify.com/tags/svm/</guid>
       <description></description>
     </item>
     

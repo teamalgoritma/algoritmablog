@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dashboard on Algoritma Technical Blog</title>
+    <link>https://algotech.netlify.com/tags/dashboard/</link>
+    <description>Recent content in Dashboard on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/dashboard/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advancing Your Shiny Application II</title>
+      <link>https://algotech.netlify.com/blog/advancing-your-shinyapp-ii/</link>
+      <pubDate>Thu, 03 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/advancing-your-shinyapp-ii/</guid>
+      <description>Shiny is a very convenient tool that helps us create an app using R. It provides a wide range of layouts and widgets that you can add to an app. Common features in shiny may have been explained in many tutorials and courses, but other features that are more advanced require more exploration from the users with only brief documentation. In this article, let’s discuss some advanced features in shiny that commonly asked by users that may help you build better app.</description>
+    </item>
+    
+  </channel>
+</rss>

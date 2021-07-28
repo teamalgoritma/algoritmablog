@@ -2,22 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>multiple seasonal on Algoritma Technical Blog</title>
-    <link>/tags/multiple-seasonal/</link>
+    <link>https://algotech.netlify.com/tags/multiple-seasonal/</link>
     <description>Recent content in multiple seasonal on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Jan 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/multiple-seasonal/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 08 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/multiple-seasonal/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Forecasting Time Series with Multiple Seasonal</title>
-      <link>/blog/multiple-seasonal/</link>
+      <link>https://algotech.netlify.com/blog/multiple-seasonal/</link>
       <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/multiple-seasonal/</guid>
-      <description>IntroductionTime Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
+      <guid>https://algotech.netlify.com/blog/multiple-seasonal/</guid>
+      <description>Introduction Time Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
     </item>
     
   </channel>

@@ -2,126 +2,142 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Capstone Ml on Algoritma Technical Blog</title>
-    <link>/tags/capstone-ml/</link>
+    <link>https://algotech.netlify.com/tags/capstone-ml/</link>
     <description>Recent content in Capstone Ml on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 06 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/capstone-ml/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Image Classification with Convolutional Network</title>
+      <link>https://algotech.netlify.com/blog/image-classification-cnn/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/image-classification-cnn/</guid>
+      <description>body { text-align: justify}  Introduction Deep learning is a great approach to deal with unstructured data such as text, sound, video and image. There are a lot of implementation of deep learning in image classification and image detection, such as classifying image of dog or cats, detecting different objects in an image or do facial recognition.
+  On this article, we will try to build a simple image classification that will classify whether the presented image is a cat, dog, or a panda.</description>
+    </item>
     
-	<atom:link href="/tags/capstone-ml/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>Tidymodels: Churn Over Prediction</title>
+      <link>https://algotech.netlify.com/blog/tidymodels-churn-over-prediction/</link>
+      <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/tidymodels-churn-over-prediction/</guid>
+      <description>body { text-align: justify}  Untuk membuat sebuah model machine learning diperlukan beberapa proses seperti praproses data, modeling, sampai model evaluation. R memiliki banyak sekali packages yang dapat digunakan dalam proses pemodelan. Untuk mempermudah seorang data scientist dalam membuat model, Rstudio mengembangkan kumpulan packages yang diberi nama Tidymodels.
+Tidymodels merupakan framework yang berisi kumpulan packages untuk membuat model machine learning menggunakan konsep Tidyverse. Beberapa packages seperti rsample, recipes, parsnip, dials, tune, yardstick, workflows sudah saling terintegrasi untuk membuat satu proses pemodelan yang utuh.</description>
+    </item>
     
     <item>
       <title>One-Way ANOVA Test in R</title>
-      <link>/blog/one-way-anova-test-in-r/</link>
+      <link>https://algotech.netlify.com/blog/one-way-anova-test-in-r/</link>
       <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/one-way-anova-test-in-r/</guid>
-      <description>body { text-align: justify}PengantarLatar BelakangPercobaan adalah kegiatan yang dilakukan untuk menguji hipotesis atau menganalisa hubungan sebab akibat antara respon (y) dan prediktor/perlakuan (x). Perancangan percobaan (Design of Experiment) adalah penentuan kerangka dasar (framework) langkah-langkah pengumpulan informasi terhadap objek yang memiliki variasi berdasarkan prinsip-prinsip statistika.
+      <guid>https://algotech.netlify.com/blog/one-way-anova-test-in-r/</guid>
+      <description>body { text-align: justify}  Pengantar Latar Belakang Percobaan adalah kegiatan yang dilakukan untuk menguji hipotesis atau menganalisa hubungan sebab akibat antara respon (y) dan prediktor/perlakuan (x). Perancangan percobaan (Design of Experiment) adalah penentuan kerangka dasar (framework) langkah-langkah pengumpulan informasi terhadap objek yang memiliki variasi berdasarkan prinsip-prinsip statistika.
 Perencanaan suatu percobaan berguna untuk memperoleh informasi yang relevan dengan tujuan penelitian. Percobaan perlu dirancang untuk memperoleh kesimpulan yang tidak bias (systematic error) dan meningkatkan presisi kesimpulan, sehingga dihasilkan generalisasi populasi yang mendekati nilai sebenarnya.</description>
     </item>
     
     <item>
       <title>Interpreting Black Box Regression Model with LIME</title>
-      <link>/blog/interpreting-black-box-regression-model-with-lime/</link>
+      <link>https://algotech.netlify.com/blog/interpreting-black-box-regression-model-with-lime/</link>
       <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/interpreting-black-box-regression-model-with-lime/</guid>
+      <guid>https://algotech.netlify.com/blog/interpreting-black-box-regression-model-with-lime/</guid>
       <description>INTRODUCTION One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning.</description>
     </item>
     
     <item>
       <title>Interpreting Text Classification Model with LIME</title>
-      <link>/blog/text-lime/</link>
+      <link>https://algotech.netlify.com/blog/text-lime/</link>
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/text-lime/</guid>
-      <description>body {text-align: justify}IntroductionThis article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at my previous post .
+      <guid>https://algotech.netlify.com/blog/text-lime/</guid>
+      <description>body { text-align: justify}  Introduction This article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at my previous post .
 One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target?</description>
     </item>
     
     <item>
       <title>Interpreting Classification Model with LIME</title>
-      <link>/blog/interpreting-classification-model-with-lime/</link>
+      <link>https://algotech.netlify.com/blog/interpreting-classification-model-with-lime/</link>
       <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/interpreting-classification-model-with-lime/</guid>
+      <guid>https://algotech.netlify.com/blog/interpreting-classification-model-with-lime/</guid>
       <description>Introduction One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning.</description>
     </item>
     
     <item>
       <title>Text Preprocessing using textclean</title>
-      <link>/blog/textclean/</link>
+      <link>https://algotech.netlify.com/blog/textclean/</link>
       <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/textclean/</guid>
-      <description>Take tweet from twitter using rtweet packageFunction used for take tweet from twitter is search_tweets(). There are several parameter usually used in that function: - Topic : topic you will find at twitter - n : how many tweet that you want to take - include_rts : logical. If FALSE tweet taken didn’t contain retweet - lang : spesified language. If you want take tweet in english you can addargument lang = “en” You can use this code below to try taking tweets from twitter by removing the command</description>
+      <guid>https://algotech.netlify.com/blog/textclean/</guid>
+      <description>Take tweet from twitter using rtweet package Function used for take tweet from twitter is search_tweets(). There are several parameter usually used in that function: - Topic : topic you will find at twitter - n : how many tweet that you want to take - include_rts : logical. If FALSE tweet taken didn’t contain retweet - lang : spesified language. If you want take tweet in english you can add argument lang = “en” You can use this code below to try taking tweets from twitter by removing the command</description>
     </item>
     
     <item>
       <title>Handling Duplicate Data</title>
-      <link>/blog/handling-duplicate-data/</link>
+      <link>https://algotech.netlify.com/blog/handling-duplicate-data/</link>
       <pubDate>Sun, 13 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/handling-duplicate-data/</guid>
-      <description>Reading Data and Basic PreprocessingSome data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.
+      <guid>https://algotech.netlify.com/blog/handling-duplicate-data/</guid>
+      <description>Reading Data and Basic Preprocessing Some data that we obtain from the internet are gained as a raw, means that there are no modifications done to the data except placing it in the right column or row. Even if that’s a good thing, sometimes you have to treat and change the template of the data to be as friendly to reach our objective as possible.
 Making sure that there are no duplicated data is one of the aspect of understanding the data itself, because we can’t say that the model that are being made from the information full of duplicated data is relevant enough to be used in real-case scenario.</description>
     </item>
     
     <item>
       <title>Time Series Prediction with LSTM</title>
-      <link>/blog/time-series-prediction-with-lstm/</link>
+      <link>https://algotech.netlify.com/blog/time-series-prediction-with-lstm/</link>
       <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/time-series-prediction-with-lstm/</guid>
-      <description>Time Series Forecasting using LSTMTime series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing.A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
+      <guid>https://algotech.netlify.com/blog/time-series-prediction-with-lstm/</guid>
+      <description>Time Series Forecasting using LSTM Time series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing. A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
     </item>
     
     <item>
       <title>Metrics Evaluation using `yardstick`</title>
-      <link>/blog/metrics-evaluation-using-yardstick/</link>
+      <link>https://algotech.netlify.com/blog/metrics-evaluation-using-yardstick/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/metrics-evaluation-using-yardstick/</guid>
-      <description>MotivationEvaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.</description>
+      <guid>https://algotech.netlify.com/blog/metrics-evaluation-using-yardstick/</guid>
+      <description>Motivation Evaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.</description>
     </item>
     
     <item>
       <title>Nested Dataframe</title>
-      <link>/blog/nested-dataframe/</link>
+      <link>https://algotech.netlify.com/blog/nested-dataframe/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/nested-dataframe/</guid>
-      <description>1. SetupLibraries and SetupWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
+      <guid>https://algotech.netlify.com/blog/nested-dataframe/</guid>
+      <description>1. Setup Libraries and Setup We’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
 You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
-library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to use purrr, caret and dplyr to quickly create some of dataset + model combinations, store data &amp;amp; model objects neatly in one tibble, and post process programatically.</description>
+library(tidyverse) library(caret)   2. Nested Dataframe You’ll learn how to use purrr, caret and dplyr to quickly create some of dataset + model combinations, store data &amp;amp; model objects neatly in one tibble, and post process programatically.</description>
     </item>
     
     <item>
       <title>Troubleshoot in R</title>
-      <link>/blog/troubleshoot-in-r/</link>
+      <link>https://algotech.netlify.com/blog/troubleshoot-in-r/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/troubleshoot-in-r/</guid>
-      <description>IntroductionWhen you start coding in R you probably get a lot of errors, and trying to decipher an error can be a time-consuming task. You might need to Google or maybe you asked for help to your friends/mentor and they find out you’ve forgot a closing bracket!.
+      <guid>https://algotech.netlify.com/blog/troubleshoot-in-r/</guid>
+      <description>Introduction When you start coding in R you probably get a lot of errors, and trying to decipher an error can be a time-consuming task. You might need to Google or maybe you asked for help to your friends/mentor and they find out you’ve forgot a closing bracket!.
 You just learnt about the importance of it just few hours ago, “You’re supposed to know this stuff”. You might be frustrated and blame yourself when you make very basic mistakes, but this is something every one goes through.</description>
     </item>
     
     <item>
       <title>Forecasting Time Series with Multiple Seasonal</title>
-      <link>/blog/multiple-seasonal/</link>
+      <link>https://algotech.netlify.com/blog/multiple-seasonal/</link>
       <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/multiple-seasonal/</guid>
-      <description>IntroductionTime Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
+      <guid>https://algotech.netlify.com/blog/multiple-seasonal/</guid>
+      <description>Introduction Time Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
     </item>
     
     <item>
       <title>Text Cleaning Bahasa Indonesia-based Twitter Data</title>
-      <link>/blog/text-cleaning-bahasa/</link>
+      <link>https://algotech.netlify.com/blog/text-cleaning-bahasa/</link>
       <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/text-cleaning-bahasa/</guid>
+      <guid>https://algotech.netlify.com/blog/text-cleaning-bahasa/</guid>
       <description>Social media has become a very popular spot for data mining these last years. But when we talk about social data, we actually also talk about unstructured data, and in order to derive any meaningful insight from it, we have to know how to work with it in its unstructured form (or in this case, unstructured text information).
 Before the data we gather can be used for further analysis, the very first step to do is to clean the data.</description>
     </item>

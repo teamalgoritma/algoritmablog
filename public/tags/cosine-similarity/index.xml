@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cosine Similarity on Algoritma Technical Blog</title>
+    <link>https://algotech.netlify.com/tags/cosine-similarity/</link>
+    <description>Recent content in Cosine Similarity on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/cosine-similarity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pengenalan Kemiripan Teks (Text Similarity) di Python</title>
+      <link>https://algotech.netlify.com/blog/kemiripan-teks/</link>
+      <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/kemiripan-teks/</guid>
+      <description>Dalam pemrosesan data berbentuk teks, kita dapat menggunakan fitur text similarity (ukuran kemiripan teks) untuk mendukung model yang kita bangun. Beberapa contoh aplikasi text similarity yang dapat digunakan yaitu:
+Search Engine (Mesin Pencarian)
+Dalam mesin pencarian, dapat digunakan text similarity untuk mengukur kemiripan antara hal yang ingin dicari dengan data yang dimiliki.
+ Chatbot
+Ukuran kemiripannya digunakan untuk memilih jawaban bot yang tepat berdasarkan kemiripan pertanyaan atau pernyataan yang ditulis pengguna dengan database yang ada.</description>
+    </item>
+    
+  </channel>
+</rss>

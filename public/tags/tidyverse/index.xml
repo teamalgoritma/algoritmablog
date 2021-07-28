@@ -2,55 +2,71 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tidyverse on Algoritma Technical Blog</title>
-    <link>/tags/tidyverse/</link>
+    <link>https://algotech.netlify.com/tags/tidyverse/</link>
     <description>Recent content in tidyverse on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 06 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Image Classification with Convolutional Network</title>
+      <link>https://algotech.netlify.com/blog/image-classification-cnn/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/image-classification-cnn/</guid>
+      <description>body { text-align: justify}  Introduction Deep learning is a great approach to deal with unstructured data such as text, sound, video and image. There are a lot of implementation of deep learning in image classification and image detection, such as classifying image of dog or cats, detecting different objects in an image or do facial recognition.
+  On this article, we will try to build a simple image classification that will classify whether the presented image is a cat, dog, or a panda.</description>
+    </item>
     
-	<atom:link href="/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>Tidymodels: Churn Over Prediction</title>
+      <link>https://algotech.netlify.com/blog/tidymodels-churn-over-prediction/</link>
+      <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/tidymodels-churn-over-prediction/</guid>
+      <description>body { text-align: justify}  Untuk membuat sebuah model machine learning diperlukan beberapa proses seperti praproses data, modeling, sampai model evaluation. R memiliki banyak sekali packages yang dapat digunakan dalam proses pemodelan. Untuk mempermudah seorang data scientist dalam membuat model, Rstudio mengembangkan kumpulan packages yang diberi nama Tidymodels.
+Tidymodels merupakan framework yang berisi kumpulan packages untuk membuat model machine learning menggunakan konsep Tidyverse. Beberapa packages seperti rsample, recipes, parsnip, dials, tune, yardstick, workflows sudah saling terintegrasi untuk membuat satu proses pemodelan yang utuh.</description>
+    </item>
     
     <item>
       <title>Introduction to tidymodels</title>
-      <link>/blog/tidymodels/</link>
+      <link>https://algotech.netlify.com/blog/tidymodels/</link>
       <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/tidymodels/</guid>
+      <guid>https://algotech.netlify.com/blog/tidymodels/</guid>
       <description>The following presentation is produced by the team at Algoritma for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
 Outline Why tidymodels Matters?  Things we think we&amp;rsquo;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?</description>
     </item>
     
     <item>
       <title>Purrr-operly Fitting Multiple Time Series Model</title>
-      <link>/blog/purrr-operly-fitting-multiple-time-series-model/</link>
+      <link>https://algotech.netlify.com/blog/purrr-operly-fitting-multiple-time-series-model/</link>
       <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
+      <guid>https://algotech.netlify.com/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
       <description>In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
-TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
-PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
+ TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+ Preface When it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
     </item>
     
     <item>
       <title>Data Wars: Episode IV</title>
-      <link>/blog/data-wars-episode-iv/</link>
+      <link>https://algotech.netlify.com/blog/data-wars-episode-iv/</link>
       <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/data-wars-episode-iv/</guid>
+      <guid>https://algotech.netlify.com/blog/data-wars-episode-iv/</guid>
       <description>Data wrangling sometimes could become very tedious. No matter what language do you prefer: R, python, or even SQL, the process of preprocessing your dataset is generally very time consuming. But, this is not the case if you know how to properly use packages included in tidyverse.
 The term of tidyverse is actually referring to a set of packages that you’ll find very helpful in any data analysis tasks; many of them are already popular among R users, like dplyr, ggplot2, and lubridate.</description>
     </item>
     
     <item>
       <title>Nested Dataframe</title>
-      <link>/blog/nested-dataframe/</link>
+      <link>https://algotech.netlify.com/blog/nested-dataframe/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/nested-dataframe/</guid>
-      <description>1. SetupLibraries and SetupWe’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
+      <guid>https://algotech.netlify.com/blog/nested-dataframe/</guid>
+      <description>1. Setup Libraries and Setup We’ll set-up caching for this notebook given how computationally expensive some of the code we will write can get.
 You will need to use install.packages() to install any packages that are not already downloaded onto your machine. You then load the package into your workspace using the library() function:
-library(tidyverse)library(caret)2. Nested DataframeYou’ll learn how to use purrr, caret and dplyr to quickly create some of dataset + model combinations, store data &amp;amp; model objects neatly in one tibble, and post process programatically.</description>
+library(tidyverse) library(caret)   2. Nested Dataframe You’ll learn how to use purrr, caret and dplyr to quickly create some of dataset + model combinations, store data &amp;amp; model objects neatly in one tibble, and post process programatically.</description>
     </item>
     
   </channel>

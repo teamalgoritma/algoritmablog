@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SNA on Algoritma Technical Blog</title>
+    <link>https://algotech.netlify.com/tags/sna/</link>
+    <description>Recent content in SNA on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/sna/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Social Network Analysis</title>
+      <link>https://algotech.netlify.com/blog/social-network-analysis-in-r/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/social-network-analysis-in-r/</guid>
+      <description>In this article, we will learn about Social Network Analysis using tidygraph (including igraph and ggraph). We’ll not only learn about the visualizing stuff but also the metrics. We’ll analyze Twitter network as our study case using rtweet package. In this article, I hope we will be able to do:
+ Analyze Ego Network from specific account/user
+ Analyze Information Activity Network from something that goes viral    Background Introduction What is Social Network Analysis (SNA)</description>
+    </item>
+    
+  </channel>
+</rss>

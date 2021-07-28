@@ -2,31 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Optimization on Algoritma Technical Blog</title>
-    <link>/tags/optimization/</link>
+    <link>https://algotech.netlify.com/tags/optimization/</link>
     <description>Recent content in Optimization on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/optimization/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/optimization/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pengenalan Teori Antrian</title>
-      <link>/blog/pengenalan-teori-antrian/</link>
+      <link>https://algotech.netlify.com/blog/pengenalan-teori-antrian/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/pengenalan-teori-antrian/</guid>
+      <guid>https://algotech.netlify.com/blog/pengenalan-teori-antrian/</guid>
       <description>Introduction  Apakah kamu pernah melihat antrian dalam aktivitas sehari-hari? Pasti kamu pernah melihat banyak sekali kejadian dimana pelanggan menunggu dan membentuk suatu antrian yang panjang untuk dilayani oleh server. Kita tentunya pernah melihat antrian pelanggan yang menunggu untuk dilayani di bank, antrian untuk membeli makanan di restoran, antrian untuk masuk lift, antrian untuk mendapatkan resep obat di rumah sakit, dan masih banyak lagi. Jika kita hitung waktu tunggu untuk dilayani, saya yakin tentunya akan membutuhkan banyak waktu yang cukup lama.</description>
     </item>
     
     <item>
       <title>Optimization and Hyper-Parameter Tuning with Genetic Algorithm</title>
-      <link>/blog/optimization-with-genetic-algorithm/</link>
+      <link>https://algotech.netlify.com/blog/optimization-with-genetic-algorithm/</link>
       <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/optimization-with-genetic-algorithm/</guid>
-      <description>IntroductionAboutOptimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance.</description>
+      <guid>https://algotech.netlify.com/blog/optimization-with-genetic-algorithm/</guid>
+      <description>Introduction About Optimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance.</description>
     </item>
     
   </channel>

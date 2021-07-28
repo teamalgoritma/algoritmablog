@@ -2,22 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Genetic Algorithm on Algoritma Technical Blog</title>
-    <link>/tags/genetic-algorithm/</link>
+    <link>https://algotech.netlify.com/tags/genetic-algorithm/</link>
     <description>Recent content in Genetic Algorithm on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Jan 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/genetic-algorithm/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 13 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/genetic-algorithm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Optimization and Hyper-Parameter Tuning with Genetic Algorithm</title>
-      <link>/blog/optimization-with-genetic-algorithm/</link>
+      <link>https://algotech.netlify.com/blog/optimization-with-genetic-algorithm/</link>
       <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/optimization-with-genetic-algorithm/</guid>
-      <description>IntroductionAboutOptimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance.</description>
+      <guid>https://algotech.netlify.com/blog/optimization-with-genetic-algorithm/</guid>
+      <description>Introduction About Optimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance.</description>
     </item>
     
   </channel>

@@ -2,21 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ggimage on Algoritma Technical Blog</title>
-    <link>/tags/ggimage/</link>
+    <link>https://algotech.netlify.com/tags/ggimage/</link>
     <description>Recent content in ggimage on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Oct 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/ggimage/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 02 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/ggimage/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rplicate Series: Cherry Bomb</title>
-      <link>/blog/rplicate-series-cherry-bomb/</link>
+      <link>https://algotech.netlify.com/blog/rplicate-series-cherry-bomb/</link>
       <pubDate>Fri, 02 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/rplicate-series-cherry-bomb/</guid>
+      <guid>https://algotech.netlify.com/blog/rplicate-series-cherry-bomb/</guid>
       <description>In this second article on Rplicate Series, We will share to you one way to replicate the plot titled Cherry Bomb from the article &amp;ldquo;Japan’s cherry blossoms are emerging increasingly early, 7th April 2017&amp;rdquo;. The raw dataset used for this graph was obtained from a phenological dataset that was previously collected by Dr. Yasuyuki Aono from Osaka Prefecture University12.
 While replicating the plot, we will also learn how to:
  various data pre-processing tricks such as separate a column into several columns, create date data from several columns, and reverse levels of a categorical column create a scatterplot with a custom shape/image as points using geom_smooth() for visualizing trend in the data explore facets and various theme editing on ggplot2  Let&amp;rsquo;s dive in below!</description>

@@ -127,20 +127,65 @@
   }
   
   body.dark-mode , 
-body.dark-mode :not(img) main * {
-    background-color: #0d0d0d;
+  body.dark-mode main * {
+    background-color: #000000;
     color: #000000;
-     filter: invert(40%) hue-rotate(0deg) brightness(105%) contrast(75%);
-    -webkit-filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(90%);
-    
+    filter: invert(0.95);
 }
 
+  .dark-mode img {
+  filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
+  .dark-mode p {
+  color: #000000;
+}
+  
+  .dark-mode code {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    font-weight: bold;
+    background: #353737;
+    color: white;
+}
+
+  .dark-mode strong, b {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+  
+  .dark-mode #social-share ul{
+    margin: 0;
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode #header {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+  }
+
+  .dark-mode .js-toggle--focus .js-toggle-thumb {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode .footer {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+    background-color: white;
+    font-weight: bold;
+  }
+
+  .dark-mode .nav-secondary {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
+
+  .dark-mode #reactions .reaction-items .reaction-item .reaction-item__button img, #reactions-promotion .reaction-items .reaction-item .reaction-item__button img {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
 </style>
 
 <script>
     var body = document.body;
+    var article = document.article;
 	var switcher = document.getElementsByClassName('js-toggle')[0];
 
 	
@@ -150,10 +195,12 @@ body.dark-mode :not(img) main * {
 		
 		if (this.classList.contains('js-toggle--checked')) {
 			body.classList.add('dark-mode');
+			article.classList.add('post.dark-mode');
 			
 			localStorage.setItem('darkMode', 'true');
 		} else {
 			body.classList.remove('dark-mode');
+			article.classList.remove('post.dark-mode');
 			setTimeout(function() {
 				localStorage.removeItem('darkMode');
 			}, 100);
@@ -165,6 +212,7 @@ body.dark-mode :not(img) main * {
 		
         switcher.classList.add('js-toggle--checked');
         body.classList.add('dark-mode');
+        article.classList.add('post.dark-mode');
 	}
 
 </script>
@@ -177,12 +225,12 @@ body.dark-mode :not(img) main * {
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "\/"
+             "@id": "https:\/\/algotech.netlify.com\/"
         },
         "articleSection" : "blog",
         "name" : "One-Way ANOVA Test in R",
         "headline" : "One-Way ANOVA Test in R",
-        "description" : "body { text-align: justify}\r\rPengantar\rLatar Belakang\rPercobaan adalah kegiatan yang dilakukan untuk menguji hipotesis atau menganalisa hubungan sebab akibat antara respon (y) dan prediktor\/perlakuan (x). Perancangan percobaan (Design of Experiment) adalah penentuan kerangka dasar (framework) langkah-langkah pengumpulan informasi terhadap objek yang memiliki variasi berdasarkan prinsip-prinsip statistika.\nPerencanaan suatu percobaan berguna untuk memperoleh informasi yang relevan dengan tujuan penelitian. Percobaan perlu dirancang untuk memperoleh kesimpulan yang tidak bias (systematic error) dan meningkatkan presisi kesimpulan, sehingga dihasilkan generalisasi populasi yang mendekati nilai sebenarnya.",
+        "description" : "body { text-align: justify}  Pengantar Latar Belakang Percobaan adalah kegiatan yang dilakukan untuk menguji hipotesis atau menganalisa hubungan sebab akibat antara respon (y) dan prediktor\/perlakuan (x). Perancangan percobaan (Design of Experiment) adalah penentuan kerangka dasar (framework) langkah-langkah pengumpulan informasi terhadap objek yang memiliki variasi berdasarkan prinsip-prinsip statistika.\nPerencanaan suatu percobaan berguna untuk memperoleh informasi yang relevan dengan tujuan penelitian. Percobaan perlu dirancang untuk memperoleh kesimpulan yang tidak bias (systematic error) dan meningkatkan presisi kesimpulan, sehingga dihasilkan generalisasi populasi yang mendekati nilai sebenarnya.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -192,7 +240,7 @@ body.dark-mode :not(img) main * {
         "copyrightYear" : "2020",
         "datePublished": "2020-10-21 00:00:00 \u002b0000 UTC",
         "dateModified" : "2020-10-21 00:00:00 \u002b0000 UTC",
-        "url" : "\/blog\/one-way-anova-test-in-r\/",
+        "url" : "https:\/\/algotech.netlify.com\/blog\/one-way-anova-test-in-r\/",
         "wordCount" : "1657",
         "keywords" : [ "Capstone ML","Blog" ]
     }
@@ -205,7 +253,7 @@ body.dark-mode :not(img) main * {
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.74.3" />
+        <meta name="generator" content="Hugo 0.83.1" />
         
   
     
@@ -213,8 +261,8 @@ body.dark-mode :not(img) main * {
 
   
 
-  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
-  <link rel="icon" href='/favicon/favicon.png'>
+  <link rel="apple-touch-icon-precomposed" href='https://algotech.netlify.com/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='https://algotech.netlify.com/favicon/favicon.png'>
   
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
@@ -235,33 +283,29 @@ body.dark-mode :not(img) main * {
 
         <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="One-Way ANOVA Test in R"/>
-<meta name="twitter:description" content="body { text-align: justify}PengantarLatar BelakangPercobaan adalah kegiatan yang dilakukan untuk menguji hipotesis atau menganalisa hubungan sebab akibat antara respon (y) dan prediktor/perlakuan (x). Perancangan percobaan (Design of Experiment) adalah penentuan kerangka dasar (framework) langkah-langkah pengumpulan informasi terhadap objek yang memiliki variasi berdasarkan prinsip-prinsip statistika.
+<meta name="twitter:description" content="body { text-align: justify}  Pengantar Latar Belakang Percobaan adalah kegiatan yang dilakukan untuk menguji hipotesis atau menganalisa hubungan sebab akibat antara respon (y) dan prediktor/perlakuan (x). Perancangan percobaan (Design of Experiment) adalah penentuan kerangka dasar (framework) langkah-langkah pengumpulan informasi terhadap objek yang memiliki variasi berdasarkan prinsip-prinsip statistika.
 Perencanaan suatu percobaan berguna untuk memperoleh informasi yang relevan dengan tujuan penelitian. Percobaan perlu dirancang untuk memperoleh kesimpulan yang tidak bias (systematic error) dan meningkatkan presisi kesimpulan, sehingga dihasilkan generalisasi populasi yang mendekati nilai sebenarnya."/>
 <meta name="twitter:site" content="@teamalgoritma"/>
 
         <meta property="og:title" content="One-Way ANOVA Test in R" />
-<meta property="og:description" content="body { text-align: justify}PengantarLatar BelakangPercobaan adalah kegiatan yang dilakukan untuk menguji hipotesis atau menganalisa hubungan sebab akibat antara respon (y) dan prediktor/perlakuan (x). Perancangan percobaan (Design of Experiment) adalah penentuan kerangka dasar (framework) langkah-langkah pengumpulan informasi terhadap objek yang memiliki variasi berdasarkan prinsip-prinsip statistika.
+<meta property="og:description" content="body { text-align: justify}  Pengantar Latar Belakang Percobaan adalah kegiatan yang dilakukan untuk menguji hipotesis atau menganalisa hubungan sebab akibat antara respon (y) dan prediktor/perlakuan (x). Perancangan percobaan (Design of Experiment) adalah penentuan kerangka dasar (framework) langkah-langkah pengumpulan informasi terhadap objek yang memiliki variasi berdasarkan prinsip-prinsip statistika.
 Perencanaan suatu percobaan berguna untuk memperoleh informasi yang relevan dengan tujuan penelitian. Percobaan perlu dirancang untuk memperoleh kesimpulan yang tidak bias (systematic error) dan meningkatkan presisi kesimpulan, sehingga dihasilkan generalisasi populasi yang mendekati nilai sebenarnya." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/blog/one-way-anova-test-in-r/" />
-<meta property="article:published_time" content="2020-10-21T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-10-21T00:00:00+00:00" />
+<meta property="og:url" content="https://algotech.netlify.com/blog/one-way-anova-test-in-r/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-10-21T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-10-21T00:00:00&#43;00:00" />
 
-        <meta property="og:image" content="//images/logo.png">
+
+        <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="One-Way ANOVA Test in R">
-<meta itemprop="description" content="body { text-align: justify}PengantarLatar BelakangPercobaan adalah kegiatan yang dilakukan untuk menguji hipotesis atau menganalisa hubungan sebab akibat antara respon (y) dan prediktor/perlakuan (x). Perancangan percobaan (Design of Experiment) adalah penentuan kerangka dasar (framework) langkah-langkah pengumpulan informasi terhadap objek yang memiliki variasi berdasarkan prinsip-prinsip statistika.
-Perencanaan suatu percobaan berguna untuk memperoleh informasi yang relevan dengan tujuan penelitian. Percobaan perlu dirancang untuk memperoleh kesimpulan yang tidak bias (systematic error) dan meningkatkan presisi kesimpulan, sehingga dihasilkan generalisasi populasi yang mendekati nilai sebenarnya.">
-<meta itemprop="datePublished" content="2020-10-21T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2020-10-21T00:00:00+00:00" />
+<meta itemprop="description" content="body { text-align: justify}  Pengantar Latar Belakang Percobaan adalah kegiatan yang dilakukan untuk menguji hipotesis atau menganalisa hubungan sebab akibat antara respon (y) dan prediktor/perlakuan (x). Perancangan percobaan (Design of Experiment) adalah penentuan kerangka dasar (framework) langkah-langkah pengumpulan informasi terhadap objek yang memiliki variasi berdasarkan prinsip-prinsip statistika.
+Perencanaan suatu percobaan berguna untuk memperoleh informasi yang relevan dengan tujuan penelitian. Percobaan perlu dirancang untuk memperoleh kesimpulan yang tidak bias (systematic error) dan meningkatkan presisi kesimpulan, sehingga dihasilkan generalisasi populasi yang mendekati nilai sebenarnya."><meta itemprop="datePublished" content="2020-10-21T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-10-21T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="1657">
-
-
-
 <meta itemprop="keywords" content="Capstone ML," />
-
         
 
         
@@ -270,26 +314,148 @@ Perencanaan suatu percobaan berguna untuk memperoleh informasi yang relevan deng
 
         
         
-        
-            <link rel="stylesheet" href="/css/monokai-sublime.css">
+            <link disabled id="dark-mode-theme" rel="stylesheet" href="https://algotech.netlify.com/css/dark.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
-            <link rel="stylesheet" href="/css/main.css">
-            <link rel="stylesheet" href="/css/add-on.css">
-            <link rel="stylesheet" href="/css/academicons.min.css">
-            <link href="/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
-            <link href="/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/add-on.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/academicons.min.css">
+            <link href="https://algotech.netlify.com/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
         
+            <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                      integrity=
+            "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+                      crossorigin="anonymous">
+                <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+                </script>
+                <script src=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+                </script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.0/js.cookie.js">
+                </script>
+                
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
+                </script>
+              
+                <style>
+                    
+                     
+
+
+                    .modal:before {
+                        content: '';
+                        display: inline-block;
+                        height: 20%;
+                        vertical-align: middle;
+                    }
+                      
+                    .modal-dialog {
+                        
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    -webkit-flex-direction: column;
+                        -ms-flex-direction: column;
+                            flex-direction: column;
+                    -webkit-box-pack: center;
+                    -webkit-justify-content: center;
+                        -ms-flex-pack: center;
+                            justify-content: center;
+                    }
+
+                      
+                    .modal .modal-content {
+                        padding: 20px 20px 20px 20px;
+                        -webkit-animation-name: modal-animation;
+                        -webkit-animation-duration: 0.5s;
+                        animation-name: modal-animation;
+                        animation-duration: 1.5s;
+                    }
+
+                
+
+                    .modal .leadin-button {
+                        -webkit-border-radius: 0.25em;
+                        -moz-border-radius: 0.25em;
+                        -ms-border-radius: 0.25em;
+                        -o-border-radius: 0.25em;
+                        border-radius: 0.25em;
+                        -webkit-appearance: none;
+                        cursor: pointer;
+                        font-size: 1em;
+                        font-weight: bold;
+                        line-height: 1;
+                        padding: 1em 1.5em;
+                        width: 100%;
+                        text-decoration: none;
+                    }
+                    .modal .leadin-button-primary {
+                        background: #a90606 !important;
+                        color: #FFFFFF !important;
+                    }
+                      
+                    @-webkit-keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                      
+                    @keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                </style>
+
+            <script src="content/bootstrapJS/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+            <script type="text/javascript">
+                
+                
+                $( document ).ready(function() {
+  if (document.cookie.indexOf('visited=true') == -1){
+    
+                      $('#signupModal').modal('show');
+    
+                  var year = 1000*60*60*24*365;
+    var expires = new Date((new Date()).valueOf() + year);
+    document.cookie = "visited=true;expires=" + expires.toUTCString();
+
+  }
+}); 
+
+            </script>
+        
+            
 
         
             
                 
             
                 
-                    <link rel="stylesheet" href="/css/main.css">
+                    <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
                 
             
         
@@ -297,8 +463,8 @@ Perencanaan suatu percobaan berguna untuk memperoleh informasi yang relevan deng
 
   
     
-      <link rel="stylesheet" href="/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
-      <script src="/js/highlight.pack.js"></script>
+      <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="https://algotech.netlify.com/js/highlight.pack.js"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   
 
@@ -319,11 +485,43 @@ if (!doNotTrack) {
 
 
 
-
-
-
+      
     </head>
     <body>
+
+        <div class="modal" id="signupModal"
+        role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+ 
+       <div class="modal-dialog">
+           <div class="modal-content">
+ 
+               
+               <div class="m-header">
+                   <button class="close" data-dismiss="modal">
+                       ×
+                   </button>
+                   <h2 class="myModalLabel"> Upcoming Workshop! </h2>
+               </div>
+ 
+               
+               <div class="inputs">
+ 
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png",
+                     alt="Music Recommender System", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p> This 3-day online workshop is beginner-friendly to demonstrate how to extract song embeddings using the neural network approach, specifically the word2vec model, to generate song recommendations. Throughout the online course, we will provide participants with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help participants troubleshoot or help with any difficulties encountered. </p>
+                <div class="advance-wrapper callout-special-font">
+                    <a href="https://algorit.ma/ds-course/web-scraping/?utm_source=algotech" target="_blank" 
+                    class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
+                </div>
+               </div>
+ 
+ 
+           </div>
+       </div>
+   </div>
+
+    </body>
 
       
       <div id="wrapper">
@@ -332,32 +530,32 @@ if (!doNotTrack) {
     
 <header id="header">
     
-      <h1><a href="/">blog</a></h1>
+      <h1><a href="https://algotech.netlify.com/">blog</a></h1>
     
 
     <nav class="links">
         <ul>
             
                 <li>
-                    <a href="/">
+                    <a href="https://algotech.netlify.com/">
                             <i class="fa fa-home">&nbsp;</i>Home
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/machine-learning/">
+                    <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <i class="fa fa-cog">&nbsp;</i>Machine Learning
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/data-visualization/">
+                    <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/">
+                    <a href="https://algotech.netlify.com/tags/">
                             <i class="fa fa-list">&nbsp;</i>Article List
                     </a>
                 </li>
@@ -375,7 +573,7 @@ if (!doNotTrack) {
                 <a class="fa-search" href="#search">Search</a>
                 <form id="search" method="get" action="//google.com/search">
                     <input type="text" name="q" placeholder="Search" />
-                    <input type="hidden" name="as_sitesearch" value="/">
+                    <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
                 </form>
             </li>
             <li class="menu">
@@ -392,7 +590,7 @@ if (!doNotTrack) {
         <section>
             <form class="search" method="get" action="//google.com/search">
                 <input type="text" name="q" placeholder="Search" />
-                <input type="hidden" name="as_sitesearch" value="/">
+                <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
             </form>
         </section>
 
@@ -401,7 +599,7 @@ if (!doNotTrack) {
             <ul class="links">
                 
                     <li>
-                        <a href="/">
+                        <a href="https://algotech.netlify.com/">
                             <h3>
                                 <i class="fa fa-home">&nbsp;</i>Home
                             </h3>
@@ -409,7 +607,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/machine-learning/">
+                        <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <h3>
                                 <i class="fa fa-cog">&nbsp;</i>Machine Learning
                             </h3>
@@ -417,7 +615,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/data-visualization/">
+                        <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <h3>
                                 <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                             </h3>
@@ -425,7 +623,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/">
+                        <a href="https://algotech.netlify.com/tags/">
                             <h3>
                                 <i class="fa fa-list">&nbsp;</i>Article List
                             </h3>
@@ -450,11 +648,11 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/javascripted-web-scrapping-in-r-with-rselenium/">Rselenium Intro</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp-ii/">Advancing Your Shiny Application II</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-11'>
-                                    January 11, 2021</time>
+                                    '2021-06-03'>
+                                    June 3, 2021</time>
                             </header>
                             
 
@@ -462,157 +660,49 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-coronavirus-survey/">Rplicate Series: Interactive Plot of Coronavirus Survey</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/gridsearchcv/">GridSearchCV</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-06'>
-                                    January 6, 2021</time>
+                                    '2021-05-22'>
+                                    May 22, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-coronavirus-survey/" class="image featured">
-            <img src="/img/2021/01/five_thirty.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/kemiripan-teks/">Pengenalan Kemiripan Teks (Text Similarity) di Python</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-25'>
-                                    November 25, 2020</time>
+                                    '2021-05-20'>
+                                    May 20, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-gone-baby-gone/" class="image featured">
-            <img src="/img/2020/11/gone-baby-gone.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp/">Advancing Your Shiny Application</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/xgboost/" class="image featured">
-            <img src="/img/2020/11/boosting-algorithm.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/fuzzy-clustering/">Fuzzy C-Means Clustering</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/image-colorization/">Image Colorization</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/fuzzy-clustering/" class="image featured">
-            <img src="/img/2020/11/fuzzy-cmeans.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
@@ -642,7 +732,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=One-Way%20ANOVA%20Test%20in%20R by Wulan%20Andriyani&amp;url=%2fblog%2fone-way-anova-test-in-r%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=One-Way%20ANOVA%20Test%20in%20R by Wulan%20Andriyani&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fone-way-anova-test-in-r%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -656,7 +746,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fone-way-anova-test-in-r%2f" target="_blank" class="share-btn facebook">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2falgotech.netlify.com%2fblog%2fone-way-anova-test-in-r%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -669,7 +759,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fone-way-anova-test-in-r%2f&amp;title=One-Way%20ANOVA%20Test%20in%20R" target="_blank" class="share-btn linkedin">
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fone-way-anova-test-in-r%2f&amp;title=One-Way%20ANOVA%20Test%20in%20R" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -697,7 +787,7 @@ if (!doNotTrack) {
   <header>
     <div class="title">
         
-            <h2><a href="/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h2>
+            <h2><a href="https://algotech.netlify.com/blog/one-way-anova-test-in-r/">One-Way ANOVA Test in R</a></h2>
         
         
     </div>
@@ -724,7 +814,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=One-Way%20ANOVA%20Test%20in%20R by Wulan%20Andriyani&amp;url=%2fblog%2fone-way-anova-test-in-r%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=One-Way%20ANOVA%20Test%20in%20R by Wulan%20Andriyani&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fone-way-anova-test-in-r%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -738,7 +828,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fone-way-anova-test-in-r%2f" target="_blank" class="share-btn facebook">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2falgotech.netlify.com%2fblog%2fone-way-anova-test-in-r%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -751,7 +841,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fone-way-anova-test-in-r%2f&amp;title=One-Way%20ANOVA%20Test%20in%20R" target="_blank" class="share-btn linkedin">
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fone-way-anova-test-in-r%2f&amp;title=One-Way%20ANOVA%20Test%20in%20R" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -794,8 +884,8 @@ if (!doNotTrack) {
         
         
 
-        <a href="/blog/one-way-anova-test-in-r/" class="image featured">
-            <img src="/img/2020/10/anova-test.png" alt="">
+        <a href="https://algotech.netlify.com/blog/one-way-anova-test-in-r/" class="image featured">
+            <img src="https://algotech.netlify.com/img/2020/10/anova-test.png" alt="">
         </a>
     
 
@@ -830,7 +920,7 @@ text-align: justify}
 <li>Membahas asumsi One-Way ANOVA test</li>
 </ul>
 <center>
-<img src="/img/anova/mindmap.png" />
+<img src="https://algotech.netlify.com/img/anova/mindmap.png" />
 </center>
 <p><strong>Latihan:</strong></p>
 <p>Seorang peneliti agronomi melakukan percobaan pada tanaman jagung varietas Arjuna, untuk mengetahui apakah penerapan prediktor/perlakuan yang berbeda akan mempengaruhi pertumbuhan tinggi tanaman jagung dan produksi jagung varietas Arjuna. Jarak tanam diatur berbeda-beda yaitu 20 x 30 cm2, 30 x 30 cm2 dan 30 x 40 cm2. Jenis pupuk yang diberikan selama penelitian adalah pupuk campuran NPK dengan dosis 100 kg/ha, 200 kg/ha, 300 kg/ha dan 400 kg/ha. Untuk semua observasi dilakukan penyiangan sebanyak 2 kali yaitu pada umur 3 minggu setelah tanam (mst) dan 5 mst.</p>
@@ -914,7 +1004,7 @@ glimpse(benih)</code></pre>
        y = &quot;Daya Tumbuh Benih Kacang Hijau&quot;) +
   theme_minimal()</code></pre>
 <center>
-<img src="/img/anova/boxplot.png" />
+<img src="https://algotech.netlify.com/img/anova/boxplot.png" />
 </center>
 <p>Berdasarkan hasil ringkasan statistik dan visualisasi sebaran daya tumbuh benih kacang hijau dari setiap dosis fumigasi di atas, diketahui bahwa perbedaan pemberian dosis fumigasi menyebabkan perbedaan daya tumbuh benih kacang hijau. Pemberian dosis Fumigan <em>Methyl Bromide</em> (CH3Br) 0 gr/m3 (kontrol) dan 16 gr/m3 menyebabkan daya tumbuh benih kacang hijau yang serupa, yaitu 100. Namun, pemberian dosis Fumigan <em>Methyl Bromide</em> (CH3Br) dengan ukuran yang lebih besar, yaitu 32, 48, dan 64 gr/m3 justru menyebabkan penurunan daya tumbuh benih kacang hijau. Rata-rata daya tumbuh benih kacang hijau yang diberikan dosis Fumigan <em>Methyl Bromide</em> (CH3Br) 32, 48, dan 64 gr/m3, yaitu 90.25, 80, dan 85. Untuk membuktikan hipotesis tersebut berdasarkan data yang ada akan dilakukan one-way ANOVA.</p>
 </div>
@@ -1024,7 +1114,7 @@ glimpse(benih)</code></pre>
                 <i class="fa fa-folder"></i>
                 
                 
-                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/categories/r">R</a></li>
                 
             
         
@@ -1038,7 +1128,7 @@ glimpse(benih)</code></pre>
                 <i class="fa fa-tags"></i>
                 
                 
-                <li><a class="article-category-link" href="/tags/capstone-ml">Capstone ML</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/capstone-ml">Capstone ML</a></li>
                 
             
         
@@ -1076,12 +1166,12 @@ glimpse(benih)</code></pre>
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/interpreting-black-box-regression-model-with-lime/"
+        <li><a href="https://algotech.netlify.com/blog/interpreting-black-box-regression-model-with-lime/"
                 class="button big previous">Interpreting Black Box Regression Model with LIME</a></li>
     
 
     
-        <li><a href="/blog/topic-modeling-lda/"
+        <li><a href="https://algotech.netlify.com/blog/topic-modeling-lda/"
                 class="button big next">Topic Modelling with Latent Dirichlet Allocation (LDA)</a></li>
     
 </ul>
@@ -1096,7 +1186,7 @@ glimpse(benih)</code></pre>
     
     
       
-        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+        <a href='https://algotech.netlify.com/'><img src="https://algotech.netlify.com/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
       
     
     
@@ -1209,13 +1299,9 @@ glimpse(benih)</code></pre>
       <div class="posts-container">
           <article class="mini-post">
             <header>
+              
               <h3>
-                
-                                <img src="/img/2020/ads/dss.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/text-analysis/?utm_source=algotech">More details</a>
-                
-                <img src="/img/2020/ads/ddt.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/data-driven-2/?utm_source=algotech">More details</a>
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>
@@ -1301,9 +1387,9 @@ glimpse(benih)</code></pre>
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
-      <script src="/js/util.js"></script>
-      <script src="/js/main.js"></script>
-      <script src="/js/backToTop.js"></script>
+      <script src="https://algotech.netlify.com/js/util.js"></script>
+      <script src="https://algotech.netlify.com/js/main.js"></script>
+      <script src="https://algotech.netlify.com/js/backToTop.js"></script>
     
 
     
@@ -1311,7 +1397,7 @@ glimpse(benih)</code></pre>
         
       
         
-          <script src="/js/bootstrap.min.js"></script>
+          <script src="https://algotech.netlify.com/js/bootstrap.min.js"></script>
         
       
     

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Image Processing on Algoritma Technical Blog</title>
+    <link>https://algotech.netlify.com/tags/image-processing/</link>
+    <description>Recent content in Image Processing on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/image-processing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Image Colorization</title>
+      <link>https://algotech.netlify.com/blog/image-colorization/</link>
+      <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/image-colorization/</guid>
+      <description>body { text-align: justify}  Image Colorization Deep Learning - Convolutional Neural Network Introduction Image colorization is the process of assigning colors to a grayscale image to make it more aesthetically appealing and perceptually meaningful. These are recognized as sophisticated tasks than often require prior knowledge of image content and manual adjustments to achieve artifact-free quality. Also, since objects can have different colors, there are many possible ways to assign colors to pixels in an image, which means there is no unique solution to this problem.</description>
+    </item>
+    
+  </channel>
+</rss>

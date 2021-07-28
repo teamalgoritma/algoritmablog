@@ -2,42 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>forecast on Algoritma Technical Blog</title>
-    <link>/tags/forecast/</link>
+    <link>https://algotech.netlify.com/tags/forecast/</link>
     <description>Recent content in forecast on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Jan 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/forecast/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 29 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/forecast/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Purrr-operly Fitting Multiple Time Series Model</title>
-      <link>/blog/purrr-operly-fitting-multiple-time-series-model/</link>
+      <link>https://algotech.netlify.com/blog/purrr-operly-fitting-multiple-time-series-model/</link>
       <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
+      <guid>https://algotech.netlify.com/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
       <description>In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
-TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
-PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
+ TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+ Preface When it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
     </item>
     
     <item>
       <title>Time Series Prediction with LSTM</title>
-      <link>/blog/time-series-prediction-with-lstm/</link>
+      <link>https://algotech.netlify.com/blog/time-series-prediction-with-lstm/</link>
       <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/time-series-prediction-with-lstm/</guid>
-      <description>Time Series Forecasting using LSTMTime series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing.A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
+      <guid>https://algotech.netlify.com/blog/time-series-prediction-with-lstm/</guid>
+      <description>Time Series Forecasting using LSTM Time series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing. A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
     </item>
     
     <item>
       <title>Forecasting Time Series with Multiple Seasonal</title>
-      <link>/blog/multiple-seasonal/</link>
+      <link>https://algotech.netlify.com/blog/multiple-seasonal/</link>
       <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/multiple-seasonal/</guid>
-      <description>IntroductionTime Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
+      <guid>https://algotech.netlify.com/blog/multiple-seasonal/</guid>
+      <description>Introduction Time Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
     </item>
     
   </channel>

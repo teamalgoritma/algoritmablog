@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hierarchical Clustering on Algoritma Technical Blog</title>
+    <link>https://algotech.netlify.com/tags/hierarchical-clustering/</link>
+    <description>Recent content in Hierarchical Clustering on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 22 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/hierarchical-clustering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to Hierarchical Clustering</title>
+      <link>https://algotech.netlify.com/blog/introduction-to-hierarchical-clustering/</link>
+      <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/introduction-to-hierarchical-clustering/</guid>
+      <description>Clustering merupakan salah satu metode Unsupervised Learning yang bertujuan untuk melakukan pengelompokan data berdasasrkan kemiripan/jarak antar data. Clustering memiliki karakteristik dimana anggota dalam satu cluster memiliki kemiripan yang sama atau jarak yang sangat dekat, sementara anggota antar cluster memiliki kemiripan yang sangat berbeda atau jarak yang sangat jauh. Menurut (Tan et al., 2006) dalam bukunya yang berjudul Introduction to Data Mining, metode clustering dibagi menjadi dua jenis, yaitu Hierarchical Clustering dan Partitional Clustering1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistics on Algoritma Technical Blog</title>
+    <link>https://algotech.netlify.com/tags/statistics/</link>
+    <description>Recent content in Statistics on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bayesian Statistics and A/B Testing</title>
+      <link>https://algotech.netlify.com/blog/bayesian-statistics-and-a-b-testing/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/bayesian-statistics-and-a-b-testing/</guid>
+      <description>Introduction Statistics is one of the most essential tools in doing research. Statistics deals with uncertainty, both in our everyday life or in business operation. However, people sometimes discouraged from learning statistics because there are so much statistics test to remember. Sometimes people abuse this test by ignoring the underlying assumption. The following graph illustrate different kind of test for different situation1.
+We need a better framework for our statistical thinking that is more transparent and flexible to use.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -2,39 +2,76 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Algoritma Technical Blog</title>
-    <link>/categories/python/</link>
+    <link>https://algotech.netlify.com/categories/python/</link>
     <description>Recent content in Python on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GridSearchCV</title>
+      <link>https://algotech.netlify.com/blog/gridsearchcv/</link>
+      <pubDate>Sat, 22 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/gridsearchcv/</guid>
+      <description>Background Proses pengerjaan machine learning pada umumnya meliputi uji coba berbagai model terhadap dataset dengan memilih model dengan performa terbaik. Untuk mendapatkan hasil prediksi data yang akurat, diperlukan tidak hanya model machine learning yang tepat, tetapi juga hyperparameter (parameter yang mengatur proses pembelajaran mesin) yang tepat pula yang dikenal dengan istilah hyperparameter tuning. Menentukan kombinasi yang tepat antara model dan hyperparameter seringkali menjadi tantangan.
+Grid Search Cross Validation adalah metode pemilihan kombinasi model dan hyperparameter dengan cara menguji coba satu persatu kombinasi dan melakukan validasi untuk setiap kombinasi.</description>
+    </item>
     
-	<atom:link href="/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pengenalan Kemiripan Teks (Text Similarity) di Python</title>
+      <link>https://algotech.netlify.com/blog/kemiripan-teks/</link>
+      <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/kemiripan-teks/</guid>
+      <description>Dalam pemrosesan data berbentuk teks, kita dapat menggunakan fitur text similarity (ukuran kemiripan teks) untuk mendukung model yang kita bangun. Beberapa contoh aplikasi text similarity yang dapat digunakan yaitu:
+Search Engine (Mesin Pencarian)
+Dalam mesin pencarian, dapat digunakan text similarity untuk mengukur kemiripan antara hal yang ingin dicari dengan data yang dimiliki.
+ Chatbot
+Ukuran kemiripannya digunakan untuk memilih jawaban bot yang tepat berdasarkan kemiripan pertanyaan atau pernyataan yang ditulis pengguna dengan database yang ada.</description>
+    </item>
     
+    <item>
+      <title>Image Colorization</title>
+      <link>https://algotech.netlify.com/blog/image-colorization/</link>
+      <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/image-colorization/</guid>
+      <description>body { text-align: justify}  Image Colorization Deep Learning - Convolutional Neural Network Introduction Image colorization is the process of assigning colors to a grayscale image to make it more aesthetically appealing and perceptually meaningful. These are recognized as sophisticated tasks than often require prior knowledge of image content and manual adjustments to achieve artifact-free quality. Also, since objects can have different colors, there are many possible ways to assign colors to pixels in an image, which means there is no unique solution to this problem.</description>
+    </item>
+    
+    <item>
+      <title>Algoritma OPTICS (Ordering Points to Identify the Clustering Structure)</title>
+      <link>https://algotech.netlify.com/blog/algoritma-optics/</link>
+      <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/algoritma-optics/</guid>
+      <description>body {text-align: justify}Pada postingan Algoritma Technical Blog sebelumnya, Anda mungkin telah membaca tentang Algoritma DBSCAN (Density-based Spatial Clustering of Application with Noise) yang merupakan sebuah algoritma untuk mengelompokkan data (clustering) berbasis kepadatan. DBSCAN sendiri memiliki keunggulan dari metode clustering yang paling umum digunakan yaitu K-Means, dimana DBSCAN tidak akan memasukkan data yang dianggap noise kedalam cluster manapun. Tentunya ini menjadi keuunggulan sendiri mengingat data noise bisa jadi memiliki karakteristik yang jauh berbeda dengan kumpulan data pada umumnya.</description>
+    </item>
     
     <item>
       <title>Skincare Recommendation System</title>
-      <link>/blog/skincare-recommender-system/</link>
+      <link>https://algotech.netlify.com/blog/skincare-recommender-system/</link>
       <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/skincare-recommender-system/</guid>
-      <description>body {text-align: justify}Have you ever imagine how Netflix give you recommendation for movies you have never watch before?If you’re familiar with machine learning, you can find the answer. Yappps.. that’s right. The answer is “Recommendation System”.Recommendation system or recommender system is subclass of information filtering system that seeks to predict the “rating” or “preference” a user would give to an item. Recommendation system aims to telling us which movies to watch (Netflix), which product to buy (Amazone), or which songs to listen (Spotify) based on our historical data.</description>
+      <guid>https://algotech.netlify.com/blog/skincare-recommender-system/</guid>
+      <description>body { text-align: justify}  Have you ever imagine how Netflix give you recommendation for movies you have never watch before? If you’re familiar with machine learning, you can find the answer. Yappps.. that’s right. The answer is “Recommendation System”. Recommendation system or recommender system is subclass of information filtering system that seeks to predict the “rating” or “preference” a user would give to an item. Recommendation system aims to telling us which movies to watch (Netflix), which product to buy (Amazone), or which songs to listen (Spotify) based on our historical data.</description>
     </item>
     
     <item>
       <title>Song2Vec: Music Recommender</title>
-      <link>/blog/song2vec-music-recommender/</link>
+      <link>https://algotech.netlify.com/blog/song2vec-music-recommender/</link>
       <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/song2vec-music-recommender/</guid>
-      <description>body {text-align: justify}BackgroundThe behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music,Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.</description>
+      <guid>https://algotech.netlify.com/blog/song2vec-music-recommender/</guid>
+      <description>body { text-align: justify}  Background The behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music, Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.</description>
     </item>
     
     <item>
       <title>Introduction to Generative Adversarial Network with Keras</title>
-      <link>/blog/introduction-to-generative-adversarial-network-with-keras/</link>
+      <link>https://algotech.netlify.com/blog/introduction-to-generative-adversarial-network-with-keras/</link>
       <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/introduction-to-generative-adversarial-network-with-keras/</guid>
+      <guid>https://algotech.netlify.com/blog/introduction-to-generative-adversarial-network-with-keras/</guid>
       <description>In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&amp;rsquo;s. This made Chritie&amp;rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
 Intro  Is artificial intelligence set to become art’s next medium? - Chritie&amp;rsquo;s</description>
     </item>

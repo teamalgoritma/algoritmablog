@@ -127,20 +127,65 @@
   }
   
   body.dark-mode , 
-body.dark-mode :not(img) main * {
-    background-color: #0d0d0d;
+  body.dark-mode main * {
+    background-color: #000000;
     color: #000000;
-     filter: invert(40%) hue-rotate(0deg) brightness(105%) contrast(75%);
-    -webkit-filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(90%);
-    
+    filter: invert(0.95);
 }
 
+  .dark-mode img {
+  filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
+  .dark-mode p {
+  color: #000000;
+}
+  
+  .dark-mode code {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    font-weight: bold;
+    background: #353737;
+    color: white;
+}
+
+  .dark-mode strong, b {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+  
+  .dark-mode #social-share ul{
+    margin: 0;
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode #header {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+  }
+
+  .dark-mode .js-toggle--focus .js-toggle-thumb {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode .footer {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+    background-color: white;
+    font-weight: bold;
+  }
+
+  .dark-mode .nav-secondary {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
+
+  .dark-mode #reactions .reaction-items .reaction-item .reaction-item__button img, #reactions-promotion .reaction-items .reaction-item .reaction-item__button img {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
 </style>
 
 <script>
     var body = document.body;
+    var article = document.article;
 	var switcher = document.getElementsByClassName('js-toggle')[0];
 
 	
@@ -150,10 +195,12 @@ body.dark-mode :not(img) main * {
 		
 		if (this.classList.contains('js-toggle--checked')) {
 			body.classList.add('dark-mode');
+			article.classList.add('post.dark-mode');
 			
 			localStorage.setItem('darkMode', 'true');
 		} else {
 			body.classList.remove('dark-mode');
+			article.classList.remove('post.dark-mode');
 			setTimeout(function() {
 				localStorage.removeItem('darkMode');
 			}, 100);
@@ -165,6 +212,7 @@ body.dark-mode :not(img) main * {
 		
         switcher.classList.add('js-toggle--checked');
         body.classList.add('dark-mode');
+        article.classList.add('post.dark-mode');
 	}
 
 </script>
@@ -177,12 +225,12 @@ body.dark-mode :not(img) main * {
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "\/"
+             "@id": "https:\/\/algotech.netlify.com\/"
         },
         "articleSection" : "blog",
         "name" : "Clustering Saham Indonesia",
         "headline" : "Clustering Saham Indonesia",
-        "description" : "body {\rtext-align: justify}\r\rIntroduction\rSaham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri.",
+        "description" : "body { text-align: justify}  Introduction Saham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -192,7 +240,7 @@ body.dark-mode :not(img) main * {
         "copyrightYear" : "2020",
         "datePublished": "2020-04-17 00:00:00 \u002b0000 UTC",
         "dateModified" : "2020-04-17 00:00:00 \u002b0000 UTC",
-        "url" : "\/blog\/stock-cluster\/",
+        "url" : "https:\/\/algotech.netlify.com\/blog\/stock-cluster\/",
         "wordCount" : "4170",
         "keywords" : [ "Unsupervised Learning","Clustering","Blog" ]
     }
@@ -205,7 +253,7 @@ body.dark-mode :not(img) main * {
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.74.3" />
+        <meta name="generator" content="Hugo 0.83.1" />
         
   
     
@@ -213,8 +261,8 @@ body.dark-mode :not(img) main * {
 
   
 
-  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
-  <link rel="icon" href='/favicon/favicon.png'>
+  <link rel="apple-touch-icon-precomposed" href='https://algotech.netlify.com/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='https://algotech.netlify.com/favicon/favicon.png'>
   
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
@@ -235,30 +283,26 @@ body.dark-mode :not(img) main * {
 
         <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Clustering Saham Indonesia"/>
-<meta name="twitter:description" content="body {text-align: justify}IntroductionSaham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri."/>
+<meta name="twitter:description" content="body { text-align: justify}  Introduction Saham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri."/>
 <meta name="twitter:site" content="@teamalgoritma"/>
 
         <meta property="og:title" content="Clustering Saham Indonesia" />
-<meta property="og:description" content="body {text-align: justify}IntroductionSaham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri." />
+<meta property="og:description" content="body { text-align: justify}  Introduction Saham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/blog/stock-cluster/" />
-<meta property="article:published_time" content="2020-04-17T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-04-17T00:00:00+00:00" />
+<meta property="og:url" content="https://algotech.netlify.com/blog/stock-cluster/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-04-17T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-04-17T00:00:00&#43;00:00" />
 
-        <meta property="og:image" content="//images/logo.png">
+
+        <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Clustering Saham Indonesia">
-<meta itemprop="description" content="body {text-align: justify}IntroductionSaham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri.">
-<meta itemprop="datePublished" content="2020-04-17T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2020-04-17T00:00:00+00:00" />
+<meta itemprop="description" content="body { text-align: justify}  Introduction Saham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri."><meta itemprop="datePublished" content="2020-04-17T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-04-17T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="4170">
-
-
-
 <meta itemprop="keywords" content="Unsupervised Learning,Clustering," />
-
         
 
         
@@ -267,26 +311,148 @@ body.dark-mode :not(img) main * {
 
         
         
-        
-            <link rel="stylesheet" href="/css/monokai-sublime.css">
+            <link disabled id="dark-mode-theme" rel="stylesheet" href="https://algotech.netlify.com/css/dark.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
-            <link rel="stylesheet" href="/css/main.css">
-            <link rel="stylesheet" href="/css/add-on.css">
-            <link rel="stylesheet" href="/css/academicons.min.css">
-            <link href="/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
-            <link href="/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/add-on.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/academicons.min.css">
+            <link href="https://algotech.netlify.com/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
         
+            <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                      integrity=
+            "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+                      crossorigin="anonymous">
+                <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+                </script>
+                <script src=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+                </script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.0/js.cookie.js">
+                </script>
+                
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
+                </script>
+              
+                <style>
+                    
+                     
+
+
+                    .modal:before {
+                        content: '';
+                        display: inline-block;
+                        height: 20%;
+                        vertical-align: middle;
+                    }
+                      
+                    .modal-dialog {
+                        
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    -webkit-flex-direction: column;
+                        -ms-flex-direction: column;
+                            flex-direction: column;
+                    -webkit-box-pack: center;
+                    -webkit-justify-content: center;
+                        -ms-flex-pack: center;
+                            justify-content: center;
+                    }
+
+                      
+                    .modal .modal-content {
+                        padding: 20px 20px 20px 20px;
+                        -webkit-animation-name: modal-animation;
+                        -webkit-animation-duration: 0.5s;
+                        animation-name: modal-animation;
+                        animation-duration: 1.5s;
+                    }
+
+                
+
+                    .modal .leadin-button {
+                        -webkit-border-radius: 0.25em;
+                        -moz-border-radius: 0.25em;
+                        -ms-border-radius: 0.25em;
+                        -o-border-radius: 0.25em;
+                        border-radius: 0.25em;
+                        -webkit-appearance: none;
+                        cursor: pointer;
+                        font-size: 1em;
+                        font-weight: bold;
+                        line-height: 1;
+                        padding: 1em 1.5em;
+                        width: 100%;
+                        text-decoration: none;
+                    }
+                    .modal .leadin-button-primary {
+                        background: #a90606 !important;
+                        color: #FFFFFF !important;
+                    }
+                      
+                    @-webkit-keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                      
+                    @keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                </style>
+
+            <script src="content/bootstrapJS/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+            <script type="text/javascript">
+                
+                
+                $( document ).ready(function() {
+  if (document.cookie.indexOf('visited=true') == -1){
+    
+                      $('#signupModal').modal('show');
+    
+                  var year = 1000*60*60*24*365;
+    var expires = new Date((new Date()).valueOf() + year);
+    document.cookie = "visited=true;expires=" + expires.toUTCString();
+
+  }
+}); 
+
+            </script>
+        
+            
 
         
             
                 
             
                 
-                    <link rel="stylesheet" href="/css/main.css">
+                    <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
                 
             
         
@@ -294,8 +460,8 @@ body.dark-mode :not(img) main * {
 
   
     
-      <link rel="stylesheet" href="/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
-      <script src="/js/highlight.pack.js"></script>
+      <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="https://algotech.netlify.com/js/highlight.pack.js"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   
 
@@ -316,11 +482,43 @@ if (!doNotTrack) {
 
 
 
-
-
-
+      
     </head>
     <body>
+
+        <div class="modal" id="signupModal"
+        role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+ 
+       <div class="modal-dialog">
+           <div class="modal-content">
+ 
+               
+               <div class="m-header">
+                   <button class="close" data-dismiss="modal">
+                       ×
+                   </button>
+                   <h2 class="myModalLabel"> Upcoming Workshop! </h2>
+               </div>
+ 
+               
+               <div class="inputs">
+ 
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png",
+                     alt="Music Recommender System", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p> This 3-day online workshop is beginner-friendly to demonstrate how to extract song embeddings using the neural network approach, specifically the word2vec model, to generate song recommendations. Throughout the online course, we will provide participants with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help participants troubleshoot or help with any difficulties encountered. </p>
+                <div class="advance-wrapper callout-special-font">
+                    <a href="https://algorit.ma/ds-course/web-scraping/?utm_source=algotech" target="_blank" 
+                    class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
+                </div>
+               </div>
+ 
+ 
+           </div>
+       </div>
+   </div>
+
+    </body>
 
       
       <div id="wrapper">
@@ -329,32 +527,32 @@ if (!doNotTrack) {
     
 <header id="header">
     
-      <h1><a href="/">blog</a></h1>
+      <h1><a href="https://algotech.netlify.com/">blog</a></h1>
     
 
     <nav class="links">
         <ul>
             
                 <li>
-                    <a href="/">
+                    <a href="https://algotech.netlify.com/">
                             <i class="fa fa-home">&nbsp;</i>Home
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/machine-learning/">
+                    <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <i class="fa fa-cog">&nbsp;</i>Machine Learning
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/data-visualization/">
+                    <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/">
+                    <a href="https://algotech.netlify.com/tags/">
                             <i class="fa fa-list">&nbsp;</i>Article List
                     </a>
                 </li>
@@ -372,7 +570,7 @@ if (!doNotTrack) {
                 <a class="fa-search" href="#search">Search</a>
                 <form id="search" method="get" action="//google.com/search">
                     <input type="text" name="q" placeholder="Search" />
-                    <input type="hidden" name="as_sitesearch" value="/">
+                    <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
                 </form>
             </li>
             <li class="menu">
@@ -389,7 +587,7 @@ if (!doNotTrack) {
         <section>
             <form class="search" method="get" action="//google.com/search">
                 <input type="text" name="q" placeholder="Search" />
-                <input type="hidden" name="as_sitesearch" value="/">
+                <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
             </form>
         </section>
 
@@ -398,7 +596,7 @@ if (!doNotTrack) {
             <ul class="links">
                 
                     <li>
-                        <a href="/">
+                        <a href="https://algotech.netlify.com/">
                             <h3>
                                 <i class="fa fa-home">&nbsp;</i>Home
                             </h3>
@@ -406,7 +604,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/machine-learning/">
+                        <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <h3>
                                 <i class="fa fa-cog">&nbsp;</i>Machine Learning
                             </h3>
@@ -414,7 +612,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/data-visualization/">
+                        <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <h3>
                                 <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                             </h3>
@@ -422,7 +620,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/">
+                        <a href="https://algotech.netlify.com/tags/">
                             <h3>
                                 <i class="fa fa-list">&nbsp;</i>Article List
                             </h3>
@@ -447,11 +645,11 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/javascripted-web-scrapping-in-r-with-rselenium/">Rselenium Intro</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp-ii/">Advancing Your Shiny Application II</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-11'>
-                                    January 11, 2021</time>
+                                    '2021-06-03'>
+                                    June 3, 2021</time>
                             </header>
                             
 
@@ -459,157 +657,49 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-coronavirus-survey/">Rplicate Series: Interactive Plot of Coronavirus Survey</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/gridsearchcv/">GridSearchCV</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-06'>
-                                    January 6, 2021</time>
+                                    '2021-05-22'>
+                                    May 22, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-coronavirus-survey/" class="image featured">
-            <img src="/img/2021/01/five_thirty.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/kemiripan-teks/">Pengenalan Kemiripan Teks (Text Similarity) di Python</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-25'>
-                                    November 25, 2020</time>
+                                    '2021-05-20'>
+                                    May 20, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-gone-baby-gone/" class="image featured">
-            <img src="/img/2020/11/gone-baby-gone.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp/">Advancing Your Shiny Application</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/xgboost/" class="image featured">
-            <img src="/img/2020/11/boosting-algorithm.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/fuzzy-clustering/">Fuzzy C-Means Clustering</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/image-colorization/">Image Colorization</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/fuzzy-clustering/" class="image featured">
-            <img src="/img/2020/11/fuzzy-cmeans.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
@@ -639,7 +729,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Clustering%20Saham%20Indonesia by David&amp;url=%2fblog%2fstock-cluster%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Clustering%20Saham%20Indonesia by David&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fstock-cluster%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -653,7 +743,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fstock-cluster%2f" target="_blank" class="share-btn facebook">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2falgotech.netlify.com%2fblog%2fstock-cluster%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -666,7 +756,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fstock-cluster%2f&amp;title=Clustering%20Saham%20Indonesia" target="_blank" class="share-btn linkedin">
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fstock-cluster%2f&amp;title=Clustering%20Saham%20Indonesia" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -694,7 +784,7 @@ if (!doNotTrack) {
   <header>
     <div class="title">
         
-            <h2><a href="/blog/stock-cluster/">Clustering Saham Indonesia</a></h2>
+            <h2><a href="https://algotech.netlify.com/blog/stock-cluster/">Clustering Saham Indonesia</a></h2>
         
         
     </div>
@@ -721,7 +811,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Clustering%20Saham%20Indonesia by David&amp;url=%2fblog%2fstock-cluster%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Clustering%20Saham%20Indonesia by David&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fstock-cluster%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -735,7 +825,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fstock-cluster%2f" target="_blank" class="share-btn facebook">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2falgotech.netlify.com%2fblog%2fstock-cluster%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -748,7 +838,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fstock-cluster%2f&amp;title=Clustering%20Saham%20Indonesia" target="_blank" class="share-btn linkedin">
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fstock-cluster%2f&amp;title=Clustering%20Saham%20Indonesia" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -791,8 +881,8 @@ if (!doNotTrack) {
         
         
 
-        <a href="/blog/stock-cluster/" class="image featured">
-            <img src="/img/2020/04/stock_clustering.png" alt="">
+        <a href="https://algotech.netlify.com/blog/stock-cluster/" class="image featured">
+            <img src="https://algotech.netlify.com/img/2020/04/stock_clustering.png" alt="">
         </a>
     
 
@@ -837,7 +927,7 @@ library(cluster) #K-Medoid</code></pre>
 - <code>Clustering</code> : Mengelompokkan data menjadi beberapa kelompok berdasarkan karakteristik data.<br />
 - <code>Cluster Profiling</code> : Mencari karakteristik dari setiap cluster yang sudah terbentuk.</p>
 <center>
-<img src="/img/stock-cluter/step.png" style="width:60.0%" />
+<img src="https://algotech.netlify.com/img/stock-cluter/step.png" style="width:60.0%" />
 </center>
 </div>
 </div>
@@ -916,7 +1006,7 @@ profile %&gt;%
 <p>Feature engineering merupakan suatu proses yang menggunakan expert domain knowledge untuk mengekstrak informasi yang ada pada data dengan tujuan meng-improve hasil dari machine learning. Terdapat 3 feature yang akan diekstrak dari data yang ada yaitu volatilitas (Volatility), liquiditas (Liquidity) serta kapasitas (size) dari suatu saham<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>.</p>
 <div id="volatilitas-volatility" class="section level2">
 <h2>Volatilitas (Volatility)</h2>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-8-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-8-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>Volatilitas merupakan indikator tingkat perubahan harga saham setiap harinya. Volatilitas suatu saham bisa dilihat dari persentase perubahan harga saham setiap harinya<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. Suatu saham naik dan turun dengan persentase yang besar maka, saham tersebut bisa dikatakan memiliki volatilitas yang tinggi begitu juga sebaliknya. Nilai yang bisa digunakan untuk mengukur tingkat volatilitas suatu saham yaitu <strong>standar deviasi dari persentase perubahan harga</strong>. Perhitungan standar deviasi dilakukan pada persentase perubahan harga disetiap tahunnya. Semakin besar nilai standar deviasi maka perubahan harga saham dapat berubah dengan cepat setiap harinya.</p>
 <pre class="r"><code>stocks %&gt;% 
   na.omit() %&gt;% # remove missing value
@@ -937,7 +1027,7 @@ profile %&gt;%
 </div>
 <div id="likuiditas-liquidity" class="section level2">
 <h2>Likuiditas (Liquidity)</h2>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-10-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-10-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>Likuiditas merupakan indikator seberapa mudah saham tersebut untuk dijual dan dibeli tanpa mempengaruhi harga aset. Likuiditas suatu saham dapat dilihat dari volume saham itu. Semakin besar volume dari suatu saham yang diperdagangkan setiap harinya maka semakin liquid saham tersebut. Median dari volume saham digunakan sebagai indikator likuiditas suatu saham. Pemilihan median sebagai indikator karena sifatnya yang <em>robust</em> terhadap <em>outlier</em> (tidak seperti mean) sehingga hasil yang didapat tidak terdapat bias.</p>
 <p>Jumlah saham setiap perusahaan berbeda beda seperti <code>FREN</code> dengan jumlah share 217 milliar sedangkan <code>LPGI</code> hanya 150 juta oleh sebab itu bila nilai pada volume langsung digunakan akan terjadi bias pada informasi yang didapat. Untuk menghindari terjadinya bias volume suatu saham akan dibagi terlebih dahulu dengan jumlah lembar saham (total share) setiap emiten. Total share didapat dari data <code>profile</code> sehingga perlu dilakukan penggabungan 2 data frame (join) terlebih dahulu.</p>
 <pre class="r"><code>liq_stocks &lt;- stocks %&gt;% 
@@ -959,13 +1049,13 @@ head(liq_stocks)</code></pre>
 #&gt; 5 RIMO           2018 0.0123 
 #&gt; 6 LEAD           2018 0.00942</code></pre>
 <p>Setelah dilakukan penyesuaian pada volume, range dari nilai volume sekarang dari 1 hingga 0. saham dengan tingkat likuiditas terbesar dan terendah berdasarkan median volume dapat dilihat pada plot histogram dibawah.Plot dengan warna merah merupakan saham paling likuid, sedangkan plot yang berwarna biru merupakan saham tidak liquid.</p>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="size" class="section level2">
 <h2>Size</h2>
 <p>Size merupakan ukuran seberapa besar sebuah perusahaan di pasar saham. Nilai size bisa diwakili oleh <em>market capitalization</em> (market cap), market cap merupakan perkalian antar total share dengan harga saham tersebut. Semakin besar market cap maka semakin sulit untuk harga saham dipermainkan oleh segelintir orang. Harga yang digunakan untuk menghitung market cap adalah harga penutupan di akhir tahun 2019.</p>
 <p>Market capitalization terbesar di Indonesia adalah BBCA dengan nilai lebih dari 800 T pertanggal 30 Desember 2019. Market cap besar didominasi dari sektor finance khususnya perbankan (BBCA, BBRI, BMRI,BBNI).
-<img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="create-data-frame" class="section level2">
 <h2>Create Data frame</h2>
@@ -1024,7 +1114,7 @@ head(data_final) </code></pre>
 <p>Berbeda dengan algoritma K-Means yang harus menentukan jumlah cluster diawal, metode BDSCAN memerlukan minimum points (minPts) dan epsilon (eps) untuk proses pembuatan clusternya. Pencarian nilai Eps dan MinPts yang optimal bisa dilakukan dengan metode <code>knee plot</code>. Pembuatan knee plot dapat menggunakan fungsi <code>kNNdistplot</code> dari packages <code>dbscan</code>. Ide utama dari fungsi ini adalah menghitung jarak rata2 untuk setiap data ke k tetangga terdekatnya (nearest neighbors). Nilai dari K ditentukan oleh user yang nantinya akan digunakan sebagai minPts pada proses clustering. Rata rata jarak yang sudah didapat divisualisasikan dalam plot secara ascending untuk mendapatkan “knee” yang menunjukkan nilai optimal dari eps berdasarkan K yang ditentukan.</p>
 <pre class="r"><code>kNNdistplot(scale(data_final), k = 8)
 abline(h = 2.5, col = &quot;red&quot;)</code></pre>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Berdasarkan plot diatas dengan menggunakan K = 8 didapat jarak yang optimal yaitu sekitar 2.5. Nilai 2.5 didapat dari posisi “knee” yang terbentuk pada plot. Hasil pencarian nilai eps yang optimal diatas dapat digunakan dalam proses clustering yang mana nilai eps adalah 2.5 dengan minPts 8. Tahap selanjutnya adalah pembuatan cluster menggunakan function <code>dbscan</code> dengan parameter yang sudah didapat.</p>
 <pre class="r"><code># DBSCAN clustering
 dbscan_clust &lt;- dbscan(scale(data_final), eps = 2.5, minPts = 8)
@@ -1055,7 +1145,7 @@ data_anomaly %&gt;%
            select = &quot;contrib10&quot;,
            habillage = 8,
            col.hab = c(&quot;red&quot;, &quot;black&quot;))</code></pre>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Terdapat 2 warna pada biplot diatas yaitu merah dan hitam, emiten dengan warna merah merupakan emiten yang diindikasikan outlier. Emiten yang berwarna merah menyebar cukup jauh dari sebaran data yang lain (warna hitam). Emiten yang diindikasikan sebagai outlier tidak akan digunakan dalam proses clustering agar cluster yang terbentuk representatif.</p>
 <p>Data yang akan digunakan dalam proses clustering juga harus dilakukan scaling, hal ini dikarenakan metode K-Means berdasarkan perhitungan jarak antar data (euclidian distance) yang mana range antar data harus sama. proses scaling yang dilakukan menggunakan metode z-score, proses scaling hanya merubah skala dari data tanpa merubah distribusi data awal.</p>
 <pre class="r"><code>data_final_scale &lt;- data_anomaly %&gt;% 
@@ -1097,12 +1187,12 @@ tail(data_final_scale)</code></pre>
   abline(h = 1080, col  = &quot;firebrick3&quot;, lty = 2)
 }
 kmeansTunning(data_final_scale, maxK = 10)</code></pre>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Berdasarkan elbow plot diatas dapat dilihat ketika jumlah cluster ditambah dari 7 ke 8 penurunan nilai total withinss sudah tidak pesat lagi, sehingga jumlah cluster yang diambil adalah 7.</p>
 <pre class="r"><code>set.seed(122)
 clust &lt;- kmeans(data_final_scale,7)
 fviz_cluster(clust, data_final_scale, ggtheme = theme_minimal()) </code></pre>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Dari hasil visualisasi diatas dapat dilihat luas area dan jumlah anggota cluster berbeda. Hasil cluster dapat dilihat pada data dibawah, pada cluster 4 merupakan cluster dengan anggota terkecil yaitu 2 data, sedangkan cluster 2 merupakan cluster terpadat dengan jumlah anggota sebesar 269 data dengan nilai total wss sebesar 272.</p>
 <pre class="r"><code>kmeans_total &lt;- clust$cluster %&gt;% 
   table() %&gt;% 
@@ -1132,7 +1222,7 @@ fviz_nbclust(data_final_scale, pam, method = &quot;wss&quot;) +
     geom_vline(xintercept = 8, linetype = 2)+
   geom_hline(yintercept = 1100)+
   labs(subtitle = &quot;Elbow method&quot;)</code></pre>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>berdasarkan elbow plot didapat jumlah cluster yang optimum adalah 8 dengan total wss 1100. Fungsi yang digunakan untuk membuat K-medoid clustering adalah <code>pam()</code> dari packages <code>cluster</code>. data yang digunakan adalah data yang sama ketika proses pembuatan cluster dengan k-means, dan jumlah cluster yang digunakan adalah 8.</p>
 <pre class="r"><code># K-medoid clustering
 kmedoid &lt;- pam(x = data_final_scale, k = 8)
@@ -1172,7 +1262,7 @@ kmedoid$clusinfo %&gt;%
 <p>Dari data diatas bisa disimpulkan bahwa cluster 8 merupakan cluster dengan nilai separation terbesar yang menunjukkan cluster ini jauh dari cluster yang lain. Cluster lainnya yaitu cluster 2 memiliki diameter terbesar yang menjadikan cluster ini sebagai cluster terluas, sedangkan
 cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menjadi cluster terpadat.Karakteristik tersebut dapat dilihat dalam bentuk visualisasi seperti dibawah.</p>
 <pre class="r"><code>fviz_cluster(kmedoid, data_final_scale, ggtheme = theme_minimal())</code></pre>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="cluster-profiling" class="section level1">
@@ -1180,14 +1270,14 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
 <div id="comparing-k-means-and-k-medoid" class="section level2">
 <h2>Comparing K-Means and K-Medoid</h2>
 <p>Hasil clustering antara K-Medoid dan K-Means bila dilihat secara jumlah cluster dan wss tidak tidak terlalu jauh berbeda. Algoritma K-Means menghasilkan cluster sebanyak 7 dengan total wss sebesar 1080, sedangkan algoritma K-Medoid menghasilkan 8 cluster dengan total wss sebesar 1100. Bila hasil hasil kedua clustering tersebut dibandingkan secara langsung maka menghasilkan visualisi seperti dibawah.</p>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Hasil visualisasi diatas menunjukkan bahwa cluster 7 pada K-Means (sumbu x) memiliki anggota yang sama dengan cluster 7 pada K-medoid (sumbu y). Sedangkan cluster 2 pada K-Means terpecah ke dalam cluster 1, 3, 4, dan 5 pada K-Medoid hal ini disebabkan karena jarak antar cluster yang sangat berdekatan seperti plot dibawah.</p>
 <pre class="r"><code>ggpubr::ggarrange(
   fviz_cluster(clust, data_final_scale, main = &quot;K-Means Clustering&quot;, ggtheme = theme_minimal()),
   fviz_cluster(kmedoid, data_final_scale, main = &quot;K-Medoid Clustering&quot;,  ggtheme = theme_minimal()), 
   ncol = 1  
   )</code></pre>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Berdasarkan nilai wss dan jumlah K, K-Means lebih efektif dibandingkan K-Medoid oleh sebab itu cluster pada hasil K-means yang akan digunakan pada proses profiling cluster.</p>
 </div>
 <div id="characteristics-of-cluster" class="section level2">
@@ -1198,31 +1288,31 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
 <p>Hasil clustering menghasilkan 7 cluster dengan karakteristik berbeda beda. Cluster 2 merupakan cluster dengan jumlah data terbanyak yaitu sebesar 269 sedangkan cluster 4 hanya berisi 2 data saja. Selain itu rata rata market capitalization terbesar dipegang oleh cluster 7 dengan nilai 420.9 triliun. Dilihat dari tingkat volatilitas pergerakakan harga, seluruh cluster pada 2017 memiliki volatilitas yang lebih tinggi dari tahun lainnya kecuali cluster 4. Cluster 3 merupakan cluster dengan tingkat liquiditas yang tinggi, selama 3 tahun rata rata likuiditas diatas 0.3 atau 30% dari total seluruh saham yang ada.</p>
 <div id="jumlah-anggota" class="section level4">
 <h4>Jumlah Anggota</h4>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="cluster-1" class="section level3">
 <h3>Cluster 1</h3>
 <p><strong>Likuiditas tinggi dan stabil</strong></p>
 <p>Cluster 1 merupakan salah satu cluster dengan tingkat liquiditas yang tinggi. Tingginya nilai likuiditas diimbangi dengan konsistensinya selama 3 tahun, hal ini dapat ditunjukkan lewat boxplot dibawah. Berdasarkan plot dibawah garis tengah pada boxplot, serta ukuran box relatif lebih stabil bila dibandingkan dengan cluster lain. Cluster 4 yang terlihat lebih stabil daripada cluster 1 itu terjadi karena pada cluster tersebut hanya berisi 2 data saja.</p>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="cluster-2" class="section level3">
 <h3>Cluster 2</h3>
 <p><strong>Anggota cluster terbanyak</strong></p>
 <p>Cluster 2 merupakan cluster dengan jumlah anggota terbanyak yaitu sebesar 269 data atau sekitar 53% dari total keseluruhan data. Cluster ini terbilang sulit untuk dilakukan profiling secara langsung karena tidak adanya karakterisitik yang dominan. Bila dilihat kembali pada plot yang membandingkan hasil cluster K-Means dan K-Medoid, cluster 2 terbagi menjadi 3 bagian bila dilakukan clustering menggunkan K-Medoid, oleh sebab itu cluster ini akan dibagi lagi menjadi 3 sub-cluster menggunakan metode K-medoid. Hasil sub-cluster dapat dilihat pada visualisasi dibawah</p>
 <p>Berdasarkan hasil clustering menggunakan K-Medoid didapat 3 cluster seperti dibawah. sub-cluster 2 (warna hijau) merupakan cluster paling aktif, hal ini ditunjukkan dengan searahnya sebaran data tersebut dengan variabel <code>medvol</code> yang menunjukkan likuiditas. sub-cluster 1 memiliki arah yang berlawanan dengan variabel <code>sdclose</code> yang menunjukkan nilai volatilitas, sedangkan sub-cluster 3 berlawanan dengan <code>sdclose_2017</code>, serta <code>market_cap</code>.
-<img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
+<img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>anggota yang termasuk kedalam sub-cluster dapat dilihat melalui visualisasi dibawah ini.
-<img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+<img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="cluster-3" class="section level3">
 <h3>Cluster 3</h3>
 <div id="paling-liquid-setiap-tahun" class="section level4">
 <h4><strong>paling liquid setiap tahun</strong></h4>
 <p>Cluster 3 merupakan cluster dengan anggota 12 emiten. anggota dari cluster ini adalah <code>BCIP</code>, <code>BUMI</code>, <code>CINT</code>, <code>ELSA</code>, <code>ENRG</code>, <code>ERAA</code>, <code>KREN</code>, <code>SIMA</code>, <code>SSIA</code>, <code>SSMS</code>, <code>TARA</code>, <code>WEHA</code>. Cluster ini merupakan cluster dengan tingkat likuiditas tertinggi setiap tahunnya bila dibandingkan dengan clsuter lain.</p>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="cluster-4" class="section level3">
@@ -1230,7 +1320,7 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
 <div id="cluster-paling-kecil" class="section level4">
 <h4><strong>Cluster paling kecil</strong></h4>
 <p>Cluster 4 merupakan cluster dengan anggota terkecil, yang hanya di isi oleh <code>ELTY</code>, dan <code>MAPI</code>. cluster 4 terbentuk karena tingginya nilai volatilitas pada tahun 2018</p>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="cluster-5" class="section level3">
@@ -1238,7 +1328,7 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
 <div id="market-capitalization-terendah" class="section level4">
 <h4><strong>Market Capitalization Terendah</strong></h4>
 <p>Cluster 5 merupakan cluster dengan rata rata market capitalization terendah di pasar. Cluster yang dengan total anggota 134 ini miliki rata2 market cap sebesar 2.6 triliun.</p>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="volatilitas-tertinggi-di-2019" class="section level4">
 <h4><strong>Volatilitas tertinggi di 2019</strong></h4>
@@ -1252,7 +1342,7 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
   labs(x = &quot;Cluster&quot;, 
        y = NULL,
        title = &quot;Standard Deviation of Closing Price 2019&quot;)</code></pre>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="cluster-6" class="section level3">
@@ -1260,12 +1350,12 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
 <div id="volatilitas-pada-tahun-2017-terbesar" class="section level4">
 <h4><strong>Volatilitas pada tahun 2017 terbesar</strong></h4>
 <p>Cluster 6 merupakan cluster paling <em>volatile</em> di tahun 2017. Bila dilihat dari boxplot nilai standar deviasi tahun 2017 jauh diatas cluster yang lainnya, bahkan nilai minimum dari cluster tersebut lebih tinggi dari nilai maksimum pada cluster lain.</p>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="likuiditas-terendah-di-tahun-2017" class="section level4">
 <h4><strong>Likuiditas terendah di tahun 2017</strong></h4>
 <p>Walaupun pada tahun 2017 cluster ini paling volatile namun hal tersebut berbanding terbalik dengan likuiditasnya. Nilai median dari volume di tahun yang sama menunjukkan cluster ini merupakan cluster paling tidak liquid.</p>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="cluster-7" class="section level3">
@@ -1273,12 +1363,12 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
 <div id="market-cap-besar" class="section level4">
 <h4><strong>Market Cap Besar</strong></h4>
 <p>Cluster 7 merupakan cluster dengan jumlah anggota 7 emiten. Cluster ini memiliki rata rata market cap terbesar bila dibandingkan dengan cluster lain. Anggota dari cluster ini merupakan <code>ASII</code>, <code>BBCA</code>, <code>BBRI</code>, <code>BMRI</code>, <code>HMSP</code>, <code>TLKM</code>, <code>UNVR</code> yang merupakan emiten dengan market cap terbesar di bursa per Desember 2019.</p>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="volatilitas-rendah" class="section level4">
 <h4><strong>Volatilitas rendah</strong></h4>
 <p>Volatilitas cluster ini pada tahun 2018 dan 2019 relatif rendah bila dibandingkan cluster lain. Rendahnya volatilitas dapat dilihat pada boxplot dibawah. Garis tengah pada boxplot (median) cluster 7 lebih rendah dibandingkan cluster lain, dan variansi dari data juga terlihat kecil, yang mana bisa ditunjukkan dari tipisnya box yang terbentuk.</p>
-<p><img src="/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-04-17-unsupervised-learning-clustering-saham-indonesia_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -1320,7 +1410,7 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
                 <i class="fa fa-folder"></i>
                 
                 
-                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/categories/r">R</a></li>
                 
             
         
@@ -1334,10 +1424,10 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
                 <i class="fa fa-tags"></i>
                 
                 
-                <li><a class="article-category-link" href="/tags/unsupervised-learning">Unsupervised Learning</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/unsupervised-learning">Unsupervised Learning</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/clustering">Clustering</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/clustering">Clustering</a></li>
                 
             
         
@@ -1375,12 +1465,12 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/time-and-accuracy-improvement-using-pca/"
+        <li><a href="https://algotech.netlify.com/blog/time-and-accuracy-improvement-using-pca/"
                 class="button big previous">Time Efficiency and Accuracy Improvement using PCA</a></li>
     
 
     
-        <li><a href="/blog/pengenalan-teori-antrian/"
+        <li><a href="https://algotech.netlify.com/blog/pengenalan-teori-antrian/"
                 class="button big next">Pengenalan Teori Antrian</a></li>
     
 </ul>
@@ -1395,7 +1485,7 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
     
     
       
-        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+        <a href='https://algotech.netlify.com/'><img src="https://algotech.netlify.com/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
       
     
     
@@ -1508,13 +1598,9 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
       <div class="posts-container">
           <article class="mini-post">
             <header>
+              
               <h3>
-                
-                                <img src="/img/2020/ads/dss.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/text-analysis/?utm_source=algotech">More details</a>
-                
-                <img src="/img/2020/ads/ddt.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/data-driven-2/?utm_source=algotech">More details</a>
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>
@@ -1600,9 +1686,9 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
-      <script src="/js/util.js"></script>
-      <script src="/js/main.js"></script>
-      <script src="/js/backToTop.js"></script>
+      <script src="https://algotech.netlify.com/js/util.js"></script>
+      <script src="https://algotech.netlify.com/js/main.js"></script>
+      <script src="https://algotech.netlify.com/js/backToTop.js"></script>
     
 
     
@@ -1610,7 +1696,7 @@ cluster 5 dengan jumlah anggota 166 dan diameter 2.765 membuat cluster ini menja
         
       
         
-          <script src="/js/bootstrap.min.js"></script>
+          <script src="https://algotech.netlify.com/js/bootstrap.min.js"></script>
         
       
     

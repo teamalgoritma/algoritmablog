@@ -2,134 +2,178 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Machine Learning on Algoritma Technical Blog</title>
-    <link>/tags/machine-learning/</link>
+    <link>https://algotech.netlify.com/tags/machine-learning/</link>
     <description>Recent content in Machine Learning on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GridSearchCV</title>
+      <link>https://algotech.netlify.com/blog/gridsearchcv/</link>
+      <pubDate>Sat, 22 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/gridsearchcv/</guid>
+      <description>Background Proses pengerjaan machine learning pada umumnya meliputi uji coba berbagai model terhadap dataset dengan memilih model dengan performa terbaik. Untuk mendapatkan hasil prediksi data yang akurat, diperlukan tidak hanya model machine learning yang tepat, tetapi juga hyperparameter (parameter yang mengatur proses pembelajaran mesin) yang tepat pula yang dikenal dengan istilah hyperparameter tuning. Menentukan kombinasi yang tepat antara model dan hyperparameter seringkali menjadi tantangan.
+Grid Search Cross Validation adalah metode pemilihan kombinasi model dan hyperparameter dengan cara menguji coba satu persatu kombinasi dan melakukan validasi untuk setiap kombinasi.</description>
+    </item>
     
-	<atom:link href="/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Image Classification with Convolutional Network</title>
+      <link>https://algotech.netlify.com/blog/image-classification-cnn/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/image-classification-cnn/</guid>
+      <description>body { text-align: justify}  Introduction Deep learning is a great approach to deal with unstructured data such as text, sound, video and image. There are a lot of implementation of deep learning in image classification and image detection, such as classifying image of dog or cats, detecting different objects in an image or do facial recognition.
+  On this article, we will try to build a simple image classification that will classify whether the presented image is a cat, dog, or a panda.</description>
+    </item>
     
+    <item>
+      <title>Tidymodels: Churn Over Prediction</title>
+      <link>https://algotech.netlify.com/blog/tidymodels-churn-over-prediction/</link>
+      <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/tidymodels-churn-over-prediction/</guid>
+      <description>body { text-align: justify}  Untuk membuat sebuah model machine learning diperlukan beberapa proses seperti praproses data, modeling, sampai model evaluation. R memiliki banyak sekali packages yang dapat digunakan dalam proses pemodelan. Untuk mempermudah seorang data scientist dalam membuat model, Rstudio mengembangkan kumpulan packages yang diberi nama Tidymodels.
+Tidymodels merupakan framework yang berisi kumpulan packages untuk membuat model machine learning menggunakan konsep Tidyverse. Beberapa packages seperti rsample, recipes, parsnip, dials, tune, yardstick, workflows sudah saling terintegrasi untuk membuat satu proses pemodelan yang utuh.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Hierarchical Clustering</title>
+      <link>https://algotech.netlify.com/blog/introduction-to-hierarchical-clustering/</link>
+      <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/introduction-to-hierarchical-clustering/</guid>
+      <description>Clustering merupakan salah satu metode Unsupervised Learning yang bertujuan untuk melakukan pengelompokan data berdasasrkan kemiripan/jarak antar data. Clustering memiliki karakteristik dimana anggota dalam satu cluster memiliki kemiripan yang sama atau jarak yang sangat dekat, sementara anggota antar cluster memiliki kemiripan yang sangat berbeda atau jarak yang sangat jauh. Menurut (Tan et al., 2006) dalam bukunya yang berjudul Introduction to Data Mining, metode clustering dibagi menjadi dua jenis, yaitu Hierarchical Clustering dan Partitional Clustering1.</description>
+    </item>
+    
+    <item>
+      <title>Algoritma OPTICS (Ordering Points to Identify the Clustering Structure)</title>
+      <link>https://algotech.netlify.com/blog/algoritma-optics/</link>
+      <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/algoritma-optics/</guid>
+      <description>body {text-align: justify}Pada postingan Algoritma Technical Blog sebelumnya, Anda mungkin telah membaca tentang Algoritma DBSCAN (Density-based Spatial Clustering of Application with Noise) yang merupakan sebuah algoritma untuk mengelompokkan data (clustering) berbasis kepadatan. DBSCAN sendiri memiliki keunggulan dari metode clustering yang paling umum digunakan yaitu K-Means, dimana DBSCAN tidak akan memasukkan data yang dianggap noise kedalam cluster manapun. Tentunya ini menjadi keuunggulan sendiri mengingat data noise bisa jadi memiliki karakteristik yang jauh berbeda dengan kumpulan data pada umumnya.</description>
+    </item>
     
     <item>
       <title>Boosting Algorithm (AdaBoost and XGBoost)</title>
-      <link>/blog/xgboost/</link>
+      <link>https://algotech.netlify.com/blog/xgboost/</link>
       <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/xgboost/</guid>
-      <description>body {text-align: justify}IntroductionWhat is boosting?Boosting is an ensemble method of converting weak learners into strong learners. Weak and strong refer to a measure how correlated are the learners to the actual target variable[^1]. In boosting, each training sample are used to train one unit of decision tree and picked with replacement over-weighted data. The trees will learn from predecessors and updates the residuals error.</description>
+      <guid>https://algotech.netlify.com/blog/xgboost/</guid>
+      <description>body { text-align: justify}  Introduction What is boosting? Boosting is an ensemble method of converting weak learners into strong learners. Weak and strong refer to a measure how correlated are the learners to the actual target variable[^1]. In boosting, each training sample are used to train one unit of decision tree and picked with replacement over-weighted data. The trees will learn from predecessors and updates the residuals error.</description>
     </item>
     
     <item>
       <title>Fuzzy C-Means Clustering</title>
-      <link>/blog/fuzzy-clustering/</link>
+      <link>https://algotech.netlify.com/blog/fuzzy-clustering/</link>
       <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/fuzzy-clustering/</guid>
-      <description>head {text-align: center}body {text-align: justify}IntroductionClusteringClustering merupakan salah satu metode machine learning dan termasuk dalam unsupervised learning. Unsupervised learning adalah metode machine learning di mana dalam data yang akan dianalisis tidak terdapat target variabel. Dalam unsupervised learning lebih fokus dalam melakukan eksplorasi data seperti mencari pola dalam data. Clustering sendiri bertujuan mencari pola data yang mirip sehingga memiliki kemungkinan dalam mengelompokkan data-data yang mirip tersebut.</description>
+      <guid>https://algotech.netlify.com/blog/fuzzy-clustering/</guid>
+      <description>head { text-align: center } body { text-align: justify }  Introduction Clustering Clustering merupakan salah satu metode machine learning dan termasuk dalam unsupervised learning. Unsupervised learning adalah metode machine learning di mana dalam data yang akan dianalisis tidak terdapat target variabel. Dalam unsupervised learning lebih fokus dalam melakukan eksplorasi data seperti mencari pola dalam data. Clustering sendiri bertujuan mencari pola data yang mirip sehingga memiliki kemungkinan dalam mengelompokkan data-data yang mirip tersebut.</description>
     </item>
     
     <item>
       <title>Topic Modelling with Latent Dirichlet Allocation (LDA)</title>
-      <link>/blog/topic-modeling-lda/</link>
+      <link>https://algotech.netlify.com/blog/topic-modeling-lda/</link>
       <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/topic-modeling-lda/</guid>
+      <guid>https://algotech.netlify.com/blog/topic-modeling-lda/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Topic Modelling with Latent Dirichlet Allocation (LDA)</title>
-      <link>/blog/topic-modeling-lda/</link>
+      <link>https://algotech.netlify.com/blog/topic-modeling-lda/</link>
       <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/topic-modeling-lda/</guid>
+      <guid>https://algotech.netlify.com/blog/topic-modeling-lda/</guid>
       <description>Topic Modelling Background Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:
  SPAM email detection Sentiment Analysis Text summarization Text Generation Topic Modelling  On this occation, we will learn about Topic Modelling and it&amp;rsquo;s application in a real case.</description>
     </item>
     
     <item>
       <title>Interpreting Black Box Regression Model with LIME</title>
-      <link>/blog/interpreting-black-box-regression-model-with-lime/</link>
+      <link>https://algotech.netlify.com/blog/interpreting-black-box-regression-model-with-lime/</link>
       <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/interpreting-black-box-regression-model-with-lime/</guid>
+      <guid>https://algotech.netlify.com/blog/interpreting-black-box-regression-model-with-lime/</guid>
       <description>INTRODUCTION One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning.</description>
     </item>
     
     <item>
       <title>Skincare Recommendation System</title>
-      <link>/blog/skincare-recommender-system/</link>
+      <link>https://algotech.netlify.com/blog/skincare-recommender-system/</link>
       <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/skincare-recommender-system/</guid>
-      <description>body {text-align: justify}Have you ever imagine how Netflix give you recommendation for movies you have never watch before?If you’re familiar with machine learning, you can find the answer. Yappps.. that’s right. The answer is “Recommendation System”.Recommendation system or recommender system is subclass of information filtering system that seeks to predict the “rating” or “preference” a user would give to an item. Recommendation system aims to telling us which movies to watch (Netflix), which product to buy (Amazone), or which songs to listen (Spotify) based on our historical data.</description>
+      <guid>https://algotech.netlify.com/blog/skincare-recommender-system/</guid>
+      <description>body { text-align: justify}  Have you ever imagine how Netflix give you recommendation for movies you have never watch before? If you’re familiar with machine learning, you can find the answer. Yappps.. that’s right. The answer is “Recommendation System”. Recommendation system or recommender system is subclass of information filtering system that seeks to predict the “rating” or “preference” a user would give to an item. Recommendation system aims to telling us which movies to watch (Netflix), which product to buy (Amazone), or which songs to listen (Spotify) based on our historical data.</description>
     </item>
     
     <item>
       <title>Song2Vec: Music Recommender</title>
-      <link>/blog/song2vec-music-recommender/</link>
+      <link>https://algotech.netlify.com/blog/song2vec-music-recommender/</link>
       <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/song2vec-music-recommender/</guid>
-      <description>body {text-align: justify}BackgroundThe behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music,Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.</description>
+      <guid>https://algotech.netlify.com/blog/song2vec-music-recommender/</guid>
+      <description>body { text-align: justify}  Background The behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music, Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.</description>
     </item>
     
     <item>
       <title>Regression Model with Panel Data</title>
-      <link>/blog/regression-with-panel-data/</link>
+      <link>https://algotech.netlify.com/blog/regression-with-panel-data/</link>
       <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/regression-with-panel-data/</guid>
-      <description>body {text-align: justify}IntroductionPanel RegressionPanel data are also called longitudinal data or cross-sectional time-series data. A panel data set has multiple entities, each of which has repeated measurements at different time periods. Panel data may have individual (group) effect, time effect, or both, which are analyzed by fixed effect and/or random effect models.1
+      <guid>https://algotech.netlify.com/blog/regression-with-panel-data/</guid>
+      <description>body { text-align: justify}  Introduction Panel Regression Panel data are also called longitudinal data or cross-sectional time-series data. A panel data set has multiple entities, each of which has repeated measurements at different time periods. Panel data may have individual (group) effect, time effect, or both, which are analyzed by fixed effect and/or random effect models.1
 Panel data examples:
-Annual unemployment rates of each state over several years</description>
+ Annual unemployment rates of each state over several years</description>
     </item>
     
     <item>
       <title>Time Efficiency and Accuracy Improvement using PCA</title>
-      <link>/blog/time-and-accuracy-improvement-using-pca/</link>
+      <link>https://algotech.netlify.com/blog/time-and-accuracy-improvement-using-pca/</link>
       <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/time-and-accuracy-improvement-using-pca/</guid>
-      <description>About Dimensionality ReductionIf you are familiar enough with data, sometimes you are faced with too many predictor variables that make the computation so heavy. Let us say, you are challenged to predict employee in your company will resign or not while the variables are the level of satisfaction on work, number of project, average monthly hours, time spend at the company, etc. You are facing so many predictor that took so long for training your model.</description>
+      <guid>https://algotech.netlify.com/blog/time-and-accuracy-improvement-using-pca/</guid>
+      <description>About Dimensionality Reduction If you are familiar enough with data, sometimes you are faced with too many predictor variables that make the computation so heavy. Let us say, you are challenged to predict employee in your company will resign or not while the variables are the level of satisfaction on work, number of project, average monthly hours, time spend at the company, etc. You are facing so many predictor that took so long for training your model.</description>
     </item>
     
     <item>
       <title>Text Generation with Markov Chains</title>
-      <link>/blog/text-generating-with-markov-chains/</link>
+      <link>https://algotech.netlify.com/blog/text-generating-with-markov-chains/</link>
       <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/text-generating-with-markov-chains/</guid>
-      <description>body {text-align: justify}IntroductionText GenerationNatural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:
-SPAM email detectionSentiment AnalysisText summarizationTopic ModellingText GenerationIn this article, we will try to learn the last one: text generation.</description>
+      <guid>https://algotech.netlify.com/blog/text-generating-with-markov-chains/</guid>
+      <description>body { text-align: justify}  Introduction Text Generation Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:
+ SPAM email detection Sentiment Analysis Text summarization Topic Modelling Text Generation  In this article, we will try to learn the last one: text generation.</description>
     </item>
     
     <item>
       <title>Interpreting Text Classification Model with LIME</title>
-      <link>/blog/text-lime/</link>
+      <link>https://algotech.netlify.com/blog/text-lime/</link>
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/text-lime/</guid>
-      <description>body {text-align: justify}IntroductionThis article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at my previous post .
+      <guid>https://algotech.netlify.com/blog/text-lime/</guid>
+      <description>body { text-align: justify}  Introduction This article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at my previous post .
 One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target?</description>
     </item>
     
     <item>
       <title>DBSCAN Clustering</title>
-      <link>/blog/dbscan-clustering/</link>
+      <link>https://algotech.netlify.com/blog/dbscan-clustering/</link>
       <pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/dbscan-clustering/</guid>
-      <description>body {text-align: justify}1. Pendahuluan1.1 Clustering Clustering merupakan salah satu bagian dari unsupervised learning. Clustering memiliki tujuan untuk membagi data ke dalam beberapa kelompok berdasarkan kemiripan antar data. Cluster (kelompok) yang baik adalah cluster yang memiliki kemiripan yang besar antar anggota clusternya dan memiliki perbedaan yang signifikan dengan anggota cluster yang berbeda. Clustering dapat diterapkan dalam berbagai bidang seperti segmentasi pasar, cluster profiling, data spatial dll.</description>
+      <guid>https://algotech.netlify.com/blog/dbscan-clustering/</guid>
+      <description>body { text-align: justify}  1. Pendahuluan 1.1 Clustering  Clustering merupakan salah satu bagian dari unsupervised learning. Clustering memiliki tujuan untuk membagi data ke dalam beberapa kelompok berdasarkan kemiripan antar data. Cluster (kelompok) yang baik adalah cluster yang memiliki kemiripan yang besar antar anggota clusternya dan memiliki perbedaan yang signifikan dengan anggota cluster yang berbeda. Clustering dapat diterapkan dalam berbagai bidang seperti segmentasi pasar, cluster profiling, data spatial dll.</description>
     </item>
     
     <item>
       <title>Ridge and LASSO Regression</title>
-      <link>/blog/ridge-lasso/</link>
+      <link>https://algotech.netlify.com/blog/ridge-lasso/</link>
       <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/ridge-lasso/</guid>
+      <guid>https://algotech.netlify.com/blog/ridge-lasso/</guid>
       <description>Overview Regression analysis is a way that can be used to determine the relationship between the predictor variable (x) and the target variable (y).
 Ordinary Least Squares (OLS) is the most common estimation method for linear models and it applies for good reasons. As long as your model meets the OLS assumptions for linear regression, you can rest easy knowing that you get the best estimate.
 But in the real world to meet OLS regression assumptions will be very difficult.</description>
@@ -137,28 +181,28 @@ But in the real world to meet OLS regression assumptions will be very difficult.
     
     <item>
       <title>Interpreting Classification Model with LIME</title>
-      <link>/blog/interpreting-classification-model-with-lime/</link>
+      <link>https://algotech.netlify.com/blog/interpreting-classification-model-with-lime/</link>
       <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/interpreting-classification-model-with-lime/</guid>
+      <guid>https://algotech.netlify.com/blog/interpreting-classification-model-with-lime/</guid>
       <description>Introduction One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning.</description>
     </item>
     
     <item>
       <title>Text Classification with LSTM</title>
-      <link>/blog/text-lstm/</link>
+      <link>https://algotech.netlify.com/blog/text-lstm/</link>
       <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/text-lstm/</guid>
+      <guid>https://algotech.netlify.com/blog/text-lstm/</guid>
       <description>Deep Neural Network Before we further discuss the Long Short-Term Memory Model, we will first discuss the term of Deep learning where the main idea is on the Neural Network. So Neural Network is one branch of machine learning where the learning process imitates the way neurons in the human brain works. In Neural Network we know several terms, such as the input layer, hidden layer, and output layer. So the different betweetn Deep Learning and Neural Network architecture is the number of hidden layers specified.</description>
     </item>
     
     <item>
       <title>Poisson Regression and Negative Binomial Regression</title>
-      <link>/blog/poisson-regression-and-neg-ative-binomial-regression/</link>
+      <link>https://algotech.netlify.com/blog/poisson-regression-and-neg-ative-binomial-regression/</link>
       <pubDate>Tue, 22 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/poisson-regression-and-neg-ative-binomial-regression/</guid>
+      <guid>https://algotech.netlify.com/blog/poisson-regression-and-neg-ative-binomial-regression/</guid>
       <description>Introduction Regression analysis is a set of statistical processes for estimating the relationships among variables. It includes many techniques for modeling and analyzing several variables, when the focus is on the relationship between a dependent variable and one or more independent variables (or &amp;lsquo;predictors&amp;rsquo;).
 For example   Find out the effect of land area and building area on house prices in the Kuningan region (Multiple Linear Regression)
   Find out the effect of allowance and GPA on cum laude predicate (yes or no) ?</description>
@@ -166,67 +210,67 @@ For example   Find out the effect of land area and building area on house prices
     
     <item>
       <title>Introduction to tidymodels</title>
-      <link>/blog/tidymodels/</link>
+      <link>https://algotech.netlify.com/blog/tidymodels/</link>
       <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/tidymodels/</guid>
+      <guid>https://algotech.netlify.com/blog/tidymodels/</guid>
       <description>The following presentation is produced by the team at Algoritma for its internal training This presentation is intended for a restricted audience only. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
 Outline Why tidymodels Matters?  Things we think we&amp;rsquo;re doing it right Things we never think we could do it better  Setting the Cross-Validation Scheme using rsample  Rethinking: Why we need validation?</description>
     </item>
     
     <item>
       <title>Self-Organizing Maps</title>
-      <link>/blog/self-organizing-maps/</link>
+      <link>https://algotech.netlify.com/blog/self-organizing-maps/</link>
       <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/self-organizing-maps/</guid>
+      <guid>https://algotech.netlify.com/blog/self-organizing-maps/</guid>
       <description>Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations.</description>
     </item>
     
     <item>
       <title>Purrr-operly Fitting Multiple Time Series Model</title>
-      <link>/blog/purrr-operly-fitting-multiple-time-series-model/</link>
+      <link>https://algotech.netlify.com/blog/purrr-operly-fitting-multiple-time-series-model/</link>
       <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
+      <guid>https://algotech.netlify.com/blog/purrr-operly-fitting-multiple-time-series-model/</guid>
       <description>In this article, I will explain some basic functional programming for fitting multiple time series using R, particularly using purrr interface.
-TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
-PrefaceWhen it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
+ TL;DR: you can find the distraction-free script in here, and read some of my concluding remarks for a quick summary :grin:
+ Preface When it comes to time series analyses and forecasting, R users are blessed with an invaluable tools that could helps us to conveniently fit–from basic to advanced–univariate time series models: forecast package.</description>
     </item>
     
     <item>
       <title>Time Series Prediction with LSTM</title>
-      <link>/blog/time-series-prediction-with-lstm/</link>
+      <link>https://algotech.netlify.com/blog/time-series-prediction-with-lstm/</link>
       <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/time-series-prediction-with-lstm/</guid>
-      <description>Time Series Forecasting using LSTMTime series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing.A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
+      <guid>https://algotech.netlify.com/blog/time-series-prediction-with-lstm/</guid>
+      <description>Time Series Forecasting using LSTM Time series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing. A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
     </item>
     
     <item>
       <title>Metrics Evaluation using `yardstick`</title>
-      <link>/blog/metrics-evaluation-using-yardstick/</link>
+      <link>https://algotech.netlify.com/blog/metrics-evaluation-using-yardstick/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/metrics-evaluation-using-yardstick/</guid>
-      <description>MotivationEvaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.</description>
+      <guid>https://algotech.netlify.com/blog/metrics-evaluation-using-yardstick/</guid>
+      <description>Motivation Evaluating your machine learning algorithms is important part in your project. Choice of metrics influences how the performance of machine learning algorithms is measured and compared. Metrics evaluation used to measure the performance of our algorithms. For Regression models, we usually use R-squared and MSE, but for Classification models we can use precision, recall and accuracy. Evaluating a classifier is often much more difficult than evaluating a regression algorithm.</description>
     </item>
     
     <item>
       <title>Forecasting Time Series with Multiple Seasonal</title>
-      <link>/blog/multiple-seasonal/</link>
+      <link>https://algotech.netlify.com/blog/multiple-seasonal/</link>
       <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/multiple-seasonal/</guid>
-      <description>IntroductionTime Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
+      <guid>https://algotech.netlify.com/blog/multiple-seasonal/</guid>
+      <description>Introduction Time Series Analysis describes a set of research problems where our observations are collected at regular time intervals and where we can assume correlations among successive observations. The principal idea is to learn from these past observations any inherent structures or patterns within the data, with the objective of generating future values for the series. Time series may contain multiple seasonal cycles of different lengths. A fundamental goal for multiple seasonal (MS) processes is to allow for the seasonal terms that represent a seasonal cycle to be updated more than once during the period of the cycle.</description>
     </item>
     
     <item>
       <title>Causal Inference and Bayesian Network</title>
-      <link>/blog/causal-inference-and-bayesian-network/</link>
+      <link>https://algotech.netlify.com/blog/causal-inference-and-bayesian-network/</link>
       <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/causal-inference-and-bayesian-network/</guid>
+      <guid>https://algotech.netlify.com/blog/causal-inference-and-bayesian-network/</guid>
       <description>Introduction Cause has been people&amp;rsquo;s curiosity for a long time, you can see that people often ask &amp;ldquo;Why&amp;rdquo; to things happening around them. But do we actually know how to explain &amp;ldquo;cause&amp;rdquo;?
 Do we jump to conclusion of causal relationship often too quickly?
 Can association between factors that we call mathematically &amp;ldquo;correlation&amp;rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&amp;rsquo;t mean it affects each other.</description>
@@ -234,10 +278,10 @@ Can association between factors that we call mathematically &amp;ldquo;correlati
     
     <item>
       <title>Support Vector Machine</title>
-      <link>/blog/support-vector-machine/</link>
+      <link>https://algotech.netlify.com/blog/support-vector-machine/</link>
       <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/support-vector-machine/</guid>
+      <guid>https://algotech.netlify.com/blog/support-vector-machine/</guid>
       <description>Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.
 So how does SVM find the right hyperplane?</description>
     </item>

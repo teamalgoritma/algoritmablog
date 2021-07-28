@@ -2,40 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>lime on Algoritma Technical Blog</title>
-    <link>/tags/lime/</link>
+    <link>https://algotech.netlify.com/tags/lime/</link>
     <description>Recent content in lime on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Oct 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/lime/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 20 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/lime/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Interpreting Black Box Regression Model with LIME</title>
-      <link>/blog/interpreting-black-box-regression-model-with-lime/</link>
+      <link>https://algotech.netlify.com/blog/interpreting-black-box-regression-model-with-lime/</link>
       <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/interpreting-black-box-regression-model-with-lime/</guid>
+      <guid>https://algotech.netlify.com/blog/interpreting-black-box-regression-model-with-lime/</guid>
       <description>INTRODUCTION One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning.</description>
     </item>
     
     <item>
       <title>Interpreting Text Classification Model with LIME</title>
-      <link>/blog/text-lime/</link>
+      <link>https://algotech.netlify.com/blog/text-lime/</link>
       <pubDate>Fri, 13 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/text-lime/</guid>
-      <description>body {text-align: justify}IntroductionThis article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at my previous post .
+      <guid>https://algotech.netlify.com/blog/text-lime/</guid>
+      <description>body { text-align: justify}  Introduction This article will focus on the implementation of LIME for interpreting text classification, since they are slightly different from common classification problem. We will cover the important points as clearly as possible. More detailed concept of LIME is available at my previous post .
 One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target?</description>
     </item>
     
     <item>
       <title>Interpreting Classification Model with LIME</title>
-      <link>/blog/interpreting-classification-model-with-lime/</link>
+      <link>https://algotech.netlify.com/blog/interpreting-classification-model-with-lime/</link>
       <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/interpreting-classification-model-with-lime/</guid>
+      <guid>https://algotech.netlify.com/blog/interpreting-classification-model-with-lime/</guid>
       <description>Introduction One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning.</description>
     </item>
     

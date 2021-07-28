@@ -2,21 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Regularization on Algoritma Technical Blog</title>
-    <link>/tags/regularization/</link>
+    <link>https://algotech.netlify.com/tags/regularization/</link>
     <description>Recent content in Regularization on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Dec 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/regularization/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 18 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/regularization/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ridge and LASSO Regression</title>
-      <link>/blog/ridge-lasso/</link>
+      <link>https://algotech.netlify.com/blog/ridge-lasso/</link>
       <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/ridge-lasso/</guid>
+      <guid>https://algotech.netlify.com/blog/ridge-lasso/</guid>
       <description>Overview Regression analysis is a way that can be used to determine the relationship between the predictor variable (x) and the target variable (y).
 Ordinary Least Squares (OLS) is the most common estimation method for linear models and it applies for good reasons. As long as your model meets the OLS assumptions for linear regression, you can rest easy knowing that you get the best estimate.
 But in the real world to meet OLS regression assumptions will be very difficult.</description>

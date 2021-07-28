@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Feature Extraction on Algoritma Technical Blog</title>
+    <link>https://algotech.netlify.com/tags/feature-extraction/</link>
+    <description>Recent content in Feature Extraction on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 22 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/feature-extraction/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GridSearchCV</title>
+      <link>https://algotech.netlify.com/blog/gridsearchcv/</link>
+      <pubDate>Sat, 22 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/gridsearchcv/</guid>
+      <description>Background Proses pengerjaan machine learning pada umumnya meliputi uji coba berbagai model terhadap dataset dengan memilih model dengan performa terbaik. Untuk mendapatkan hasil prediksi data yang akurat, diperlukan tidak hanya model machine learning yang tepat, tetapi juga hyperparameter (parameter yang mengatur proses pembelajaran mesin) yang tepat pula yang dikenal dengan istilah hyperparameter tuning. Menentukan kombinasi yang tepat antara model dan hyperparameter seringkali menjadi tantangan.
+Grid Search Cross Validation adalah metode pemilihan kombinasi model dan hyperparameter dengan cara menguji coba satu persatu kombinasi dan melakukan validasi untuk setiap kombinasi.</description>
+    </item>
+    
+  </channel>
+</rss>

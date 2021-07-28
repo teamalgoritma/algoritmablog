@@ -2,23 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Markov Chains on Algoritma Technical Blog</title>
-    <link>/tags/markov-chains/</link>
+    <link>https://algotech.netlify.com/tags/markov-chains/</link>
     <description>Recent content in Markov Chains on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/markov-chains/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/markov-chains/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Text Generation with Markov Chains</title>
-      <link>/blog/text-generating-with-markov-chains/</link>
+      <link>https://algotech.netlify.com/blog/text-generating-with-markov-chains/</link>
       <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/text-generating-with-markov-chains/</guid>
-      <description>body {text-align: justify}IntroductionText GenerationNatural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:
-SPAM email detectionSentiment AnalysisText summarizationTopic ModellingText GenerationIn this article, we will try to learn the last one: text generation.</description>
+      <guid>https://algotech.netlify.com/blog/text-generating-with-markov-chains/</guid>
+      <description>body { text-align: justify}  Introduction Text Generation Natural Language Processing (NLP) is a branch of artificial intelligence that is steadily growing both in terms of research and market values1. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable2. The are many applications of NLP in various industries, such as:
+ SPAM email detection Sentiment Analysis Text summarization Topic Modelling Text Generation  In this article, we will try to learn the last one: text generation.</description>
     </item>
     
   </channel>

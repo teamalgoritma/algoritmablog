@@ -135,20 +135,65 @@
   }
   
   body.dark-mode , 
-body.dark-mode :not(img) main * {
-    background-color: #0d0d0d;
+  body.dark-mode main * {
+    background-color: #000000;
     color: #000000;
-     filter: invert(40%) hue-rotate(0deg) brightness(105%) contrast(75%);
-    -webkit-filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(90%);
-    
+    filter: invert(0.95);
 }
 
+  .dark-mode img {
+  filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
+  .dark-mode p {
+  color: #000000;
+}
+  
+  .dark-mode code {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    font-weight: bold;
+    background: #353737;
+    color: white;
+}
+
+  .dark-mode strong, b {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+  
+  .dark-mode #social-share ul{
+    margin: 0;
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode #header {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+  }
+
+  .dark-mode .js-toggle--focus .js-toggle-thumb {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode .footer {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+    background-color: white;
+    font-weight: bold;
+  }
+
+  .dark-mode .nav-secondary {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
+
+  .dark-mode #reactions .reaction-items .reaction-item .reaction-item__button img, #reactions-promotion .reaction-items .reaction-item .reaction-item__button img {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
 </style>
 
 <script>
     var body = document.body;
+    var article = document.article;
 	var switcher = document.getElementsByClassName('js-toggle')[0];
 
 	
@@ -158,10 +203,12 @@ body.dark-mode :not(img) main * {
 		
 		if (this.classList.contains('js-toggle--checked')) {
 			body.classList.add('dark-mode');
+			article.classList.add('post.dark-mode');
 			
 			localStorage.setItem('darkMode', 'true');
 		} else {
 			body.classList.remove('dark-mode');
+			article.classList.remove('post.dark-mode');
 			setTimeout(function() {
 				localStorage.removeItem('darkMode');
 			}, 100);
@@ -173,6 +220,7 @@ body.dark-mode :not(img) main * {
 		
         switcher.classList.add('js-toggle--checked');
         body.classList.add('dark-mode');
+        article.classList.add('post.dark-mode');
 	}
 
 </script>
@@ -185,7 +233,7 @@ body.dark-mode :not(img) main * {
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "\/"
+             "@id": "https:\/\/algotech.netlify.com\/"
         },
         "articleSection" : "blog",
         "name" : "Blog",
@@ -198,9 +246,9 @@ body.dark-mode :not(img) main * {
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2021",
-        "datePublished": "2021-01-11 00:00:00 \u002b0000 UTC",
-        "dateModified" : "2021-01-11 00:00:00 \u002b0000 UTC",
-        "url" : "\/blog\/",
+        "datePublished": "2021-06-03 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2021-06-03 00:00:00 \u002b0000 UTC",
+        "url" : "https:\/\/algotech.netlify.com\/blog\/",
         "wordCount" : "0",
         "keywords" : [ "Blog" ]
     }
@@ -211,7 +259,7 @@ body.dark-mode :not(img) main * {
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.74.3" />
+        <meta name="generator" content="Hugo 0.83.1" />
         
   
     
@@ -219,8 +267,8 @@ body.dark-mode :not(img) main * {
 
   
 
-  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
-  <link rel="icon" href='/favicon/favicon.png'>
+  <link rel="apple-touch-icon-precomposed" href='https://algotech.netlify.com/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='https://algotech.netlify.com/favicon/favicon.png'>
   
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
@@ -245,16 +293,15 @@ body.dark-mode :not(img) main * {
         <meta property="og:title" content="Blog" />
 <meta property="og:description" content="To learn more about our approach to data science problems, feel free to hop over to our blog." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="/blog/" />
-<meta property="og:updated_time" content="2021-01-11T00:00:00+00:00" />
+<meta property="og:url" content="https://algotech.netlify.com/blog/" />
 
-        <meta property="og:image" content="//images/logo.png">
+
+        <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Blog">
 <meta itemprop="description" content="To learn more about our approach to data science problems, feel free to hop over to our blog.">
-
         
 
         
@@ -263,26 +310,148 @@ body.dark-mode :not(img) main * {
 
         
         
-        
-            <link rel="stylesheet" href="/css/monokai-sublime.css">
+            <link disabled id="dark-mode-theme" rel="stylesheet" href="https://algotech.netlify.com/css/dark.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
-            <link rel="stylesheet" href="/css/main.css">
-            <link rel="stylesheet" href="/css/add-on.css">
-            <link rel="stylesheet" href="/css/academicons.min.css">
-            <link href="/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
-            <link href="/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/add-on.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/academicons.min.css">
+            <link href="https://algotech.netlify.com/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
         
+            <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                      integrity=
+            "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+                      crossorigin="anonymous">
+                <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+                </script>
+                <script src=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+                </script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.0/js.cookie.js">
+                </script>
+                
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
+                </script>
+              
+                <style>
+                    
+                     
+
+
+                    .modal:before {
+                        content: '';
+                        display: inline-block;
+                        height: 20%;
+                        vertical-align: middle;
+                    }
+                      
+                    .modal-dialog {
+                        
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    -webkit-flex-direction: column;
+                        -ms-flex-direction: column;
+                            flex-direction: column;
+                    -webkit-box-pack: center;
+                    -webkit-justify-content: center;
+                        -ms-flex-pack: center;
+                            justify-content: center;
+                    }
+
+                      
+                    .modal .modal-content {
+                        padding: 20px 20px 20px 20px;
+                        -webkit-animation-name: modal-animation;
+                        -webkit-animation-duration: 0.5s;
+                        animation-name: modal-animation;
+                        animation-duration: 1.5s;
+                    }
+
+                
+
+                    .modal .leadin-button {
+                        -webkit-border-radius: 0.25em;
+                        -moz-border-radius: 0.25em;
+                        -ms-border-radius: 0.25em;
+                        -o-border-radius: 0.25em;
+                        border-radius: 0.25em;
+                        -webkit-appearance: none;
+                        cursor: pointer;
+                        font-size: 1em;
+                        font-weight: bold;
+                        line-height: 1;
+                        padding: 1em 1.5em;
+                        width: 100%;
+                        text-decoration: none;
+                    }
+                    .modal .leadin-button-primary {
+                        background: #a90606 !important;
+                        color: #FFFFFF !important;
+                    }
+                      
+                    @-webkit-keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                      
+                    @keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                </style>
+
+            <script src="content/bootstrapJS/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+            <script type="text/javascript">
+                
+                
+                $( document ).ready(function() {
+  if (document.cookie.indexOf('visited=true') == -1){
+    
+                      $('#signupModal').modal('show');
+    
+                  var year = 1000*60*60*24*365;
+    var expires = new Date((new Date()).valueOf() + year);
+    document.cookie = "visited=true;expires=" + expires.toUTCString();
+
+  }
+}); 
+
+            </script>
+        
+            
 
         
             
                 
             
                 
-                    <link rel="stylesheet" href="/css/main.css">
+                    <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
                 
             
         
@@ -290,8 +459,8 @@ body.dark-mode :not(img) main * {
 
   
     
-      <link rel="stylesheet" href="/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
-      <script src="/js/highlight.pack.js"></script>
+      <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="https://algotech.netlify.com/js/highlight.pack.js"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   
 
@@ -312,11 +481,43 @@ if (!doNotTrack) {
 
 
 
-
-
-
+      
     </head>
     <body>
+
+        <div class="modal" id="signupModal"
+        role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+ 
+       <div class="modal-dialog">
+           <div class="modal-content">
+ 
+               
+               <div class="m-header">
+                   <button class="close" data-dismiss="modal">
+                       ×
+                   </button>
+                   <h2 class="myModalLabel"> Upcoming Workshop! </h2>
+               </div>
+ 
+               
+               <div class="inputs">
+ 
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png",
+                     alt="Music Recommender System", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p> This 3-day online workshop is beginner-friendly to demonstrate how to extract song embeddings using the neural network approach, specifically the word2vec model, to generate song recommendations. Throughout the online course, we will provide participants with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help participants troubleshoot or help with any difficulties encountered. </p>
+                <div class="advance-wrapper callout-special-font">
+                    <a href="https://algorit.ma/ds-course/web-scraping/?utm_source=algotech" target="_blank" 
+                    class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
+                </div>
+               </div>
+ 
+ 
+           </div>
+       </div>
+   </div>
+
+    </body>
 
       
       <div id="wrapper">
@@ -324,32 +525,32 @@ if (!doNotTrack) {
     
 <header id="header">
     
-      <h1><a href="/">blog</a></h1>
+      <h1><a href="https://algotech.netlify.com/">blog</a></h1>
     
 
     <nav class="links">
         <ul>
             
                 <li>
-                    <a href="/">
+                    <a href="https://algotech.netlify.com/">
                             <i class="fa fa-home">&nbsp;</i>Home
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/machine-learning/">
+                    <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <i class="fa fa-cog">&nbsp;</i>Machine Learning
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/data-visualization/">
+                    <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/">
+                    <a href="https://algotech.netlify.com/tags/">
                             <i class="fa fa-list">&nbsp;</i>Article List
                     </a>
                 </li>
@@ -363,7 +564,7 @@ if (!doNotTrack) {
                 <a class="fa-search" href="#search">Search</a>
                 <form id="search" method="get" action="//google.com/search">
                     <input type="text" name="q" placeholder="Search" />
-                    <input type="hidden" name="as_sitesearch" value="/">
+                    <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
                 </form>
             </li>
             <li class="menu">
@@ -380,7 +581,7 @@ if (!doNotTrack) {
         <section>
             <form class="search" method="get" action="//google.com/search">
                 <input type="text" name="q" placeholder="Search" />
-                <input type="hidden" name="as_sitesearch" value="/">
+                <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
             </form>
         </section>
 
@@ -389,7 +590,7 @@ if (!doNotTrack) {
             <ul class="links">
                 
                     <li>
-                        <a href="/">
+                        <a href="https://algotech.netlify.com/">
                             <h3>
                                 <i class="fa fa-home">&nbsp;</i>Home
                             </h3>
@@ -397,7 +598,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/machine-learning/">
+                        <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <h3>
                                 <i class="fa fa-cog">&nbsp;</i>Machine Learning
                             </h3>
@@ -405,7 +606,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/data-visualization/">
+                        <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <h3>
                                 <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                             </h3>
@@ -413,7 +614,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/">
+                        <a href="https://algotech.netlify.com/tags/">
                             <h3>
                                 <i class="fa fa-list">&nbsp;</i>Article List
                             </h3>
@@ -438,11 +639,11 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/javascripted-web-scrapping-in-r-with-rselenium/">Rselenium Intro</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp-ii/">Advancing Your Shiny Application II</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-11'>
-                                    January 11, 2021</time>
+                                    '2021-06-03'>
+                                    June 3, 2021</time>
                             </header>
                             
 
@@ -450,157 +651,49 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-coronavirus-survey/">Rplicate Series: Interactive Plot of Coronavirus Survey</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/gridsearchcv/">GridSearchCV</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-06'>
-                                    January 6, 2021</time>
+                                    '2021-05-22'>
+                                    May 22, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-coronavirus-survey/" class="image featured">
-            <img src="/img/2021/01/five_thirty.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/kemiripan-teks/">Pengenalan Kemiripan Teks (Text Similarity) di Python</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-25'>
-                                    November 25, 2020</time>
+                                    '2021-05-20'>
+                                    May 20, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-gone-baby-gone/" class="image featured">
-            <img src="/img/2020/11/gone-baby-gone.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp/">Advancing Your Shiny Application</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/xgboost/" class="image featured">
-            <img src="/img/2020/11/boosting-algorithm.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/fuzzy-clustering/">Fuzzy C-Means Clustering</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/image-colorization/">Image Colorization</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/fuzzy-clustering/" class="image featured">
-            <img src="/img/2020/11/fuzzy-cmeans.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
@@ -627,7 +720,7 @@ if (!doNotTrack) {
   <header>
     <div class="title">
         
-            <h2><a href="/blog/bio-intro/">Bioinformatics: Decoding Nature&#39;s Code of Life</a></h2>
+            <h2><a href="https://algotech.netlify.com/blog/rplicate-happiness-of-the-third-age/">Rplicate Series: Happiness of The Third Age</a></h2>
         
         
     </div>
@@ -635,50 +728,23 @@ if (!doNotTrack) {
         
 
         <time class="published"
-            datetime='2019-12-02'>
-            December 2, 2019</time>
-        <span class="author"><a href="https://github.com/NabiilahArdini">Nabiilah Ardini Fauziyyah</a></span>
+            datetime='2020-08-27'>
+            August 27, 2020</time>
+        <span class="author"><a href="https://github.com/t3981-h">Handoyo Sjarif</a></span>
         
-            <p>17 minute read</p>
+            <p>6 minute read</p>
         
         
     </div>
 </header>
 
   
-    
-
-    
-        
-        
-
-
-
-
-
-
 
   
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/bio-intro/" class="image featured">
-            <img src="/img/2019/12/bioinfo.png" alt="">
-        </a>
-    
-
-
-  
-  <p>It is inarguable that Data Science gives a tremendous impact on today&rsquo;s industry. Furthermore, it also accelerates the development of basic science research including <em>Biology</em>. Biology harbors some of the most intriguing ideas we may find today; from finding cures for genetic diseases, to something far as breeding mutants! This article will guide you through the wondrous journey of when Data Science meets Biology and how it can impact our life.</p>
+  <p>Have you ever wonder how far <code>ggplot2</code> and other packages in R can go for data visualization? Here, we are introducing the <strong>Rplicate Series</strong>: a series of articles for data visualization in R using ggplot2 and other packages, in aim to replicate <strong>The Economist</strong> plot. The Economist is an international weekly newspaper that focuses on current affairs, international business, politics, and technology. Along with its article, various graphs were displayed with visuals that is captivating to the eye.</p>
   <footer>
     <ul class="actions">
-      <li><a href="/blog/bio-intro/" class="button big">Continue Reading</a></li>
+      <li><a href="https://algotech.netlify.com/blog/rplicate-happiness-of-the-third-age/" class="button big">Continue Reading</a></li>
     </ul>
   <ul class="stats">
   <li class="categories">
@@ -689,7 +755,7 @@ if (!doNotTrack) {
                 <i class="fa fa-folder"></i>
                 
                 
-                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/categories/r">R</a></li>
                 
             
         
@@ -703,16 +769,25 @@ if (!doNotTrack) {
                 <i class="fa fa-tags"></i>
                 
                 
-                <li><a class="article-category-link" href="/tags/bioinformatics">Bioinformatics</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/data-visualization">Data Visualization</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/bioconductor">Bioconductor</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/rplicate">Rplicate</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/msa">msa</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/ggplot2">ggplot2</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/ape">ape</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/ggrepel">ggrepel</a></li>
+                
+                
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/extrafont">extrafont</a></li>
+                
+                
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/ggthemes">ggthemes</a></li>
+                
+                
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/gridextra">gridExtra</a></li>
                 
             
         
@@ -728,7 +803,7 @@ if (!doNotTrack) {
   <header>
     <div class="title">
         
-            <h2><a href="/blog/interpreting-classification-model-with-lime/">Interpreting Classification Model with LIME</a></h2>
+            <h2><a href="https://algotech.netlify.com/blog/song2vec-music-recommender/">Song2Vec: Music Recommender</a></h2>
         
         
     </div>
@@ -736,50 +811,24 @@ if (!doNotTrack) {
         
 
         <time class="published"
-            datetime='2019-12-02'>
-            December 2, 2019</time>
-        <span class="author"><a href="https://github.com/Argaadya">Arga Adyatama</a></span>
+            datetime='2020-06-29'>
+            June 29, 2020</time>
+        <span class="author"><a href="https://github.com/tomytjandra">Tomy Tjandra</a></span>
         
-            <p>12 minute read</p>
+            <p>24 minute read</p>
         
         
     </div>
 </header>
 
   
-    
-
-    
-        
-        
-
-
-
-
-
-
 
   
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/interpreting-classification-model-with-lime/" class="image featured">
-            <img src="/img/2019/12/lime.png" alt="">
-        </a>
-    
-
-
-  
-  <p>One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to&hellip;</p>
+  <p>The behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music,
+Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music&hellip;</p>
   <footer>
     <ul class="actions">
-      <li><a href="/blog/interpreting-classification-model-with-lime/" class="button big">Continue Reading</a></li>
+      <li><a href="https://algotech.netlify.com/blog/song2vec-music-recommender/" class="button big">Continue Reading</a></li>
     </ul>
   <ul class="stats">
   <li class="categories">
@@ -790,7 +839,7 @@ if (!doNotTrack) {
                 <i class="fa fa-folder"></i>
                 
                 
-                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/categories/python">Python</a></li>
                 
             
         
@@ -804,16 +853,16 @@ if (!doNotTrack) {
                 <i class="fa fa-tags"></i>
                 
                 
-                <li><a class="article-category-link" href="/tags/machine-learning">Machine Learning</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/machine-learning">Machine Learning</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/capstone-ml">Capstone Ml</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/topic-modelling">Topic Modelling</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/tidymodels">tidymodels</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/recommender-system">Recommender System</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/lime">lime</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/gensim">gensim</a></li>
                 
             
         
@@ -829,7 +878,7 @@ if (!doNotTrack) {
   <header>
     <div class="title">
         
-            <h2><a href="/blog/text-lstm/">Text Classification with LSTM</a></h2>
+            <h2><a href="https://algotech.netlify.com/blog/regression-with-panel-data/">Regression Model with Panel Data</a></h2>
         
         
     </div>
@@ -837,11 +886,11 @@ if (!doNotTrack) {
         
 
         <time class="published"
-            datetime='2019-11-12'>
-            November 12, 2019</time>
-        <span class="author"><a href="https://github.com/ahmadhusain">Ahmad Husain</a></span>
+            datetime='2020-06-02'>
+            June 2, 2020</time>
+        <span class="author"><a href="https://github.com/ajengprstw/">Ajeng Prastiwi</a></span>
         
-            <p>19 minute read</p>
+            <p>26 minute read</p>
         
         
     </div>
@@ -870,17 +919,17 @@ if (!doNotTrack) {
         
         
 
-        <a href="/blog/text-lstm/" class="image featured">
-            <img src="/img/2019/11/lstm-text.png" alt="">
+        <a href="https://algotech.netlify.com/blog/regression-with-panel-data/" class="image featured">
+            <img src="https://algotech.netlify.com/img/2020/06/reg-panel.png" alt="">
         </a>
     
 
 
   
-  <p>Before we further discuss the Long Short-Term Memory Model, we will first discuss the term of <em>Deep learning</em> where the main idea is on the Neural Network. So Neural Network is one branch of machine learning where the learning process imitates the way neurons in the human brain works. In Neural Network we know several terms, such as the input layer, hidden layer, and output layer. So the different betweetn Deep Learning and Neural Network architecture is the number of hidden layers specified.&hellip;</p>
+  <p>Panel data are also called longitudinal data or cross-sectional time-series data. A panel data set has multiple entities, each of which has repeated measurements at different time periods. Panel data may have individual (group) effect, time effect, or both, which are analyzed by fixed effect and/or random effect models.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
   <footer>
     <ul class="actions">
-      <li><a href="/blog/text-lstm/" class="button big">Continue Reading</a></li>
+      <li><a href="https://algotech.netlify.com/blog/regression-with-panel-data/" class="button big">Continue Reading</a></li>
     </ul>
   <ul class="stats">
   <li class="categories">
@@ -891,7 +940,7 @@ if (!doNotTrack) {
                 <i class="fa fa-folder"></i>
                 
                 
-                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/categories/r">R</a></li>
                 
             
         
@@ -905,13 +954,10 @@ if (!doNotTrack) {
                 <i class="fa fa-tags"></i>
                 
                 
-                <li><a class="article-category-link" href="/tags/machine-learning">Machine Learning</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/machine-learning">Machine Learning</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/deep-learning">deep learning</a></li>
-                
-                
-                <li><a class="article-category-link" href="/tags/lstm">LSTM</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/panel-data">Panel Data</a></li>
                 
             
         
@@ -927,12 +973,12 @@ if (!doNotTrack) {
         
 <ul class="actions pagination">
     
-        <li><a href="/blog/page/8/"
+        <li><a href="https://algotech.netlify.com/blog/page/8/"
                 class="button big previous">Previous Page</a></li>
     
 
     
-        <li><a href="/blog/page/10/"
+        <li><a href="https://algotech.netlify.com/blog/page/10/"
                 class="button big next">Next Page</a></li>
     
 </ul>
@@ -946,7 +992,7 @@ if (!doNotTrack) {
     
     
       
-        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+        <a href='https://algotech.netlify.com/'><img src="https://algotech.netlify.com/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
       
     
     
@@ -1059,13 +1105,9 @@ if (!doNotTrack) {
       <div class="posts-container">
           <article class="mini-post">
             <header>
+              
               <h3>
-                
-                                <img src="/img/2020/ads/dss.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/text-analysis/?utm_source=algotech">More details</a>
-                
-                <img src="/img/2020/ads/ddt.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/data-driven-2/?utm_source=algotech">More details</a>
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>
@@ -1151,9 +1193,9 @@ if (!doNotTrack) {
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
-      <script src="/js/util.js"></script>
-      <script src="/js/main.js"></script>
-      <script src="/js/backToTop.js"></script>
+      <script src="https://algotech.netlify.com/js/util.js"></script>
+      <script src="https://algotech.netlify.com/js/main.js"></script>
+      <script src="https://algotech.netlify.com/js/backToTop.js"></script>
     
 
     
@@ -1161,7 +1203,7 @@ if (!doNotTrack) {
         
       
         
-          <script src="/js/bootstrap.min.js"></script>
+          <script src="https://algotech.netlify.com/js/bootstrap.min.js"></script>
         
       
     

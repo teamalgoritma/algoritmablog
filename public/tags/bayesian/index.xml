@@ -2,21 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bayesian on Algoritma Technical Blog</title>
-    <link>/tags/bayesian/</link>
+    <link>https://algotech.netlify.com/tags/bayesian/</link>
     <description>Recent content in Bayesian on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Jul 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/bayesian/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/bayesian/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bayesian Statistics and A/B Testing</title>
+      <link>https://algotech.netlify.com/blog/bayesian-statistics-and-a-b-testing/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/bayesian-statistics-and-a-b-testing/</guid>
+      <description>Introduction Statistics is one of the most essential tools in doing research. Statistics deals with uncertainty, both in our everyday life or in business operation. However, people sometimes discouraged from learning statistics because there are so much statistics test to remember. Sometimes people abuse this test by ignoring the underlying assumption. The following graph illustrate different kind of test for different situation1.
+We need a better framework for our statistical thinking that is more transparent and flexible to use.</description>
+    </item>
     
     <item>
       <title>Causal Inference and Bayesian Network</title>
-      <link>/blog/causal-inference-and-bayesian-network/</link>
+      <link>https://algotech.netlify.com/blog/causal-inference-and-bayesian-network/</link>
       <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/causal-inference-and-bayesian-network/</guid>
+      <guid>https://algotech.netlify.com/blog/causal-inference-and-bayesian-network/</guid>
       <description>Introduction Cause has been people&amp;rsquo;s curiosity for a long time, you can see that people often ask &amp;ldquo;Why&amp;rdquo; to things happening around them. But do we actually know how to explain &amp;ldquo;cause&amp;rdquo;?
 Do we jump to conclusion of causal relationship often too quickly?
 Can association between factors that we call mathematically &amp;ldquo;correlation&amp;rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&amp;rsquo;t mean it affects each other.</description>

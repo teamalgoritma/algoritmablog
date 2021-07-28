@@ -2,41 +2,56 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>deep learning on Algoritma Technical Blog</title>
-    <link>/tags/deep-learning/</link>
+    <link>https://algotech.netlify.com/tags/deep-learning/</link>
     <description>Recent content in deep learning on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Image Colorization</title>
+      <link>https://algotech.netlify.com/blog/image-colorization/</link>
+      <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/image-colorization/</guid>
+      <description>body { text-align: justify}  Image Colorization Deep Learning - Convolutional Neural Network Introduction Image colorization is the process of assigning colors to a grayscale image to make it more aesthetically appealing and perceptually meaningful. These are recognized as sophisticated tasks than often require prior knowledge of image content and manual adjustments to achieve artifact-free quality. Also, since objects can have different colors, there are many possible ways to assign colors to pixels in an image, which means there is no unique solution to this problem.</description>
+    </item>
     
-	<atom:link href="/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>Image Classification with Convolutional Network</title>
+      <link>https://algotech.netlify.com/blog/image-classification-cnn/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/image-classification-cnn/</guid>
+      <description>body { text-align: justify}  Introduction Deep learning is a great approach to deal with unstructured data such as text, sound, video and image. There are a lot of implementation of deep learning in image classification and image detection, such as classifying image of dog or cats, detecting different objects in an image or do facial recognition.
+  On this article, we will try to build a simple image classification that will classify whether the presented image is a cat, dog, or a panda.</description>
+    </item>
     
     <item>
       <title>Introduction to Generative Adversarial Network with Keras</title>
-      <link>/blog/introduction-to-generative-adversarial-network-with-keras/</link>
+      <link>https://algotech.netlify.com/blog/introduction-to-generative-adversarial-network-with-keras/</link>
       <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/introduction-to-generative-adversarial-network-with-keras/</guid>
+      <guid>https://algotech.netlify.com/blog/introduction-to-generative-adversarial-network-with-keras/</guid>
       <description>In 2018 a paint of Edmond de Belamy made by machine learning (GAN) was sold for $432,500 in online auction, Christie&amp;rsquo;s. This made Chritie&amp;rsquo;s the first auction house that sell works created by machine learning. On an unbelievable price. What do you think about this ? Will machine learning help us create arts, or will it kill our creativity?
 Intro  Is artificial intelligence set to become art’s next medium? - Chritie&amp;rsquo;s</description>
     </item>
     
     <item>
       <title>Text Classification with LSTM</title>
-      <link>/blog/text-lstm/</link>
+      <link>https://algotech.netlify.com/blog/text-lstm/</link>
       <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/text-lstm/</guid>
+      <guid>https://algotech.netlify.com/blog/text-lstm/</guid>
       <description>Deep Neural Network Before we further discuss the Long Short-Term Memory Model, we will first discuss the term of Deep learning where the main idea is on the Neural Network. So Neural Network is one branch of machine learning where the learning process imitates the way neurons in the human brain works. In Neural Network we know several terms, such as the input layer, hidden layer, and output layer. So the different betweetn Deep Learning and Neural Network architecture is the number of hidden layers specified.</description>
     </item>
     
     <item>
       <title>Time Series Prediction with LSTM</title>
-      <link>/blog/time-series-prediction-with-lstm/</link>
+      <link>https://algotech.netlify.com/blog/time-series-prediction-with-lstm/</link>
       <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/time-series-prediction-with-lstm/</guid>
-      <description>Time Series Forecasting using LSTMTime series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing.A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
+      <guid>https://algotech.netlify.com/blog/time-series-prediction-with-lstm/</guid>
+      <description>Time Series Forecasting using LSTM Time series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing. A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
     </item>
     
   </channel>

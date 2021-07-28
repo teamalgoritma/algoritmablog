@@ -2,22 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gensim on Algoritma Technical Blog</title>
-    <link>/tags/gensim/</link>
+    <link>https://algotech.netlify.com/tags/gensim/</link>
     <description>Recent content in gensim on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Jun 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/gensim/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 29 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/gensim/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Song2Vec: Music Recommender</title>
-      <link>/blog/song2vec-music-recommender/</link>
+      <link>https://algotech.netlify.com/blog/song2vec-music-recommender/</link>
       <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/song2vec-music-recommender/</guid>
-      <description>body {text-align: justify}BackgroundThe behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music,Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.</description>
+      <guid>https://algotech.netlify.com/blog/song2vec-music-recommender/</guid>
+      <description>body { text-align: justify}  Background The behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music, Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.</description>
     </item>
     
   </channel>

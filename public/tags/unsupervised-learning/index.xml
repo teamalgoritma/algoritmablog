@@ -2,30 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Unsupervised Learning on Algoritma Technical Blog</title>
-    <link>/tags/unsupervised-learning/</link>
+    <link>https://algotech.netlify.com/tags/unsupervised-learning/</link>
     <description>Recent content in Unsupervised Learning on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Apr 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/unsupervised-learning/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Mon, 22 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/unsupervised-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to Hierarchical Clustering</title>
+      <link>https://algotech.netlify.com/blog/introduction-to-hierarchical-clustering/</link>
+      <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/introduction-to-hierarchical-clustering/</guid>
+      <description>Clustering merupakan salah satu metode Unsupervised Learning yang bertujuan untuk melakukan pengelompokan data berdasasrkan kemiripan/jarak antar data. Clustering memiliki karakteristik dimana anggota dalam satu cluster memiliki kemiripan yang sama atau jarak yang sangat dekat, sementara anggota antar cluster memiliki kemiripan yang sangat berbeda atau jarak yang sangat jauh. Menurut (Tan et al., 2006) dalam bukunya yang berjudul Introduction to Data Mining, metode clustering dibagi menjadi dua jenis, yaitu Hierarchical Clustering dan Partitional Clustering1.</description>
+    </item>
     
     <item>
       <title>Clustering Saham Indonesia</title>
-      <link>/blog/stock-cluster/</link>
+      <link>https://algotech.netlify.com/blog/stock-cluster/</link>
       <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/stock-cluster/</guid>
-      <description>body {text-align: justify}IntroductionSaham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri.</description>
+      <guid>https://algotech.netlify.com/blog/stock-cluster/</guid>
+      <description>body { text-align: justify}  Introduction Saham merupakan satuan nilai atau pembukuan dalam berbagai instrumen finansial yang mengacu pada bagian kepemilikan sebuah perusahaan. Perusahaan yang dapat menjual sahamnya ke publik merupakan saham yang sudah listing di bursa atau sudah melakukan Initial Public Offering (IPO)1. Terdapat sekitar 680 saham per Maret 2020 yang sudah listing di bursa efek Indonesia dan jumlahnya terus bertambah seiring berjalannya waktu. Setiap saham yang melantai dibursa memiliki karakteristik yang berbeda beda baik dari sisi fundamental perusahaan maupun pergerakan harga sahamnya dibursa (teknikal), oleh sebab itu perlu dilakukan pengelompokkan emiten berdasarkan karakteristik dari saham itu sendiri.</description>
     </item>
     
     <item>
       <title>Self-Organizing Maps</title>
-      <link>/blog/self-organizing-maps/</link>
+      <link>https://algotech.netlify.com/blog/self-organizing-maps/</link>
       <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/self-organizing-maps/</guid>
+      <guid>https://algotech.netlify.com/blog/self-organizing-maps/</guid>
       <description>Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations.</description>
     </item>
     

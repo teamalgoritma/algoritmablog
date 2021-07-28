@@ -127,20 +127,65 @@
   }
   
   body.dark-mode , 
-body.dark-mode :not(img) main * {
-    background-color: #0d0d0d;
+  body.dark-mode main * {
+    background-color: #000000;
     color: #000000;
-     filter: invert(40%) hue-rotate(0deg) brightness(105%) contrast(75%);
-    -webkit-filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(90%);
-    
+    filter: invert(0.95);
 }
 
+  .dark-mode img {
+  filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
+  .dark-mode p {
+  color: #000000;
+}
+  
+  .dark-mode code {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    font-weight: bold;
+    background: #353737;
+    color: white;
+}
+
+  .dark-mode strong, b {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+  
+  .dark-mode #social-share ul{
+    margin: 0;
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode #header {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+  }
+
+  .dark-mode .js-toggle--focus .js-toggle-thumb {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode .footer {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+    background-color: white;
+    font-weight: bold;
+  }
+
+  .dark-mode .nav-secondary {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
+
+  .dark-mode #reactions .reaction-items .reaction-item .reaction-item__button img, #reactions-promotion .reaction-items .reaction-item .reaction-item__button img {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
 </style>
 
 <script>
     var body = document.body;
+    var article = document.article;
 	var switcher = document.getElementsByClassName('js-toggle')[0];
 
 	
@@ -150,10 +195,12 @@ body.dark-mode :not(img) main * {
 		
 		if (this.classList.contains('js-toggle--checked')) {
 			body.classList.add('dark-mode');
+			article.classList.add('post.dark-mode');
 			
 			localStorage.setItem('darkMode', 'true');
 		} else {
 			body.classList.remove('dark-mode');
+			article.classList.remove('post.dark-mode');
 			setTimeout(function() {
 				localStorage.removeItem('darkMode');
 			}, 100);
@@ -165,6 +212,7 @@ body.dark-mode :not(img) main * {
 		
         switcher.classList.add('js-toggle--checked');
         body.classList.add('dark-mode');
+        article.classList.add('post.dark-mode');
 	}
 
 </script>
@@ -177,12 +225,12 @@ body.dark-mode :not(img) main * {
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "\/"
+             "@id": "https:\/\/algotech.netlify.com\/"
         },
         "articleSection" : "blog",
         "name" : "Song2Vec: Music Recommender",
         "headline" : "Song2Vec: Music Recommender",
-        "description" : "body {\rtext-align: justify}\r\rBackground\rThe behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music,\rApple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.",
+        "description" : "body { text-align: justify}  Background The behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music, Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -192,7 +240,7 @@ body.dark-mode :not(img) main * {
         "copyrightYear" : "2020",
         "datePublished": "2020-06-29 00:00:00 \u002b0000 UTC",
         "dateModified" : "2020-06-29 00:00:00 \u002b0000 UTC",
-        "url" : "\/blog\/song2vec-music-recommender\/",
+        "url" : "https:\/\/algotech.netlify.com\/blog\/song2vec-music-recommender\/",
         "wordCount" : "4955",
         "keywords" : [ "Machine Learning","Topic Modelling","Recommender System","gensim","Blog" ]
     }
@@ -205,7 +253,7 @@ body.dark-mode :not(img) main * {
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.74.3" />
+        <meta name="generator" content="Hugo 0.83.1" />
         
   
     
@@ -213,8 +261,8 @@ body.dark-mode :not(img) main * {
 
   
 
-  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
-  <link rel="icon" href='/favicon/favicon.png'>
+  <link rel="apple-touch-icon-precomposed" href='https://algotech.netlify.com/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='https://algotech.netlify.com/favicon/favicon.png'>
   
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
@@ -235,30 +283,26 @@ body.dark-mode :not(img) main * {
 
         <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Song2Vec: Music Recommender"/>
-<meta name="twitter:description" content="body {text-align: justify}BackgroundThe behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music,Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically."/>
+<meta name="twitter:description" content="body { text-align: justify}  Background The behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music, Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically."/>
 <meta name="twitter:site" content="@teamalgoritma"/>
 
         <meta property="og:title" content="Song2Vec: Music Recommender" />
-<meta property="og:description" content="body {text-align: justify}BackgroundThe behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music,Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically." />
+<meta property="og:description" content="body { text-align: justify}  Background The behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music, Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/blog/song2vec-music-recommender/" />
-<meta property="article:published_time" content="2020-06-29T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-06-29T00:00:00+00:00" />
+<meta property="og:url" content="https://algotech.netlify.com/blog/song2vec-music-recommender/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-06-29T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-06-29T00:00:00&#43;00:00" />
 
-        <meta property="og:image" content="//images/logo.png">
+
+        <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Song2Vec: Music Recommender">
-<meta itemprop="description" content="body {text-align: justify}BackgroundThe behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music,Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.">
-<meta itemprop="datePublished" content="2020-06-29T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2020-06-29T00:00:00+00:00" />
+<meta itemprop="description" content="body { text-align: justify}  Background The behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music, Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically."><meta itemprop="datePublished" content="2020-06-29T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-06-29T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="4955">
-
-
-
 <meta itemprop="keywords" content="Machine Learning,Topic Modelling,Recommender System,gensim," />
-
         
 
         
@@ -267,26 +311,148 @@ body.dark-mode :not(img) main * {
 
         
         
-        
-            <link rel="stylesheet" href="/css/monokai-sublime.css">
+            <link disabled id="dark-mode-theme" rel="stylesheet" href="https://algotech.netlify.com/css/dark.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
-            <link rel="stylesheet" href="/css/main.css">
-            <link rel="stylesheet" href="/css/add-on.css">
-            <link rel="stylesheet" href="/css/academicons.min.css">
-            <link href="/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
-            <link href="/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/add-on.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/academicons.min.css">
+            <link href="https://algotech.netlify.com/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
         
+            <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                      integrity=
+            "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+                      crossorigin="anonymous">
+                <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+                </script>
+                <script src=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+                </script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.0/js.cookie.js">
+                </script>
+                
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
+                </script>
+              
+                <style>
+                    
+                     
+
+
+                    .modal:before {
+                        content: '';
+                        display: inline-block;
+                        height: 20%;
+                        vertical-align: middle;
+                    }
+                      
+                    .modal-dialog {
+                        
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    -webkit-flex-direction: column;
+                        -ms-flex-direction: column;
+                            flex-direction: column;
+                    -webkit-box-pack: center;
+                    -webkit-justify-content: center;
+                        -ms-flex-pack: center;
+                            justify-content: center;
+                    }
+
+                      
+                    .modal .modal-content {
+                        padding: 20px 20px 20px 20px;
+                        -webkit-animation-name: modal-animation;
+                        -webkit-animation-duration: 0.5s;
+                        animation-name: modal-animation;
+                        animation-duration: 1.5s;
+                    }
+
+                
+
+                    .modal .leadin-button {
+                        -webkit-border-radius: 0.25em;
+                        -moz-border-radius: 0.25em;
+                        -ms-border-radius: 0.25em;
+                        -o-border-radius: 0.25em;
+                        border-radius: 0.25em;
+                        -webkit-appearance: none;
+                        cursor: pointer;
+                        font-size: 1em;
+                        font-weight: bold;
+                        line-height: 1;
+                        padding: 1em 1.5em;
+                        width: 100%;
+                        text-decoration: none;
+                    }
+                    .modal .leadin-button-primary {
+                        background: #a90606 !important;
+                        color: #FFFFFF !important;
+                    }
+                      
+                    @-webkit-keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                      
+                    @keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                </style>
+
+            <script src="content/bootstrapJS/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+            <script type="text/javascript">
+                
+                
+                $( document ).ready(function() {
+  if (document.cookie.indexOf('visited=true') == -1){
+    
+                      $('#signupModal').modal('show');
+    
+                  var year = 1000*60*60*24*365;
+    var expires = new Date((new Date()).valueOf() + year);
+    document.cookie = "visited=true;expires=" + expires.toUTCString();
+
+  }
+}); 
+
+            </script>
+        
+            
 
         
             
                 
             
                 
-                    <link rel="stylesheet" href="/css/main.css">
+                    <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
                 
             
         
@@ -294,8 +460,8 @@ body.dark-mode :not(img) main * {
 
   
     
-      <link rel="stylesheet" href="/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
-      <script src="/js/highlight.pack.js"></script>
+      <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="https://algotech.netlify.com/js/highlight.pack.js"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   
 
@@ -316,11 +482,43 @@ if (!doNotTrack) {
 
 
 
-
-
-
+      
     </head>
     <body>
+
+        <div class="modal" id="signupModal"
+        role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+ 
+       <div class="modal-dialog">
+           <div class="modal-content">
+ 
+               
+               <div class="m-header">
+                   <button class="close" data-dismiss="modal">
+                       ×
+                   </button>
+                   <h2 class="myModalLabel"> Upcoming Workshop! </h2>
+               </div>
+ 
+               
+               <div class="inputs">
+ 
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png",
+                     alt="Music Recommender System", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p> This 3-day online workshop is beginner-friendly to demonstrate how to extract song embeddings using the neural network approach, specifically the word2vec model, to generate song recommendations. Throughout the online course, we will provide participants with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help participants troubleshoot or help with any difficulties encountered. </p>
+                <div class="advance-wrapper callout-special-font">
+                    <a href="https://algorit.ma/ds-course/web-scraping/?utm_source=algotech" target="_blank" 
+                    class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
+                </div>
+               </div>
+ 
+ 
+           </div>
+       </div>
+   </div>
+
+    </body>
 
       
       <div id="wrapper">
@@ -329,32 +527,32 @@ if (!doNotTrack) {
     
 <header id="header">
     
-      <h1><a href="/">blog</a></h1>
+      <h1><a href="https://algotech.netlify.com/">blog</a></h1>
     
 
     <nav class="links">
         <ul>
             
                 <li>
-                    <a href="/">
+                    <a href="https://algotech.netlify.com/">
                             <i class="fa fa-home">&nbsp;</i>Home
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/machine-learning/">
+                    <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <i class="fa fa-cog">&nbsp;</i>Machine Learning
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/data-visualization/">
+                    <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/">
+                    <a href="https://algotech.netlify.com/tags/">
                             <i class="fa fa-list">&nbsp;</i>Article List
                     </a>
                 </li>
@@ -372,7 +570,7 @@ if (!doNotTrack) {
                 <a class="fa-search" href="#search">Search</a>
                 <form id="search" method="get" action="//google.com/search">
                     <input type="text" name="q" placeholder="Search" />
-                    <input type="hidden" name="as_sitesearch" value="/">
+                    <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
                 </form>
             </li>
             <li class="menu">
@@ -389,7 +587,7 @@ if (!doNotTrack) {
         <section>
             <form class="search" method="get" action="//google.com/search">
                 <input type="text" name="q" placeholder="Search" />
-                <input type="hidden" name="as_sitesearch" value="/">
+                <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
             </form>
         </section>
 
@@ -398,7 +596,7 @@ if (!doNotTrack) {
             <ul class="links">
                 
                     <li>
-                        <a href="/">
+                        <a href="https://algotech.netlify.com/">
                             <h3>
                                 <i class="fa fa-home">&nbsp;</i>Home
                             </h3>
@@ -406,7 +604,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/machine-learning/">
+                        <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <h3>
                                 <i class="fa fa-cog">&nbsp;</i>Machine Learning
                             </h3>
@@ -414,7 +612,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/data-visualization/">
+                        <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <h3>
                                 <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                             </h3>
@@ -422,7 +620,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/">
+                        <a href="https://algotech.netlify.com/tags/">
                             <h3>
                                 <i class="fa fa-list">&nbsp;</i>Article List
                             </h3>
@@ -447,11 +645,11 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/javascripted-web-scrapping-in-r-with-rselenium/">Rselenium Intro</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp-ii/">Advancing Your Shiny Application II</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-11'>
-                                    January 11, 2021</time>
+                                    '2021-06-03'>
+                                    June 3, 2021</time>
                             </header>
                             
 
@@ -459,157 +657,49 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-coronavirus-survey/">Rplicate Series: Interactive Plot of Coronavirus Survey</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/gridsearchcv/">GridSearchCV</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-06'>
-                                    January 6, 2021</time>
+                                    '2021-05-22'>
+                                    May 22, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-coronavirus-survey/" class="image featured">
-            <img src="/img/2021/01/five_thirty.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/kemiripan-teks/">Pengenalan Kemiripan Teks (Text Similarity) di Python</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-25'>
-                                    November 25, 2020</time>
+                                    '2021-05-20'>
+                                    May 20, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-gone-baby-gone/" class="image featured">
-            <img src="/img/2020/11/gone-baby-gone.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp/">Advancing Your Shiny Application</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/xgboost/" class="image featured">
-            <img src="/img/2020/11/boosting-algorithm.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/fuzzy-clustering/">Fuzzy C-Means Clustering</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/image-colorization/">Image Colorization</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/fuzzy-clustering/" class="image featured">
-            <img src="/img/2020/11/fuzzy-cmeans.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
@@ -639,7 +729,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Song2Vec%3a%20Music%20Recommender by Tomy%20Tjandra&amp;url=%2fblog%2fsong2vec-music-recommender%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Song2Vec%3a%20Music%20Recommender by Tomy%20Tjandra&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fsong2vec-music-recommender%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -653,7 +743,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fsong2vec-music-recommender%2f" target="_blank" class="share-btn facebook">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2falgotech.netlify.com%2fblog%2fsong2vec-music-recommender%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -666,7 +756,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fsong2vec-music-recommender%2f&amp;title=Song2Vec%3a%20Music%20Recommender" target="_blank" class="share-btn linkedin">
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fsong2vec-music-recommender%2f&amp;title=Song2Vec%3a%20Music%20Recommender" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -694,7 +784,7 @@ if (!doNotTrack) {
   <header>
     <div class="title">
         
-            <h2><a href="/blog/song2vec-music-recommender/">Song2Vec: Music Recommender</a></h2>
+            <h2><a href="https://algotech.netlify.com/blog/song2vec-music-recommender/">Song2Vec: Music Recommender</a></h2>
         
         
     </div>
@@ -721,7 +811,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Song2Vec%3a%20Music%20Recommender by Tomy%20Tjandra&amp;url=%2fblog%2fsong2vec-music-recommender%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Song2Vec%3a%20Music%20Recommender by Tomy%20Tjandra&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fsong2vec-music-recommender%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -735,7 +825,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fsong2vec-music-recommender%2f" target="_blank" class="share-btn facebook">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2falgotech.netlify.com%2fblog%2fsong2vec-music-recommender%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -748,7 +838,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fsong2vec-music-recommender%2f&amp;title=Song2Vec%3a%20Music%20Recommender" target="_blank" class="share-btn linkedin">
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fsong2vec-music-recommender%2f&amp;title=Song2Vec%3a%20Music%20Recommender" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -784,11 +874,11 @@ text-align: justify}
 Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.</p>
 <p>Users may not have enough time to scan through all available songs and manually create a playlist. Instead, a recommender system is constructed which eases them to find relevant songs quickly. One example you might seen before is the “Made For You” feature from Spotify:</p>
 <center>
-<img src="/img/song2vec-music-recommender/made-for-you.png" style="width:80.0%" />
+<img src="https://algotech.netlify.com/img/song2vec-music-recommender/made-for-you.png" style="width:80.0%" />
 </center>
 <p>These personalized playlists are being recommended by grouping similar songs that go well together. How? In the real case, this process is done by combining several recommender algorithms, simply based on users’ activities such as likes, playlist history, or even listening history. In this article, we will demonstrate how to extract song embeddings using a neural network approach specifically <strong>Word2Vec</strong> model, use it to generate songs recommendation, and evaluate the performance.</p>
 <p>Okay, so you might wonder what is Word2Vec actually? Developed by Tomas Mikolov <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> in 2013 at Google, it is one of the most common technique to do word embeddings in several Natural Language Processing (NLP) cases using shallow neural network. Word embeddings is just a fancy way of saying a numerical representation of words. A good analogy would be how colors are represented with a RGB values. These set of values is then called as a <strong>vector</strong>. For example, “black” can be associated with (0,0,0) and “white” with (255,255,255) as their pixel intensity values.</p>
-<p><img src="/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-3-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-3-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>In fact, word embeddings method can be generalized into other item embeddings, which associate any product on an e-commerce website, any videos on Youtube, movies on Netflix with a vector. Of course, in this case, songs can also be a vector.</p>
 <p>Can you guess what is the property of a sentence that Word2Vec exploits to learn the vector representation of a word? It is the <strong>sequential nature of the text</strong>. Take a look of the following scrambled sentence:</p>
 <blockquote>
@@ -796,11 +886,11 @@ Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. 
 </blockquote>
 <p>It is difficult for us to understand the text because there is no sequence in the sentence. That’s why the sequence of words is crucial in any natural language. This property can be implemented to other data that has sequential nature as well. One such data that has the property is <strong>playlist of songs</strong> in music streaming services. The following image is an example of playlists in Spotify, where each playlist contain a sequence of songs:</p>
 <center>
-<img src="/img/song2vec-music-recommender/playlist-menu.png" style="width:80.0%" />
+<img src="https://algotech.netlify.com/img/song2vec-music-recommender/playlist-menu.png" style="width:80.0%" />
 </center>
 <p>Since the data cleansing and modelling process will be quite complicated, here I present the visualization for you to understand the overall workflow for this article:</p>
 <center>
-<img src="/img/song2vec-music-recommender/workflow.png" style="width:100.0%" />
+<img src="https://algotech.netlify.com/img/song2vec-music-recommender/workflow.png" style="width:100.0%" />
 </center>
 </div>
 <div id="import-libraries" class="section level1">
@@ -846,7 +936,7 @@ import pickle</code></pre>
 <h1>Data Cleansing</h1>
 <p>Human-made music playlists collected by Shuo Chen <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> from Cornell University are used to learn the song embeddings. The dataset contains US radio playlists from Yes.com and songs tag from Last.fm since December 2010 to May 2011. Each playlist will be treated as a sentence and each song in the playlist will be treated as one word.</p>
 <center>
-<img src="/img/song2vec-music-recommender/list-illustration.png" style="width:80.0%" />
+<img src="https://algotech.netlify.com/img/song2vec-music-recommender/list-illustration.png" style="width:80.0%" />
 </center>
 <p>The raw data consists of five separate txt files as follow:</p>
 <ol style="list-style-type: decimal">
@@ -959,7 +1049,7 @@ print(f&quot;Unique Songs After Cleansing: {songs.shape[0]}&quot;)</code></pre>
 <p>As mentioned before, Word2Vec is one of the most popular techniques to learn word embeddings using <strong>shallow neural network</strong>. A neural network, like other supervised learning algorithms, requires labeled data to be trained. How can we train a neural network if the data is in a form of sequences of words (i.e. words) or sequences of songs (i.e. playlist) without any target or data label? The network will be trained by creating a so-called <strong>“fake” task</strong>. We won’t be interested in the inputs and outputs of the network, rather just train the <strong>weights between input and hidden layer</strong> that are extracted as the vectors. To put it in simple terms, the goal of embeddings can be classified as unsupervised learning, but the process of getting the embeddings in Word2Vec is achieved by supervised learning through a neural network.</p>
 <p>Here is the illustration of general Word2Vec architecture by Xin Rong <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>:</p>
 <center>
-<img src="/img/song2vec-music-recommender/word2vec-architecture.png" style="width:80.0%" />
+<img src="https://algotech.netlify.com/img/song2vec-music-recommender/word2vec-architecture.png" style="width:80.0%" />
 </center>
 <p>Details:</p>
 <ul>
@@ -976,12 +1066,12 @@ print(f&quot;Unique Songs After Cleansing: {songs.shape[0]}&quot;)</code></pre>
 </ul>
 <p>In this article, <strong>CBOW</strong> is used instead of Skip-gram, because according to Google Code Archive <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>, it trains faster and able to capture the frequent songs more.</p>
 <center>
-<img src="/img/song2vec-music-recommender/playlist-example.png" style="width:80.0%" />
+<img src="https://algotech.netlify.com/img/song2vec-music-recommender/playlist-example.png" style="width:80.0%" />
 </center>
 <p>Target song that are played between context songs is assumed to be similar to each other. If the playlist are designed by users or the services for certain genre, the song embeddings will logically incorporate more information about the genre.</p>
 <p>One epoch of CBOW may be breakdown into these steps <a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>:</p>
 <center>
-<img src="/img/song2vec-music-recommender/cbow.png" style="width:60.0%" />
+<img src="https://algotech.netlify.com/img/song2vec-music-recommender/cbow.png" style="width:60.0%" />
 </center>
 <ol style="list-style-type: decimal">
 <li>Convert the generated training samples into one-hot vectors <span class="math inline">\(x_1, x_2, ..., x_C\)</span> (contexts) for the input layer. So, the size is <span class="math inline">\(C \times V\)</span></li>
@@ -1080,7 +1170,7 @@ model.save(MODEL_PATH+&quot;song2vec.model&quot;)</code></pre>
 <div id="loss-evaluation" class="section level3">
 <h3>Loss Evaluation</h3>
 <p>Plot the training loss, making sure it decreases after each epoch. The closer the loss to a zero value, the better the model is in predicting a target song given surrounding context songs. Thus, the produced song vectors are more meaningful.</p>
-<p><img src="/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-25-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-25-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="vectors-visualization" class="section level3">
 <h3>Vectors Visualization</h3>
@@ -1089,7 +1179,7 @@ model.save(MODEL_PATH+&quot;song2vec.model&quot;)</code></pre>
 <span class="math inline">\(similarity(A,B) = cos(\theta) = \frac{A.B}{\|A\| \|B\|}\)</span>
 </center>
 <p>Mathematically it measures the cosine of the angle between two vectors <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> which projected in a multi-dimensional space. Song vectors with similar context occupy close spatial positions; the cosine between such vectors should be close to 1, i.e. angle is closer to 0. The smaller the angle, the cosine similarity will be higher.</p>
-<p><img src="/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-26-1.png" width="120%" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-26-1.png" width="120%" style="display: block; margin: auto;" /></p>
 <p>The plot above shows five most similar songs to <code>song_id = '4162'</code> (Maroon 5 - She Will Be Loved). Up until now, the model can be used for recommending new songs using cosine similarity, but only based on one main song.</p>
 </div>
 </div>
@@ -1105,15 +1195,15 @@ model.save(MODEL_PATH+&quot;song2vec.model&quot;)</code></pre>
 <li>From the projected vectors, perform basic k-means clustering into k clusters such that the vector within the same cluster are as similar as possible while the vector from different clusters is as dissimilar as possible.</li>
 <li>Assign cluster number for each vector.</li>
 </ol>
-<p><img src="/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-27-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-27-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>That being said, let’s perform Spherical K-Means on the song vectors by iterating the number of clusters from 10 to 500 so that the optimal number of clusters <code>k_opt</code> can be chosen by the elbow method.</p>
 <pre class="python"><code>embedding_matrix = model.wv[model.wv.vocab.keys()]
 embedding_matrix.shape</code></pre>
 <pre><code>#&gt; (72047, 256)</code></pre>
-<p><img src="/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-31-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-31-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>How to locate the optimal number of clusters objectively? Here is the idea <a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>:</p>
 <center>
-<img src="/img/song2vec-music-recommender/elbow-method.png" style="width:60.0%" />
+<img src="https://algotech.netlify.com/img/song2vec-music-recommender/elbow-method.png" style="width:60.0%" />
 </center>
 <ol style="list-style-type: decimal">
 <li>Connect the first and last point of the curve with a straight line</li>
@@ -1148,9 +1238,9 @@ songs_cluster.head()</code></pre>
                       random_state = 123).fit_transform(embedding_matrix)
                       
 save2Pickle(embedding_tsne, &quot;tsne_viz&quot;)</code></pre>
-<p><img src="/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-36-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-36-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The cluster might look cluttered since all 110 clusters are being plotted at once. Instead, let’s just perform t-SNE on randomly selected 10 clusters and visualize the result.</p>
-<p><img src="/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-37-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-37-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Songs that have similar context (by cosine similarity) tend to be plotted next to each other. Thus, creating distinct song clusters. Note that the clusters might look overlap to each other due to the dimensionality reduction, but in the actual dimension, they do not.</p>
 </div>
 </div>
@@ -1159,7 +1249,7 @@ save2Pickle(embedding_tsne, &quot;tsne_viz&quot;)</code></pre>
 <h1>Start Recommending</h1>
 <p>Congratulations! We are finally ready with the embeddings for every song that exists in <code>playlist_train</code>. How these song vectors are then used to suggest similar songs based on a certain playlist? One way is to calculate a <strong>playlist vector</strong> for each playlist by averaging together all the song vectors in that playlist. These vectors then become the query to find similar songs based on cosine similarity. Here is an illustration using a users’ music streaming playlist <a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>:</p>
 <center>
-<img src="/img/song2vec-music-recommender/playlist-vector.gif" style="width:80.0%" />
+<img src="https://algotech.netlify.com/img/song2vec-music-recommender/playlist-vector.gif" style="width:80.0%" />
 </center>
 <p>For each playlist in <code>playlist_test</code>, calculate the average vectors using <code>meanVectors()</code> function. If the song hasn’t been embedded before, neglect the song instead.</p>
 <pre class="python"><code>def meanVectors(playlist):
@@ -1321,7 +1411,7 @@ eval_song2vec.mean()</code></pre>
 <div id="comparison" class="section level2">
 <h2>Comparison</h2>
 <p>Finally, we compare the calculated Average Hit Rate at 25 (<a href="mailto:AHR@25" class="email">AHR@25</a>) of the four recommender systems. The higher the AHR, the better is the system. From the bar plot below, Song2Vec outperforms other methods in terms of hit rate, which means that it can recommend a song well based on surrounding context songs. In a real-life scenario, this system may likely to be low quality since the AHR is only around 12%, but still, it is much better than no recommender system at all.</p>
-<p><img src="/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-53-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-06-29-song2vec-music-recommender_files/figure-html/unnamed-chunk-53-1.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="conclusion" class="section level1">
@@ -1368,7 +1458,7 @@ Tool for computing continuous distributed representations of words</a><a href="#
                 <i class="fa fa-folder"></i>
                 
                 
-                <li><a class="article-category-link" href="/categories/python">Python</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/categories/python">Python</a></li>
                 
             
         
@@ -1382,16 +1472,16 @@ Tool for computing continuous distributed representations of words</a><a href="#
                 <i class="fa fa-tags"></i>
                 
                 
-                <li><a class="article-category-link" href="/tags/machine-learning">Machine Learning</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/machine-learning">Machine Learning</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/topic-modelling">Topic Modelling</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/topic-modelling">Topic Modelling</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/recommender-system">Recommender System</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/recommender-system">Recommender System</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/gensim">gensim</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/gensim">gensim</a></li>
                 
             
         
@@ -1429,12 +1519,12 @@ Tool for computing continuous distributed representations of words</a><a href="#
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/regression-with-panel-data/"
+        <li><a href="https://algotech.netlify.com/blog/regression-with-panel-data/"
                 class="button big previous">Regression Model with Panel Data</a></li>
     
 
     
-        <li><a href="/blog/rplicate-happiness-of-the-third-age/"
+        <li><a href="https://algotech.netlify.com/blog/rplicate-happiness-of-the-third-age/"
                 class="button big next">Rplicate Series: Happiness of The Third Age</a></li>
     
 </ul>
@@ -1449,7 +1539,7 @@ Tool for computing continuous distributed representations of words</a><a href="#
     
     
       
-        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+        <a href='https://algotech.netlify.com/'><img src="https://algotech.netlify.com/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
       
     
     
@@ -1562,13 +1652,9 @@ Tool for computing continuous distributed representations of words</a><a href="#
       <div class="posts-container">
           <article class="mini-post">
             <header>
+              
               <h3>
-                
-                                <img src="/img/2020/ads/dss.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/text-analysis/?utm_source=algotech">More details</a>
-                
-                <img src="/img/2020/ads/ddt.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/data-driven-2/?utm_source=algotech">More details</a>
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>
@@ -1654,9 +1740,9 @@ Tool for computing continuous distributed representations of words</a><a href="#
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
-      <script src="/js/util.js"></script>
-      <script src="/js/main.js"></script>
-      <script src="/js/backToTop.js"></script>
+      <script src="https://algotech.netlify.com/js/util.js"></script>
+      <script src="https://algotech.netlify.com/js/main.js"></script>
+      <script src="https://algotech.netlify.com/js/backToTop.js"></script>
     
 
     
@@ -1664,7 +1750,7 @@ Tool for computing continuous distributed representations of words</a><a href="#
         
       
         
-          <script src="/js/bootstrap.min.js"></script>
+          <script src="https://algotech.netlify.com/js/bootstrap.min.js"></script>
         
       
     

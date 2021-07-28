@@ -127,20 +127,65 @@
   }
   
   body.dark-mode , 
-body.dark-mode :not(img) main * {
-    background-color: #0d0d0d;
+  body.dark-mode main * {
+    background-color: #000000;
     color: #000000;
-     filter: invert(40%) hue-rotate(0deg) brightness(105%) contrast(75%);
-    -webkit-filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(90%);
-    
+    filter: invert(0.95);
 }
 
+  .dark-mode img {
+  filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
+  .dark-mode p {
+  color: #000000;
+}
+  
+  .dark-mode code {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    font-weight: bold;
+    background: #353737;
+    color: white;
+}
+
+  .dark-mode strong, b {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+  
+  .dark-mode #social-share ul{
+    margin: 0;
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode #header {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+  }
+
+  .dark-mode .js-toggle--focus .js-toggle-thumb {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode .footer {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+    background-color: white;
+    font-weight: bold;
+  }
+
+  .dark-mode .nav-secondary {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
+
+  .dark-mode #reactions .reaction-items .reaction-item .reaction-item__button img, #reactions-promotion .reaction-items .reaction-item .reaction-item__button img {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
 </style>
 
 <script>
     var body = document.body;
+    var article = document.article;
 	var switcher = document.getElementsByClassName('js-toggle')[0];
 
 	
@@ -150,10 +195,12 @@ body.dark-mode :not(img) main * {
 		
 		if (this.classList.contains('js-toggle--checked')) {
 			body.classList.add('dark-mode');
+			article.classList.add('post.dark-mode');
 			
 			localStorage.setItem('darkMode', 'true');
 		} else {
 			body.classList.remove('dark-mode');
+			article.classList.remove('post.dark-mode');
 			setTimeout(function() {
 				localStorage.removeItem('darkMode');
 			}, 100);
@@ -165,6 +212,7 @@ body.dark-mode :not(img) main * {
 		
         switcher.classList.add('js-toggle--checked');
         body.classList.add('dark-mode');
+        article.classList.add('post.dark-mode');
 	}
 
 </script>
@@ -177,12 +225,12 @@ body.dark-mode :not(img) main * {
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "\/"
+             "@id": "https:\/\/algotech.netlify.com\/"
         },
         "articleSection" : "blog",
         "name" : "Optimization and Hyper-Parameter Tuning with Genetic Algorithm",
         "headline" : "Optimization and Hyper-Parameter Tuning with Genetic Algorithm",
-        "description" : "Introduction\rAbout\rOptimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance.",
+        "description" : "Introduction About Optimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance.",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -192,7 +240,7 @@ body.dark-mode :not(img) main * {
         "copyrightYear" : "2020",
         "datePublished": "2020-01-13 00:00:00 \u002b0000 UTC",
         "dateModified" : "2020-01-13 00:00:00 \u002b0000 UTC",
-        "url" : "\/blog\/optimization-with-genetic-algorithm\/",
+        "url" : "https:\/\/algotech.netlify.com\/blog\/optimization-with-genetic-algorithm\/",
         "wordCount" : "7459",
         "keywords" : [ "Genetic Algorithm","Optimization","Blog" ]
     }
@@ -205,7 +253,7 @@ body.dark-mode :not(img) main * {
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.74.3" />
+        <meta name="generator" content="Hugo 0.83.1" />
         
   
     
@@ -213,8 +261,8 @@ body.dark-mode :not(img) main * {
 
   
 
-  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
-  <link rel="icon" href='/favicon/favicon.png'>
+  <link rel="apple-touch-icon-precomposed" href='https://algotech.netlify.com/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='https://algotech.netlify.com/favicon/favicon.png'>
   
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
@@ -235,30 +283,26 @@ body.dark-mode :not(img) main * {
 
         <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Optimization and Hyper-Parameter Tuning with Genetic Algorithm"/>
-<meta name="twitter:description" content="IntroductionAboutOptimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance."/>
+<meta name="twitter:description" content="Introduction About Optimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance."/>
 <meta name="twitter:site" content="@teamalgoritma"/>
 
         <meta property="og:title" content="Optimization and Hyper-Parameter Tuning with Genetic Algorithm" />
-<meta property="og:description" content="IntroductionAboutOptimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance." />
+<meta property="og:description" content="Introduction About Optimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/blog/optimization-with-genetic-algorithm/" />
-<meta property="article:published_time" content="2020-01-13T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-01-13T00:00:00+00:00" />
+<meta property="og:url" content="https://algotech.netlify.com/blog/optimization-with-genetic-algorithm/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-01-13T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-01-13T00:00:00&#43;00:00" />
 
-        <meta property="og:image" content="//images/logo.png">
+
+        <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Optimization and Hyper-Parameter Tuning with Genetic Algorithm">
-<meta itemprop="description" content="IntroductionAboutOptimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance.">
-<meta itemprop="datePublished" content="2020-01-13T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2020-01-13T00:00:00+00:00" />
+<meta itemprop="description" content="Introduction About Optimization is important in many fields, including in data science. In manufacturing, where every decision is critical to the process and the profit of organization, optimization is often employed, from the number of each products produced, how the unit is scheduled for production, get the best or optimal process parameter, and also the routing determination such as the traveling salesman problem. In data science, we are familiar with model tuning, where we tune our model in order to improve the model performance."><meta itemprop="datePublished" content="2020-01-13T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-01-13T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="7459">
-
-
-
 <meta itemprop="keywords" content="Genetic Algorithm,Optimization," />
-
         
 
         
@@ -267,26 +311,148 @@ body.dark-mode :not(img) main * {
 
         
         
-        
-            <link rel="stylesheet" href="/css/monokai-sublime.css">
+            <link disabled id="dark-mode-theme" rel="stylesheet" href="https://algotech.netlify.com/css/dark.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
-            <link rel="stylesheet" href="/css/main.css">
-            <link rel="stylesheet" href="/css/add-on.css">
-            <link rel="stylesheet" href="/css/academicons.min.css">
-            <link href="/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
-            <link href="/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/add-on.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/academicons.min.css">
+            <link href="https://algotech.netlify.com/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
         
+            <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                      integrity=
+            "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+                      crossorigin="anonymous">
+                <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+                </script>
+                <script src=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+                </script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.0/js.cookie.js">
+                </script>
+                
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
+                </script>
+              
+                <style>
+                    
+                     
+
+
+                    .modal:before {
+                        content: '';
+                        display: inline-block;
+                        height: 20%;
+                        vertical-align: middle;
+                    }
+                      
+                    .modal-dialog {
+                        
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    -webkit-flex-direction: column;
+                        -ms-flex-direction: column;
+                            flex-direction: column;
+                    -webkit-box-pack: center;
+                    -webkit-justify-content: center;
+                        -ms-flex-pack: center;
+                            justify-content: center;
+                    }
+
+                      
+                    .modal .modal-content {
+                        padding: 20px 20px 20px 20px;
+                        -webkit-animation-name: modal-animation;
+                        -webkit-animation-duration: 0.5s;
+                        animation-name: modal-animation;
+                        animation-duration: 1.5s;
+                    }
+
+                
+
+                    .modal .leadin-button {
+                        -webkit-border-radius: 0.25em;
+                        -moz-border-radius: 0.25em;
+                        -ms-border-radius: 0.25em;
+                        -o-border-radius: 0.25em;
+                        border-radius: 0.25em;
+                        -webkit-appearance: none;
+                        cursor: pointer;
+                        font-size: 1em;
+                        font-weight: bold;
+                        line-height: 1;
+                        padding: 1em 1.5em;
+                        width: 100%;
+                        text-decoration: none;
+                    }
+                    .modal .leadin-button-primary {
+                        background: #a90606 !important;
+                        color: #FFFFFF !important;
+                    }
+                      
+                    @-webkit-keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                      
+                    @keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                </style>
+
+            <script src="content/bootstrapJS/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+            <script type="text/javascript">
+                
+                
+                $( document ).ready(function() {
+  if (document.cookie.indexOf('visited=true') == -1){
+    
+                      $('#signupModal').modal('show');
+    
+                  var year = 1000*60*60*24*365;
+    var expires = new Date((new Date()).valueOf() + year);
+    document.cookie = "visited=true;expires=" + expires.toUTCString();
+
+  }
+}); 
+
+            </script>
+        
+            
 
         
             
                 
             
                 
-                    <link rel="stylesheet" href="/css/main.css">
+                    <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
                 
             
         
@@ -294,8 +460,8 @@ body.dark-mode :not(img) main * {
 
   
     
-      <link rel="stylesheet" href="/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
-      <script src="/js/highlight.pack.js"></script>
+      <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="https://algotech.netlify.com/js/highlight.pack.js"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   
 
@@ -316,11 +482,43 @@ if (!doNotTrack) {
 
 
 
-
-
-
+      
     </head>
     <body>
+
+        <div class="modal" id="signupModal"
+        role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+ 
+       <div class="modal-dialog">
+           <div class="modal-content">
+ 
+               
+               <div class="m-header">
+                   <button class="close" data-dismiss="modal">
+                       ×
+                   </button>
+                   <h2 class="myModalLabel"> Upcoming Workshop! </h2>
+               </div>
+ 
+               
+               <div class="inputs">
+ 
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png",
+                     alt="Music Recommender System", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p> This 3-day online workshop is beginner-friendly to demonstrate how to extract song embeddings using the neural network approach, specifically the word2vec model, to generate song recommendations. Throughout the online course, we will provide participants with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help participants troubleshoot or help with any difficulties encountered. </p>
+                <div class="advance-wrapper callout-special-font">
+                    <a href="https://algorit.ma/ds-course/web-scraping/?utm_source=algotech" target="_blank" 
+                    class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
+                </div>
+               </div>
+ 
+ 
+           </div>
+       </div>
+   </div>
+
+    </body>
 
       
       <div id="wrapper">
@@ -329,32 +527,32 @@ if (!doNotTrack) {
     
 <header id="header">
     
-      <h1><a href="/">blog</a></h1>
+      <h1><a href="https://algotech.netlify.com/">blog</a></h1>
     
 
     <nav class="links">
         <ul>
             
                 <li>
-                    <a href="/">
+                    <a href="https://algotech.netlify.com/">
                             <i class="fa fa-home">&nbsp;</i>Home
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/machine-learning/">
+                    <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <i class="fa fa-cog">&nbsp;</i>Machine Learning
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/data-visualization/">
+                    <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/">
+                    <a href="https://algotech.netlify.com/tags/">
                             <i class="fa fa-list">&nbsp;</i>Article List
                     </a>
                 </li>
@@ -372,7 +570,7 @@ if (!doNotTrack) {
                 <a class="fa-search" href="#search">Search</a>
                 <form id="search" method="get" action="//google.com/search">
                     <input type="text" name="q" placeholder="Search" />
-                    <input type="hidden" name="as_sitesearch" value="/">
+                    <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
                 </form>
             </li>
             <li class="menu">
@@ -389,7 +587,7 @@ if (!doNotTrack) {
         <section>
             <form class="search" method="get" action="//google.com/search">
                 <input type="text" name="q" placeholder="Search" />
-                <input type="hidden" name="as_sitesearch" value="/">
+                <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
             </form>
         </section>
 
@@ -398,7 +596,7 @@ if (!doNotTrack) {
             <ul class="links">
                 
                     <li>
-                        <a href="/">
+                        <a href="https://algotech.netlify.com/">
                             <h3>
                                 <i class="fa fa-home">&nbsp;</i>Home
                             </h3>
@@ -406,7 +604,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/machine-learning/">
+                        <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <h3>
                                 <i class="fa fa-cog">&nbsp;</i>Machine Learning
                             </h3>
@@ -414,7 +612,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/data-visualization/">
+                        <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <h3>
                                 <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                             </h3>
@@ -422,7 +620,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/">
+                        <a href="https://algotech.netlify.com/tags/">
                             <h3>
                                 <i class="fa fa-list">&nbsp;</i>Article List
                             </h3>
@@ -447,11 +645,11 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/javascripted-web-scrapping-in-r-with-rselenium/">Rselenium Intro</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp-ii/">Advancing Your Shiny Application II</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-11'>
-                                    January 11, 2021</time>
+                                    '2021-06-03'>
+                                    June 3, 2021</time>
                             </header>
                             
 
@@ -459,157 +657,49 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-coronavirus-survey/">Rplicate Series: Interactive Plot of Coronavirus Survey</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/gridsearchcv/">GridSearchCV</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-06'>
-                                    January 6, 2021</time>
+                                    '2021-05-22'>
+                                    May 22, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-coronavirus-survey/" class="image featured">
-            <img src="/img/2021/01/five_thirty.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/kemiripan-teks/">Pengenalan Kemiripan Teks (Text Similarity) di Python</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-25'>
-                                    November 25, 2020</time>
+                                    '2021-05-20'>
+                                    May 20, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-gone-baby-gone/" class="image featured">
-            <img src="/img/2020/11/gone-baby-gone.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp/">Advancing Your Shiny Application</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/xgboost/" class="image featured">
-            <img src="/img/2020/11/boosting-algorithm.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/fuzzy-clustering/">Fuzzy C-Means Clustering</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/image-colorization/">Image Colorization</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/fuzzy-clustering/" class="image featured">
-            <img src="/img/2020/11/fuzzy-cmeans.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
@@ -639,7 +729,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Optimization%20and%20Hyper-Parameter%20Tuning%20with%20Genetic%20Algorithm by Arga%20Adyatama&amp;url=%2fblog%2foptimization-with-genetic-algorithm%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Optimization%20and%20Hyper-Parameter%20Tuning%20with%20Genetic%20Algorithm by Arga%20Adyatama&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2foptimization-with-genetic-algorithm%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -653,7 +743,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2foptimization-with-genetic-algorithm%2f" target="_blank" class="share-btn facebook">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2falgotech.netlify.com%2fblog%2foptimization-with-genetic-algorithm%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -666,7 +756,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2foptimization-with-genetic-algorithm%2f&amp;title=Optimization%20and%20Hyper-Parameter%20Tuning%20with%20Genetic%20Algorithm" target="_blank" class="share-btn linkedin">
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2foptimization-with-genetic-algorithm%2f&amp;title=Optimization%20and%20Hyper-Parameter%20Tuning%20with%20Genetic%20Algorithm" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -694,7 +784,7 @@ if (!doNotTrack) {
   <header>
     <div class="title">
         
-            <h2><a href="/blog/optimization-with-genetic-algorithm/">Optimization and Hyper-Parameter Tuning with Genetic Algorithm</a></h2>
+            <h2><a href="https://algotech.netlify.com/blog/optimization-with-genetic-algorithm/">Optimization and Hyper-Parameter Tuning with Genetic Algorithm</a></h2>
         
         
     </div>
@@ -721,7 +811,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Optimization%20and%20Hyper-Parameter%20Tuning%20with%20Genetic%20Algorithm by Arga%20Adyatama&amp;url=%2fblog%2foptimization-with-genetic-algorithm%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Optimization%20and%20Hyper-Parameter%20Tuning%20with%20Genetic%20Algorithm by Arga%20Adyatama&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2foptimization-with-genetic-algorithm%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -735,7 +825,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2foptimization-with-genetic-algorithm%2f" target="_blank" class="share-btn facebook">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2falgotech.netlify.com%2fblog%2foptimization-with-genetic-algorithm%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -748,7 +838,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2foptimization-with-genetic-algorithm%2f&amp;title=Optimization%20and%20Hyper-Parameter%20Tuning%20with%20Genetic%20Algorithm" target="_blank" class="share-btn linkedin">
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2foptimization-with-genetic-algorithm%2f&amp;title=Optimization%20and%20Hyper-Parameter%20Tuning%20with%20Genetic%20Algorithm" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -791,16 +881,16 @@ if (!doNotTrack) {
         
         
 
-        <a href="/blog/optimization-with-genetic-algorithm/" class="image featured">
-            <img src="/img/2020/01/banner_genetic.jpg" alt="">
+        <a href="https://algotech.netlify.com/blog/optimization-with-genetic-algorithm/" class="image featured">
+            <img src="https://algotech.netlify.com/img/2020/01/banner_genetic.jpg" alt="">
         </a>
     
 
 
   <div id="content">
     
-<link href="/rmarkdown-libs/pagedtable/css/pagedtable.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/pagedtable/js/pagedtable.js"></script>
+<link href="https://algotech.netlify.com/rmarkdown-libs/pagedtable/css/pagedtable.css" rel="stylesheet" />
+<script src="https://algotech.netlify.com/rmarkdown-libs/pagedtable/js/pagedtable.js"></script>
 
 
 <div id="introduction" class="section level1">
@@ -877,11 +967,11 @@ Luca Scrucca
 <p>Genetic Algorithm is an optimization algorithm that use the concept of evolution by natural selection. Evolution by natural selection, as proposed by Darwin, is the mechanism on how many varieties of living things are adapting to their environment to survive, through 2 main principles: natural selection and random mutation. The genetic algorithm (GA) borrowed the concept and use it to gain optimal solutions by selecting the best or the fittest solution alongside the rare and random occurence of mutation.</p>
 <p>Suppose we have a non-convex function. If we use a derivative-based method such as gradient descend, it would potentially fall into local optima at <span class="math inline">\(x_1\)</span>. Genetic Algorithm can overcome the local optima, thus it can provide better solution. Combined with machine learning such as neural network, GA can create an arfiticial intelligence system that can play game, like <a href = "https://www.youtube.com/watch?v=aeWmdojEJf0"> Flappy Bird </a></p>
 <center>
-<img src="/img/genetic-algo/nonconvex.png" width="50%">
+<img src="https://algotech.netlify.com/img/genetic-algo/nonconvex.png" width="50%">
 </center>
 <p>The general flow of the algorithm is shown below:</p>
 <center>
-<img src="/img/genetic-algo/ga_flow.png" width="30%">
+<img src="https://algotech.netlify.com/img/genetic-algo/ga_flow.png" width="30%">
 </center>
 <ol style="list-style-type: decimal">
 <li>There will be a population of randomly selected chromosomes or solutions.</li>
@@ -908,28 +998,28 @@ parameter spaces.</li>
 <p>There exist 3 main elements of GA: Population, Chromosomes, and Genes.</p>
 <p>Population is a group of individuals or solutions, mainly called chromosomes. A chromosomes consists of a sequence of genes, with each or multiple genes (depend on the encoding) represent a single decision variables that will be fitted on the objective functions.</p>
 <center>
-<img src="/img/genetic-algo/ga_element.png" width="60%">
+<img src="https://algotech.netlify.com/img/genetic-algo/ga_element.png" width="60%">
 </center>
 <p>A gene can be represented or encoded in various ways, including:</p>
 <ul>
 <li>Binary Encoding</li>
 </ul>
 <center>
-<img src="/img/genetic-algo/ga3.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/ga3.png">
 </center>
 <p>Binary encoding mean that our genes are encoded into binary number, this is the earliest and the most common form of GA encoding.</p>
 <ul>
 <li>Real-Valued Encoding</li>
 </ul>
 <center>
-<img src="/img/genetic-algo/ga4.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/ga4.png">
 </center>
 <p>Real-valued encoding mean that our genes are encoded in a floating point or decimal number. Real-valued encoding can be used to optimize a process parameter, since it consists of floating point number and are not suited for integer-based optimization.</p>
 <ul>
 <li>Permutation Encoding</li>
 </ul>
 <center>
-<img src="/img/genetic-algo/ga5.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/ga5.png">
 </center>
 <p>Permutation encoding mean that our genes are encoded into a sequence of number, each number is uniquely assigned to a gene so no 2 genes that will have the same number or value. This encoding is often used in a scheduling or routing problem, where each permutation represent one location or unique points.</p>
 </div>
@@ -941,7 +1031,7 @@ parameter spaces.</li>
 </ul>
 <p>Parents will be selected randomly based on the fitness value. Higher fitness value mean higher chance to be chosen.</p>
 <center>
-<img src="/img/genetic-algo/ga9.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/ga9.png">
 </center>
 <ul>
 <li>Linear Ranking Selection</li>
@@ -964,14 +1054,14 @@ parameter spaces.</li>
 </ul>
 <p>Split the parent based on a randomly generated single point. The first child would have gene from the first parent for the position 1 up to the point, while the rest is filled with genes from the second parent. The second child is opposite, position 1 up to the point is filled with genes from the second parent.</p>
 <center>
-<img src="/img/genetic-algo/gabin_cross.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/gabin_cross.png">
 </center>
 <ul>
 <li>Uniform Crossover</li>
 </ul>
 <p>Every gene is exchanged between the a pair of randomly selected chromosomes with a certain probability, called as the swapping probability. Usually, the swapping probability value is taken to be 0.5.</p>
 <center>
-<img src="/img/genetic-algo/gabin_cross2.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/gabin_cross2.png">
 </center>
 </div>
 <div id="real-valued" class="section level4">
@@ -984,7 +1074,7 @@ parameter spaces.</li>
 <span class="math display">\[Child \ 2 = weight \ * y + (2-weight) \ * x\]</span></p>
 <p>If the weight = 0.5 two offspring are identical</p>
 <center>
-<img src="/img/genetic-algo/gareal_cross.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/gareal_cross.png">
 </center>
 <ul>
 <li>Local Arithmetic Crossover</li>
@@ -998,14 +1088,14 @@ parameter spaces.</li>
 </ul>
 <p>One-point crossover use only one random point as the marker where crossover should happen.</p>
 <center>
-<img src="/img/genetic-algo/ga6.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/ga6.png">
 </center>
 <ul>
 <li>Position-Based crossover</li>
 </ul>
 <p>A number of positions from the first parent is randomly selected and fill the remaining position from the second parent.</p>
 <center>
-<img src="/img/genetic-algo/pb_cross.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/pb_cross.png">
 </center>
 </div>
 </div>
@@ -1019,7 +1109,7 @@ parameter spaces.</li>
 </ul>
 <p>Genes are randomly flipped from 1 to 0 or vice versa with uniform probability for each gene, meaning that each gene has the same chance to mutate with mutation rate or mutation probability set by the user.</p>
 <center>
-<img src="/img/genetic-algo/gabin_mutation.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/gabin_mutation.png">
 </center>
 </div>
 <div id="real-valued-1" class="section level4">
@@ -1040,14 +1130,14 @@ parameter spaces.</li>
 </ul>
 <p>Two adjacent genes are swapped randomly.</p>
 <center>
-<img src="/img/genetic-algo/ga10.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/ga10.png">
 </center>
 <ul>
 <li>Inverse Mutation</li>
 </ul>
 <p>Inverse mutation is done by inversing the sequence between two random points.</p>
 <center>
-<img src="/img/genetic-algo/ga13.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/ga13.png">
 </center>
 </div>
 </div>
@@ -1060,7 +1150,7 @@ parameter spaces.</li>
 <h2>Illustration</h2>
 <p>Let’s illustrate step-by-step how Genetic Algorithm works. Let’s say I have a set of item with respective point and weight (kg). I want to maximize the point, but the rules said that I can not bring items with total weight more than 15 kg. Whice items then should I choose in order to maximize my point?</p>
 <center>
-<img src="/img/genetic-algo/step1.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/step1.png">
 </center>
 <div id="define-encoding-and-fitness-function" class="section level3">
 <h3>Define Encoding and Fitness Function</h3>
@@ -1082,14 +1172,14 @@ parameter spaces.</li>
 <h3>Initial Population</h3>
 <p>First, GA will randomly generate a population of solution. Here, we have a population of 4 solutions/indviduals. The binary value on each individuals are generated randomly.</p>
 <center>
-<img src="/img/genetic-algo/step2.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/step2.png">
 </center>
 </div>
 <div id="fitness-assignment" class="section level3">
 <h3>Fitness Assignment</h3>
 <p>Now we calculate the fitness value (total point) of each individuals based on the fitness function above. We can see that solution that violate the constraint (have total weight &gt; 15) will have worse fitness function.</p>
 <center>
-<img src="/img/genetic-algo/step3.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/step3.png">
 </center>
 </div>
 <div id="selection-1" class="section level3">
@@ -1102,11 +1192,11 @@ parameter spaces.</li>
 <li>Chose solution randomly based on the probability. Solution with higher fitness function will naturally has higher chance to be chosen.</li>
 </ul>
 <center>
-<img src="/img/genetic-algo/step4.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/step4.png">
 </center>
 <p>Let’s say for example, the first and second solution are chosen as the <code>parent</code></p>
 <center>
-<img src="/img/genetic-algo/step5.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/step5.png">
 </center>
 </div>
 <div id="crossover-1" class="section level3">
@@ -1114,14 +1204,14 @@ parameter spaces.</li>
 <p>Crossover means exchanging genes between two <code>parents</code> two create new solution called <code>child</code> solution. We will use the single-point crossover here. A single point is chosen randomly.</p>
 <p>Let’s say the point is chosen to be between position 2 and 3. For the first child, it will have the first and second gene from the first parent, while the rest will be filled from the second parent. For the second child, it is the opposite, it will have the first and second gene from the second parent, while the rest will be filled from the first parent.</p>
 <center>
-<img src="/img/genetic-algo/step6.png">
+<img src="https://algotech.netlify.com/img/genetic-algo/step6.png">
 </center>
 </div>
 <div id="mutation-1" class="section level3">
 <h3>Mutation</h3>
 <p>Mutation is the change of value in the gene. Here we use random mutation. It will randomly swap the value of gene. If the gene in position 3 have value of 1, it would be switched into 0 and vice versa. Mutation is rarely occur, its probability can be set manually, but generally people use mutation probability of 0.1.</p>
 <center>
-<img src="/img/genetic-algo/step7.png" width="50%">
+<img src="https://algotech.netlify.com/img/genetic-algo/step7.png" width="50%">
 </center>
 <p>The selection, crossover, and mutation process will be repeated by choosing different parent until the number of children are the same with the population size of the parent. If the parent have population size of 4, then we would have a children population of 4.</p>
 </div>
@@ -1261,7 +1351,7 @@ toc()</code></pre>
 <p>As we can see, there are several solutions for the problem, all of them have the same fitness value: 10000. Therefore, we have the flexibility to choose which solution we will pick. All optimal solution has no value greater than its constraint, which is also 10000.</p>
 <p>Let’s check the plot of fitness value progression using <code>plot()</code>.</p>
 <pre class="r"><code>plot(ga_knapsack)</code></pre>
-<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can see that the optimal solution (Best) is already achieved at iteration 3.</p>
 <p>Let’s choose one of the solution as our decision.</p>
 <pre class="r"><code>df_sol &lt;- df_item_long[ga_knapsack@solution[1, ] == 1, ]
@@ -1456,7 +1546,7 @@ summary(ga_schedule)</code></pre>
 <pre><code>## 54.41 sec elapsed</code></pre>
 <p>We can plot the progression of the algorithm by using <code>plot()</code> function on the GA object.</p>
 <pre class="r"><code>plot(ga_schedule)</code></pre>
-<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The best or optimal solutions are obtained at least at the 102nd iteration and didn’t improve since then, so the algorithm stop after 100 iterations at 233nd iteration.</p>
 <p>Let’s put the optimal sequence to our data. The resulting data frame will be our production schedule. Since there are multiple solutions, let’s just look at the first two optimal solutions.</p>
 <p>The first solution:</p>
@@ -1612,7 +1702,7 @@ summary(ga_rf)</code></pre>
 <pre><code>## 478.7 sec elapsed</code></pre>
 <p>Let’s plot the progression of GA</p>
 <pre class="r"><code>plot(ga_rf)</code></pre>
-<p><img src="/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/2020-01-13-optimization-with-genetic-algorithm_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Let’s check each decision variables and the accuracy that is used as the fitness value.</p>
 <pre class="r"><code># Transform decision variables into data frame
 ga_rf_pop &lt;- as.data.frame(ga_rf@population)
@@ -1714,7 +1804,7 @@ multi-objective ensemble classifiers. <em>Applications of Evolutionary Computati
                 <i class="fa fa-folder"></i>
                 
                 
-                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/categories/r">R</a></li>
                 
             
         
@@ -1728,10 +1818,10 @@ multi-objective ensemble classifiers. <em>Applications of Evolutionary Computati
                 <i class="fa fa-tags"></i>
                 
                 
-                <li><a class="article-category-link" href="/tags/genetic-algorithm">Genetic Algorithm</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/genetic-algorithm">Genetic Algorithm</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/optimization">Optimization</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/optimization">Optimization</a></li>
                 
             
         
@@ -1769,12 +1859,12 @@ multi-objective ensemble classifiers. <em>Applications of Evolutionary Computati
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/introduction-to-generative-adversarial-network-with-keras/"
+        <li><a href="https://algotech.netlify.com/blog/introduction-to-generative-adversarial-network-with-keras/"
                 class="button big previous">Introduction to Generative Adversarial Network with Keras</a></li>
     
 
     
-        <li><a href="/blog/dbscan-clustering/"
+        <li><a href="https://algotech.netlify.com/blog/dbscan-clustering/"
                 class="button big next">DBSCAN Clustering</a></li>
     
 </ul>
@@ -1789,7 +1879,7 @@ multi-objective ensemble classifiers. <em>Applications of Evolutionary Computati
     
     
       
-        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+        <a href='https://algotech.netlify.com/'><img src="https://algotech.netlify.com/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
       
     
     
@@ -1902,13 +1992,9 @@ multi-objective ensemble classifiers. <em>Applications of Evolutionary Computati
       <div class="posts-container">
           <article class="mini-post">
             <header>
+              
               <h3>
-                
-                                <img src="/img/2020/ads/dss.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/text-analysis/?utm_source=algotech">More details</a>
-                
-                <img src="/img/2020/ads/ddt.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/data-driven-2/?utm_source=algotech">More details</a>
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>
@@ -1994,9 +2080,9 @@ multi-objective ensemble classifiers. <em>Applications of Evolutionary Computati
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
-      <script src="/js/util.js"></script>
-      <script src="/js/main.js"></script>
-      <script src="/js/backToTop.js"></script>
+      <script src="https://algotech.netlify.com/js/util.js"></script>
+      <script src="https://algotech.netlify.com/js/main.js"></script>
+      <script src="https://algotech.netlify.com/js/backToTop.js"></script>
     
 
     
@@ -2004,7 +2090,7 @@ multi-objective ensemble classifiers. <em>Applications of Evolutionary Computati
         
       
         
-          <script src="/js/bootstrap.min.js"></script>
+          <script src="https://algotech.netlify.com/js/bootstrap.min.js"></script>
         
       
     

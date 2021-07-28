@@ -2,22 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>RNN on Algoritma Technical Blog</title>
-    <link>/tags/rnn/</link>
+    <link>https://algotech.netlify.com/tags/rnn/</link>
     <description>Recent content in RNN on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 11 Jan 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/rnn/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 11 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/rnn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Time Series Prediction with LSTM</title>
-      <link>/blog/time-series-prediction-with-lstm/</link>
+      <link>https://algotech.netlify.com/blog/time-series-prediction-with-lstm/</link>
       <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/time-series-prediction-with-lstm/</guid>
-      <description>Time Series Forecasting using LSTMTime series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing.A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
+      <guid>https://algotech.netlify.com/blog/time-series-prediction-with-lstm/</guid>
+      <description>Time Series Forecasting using LSTM Time series involves data collected sequentially in time. In Feed Forward Neural Network we describe that all inputs are not dependent on each other or are usually familiar as IID (Independent Identical Distributed), so it is not appropriate to use sequential data processing. A Recurrent Neural Network (RNN) deals with sequence problems because their connections form a directed cycle.</description>
     </item>
     
   </channel>

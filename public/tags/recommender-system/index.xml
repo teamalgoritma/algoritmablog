@@ -2,31 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Recommender System on Algoritma Technical Blog</title>
-    <link>/tags/recommender-system/</link>
+    <link>https://algotech.netlify.com/tags/recommender-system/</link>
     <description>Recent content in Recommender System on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Sep 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/recommender-system/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 01 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/recommender-system/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Skincare Recommendation System</title>
-      <link>/blog/skincare-recommender-system/</link>
+      <link>https://algotech.netlify.com/blog/skincare-recommender-system/</link>
       <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/skincare-recommender-system/</guid>
-      <description>body {text-align: justify}Have you ever imagine how Netflix give you recommendation for movies you have never watch before?If you’re familiar with machine learning, you can find the answer. Yappps.. that’s right. The answer is “Recommendation System”.Recommendation system or recommender system is subclass of information filtering system that seeks to predict the “rating” or “preference” a user would give to an item. Recommendation system aims to telling us which movies to watch (Netflix), which product to buy (Amazone), or which songs to listen (Spotify) based on our historical data.</description>
+      <guid>https://algotech.netlify.com/blog/skincare-recommender-system/</guid>
+      <description>body { text-align: justify}  Have you ever imagine how Netflix give you recommendation for movies you have never watch before? If you’re familiar with machine learning, you can find the answer. Yappps.. that’s right. The answer is “Recommendation System”. Recommendation system or recommender system is subclass of information filtering system that seeks to predict the “rating” or “preference” a user would give to an item. Recommendation system aims to telling us which movies to watch (Netflix), which product to buy (Amazone), or which songs to listen (Spotify) based on our historical data.</description>
     </item>
     
     <item>
       <title>Song2Vec: Music Recommender</title>
-      <link>/blog/song2vec-music-recommender/</link>
+      <link>https://algotech.netlify.com/blog/song2vec-music-recommender/</link>
       <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/song2vec-music-recommender/</guid>
-      <description>body {text-align: justify}BackgroundThe behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music,Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.</description>
+      <guid>https://algotech.netlify.com/blog/song2vec-music-recommender/</guid>
+      <description>body { text-align: justify}  Background The behavior of musicophiles has changed along with the evolvement of the music industry in the past decades. Previously we conservatively bought music on a compact disc, but now music streaming services are more preferable; such as Amazon Music, Apple Music, Google Play Music, Pandora, Spotify, Youtube Music, to name a few. This is because of the convenience offered by these platforms so that users are able to search their favorite songs right away without having to bother going to the music store physically.</description>
     </item>
     
   </channel>

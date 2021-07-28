@@ -1,0 +1,381 @@
+---
+title: 'Tidymodels: Churn Over Prediction'
+author: David
+github: https://github.com/Davidlimbong
+date: '2021-03-21'
+slug: tidymodels-churn-over-prediction
+categories:
+  - R
+tags:
+  - tidymodels
+  - tidyverse
+  - Machine Learning
+  - Capstone ML
+description: ''
+featured: 'tidymodels.png'
+featuredalt: ''
+featuredpath: 'date'
+linktitle: ''
+type: post
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+
+```{r setup, include=FALSE}
+# clean up the environment
+rm(list = ls())
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+
+options(scipen = 123)
+RNGkind(sample.kind = "Rounding")
+```
+
+
+Untuk membuat sebuah model machine learning diperlukan beberapa proses seperti praproses data, modeling, sampai model evaluation. R memiliki banyak sekali packages yang dapat digunakan dalam proses pemodelan. Untuk mempermudah seorang data scientist dalam membuat model, Rstudio mengembangkan kumpulan packages yang diberi nama **Tidymodels**. 
+
+Tidymodels merupakan framework yang berisi kumpulan packages untuk membuat model machine learning menggunakan konsep **Tidyverse**. Beberapa packages seperti `rsample`, `recipes`, `parsnip`, `dials`, `tune`, `yardstick`, `workflows` sudah saling terintegrasi untuk membuat satu proses pemodelan yang utuh.  
+
+Artikel ini berfokus membahas bagaimana cara menggunakan `tidymodels` dalam proses pemodelan machine learning. Artikel ini mengasumsikan pembaca sudah mengetahui konsep dasar dari `tidyverse` (piping) dan proses pembuatan model machine learning seperti praproses data, cross validation, modeling, model evaluation dll. 
+
+
+Jika anda belum menginstall packages tidymodels, silahkan install terlebih dahulu. 
+```{r eval=FALSE}
+install.packages("tidymodels")
+```
+
+# Data Exploration
+
+```{r}
+library(tidyverse) # data wrangling
+library(inspectdf) # data exploration
+library(tidymodels) # modeling
+library(themis)
+```
+
+
+## Read Data
+Data yang digunakan pada artikel ini adalah data [Telco Customer Churn](https://www.kaggle.com/blastchar/telco-customer-churn) yang diperoleh dari kaggle. Pada kasus ini model yang dibuat untuk memprediksi apakah seorang pelanggan akan *churn* dari produk yang digunakan atau tidak (klasifikasi biner).
+
+```{r}
+churn <- read_csv("data_input/tidymodels/watson-churn.csv")
+head(churn)
+```
+
+## Data Structure
+Dilihat secara sekilas, data yang digunakan terdiri dari 19 kolom, dimana mayoritas kolom adalah kategorikal. Untuk melihat lebih detail struktur data bisa menggunakan fungsi `glimpse()`.
+```{r}
+glimpse(churn)
+```
+
+Dari informasi diatas diketahui bahwa data terdiri dari 19 kolom dan 4835 observasi yang didominasi oleh kategorikal. Untuk melihat persebaran data yang bertipe kategorikal lebih jelas, kita dapat menggunakan fungsi `inspect_cat()` dari package `inspectdf`. 
+
+```{r}
+inspect_cat(churn)
+```
+
+Dari 19 kolom yang ada 15 diantaranya merupakan kategorikal. semua data kategorikal akan diubah menjadi factor kecuali `customerID`. `customerID` merupakan ID dari pelanggan oleh yang bersifat unique sehingga tidak diubah menjadi factor. Persebaran data yang bertipe numerik dapat dilihat juga menggunakan fungsi `inspect_num()`.
+
+```{r}
+inspect_num(churn)
+```
+Kolom `SeniorCitizen` memiliki sebaran yang perlu dicurigai karena nilai min dan q3 nya sama yaitu 0 dan nilai maksimumnya adalah 1, ada kemungkinan kolom ini seharusnya factor yang berisi 0 dan 1 saja. 
+
+```{r}
+churn %>% 
+  count(SeniorCitizen, name = "freq")
+```
+Setelah dilihat lebih detail ternyata benar bahwa nilai pada kolom `SeniorCitizen` hanya berisi 2 nilai yaitu 1 (Yes) dan 0 (No), oleh sebab itu kolom ini akan di ubah menjadi factor. 
+
+
+## Missing Values
+Pengecekan missing value dapat dilakukan untuk setiap kolom dengan menggabungkan fungsi `is.na()` dan `colsum()`.
+```{r}
+churn %>% 
+  is.na() %>% 
+  colSums()
+```
+Dilihat dari hasil diatas terdapat 3 missing value pada kolom `TotalCharges`. Proses imputasi akan dilakukan untuk mengisi missing value.
+
+## Class Proportion
+
+Sebelum melakukan pemodelan penting untuk melihat seberapa seimbang proporsi kelas target. Data yang tidak seimbang akan membuat model lebih banyak belajar dari kelas mayoritas, sehingga model tidak mengenali ciri dari kelas minoritas.
+
+```{r}
+churn %>% 
+  pull(Churn) %>% 
+  table() %>% 
+  prop.table() %>% 
+  round(3)
+```
+
+
+Kelas target didominasi oleh kelas *No* sebanyak 67.2%, pada kondisi seperti ini data tidak seimbang namun tidak terlalu ekstream. Teknik resampling seperti downsampling atau upsampling dapat digunakan untuk  menyeimbangkan kelas. 
+
+# Data Preprocessing
+
+<center> ![](/img/tidymodels/prepro2.png){width="60%"} </center>
+
+*Data Preprocessing* atau sering disebut sebagai *data cleansing* merupakan tahapan yang cukup penting dilakukan sebelum melakukan pemodelan. Pada tahap ini data akan dibersihkan berdasarkan informasi yang didapat pada tahap *data exploration*. 
+
+## Cross Validation (Training and Testing)
+
+Sebelum melakukan *data cleansing*, data perlu dibagi menjadi 2 bagian yaitu *training data* dan *testing data*. *Training data* digunakan dalam proses pemodelan, sedangkan *testing data* digunakan dalam proses pengujian model.
+
+Kenapa *splitting data* dilakukan sebelum *data cleansing*? Kenapa tidak setelahnya? Jawabannya adalah karena kita ingin menjaga originalitas dari *testing data* yang diasumsikan sebagai data "apa adanya", karena data yang akan datang (unseen data) tidak dapat ketahui tingkat kebersihannya. 
+
+*cross validation* dapat dilakukan dengan fungsi `initial_split()` dari package [`rsample`](https://rsample.tidymodels.org/) yang merupakan bagian dari tidymodels. Fungsi tersebut memiliki 3 paramater yaitu :     
+* `data`   : Data yang digunakan      
+* `prop`   : Proporsi data training      
+* `Strata` : Kolom target       
+setelah melakukan *cross validation*, training data dan testing data dapat dipisahkan dengan fungsi `training()` dan `testing()`. 
+
+```{r}
+set.seed(123)
+churn_split <- initial_split(data = churn,prop = 0.8, strata = Churn)
+churn_train <- training(churn_split)
+churn_test <- testing(churn_split)
+```
+
+## Data Preprocessing
+
+Informasi yang didapatkan pada *data exploration* akan digunakan pada tahap ini, beberapa praproses yang dibutuhkan sebelum melakukan pemodelan yaitu:
+
+* Mengubah role `customerID` menjadi Id     
+* Mengubah tipe data chr menjadi factor     
+* Mengubah tipe data `SeniorCitizen` menjadi factor     
+* Melakukan imputation terhadapap missing value     
+* melakukan resampling     
+
+Proses cleansing data sebenarnya bisa dilakukan dengan data wrangling sederhana menggunakan tidyverse, namun cara tersebut tidak *scalable* sehingga sulit untuk diterapkan pada unseen data nantinya. Permasalahan tersebut bisa diselesaikan dengan package `recipes`. 
+
+`Recipes` bertugas membuat sebuah *blueprint* praproses data. Proses pembuatan *blueprint* menggunakan `recipes` diawali dengan function `recipes()` yang didalamnya terdapat parameter `formula` dan `data`, setelah itu dilanjutkan dengan tahapan praproses yang diinginkan. Fungsi praproses yang dilakukan selalu diawali dengan `step_`. 
+
+
+```{r}
+churn_rec <- recipe(formula = Churn~., data = churn_train) %>% 
+  update_role(customerID, new_role = "ID") %>%
+  step_string2factor(all_nominal(), -customerID, skip = TRUE) %>%
+  step_num2factor(SeniorCitizen, transform = function(x) x +1, levels = c("No", "Yes")) %>%
+  step_medianimpute(TotalCharges) %>% 
+  step_upsample(Churn,over_ratio = 4/5)
+```
+
+Rincian dari praproses diatas adalah sebagai berikut: 
+
+-  Pada data `churn_train` kolom `Churn` merupakan target dan sisanya menjadi prediktor.      
+- Mengubah *role* `customerID` menjadi `ID`, sehingga kolom tersebut tidak digunakan dalam proses pemodelan, namun tidak dibuang dari data.      
+- Mengubah semua data yang bertipe kategorikal (`all_nominal()`) kecuali `CustomerID` yang semula bertipe data string menjadi factor.     
+- Mengubah `SeniorCitizen` yang semula numerik menjadi factor. Bila nilainya 0 ubah menjadi No bila 1 menjadi Yes.      
+- Mengisi *missing value* pada `TotalCharge` dengan nilai median.     
+- Melakukan upsampling sehingga perbandingan kelas Yes dan No menjadi 4 : 5
+- Setelah semua proses itu dilakukan simpan blueprint kedalam objek `churn_rec`.     
+
+Hasil dari proses diatas hanya berupa *design metrics* saja bukan sebuah dataframe yang sudah dilakukan praproses. Objek recipe yang sudah dibuat bisa digunakan langsung dengan dengan menggunakan fungsi `prep()` lalu diikuti oleh fungsi `juice()` untuk data train dan `bake()` untuk data test. 
+
+```{r}
+# praproses pada data train
+churn_rec %>% 
+  prep() %>% 
+  juice() %>% 
+  head()
+```
+
+```{r}
+# praproses pada data test
+churn_rec %>% 
+  prep() %>% 
+  bake(churn_test) %>% 
+  head()
+```
+Fungsi `juice` dan `bake` akan mengembalikan data yang sudah dilakukan praproses, namun pada artikel ini kedua fungsi tersebut tidak akan digunakan. Pada artikel ini object recipes yang sudah dibuat akan digunakan langsung pada saat proses pemodelan. 
+
+# Modeling
+
+
+<center> ![](/img/tidymodels/modeling.png){width="60%"} </center>
+
+Pada umumnya ketika melakukan pemodelan di R cukup dengan satu fungsi saja seperti code dibawah ini adalah pemodelan menggunakan metode Random Forest. 
+
+```{r eval=F}
+randomForest::randomForest(x = .., y = .., ntree = ..., mtry = ...)
+```
+
+atau apabila anda sudah terbiasa dengan packages `caret` bisa ditambahkan K-Fold dan tunning seperti code dibawah ini 
+
+```{r eval=F}
+ctrl <- trainControl(method="repeatedcv", number=5, repeats=2)
+fb_forest <- train(formula = y ~ ., data=..., method="rf", trControl = ctrl)
+```
+
+Dua cara diatas merupakan cara yang cukup mudah untuk digunakan, namun pada proses penggunaanya model tersebut tidak *scalable*. **Tidymodels membuat proses pemodelan menjadi modular sehingga setiap proses dibuat secara terpisah**. 
+
+## Model Interface
+
+Tahap awal dalam pemodelan yaitu membuat model interface menggunakan package [`parsnip`](https://parsnip.tidymodels.org/) dari `tidymodels`. Ada banyak function dengan berbagai macam parameter yang biasa digunakan untuk membuat model, `parsnip` melakukan standarisasi interface dan output dari setiap function. 
+
+Terdapat 3 hal yang harus didefinisikan ketika membuat model interface yaitu:     
+- Metode yang digunakan      
+- Engine atau package yang digunakan      
+- Jenis pemodelan          
+Pada pemodelan kali ini metode yang digunakan adalah Random Forest yang berasal dari pacakges `ranger` 
+
+```{r}
+model_rf <- rand_forest(mtry = tune(),
+                        trees = tune(), 
+                        min_n =tune()) %>% 
+  set_engine("ranger") %>% 
+  set_mode("classification")
+model_rf
+```
+
+Fungsi `rand_forest()` digunakan untuk membuat model Random Forest, didalamnya terdapat 3 parameter yaitu :         
+- `mtry` : Jumlah prediktor yang akan dipilih secara acak pada setiap kali tree ingin membuat cabang.    
+- `trees` : Jumlah tree yang digunakan pada Random Forest.    
+- `min_n`: Jumlah minimum data yang dibutuhkan pada setiap node untuk membuat percabangan.   
+Ketiga parameter tersebut akan ditunning untuk mencari nilai yang paling optimal menggunakan *grid search*.     
+
+`set_engine()` digunakan untuk memberitahu mesin package apa yang digunakan dalam pembuatan model. Pada kasus ini model Random Forest akan dibuat menggunakan package `ranger`. Terakhir kita harus memberitahu jenis pemodelan yang akan dilakukan menggunakan fungsi `set_mode()`. Terdapat 2 jenis mode yaitu "classification" dan "regression".
+
+## Grid Search
+
+Salah satu bagian paling "menyenangkan" dari pembuatan model machine learning adalah tunning parameter. Tujuan dari tunning parameter adalah mendapatkan nilai optimum parameter yang dapat menghasilkan model terbaik. [`dials`](https://dials.tidymodels.org/) merupakan package yang digunakan untuk tunning parameter. 
+
+Terdapat beberapa jenis grid yang bisa digunakan untuk tunning parameter, pada artikel ini grid yang digunakan adalah `grid_max_entropy()`. Grid tersebut akan digunakan untuk tunning 3 parameter yang ada pada `model_rf` yaitu `mtry`, `tree`, dan `min_n`.
+
+```{r}
+set.seed(123)
+model_grid <- grid_max_entropy(x=finalize(object = mtry(),x = churn_train[,-19]), 
+                               trees(), 
+                               min_n(), 
+                               size = 20)
+model_grid %>% 
+  summary()
+```
+Parameter yang ada dalam fungsi `grid_max_entropy()` adalah parameter yang ingin ditunning pada model. Parameter `size` menunjukkan seberapa banyak kombinasi yang ingin dibuat. 
+
+parameter `trees` dan `min_n` dapat digunakan secara langsung karena range nilainya tidak dipengaruhi oleh dimensi data. Parameter `mtry` tidak dapat digunakan secara langsung karena jumalah mtry dipengaruhi oleh banyaknya kolom, oleh sebab itu perlu disesuaikan dengan fungsi `finalize()`. Hasil dari pembuatan grid adalah sebuah dataframe yang berisi nilai yang akan digunakan pada proses tunning parameter. 
+
+## Metrics Evaluation
+
+Sebelum melakukan fitting model, penentuan metrics evaluasi perlu dilakukan, pada kasus ini metrics yang dilihat adalah specificity (recall untuk kelas Yes) dan AUC dari ROC. Metrics tersebut dapat dibuat dengan fungsi `metric_set` dari package [`yardstick`](https://yardstick.tidymodels.org/).
+
+```{r}
+model_metrics <- metric_set(roc_auc, specificity)
+```
+
+
+## K-Fold Cross Validation (Training and validation)
+
+K-Fold merupakan bentuk berkembangan dari cross validation. K-Fold akan membagi *training data* menjadi K bagian (fold) dimana setiap fold akan dijadikan train dan test secara bergantian. Tujuan dari proses ini adalah untuk mencari parameter yang menghasilkan model terbaik. Untuk melakukan K-Fold bisa menggunakan fungsi `vfold()`.
+
+```{r}
+churn_folds <- vfold_cv(data = churn_train, v = 5)
+```
+
+## Tunning Parameters
+
+Sejauh ini sudah ada beberapa bagian yang berhasil dibuat yaitu :      
+- Praproses menggunakan `recipes`       
+- Model interface menggunakan `parsnip`      
+- Grid search menggunakan `dials`      
+- Metrics evaluation menggunakan `yardstick`     
+- K-Fold menggunakan `rsamples`      
+Pada tahap ini semua bagian yang sudah dibuat akan digabungkan untuk mencari parameter terbaik, proses ini disebut sebagai *tunning parameters*. function yang digunakan yaitu `tune_grid()` dari `tune`. 
+Untuk mempercepat proses komputasi bisa menggunakan pemprosesan pararel dari package `doParallel`.
+
+```{r }
+doParallel::registerDoParallel()
+set.seed(123)
+rf_result <- tune_grid(object = model_rf,
+                       preprocessor = churn_rec,
+                       resamples = churn_folds,
+                       grid = model_grid, 
+                       metrics = model_metrics)
+```
+
+
+untuk melihat kombinasi parameter terbaik yang dihasilkan berdasarkan metrics yang dipilih bisa menggunakan fungsi `collect_metrics()`
+```{r}
+rf_result %>% 
+  collect_metrics() %>% 
+  group_by(.metric) %>% 
+  slice_max(mean,n = 2)
+```
+
+Nilai Recall tertinggi dihasilkan oleh `Model19` yaitu 0.79 sedangkan nilai AUC tertinggi sebesar 0.81 yang dihasilkan oleh `Model06`. 
+
+## Finalization
+Tahap terakhir dari pemodelan yaitu menggabungkan semua komponen menjadi satu kerangka yang utuh menggunakan package `workflows`. Package `workflow` menggabungkan  *pre-processing*, *modeling*, dan *post-processing*.
+
+```{r}
+churn_wf <- workflow() %>% 
+  add_model(model_rf) %>% 
+  add_recipe(churn_rec) %>% 
+  finalize_workflow(rf_result %>% 
+                      show_best("roc_auc", 1)
+                    )
+churn_wf
+
+```
+
+Fungsi `add_model()` menambahkan model interface kedalam workflow, fungsi `add_recipe()` menambahkan objek recipe kedalam workflow, dan fungsi `finalize_workflow()` menambahkan parameters terbaik berdasarkan metrics yang dipilih dari hasil tunning parameters sebelumnya. Setelah semuanya digabungkan model terakhir dapat dibentuk menggunakan fungsi `fit()`. 
+
+```{r}
+set.seed(123)
+final_model_rf <- fit(object = churn_wf, data = churn_train)
+```
+
+# Model Evaluation 
+Setelah membuat final model tahap terakhir adalah menguji performa model terhadap data test dengan melakukan prediksi. Ketika melakukan prediksi menggunakan fungsi `predict()` terdapat 2 jenis type yang digunakan yaitu "prob" yang mengembalikan berupa peluang, sedangkan "class" menghasilkan kelas prediksi.  
+```{r}
+pred_prob <- predict(final_model_rf, churn_test, type = "prob")
+pred_class <- predict(final_model_rf, churn_test, type = "class")
+
+churn_results <- churn_test %>% 
+  transmute(truth = as.factor(Churn)) %>% 
+  bind_cols(pred_prob, pred_class)
+churn_results %>% 
+  head()
+```
+
+## Confusion Matrix
+Hasil prediksi dapat di evaluasi menggunakan confusion matrix untuk mengetahui seberapa banyak data yang berhasil atau gagal diprediksi. 
+```{r}
+churn_results %>% 
+  conf_mat(truth, .pred_class) %>% 
+  autoplot(type = "heatmap")
+```
+
+## Specificity
+Specificity yang dihasilkan sebesar 0.65 angka ini menunjukkan seberapa baik model dalam memprediksi kelas `Yes` bila dibandingkan dengan data aktual.
+```{r}
+churn_results %>% 
+  specificity(truth, .pred_class) 
+```
+## ROC Curve
+Sedangkan untuk melihat seberapa baik model dalam membedakan kedua kelas dapat dilihat dari nilai ROC AUC nya. Nilai AUC dari ROC curve didapat sebesar 0.79.
+
+```{r}
+churn_results %>% 
+  roc_auc(truth, .pred_Yes, event_level = 'second')
+```
+
+# Closing 
+
+Tidymodels merupakan kumpulan packages yang digunakan dalam pembuatan model machine lerning. Beberapa kelebihan menggunakan tidymodels adalah:     
+- Fleksibilitas dalam mengubah setiap komponen karena setiap proses dibuat secara modular.     
+- Dapat menggabungkan praproses data hingga model menjadi satu objek `workflows`.     
+- Model interface yang dibuat bisa digunakan pada kasus yang berbeda sehingga code yang dibuat menjadi *reusable*.     
+
+Full code dari artikel ini bisa ditemukan pada (repositori github saya)[]

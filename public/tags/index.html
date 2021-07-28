@@ -135,20 +135,65 @@
   }
   
   body.dark-mode , 
-body.dark-mode :not(img) main * {
-    background-color: #0d0d0d;
+  body.dark-mode main * {
+    background-color: #000000;
     color: #000000;
-     filter: invert(40%) hue-rotate(0deg) brightness(105%) contrast(75%);
-    -webkit-filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(90%);
-    
+    filter: invert(0.95);
 }
 
+  .dark-mode img {
+  filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
+  .dark-mode p {
+  color: #000000;
+}
+  
+  .dark-mode code {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    font-weight: bold;
+    background: #353737;
+    color: white;
+}
+
+  .dark-mode strong, b {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+  
+  .dark-mode #social-share ul{
+    margin: 0;
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode #header {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+  }
+
+  .dark-mode .js-toggle--focus .js-toggle-thumb {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode .footer {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+    background-color: white;
+    font-weight: bold;
+  }
+
+  .dark-mode .nav-secondary {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
+
+  .dark-mode #reactions .reaction-items .reaction-item .reaction-item__button img, #reactions-promotion .reaction-items .reaction-item .reaction-item__button img {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
 </style>
 
 <script>
     var body = document.body;
+    var article = document.article;
 	var switcher = document.getElementsByClassName('js-toggle')[0];
 
 	
@@ -158,10 +203,12 @@ body.dark-mode :not(img) main * {
 		
 		if (this.classList.contains('js-toggle--checked')) {
 			body.classList.add('dark-mode');
+			article.classList.add('post.dark-mode');
 			
 			localStorage.setItem('darkMode', 'true');
 		} else {
 			body.classList.remove('dark-mode');
+			article.classList.remove('post.dark-mode');
 			setTimeout(function() {
 				localStorage.removeItem('darkMode');
 			}, 100);
@@ -173,6 +220,7 @@ body.dark-mode :not(img) main * {
 		
         switcher.classList.add('js-toggle--checked');
         body.classList.add('dark-mode');
+        article.classList.add('post.dark-mode');
 	}
 
 </script>
@@ -185,7 +233,7 @@ body.dark-mode :not(img) main * {
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "\/"
+             "@id": "https:\/\/algotech.netlify.com\/"
         },
         "articleSection" : "tags",
         "name" : "Tags",
@@ -198,9 +246,9 @@ body.dark-mode :not(img) main * {
         "accountablePerson" : "",
         "copyrightHolder" : "",
         "copyrightYear" : "2021",
-        "datePublished": "2021-01-11 00:00:00 \u002b0000 UTC",
-        "dateModified" : "2021-01-11 00:00:00 \u002b0000 UTC",
-        "url" : "\/tags\/",
+        "datePublished": "2021-06-03 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2021-06-03 00:00:00 \u002b0000 UTC",
+        "url" : "https:\/\/algotech.netlify.com\/tags\/",
         "wordCount" : "0",
         "keywords" : [ "Blog" ]
     }
@@ -211,7 +259,7 @@ body.dark-mode :not(img) main * {
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.74.3" />
+        <meta name="generator" content="Hugo 0.83.1" />
         
   
     
@@ -219,8 +267,8 @@ body.dark-mode :not(img) main * {
 
   
 
-  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
-  <link rel="icon" href='/favicon/favicon.png'>
+  <link rel="apple-touch-icon-precomposed" href='https://algotech.netlify.com/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='https://algotech.netlify.com/favicon/favicon.png'>
   
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
@@ -245,16 +293,15 @@ body.dark-mode :not(img) main * {
         <meta property="og:title" content="Tags" />
 <meta property="og:description" content="To learn more about our approach to data science problems, feel free to hop over to our blog." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="/tags/" />
-<meta property="og:updated_time" content="2021-01-11T00:00:00+00:00" />
+<meta property="og:url" content="https://algotech.netlify.com/tags/" />
 
-        <meta property="og:image" content="//images/logo.png">
+
+        <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Tags">
 <meta itemprop="description" content="To learn more about our approach to data science problems, feel free to hop over to our blog.">
-
         
 
         
@@ -263,26 +310,148 @@ body.dark-mode :not(img) main * {
 
         
         
-        
-            <link rel="stylesheet" href="/css/monokai-sublime.css">
+            <link disabled id="dark-mode-theme" rel="stylesheet" href="https://algotech.netlify.com/css/dark.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
-            <link rel="stylesheet" href="/css/main.css">
-            <link rel="stylesheet" href="/css/add-on.css">
-            <link rel="stylesheet" href="/css/academicons.min.css">
-            <link href="/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
-            <link href="/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/add-on.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/academicons.min.css">
+            <link href="https://algotech.netlify.com/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
         
+            <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                      integrity=
+            "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+                      crossorigin="anonymous">
+                <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+                </script>
+                <script src=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+                </script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.0/js.cookie.js">
+                </script>
+                
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
+                </script>
+              
+                <style>
+                    
+                     
+
+
+                    .modal:before {
+                        content: '';
+                        display: inline-block;
+                        height: 20%;
+                        vertical-align: middle;
+                    }
+                      
+                    .modal-dialog {
+                        
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    -webkit-flex-direction: column;
+                        -ms-flex-direction: column;
+                            flex-direction: column;
+                    -webkit-box-pack: center;
+                    -webkit-justify-content: center;
+                        -ms-flex-pack: center;
+                            justify-content: center;
+                    }
+
+                      
+                    .modal .modal-content {
+                        padding: 20px 20px 20px 20px;
+                        -webkit-animation-name: modal-animation;
+                        -webkit-animation-duration: 0.5s;
+                        animation-name: modal-animation;
+                        animation-duration: 1.5s;
+                    }
+
+                
+
+                    .modal .leadin-button {
+                        -webkit-border-radius: 0.25em;
+                        -moz-border-radius: 0.25em;
+                        -ms-border-radius: 0.25em;
+                        -o-border-radius: 0.25em;
+                        border-radius: 0.25em;
+                        -webkit-appearance: none;
+                        cursor: pointer;
+                        font-size: 1em;
+                        font-weight: bold;
+                        line-height: 1;
+                        padding: 1em 1.5em;
+                        width: 100%;
+                        text-decoration: none;
+                    }
+                    .modal .leadin-button-primary {
+                        background: #a90606 !important;
+                        color: #FFFFFF !important;
+                    }
+                      
+                    @-webkit-keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                      
+                    @keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                </style>
+
+            <script src="content/bootstrapJS/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+            <script type="text/javascript">
+                
+                
+                $( document ).ready(function() {
+  if (document.cookie.indexOf('visited=true') == -1){
+    
+                      $('#signupModal').modal('show');
+    
+                  var year = 1000*60*60*24*365;
+    var expires = new Date((new Date()).valueOf() + year);
+    document.cookie = "visited=true;expires=" + expires.toUTCString();
+
+  }
+}); 
+
+            </script>
+        
+            
 
         
             
                 
             
                 
-                    <link rel="stylesheet" href="/css/main.css">
+                    <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
                 
             
         
@@ -290,8 +459,8 @@ body.dark-mode :not(img) main * {
 
   
     
-      <link rel="stylesheet" href="/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
-      <script src="/js/highlight.pack.js"></script>
+      <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="https://algotech.netlify.com/js/highlight.pack.js"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   
 
@@ -312,11 +481,43 @@ if (!doNotTrack) {
 
 
 
-
-
-
+      
     </head>
     <body>
+
+        <div class="modal" id="signupModal"
+        role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+ 
+       <div class="modal-dialog">
+           <div class="modal-content">
+ 
+               
+               <div class="m-header">
+                   <button class="close" data-dismiss="modal">
+                       ×
+                   </button>
+                   <h2 class="myModalLabel"> Upcoming Workshop! </h2>
+               </div>
+ 
+               
+               <div class="inputs">
+ 
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png",
+                     alt="Music Recommender System", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p> This 3-day online workshop is beginner-friendly to demonstrate how to extract song embeddings using the neural network approach, specifically the word2vec model, to generate song recommendations. Throughout the online course, we will provide participants with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help participants troubleshoot or help with any difficulties encountered. </p>
+                <div class="advance-wrapper callout-special-font">
+                    <a href="https://algorit.ma/ds-course/web-scraping/?utm_source=algotech" target="_blank" 
+                    class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
+                </div>
+               </div>
+ 
+ 
+           </div>
+       </div>
+   </div>
+
+    </body>
 
       
       <div id="wrapper">
@@ -324,32 +525,32 @@ if (!doNotTrack) {
     
 <header id="header">
     
-      <h1><a href="/">tags</a></h1>
+      <h1><a href="https://algotech.netlify.com/">tags</a></h1>
     
 
     <nav class="links">
         <ul>
             
                 <li>
-                    <a href="/">
+                    <a href="https://algotech.netlify.com/">
                             <i class="fa fa-home">&nbsp;</i>Home
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/machine-learning/">
+                    <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <i class="fa fa-cog">&nbsp;</i>Machine Learning
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/data-visualization/">
+                    <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/">
+                    <a href="https://algotech.netlify.com/tags/">
                             <i class="fa fa-list">&nbsp;</i>Article List
                     </a>
                 </li>
@@ -363,7 +564,7 @@ if (!doNotTrack) {
                 <a class="fa-search" href="#search">Search</a>
                 <form id="search" method="get" action="//google.com/search">
                     <input type="text" name="q" placeholder="Search" />
-                    <input type="hidden" name="as_sitesearch" value="/">
+                    <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
                 </form>
             </li>
             <li class="menu">
@@ -380,7 +581,7 @@ if (!doNotTrack) {
         <section>
             <form class="search" method="get" action="//google.com/search">
                 <input type="text" name="q" placeholder="Search" />
-                <input type="hidden" name="as_sitesearch" value="/">
+                <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
             </form>
         </section>
 
@@ -389,7 +590,7 @@ if (!doNotTrack) {
             <ul class="links">
                 
                     <li>
-                        <a href="/">
+                        <a href="https://algotech.netlify.com/">
                             <h3>
                                 <i class="fa fa-home">&nbsp;</i>Home
                             </h3>
@@ -397,7 +598,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/machine-learning/">
+                        <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <h3>
                                 <i class="fa fa-cog">&nbsp;</i>Machine Learning
                             </h3>
@@ -405,7 +606,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/data-visualization/">
+                        <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <h3>
                                 <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                             </h3>
@@ -413,7 +614,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/">
+                        <a href="https://algotech.netlify.com/tags/">
                             <h3>
                                 <i class="fa fa-list">&nbsp;</i>Article List
                             </h3>
@@ -438,11 +639,11 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/javascripted-web-scrapping-in-r-with-rselenium/">Rselenium Intro</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp-ii/">Advancing Your Shiny Application II</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-11'>
-                                    January 11, 2021</time>
+                                    '2021-06-03'>
+                                    June 3, 2021</time>
                             </header>
                             
 
@@ -450,157 +651,49 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-coronavirus-survey/">Rplicate Series: Interactive Plot of Coronavirus Survey</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/gridsearchcv/">GridSearchCV</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-06'>
-                                    January 6, 2021</time>
+                                    '2021-05-22'>
+                                    May 22, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-coronavirus-survey/" class="image featured">
-            <img src="/img/2021/01/five_thirty.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/kemiripan-teks/">Pengenalan Kemiripan Teks (Text Similarity) di Python</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-25'>
-                                    November 25, 2020</time>
+                                    '2021-05-20'>
+                                    May 20, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-gone-baby-gone/" class="image featured">
-            <img src="/img/2020/11/gone-baby-gone.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp/">Advancing Your Shiny Application</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/xgboost/" class="image featured">
-            <img src="/img/2020/11/boosting-algorithm.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/fuzzy-clustering/">Fuzzy C-Means Clustering</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/image-colorization/">Image Colorization</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/fuzzy-clustering/" class="image featured">
-            <img src="/img/2020/11/fuzzy-cmeans.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
@@ -635,8 +728,8 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/machine-learning">machine-learning</a>
-                                <span style="float:right;">24</span>
+                                <a href="https://algotech.netlify.com/tags/machine-learning">machine-learning</a>
+                                <span style="float:right;">29</span>
                             
                         </header>
                     </article>
@@ -646,8 +739,8 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/capstone-ml">capstone-ml</a>
-                                <span style="float:right;">12</span>
+                                <a href="https://algotech.netlify.com/tags/capstone-ml">capstone-ml</a>
+                                <span style="float:right;">14</span>
                             
                         </header>
                     </article>
@@ -657,8 +750,8 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/data-visualization">data-visualization</a>
-                                <span style="float:right;">7</span>
+                                <a href="https://algotech.netlify.com/tags/data-visualization">data-visualization</a>
+                                <span style="float:right;">11</span>
                             
                         </header>
                     </article>
@@ -668,7 +761,29 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/rplicate">rplicate</a>
+                                <a href="https://algotech.netlify.com/tags/rplicate">rplicate</a>
+                                <span style="float:right;">6</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/tidyverse">tidyverse</a>
+                                <span style="float:right;">6</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/data-manipulation">data-manipulation</a>
                                 <span style="float:right;">5</span>
                             
                         </header>
@@ -679,7 +794,18 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/data-manipulation">data-manipulation</a>
+                                <a href="https://algotech.netlify.com/tags/deep-learning">deep-learning</a>
+                                <span style="float:right;">5</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/clustering">clustering</a>
                                 <span style="float:right;">4</span>
                             
                         </header>
@@ -690,7 +816,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/dplyr">dplyr</a>
+                                <a href="https://algotech.netlify.com/tags/dplyr">dplyr</a>
                                 <span style="float:right;">4</span>
                             
                         </header>
@@ -701,7 +827,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/ggplot2">ggplot2</a>
+                                <a href="https://algotech.netlify.com/tags/ggplot2">ggplot2</a>
                                 <span style="float:right;">4</span>
                             
                         </header>
@@ -712,7 +838,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/tidyverse">tidyverse</a>
+                                <a href="https://algotech.netlify.com/tags/time-series">time-series</a>
                                 <span style="float:right;">4</span>
                             
                         </header>
@@ -723,18 +849,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/time-series">time-series</a>
-                                <span style="float:right;">4</span>
-                            
-                        </header>
-                    </article>
-                </li>
-            
-                <li>
-                    <article>
-                        <header>
-                            
-                                <a href="/tags/clustering">clustering</a>
+                                <a href="https://algotech.netlify.com/tags/forecast">forecast</a>
                                 <span style="float:right;">3</span>
                             
                         </header>
@@ -745,7 +860,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/deep-learning">deep-learning</a>
+                                <a href="https://algotech.netlify.com/tags/lime">lime</a>
                                 <span style="float:right;">3</span>
                             
                         </header>
@@ -756,7 +871,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/forecast">forecast</a>
+                                <a href="https://algotech.netlify.com/tags/nlp">nlp</a>
                                 <span style="float:right;">3</span>
                             
                         </header>
@@ -767,7 +882,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/lime">lime</a>
+                                <a href="https://algotech.netlify.com/tags/tidymodels">tidymodels</a>
                                 <span style="float:right;">3</span>
                             
                         </header>
@@ -778,7 +893,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/nlp">nlp</a>
+                                <a href="https://algotech.netlify.com/tags/topic-modelling">topic-modelling</a>
                                 <span style="float:right;">3</span>
                             
                         </header>
@@ -789,7 +904,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/topic-modelling">topic-modelling</a>
+                                <a href="https://algotech.netlify.com/tags/unsupervised-learning">unsupervised-learning</a>
                                 <span style="float:right;">3</span>
                             
                         </header>
@@ -800,7 +915,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/lstm">lstm</a>
+                                <a href="https://algotech.netlify.com/tags/bayesian">bayesian</a>
                                 <span style="float:right;">2</span>
                             
                         </header>
@@ -811,7 +926,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/optimization">optimization</a>
+                                <a href="https://algotech.netlify.com/tags/graph">graph</a>
                                 <span style="float:right;">2</span>
                             
                         </header>
@@ -822,7 +937,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/recommender-system">recommender-system</a>
+                                <a href="https://algotech.netlify.com/tags/lstm">lstm</a>
                                 <span style="float:right;">2</span>
                             
                         </header>
@@ -833,7 +948,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/text-preprocessiong">text-preprocessiong</a>
+                                <a href="https://algotech.netlify.com/tags/network-analysis">network-analysis</a>
                                 <span style="float:right;">2</span>
                             
                         </header>
@@ -844,7 +959,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/textclean">textclean</a>
+                                <a href="https://algotech.netlify.com/tags/optimization">optimization</a>
                                 <span style="float:right;">2</span>
                             
                         </header>
@@ -855,7 +970,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/tidymodels">tidymodels</a>
+                                <a href="https://algotech.netlify.com/tags/recommender-system">recommender-system</a>
                                 <span style="float:right;">2</span>
                             
                         </header>
@@ -866,7 +981,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/unsupervised-learning">unsupervised-learning</a>
+                                <a href="https://algotech.netlify.com/tags/shiny">shiny</a>
                                 <span style="float:right;">2</span>
                             
                         </header>
@@ -877,7 +992,40 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/accuracy">accuracy</a>
+                                <a href="https://algotech.netlify.com/tags/text-preprocessiong">text-preprocessiong</a>
+                                <span style="float:right;">2</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/textclean">textclean</a>
+                                <span style="float:right;">2</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/twitter">twitter</a>
+                                <span style="float:right;">2</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/accuracy">accuracy</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -888,7 +1036,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/adversarial">adversarial</a>
+                                <a href="https://algotech.netlify.com/tags/action-button">action-button</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -899,7 +1047,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/apc">apc</a>
+                                <a href="https://algotech.netlify.com/tags/adversarial">adversarial</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -910,7 +1058,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/ape">ape</a>
+                                <a href="https://algotech.netlify.com/tags/apc">apc</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -921,7 +1069,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/bayesian">bayesian</a>
+                                <a href="https://algotech.netlify.com/tags/ape">ape</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -932,7 +1080,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/bioconductor">bioconductor</a>
+                                <a href="https://algotech.netlify.com/tags/bioconductor">bioconductor</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -943,7 +1091,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/bioinformatics">bioinformatics</a>
+                                <a href="https://algotech.netlify.com/tags/bioinformatics">bioinformatics</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -954,7 +1102,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/causal-inference">causal-inference</a>
+                                <a href="https://algotech.netlify.com/tags/causal-inference">causal-inference</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -965,7 +1113,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/collaborative-filtering">collaborative-filtering</a>
+                                <a href="https://algotech.netlify.com/tags/collaborative-filtering">collaborative-filtering</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -976,7 +1124,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/extrafont">extrafont</a>
+                                <a href="https://algotech.netlify.com/tags/convolutional-neural-network">convolutional-neural-network</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -987,7 +1135,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/feature-engineering">feature-engineering</a>
+                                <a href="https://algotech.netlify.com/tags/cosine-similarity">cosine-similarity</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -998,7 +1146,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/generative-model">generative-model</a>
+                                <a href="https://algotech.netlify.com/tags/dashboard">dashboard</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1009,7 +1157,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/genetic-algorithm">genetic-algorithm</a>
+                                <a href="https://algotech.netlify.com/tags/euclidean-distance">euclidean-distance</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1020,7 +1168,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/gensim">gensim</a>
+                                <a href="https://algotech.netlify.com/tags/extrafont">extrafont</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1031,7 +1179,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/geocoding">geocoding</a>
+                                <a href="https://algotech.netlify.com/tags/feature-engineering">feature-engineering</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1042,7 +1190,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/ggimage">ggimage</a>
+                                <a href="https://algotech.netlify.com/tags/feature-extraction">feature-extraction</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1053,7 +1201,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/ggrepel">ggrepel</a>
+                                <a href="https://algotech.netlify.com/tags/generative-model">generative-model</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1064,7 +1212,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/ggthemes">ggthemes</a>
+                                <a href="https://algotech.netlify.com/tags/genetic-algorithm">genetic-algorithm</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1075,7 +1223,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/graph">graph</a>
+                                <a href="https://algotech.netlify.com/tags/gensim">gensim</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1086,7 +1234,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/gridextra">gridextra</a>
+                                <a href="https://algotech.netlify.com/tags/geocoding">geocoding</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1097,7 +1245,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/leaflet">leaflet</a>
+                                <a href="https://algotech.netlify.com/tags/ggimage">ggimage</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1108,7 +1256,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/map">map</a>
+                                <a href="https://algotech.netlify.com/tags/ggrepel">ggrepel</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1119,7 +1267,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/mapshaper">mapshaper</a>
+                                <a href="https://algotech.netlify.com/tags/ggthemes">ggthemes</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1130,7 +1278,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/markov-chains">markov-chains</a>
+                                <a href="https://algotech.netlify.com/tags/gridextra">gridextra</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1141,7 +1289,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/metrics-evaluation">metrics-evaluation</a>
+                                <a href="https://algotech.netlify.com/tags/gridsearchcv">gridsearchcv</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1152,7 +1300,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/msa">msa</a>
+                                <a href="https://algotech.netlify.com/tags/hierarchical-clustering">hierarchical-clustering</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1163,7 +1311,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/multiple-seasonal">multiple-seasonal</a>
+                                <a href="https://algotech.netlify.com/tags/image-processing">image-processing</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1174,7 +1322,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/network-analysis">network-analysis</a>
+                                <a href="https://algotech.netlify.com/tags/leaflet">leaflet</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1185,7 +1333,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/overfitting">overfitting</a>
+                                <a href="https://algotech.netlify.com/tags/map">map</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1196,7 +1344,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/panel-data">panel-data</a>
+                                <a href="https://algotech.netlify.com/tags/mapshaper">mapshaper</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1207,7 +1355,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/precision">precision</a>
+                                <a href="https://algotech.netlify.com/tags/markov-chains">markov-chains</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1218,7 +1366,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/purrr">purrr</a>
+                                <a href="https://algotech.netlify.com/tags/metrics-evaluation">metrics-evaluation</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1229,7 +1377,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/queueing">queueing</a>
+                                <a href="https://algotech.netlify.com/tags/msa">msa</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1240,7 +1388,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/recall">recall</a>
+                                <a href="https://algotech.netlify.com/tags/multiple-seasonal">multiple-seasonal</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1251,7 +1399,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/regression">regression</a>
+                                <a href="https://algotech.netlify.com/tags/natural-language-processing">natural-language-processing</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1262,7 +1410,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/regularization">regularization</a>
+                                <a href="https://algotech.netlify.com/tags/overfitting">overfitting</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1273,7 +1421,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/rnn">rnn</a>
+                                <a href="https://algotech.netlify.com/tags/overlap-coefficient">overlap-coefficient</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1284,7 +1432,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/rselenium">rselenium</a>
+                                <a href="https://algotech.netlify.com/tags/panel-data">panel-data</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1295,7 +1443,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/som">som</a>
+                                <a href="https://algotech.netlify.com/tags/precision">precision</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1306,7 +1454,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/svm">svm</a>
+                                <a href="https://algotech.netlify.com/tags/purrr">purrr</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1317,7 +1465,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/tbats">tbats</a>
+                                <a href="https://algotech.netlify.com/tags/queueing">queueing</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1328,7 +1476,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/text-generation">text-generation</a>
+                                <a href="https://algotech.netlify.com/tags/reactive-elements">reactive-elements</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1339,7 +1487,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/troubleshoot">troubleshoot</a>
+                                <a href="https://algotech.netlify.com/tags/reactive-ui">reactive-ui</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1350,7 +1498,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/twinetverse">twinetverse</a>
+                                <a href="https://algotech.netlify.com/tags/recall">recall</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1361,7 +1509,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/twitter">twitter</a>
+                                <a href="https://algotech.netlify.com/tags/regression">regression</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1372,7 +1520,7 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/web-scraping">web-scraping</a>
+                                <a href="https://algotech.netlify.com/tags/regularization">regularization</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1383,7 +1531,150 @@ if (!doNotTrack) {
                     <article>
                         <header>
                             
-                                <a href="/tags/yardstick">yardstick</a>
+                                <a href="https://algotech.netlify.com/tags/rnn">rnn</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/rselenium">rselenium</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/shiny-dashboard">shiny-dashboard</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/sna">sna</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/som">som</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/statistics">statistics</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/svm">svm</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/tbats">tbats</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/text-generation">text-generation</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/text-similarity">text-similarity</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/troubleshoot">troubleshoot</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/twinetverse">twinetverse</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/web-scraping">web-scraping</a>
+                                <span style="float:right;">1</span>
+                            
+                        </header>
+                    </article>
+                </li>
+            
+                <li>
+                    <article>
+                        <header>
+                            
+                                <a href="https://algotech.netlify.com/tags/yardstick">yardstick</a>
                                 <span style="float:right;">1</span>
                             
                         </header>
@@ -1401,7 +1692,7 @@ if (!doNotTrack) {
     
     
       
-        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+        <a href='https://algotech.netlify.com/'><img src="https://algotech.netlify.com/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
       
     
     
@@ -1514,13 +1805,9 @@ if (!doNotTrack) {
       <div class="posts-container">
           <article class="mini-post">
             <header>
+              
               <h3>
-                
-                                <img src="/img/2020/ads/dss.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/text-analysis/?utm_source=algotech">More details</a>
-                
-                <img src="/img/2020/ads/ddt.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/data-driven-2/?utm_source=algotech">More details</a>
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>
@@ -1606,9 +1893,9 @@ if (!doNotTrack) {
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
-      <script src="/js/util.js"></script>
-      <script src="/js/main.js"></script>
-      <script src="/js/backToTop.js"></script>
+      <script src="https://algotech.netlify.com/js/util.js"></script>
+      <script src="https://algotech.netlify.com/js/main.js"></script>
+      <script src="https://algotech.netlify.com/js/backToTop.js"></script>
     
 
     
@@ -1616,7 +1903,7 @@ if (!doNotTrack) {
         
       
         
-          <script src="/js/bootstrap.min.js"></script>
+          <script src="https://algotech.netlify.com/js/bootstrap.min.js"></script>
         
       
     

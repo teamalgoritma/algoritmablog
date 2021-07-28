@@ -127,20 +127,65 @@
   }
   
   body.dark-mode , 
-body.dark-mode :not(img) main * {
-    background-color: #0d0d0d;
+  body.dark-mode main * {
+    background-color: #000000;
     color: #000000;
-     filter: invert(40%) hue-rotate(0deg) brightness(105%) contrast(75%);
-    -webkit-filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(90%);
-    
+    filter: invert(0.95);
 }
 
+  .dark-mode img {
+  filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
+  .dark-mode p {
+  color: #000000;
+}
+  
+  .dark-mode code {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    font-weight: bold;
+    background: #353737;
+    color: white;
+}
+
+  .dark-mode strong, b {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+  
+  .dark-mode #social-share ul{
+    margin: 0;
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode #header {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+  }
+
+  .dark-mode .js-toggle--focus .js-toggle-thumb {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+  }
+
+  .dark-mode .footer {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+    position: fixed;
+    background-color: white;
+    font-weight: bold;
+  }
+
+  .dark-mode .nav-secondary {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
+
+  .dark-mode #reactions .reaction-items .reaction-item .reaction-item__button img, #reactions-promotion .reaction-items .reaction-item .reaction-item__button img {
+    filter: invert(1) contrast(1.3) saturate(1.4);
+}
 
 </style>
 
 <script>
     var body = document.body;
+    var article = document.article;
 	var switcher = document.getElementsByClassName('js-toggle')[0];
 
 	
@@ -150,10 +195,12 @@ body.dark-mode :not(img) main * {
 		
 		if (this.classList.contains('js-toggle--checked')) {
 			body.classList.add('dark-mode');
+			article.classList.add('post.dark-mode');
 			
 			localStorage.setItem('darkMode', 'true');
 		} else {
 			body.classList.remove('dark-mode');
+			article.classList.remove('post.dark-mode');
 			setTimeout(function() {
 				localStorage.removeItem('darkMode');
 			}, 100);
@@ -165,6 +212,7 @@ body.dark-mode :not(img) main * {
 		
         switcher.classList.add('js-toggle--checked');
         body.classList.add('dark-mode');
+        article.classList.add('post.dark-mode');
 	}
 
 </script>
@@ -177,7 +225,7 @@ body.dark-mode :not(img) main * {
         "@type" : "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
-             "@id": "\/"
+             "@id": "https:\/\/algotech.netlify.com\/"
         },
         "articleSection" : "blog",
         "name" : "Rselenium Intro",
@@ -192,7 +240,7 @@ body.dark-mode :not(img) main * {
         "copyrightYear" : "2021",
         "datePublished": "2021-01-11 00:00:00 \u002b0000 UTC",
         "dateModified" : "2021-01-11 00:00:00 \u002b0000 UTC",
-        "url" : "\/blog\/javascripted-web-scrapping-in-r-with-rselenium\/",
+        "url" : "https:\/\/algotech.netlify.com\/blog\/javascripted-web-scrapping-in-r-with-rselenium\/",
         "wordCount" : "5948",
         "keywords" : [ "Web Scraping","Rselenium","Blog" ]
     }
@@ -205,7 +253,7 @@ body.dark-mode :not(img) main * {
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.74.3" />
+        <meta name="generator" content="Hugo 0.83.1" />
         
   
     
@@ -213,8 +261,8 @@ body.dark-mode :not(img) main * {
 
   
 
-  <link rel="apple-touch-icon-precomposed" href='/favicon/apple-touch-icon-precomposed.png'>
-  <link rel="icon" href='/favicon/favicon.png'>
+  <link rel="apple-touch-icon-precomposed" href='https://algotech.netlify.com/favicon/apple-touch-icon-precomposed.png'>
+  <link rel="icon" href='https://algotech.netlify.com/favicon/favicon.png'>
   
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-TileImage" content='/favicon/mstile.png'>
@@ -243,25 +291,21 @@ R also provide web scrapping tools like the famous rvest but RSelenium gives mor
 <meta property="og:description" content="In this article, we will learn to do web scraping using RSelenium. RSelenium provides R bindings for the Selenium Webdriver API. Selenium is a project focused on automating web browsers. RSelenium allows you to carry out unit testing and regression testing on your webapps and webpages across a range of browser/OS combinations. You can access full vignettes of RSelenium here.
 R also provide web scrapping tools like the famous rvest but RSelenium gives more advantages than rvest, for example:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/blog/javascripted-web-scrapping-in-r-with-rselenium/" />
-<meta property="article:published_time" content="2021-01-11T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-01-11T00:00:00+00:00" />
+<meta property="og:url" content="https://algotech.netlify.com/blog/javascripted-web-scrapping-in-r-with-rselenium/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-01-11T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-01-11T00:00:00&#43;00:00" />
 
-        <meta property="og:image" content="//images/logo.png">
+
+        <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Rselenium Intro">
 <meta itemprop="description" content="In this article, we will learn to do web scraping using RSelenium. RSelenium provides R bindings for the Selenium Webdriver API. Selenium is a project focused on automating web browsers. RSelenium allows you to carry out unit testing and regression testing on your webapps and webpages across a range of browser/OS combinations. You can access full vignettes of RSelenium here.
-R also provide web scrapping tools like the famous rvest but RSelenium gives more advantages than rvest, for example:">
-<meta itemprop="datePublished" content="2021-01-11T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2021-01-11T00:00:00+00:00" />
+R also provide web scrapping tools like the famous rvest but RSelenium gives more advantages than rvest, for example:"><meta itemprop="datePublished" content="2021-01-11T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2021-01-11T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="5948">
-
-
-
 <meta itemprop="keywords" content="Web Scraping,Rselenium," />
-
         
 
         
@@ -270,26 +314,148 @@ R also provide web scrapping tools like the famous rvest but RSelenium gives mor
 
         
         
-        
-            <link rel="stylesheet" href="/css/monokai-sublime.css">
+            <link disabled id="dark-mode-theme" rel="stylesheet" href="https://algotech.netlify.com/css/dark.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css">
-            <link rel="stylesheet" href="/css/main.css">
-            <link rel="stylesheet" href="/css/add-on.css">
-            <link rel="stylesheet" href="/css/academicons.min.css">
-            <link href="/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-            <link href="/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
-            <link href="/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/add-on.css">
+            <link rel="stylesheet" href="https://algotech.netlify.com/css/academicons.min.css">
+            <link href="https://algotech.netlify.com/lib/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
+            <link href="https://algotech.netlify.com/lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
         
+            <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                      integrity=
+            "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+                      crossorigin="anonymous">
+                <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+                </script>
+                <script src=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+                </script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.0/js.cookie.js">
+                </script>
+                
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">
+                </script>
+              
+                <style>
+                    
+                     
+
+
+                    .modal:before {
+                        content: '';
+                        display: inline-block;
+                        height: 20%;
+                        vertical-align: middle;
+                    }
+                      
+                    .modal-dialog {
+                        
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    -webkit-flex-direction: column;
+                        -ms-flex-direction: column;
+                            flex-direction: column;
+                    -webkit-box-pack: center;
+                    -webkit-justify-content: center;
+                        -ms-flex-pack: center;
+                            justify-content: center;
+                    }
+
+                      
+                    .modal .modal-content {
+                        padding: 20px 20px 20px 20px;
+                        -webkit-animation-name: modal-animation;
+                        -webkit-animation-duration: 0.5s;
+                        animation-name: modal-animation;
+                        animation-duration: 1.5s;
+                    }
+
+                
+
+                    .modal .leadin-button {
+                        -webkit-border-radius: 0.25em;
+                        -moz-border-radius: 0.25em;
+                        -ms-border-radius: 0.25em;
+                        -o-border-radius: 0.25em;
+                        border-radius: 0.25em;
+                        -webkit-appearance: none;
+                        cursor: pointer;
+                        font-size: 1em;
+                        font-weight: bold;
+                        line-height: 1;
+                        padding: 1em 1.5em;
+                        width: 100%;
+                        text-decoration: none;
+                    }
+                    .modal .leadin-button-primary {
+                        background: #a90606 !important;
+                        color: #FFFFFF !important;
+                    }
+                      
+                    @-webkit-keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                      
+                    @keyframes modal-animation {
+                        from {
+                            top: -100px;
+                            opacity: 0;
+                        }
+                        to {
+                            top: 0px;
+                            opacity: 1;
+                        }
+                    }
+                </style>
+
+            <script src="content/bootstrapJS/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+            <script type="text/javascript">
+                
+                
+                $( document ).ready(function() {
+  if (document.cookie.indexOf('visited=true') == -1){
+    
+                      $('#signupModal').modal('show');
+    
+                  var year = 1000*60*60*24*365;
+    var expires = new Date((new Date()).valueOf() + year);
+    document.cookie = "visited=true;expires=" + expires.toUTCString();
+
+  }
+}); 
+
+            </script>
+        
+            
 
         
             
                 
             
                 
-                    <link rel="stylesheet" href="/css/main.css">
+                    <link rel="stylesheet" href="https://algotech.netlify.com/css/main.css">
                 
             
         
@@ -297,8 +463,8 @@ R also provide web scrapping tools like the famous rvest but RSelenium gives mor
 
   
     
-      <link rel="stylesheet" href="/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
-      <script src="/js/highlight.pack.js"></script>
+      <link rel="stylesheet" href="https://algotech.netlify.com/css/monokai-sublime.css" rel="stylesheet" id="theme-stylesheet">
+      <script src="https://algotech.netlify.com/js/highlight.pack.js"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   
 
@@ -319,11 +485,43 @@ if (!doNotTrack) {
 
 
 
-
-
-
+      
     </head>
     <body>
+
+        <div class="modal" id="signupModal"
+        role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+ 
+       <div class="modal-dialog">
+           <div class="modal-content">
+ 
+               
+               <div class="m-header">
+                   <button class="close" data-dismiss="modal">
+                       ×
+                   </button>
+                   <h2 class="myModalLabel"> Upcoming Workshop! </h2>
+               </div>
+ 
+               
+               <div class="inputs">
+ 
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png",
+                     alt="Music Recommender System", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p> This 3-day online workshop is beginner-friendly to demonstrate how to extract song embeddings using the neural network approach, specifically the word2vec model, to generate song recommendations. Throughout the online course, we will provide participants with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help participants troubleshoot or help with any difficulties encountered. </p>
+                <div class="advance-wrapper callout-special-font">
+                    <a href="https://algorit.ma/ds-course/web-scraping/?utm_source=algotech" target="_blank" 
+                    class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
+                </div>
+               </div>
+ 
+ 
+           </div>
+       </div>
+   </div>
+
+    </body>
 
       
       <div id="wrapper">
@@ -332,32 +530,32 @@ if (!doNotTrack) {
     
 <header id="header">
     
-      <h1><a href="/">blog</a></h1>
+      <h1><a href="https://algotech.netlify.com/">blog</a></h1>
     
 
     <nav class="links">
         <ul>
             
                 <li>
-                    <a href="/">
+                    <a href="https://algotech.netlify.com/">
                             <i class="fa fa-home">&nbsp;</i>Home
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/machine-learning/">
+                    <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <i class="fa fa-cog">&nbsp;</i>Machine Learning
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/data-visualization/">
+                    <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                     </a>
                 </li>
             
                 <li>
-                    <a href="/tags/">
+                    <a href="https://algotech.netlify.com/tags/">
                             <i class="fa fa-list">&nbsp;</i>Article List
                     </a>
                 </li>
@@ -375,7 +573,7 @@ if (!doNotTrack) {
                 <a class="fa-search" href="#search">Search</a>
                 <form id="search" method="get" action="//google.com/search">
                     <input type="text" name="q" placeholder="Search" />
-                    <input type="hidden" name="as_sitesearch" value="/">
+                    <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
                 </form>
             </li>
             <li class="menu">
@@ -392,7 +590,7 @@ if (!doNotTrack) {
         <section>
             <form class="search" method="get" action="//google.com/search">
                 <input type="text" name="q" placeholder="Search" />
-                <input type="hidden" name="as_sitesearch" value="/">
+                <input type="hidden" name="as_sitesearch" value="https://algotech.netlify.com/">
             </form>
         </section>
 
@@ -401,7 +599,7 @@ if (!doNotTrack) {
             <ul class="links">
                 
                     <li>
-                        <a href="/">
+                        <a href="https://algotech.netlify.com/">
                             <h3>
                                 <i class="fa fa-home">&nbsp;</i>Home
                             </h3>
@@ -409,7 +607,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/machine-learning/">
+                        <a href="https://algotech.netlify.com/tags/machine-learning/">
                             <h3>
                                 <i class="fa fa-cog">&nbsp;</i>Machine Learning
                             </h3>
@@ -417,7 +615,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/data-visualization/">
+                        <a href="https://algotech.netlify.com/tags/data-visualization/">
                             <h3>
                                 <i class="fa fa-area-chart">&nbsp;</i>Data Visualization
                             </h3>
@@ -425,7 +623,7 @@ if (!doNotTrack) {
                     </li>
                 
                     <li>
-                        <a href="/tags/">
+                        <a href="https://algotech.netlify.com/tags/">
                             <h3>
                                 <i class="fa fa-list">&nbsp;</i>Article List
                             </h3>
@@ -450,11 +648,11 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/javascripted-web-scrapping-in-r-with-rselenium/">Rselenium Intro</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp-ii/">Advancing Your Shiny Application II</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-11'>
-                                    January 11, 2021</time>
+                                    '2021-06-03'>
+                                    June 3, 2021</time>
                             </header>
                             
 
@@ -462,157 +660,49 @@ if (!doNotTrack) {
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-coronavirus-survey/">Rplicate Series: Interactive Plot of Coronavirus Survey</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/gridsearchcv/">GridSearchCV</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2021-01-06'>
-                                    January 6, 2021</time>
+                                    '2021-05-22'>
+                                    May 22, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-coronavirus-survey/" class="image featured">
-            <img src="/img/2021/01/five_thirty.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/rplicate-series-gone-baby-gone/">Rplicate Series: Gone Baby Gone</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/kemiripan-teks/">Pengenalan Kemiripan Teks (Text Similarity) di Python</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-25'>
-                                    November 25, 2020</time>
+                                    '2021-05-20'>
+                                    May 20, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/rplicate-series-gone-baby-gone/" class="image featured">
-            <img src="/img/2020/11/gone-baby-gone.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/xgboost/">Boosting Algorithm (AdaBoost and XGBoost)</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/advancing-your-shinyapp/">Advancing Your Shiny Application</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/xgboost/" class="image featured">
-            <img src="/img/2020/11/boosting-algorithm.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
                         <article class="mini-post">
                             <header>
-                                <h3><a href="/blog/fuzzy-clustering/">Fuzzy C-Means Clustering</a></h3>
+                                <h3><a href="https://algotech.netlify.com/blog/image-colorization/">Image Colorization</a></h3>
                                 
                                 <time class="published" datetime=
-                                    '2020-11-23'>
-                                    November 23, 2020</time>
+                                    '2021-04-28'>
+                                    April 28, 2021</time>
                             </header>
                             
-    
-
-    
-        
-        
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-
-        
-        
-        
-
-        <a href="/blog/fuzzy-clustering/" class="image featured">
-            <img src="/img/2020/11/fuzzy-cmeans.png" alt="">
-        </a>
-    
-
 
                         </article>
                 
@@ -642,7 +732,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Rselenium%20Intro by Joe%20Cristian&amp;url=%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Rselenium%20Intro by Joe%20Cristian&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -656,7 +746,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f" target="_blank" class="share-btn facebook">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2falgotech.netlify.com%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -669,7 +759,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f&amp;title=Rselenium%20Intro" target="_blank" class="share-btn linkedin">
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f&amp;title=Rselenium%20Intro" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -697,7 +787,7 @@ if (!doNotTrack) {
   <header>
     <div class="title">
         
-            <h2><a href="/blog/javascripted-web-scrapping-in-r-with-rselenium/">Rselenium Intro</a></h2>
+            <h2><a href="https://algotech.netlify.com/blog/javascripted-web-scrapping-in-r-with-rselenium/">Rselenium Intro</a></h2>
         
         
     </div>
@@ -724,7 +814,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://twitter.com/intent/tweet?text=Rselenium%20Intro by Joe%20Cristian&amp;url=%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f" target="_blank" class="share-btn twitter">
+  <a href="https://twitter.com/intent/tweet?text=Rselenium%20Intro by Joe%20Cristian&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
@@ -738,7 +828,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.facebook.com/sharer.php?u=%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f" target="_blank" class="share-btn facebook">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2falgotech.netlify.com%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
     </a>
@@ -751,7 +841,7 @@ if (!doNotTrack) {
 
 
 <li>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f&amp;title=Rselenium%20Intro" target="_blank" class="share-btn linkedin">
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falgotech.netlify.com%2fblog%2fjavascripted-web-scrapping-in-r-with-rselenium%2f&amp;title=Rselenium%20Intro" target="_blank" class="share-btn linkedin">
       <i class="fa fa-linkedin"></i>
       <p>LinkedIn</p>
     </a>
@@ -772,18 +862,45 @@ if (!doNotTrack) {
   
 
   
+    
+
+    
+        
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+        
+        
+        
+
+        <a href="https://algotech.netlify.com/blog/javascripted-web-scrapping-in-r-with-rselenium/" class="image featured">
+            <img src="https://algotech.netlify.com/img/2021/01/rselenium.png" alt="">
+        </a>
+    
+
 
   <div id="content">
     
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
-<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
-<script src="/rmarkdown-libs/plotly-binding/plotly.js"></script>
-<script src="/rmarkdown-libs/typedarray/typedarray.min.js"></script>
-<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
-<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
-<link href="/rmarkdown-libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/plotly-main/plotly-latest.min.js"></script>
+<script src="https://algotech.netlify.com/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="https://algotech.netlify.com/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="https://algotech.netlify.com/rmarkdown-libs/plotly-binding/plotly.js"></script>
+<script src="https://algotech.netlify.com/rmarkdown-libs/typedarray/typedarray.min.js"></script>
+<script src="https://algotech.netlify.com/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="https://algotech.netlify.com/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="https://algotech.netlify.com/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="https://algotech.netlify.com/rmarkdown-libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="https://algotech.netlify.com/rmarkdown-libs/plotly-main/plotly-latest.min.js"></script>
 
 
 <p>In this article, we will learn to do web scraping using RSelenium. RSelenium provides R bindings for the Selenium Webdriver API. Selenium is a project focused on automating web browsers. RSelenium allows you to carry out unit testing and regression testing on your webapps and webpages across a range of browser/OS combinations. You can access full vignettes of RSelenium <a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html">here</a>.</p>
@@ -803,7 +920,7 @@ if (!doNotTrack) {
 </ul>
 <p>Web scraping is just on of various data gathering technique. Why it’s important to do data gathering? well.. doesn’t matter how ‘expert’ you’re as data scientist, if there’s no data, what you gonna do?</p>
 <center>
-<img src="/img/Rselenium/rsel.jpg" style="width:60.0%" />
+<img src="https://algotech.netlify.com/img/Rselenium/rsel.jpg" style="width:60.0%" />
 </center>
 <div id="background" class="section level1 tabset">
 <h1>Background</h1>
@@ -834,7 +951,7 @@ library(RSelenium)</code></pre>
 <p>We don’t need to install chrome webdriver to use RSelenium because this package provide <code>rsDriver</code> function which will manage the binaries needed for running a Selenium Server. In a simple words, it will download and install webdrive (based on your preferences) in your R environment.</p>
 <p>First take a look at your chrome version Settings &gt; About Chrome</p>
 <center>
-<img src="/img/Rselenium/chrome_ver.PNG" style="width:60.0%" />
+<img src="https://algotech.netlify.com/img/Rselenium/chrome_ver.PNG" style="width:60.0%" />
 </center>
 <p>I’m using Version 87.0.4280.66. we need to install webdriver with same version as our default browser. I also provide the main link to scrape the product.</p>
 <pre class="r"><code>main &lt;- &quot;https://shopee.co.id/search?category=40&amp;keyword=iphone%20x&amp;subcategory=1211&quot;
@@ -850,7 +967,7 @@ rmdr$open()
 # navigate to main link
 rmdr$navigate(main)</code></pre>
 <center>
-<img src="/img/Rselenium/pic1.PNG" style="width:60.0%" />
+<img src="https://algotech.netlify.com/img/Rselenium/pic1.PNG" style="width:60.0%" />
 </center>
 </div>
 </div>
@@ -1155,7 +1272,7 @@ plot_trend &lt;- new_nonmul_rev %&gt;%
   theme_minimal()
 
 plot_trend</code></pre>
-<p><img src="/blog/Rselenium_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/Rselenium_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Products sold most consistently</p>
 <pre class="r"><code>most_product &lt;- new_nonmul_rev %&gt;% 
   filter(Product %in% unique(desc_clean$Name)) %&gt;% 
@@ -1185,7 +1302,7 @@ new_nonmul_rev %&gt;%
   theme(legend.position = &quot;none&quot;,
         strip.background = element_rect(fill = &quot;#781212&quot;),
         strip.text.x = element_text(colour = &quot;white&quot;))</code></pre>
-<p><img src="/blog/Rselenium_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://algotech.netlify.com/blog/Rselenium_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Best product with highest positive sentiment</p>
 <pre class="r"><code>library(textclean)
 library(stringr)
@@ -1292,8 +1409,8 @@ plot_sentiment &lt;- table(review_sen$Product,review_sen$sentiment) %&gt;% data.
 library(plotly)
 ggplotly(plot_sentiment,tooltip = &quot;text&quot;)</code></pre>
 <div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"data":[{"orientation":"v","width":0.9,"base":0,"x":[1],"y":[378],"text":"iPHONE X 256GB Original fullset <br /> positive: 378","type":"bar","marker":{"autocolorscale":false,"color":"rgba(19,43,67,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[2],"y":[387],"text":"iPhone X 256Gb second fullset normal no face id free asuransi JNE <br /> positive: 387","type":"bar","marker":{"autocolorscale":false,"color":"rgba(19,43,67,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[3],"y":[396],"text":"iPhone X NEW ( 64GB / 256GB ) - 100% Original Apple FULL SET IMEI AMAN - Silent Camera <br /> positive: 396","type":"bar","marker":{"autocolorscale":false,"color":"rgba(19,43,68,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[4],"y":[476],"text":"Iphone X 64 GB ORIGINAL Mulus Bening Fullset - Apple <br /> positive: 476","type":"bar","marker":{"autocolorscale":false,"color":"rgba(20,45,70,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[5],"y":[690],"text":"iPHONE X 64GB ORIGINAL FULLSET <br /> positive: 690","type":"bar","marker":{"autocolorscale":false,"color":"rgba(22,49,76,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[6],"y":[1428],"text":"iPhone X 256GB 64GB Second Fulset MULUS EX Inter Ori Battery 2 7 8 6 mAh Silver - Gray <br /> positive: 1428","type":"bar","marker":{"autocolorscale":false,"color":"rgba(30,65,97,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[7],"y":[1548],"text":"iphone x 64gb second original fullset <br /> positive: 1548","type":"bar","marker":{"autocolorscale":false,"color":"rgba(32,68,101,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.899999999999999,"base":0,"x":[8],"y":[2520],"text":"[ TERMURAH ] APPLE IPHONE X SECOND 64GB 256GB GREY / SILVER ORIGINAL GARANSI <br /> positive: 2520","type":"bar","marker":{"autocolorscale":false,"color":"rgba(43,90,130,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.899999999999999,"base":0,"x":[9],"y":[2835],"text":"iPhone X 256gb Second Normal Fullset Ex Inter free asuransi JNE <br /> positive: 2835","type":"bar","marker":{"autocolorscale":false,"color":"rgba(46,97,140,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.899999999999999,"base":0,"x":[10],"y":[6028],"text":"iphone X 64gb second fullset Normal Ex Inter free asuransi JNE <br /> positive: 6028","type":"bar","marker":{"autocolorscale":false,"color":"rgba(86,177,247,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":28.4931506849315,"l":48.9497716894977},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Product with highest sentiment review","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,10.6],"tickmode":"array","ticktext":[null],"tickvals":[],"categoryorder":"array","categoryarray":[null],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Product","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-301.4,6329.4],"tickmode":"array","ticktext":["0","2000","4000","6000"],"tickvals":[0,2000,4000,6000],"categoryorder":"array","categoryarray":["0","2000","4000","6000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Freq","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"1c684d362f24":{"x":{},"y":{},"fill":{},"text":{},"type":"bar"}},"cur_data":"1c684d362f24","visdat":{"1c684d362f24":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<iframe seamless src="/img/rselenium/p.html" width="100%" height="500">
+<script type="application/json" data-for="htmlwidget-1">{"x":{"data":[{"orientation":"v","width":0.9,"base":0,"x":[1],"y":[378],"text":"iPHONE X 256GB Original fullset <br /> positive: 378","type":"bar","marker":{"autocolorscale":false,"color":"rgba(19,43,67,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[2],"y":[387],"text":"iPhone X 256Gb second fullset normal no face id free asuransi JNE <br /> positive: 387","type":"bar","marker":{"autocolorscale":false,"color":"rgba(19,43,67,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[3],"y":[396],"text":"iPhone X NEW ( 64GB / 256GB ) - 100% Original Apple FULL SET IMEI AMAN - Silent Camera <br /> positive: 396","type":"bar","marker":{"autocolorscale":false,"color":"rgba(19,43,68,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[4],"y":[476],"text":"Iphone X 64 GB ORIGINAL Mulus Bening Fullset - Apple <br /> positive: 476","type":"bar","marker":{"autocolorscale":false,"color":"rgba(20,45,70,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[5],"y":[690],"text":"iPHONE X 64GB ORIGINAL FULLSET <br /> positive: 690","type":"bar","marker":{"autocolorscale":false,"color":"rgba(22,49,76,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[6],"y":[1428],"text":"iPhone X 256GB 64GB Second Fulset MULUS EX Inter Ori Battery 2 7 8 6 mAh Silver - Gray <br /> positive: 1428","type":"bar","marker":{"autocolorscale":false,"color":"rgba(30,65,97,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.9,"base":0,"x":[7],"y":[1548],"text":"iphone x 64gb second original fullset <br /> positive: 1548","type":"bar","marker":{"autocolorscale":false,"color":"rgba(32,68,101,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.899999999999999,"base":0,"x":[8],"y":[2520],"text":"[ TERMURAH ] APPLE IPHONE X SECOND 64GB 256GB GREY / SILVER ORIGINAL GARANSI <br /> positive: 2520","type":"bar","marker":{"autocolorscale":false,"color":"rgba(43,90,130,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.899999999999999,"base":0,"x":[9],"y":[2835],"text":"iPhone X 256gb Second Normal Fullset Ex Inter free asuransi JNE <br /> positive: 2835","type":"bar","marker":{"autocolorscale":false,"color":"rgba(46,97,140,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.899999999999999,"base":0,"x":[10],"y":[6028],"text":"iphone X 64gb second fullset Normal Ex Inter free asuransi JNE <br /> positive: 6028","type":"bar","marker":{"autocolorscale":false,"color":"rgba(86,177,247,1)","line":{"width":1.88976377952756,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":28.4931506849315,"l":48.9497716894977},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Product with highest sentiment review","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,10.6],"tickmode":"array","ticktext":[null],"tickvals":[],"categoryorder":"array","categoryarray":[null],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Product","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-301.4,6329.4],"tickmode":"array","ticktext":["0","2000","4000","6000"],"tickvals":[0,2000,4000,6000],"categoryorder":"array","categoryarray":["0","2000","4000","6000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Freq","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"48cc11d81673":{"x":{},"y":{},"fill":{},"text":{},"type":"bar"}},"cur_data":"48cc11d81673","visdat":{"48cc11d81673":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<iframe seamless src="https://algotech.netlify.com/img/Rselenium/p.html" width="100%" height="500">
 </iframe>
 </div>
 </div>
@@ -1310,7 +1427,7 @@ ggplotly(plot_sentiment,tooltip = &quot;text&quot;)</code></pre>
                 <i class="fa fa-folder"></i>
                 
                 
-                <li><a class="article-category-link" href="/categories/r">R</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/categories/r">R</a></li>
                 
             
         
@@ -1324,10 +1441,10 @@ ggplotly(plot_sentiment,tooltip = &quot;text&quot;)</code></pre>
                 <i class="fa fa-tags"></i>
                 
                 
-                <li><a class="article-category-link" href="/tags/web-scraping">Web Scraping</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/web-scraping">Web Scraping</a></li>
                 
                 
-                <li><a class="article-category-link" href="/tags/rselenium">Rselenium</a></li>
+                <li><a class="article-category-link" href="https://algotech.netlify.com/tags/rselenium">Rselenium</a></li>
                 
             
         
@@ -1365,10 +1482,13 @@ ggplotly(plot_sentiment,tooltip = &quot;text&quot;)</code></pre>
 
 <ul class="actions pagination">
     
-        <li><a href="/blog/rplicate-series-coronavirus-survey/"
+        <li><a href="https://algotech.netlify.com/blog/rplicate-series-coronavirus-survey/"
                 class="button big previous">Rplicate Series: Interactive Plot of Coronavirus Survey</a></li>
     
 
+    
+        <li><a href="https://algotech.netlify.com/blog/algoritma-optics/"
+                class="button big next">Algoritma OPTICS (Ordering Points to Identify the Clustering Structure)</a></li>
     
 </ul>
 
@@ -1382,7 +1502,7 @@ ggplotly(plot_sentiment,tooltip = &quot;text&quot;)</code></pre>
     
     
       
-        <a href='/'><img src="/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
+        <a href='https://algotech.netlify.com/'><img src="https://algotech.netlify.com/img/main/logo.png" class="intro-circle" width="30%" alt="Hugo Future Imperfect" /></a>
       
     
     
@@ -1495,13 +1615,9 @@ ggplotly(plot_sentiment,tooltip = &quot;text&quot;)</code></pre>
       <div class="posts-container">
           <article class="mini-post">
             <header>
+              
               <h3>
-                
-                                <img src="/img/2020/ads/dss.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/text-analysis/?utm_source=algotech">More details</a>
-                
-                <img src="/img/2020/ads/ddt.png", alt="alternatetext", width="270" height="340">
-                <a href="https://algorit.ma/data-driven-2/?utm_source=algotech">More details</a>
+                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>
@@ -1587,9 +1703,9 @@ ggplotly(plot_sentiment,tooltip = &quot;text&quot;)</code></pre>
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.js"></script>
-      <script src="/js/util.js"></script>
-      <script src="/js/main.js"></script>
-      <script src="/js/backToTop.js"></script>
+      <script src="https://algotech.netlify.com/js/util.js"></script>
+      <script src="https://algotech.netlify.com/js/main.js"></script>
+      <script src="https://algotech.netlify.com/js/backToTop.js"></script>
     
 
     
@@ -1597,7 +1713,7 @@ ggplotly(plot_sentiment,tooltip = &quot;text&quot;)</code></pre>
         
       
         
-          <script src="/js/bootstrap.min.js"></script>
+          <script src="https://algotech.netlify.com/js/bootstrap.min.js"></script>
         
       
     
