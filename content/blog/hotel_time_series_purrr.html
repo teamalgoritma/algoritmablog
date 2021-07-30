@@ -1,0 +1,1104 @@
+---
+title: Multiple Hotel Segments Demand Forecasting
+author: Arga Adyatama
+github: https://github.com/Argaadya/time-series-example
+date: '2021-07-30'
+slug: hotel-forecast
+categories:
+  - R
+tags:
+  - Time Series
+  - Purrr
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<div id="background" class="section level1">
+<h1>Background</h1>
+<center>
+<img src="/img/hotel_ts/hotel.png" style="width:80.0%" />
+</center>
+<p>Hospitality industry is growing, with more and more people spending their money for vacation and leisure activities. People may only lodge into a hotel when it’s a holiday season or a special event, thus the demand for staying room is not equally distributed accross the year. To maximize the revenue gained by the hotel, the management often employed a pricing strategy, one of them being raising the room rate when the demand is high and making a promo when the demand is low. Thus, the ability to accurately forecast the future demand is very important and became a vital part on the pricing scheme. The demand for different segment of customer may differ and forecasting become harder as it may requires different model for different segment.</p>
+<p>This post will focus on fitting and tuning different forecasting models using <code>purrr</code> package on a real dataset .</p>
+</div>
+<div id="library-and-setup" class="section level1">
+<h1>Library and Setup</h1>
+<p>Below is the list of required packages if you wish to reproduce the results. The full source code for this post is available at <a href = "https://github.com/Argaadya/time-series-example"> my github repository </a>.</p>
+<pre class="r"><code># Data Wrangling
+library(tidyverse)
+library(lubridate)
+
+# Visualization
+library(ggthemes)
+library(scales)
+
+# Time Series
+library(forecast)
+library(tseries)
+library(padr)
+
+# Machine Learning
+library(rsample)
+library(recipes)</code></pre>
+</div>
+<div id="hotel-demand-forecasting" class="section level1">
+<h1>Hotel Demand Forecasting</h1>
+<div id="import-data" class="section level2">
+<h2>Import Data</h2>
+<p>Let’s import the dataset. The data is acquired from <a href = "https://www.sciencedirect.com/science/article/pii/S2352340918315191"> <strong>Nuno et al. (2019)</strong> </a>. The data consists of around 119,390 booking transactions from 2 hotel: an anonymous city hotel from Lisbon and a resort hotel from Algarve. The dataset comprehend bookings due to arrive between the 1st of July of 2015 and the 31st of August 2017, including bookings that effectively arrived and bookings that were canceled. There is so much to explore from this data, but we will only focus on demand forecasting.</p>
+<center>
+<img src="/img/hotel_ts/map.PNG" style="width:100.0%" />
+</center>
+<pre class="r"><code>hotel &lt;- read.csv(&quot;data_input/hotel_bookings.csv&quot;)
+
+head(hotel, 10)</code></pre>
+<pre><code>#&gt;           hotel is_canceled lead_time arrival_date_year arrival_date_month
+#&gt; 1  Resort Hotel           0       342              2015               July
+#&gt; 2  Resort Hotel           0       737              2015               July
+#&gt; 3  Resort Hotel           0         7              2015               July
+#&gt; 4  Resort Hotel           0        13              2015               July
+#&gt; 5  Resort Hotel           0        14              2015               July
+#&gt; 6  Resort Hotel           0        14              2015               July
+#&gt; 7  Resort Hotel           0         0              2015               July
+#&gt; 8  Resort Hotel           0         9              2015               July
+#&gt; 9  Resort Hotel           1        85              2015               July
+#&gt; 10 Resort Hotel           1        75              2015               July
+#&gt;    arrival_date_week_number arrival_date_day_of_month stays_in_weekend_nights
+#&gt; 1                        27                         1                       0
+#&gt; 2                        27                         1                       0
+#&gt; 3                        27                         1                       0
+#&gt; 4                        27                         1                       0
+#&gt; 5                        27                         1                       0
+#&gt; 6                        27                         1                       0
+#&gt; 7                        27                         1                       0
+#&gt; 8                        27                         1                       0
+#&gt; 9                        27                         1                       0
+#&gt; 10                       27                         1                       0
+#&gt;    stays_in_week_nights adults children babies meal country market_segment
+#&gt; 1                     0      2        0      0   BB     PRT         Direct
+#&gt; 2                     0      2        0      0   BB     PRT         Direct
+#&gt; 3                     1      1        0      0   BB     GBR         Direct
+#&gt; 4                     1      1        0      0   BB     GBR      Corporate
+#&gt; 5                     2      2        0      0   BB     GBR      Online TA
+#&gt; 6                     2      2        0      0   BB     GBR      Online TA
+#&gt; 7                     2      2        0      0   BB     PRT         Direct
+#&gt; 8                     2      2        0      0   FB     PRT         Direct
+#&gt; 9                     3      2        0      0   BB     PRT      Online TA
+#&gt; 10                    3      2        0      0   HB     PRT  Offline TA/TO
+#&gt;    distribution_channel is_repeated_guest previous_cancellations
+#&gt; 1                Direct                 0                      0
+#&gt; 2                Direct                 0                      0
+#&gt; 3                Direct                 0                      0
+#&gt; 4             Corporate                 0                      0
+#&gt; 5                 TA/TO                 0                      0
+#&gt; 6                 TA/TO                 0                      0
+#&gt; 7                Direct                 0                      0
+#&gt; 8                Direct                 0                      0
+#&gt; 9                 TA/TO                 0                      0
+#&gt; 10                TA/TO                 0                      0
+#&gt;    previous_bookings_not_canceled reserved_room_type assigned_room_type
+#&gt; 1                               0                  C                  C
+#&gt; 2                               0                  C                  C
+#&gt; 3                               0                  A                  C
+#&gt; 4                               0                  A                  A
+#&gt; 5                               0                  A                  A
+#&gt; 6                               0                  A                  A
+#&gt; 7                               0                  C                  C
+#&gt; 8                               0                  C                  C
+#&gt; 9                               0                  A                  A
+#&gt; 10                              0                  D                  D
+#&gt;    booking_changes deposit_type agent company days_in_waiting_list
+#&gt; 1                3   No Deposit  NULL    NULL                    0
+#&gt; 2                4   No Deposit  NULL    NULL                    0
+#&gt; 3                0   No Deposit  NULL    NULL                    0
+#&gt; 4                0   No Deposit   304    NULL                    0
+#&gt; 5                0   No Deposit   240    NULL                    0
+#&gt; 6                0   No Deposit   240    NULL                    0
+#&gt; 7                0   No Deposit  NULL    NULL                    0
+#&gt; 8                0   No Deposit   303    NULL                    0
+#&gt; 9                0   No Deposit   240    NULL                    0
+#&gt; 10               0   No Deposit    15    NULL                    0
+#&gt;    customer_type   adr required_car_parking_spaces total_of_special_requests
+#&gt; 1      Transient   0.0                           0                         0
+#&gt; 2      Transient   0.0                           0                         0
+#&gt; 3      Transient  75.0                           0                         0
+#&gt; 4      Transient  75.0                           0                         0
+#&gt; 5      Transient  98.0                           0                         1
+#&gt; 6      Transient  98.0                           0                         1
+#&gt; 7      Transient 107.0                           0                         0
+#&gt; 8      Transient 103.0                           0                         1
+#&gt; 9      Transient  82.0                           0                         1
+#&gt; 10     Transient 105.5                           0                         0
+#&gt;    reservation_status reservation_status_date
+#&gt; 1           Check-Out              2015-07-01
+#&gt; 2           Check-Out              2015-07-01
+#&gt; 3           Check-Out              2015-07-02
+#&gt; 4           Check-Out              2015-07-02
+#&gt; 5           Check-Out              2015-07-03
+#&gt; 6           Check-Out              2015-07-03
+#&gt; 7           Check-Out              2015-07-03
+#&gt; 8           Check-Out              2015-07-03
+#&gt; 9            Canceled              2015-05-06
+#&gt; 10           Canceled              2015-04-22</code></pre>
+<p>Data Description:</p>
+<ul>
+<li><p><strong>hotel</strong> : Hotel (Resort Hotel or City Hotel)</p></li>
+<li><p><strong>is_canceled</strong> : Value indicating if the booking was canceled (1) or not (0)</p></li>
+<li><p><strong>lead_time</strong> : Number of days that elapsed between the entering date of the booking into the PMS and the arrival date</p></li>
+<li><p><strong>arrival_date_year</strong> : Year of arrival date</p></li>
+<li><p><strong>arrival_date_month</strong> : Month of arrival date</p></li>
+<li><p><strong>arrival_date_week_number</strong> : Week number of year for arrival date</p></li>
+<li><p><strong>arrival_date_day_of_month</strong> : Day of arrival date</p></li>
+<li><p><strong>stays_in_weekend_nights</strong> : Number of weekend nights (Saturday or Sunday) the guest stayed or booked to stay at the hotel</p></li>
+<li><p><strong>stays_in_week_nights</strong> : Number of week nights (Monday to Friday) the guest stayed or booked to stay at the hotel</p></li>
+<li><p><strong>adults</strong> : Number of adults</p></li>
+<li><p><strong>children</strong> : Number of children</p></li>
+<li><p><strong>babies</strong> : Number of babies</p></li>
+<li><p><strong>meal</strong> : Type of meal booked. Categories are presented in standard hospitality meal packages:</p>
+<ul>
+<li>Undefined/SC – no meal package</li>
+<li>BB – Bed &amp; Breakfast</li>
+<li>HB – Half board (breakfast and one other meal – usually dinner)</li>
+<li>FB – Full board (breakfast, lunch and dinner)</li>
+</ul></li>
+<li><p><strong>country</strong> : Country of origin. Categories are represented in the ISO 3155–3:2013 format</p></li>
+<li><p><strong>market_segment</strong> : Market segment designation. In categories, the term “TA” means “Travel Agents” and “TO” means “Tour Operators”</p></li>
+<li><p><strong>distribution_channel</strong> : Booking distribution channel. The term “TA” means “Travel Agents” and “TO” means “Tour Operators”</p></li>
+<li><p><strong>is_repeated_guest</strong> : Value indicating if the booking name was from a repeated guest (1) or not (0)</p></li>
+<li><p><strong>previous_cancellations</strong> : Number of previous bookings that were cancelled by the customer prior to the current booking</p></li>
+<li><p><strong>previous_bookings_not_canceled</strong> : Number of previous bookings not cancelled by the customer prior to the current booking</p></li>
+<li><p><strong>reserved_room_type</strong> : Code of room type reserved. Code is presented instead of designation for anonymity reasons.</p></li>
+<li><p><strong>assigned_room_type</strong> : Code for the type of room assigned to the booking. Sometimes the assigned room type differs from the reserved room type due to hotel operation reasons (e.g. overbooking) or by customer request. Code is presented instead of designation for anonymity reasons.</p></li>
+<li><p><strong>booking_changes</strong> : Number of changes/amendments made to the booking from the moment the booking was entered on the PMS until the moment of check-in or cancellation</p></li>
+<li><p><strong>deposit_type</strong> : Indication on if the customer made a deposit to guarantee the booking. This variable can assume three categories:</p>
+<ul>
+<li>No Deposit – no deposit was made</li>
+<li>Non Refund * a deposit was made in the value of the total stay cost</li>
+<li>Refundable – a deposit was made with a value under the total cost of stay.</li>
+</ul></li>
+<li><p><strong>agent</strong> : ID of the travel agency that made the booking</p></li>
+<li><p><strong>company</strong> : ID of the company/entity that made the booking or responsible for paying the booking. ID is presented instead of designation for anonymity reasons</p></li>
+<li><p><strong>days_in_waiting_list</strong> : Number of days the booking was in the waiting list before it was confirmed to the customer</p></li>
+<li><p><strong>customer_type</strong> : Type of booking, assuming one of four categories:</p>
+<ul>
+<li>Contract - when the booking has an allotment or other type of contract associated to it</li>
+<li>Group – when the booking is associated to a group</li>
+<li>Transient – when the booking is not part of a group or contract, and is not associated to other transient booking</li>
+<li>Transient-party – when the booking is transient, but is associated to at least other transient booking</li>
+</ul></li>
+<li><p><strong>adr</strong> : Average Daily Rate as defined by dividing the sum of all lodging transactions by the total number of staying nights</p></li>
+<li><p><strong>required_car_parking_spaces</strong> : Number of car parking spaces required by the customer</p></li>
+<li><p><strong>total_of_special_requests</strong> : Number of special requests made by the customer (e.g. twin bed or high floor)</p></li>
+<li><p><strong>reservation_status</strong> : Reservation last status, assuming one of three categories:</p>
+<ul>
+<li>Canceled – booking was canceled by the customer</li>
+<li>Check-Out – customer has checked in but already departed</li>
+<li>No-Show – customer did not check-in and did inform the hotel of the reason why</li>
+</ul></li>
+<li><p><strong>reservation_status_date</strong> : Date at which the last status was set. This variable can be used in conjunction with the <em>ReservationStatus</em> to understand when was the booking canceled or when did the customer checked-out of the hotel</p></li>
+</ul>
+</div>
+<div id="data-preprocessing" class="section level2">
+<h2>Data Preprocessing</h2>
+<p>Before we analyze the data, you may notice that the date is scattered in separate columns. We will unite them together to get a proper arrival date column.</p>
+<pre class="r"><code>hotel &lt;- hotel %&gt;% 
+  unite(&quot;arrival_date&quot;, arrival_date_year, arrival_date_month, arrival_date_day_of_month, sep = &quot;-&quot;) %&gt;% 
+  mutate(arrival_date = ymd(arrival_date))
+
+head(hotel)</code></pre>
+<pre><code>#&gt;          hotel is_canceled lead_time arrival_date arrival_date_week_number
+#&gt; 1 Resort Hotel           0       342   2015-07-01                       27
+#&gt; 2 Resort Hotel           0       737   2015-07-01                       27
+#&gt; 3 Resort Hotel           0         7   2015-07-01                       27
+#&gt; 4 Resort Hotel           0        13   2015-07-01                       27
+#&gt; 5 Resort Hotel           0        14   2015-07-01                       27
+#&gt; 6 Resort Hotel           0        14   2015-07-01                       27
+#&gt;   stays_in_weekend_nights stays_in_week_nights adults children babies meal
+#&gt; 1                       0                    0      2        0      0   BB
+#&gt; 2                       0                    0      2        0      0   BB
+#&gt; 3                       0                    1      1        0      0   BB
+#&gt; 4                       0                    1      1        0      0   BB
+#&gt; 5                       0                    2      2        0      0   BB
+#&gt; 6                       0                    2      2        0      0   BB
+#&gt;   country market_segment distribution_channel is_repeated_guest
+#&gt; 1     PRT         Direct               Direct                 0
+#&gt; 2     PRT         Direct               Direct                 0
+#&gt; 3     GBR         Direct               Direct                 0
+#&gt; 4     GBR      Corporate            Corporate                 0
+#&gt; 5     GBR      Online TA                TA/TO                 0
+#&gt; 6     GBR      Online TA                TA/TO                 0
+#&gt;   previous_cancellations previous_bookings_not_canceled reserved_room_type
+#&gt; 1                      0                              0                  C
+#&gt; 2                      0                              0                  C
+#&gt; 3                      0                              0                  A
+#&gt; 4                      0                              0                  A
+#&gt; 5                      0                              0                  A
+#&gt; 6                      0                              0                  A
+#&gt;   assigned_room_type booking_changes deposit_type agent company
+#&gt; 1                  C               3   No Deposit  NULL    NULL
+#&gt; 2                  C               4   No Deposit  NULL    NULL
+#&gt; 3                  C               0   No Deposit  NULL    NULL
+#&gt; 4                  A               0   No Deposit   304    NULL
+#&gt; 5                  A               0   No Deposit   240    NULL
+#&gt; 6                  A               0   No Deposit   240    NULL
+#&gt;   days_in_waiting_list customer_type adr required_car_parking_spaces
+#&gt; 1                    0     Transient   0                           0
+#&gt; 2                    0     Transient   0                           0
+#&gt; 3                    0     Transient  75                           0
+#&gt; 4                    0     Transient  75                           0
+#&gt; 5                    0     Transient  98                           0
+#&gt; 6                    0     Transient  98                           0
+#&gt;   total_of_special_requests reservation_status reservation_status_date
+#&gt; 1                         0          Check-Out              2015-07-01
+#&gt; 2                         0          Check-Out              2015-07-01
+#&gt; 3                         0          Check-Out              2015-07-02
+#&gt; 4                         0          Check-Out              2015-07-02
+#&gt; 5                         1          Check-Out              2015-07-03
+#&gt; 6                         1          Check-Out              2015-07-03</code></pre>
+</div>
+<div id="exploratory-data-analysis" class="section level2">
+<h2>Exploratory Data Analysis</h2>
+<div id="market-segments" class="section level3">
+<h3>Market Segments</h3>
+<p>For each hotel, we have several market segments as mentioned earlier in the data description. In order to maximize our revenue, we will forecast the most profitable market segment. First, we will look at the number of transactions for each market segment on each hotel.</p>
+<pre class="r"><code>hotel %&gt;% 
+  count(hotel, market_segment, is_canceled) %&gt;% 
+  group_by(hotel) %&gt;% 
+  mutate(total = sum(n),
+         ratio = n/total,
+         is_canceled = ifelse(is_canceled == 0, &quot;No&quot;, &quot;Yes&quot;)) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(market_segment = tidytext::reorder_within(market_segment, ratio, hotel)) %&gt;%  
+  ggplot(aes(ratio, market_segment, fill = is_canceled)) +
+  geom_col(position = &quot;dodge&quot;) +
+  labs(x = &quot;Percentage&quot;, y = &quot;Market Segment&quot;, 
+       title = &quot;Hotel Demand by Market Segment&quot;,
+       fill = &quot;Booking Canceled&quot;) +
+  facet_wrap(~hotel, scales = &quot;free_y&quot;) +
+  scale_x_continuous(labels = percent_format(accuracy = 1)) +
+  scale_fill_manual(values = c(&quot;skyblue&quot;, &quot;firebrick&quot;)) +
+  tidytext::scale_y_reordered() +
+  theme_pander() +
+  theme(legend.position = &quot;top&quot;)</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Based on the result, most of the booking done via travel agent, either online or offline, which combined together contributes more than 40% of the non-canceled total transactions. The other segment don’t have much transactions, but perhaps we would like to see the revenue generated by each market segment by looking at the Average Daily Rate (ADR). Average Daily Rate as defined by dividing the sum of all lodging transactions by the total number of staying nights. Therefore, the higher ADR means more revenue generated for each staying night.</p>
+<pre class="r"><code>hotel %&gt;% 
+  filter(is_canceled == F) %&gt;% 
+  group_by(hotel, market_segment) %&gt;% 
+  summarise(adr = sum(adr)) %&gt;% 
+  mutate(total = sum(adr),
+         ratio = adr/total) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(market_segment = tidytext::reorder_within(market_segment, ratio, hotel)) %&gt;% 
+  ggplot(aes(ratio, market_segment)) +
+  geom_col(fill = &quot;firebrick&quot;) +
+  facet_wrap(~hotel, scales = &quot;free_y&quot;) +
+  tidytext::scale_y_reordered() +
+  scale_x_continuous(labels = percent_format(accuracy = 1)) +
+  theme_pander() +
+  labs(x = NULL, y = NULL, 
+       title = &quot;ADR Contributions by Market Segments&quot;)</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Total ADR generated from online travel agent is the highest both in the city hotel and the resort hotel. The segment of offline travel agent and direct has a little margin with each other, with direct segment has the higher contribution in resort hotel even though it has lower number of transactions. This give us the top 3 market segments, both in term of quantity and profitability. We will focus on this segments for the rest of the analysis.</p>
+</div>
+<div id="time-series-analysis" class="section level3">
+<h3>Time Series Analysis</h3>
+<p>We want to forecast the demand of lodging for both city hotel and resort hotel. Based on the previous exploration, we will use only the data from segment online travel agent, offline travel agent and direct. <strong>We will consider both canceled and non-canceled transactions to reflect the demand.</strong></p>
+<pre class="r"><code>hotel_city &lt;- hotel %&gt;%
+  filter(hotel == &quot;City Hotel&quot;,
+         market_segment %&gt;% str_detect(&quot;TA|Direct&quot;)) 
+
+hotel_resort &lt;- hotel %&gt;%
+  filter(hotel == &quot;Resort Hotel&quot;,
+         market_segment %&gt;% str_detect(&quot;TA|Direct&quot;)) 
+
+hotel_agg_city &lt;- hotel_city %&gt;% 
+  group_by(arrival_date) %&gt;% 
+  summarise(demand = n())
+
+hotel_agg_resort &lt;- hotel_resort %&gt;% 
+  group_by(arrival_date) %&gt;% 
+  summarise(demand = n())
+
+head(hotel_agg_city, 10)</code></pre>
+<pre><code>#&gt; # A tibble: 10 × 2
+#&gt;    arrival_date demand
+#&gt;    &lt;date&gt;        &lt;int&gt;
+#&gt;  1 2015-07-01       79
+#&gt;  2 2015-07-02        8
+#&gt;  3 2015-07-03        3
+#&gt;  4 2015-07-04        6
+#&gt;  5 2015-07-05        8
+#&gt;  6 2015-07-06       10
+#&gt;  7 2015-07-07       18
+#&gt;  8 2015-07-08        8
+#&gt;  9 2015-07-09        6
+#&gt; 10 2015-07-10        7</code></pre>
+<p>Let’s look at the series of demand for each hotel.</p>
+<pre class="r"><code>hotel_agg_city   %&gt;%
+  mutate(hotel = &quot;City Hotel&quot;) %&gt;% 
+  bind_rows(hotel_agg_resort %&gt;% mutate(hotel = &quot;Resort Hotel&quot;)) %&gt;% 
+  ggplot(aes(arrival_date, demand)) +
+  geom_line(color = &quot;dodgerblue4&quot;) +
+  theme_pander() +
+  facet_wrap(~hotel, ncol = 1) +
+  labs(x = NULL, y = &quot;Demand&quot;, title = &quot;Hotel Booking Demand&quot;)</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The demand for city hotel has a higher fluctuation compared to the resort hotel. This may be caused by several factors, including the room capacity, since we don’t know the room capacity for each hotel. There are also some spikes in demand for city hotel during the late 2015. We will inspect further by dividing the series by market segment. We will also need to make the series have constant interval of time, which is a daily interval in our case.</p>
+<pre class="r"><code># summarizing data
+hotel_agg_city &lt;- hotel_city %&gt;% 
+  group_by(arrival_date, market_segment) %&gt;% 
+  summarise(demand = n())
+
+hotel_agg_resort &lt;- hotel_resort %&gt;% 
+  group_by(arrival_date, market_segment) %&gt;% 
+  summarise(demand = n())
+
+# join city hotel and resort hotel
+hotel_agg &lt;- hotel_agg_city %&gt;%
+  mutate(hotel = &quot;City Hotel&quot;) %&gt;% 
+  bind_rows(hotel_agg_resort %&gt;% mutate(hotel = &quot;Resort Hotel&quot;)) %&gt;% 
+  ungroup()
+
+# padding
+start_interval &lt;-  ymd(range(hotel$arrival_date)[1])
+end_interval &lt;- ymd(range(hotel$arrival_date)[2])
+
+hotel_pad &lt;- hotel_agg %&gt;% 
+  group_by(hotel, market_segment) %&gt;% 
+  pad(start_val = start_interval, end_val = end_interval) %&gt;% 
+  replace_na(list(demand = 0)) %&gt;% 
+  ungroup()
+
+hotel_pad %&gt;% 
+  ggplot(aes(arrival_date, demand, color = market_segment)) +
+  geom_line() +
+  theme_pander() +
+  theme(legend.position = &quot;top&quot;) +
+  facet_wrap(~hotel, ncol = 1, scales = &quot;free_y&quot;) +
+  labs(x = NULL, y = &quot;Demand&quot;, title = &quot;Hotel Demand&quot;, color = NULL) +
+  scale_color_manual(values = c(&quot;firebrick&quot;, &quot;skyblue&quot;, &quot;orange&quot;))</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The behaviour for each segment is quite different, so we will forecast them separately. At this point, we will have 6 different time series to be forecasted for 3 different segments on each hotel.</p>
+</div>
+<div id="seasonality-analysis" class="section level3">
+<h3>Seasonality Analysis</h3>
+<p>Before we proceed to create a forecasting model. We will try to gain more insight regarding the customer behaviour by looking at the seasonality of the demand. Since we have too many series, we will only explore the most lucrative market segment, that is the segment of <em>online TA</em>. We will look at the behaviour for both the city hotel and the resort hotel.</p>
+<div id="weekly-seasonality" class="section level4">
+<h4>Weekly Seasonality</h4>
+<p>First, we will look at the weekly seasonality. The weekly seasonality will help us to understand when does people more frequently do check in? Our common sense will tell us that perhaps weekend should be the one where people start to check in. However, weekly seasonality may have a weak strength since people are not regularly go to vacation or rent a hotel.</p>
+<p>The following figures is the weekly seasonality of the online TA segment for the city hotel. It has a negative seasonality on the weekend (Saturday and Sunday) and has a high positive seasonality in Tuesday. Thus, the hotel is more likely to have less visitor on the weekend, perhaps because the hotel is not designed to be a vacation hotel and more of a business or transit hotel.</p>
+<pre class="r"><code>city_weekly &lt;- hotel_agg_city %&gt;% 
+  filter(market_segment == &quot;Online TA&quot;) %&gt;% 
+  ts(frequency = 7) %&gt;% 
+  decompose()
+
+city_weekly$seasonal %&gt;% 
+  matrix(ncol = 7, byrow = T) %&gt;%
+  t() %&gt;% 
+  as.data.frame() %&gt;% 
+  select(V1) %&gt;% 
+  mutate(day = wday(head(hotel_agg_city %&gt;% filter(market_segment == &quot;Online TA&quot;) %&gt;% pull(arrival_date) , 7), label = T)) %&gt;% 
+  ggplot(aes(day, V1, fill = V1)) +
+  geom_col(show.legend = F) +
+  geom_hline(yintercept = 0 ) +
+  labs(x = NULL, y = &quot;seasonality&quot;, title = &quot;Weekly Seasonality of City Hotel, Online TA Segment &quot;) +
+  scale_fill_gradient2(low = &quot;firebrick4&quot;, mid = &quot;skyblue&quot;, high = &quot;dodgerblue4&quot;) +
+  theme_pander()</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Next, we will look at the weekly seasonality of the Online TA segment of the Resort Hotel as well.</p>
+<pre class="r"><code>resort_weekly &lt;- hotel_agg_resort %&gt;% 
+  filter(market_segment == &quot;Online TA&quot;) %&gt;% 
+  ts(frequency = 7) %&gt;% 
+  decompose()
+
+resort_weekly$seasonal %&gt;% 
+  matrix(ncol = 7, byrow = T) %&gt;%
+  t() %&gt;% 
+  as.data.frame() %&gt;% 
+  select(V1) %&gt;% 
+  mutate(day = wday(head(hotel_agg_resort %&gt;% filter(market_segment == &quot;Online TA&quot;) %&gt;% pull(arrival_date) , 7), label = T)) %&gt;% 
+  ggplot(aes(day, V1, fill = V1)) +
+  geom_col(show.legend = F) +
+  geom_hline(yintercept = 0 ) +
+  labs(x = NULL, y = &quot;seasonality&quot;, title = &quot;Weekly Seasonality of Resort Hotel, Online TA Segment &quot;) +
+  scale_fill_gradient2(low = &quot;firebrick4&quot;, mid = &quot;skyblue&quot;, high = &quot;dodgerblue4&quot;) +
+  theme_pander()</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The customer behaviour is quite the same, with strong positive seasonality happened during Wednesday and negative seasonality during Sunday. It is natural that the number of arrival is dropping during Sunday, since people will go back to their and home do the ordinary activities on Monday. Another reason is perhaps because Monday is the day that most of the monuments/museusms etc are closed in Portugal so if people checked in on Sunday evening the don’t have much to visit during the next day. The peak seasonality in Wednesday may signal that people want to spent more time for the upcoming weekend or people just want to avoid the crowd during weekend.</p>
+</div>
+<div id="monthly-seasonality" class="section level4">
+<h4>Monthly Seasonality</h4>
+<p>We will also check the monthly seasonality and see at what month does it reach its highest and lowest point. The first one is the city hotel.</p>
+<pre class="r"><code>city_monthly &lt;- hotel_agg_city %&gt;% 
+  filter(market_segment == &quot;Online TA&quot;) %&gt;% 
+  mutate(date = floor_date(arrival_date, &quot;month&quot;)) %&gt;% 
+  group_by(date) %&gt;% 
+  summarise(demand = sum(demand)) %&gt;% 
+  ungroup() 
+
+monthly_ts &lt;- ts(city_monthly,frequency = 12) %&gt;% 
+  decompose()
+
+monthly_ts$seasonal %&gt;% 
+  matrix(ncol = 12, byrow = T) %&gt;%
+  t() %&gt;% 
+  as.data.frame() %&gt;% 
+  select(V1) %&gt;% 
+  mutate(month = month(head(city_monthly$date, 12), label = T)) %&gt;% 
+  ggplot(aes(month, V1, fill = V1)) +
+  geom_col(show.legend = F) +
+  geom_hline(yintercept = 0 ) +
+  labs(x = NULL, y = &quot;seasonality&quot;, title = &quot;Monthly Seasonality of City Hotel, Online TA Segment &quot;) +
+  scale_fill_gradient2(low = &quot;firebrick4&quot;, mid = &quot;skyblue&quot;, high = &quot;dodgerblue4&quot;) +
+  theme_pander()</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The next one is the online TA segment in Resort Hotel. The seasonality reach its highest point during October and same with the city hotel, it reach the lowest point on March.</p>
+<pre class="r"><code>resort_monthly &lt;- hotel_agg_resort %&gt;% 
+  filter(market_segment == &quot;Online TA&quot;) %&gt;% 
+  mutate(date = floor_date(arrival_date, &quot;month&quot;)) %&gt;% 
+  group_by(date) %&gt;% 
+  summarise(demand = sum(demand)) %&gt;% 
+  ungroup() 
+
+monthly_ts &lt;- ts(resort_monthly,frequency = 12) %&gt;% 
+  decompose()
+
+monthly_ts$seasonal %&gt;% 
+  matrix(ncol = 12, byrow = T) %&gt;%
+  t() %&gt;% 
+  as.data.frame() %&gt;% 
+  select(V1) %&gt;% 
+  mutate(month = month(head(resort_monthly$date, 12), label = T)) %&gt;% 
+  ggplot(aes(month, V1, fill = V1)) +
+  geom_col(show.legend = F) +
+  geom_hline(yintercept = 0 ) +
+  labs(x = NULL, y = &quot;seasonality&quot;, title = &quot;Monthly Seasonality of resort Hotel, Online TA Segment &quot;) +
+  scale_fill_gradient2(low = &quot;firebrick4&quot;, mid = &quot;skyblue&quot;, high = &quot;dodgerblue4&quot;) +
+  theme_pander()</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Based on both graphs, the high and positive seasonality happens around May-June and September-October. The highest negative seasonality happens in March. Both Lisbon and Algarve are located in Portugal. According to <a href = "https://www.audleytravel.com/us/portugal/best-time-to-visit"> Audley Travels </a>, the best time to visit Portugal is in spring (March-May), when the country is in bloom and waking after the winter. You could also go in fall (between September and October) when the sun is still shining, the weather is warm, and many of the crowds have dispersed. However, the negative seasonality in March and April perhaps tell us that the weather is still too cold to travel around and people love to spend more time to go for vacation during September and October. The summer holiday of school, which is span from late June to early September, have a good influence toward the city hotel seasonality.</p>
+<center>
+<img src="/img/hotel_ts/algarve.jpg" style="width:80.0%" />
+</center>
+<blockquote>
+September and October are two of the best months to visit Portugal. The weather is still warm and pleasant, and the temperatures are much more manageable for sightseeing or hiking. It’s also a wonderful time to visit many of Portugal’s wineries with the grape harvest in full swing. The beaches are also much quieter.
+<footer>
+Audley Travels
+</footer>
+</blockquote>
+<p>For the next sections, we will focus on the forecasting of the demand using various machine learning methods.</p>
+</div>
+</div>
+</div>
+<div id="cross-validation" class="section level2">
+<h2>Cross-Validation</h2>
+<p>We will split the data into training dataset and testing dataset, with testing dataset consists of the last 30 days from the full dataset.</p>
+<pre class="r"><code># get total number of observations
+n_data &lt;- hotel %&gt;% 
+  count(arrival_date) %&gt;%
+  nrow()
+
+# data train
+hotel_train &lt;- hotel_pad %&gt;% 
+  group_by(hotel, market_segment) %&gt;% 
+  slice( 1:(n_data-30) ) 
+
+# data test
+hotel_test &lt;- hotel_pad %&gt;% 
+  group_by(hotel, market_segment) %&gt;% 
+  slice( -(n_data-30:n_data) )
+
+tail(hotel_train, 10)</code></pre>
+<pre><code>#&gt; # A tibble: 10 × 4
+#&gt; # Groups:   hotel, market_segment [1]
+#&gt;    arrival_date market_segment demand hotel       
+#&gt;    &lt;date&gt;       &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;       
+#&gt;  1 2017-07-23   Online TA          26 Resort Hotel
+#&gt;  2 2017-07-24   Online TA          46 Resort Hotel
+#&gt;  3 2017-07-25   Online TA          25 Resort Hotel
+#&gt;  4 2017-07-26   Online TA          32 Resort Hotel
+#&gt;  5 2017-07-27   Online TA          33 Resort Hotel
+#&gt;  6 2017-07-28   Online TA          36 Resort Hotel
+#&gt;  7 2017-07-29   Online TA          51 Resort Hotel
+#&gt;  8 2017-07-30   Online TA          23 Resort Hotel
+#&gt;  9 2017-07-31   Online TA          44 Resort Hotel
+#&gt; 10 2017-08-01   Online TA          49 Resort Hotel</code></pre>
+</div>
+<div id="forecasting-methods" class="section level2">
+<h2>Forecasting Methods</h2>
+<p>We will do forecasting for each segment of each hotel. This is done to capture the pattern of each series since they have different characteristics and doing an aggregated forecast may result in higher error. Thus, we will have 6 different series, 3 for each hotel. Since we have 6 series to forecast, manually fitting and tuning the model will be tedious and take a long time. We will use <code>purrr</code> to efficiently fitting and evaluating the model in order to get the best model for each series based on the <strong>Mean Absolute Error (MAE)</strong> and <strong>Root Mean Squared Error (RMSE)</strong> values. MAE is chosen due to it’s interpretability while RMSE is chosen because it is sensitive to large errors. We don’t use <strong>Mean Absolute Percentage Error</strong> because it did not perform really well when the actual data has or close to zero value, despite being easier to interpret.</p>
+<p><span class="math display">\[MAE = \frac{\Sigma_{i = 1}^{n} (y_i- \hat{y_i})}{n}\]</span></p>
+<p><span class="math display">\[RMSE = \sqrt\frac{\Sigma_{i = 1}^{n} (y_i-\hat{y_i} )^2}{n}\]</span></p>
+<p>Before we proceed, we will do forecasting method for the aggregated time series by combining all demand into a single series. This will function as a benchmark for the subsequent forecasting.</p>
+<pre class="r"><code>train_agg &lt;- hotel_train %&gt;% 
+  group_by(arrival_date) %&gt;% 
+  summarise(demand = sum(demand))
+
+test_agg &lt;- hotel_test %&gt;% 
+  group_by(arrival_date) %&gt;% 
+  summarise(demand = sum(demand))
+
+head(train_agg, 10)</code></pre>
+<pre><code>#&gt; # A tibble: 10 × 2
+#&gt;    arrival_date demand
+#&gt;    &lt;date&gt;        &lt;dbl&gt;
+#&gt;  1 2015-07-01      118
+#&gt;  2 2015-07-02       52
+#&gt;  3 2015-07-03       43
+#&gt;  4 2015-07-04       55
+#&gt;  5 2015-07-05       53
+#&gt;  6 2015-07-06       55
+#&gt;  7 2015-07-07       53
+#&gt;  8 2015-07-08       34
+#&gt;  9 2015-07-09       38
+#&gt; 10 2015-07-10       49</code></pre>
+<p>With a weekly seasonality and using ARIMA method, here is the result of the forecast on the next 30 days. The forecast give us MAE of 21, which mean that the model will have different around 21 demands compared to the actual testing dataset in average and RMSE around 26.</p>
+<pre class="r"><code>train_ts &lt;- ts(train_agg$demand, frequency = 7)
+
+arima_agg &lt;- auto.arima(train_ts)
+
+forecast_agg &lt;- forecast(arima_agg, h = 30)
+
+accuracy(forecast_agg, test_agg$demand) %&gt;%
+  as.data.frame()</code></pre>
+<pre><code>#&gt;                      ME     RMSE      MAE       MPE     MAPE      MASE
+#&gt; Training set  0.4580128 37.73934 28.13519 -10.16052 27.86560 0.7628458
+#&gt; Test set     -8.0150470 26.31801 21.25028  -8.68376 15.88266 0.5761712
+#&gt;                    ACF1
+#&gt; Training set 0.00200618
+#&gt; Test set             NA</code></pre>
+<p>We will see if by separating the series will give us better forecast performance.</p>
+<p>First, we will nest the dataset, making our data into a list of 6 separate time series.</p>
+<pre class="r"><code># nesting data train
+train_list &lt;- hotel_train %&gt;% 
+  select(-arrival_date) %&gt;% 
+  unite(&quot;series&quot;, hotel, market_segment, sep = &quot;_&quot;) %&gt;% 
+  nest(-series)
+
+# nesting data test
+test_list &lt;- hotel_test %&gt;% 
+  select(-arrival_date) %&gt;% 
+  unite(&quot;series&quot;, hotel, market_segment, sep = &quot;_&quot;) %&gt;% 
+  nest(-series)
+
+head(train_list)</code></pre>
+<pre><code>#&gt; # A tibble: 6 × 2
+#&gt;   series                     data              
+#&gt;   &lt;chr&gt;                      &lt;list&gt;            
+#&gt; 1 City Hotel_Direct          &lt;tibble [763 × 1]&gt;
+#&gt; 2 City Hotel_Offline TA/TO   &lt;tibble [763 × 1]&gt;
+#&gt; 3 City Hotel_Online TA       &lt;tibble [763 × 1]&gt;
+#&gt; 4 Resort Hotel_Direct        &lt;tibble [763 × 1]&gt;
+#&gt; 5 Resort Hotel_Offline TA/TO &lt;tibble [763 × 1]&gt;
+#&gt; 6 Resort Hotel_Online TA     &lt;tibble [763 × 1]&gt;</code></pre>
+<p>The column <code>data</code> consists of a list of the demand for each series. For example, the following is the series for the City Hotel with Direct Segment.</p>
+<pre class="r"><code>train_list$data[[1]] %&gt;% 
+  head()</code></pre>
+<pre><code>#&gt; # A tibble: 6 × 1
+#&gt;   demand
+#&gt;    &lt;dbl&gt;
+#&gt; 1      0
+#&gt; 2      0
+#&gt; 3      0
+#&gt; 4      0
+#&gt; 5      0
+#&gt; 6      0</code></pre>
+<div id="preprocessing-specification" class="section level3">
+<h3>Preprocessing Specification</h3>
+<p>We will try several preprocess approach since there is a possibility that transformed data are performing better than the original scale. We will use the following treatment:</p>
+<ul>
+<li>No data transformation</li>
+<li>Squared value</li>
+<li>Scaled value, data will be normalized using z-score</li>
+<li>Log transformation</li>
+</ul>
+<pre class="r"><code>recipe_spec &lt;- list(
+  normal_spec = function(x) x, # no transformation
+  squared_spec = function(x) sqrt(x), # square the demand value
+  scale_spec = function(x) scale(x), # normalize the demand value with Z-score
+  log_spec = function(x) log(x+1) # convert demand to log
+) %&gt;% 
+  enframe(name = &quot;preprocess_name&quot;, value = &quot;preprocess_spec&quot;)
+
+recipe_spec</code></pre>
+<pre><code>#&gt; # A tibble: 4 × 2
+#&gt;   preprocess_name preprocess_spec
+#&gt;   &lt;chr&gt;           &lt;list&gt;         
+#&gt; 1 normal_spec     &lt;fn&gt;           
+#&gt; 2 squared_spec    &lt;fn&gt;           
+#&gt; 3 scale_spec      &lt;fn&gt;           
+#&gt; 4 log_spec        &lt;fn&gt;</code></pre>
+<p>We also need to create a function to reverse the scaled to value into the original value for later model evaluation. For example, if the data is being square rooted, then we need to scale it back by squaring the data.</p>
+<pre class="r"><code># reverse function to scale back for model evaluation
+reverse_spec &lt;- list(
+  
+  normal_spec = function(x, y) {
+    y &lt;- y
+    return(x)
+    },
+  
+  squared_spec = function(x, y) {
+    y &lt;- y
+    return(x^2)
+    },
+  
+  scale_spec = function(x, y) x * sd(y) + mean(y),
+  
+  log_spec = function(x,y) {
+    y &lt;- y
+    return(exp(x)-1)
+  }
+) %&gt;% 
+  enframe(name = &quot;reverse_name&quot;, value = &quot;reverse_spec&quot;)
+
+# joint the preprocess and the scale-back function
+recipe_spec &lt;- recipe_spec %&gt;% 
+  bind_cols(reverse_spec)</code></pre>
+</div>
+<div id="seasonality-specification" class="section level3">
+<h3>Seasonality Specification</h3>
+<p>The next step is to specify the seasonal period for the series. We will try several seasonal period, including:</p>
+<ul>
+<li>weekly seasonality</li>
+<li>monthly seasonality</li>
+<li>annual seasonality</li>
+<li>weekly and monthly seasonality (multi-seasonal)</li>
+<li>weekly and annual seasonality (multi-seasonal)</li>
+</ul>
+<pre class="r"><code>seasonal_forecast &lt;- list(
+  weekly = function(x) ts(x, frequency = 7),
+  monthly = function(x) ts(x, frequency = 7*4),
+  weekly_monthly = function(x) msts(x, seasonal.periods = c(7, 7*4)),
+  weekly_annual = function(x) msts(x, seasonal.periods = c(7, 365)),
+  annual = function(x) ts(x, frequency = 365)
+  ) %&gt;% 
+  enframe(name = &quot;season_name&quot;, value = &quot;season_spec&quot;)</code></pre>
+</div>
+<div id="impute-outlier" class="section level3">
+<h3>Impute Outlier</h3>
+<p>We will also try to preprocess the data by whether an outlier should be replaced or not. If the outlier is replaced, we will identify the outlier and estimate the replacement using the <code>tsoutliers</code> function. Residuals are identified by fitting a loess curve for non-seasonal data and via a periodic STL decomposition for seasonal data.</p>
+<pre class="r"><code>outlier_spec &lt;- list(
+  normal_spec = function(x) x, # no transformation
+  
+  out_spec = function(x){
+    outlier_place &lt;- tsoutliers(x)
+    x[outlier_place$index] &lt;- outlier_place$replacement
+    return(x)
+  }
+) %&gt;% 
+  enframe(name = &quot;outlier_name&quot;, value = &quot;out_spec&quot;)</code></pre>
+</div>
+<div id="model-specification" class="section level3">
+<h3>Model Specification</h3>
+<p>Next, we will specify the model the data will be fit into. The model includes:</p>
+<ul>
+<li>ARIMA</li>
+<li>STL + ETS model</li>
+<li>STL + ARIMA</li>
+</ul>
+<pre class="r"><code>method_forecast &lt;- list(
+  arima  = function(x) auto.arima(x),
+  stl_ets = function(x) stlm(x, method = &quot;ets&quot;),
+  stl_arima = function(x) stlm(x, method = &quot;arima&quot;)
+  ) %&gt;% 
+  enframe(name = &quot;model_name&quot;, value = &quot;model_spec&quot;)</code></pre>
+</div>
+<div id="model-fitting" class="section level3">
+<h3>Model Fitting</h3>
+<p>Below is the combination for each specification on each series. For 6 different series, we will have 5 different seasonality specification, 3 different models and other specifications. Therefore, we will 540 different combinations. We will choose the best model based on the RMSE and MAE value on the testing dataset. For example, the first row is the time series for City Hotel with Direct Segment. This data will be transformed using log (<code>log_spec</code>) with annual seasonality and fitted with time series model using ARIMA.</p>
+<pre class="r"><code># combine the data with the specification
+train_crossing &lt;- crossing(train_list, recipe_spec, seasonal_forecast, outlier_spec, method_forecast )
+
+test_crossing &lt;- crossing(test_list, recipe_spec, seasonal_forecast, outlier_spec, method_forecast)
+
+train_crossing %&gt;% 
+  head()</code></pre>
+<pre><code>#&gt; # A tibble: 6 × 12
+#&gt;   series     data      preprocess_name preprocess_spec reverse_name reverse_spec
+#&gt;   &lt;chr&gt;      &lt;list&gt;    &lt;chr&gt;           &lt;list&gt;          &lt;chr&gt;        &lt;list&gt;      
+#&gt; 1 City Hote… &lt;tibble … log_spec        &lt;fn&gt;            log_spec     &lt;fn&gt;        
+#&gt; 2 City Hote… &lt;tibble … log_spec        &lt;fn&gt;            log_spec     &lt;fn&gt;        
+#&gt; 3 City Hote… &lt;tibble … log_spec        &lt;fn&gt;            log_spec     &lt;fn&gt;        
+#&gt; 4 City Hote… &lt;tibble … log_spec        &lt;fn&gt;            log_spec     &lt;fn&gt;        
+#&gt; 5 City Hote… &lt;tibble … log_spec        &lt;fn&gt;            log_spec     &lt;fn&gt;        
+#&gt; 6 City Hote… &lt;tibble … log_spec        &lt;fn&gt;            log_spec     &lt;fn&gt;        
+#&gt; # … with 6 more variables: season_name &lt;chr&gt;, season_spec &lt;list&gt;,
+#&gt; #   outlier_name &lt;chr&gt;, out_spec &lt;list&gt;, model_name &lt;chr&gt;, model_spec &lt;list&gt;</code></pre>
+<p>The following code produce the transformation process for the data before fitted into model.</p>
+<pre class="r"><code># model fitting and evaluation
+transformed_data &lt;- map2(.x = train_crossing$data,
+                         .y = train_crossing$preprocess_spec,
+                         .f = ~exec( .y, .x) 
+                         )</code></pre>
+<p>The following code do all process from transforming data into time series, fitting them into the model and forecast demands for the next 30 days.</p>
+<pre class="r"><code># fitting and forecasting
+forecast_map &lt;- transformed_data %&gt;% 
+  
+  # Convert data to time series with different seasonalities
+  map2(.y = train_crossing$season_spec,
+       .f = ~exec(.y, .x)) %&gt;% 
+  
+  # Transform outlier
+  map2(.y = train_crossing$out_spec,
+       .f = ~exec(.y, .x)) %&gt;% 
+  
+  # Fit data to time series model
+  map2(.y = train_crossing$model_spec,
+       .f =  ~exec(.y,.x)) %&gt;% 
+  
+  # Forecast for the next 30 days
+  map(forecast, h = 30) %&gt;%  
+  
+  # Take the mean of the forecast
+  map(~pluck(.x, &quot;mean&quot;)) %&gt;% 
+  
+  map(as.numeric)</code></pre>
+</div>
+<div id="forecasting-result" class="section level3">
+<h3>Forecasting Result</h3>
+<p>Below is the result for our modeling process for the first time series.</p>
+<pre class="r"><code># Result of the first time series
+forecast_map[[1]]</code></pre>
+<pre><code>#&gt;  [1] 2.346707 2.338587 2.338587 2.338587 2.338587 2.338587 2.338587 2.338587
+#&gt;  [9] 2.338587 2.338587 2.338587 2.338587 2.338587 2.338587 2.338587 2.338587
+#&gt; [17] 2.338587 2.338587 2.338587 2.338587 2.338587 2.338587 2.338587 2.338587
+#&gt; [25] 2.338587 2.338587 2.338587 2.338587 2.338587 2.338587</code></pre>
+<p>We use <strong>MAE</strong> and <strong>RMSE</strong> to measures and compares the performance of each model.</p>
+<pre class="r"><code># scale-back the data to original scale value
+forecast_trans &lt;- list()
+
+for (i in 1:length(forecast_map)) {
+  forecast_trans[[i]] &lt;- train_crossing$reverse_spec[[i]]( x = forecast_map[[i]], y = transformed_data[[i]])
+}
+
+forecast_trans[[1]]</code></pre>
+<pre><code>#&gt;  [1] 9.451100 9.366579 9.366579 9.366579 9.366579 9.366579 9.366579 9.366579
+#&gt;  [9] 9.366579 9.366579 9.366579 9.366579 9.366579 9.366579 9.366579 9.366579
+#&gt; [17] 9.366579 9.366579 9.366579 9.366579 9.366579 9.366579 9.366579 9.366579
+#&gt; [25] 9.366579 9.366579 9.366579 9.366579 9.366579 9.366579</code></pre>
+<pre class="r"><code># calculate MAE
+mae_list &lt;- forecast_trans %&gt;% 
+  map2(.y = test_crossing$data, 
+       .f = ~yardstick::mae_vec(.x %&gt;% as.numeric(), .y$demand))
+
+rmse_list &lt;- forecast_trans %&gt;% 
+  map2(.y = test_crossing$data, 
+       .f = ~yardstick::rmse_vec(.x %&gt;% as.numeric(), .y$demand))
+
+# show result
+train_crossing %&gt;% 
+  separate(series, c(&quot;hotel&quot;, &quot;market_segment&quot;), sep = &quot;_&quot;) %&gt;% 
+  select_if(is.character) %&gt;% 
+  bind_cols(mae = mae_list %&gt;% as.numeric()) %&gt;% 
+  bind_cols(rmse = rmse_list %&gt;% as.numeric()) %&gt;% 
+  select(hotel, market_segment, mae, rmse, everything()) %&gt;% 
+  head(10)</code></pre>
+<pre><code>#&gt; # A tibble: 10 × 9
+#&gt;    hotel     market_segment   mae  rmse preprocess_name reverse_name season_name
+#&gt;    &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;        &lt;chr&gt;      
+#&gt;  1 City Hot… Direct          3.79  4.63 log_spec        log_spec     annual     
+#&gt;  2 City Hot… Direct         11.7  13.9  log_spec        log_spec     annual     
+#&gt;  3 City Hot… Direct         10.6  12.8  log_spec        log_spec     annual     
+#&gt;  4 City Hot… Direct          3.79  4.63 log_spec        log_spec     annual     
+#&gt;  5 City Hot… Direct         11.7  13.9  log_spec        log_spec     annual     
+#&gt;  6 City Hot… Direct         10.6  12.8  log_spec        log_spec     annual     
+#&gt;  7 City Hot… Direct          3.79  4.63 log_spec        log_spec     monthly    
+#&gt;  8 City Hot… Direct          3.85  4.71 log_spec        log_spec     monthly    
+#&gt;  9 City Hot… Direct          3.79  4.64 log_spec        log_spec     monthly    
+#&gt; 10 City Hot… Direct          3.79  4.63 log_spec        log_spec     monthly    
+#&gt; # … with 2 more variables: outlier_name &lt;chr&gt;, model_name &lt;chr&gt;</code></pre>
+<p>Below is the best configuration for each series based on the lowest RMSE, since RMSE give more penality towards large error. To interpret the MAE values, we need to consider the range of the data, shown as the standar deviation of the data.</p>
+<pre class="r"><code># best configuration for each series
+best_adjust &lt;- train_crossing %&gt;% 
+  separate(series, c(&quot;hotel&quot;, &quot;market_segment&quot;), sep = &quot;_&quot;) %&gt;% 
+  bind_cols(mae = mae_list %&gt;% as.numeric()) %&gt;%
+  bind_cols(rmse = rmse_list %&gt;% as.numeric()) %&gt;% 
+  group_by(hotel, market_segment) %&gt;% 
+  arrange(rmse) %&gt;% 
+  slice(1) 
+
+# show the result
+metric_crossing &lt;- train_list %&gt;% crossing(list(mean = mean, std_dev = sd) %&gt;% enframe(name = &quot;type&quot;, value = &quot;metric&quot;))
+
+metric_crossing %&gt;% 
+  bind_cols(value = map2(.x = metric_crossing$data, 
+                         .y = metric_crossing$metric, 
+                         .f = ~exec(.y, unlist(.x))) %&gt;% unlist() 
+            ) %&gt;% 
+  select(series, type, value) %&gt;% 
+  pivot_wider(names_from = type, values_from = value) %&gt;% 
+  separate(series, c(&quot;hotel&quot;, &quot;market_segment&quot;), sep = &quot;_&quot;) %&gt;% 
+  left_join(best_adjust) %&gt;% 
+  select_if(~is.list(.) == F) %&gt;% 
+  select(-reverse_name) %&gt;% 
+  select(hotel, market_segment, mae, rmse,  mean, std_dev, everything()) %&gt;% 
+  arrange(rmse)</code></pre>
+<pre><code>#&gt; # A tibble: 6 × 10
+#&gt;   hotel     market_segment   mae  rmse  mean std_dev preprocess_name season_name
+#&gt;   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;      
+#&gt; 1 Resort H… Direct          2.21  2.65  8.14    4.85 normal_spec     weekly     
+#&gt; 2 City Hot… Direct          3.43  4.17  7.53    4.83 normal_spec     weekly     
+#&gt; 3 Resort H… Offline TA/TO   4.26  6.09  9.39    7.38 log_spec        weekly_ann…
+#&gt; 4 Resort H… Online TA       8.71 11.0  21.8    11.7  squared_spec    weekly     
+#&gt; 5 City Hot… Offline TA/TO   8.80 13.7  21.4    32.0  normal_spec     weekly     
+#&gt; 6 City Hot… Online TA      13.2  16.2  48.1    28.5  squared_spec    weekly     
+#&gt; # … with 2 more variables: outlier_name &lt;chr&gt;, model_name &lt;chr&gt;</code></pre>
+<p>Since we don’t have much data, only two years of transactions, the model performance may not perform so well. However, judging from the MAE value, the performance is quite acceptable, with most of the error values are less than the value of one standard deviation. Compared to the aggregated data on the first forecast which have MAE of 21, we have lower MAE value for each series, which give us an evidence that by making a separate forecasting models for each market segment will make the model more accurate.</p>
+<pre class="r"><code># Aggregated time series performance
+accuracy(forecast_agg, test_agg$demand) %&gt;%
+  as.data.frame() %&gt;% 
+  slice(2) %&gt;% 
+  select(MAE, RMSE)</code></pre>
+<pre><code>#&gt;               MAE     RMSE
+#&gt; Test set 21.25028 26.31801</code></pre>
+<p>Below is the forecasting result for each series. The red line indicate the actual demand value while the blue line indicate the forecast value. The blue area represent area with 80% prediction interval while the light blue are represent the 95% prediction interval. Most of the actual demand is still inside the forecasting intervals.</p>
+<div id="resort-hotel-online-ta" class="section level4">
+<h4>Resort Hotel, Online TA</h4>
+<pre class="r"><code>model_best &lt;- map2(.x = best_adjust$data, 
+                   .y = best_adjust$season_spec,
+                   .f =  ~exec(.y,.x)) %&gt;% 
+  map2(.y = best_adjust$model_spec,
+       .f =  ~exec(.y,.x)
+       )
+
+data_test &lt;- test_list$data[[6]] %&gt;% 
+  msts(start = 110, seasonal.periods =  7)
+
+model_best[[6]] %&gt;%
+  forecast(h = 30 ) %&gt;%  
+  autoplot() +
+  autolayer(data_test, series = &quot;Data Test&quot;) +
+  scale_color_manual(values = &quot;firebrick&quot;) +
+  labs(subtitle = &quot;Resort Hotel, Online TA&quot;,
+       y = &quot;Demand&quot;, x  = NULL) +
+  theme_pander() +
+  scale_x_continuous(limits = c(100, 115) ,
+                     labels = as.Date.numeric(seq(100,115,5)*7-7, origin = range(hotel$arrival_date)[1])) +
+  theme(legend.position = &quot;top&quot;)</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>model_best[[6]]$residuals %&gt;% 
+  as.data.frame() %&gt;% 
+  ggplot(aes(x)) +
+  geom_density(fill = &quot;skyblue&quot;, alpha = 0.7, color = &quot;white&quot;) +
+  labs(x = &quot;Residuals&quot;, y = &quot;Density&quot;,
+       title = &quot;Residuals Distribution&quot;) +
+  theme_pander()</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="city-hotel-online-ta" class="section level4">
+<h4>City Hotel, Online TA</h4>
+<pre class="r"><code>data_test &lt;- test_list$data[[3]] %&gt;% 
+  ts(start = 110, frequency = 7)
+
+model_best[[3]] %&gt;%
+  forecast(h = 30 ) %&gt;% 
+  autoplot() +
+  autolayer(data_test, series = &quot;Data Test&quot;) +
+  scale_color_manual(values = &quot;firebrick&quot;) +
+  labs(subtitle = &quot;City Hotel, Online TA&quot;,
+       y = &quot;Demand&quot;, x  = NULL) +
+  theme_pander() +
+  scale_x_continuous(limits = c(100, 115), 
+                     labels = as.Date.numeric(seq(100,115,5)*7-7, origin = range(hotel$arrival_date)[1])) +
+  theme(legend.position = &quot;top&quot;)</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>model_best[[3]]$residuals %&gt;% 
+  as.data.frame() %&gt;% 
+  ggplot(aes(x)) +
+  geom_density(fill = &quot;skyblue&quot;, alpha = 0.7, color = &quot;white&quot;) +
+  labs(x = &quot;Residuals&quot;, y = &quot;Density&quot;,
+       title = &quot;Residuals Distribution&quot;) +
+  theme_pander()</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="resort-hotel-offline-tato" class="section level4">
+<h4>Resort Hotel, Offline TA/TO</h4>
+<pre class="r"><code>data_test &lt;- test_list$data[[5]] %&gt;% msts(start = 3.090411, seasonal.periods = c(7, 365))
+
+model_best[[5]] %&gt;%
+  forecast(h = 30 ) %&gt;% 
+  autoplot() +
+  autolayer(data_test, series = &quot;Data Test&quot;) +
+  scale_color_manual(values = &quot;firebrick&quot;) +
+  labs(subtitle = &quot;Resort Hotel, Offline TA/TO&quot;,
+       y = &quot;Demand&quot;, x  = NULL) +
+  theme_pander() +
+  scale_x_continuous(limits = c(3, 3.2), 
+                     labels = as.Date.numeric(seq(3,3.2,0.05)*365-365, origin = range(hotel$arrival_date)[1])) +
+  theme(legend.position = &quot;top&quot;)</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>model_best[[5]]$residuals %&gt;% 
+  as.data.frame() %&gt;% 
+  ggplot(aes(x)) +
+  geom_density(fill = &quot;skyblue&quot;, alpha = 0.7, color = &quot;white&quot;) +
+  labs(x = &quot;Residuals&quot;, y = &quot;Density&quot;,
+       title = &quot;Residuals Distribution&quot;) +
+  theme_pander()</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="city-hotel-offline-tato" class="section level4">
+<h4>City Hotel, Offline TA/TO</h4>
+<pre class="r"><code>data_test &lt;- test_list$data[[2]] %&gt;% ts(start = 110, frequency = 7)
+
+model_best[[2]] %&gt;%
+  forecast(h = 30 ) %&gt;% 
+  autoplot() +
+  autolayer(data_test, series = &quot;Data Test&quot;) +
+  scale_color_manual(values = &quot;firebrick&quot;) +
+  labs(subtitle = &quot;City Hotel, Offline TA/TO&quot;,
+       y = &quot;Demand&quot;, x  = NULL) +
+  theme_pander() +
+  scale_x_continuous(limits = c(100, 115), 
+                     labels = as.Date.numeric(seq(100,115,5)*7-7, origin = range(hotel$arrival_date)[1])) +
+  theme(legend.position = &quot;top&quot;)</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>model_best[[2]]$residuals %&gt;% 
+  as.data.frame() %&gt;% 
+  ggplot(aes(x)) +
+  geom_density(fill = &quot;skyblue&quot;, alpha = 0.7, color = &quot;white&quot;) +
+  labs(x = &quot;Residuals&quot;, y = &quot;Density&quot;,
+       title = &quot;Residuals Distribution&quot;) +
+  theme_pander()</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="resort-hotel-direct" class="section level4">
+<h4>Resort Hotel, Direct</h4>
+<pre class="r"><code>data_test &lt;- test_list$data[[4]] %&gt;% ts(start = 110, frequency = 7)
+
+model_best[[4]] %&gt;%
+  forecast(h = 30 ) %&gt;% 
+  autoplot() +
+  autolayer(data_test, series = &quot;Data Test&quot;) +
+  scale_color_manual(values = &quot;firebrick&quot;) +
+  labs(subtitle = &quot;Resort Hotel, Direct&quot;,
+       y = &quot;Demand&quot;, x  = NULL) +
+  theme_pander() +
+  scale_x_continuous(limits = c(100, 115), 
+                     labels = as.Date.numeric(seq(100,115,5)*7-7, origin = range(hotel$arrival_date)[1])) +
+  theme(legend.position = &quot;top&quot;)</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>model_best[[4]]$residuals %&gt;% 
+  as.data.frame() %&gt;% 
+  ggplot(aes(x)) +
+  geom_density(fill = &quot;skyblue&quot;, alpha = 0.7, color = &quot;white&quot;) +
+  labs(x = &quot;Residuals&quot;, y = &quot;Density&quot;,
+       title = &quot;Residuals Distribution&quot;) +
+  theme_pander()</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="city-hotel-direct" class="section level4">
+<h4>City Hotel, Direct</h4>
+<pre class="r"><code>data_test &lt;- test_list$data[[1]] %&gt;% ts(start = 110, frequency = 7)
+
+model_best[[1]] %&gt;%
+  forecast(h = 30 ) %&gt;% 
+  autoplot() +
+  autolayer(data_test, series = &quot;Data Test&quot;) +
+  scale_color_manual(values = &quot;firebrick&quot;) +
+  labs(subtitle = &quot;City Hotel, Direct&quot;,
+       y = &quot;Demand&quot;, x  = NULL) +
+  theme_pander() +
+  scale_x_continuous(limits = c(100, 115), 
+                     labels = as.Date.numeric(seq(100,115,5)*7-7, origin = range(hotel$arrival_date)[1])) +
+  theme(legend.position = &quot;top&quot;)</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>model_best[[1]]$residuals %&gt;% 
+  as.data.frame() %&gt;% 
+  ggplot(aes(x)) +
+  geom_density(fill = &quot;skyblue&quot;, alpha = 0.7, color = &quot;white&quot;) +
+  labs(x = &quot;Residuals&quot;, y = &quot;Density&quot;,
+       title = &quot;Residuals Distribution&quot;) +
+  theme_pander()</code></pre>
+<p><img src="/blog/hotel_time_series_purrr_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="model-assumption-checking" class="section level2">
+<h2>Model Assumption Checking</h2>
+<div id="autocorrelation" class="section level3">
+<h3>Autocorrelation</h3>
+<p>The autocorrelation can be checked using the Ljung-Box test. If there are correlations between residuals, then there is information left in the residuals which should be used in computing forecasts.</p>
+<pre class="r"><code>best_adjust %&gt;% 
+  select(hotel, market_segment) %&gt;% 
+  bind_cols( 
+      map(model_best, ~Box.test(.x$residuals, type = &quot;Lj&quot;)) %&gt;% 
+  unlist() %&gt;% 
+  matrix(ncol = 5, byrow = T) %&gt;% 
+  as.data.frame() %&gt;% 
+  select(4:3) %&gt;% 
+  rename(p_value = V3, test = V4) %&gt;% 
+  mutate(p_value = p_value %&gt;% 
+           as.character() %&gt;% 
+           as.numeric() %&gt;% 
+           round(4)) 
+  )</code></pre>
+<pre><code>#&gt; # A tibble: 6 × 4
+#&gt; # Groups:   hotel, market_segment [6]
+#&gt;   hotel        market_segment test           p_value
+#&gt;   &lt;chr&gt;        &lt;chr&gt;          &lt;chr&gt;            &lt;dbl&gt;
+#&gt; 1 City Hotel   Direct         Box-Ljung test   0.976
+#&gt; 2 City Hotel   Offline TA/TO  Box-Ljung test   0.971
+#&gt; 3 City Hotel   Online TA      Box-Ljung test   0.769
+#&gt; 4 Resort Hotel Direct         Box-Ljung test   0.854
+#&gt; 5 Resort Hotel Offline TA/TO  Box-Ljung test   0.959
+#&gt; 6 Resort Hotel Online TA      Box-Ljung test   0.959</code></pre>
+<p>The results suggests that all of our models don’t have any autocorrelation based on the non-significant p-value.</p>
+</div>
+<div id="normality" class="section level3">
+<h3>Normality</h3>
+<p>We will also check if the residuals for each model is normally distributed using Shapiro-Wilk Test. If the residuals are not normally distributed, it will lead to a biased parameter and less optimal forecast. This is also indicate that we can still tweak our model to get a better performance.</p>
+<pre class="r"><code>best_adjust %&gt;% 
+  select(hotel, market_segment) %&gt;% 
+  bind_cols(
+    mean_error = map(model_best, ~mean(.$residuals)) %&gt;% 
+      as.numeric() %&gt;% 
+      round(5)
+  ) %&gt;%
+  bind_cols(
+    median_error = map(model_best, ~median(.$residuals)) %&gt;% 
+      as.numeric() %&gt;% 
+      round(5)
+  ) %&gt;% 
+  bind_cols( 
+      map(model_best, ~shapiro.test(.x$residuals)) %&gt;% 
+        unlist() %&gt;% 
+        matrix(ncol = 4, byrow = T) %&gt;% 
+        as.data.frame() %&gt;% 
+        select(3:2) %&gt;% 
+        rename(p_value = V2, test = V3)
+  ) %&gt;% 
+  rename(segment = market_segment) %&gt;% 
+  mutate(p_value = p_value %&gt;% 
+           as.character() %&gt;% 
+           as.numeric() %&gt;% 
+           number(accuracy = 0.00001))</code></pre>
+<pre><code>#&gt; # A tibble: 6 × 6
+#&gt; # Groups:   hotel, segment [6]
+#&gt;   hotel       segment      mean_error median_error test                  p_value
+#&gt;   &lt;chr&gt;       &lt;chr&gt;             &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;                 &lt;chr&gt;  
+#&gt; 1 City Hotel  Direct           0.180        -0.387 Shapiro-Wilk normali… 0.00000
+#&gt; 2 City Hotel  Offline TA/…     0.104        -6.74  Shapiro-Wilk normali… 0.00000
+#&gt; 3 City Hotel  Online TA        0.0146       -0.898 Shapiro-Wilk normali… 0.00000
+#&gt; 4 Resort Hot… Direct           0.0442       -0.586 Shapiro-Wilk normali… 0.00000
+#&gt; 5 Resort Hot… Offline TA/…    -0.0813       -0.142 Shapiro-Wilk normali… 0.00000
+#&gt; 6 Resort Hot… Online TA        0.211        -0.426 Shapiro-Wilk normali… 0.00000</code></pre>
+<p>Based on the result, all of our model didn’t fulfill the normality assumption for the residuals. The positive mean of error signify that the model is underestimate the forecast while negative mean error means the model is overestimate. If we look at the median of error, all of our models are underestimate on the training set. They might be influenced by the presence of an outlier value such as a really high demand especially on the early part of the series. This suggest that we can improve the model further in order to get better performance.</p>
+</div>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>This article has illustrated how R and functional programming of <code>purrr</code> can help us to do flexible forecasting for multiple time series models. We have tried to do hotel demand forecasting using a real-world datasets with two years worth of data. We also have tried to analyze the series pattern for each hotel and segment and fit the best model for each one of them with a satisfying results. The next step perhaps is to enhance the model further either by using another time series model, incorporate predictor by the unused variables from the original dataset or transforming the data.</p>
+</div>
