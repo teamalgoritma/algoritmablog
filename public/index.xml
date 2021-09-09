@@ -13,7 +13,7 @@
       <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://algotech.netlify.com/blog/regression-arima-arimax/</guid>
-      <description>Libraries and Setup # Import library library(fpp3) library(forecast) library(lmtest) library(padr) library(tseries) Di era ini, kita sering membutuhkan analisis prediktif untuk membantu kita dalam membuat keputusan. Salah satu hal penting dalam prediksi adalah memprediksi untuk data-data di masa depan. Jenis prediksi ini sering juga disebut dengan peramalan.
+      <description>Libraries and Setup Di era ini, kita sering membutuhkan analisis prediktif untuk membantu kita dalam membuat keputusan. Salah satu hal penting dalam prediksi adalah memprediksi untuk data-data di masa depan. Jenis prediksi ini sering juga disebut dengan peramalan.
 Peramalan banyak dibutuhkan di berbagai situasi: menentukan apakah akan membangun pembangkit listrik lain dalam lima tahun ke depan membutuhkan prakiraan permintaan di masa depan; staf penjadwalan di pusat panggilan minggu depan membutuhkan prakiraan volume panggilan; persediaan persediaan membutuhkan prakiraan kebutuhan persediaan1.</description>
     </item>
     

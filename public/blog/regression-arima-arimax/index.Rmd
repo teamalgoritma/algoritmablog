@@ -34,14 +34,6 @@ knitr::opts_chunk$set(
 options(scipen = 9999)
 ```
 
-```{r}
-# Import library
-library(fpp3)
-library(forecast)
-library(lmtest)
-library(padr)
-library(tseries)
-```
 
 Di era ini, kita sering membutuhkan analisis prediktif untuk membantu kita dalam membuat keputusan. Salah satu hal penting dalam prediksi adalah memprediksi untuk data-data di masa depan. Jenis prediksi ini sering juga disebut dengan peramalan.
 
@@ -51,6 +43,16 @@ Tujuan dibuatnya artikel ini adalah untuk memperkenalkan salah satu metode peram
 - Memperkenalkan peramalan yang melibatkan prediktor
 - Memperkenalkan dan aplikasi dari ARIMAX
 - Membandingkan hasil peramalan ARIMA dengan ARIMAX
+
+```{r}
+# Import library
+library(fpp3)
+library(forecast)
+library(lmtest)
+library(padr)
+library(tseries)
+```
+
 
 # Tentang ARIMA
 
