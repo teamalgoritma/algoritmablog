@@ -6,7 +6,34 @@
     <description>Recent content in Tags on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 03 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ARIMAX</title>
+      <link>https://algotech.netlify.com/tags/arimax/</link>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/arimax/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>time series</title>
+      <link>https://algotech.netlify.com/tags/time-series/</link>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/time-series/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>purrr</title>
+      <link>https://algotech.netlify.com/tags/purrr/</link>
+      <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/tags/purrr/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Action Button</title>
       <link>https://algotech.netlify.com/tags/action-button/</link>
@@ -620,15 +647,6 @@
     </item>
     
     <item>
-      <title>time series</title>
-      <link>https://algotech.netlify.com/tags/time-series/</link>
-      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://algotech.netlify.com/tags/time-series/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>twinetverse</title>
       <link>https://algotech.netlify.com/tags/twinetverse/</link>
       <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
@@ -643,15 +661,6 @@
       <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://algotech.netlify.com/tags/forecast/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>purrr</title>
-      <link>https://algotech.netlify.com/tags/purrr/</link>
-      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://algotech.netlify.com/tags/purrr/</guid>
       <description></description>
     </item>
     

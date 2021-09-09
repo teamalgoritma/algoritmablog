@@ -1,0 +1,250 @@
+---
+title: Regression ARIMA (ARIMAX)
+author: Yaumil Sitta
+date: '2021-09-09'
+slug: regression-arima-arimax
+categories:
+  - R
+tags:
+  - Time Series
+  - ARIMAX
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+# Libraries and Setup
+
+```{r setup, include=FALSE}
+# clear-up the environment
+rm(list = ls())
+
+# chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+
+# scientific notation
+options(scipen = 9999)
+```
+
+```{r}
+# Import library
+library(fpp3)
+library(forecast)
+library(lmtest)
+library(padr)
+library(tseries)
+```
+
+Di era ini, kita sering membutuhkan analisis prediktif untuk membantu kita dalam membuat keputusan. Salah satu hal penting dalam prediksi adalah memprediksi untuk data-data di masa depan. Jenis prediksi ini sering juga disebut dengan peramalan.
+
+Peramalan banyak dibutuhkan di berbagai situasi: menentukan apakah akan membangun pembangkit listrik lain dalam lima tahun ke depan membutuhkan prakiraan permintaan di masa depan; staf penjadwalan di pusat panggilan minggu depan membutuhkan prakiraan volume panggilan; persediaan persediaan membutuhkan prakiraan kebutuhan persediaan[^1]. 
+
+Tujuan dibuatnya artikel ini adalah untuk memperkenalkan salah satu metode peramalan dengan melibatkan variabel prediktor, yaitu `ARIMAX`. Secara khusus, artikel ini bertujuan untuk:
+- Memperkenalkan peramalan yang melibatkan prediktor
+- Memperkenalkan dan aplikasi dari ARIMAX
+- Membandingkan hasil peramalan ARIMA dengan ARIMAX
+
+# Tentang ARIMA
+
+Auto Regressive Integrated Moving Average (ARIMA)(p,d,q) merupakan versi lanjutan dari model Auto Regressive (AR), Moving Average (MA), dan Auto Regressive Moving Average (ARMA)[^2]. Model ARIMA merupakan model yang diaplikasikan pada permasalahan deret waktu/time series. ARIMA menggabungkan tiga jenis pemodelan ke dalam satu model[^3]:
+
+- **I**: *Differencing* dilambangkan dengan $d$. **I** memberi tahu kita jumlah seri berbeda yang diubah antara pengamatan berturut-turut terhadap seri aslinya.
+- **AR**: *Auto Regressive* dilambangkan dengan $p$. **AR** memberi tahu kita orde
+dari *lags* yang diperlukan untuk menyesuaikan proses AR dengan seri stasioner. ACF dan PACF membantu kami mengidentifikasi parameter terbaik untuk proses AR.
+- **MA**: *Moving Average* dilambangkan dengan $q$. **MA** memberitahu kita
+jumlah *error terms* dalam rangkaian yang akan diregresikan untuk mengurangi
+perbedaan error proses AR ke white noise.
+
+# Tentang ARIMAX
+
+ARIMAX atau Regresi ARIMA merupakan perpanjangan dari model ARIMA. Dalam peramalan, metode ini juga melibatkan variabel independen [^4]. Model ARIMAX merepresentasikan komposisi rangkaian waktu keluaran menjadi komponen-komponen berikut: *autoregressive* (AR), *moving average* (MA), terintegrasi (I), dan facktor eksternal (X) [^5]. Faktor eksternal (X) mencerminkan penggabungan tambahan dari nilai sekarang $u_i(t)$ dan nilai masa lalu $u_i(t-j)$ dari input faktor eksternal (variabel independen) ke dalam model ARIMAX[^1].
+
+Rumus Multiple linear regression models:
+
+<center>
+
+$$Y = \beta_0 + \beta_1*x_1+...+\beta_i*x_i+\varepsilon$$ 
+
+</center>
+
+Di mana $Y$ merupakan sebuah variabel dependen dari variabel prediktor $x_i$ dan $\varepsilon$ biasanya diasumsikan sebagai error/white noise. Kami akan mengganti $\varepsilon$ dengan $n_t$ pada persamaan. Error $\phi_t$ diasumsikan mengikuti hasil dari model ARIMA. Sebagai contoh, jika $n_t$ mengikuti model ARIMA (1,1,1), dapat kita tuliskan
+
+<center>
+
+$$Y = \beta_0 + \beta_1x_1+\beta_2x_2+...+\beta_ix_i+\eta_t$$   
+
+$$(1-\phi_1B)(1-B)\eta_t = (1+\phi_1B)\varepsilon_t$$
+
+</center>
+
+Di mana $\varepsilon_t$, merupakan seri white noise. Model ARIMAX memiliki two error terms; the error dari model regresi yang dinotasikan dengan $\phi_t$ dan error dari model ARIMA model yang dinotasikan dengan $\varepsilon_t$.
+
+# Studi Kasus: Peramalan Konsumsi berdasarkan Tingkat Pendapatan, Produksi, Pengangguran, dan Dana Cadangan
+
+Pada kasus ini, akan diramalkan persentase perubahan ekonomi di USA menggunakan data `us_change` dari library `fpp3`.
+
+```{r}
+us_change
+```
+
+Data di atas merupakan data sosial-ekonomi di United States pada quarter pertama tahun 1970 sampai quarter kedua tahun 2019 yang terdiri dari:
+
+- `Quarter`: Quarter dan tahun
+- `Consumption`: Tingkat konsumsi
+- `Income`: Tingkat pendapatan
+- `Production`: Tingkat Produksi
+- `Savings`: Dana cadangan
+- `Unemployment`: Tingkat pengangguran
+
+## Eksploratory Data Analysis (EDA)
+
+Sebelum melakukan pemodelan, dilakukan EDA terlebih dahulu dengan membuat line plot dari setiap variabel baik dependen maupun independen untuk mengetahui pola dari setiap variabel apakah sudah stasioner atau belum.
+
+```{r}
+us_change %>%
+  pivot_longer(-Quarter, names_to = "variable", values_to = "value") %>%
+  ggplot(aes(x = Quarter, y = value)) +
+  geom_line() + 
+  facet_grid(variable ~ ., scales = "free_y") +
+  labs(title = "Perubahan Sosio-Ekonomi USA dari waktu ke waktu") +
+  theme_minimal()
+```
+
+Dari plot di atas, terlihat sepertinya kelima variabel (Consumption, Income, Production, Savings, dan Unemployment) sudah stationer. Namun, akan tetap dilakukan pengujian secara statistik untuk mengecek stationarity data supaya hasil yang diperoleh dapat bersifat objektif. Dalam hal ini, dapat menggunakan ADF test atau KPSS test (lebih baik jika mencoba keduanya).
+
+**ADF test**
+
+Untuk mendapatkan hasil yang pasti dan objektif, kita bisa melakukan Augmented Dickey-Fuller (ADF) test dengan menggunakan fungsi `adf.test()` dari library `tseries`.
+
+H0: Punya unit root (tidak stationer)
+H1: Tidak punya unit root (stationer)
+
+> p-value < 0.05 (alpha), data stationer
+
+**KPSS test**
+
+Disarankan pula melakukan uji lainnya (KPSS test) untuk mendapatkan kesimpulan yang relatif konstan dan pasti berdasarkan data historis dengan menggunakan fungsi `kpss.test()` dari library `tseries`
+
+H0: rata-rata dan variansi konstan (Data stationer)
+H1: rata-rata dan variansi tidak konstan (Data tidak stationer)
+
+```{r}
+df <- us_change[, -1]
+stationary_test <- data.frame("ADF" = double(), "KPSS" = double())
+
+for (i in 1:ncol(df)) {
+    stationary_test[i, "ADF"] <-  adf.test(pull(df[, i]))$p.value
+    stationary_test[i, "KPSS"] <- kpss.test(pull(df[, i]))$p.value
+}
+
+stationary_test %>% 
+  mutate(variable = colnames(df)) %>% 
+  select(variable, ADF, KPSS)
+```
+
+Berdasarkan p-value pada ADF test, seluruh variabel mempunyai p-value 0.01 (Stasioner) dan KPSS test 0.1 (Stasioner), sehingga didapatkan kesimpulan bahwa kelima variabel tersebut signifikan stasioner.
+
+## Cross Validation
+
+Data `us_change` akan dibagi menjadi 2 subset data, yaitu sebanyak 4 tahun (2016 - 2019) untuk data `test` dan 35 tahun (1970 - 2015) untuk data `train`  
+```{r}
+test <- us_change %>% 
+  mutate(year = year(Quarter)) %>% 
+  filter(year >= 2016)
+
+train <- us_change %>% 
+  mutate(year = year(Quarter)) %>% 
+  filter(year < 2016)
+```
+
+## Model Fitting dengan ARIMA
+
+Kita akan mecoba melakukan fitting model menggunakan model ARIMA terlebih dahulu
+```{r}
+fit_arima <- auto.arima(ts(train$Consumption, frequency = 4), seasonal = F)
+summary(fit_arima)
+```
+
+Dari output di atas diperoleh model ARIMA(1,0,3) dengan nilai RMSE pada data training sebesar 0.58
+
+Kita akan mencoba melakukan forecasting terhadap data test, kemudian mengkalkulasi error dari kedual model (ARIMA dan ARIMAX)
+```{r}
+prediction_arima <- forecast(object = fit_arima, h = nrow(test))
+```
+
+
+Sebelum mengkalkulasi error yang diperoleh terlebih dahulu kita akan melihat visualisasi hasil forecast dari kedua model
+```{r}
+prediction_arima %>% 
+  autoplot() +
+  theme_minimal()
+```
+
+## Model Fitting dengan ARIMAX
+
+Kemudian kita akan mencoba melakukan fitting model ARIMAX dengan variabel dependen adalah tingkat konsumsi dan variabel independen adalah tingkat pendapatan, tingkat produksi, dana cadangan, dan tingkat pengangguran. Lalu kita akan mencoba membandingkan hasil dari model ARIMA dan ARIMAX.
+
+Adapun apabila ingin forecasting, namun tidak memiliki nilai predictor di masa depan, bisa dilakukan forecasting terlebih dahulu ke prediktornya, kemudian dilakukan forecast terhadap variabel targetnya.
+
+```{r}
+fit_arimax <- train %>%
+  model(regarima = ARIMA(Consumption ~ Income + Production + Savings + Unemployment))
+
+report(fit_arimax)
+```
+
+Dari output di atas diperoleh model ARIMAX(0,1,2)
+
+```{r}
+prediction_arimax <- forecast(object = fit_arimax, new_data = test)
+```
+
+```{r}
+prediction_arimax %>% 
+  autoplot(train) +
+  theme_minimal()
+```
+
+
+### Error
+
+Berdasarkan kedua plot di atas model ARIMAX lebih bisa memprediksi pola Consumption dibandingkan model ARIMA. Untuk membuktikan hal tersebut kita akan menghutung error dari kedua model tersebut, kemudian membandingkan hasilnya
+```{r}
+print(paste("RMSE model ARIMA:", round(accuracy(object = prediction_arima, data = test)[2], 2)))
+print(paste("RMSE model ARIMAX:", round(forecast::accuracy(object = prediction_arimax, data = us_change)$RMSE, 2)))
+```
+
+Dari output di atas diketahui bahwa model ARIMAX menghasilkan error yang lebih kecil dibandingkan model ARIMA. Sehingga, final model yang akan digunakan adalah model ARIMAX. Model ARIMAX tersebut harus memenuhi beberapa asumsi supaya hasil yang peramalan data di masa depan bersifat BLUE (best, linier, unbiased, estimation)
+
+## Asumsi
+
+Dalam pemodelan Time Series, terdapat 2 asumsi yang harus terpenuhi, yakni normality of residual dan no autocorrelation. Pada 
+```{r}
+gg_tsresiduals(fit_arimax)
+```
+
+```{r}
+gg_tsresiduals(fit_arimax)
+```
+
+# Kesimpulan
+
+ARIMAX model adalah metode yang dapat dijadikan solusi dalam time series forecasting yang melibatkan exogenous factor. Hal ini karena tidak selalu suatu variabel time series dapat dilakukan peramalan hanya berdasarkan informasi variabel itu sendiri di masa lalu, ada kemungkinan variabel tersebut juga sangat berkorelasi erat dengan faktor-faktor eksternal, seperti data-data dalam case sosial-ekonomi. Namun, hal yang perlu digaris bawahi adalah model ARIMAX cukup sulit untuk diinterpretasikan tidak seperti halnya model regresi linier karena estimate koefisien yang dihasilkan juga bergantung pada lag dari target variabel (pola variabel target di masa lalu).
+
+# References
+
+[^1]: [Forecasting: Principles and Practice](https://otexts.com/fpp2/)
+[^2]: [Epidemiology and ARIMA model of positive-rate of influenza viruses among children in Wuhan, China: A nine-year retrospective study](https://www.sciencedirect.com/science/article/pii/S1201971218344618)
+[^3]: [Machine Learning using R](https://link.springer.com/book/10.1007%2F978-1-4842-4215-5)
+[^4]: [Comparison of Prediction Accuracy of Multiple Linear
+Regression, ARIMA and ARIMAX Model for Pest Incidence of Cotton with Weather Factors](http://masujournal.org/105/180151.pdf)
+[^5]: [Container Throughput Forecasting Using Dynamic Factor Analysis and ARIMAX Model](https://hrcak.srce.hr/index.php?show=clanak&id_clanak_jezik=278240&lang=en)
+[^6]: [The ARIMAX model muddle](https://robjhyndman.com/hyndsight/arimax/)

@@ -6,7 +6,26 @@
     <description>Recent content in time series on Algoritma Technical Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/time-series/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/time-series/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Regression ARIMA (ARIMAX)</title>
+      <link>https://algotech.netlify.com/blog/regression-arima-arimax/</link>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/regression-arima-arimax/</guid>
+      <description>Libraries and Setup # Import library library(fpp3) library(forecast) library(lmtest) library(padr) library(tseries) Di era ini, kita sering membutuhkan analisis prediktif untuk membantu kita dalam membuat keputusan. Salah satu hal penting dalam prediksi adalah memprediksi untuk data-data di masa depan. Jenis prediksi ini sering juga disebut dengan peramalan.
+Peramalan banyak dibutuhkan di berbagai situasi: menentukan apakah akan membangun pembangkit listrik lain dalam lima tahun ke depan membutuhkan prakiraan permintaan di masa depan; staf penjadwalan di pusat panggilan minggu depan membutuhkan prakiraan volume panggilan; persediaan persediaan membutuhkan prakiraan kebutuhan persediaan1.</description>
+    </item>
+    
+    <item>
+      <title>Multiple Hotel Segments Demand Forecasting</title>
+      <link>https://algotech.netlify.com/blog/hotel-forecast/</link>
+      <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/hotel-forecast/</guid>
+      <description>body { text-align: justify}  Background   Hospitality industry is growing, with more and more people spending their money for vacation and leisure activities. People may only lodge into a hotel when it’s a holiday season or a special event, thus the demand for staying room is not equally distributed accross the year. To maximize the revenue gained by the hotel, the management often employed a pricing strategy, one of them being raising the room rate when the demand is high and making a promo when the demand is low.</description>
+    </item>
+    
     <item>
       <title>Age-Period-Cohort (APC) Analysis</title>
       <link>https://algotech.netlify.com/blog/age-period-cohort-apc-analysis/</link>

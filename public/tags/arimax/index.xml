@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ARIMAX on Algoritma Technical Blog</title>
+    <link>https://algotech.netlify.com/tags/arimax/</link>
+    <description>Recent content in ARIMAX on Algoritma Technical Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://algotech.netlify.com/tags/arimax/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Regression ARIMA (ARIMAX)</title>
+      <link>https://algotech.netlify.com/blog/regression-arima-arimax/</link>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://algotech.netlify.com/blog/regression-arima-arimax/</guid>
+      <description>Libraries and Setup # Import library library(fpp3) library(forecast) library(lmtest) library(padr) library(tseries) Di era ini, kita sering membutuhkan analisis prediktif untuk membantu kita dalam membuat keputusan. Salah satu hal penting dalam prediksi adalah memprediksi untuk data-data di masa depan. Jenis prediksi ini sering juga disebut dengan peramalan.
+Peramalan banyak dibutuhkan di berbagai situasi: menentukan apakah akan membangun pembangkit listrik lain dalam lima tahun ke depan membutuhkan prakiraan permintaan di masa depan; staf penjadwalan di pusat panggilan minggu depan membutuhkan prakiraan volume panggilan; persediaan persediaan membutuhkan prakiraan kebutuhan persediaan1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -2,28 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://algotech.netlify.com/</loc>
+    <lastmod>2021-09-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://algotech.netlify.com/tags/arimax/</loc>
+    <lastmod>2021-09-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://algotech.netlify.com/blog/</loc>
+    <lastmod>2021-09-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://algotech.netlify.com/categories/</loc>
+    <lastmod>2021-09-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://algotech.netlify.com/categories/r/</loc>
+    <lastmod>2021-09-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://algotech.netlify.com/blog/regression-arima-arimax/</loc>
+    <lastmod>2021-09-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://algotech.netlify.com/tags/</loc>
+    <lastmod>2021-09-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://algotech.netlify.com/tags/time-series/</loc>
+    <lastmod>2021-09-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://algotech.netlify.com/blog/hotel-forecast/</loc>
+    <lastmod>2021-07-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://algotech.netlify.com/tags/purrr/</loc>
+    <lastmod>2021-07-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://algotech.netlify.com/tags/action-button/</loc>
     <lastmod>2021-06-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://algotech.netlify.com/blog/advancing-your-shinyapp-ii/</loc>
     <lastmod>2021-06-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://algotech.netlify.com/</loc>
-    <lastmod>2021-06-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://algotech.netlify.com/blog/</loc>
-    <lastmod>2021-06-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://algotech.netlify.com/categories/</loc>
-    <lastmod>2021-06-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://algotech.netlify.com/tags/dashboard/</loc>
     <lastmod>2021-06-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://algotech.netlify.com/tags/data-visualization/</loc>
-    <lastmod>2021-06-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://algotech.netlify.com/categories/r/</loc>
     <lastmod>2021-06-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://algotech.netlify.com/tags/reactive-elements/</loc>
@@ -33,9 +51,6 @@
     <lastmod>2021-06-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://algotech.netlify.com/tags/shiny/</loc>
-    <lastmod>2021-06-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://algotech.netlify.com/tags/</loc>
     <lastmod>2021-06-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://algotech.netlify.com/tags/data-manipulation/</loc>
@@ -356,9 +371,6 @@
     <loc>https://algotech.netlify.com/tags/apc/</loc>
     <lastmod>2019-03-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://algotech.netlify.com/tags/time-series/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://algotech.netlify.com/tags/twinetverse/</loc>
     <lastmod>2019-03-28T00:00:00+00:00</lastmod>
   </url><url>
@@ -366,9 +378,6 @@
     <lastmod>2019-03-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://algotech.netlify.com/tags/forecast/</loc>
-    <lastmod>2019-01-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://algotech.netlify.com/tags/purrr/</loc>
     <lastmod>2019-01-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://algotech.netlify.com/blog/purrr-operly-fitting-multiple-time-series-model/</loc>
