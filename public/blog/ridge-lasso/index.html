@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -294,8 +294,8 @@ Ordinary Least Squares (OLS) is the most common estimation method for linear mod
 But in the real world to meet OLS regression assumptions will be very difficult." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/ridge-lasso/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2019-12-18T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2019-12-18T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2019-12-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-18T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -305,8 +305,8 @@ But in the real world to meet OLS regression assumptions will be very difficult.
         <meta itemprop="name" content="Ridge and LASSO Regression">
 <meta itemprop="description" content="Overview Regression analysis is a way that can be used to determine the relationship between the predictor variable (x) and the target variable (y).
 Ordinary Least Squares (OLS) is the most common estimation method for linear models and it applies for good reasons. As long as your model meets the OLS assumptions for linear regression, you can rest easy knowing that you get the best estimate.
-But in the real world to meet OLS regression assumptions will be very difficult."><meta itemprop="datePublished" content="2019-12-18T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-12-18T00:00:00&#43;00:00" />
+But in the real world to meet OLS regression assumptions will be very difficult."><meta itemprop="datePublished" content="2019-12-18T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-12-18T00:00:00+00:00" />
 <meta itemprop="wordCount" content="3718">
 <meta itemprop="keywords" content="regression,Machine Learning,overfitting,Regularization," />
         
@@ -510,11 +510,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -949,7 +949,7 @@ if (!doNotTrack) {
 <h2 id="ordinary-least-square-ols-regression">Ordinary Least Square (OLS) Regression</h2>
 <h3 id="libraries">Libraries</h3>
 <p>The first thing to do is to prepare several libraries as below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(glmnet)  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(glmnet)  
 <span style="color:#a6e22e">library</span>(caret)  
 <span style="color:#a6e22e">library</span>(dplyr)   
 <span style="color:#a6e22e">library</span>(car)
@@ -957,7 +957,7 @@ if (!doNotTrack) {
 <span style="color:#a6e22e">library</span>(GGally)
 <span style="color:#a6e22e">library</span>(lmtest)
 </code></pre></div><h3 id="read-data">Read Data</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data</span>(mtcars)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data</span>(mtcars)
 mtcars <span style="color:#f92672">&lt;-</span> mtcars <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>vs, <span style="color:#f92672">-</span>am)
 <span style="color:#a6e22e">head</span>(mtcars)
@@ -982,10 +982,10 @@ mtcars <span style="color:#f92672">&lt;-</span> mtcars <span style="color:#f9267
 <ul>
 <li>Correlation</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggcorr</span>(mtcars, label <span style="color:#f92672">=</span> T)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggcorr</span>(mtcars, label <span style="color:#f92672">=</span> T)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h3 id="data-partition">Data Partition</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">head</span>(mtcars,<span style="color:#ae81ff">24</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">head</span>(mtcars,<span style="color:#ae81ff">24</span>)
 test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tail</span>(mtcars,<span style="color:#ae81ff">8</span>)[,<span style="color:#ae81ff">-1</span>]
 
 <span style="color:#75715e">## Split Data for Ridge and LASSO model</span>
@@ -997,7 +997,7 @@ test2 <span style="color:#f92672">&lt;-</span>  <span style="color:#a6e22e">tail
 ytest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tail</span>(mtcars,<span style="color:#ae81ff">8</span>)[,<span style="color:#ae81ff">1</span>]
 xtest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">model.matrix</span>(mpg<span style="color:#f92672">~</span>., test2)[,<span style="color:#ae81ff">-1</span>] 
 </code></pre></div><h3 id="ols-regression-model">OLS Regression Model</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(mpg<span style="color:#f92672">~</span>., train)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(mpg<span style="color:#f92672">~</span>., train)
 <span style="color:#a6e22e">summary</span>(ols)
 </code></pre></div><pre><code>#&gt; 
 #&gt; Call:
@@ -1036,7 +1036,7 @@ xtest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">model
 <p>H1 : Correlation is Significant</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cbind</span>(<span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>cyl)[[3]],
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cbind</span>(<span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>cyl)[[3]],
 <span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>disp)[[3]],
 <span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>hp)[[3]],
 <span style="color:#a6e22e">cor.test</span>(mtcars<span style="color:#f92672">$</span>mpg,mtcars<span style="color:#f92672">$</span>drat)[[3]],
@@ -1059,7 +1059,7 @@ xtest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">model
 <p>H1 : Residuals are not normally distributed</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">shapiro.test</span>(ols<span style="color:#f92672">$</span>residuals)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">shapiro.test</span>(ols<span style="color:#f92672">$</span>residuals)
 </code></pre></div><pre><code>#&gt; 
 #&gt; 	Shapiro-Wilk normality test
 #&gt; 
@@ -1076,7 +1076,7 @@ xtest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">model
 <p>H1 : Distributed residuals are heterogenous</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">bptest</span>(ols)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">bptest</span>(ols)
 </code></pre></div><pre><code>#&gt; 
 #&gt; 	studentized Breusch-Pagan test
 #&gt; 
@@ -1085,7 +1085,7 @@ xtest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">model
 </code></pre><p>Based on the above results obtained p-value (0.0356) &lt; alpha (0.05) so it can be concluded that resDistributed residuals are heterogenous</p>
 <p><strong>4. No Multicolinearity</strong></p>
 <p>Multicollinearity is a condition where there are at least 2 predictor variables that have a strong relationship. We expect that there is <strong>no multicollinearity</strong>. Multicollinearity is marked if the Variance Inflation Factor (VIF) value is &gt; 10.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">vif</span>(ols)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">vif</span>(ols)
 </code></pre></div><pre><code>#&gt;       cyl      disp        hp      drat        wt      qsec      gear 
 #&gt; 14.649665 19.745238 11.505313  7.234090 18.973493  5.619677  8.146065 
 #&gt;      carb 
@@ -1096,21 +1096,21 @@ xtest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">model
 <ul>
 <li>Data Train</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> train)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> train)
 <span style="color:#a6e22e">mean</span>((ols_pred<span style="color:#f92672">-</span>ytrain)^2)
 </code></pre></div><pre><code>#&gt; [1] 4.072081
 </code></pre><ul>
 <li>Data Test</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> test)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> test)
 <span style="color:#a6e22e">mean</span>((ols_pred<span style="color:#f92672">-</span>ytest)^2)
 </code></pre></div><pre><code>#&gt; [1] 22.15188
 </code></pre><p>As mentioned above, one way to overcome overfitting can be to reduce the dimensions using the Stepwise Regression method.</p>
 <p>Stepwise regression is a combination of forwarding and backward methods, the first variable entered is the variable with the highest and significant correlation with the dependent variable, the second incoming variable is the variable with the highest and still significant correlation after certain variables enter the model then other variables that is in the model is evaluated, if there are variables that are not significant then the variable is excluded.</p>
 <h2 id="stepwise-regression">Stepwise Regression</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">names</span>(mtcars)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">names</span>(mtcars)
 </code></pre></div><pre><code>#&gt; [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;gear&quot; &quot;carb&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">lm.all <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(mpg <span style="color:#f92672">~</span>., train)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">lm.all <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(mpg <span style="color:#f92672">~</span>., train)
 stepwise_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">step</span>(lm.all, direction<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;backward&#34;</span>)
 </code></pre></div><pre><code>#&gt; Start:  AIC=51.7
 #&gt; mpg ~ cyl + disp + hp + drat + wt + qsec + gear + carb
@@ -1180,7 +1180,7 @@ stepwise_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e
 #&gt; - gear  1    21.151 125.81 45.761
 #&gt; - drat  1    57.478 162.14 51.849
 #&gt; - carb  1   259.357 364.01 71.259
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">summary</span>(stepwise_mod)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">summary</span>(stepwise_mod)
 </code></pre></div><pre><code>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = mpg ~ drat + gear + carb, data = train)
@@ -1201,16 +1201,16 @@ stepwise_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e
 #&gt; Residual standard error: 2.288 on 20 degrees of freedom
 #&gt; Multiple R-squared:  0.8808,	Adjusted R-squared:  0.8629 
 #&gt; F-statistic: 49.24 on 3 and 20 DF,  p-value: 0.000000002032
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">vif</span>(stepwise_mod)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">vif</span>(stepwise_mod)
 </code></pre></div><pre><code>#&gt;     drat     gear     carb 
 #&gt; 3.232190 3.220083 1.011370
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">shapiro.test</span>(stepwise_mod<span style="color:#f92672">$</span>residuals)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">shapiro.test</span>(stepwise_mod<span style="color:#f92672">$</span>residuals)
 </code></pre></div><pre><code>#&gt; 
 #&gt; 	Shapiro-Wilk normality test
 #&gt; 
 #&gt; data:  stepwise_mod$residuals
 #&gt; W = 0.98755, p-value = 0.9869
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">bptest</span>(stepwise_mod)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">bptest</span>(stepwise_mod)
 </code></pre></div><pre><code>#&gt; 
 #&gt; 	studentized Breusch-Pagan test
 #&gt; 
@@ -1221,7 +1221,7 @@ stepwise_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e
 Two types of regression regularization will be discussed this time, the first is Ridge regression.</p>
 <p><strong>Ridge regression is the same as OLS regression</strong></p>
 <p>Below, the writer tries to prove whether Ridge has parameters <code>\(\lambda = 0\)</code> then the Ridge regression coefficient is <em>approximately</em> the same as the Ordinary Least Square Regression coefficients.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ridge_cv <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,lambda <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ridge_cv <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,lambda <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
 <span style="color:#a6e22e">predict.glmnet</span>(ridge_cv, s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;coefficients&#39;</span>)
 </code></pre></div><pre><code>#&gt; 9 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 #&gt;                        1
@@ -1234,7 +1234,7 @@ Two types of regression regularization will be discussed this time, the first is
 #&gt; qsec         0.004891085
 #&gt; gear         3.456626642
 #&gt; carb        -2.660723992
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols<span style="color:#f92672">$</span>coefficients
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ols<span style="color:#f92672">$</span>coefficients
 </code></pre></div><pre><code>#&gt;  (Intercept)          cyl         disp           hp         drat 
 #&gt; -5.422701011  0.696306643 -0.001029893 -0.010342436  5.368257224 
 #&gt;           wt         qsec         gear         carb 
@@ -1242,20 +1242,20 @@ Two types of regression regularization will be discussed this time, the first is
 </code></pre><h3 id="choosing-optimal-lambda-value-of-ridge-regression">Choosing Optimal Lambda Value of Ridge Regression</h3>
 <p>As already discussed <code>\(\lambda\)</code> is an error value parameter used to add bias so that variance and estimator decrease.</p>
 <p>The glmnet function trains the model multiple times for all the different values of lambda which we pass as a sequence of vector to the lambda = argument in the glmnet function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 lambdas_to_try <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span><span style="color:#a6e22e">^seq</span>(<span style="color:#ae81ff">-3</span>, <span style="color:#ae81ff">7</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>)
 </code></pre></div><p>The next task is to identify the optimal value of lambda which results into minimum error. This can be achieved automatically by using <code>cv.glmnet()</code> function. Setting <strong>alpha = 0 implements Ridge Regression</strong>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 ridge_cv <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cv.glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, lambda <span style="color:#f92672">=</span> lambdas_to_try)
 <span style="color:#a6e22e">plot</span>(ridge_cv)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>From the picture above it shows the best log (lambda) between about 0 to 2.5 because it has the smallest MSE value. On the x-axis (above) you can see all the numbers are 8. This shows the number of predictors used. No matter how much lambda is used, the predictor variable remains 8. This means that Ridge Regression cannot perform automatic feature selection.</p>
 <h3 id="extracting-the-best-lambda-of-ridge-regression">Extracting the Best Lambda of Ridge Regression</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">best_lambda_ridge <span style="color:#f92672">&lt;-</span> ridge_cv<span style="color:#f92672">$</span>lambda.min
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">best_lambda_ridge <span style="color:#f92672">&lt;-</span> ridge_cv<span style="color:#f92672">$</span>lambda.min
 best_lambda_ridge
 </code></pre></div><pre><code>#&gt; [1] 1.707353
 </code></pre><h3 id="build-models-based-on-the-best-lambda">Build Models Based on The Best Lambda</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ridge_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, lambda <span style="color:#f92672">=</span> best_lambda_ridge)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ridge_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, lambda <span style="color:#f92672">=</span> best_lambda_ridge)
 <span style="color:#a6e22e">predict.glmnet</span>(ridge_mod,  type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;coefficients&#39;</span>)
 </code></pre></div><pre><code>#&gt; 9 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 #&gt;                       s0
@@ -1272,21 +1272,21 @@ best_lambda_ridge
 <h2 id="lasso-regression-model">LASSO Regression Model</h2>
 <h3 id="choosing-optimal-lambda-value-of-lasso-regression">Choosing Optimal Lambda Value of LASSO Regression</h3>
 <p>Setting the range of lambda values, with the same parameter settings as Ridge Regression</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">lambdas_to_try <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span><span style="color:#a6e22e">^seq</span>(<span style="color:#ae81ff">-3</span>, <span style="color:#ae81ff">7</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">lambdas_to_try <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">10</span><span style="color:#a6e22e">^seq</span>(<span style="color:#ae81ff">-3</span>, <span style="color:#ae81ff">7</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>)
 </code></pre></div><p>Identify the optimal value of lambda which results into minimum error. This can be achieved automatically by using <code>cv.glmnet()</code> function. Setting <strong>alpha = 1 implements LASSO Regression</strong>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 lasso_cv <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cv.glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, lambda <span style="color:#f92672">=</span> lambdas_to_try)
 <span style="color:#a6e22e">plot</span>(lasso_cv)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>From the picture above it shows the best log(lambda) between about -1 to 0, because it has the smallest MSE value. On the x-axis (above) has a different value, based on the best lambda it can be seen that the best predictor variable is 5. This shows that LASSO Regression can perform automatic feature selection.</p>
 <h3 id="extracting-the-est-lambda-of-lasso-regression">Extracting the est lambda of LASSO Regression</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">best_lambda_lasso <span style="color:#f92672">&lt;-</span> lasso_cv<span style="color:#f92672">$</span>lambda.min
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">best_lambda_lasso <span style="color:#f92672">&lt;-</span> lasso_cv<span style="color:#f92672">$</span>lambda.min
 best_lambda_lasso
 </code></pre></div><pre><code>#&gt; [1] 0.1668101
 </code></pre><h3 id="build-models-based-the-best-lambda">Build Models Based The Best Lambda</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Fit final model, get its sum of squared residuals and multiple R-squared</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Fit final model, get its sum of squared residuals and multiple R-squared</span>
 lasso_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glmnet</span>(xtrain, ytrain, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, lambda <span style="color:#f92672">=</span> best_lambda_lasso)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">predict.glmnet</span>(lasso_mod, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;coefficients&#39;</span>)
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">predict.glmnet</span>(lasso_mod, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;coefficients&#39;</span>)
 </code></pre></div><pre><code>#&gt; 9 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 #&gt;                      s0
 #&gt; (Intercept)  7.37367761
@@ -1303,41 +1303,41 @@ lasso_mod <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">g
 <h2 id="model-comparison">Model Comparison</h2>
 <h3 id="compare-the-mse-value-of-data-train-and-test">Compare The MSE value of Data Train and Test</h3>
 <p><strong>OLS Regression</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (OLS)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (OLS)</span>
 ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> train)
 <span style="color:#a6e22e">mean</span>((ols_pred<span style="color:#f92672">-</span>ytrain)^2)
 </code></pre></div><pre><code>#&gt; [1] 4.072081
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (OLS)</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (OLS)</span>
 ols_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ols, newdata <span style="color:#f92672">=</span> test)
 <span style="color:#a6e22e">mean</span>((ols_pred<span style="color:#f92672">-</span>ytest)^2)
 </code></pre></div><pre><code>#&gt; [1] 22.15188
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (Stepwise)</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (Stepwise)</span>
 back_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(stepwise_mod, newdata <span style="color:#f92672">=</span> train)
 <span style="color:#a6e22e">mean</span>((back_pred<span style="color:#f92672">-</span>ytrain)^2)
 </code></pre></div><pre><code>#&gt; [1] 4.360721
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (Stepwise)</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (Stepwise)</span>
 back_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(stepwise_mod, newdata <span style="color:#f92672">=</span> test)
 <span style="color:#a6e22e">mean</span>((back_pred<span style="color:#f92672">-</span>ytest)^2)
 </code></pre></div><pre><code>#&gt; [1] 22.41245
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (Ridge)</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (Ridge)</span>
 ridge_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ridge_mod,  newx <span style="color:#f92672">=</span> xtrain)
 <span style="color:#a6e22e">mean</span>((ridge_pred<span style="color:#f92672">-</span>ytrain)^2)
 </code></pre></div><pre><code>#&gt; [1] 4.920852
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (Ridge)</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (Ridge)</span>
 ridge_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(ridge_mod,  newx <span style="color:#f92672">=</span> xtest)
 <span style="color:#a6e22e">mean</span>((ridge_pred<span style="color:#f92672">-</span>ytest)^2)
 </code></pre></div><pre><code>#&gt; [1] 7.22441
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (LASSO)</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Train (LASSO)</span>
 lasso_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(lasso_mod,  newx <span style="color:#f92672">=</span> xtrain)
 <span style="color:#a6e22e">mean</span>((lasso_pred<span style="color:#f92672">-</span>ytrain)^2)
 </code></pre></div><pre><code>#&gt; [1] 4.269417
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (LASSO)</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># MSE of Data Test (LASSO)</span>
 lasso_pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(lasso_mod,  newx <span style="color:#f92672">=</span> xtest)
 <span style="color:#a6e22e">mean</span>((lasso_pred<span style="color:#f92672">-</span>ytest)^2)
 </code></pre></div><pre><code>#&gt; [1] 13.56875
 </code></pre><p>Based on the above results the best regression model using <code>mtcars</code> data is Ridge Regression. Because the difference of MSE data training and testing is not much different.</p>
 <h3 id="compare-prediction-results-from-all-four-models">Compare prediction results from all four models.</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">predict_value <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cbind</span>(ytest, ols_pred, ridge_pred, lasso_pred,back_pred)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">predict_value <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cbind</span>(ytest, ols_pred, ridge_pred, lasso_pred,back_pred)
 <span style="color:#a6e22e">colnames</span>(predict_value) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;y_actual&#34;</span>, <span style="color:#e6db74">&#34;ols_pred&#34;</span>, <span style="color:#e6db74">&#34;ridge_pred&#34;</span>, <span style="color:#e6db74">&#34;lasso_pred&#34;</span>, <span style="color:#e6db74">&#34;stepwise_pred&#34;</span>)
 predict_value
 </code></pre></div><pre><code>#&gt;                  y_actual  ols_pred ridge_pred lasso_pred stepwise_pred
@@ -1597,18 +1597,12 @@ predict_value
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -292,8 +292,8 @@ So how does SVM find the right hyperplane?"/>
 So how does SVM find the right hyperplane?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/support-vector-machine/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2018-02-07T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2018-02-07T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2018-02-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-02-07T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -302,8 +302,8 @@ So how does SVM find the right hyperplane?" />
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Support Vector Machine">
 <meta itemprop="description" content="Support Vector Machine (SVM) Support Vector Machine is a Supervised Machine Learning Algorithm which can be used both classification and regression. In this algorithm, each data item is plotted as point in n-dimensional space with the value of each feature being the value of a particular coordinate. Then, the algorithm perform classification by finding the hyper-plane that differentiate the two classes very well.
-So how does SVM find the right hyperplane?"><meta itemprop="datePublished" content="2018-02-07T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2018-02-07T00:00:00&#43;00:00" />
+So how does SVM find the right hyperplane?"><meta itemprop="datePublished" content="2018-02-07T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-02-07T00:00:00+00:00" />
 <meta itemprop="wordCount" content="2166">
 <meta itemprop="keywords" content="SVM,Machine Learning," />
         
@@ -507,11 +507,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -946,7 +946,7 @@ if (!doNotTrack) {
 <p>The e1071 package in R is used to create Support Vector Machines with ease.</p>
 <h3 id="svm-for-classification">SVM for Classification</h3>
 <p>Let&rsquo;s apply what we learn above to do classification using 1000 past records of bank loans, each with a variable <code>default</code> that indicates whether the applicant did default on the loan.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">loans <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/loan.csv&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">loans <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/loan.csv&#34;</span>)
 <span style="color:#a6e22e">colnames</span>(loans)
 </code></pre></div><pre><code>##  [1] &quot;checking_balance&quot;     &quot;months_loan_duration&quot; &quot;credit_history&quot;      
 ##  [4] &quot;purpose&quot;              &quot;amount&quot;               &quot;savings_balance&quot;     
@@ -954,12 +954,12 @@ if (!doNotTrack) {
 ## [10] &quot;age&quot;                  &quot;other_credit&quot;         &quot;housing&quot;             
 ## [13] &quot;existing_loans_count&quot; &quot;job&quot;                  &quot;dependents&quot;          
 ## [16] &quot;phone&quot;                &quot;default&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">10</span>)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">10</span>)
 <span style="color:#75715e"># select 900 values randomly from 1:1000</span>
 rand.vec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1000</span>,<span style="color:#ae81ff">900</span>)
 loans.train <span style="color:#f92672">&lt;-</span> loans[rand.vec, ] 
 loans.test <span style="color:#f92672">&lt;-</span> loans[<span style="color:#f92672">-</span>rand.vec, ]
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(e1071)
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(e1071)
 <span style="color:#a6e22e">library</span>(gmodels)
 modelsvm1<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;linear&#34;</span>)
 modelsvm2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radial&#34;</span>)
@@ -1002,7 +1002,7 @@ preds2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predic
 ## -------------|-----------|-----------|-----------|
 ## 
 ## 
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">CrossTable</span>(preds2,loans.test<span style="color:#f92672">$</span>default)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">CrossTable</span>(preds2,loans.test<span style="color:#f92672">$</span>default)
 </code></pre></div><pre><code>## 
 ##  
 ##    Cell Contents
@@ -1039,7 +1039,7 @@ preds2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predic
 ## 
 ## 
 </code></pre><p>the svm radial kernel perform better with the 79% accuracy. Let&rsquo;s tune the c and gamma parameter using &lsquo;tune.svm()&rsquo; function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">svmmodel<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">tune.svm</span>(default<span style="color:#f92672">~</span>., data <span style="color:#f92672">=</span> loans.test, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radial&#34;</span>,gamma <span style="color:#f92672">=</span><span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,len<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>), cost<span style="color:#f92672">=</span><span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">50</span>,len<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>),tunecontrol<span style="color:#f92672">=</span><span style="color:#a6e22e">tune.control</span>(cross<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">svmmodel<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">tune.svm</span>(default<span style="color:#f92672">~</span>., data <span style="color:#f92672">=</span> loans.test, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radial&#34;</span>,gamma <span style="color:#f92672">=</span><span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,len<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>), cost<span style="color:#f92672">=</span><span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">50</span>,len<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>),tunecontrol<span style="color:#f92672">=</span><span style="color:#a6e22e">tune.control</span>(cross<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>))
 <span style="color:#a6e22e">summary</span>(svmmodel)
 </code></pre></div><pre><code>## 
 ## Parameter tuning of 'svm':
@@ -1155,7 +1155,7 @@ preds2<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predic
 ## 99   0.09   50  0.31 0.08944272
 ## 100  0.10   50  0.30 0.07905694
 </code></pre><p>The methods above give gamma= 0.03 and c=5 as optimal paramters. lets apply this result to our svm model to know wether the model would perform better or not.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">svmmodelrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radial&#34;</span>, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">0.03</span>,cost<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">svmmodelrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">svm</span>(default<span style="color:#f92672">~</span>., data<span style="color:#f92672">=</span>loans.train, kernel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radial&#34;</span>, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">0.03</span>,cost<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
 predsrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">predict</span>(svmmodelrad,loans.test[,<span style="color:#ae81ff">-17</span>])
 
 <span style="color:#a6e22e">CrossTable</span>(predsrad,loans.test<span style="color:#f92672">$</span>default)
@@ -1395,18 +1395,12 @@ predsrad<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">pred
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

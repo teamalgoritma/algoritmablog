@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -290,8 +290,8 @@
 <meta property="og:description" content="Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/self-organizing-maps/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2019-04-26T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2019-04-26T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2019-04-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-04-26T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -299,8 +299,8 @@
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Self-Organizing Maps">
-<meta itemprop="description" content="Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations."><meta itemprop="datePublished" content="2019-04-26T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-04-26T00:00:00&#43;00:00" />
+<meta itemprop="description" content="Introduction Self-Organizing Maps (SOM) Self-Organizing Maps first introduce by Teuvo Kohonen. According to the Wiki, Self-Organizing Map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map, and is therefore a method to do dimensionality reduction.1 SOM isan unsupervised data visualization technique that can be used to visualize high-dimensional data sets in lower (typically 2) dimensional representations."><meta itemprop="datePublished" content="2019-04-26T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-04-26T00:00:00+00:00" />
 <meta itemprop="wordCount" content="2689">
 <meta itemprop="keywords" content="SOM,Clustering,Unsupervised Learning,Machine Learning," />
         
@@ -504,11 +504,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -923,12 +923,12 @@ if (!doNotTrack) {
 <li><code>som()</code> : making a SOM model, change the radius of neighbourhood, learning rate, and iteration</li>
 <li><code>plot.kohonen()</code> / <code>plot()</code> : visualization of resulting SOM</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(kohonen)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(kohonen)
 <span style="color:#a6e22e">library</span>(dplyr)
 </code></pre></div><p>In this article, we want to use <code>ads data</code> from xyz company that makes ads on Facebook.</p>
 <h2 id="data-pre-processing">Data Pre-Processing</h2>
 <p>First of all we want to import the data in this workspace.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/KAG_conversion_data.csv&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/KAG_conversion_data.csv&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">glimpse</span>()
 </code></pre></div><pre><code>#&gt; Observations: 1,143
 #&gt; Variables: 11
@@ -956,7 +956,7 @@ if (!doNotTrack) {
 <li><code>Total_Conversion</code> : total number of people who enquired about the product after seeing the ad</li>
 <li><code>approved_Conversion</code> : total number of people who bougth the product after seeing the ad</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads <span style="color:#f92672">&lt;-</span> ads <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ads <span style="color:#f92672">&lt;-</span> ads <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(ad_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(ad_id),
          xyz_campaign_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(xyz_campaign_id),
          fb_campaign_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(fb_campaign_id))
@@ -964,7 +964,7 @@ if (!doNotTrack) {
 <span style="color:#a6e22e">levels</span>(ads<span style="color:#f92672">$</span>xyz_campaign_id)
 </code></pre></div><pre><code>#&gt; [1] &quot;916&quot;  &quot;936&quot;  &quot;1178&quot;
 </code></pre><p>As we know that if SOM used numerical data, so if we have categorical variables we must to change those variables to dummy variables.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># change the chategoric variables to a dummy variables</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># change the chategoric variables to a dummy variables</span>
 ads.s <span style="color:#f92672">&lt;-</span> ads <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(genderM <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(gender <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;M&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
          age2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(age <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;35-39&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
@@ -975,7 +975,7 @@ ads.s <span style="color:#f92672">&lt;-</span> ads <span style="color:#f92672">%
 <span style="color:#75715e"># make a train data sets that scaled and convert them to be a matrix cause kohonen function accept numeric matrix</span>
 ads.train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.matrix</span>(<span style="color:#a6e22e">scale</span>(ads.s[,<span style="color:#ae81ff">-1</span>]))
 </code></pre></div><p>We have dummy variables, then we make a SOM grid in order to make dimentioanlity reduction from our data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make stable sampling</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make stable sampling</span>
 <span style="color:#a6e22e">RNGkind</span>(sample.kind <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Rounding&#34;</span>)
 <span style="color:#75715e"># make a SOM grid</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
@@ -990,12 +990,12 @@ ads.model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">s
 <h1 id="unsupervised-som">Unsupervised SOM</h1>
 <h2 class="tabset tabset-fade tabset-pills" id="visualize-of-som">Visualize of SOM</h2>
 <p>Before visualizingSOM model, let’s explore a list of SOM model. If we want to know that our data position in maps, we look it in <code>unit.classif</code>. Each value represent the node number to which this application belongs. For example, in the first value of the application, 12 means that in the first application has been classified into 12 particular node.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(ads.model<span style="color:#f92672">$</span>unit.classif)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(ads.model<span style="color:#f92672">$</span>unit.classif)
 </code></pre></div><pre><code>#&gt; [1] 12 13 13 23 22 22
 </code></pre><p>And we can see the classification of each nodes by codes plot and we can see the values of each nodes using the mapping plot.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mapping&#34;</span>, pchs <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>, shape <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;round&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mapping&#34;</span>, pchs <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>, shape <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;round&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(<span style="color:#a6e22e">data.frame</span>(ads.train), <span style="color:#ae81ff">5</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(<span style="color:#a6e22e">data.frame</span>(ads.train), <span style="color:#ae81ff">5</span>)
 </code></pre></div><pre><code>#&gt;     interest Impressions     Clicks      Spent Total_Conversion
 #&gt; 1 -0.6591837  -0.5735416 -0.5693235 -0.5745204       -0.1908387
 #&gt; 2 -0.6220808  -0.5399346 -0.5517465 -0.5700329       -0.1908387
@@ -1008,27 +1008,27 @@ ads.model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">s
 #&gt; 3         -0.54324835 0.9643282 -0.5261678 -0.4742188 -0.5410454
 #&gt; 4         -0.54324835 0.9643282 -0.5261678 -0.4742188 -0.5410454
 #&gt; 5          0.03222233 0.9643282 -0.5261678 -0.4742188 -0.5410454
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Codes Plot&#34;</span>, palette.name <span style="color:#f92672">=</span> rainbow)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Codes Plot&#34;</span>, palette.name <span style="color:#f92672">=</span> rainbow)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>At the first node, we can say that the input data entered on the first node is characterized bythe major variable that hasgender M and age range of 30-34. For the second node,there is characterized by major variables that have gender M and age range 30-34. Here we can conclude that the node will have neighbors that have similar characteristics to it, that is, like nodes 1 and 2 that are close together because they have gender M and an age range of 30-34 that same.</p>
 <h3 id="training-progress">Training Progress</h3>
 <p>As the SOM training iterations progress, the distance from each node’s weights to the samples represented by that node is reduced. Ideally, this distance should reach a minimum of plateau. This plot option shows progress over time. If the curve is continually decreasing, more iterations are required.<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;changes&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;changes&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h3 id="node-counts">Node Counts</h3>
 <p>The Kohonen package allows us to visualize the count of how many samples are mapped to each node on the map. This metric can be used as a measure of map quality–ideally, the sample distribution is relatively uniform. Large values in some map areas suggest that a larger map would be beneficial. Empty nodes indicate that your map size is too big for the number of samples. Aim for at least 5-10 samples per node when choosing map size.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;counts&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;counts&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Nodes that colored by red mean nodes that have the least number of input values, such as in the second nodes. If the color nodes are brighter indicating the nodes have a lot of input values, such as in the 31 nodes. For nodes that have gray colors, that means the nodes do not have input values at all.</p>
 <h3 id="neighbours-nodes">Neighbours Nodes</h3>
 <p>If we want to see nodes that have the closest or farthest neighbors, we can plot a plot based on <code>dist.neighbours</code>. Nodes that have darker colors mean that the nodes have a closer vector input, whereas nodes that have lighter colors mean that the nodes have vector inputs that are farther apart.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dist.neighbours&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dist.neighbours&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h3 id="heatmaps">Heatmaps</h3>
 <p>Heatmaps are perhaps the most important visualization possible for Self-Organising Maps. A SOM heatmap allows the visualization of the distribution of a single variable across the map. Typically, a SOM investigative process involves the creation of multiple heatmaps and then the comparison of these heatmaps to identify interesting areas on the map. It is important to remember that the individual sample positions do not move from one visualization to another, the map is simply colored by different variables.</p>
 <p>The default Kohonen heatmap is created by using the type “heatmap”, and then providing one of the variables from the set of node weights. In this case, we visualize the average education level on the SOM.</p>
 <p>The default Kohonen heatmap is created by using the type “heatmap”, and then providing one of the variables from the set of node weights. In this case, we visualize the average education level on the SOM.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">heatmap.som <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(model){
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">heatmap.som <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(model){
   <span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>) {
   <span style="color:#a6e22e">plot</span>(model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;property&#34;</span>, property <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCodes</span>(model)[,i], 
         main <span style="color:#f92672">=</span> <span style="color:#a6e22e">colnames</span>(<span style="color:#a6e22e">getCodes</span>(model))[i]) 
@@ -1039,16 +1039,16 @@ ads.model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">s
 <p>From the heatmap that is formed, we can know which nodes have the characteristics of each variablewhose value is high and the value is low.</p>
 <h3 id="clustering">Clustering</h3>
 <p>Then we want to try to clustering every observation that we have without looking at the labels of <code>xyz_campaign_id</code>. Like making clusters using k-means, we must determine the number of cluster that we want tomake. In this case, we want to use the elbow method to determine the number of clusters.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(factoextra)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(factoextra)
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 <span style="color:#a6e22e">fviz_nbclust</span>(ads.model<span style="color:#f92672">$</span>codes[[1]], kmeans, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wss&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">kmeans</span>(ads.model<span style="color:#f92672">$</span>codes[[1]], <span style="color:#ae81ff">6</span>)
 
 <span style="color:#75715e"># clustering using hierarchial</span>
 <span style="color:#75715e"># cluster.som &lt;- cutree(hclust(dist(ads.model$codes[[1]])), 6)</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Map&#34;</span>)
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Map&#34;</span>)
 <span style="color:#a6e22e">add.cluster.boundaries</span>(ads.model, clust<span style="color:#f92672">$</span>cluster)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>At this part, to do the profiling of the clusters that we made, we do not need to look at the descriptive results of the cluster or look deeper into the data, we only need to look at the cluster map above.</p>
@@ -1061,7 +1061,7 @@ clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">kmean
 <li>Cluster 5 (turqois) : gender Male, age 45-49, interest high, clicks and spent low</li>
 <li>Cluster 6 (blue) : gender Female, age 45-49, interest, impression, clicks, spent, total_conversion low.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># know cluster each data</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># know cluster each data</span>
 ads.cluster <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(ads.s, cluster <span style="color:#f92672">=</span> clust<span style="color:#f92672">$</span>cluster[ads.model<span style="color:#f92672">$</span>unit.classif])
 <span style="color:#a6e22e">tail</span>(ads.cluster, <span style="color:#ae81ff">10</span>)
 </code></pre></div><pre><code>#&gt;      xyz_campaign_id interest Impressions Clicks  Spent Total_Conversion
@@ -1088,7 +1088,7 @@ ads.cluster <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
 #&gt; 1143                   2       0    0    0    1       5
 </code></pre><h1 id="supervised-som">Supervised SOM</h1>
 <p>In supervised SOM, we want to classify our SOM model with our dependent variable (<code>xyz_campaign_id</code>). In classification case, we have to do split train-test data in order to ensure our model is good enough to predict other data pattern. First, we split our data to train-test and do a scaling step to make the range of data same.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># split data</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># split data</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 int <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#a6e22e">nrow</span>(ads.s), <span style="color:#a6e22e">nrow</span>(ads.s)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.8</span>)
 train <span style="color:#f92672">&lt;-</span> ads.s[int,]
@@ -1098,23 +1098,23 @@ test <span style="color:#f92672">&lt;-</span> ads.s[<span style="color:#f92672">
 trainX <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(train[,<span style="color:#ae81ff">-1</span>])
 testX <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(test[,<span style="color:#ae81ff">-1</span>], center <span style="color:#f92672">=</span> <span style="color:#a6e22e">attr</span>(trainX, <span style="color:#e6db74">&#34;scaled:center&#34;</span>))
 </code></pre></div><p>After we have done in train-test split, we make a label for our target variable.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make label</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># make label</span>
 train.label <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(train[,<span style="color:#ae81ff">1</span>])
 test.label <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(test[,<span style="color:#ae81ff">1</span>])
 test[,<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">916</span>
 testXY <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(independent <span style="color:#f92672">=</span> testX, dependent <span style="color:#f92672">=</span> test.label)
 </code></pre></div><h2 id="classification">Classification</h2>
 <p>To make an classification model implementing SOM algorithm, we can use <code>xyf()</code> function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># classification &amp; predict</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># classification &amp; predict</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xyf</span>(trainX, <span style="color:#a6e22e">classvec2classmat</span>(train.label), ads.grid, rlen <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>)
 </code></pre></div><p>We can plot the classification result by the type <code>change</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(class, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;changes&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(class, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;changes&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p><code>Matrix 1</code> shows iteration of training progress of real data and the <code>Matrix 2</code> shows iteration of training progress in predict data.</p>
 <h2 id="predict">Predict</h2>
 <p>To make sure our model is fit enough, we predict our test data <code>testXY</code> using <code>class</code> model. We got the confusion matrix of the prediction. In this data, we get 100% accuracy to predict each class.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(class, newdata <span style="color:#f92672">=</span> testXY)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(class, newdata <span style="color:#f92672">=</span> testXY)
 <span style="color:#a6e22e">table</span>(Predict <span style="color:#f92672">=</span> pred<span style="color:#f92672">$</span>predictions[[2]], Actual <span style="color:#f92672">=</span> test.label)
 </code></pre></div><pre><code>#&gt;        Actual
 #&gt; Predict 916 936 1178
@@ -1123,11 +1123,11 @@ class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xyf</
 #&gt;    1178   0   0  114
 </code></pre><h2 id="cluster-boundaries">Cluster Boundaries</h2>
 <p>We can visualize each class by each cluster using cluster boundaries.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster SOM&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(ads.model, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">9</span>)[clust<span style="color:#f92672">$</span>cluster], main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster SOM&#34;</span>)
 <span style="color:#a6e22e">add.cluster.boundaries</span>(ads.model, clust<span style="color:#f92672">$</span>cluster)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>To ensure our classification prediction and each cluster, we can see the visualization of each class and each cluster using cluster bounderies.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">c.class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">kmeans</span>(class<span style="color:#f92672">$</span>codes[[2]], <span style="color:#ae81ff">3</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">c.class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">kmeans</span>(class<span style="color:#f92672">$</span>codes[[2]], <span style="color:#ae81ff">3</span>)
 <span style="color:#a6e22e">par</span>(mfrow <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>))
 <span style="color:#a6e22e">plot</span>(class, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codes&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Unsupervised SOM&#34;</span>, <span style="color:#e6db74">&#34;Supervised SOM&#34;</span>), 
      bgcol <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">3</span>)[c.class<span style="color:#f92672">$</span>cluster])
@@ -1379,18 +1379,12 @@ class <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xyf</
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

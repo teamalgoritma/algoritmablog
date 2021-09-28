@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -290,8 +290,8 @@
 <meta property="og:description" content="INTRODUCTION One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/interpreting-black-box-regression-model-with-lime/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2020-10-20T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2020-10-20T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2020-10-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-20T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -299,8 +299,8 @@
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Interpreting Black Box Regression Model with LIME">
-<meta itemprop="description" content="INTRODUCTION One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning."><meta itemprop="datePublished" content="2020-10-20T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-10-20T00:00:00&#43;00:00" />
+<meta itemprop="description" content="INTRODUCTION One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain characteristics that contribute toward certain value of target variables? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning."><meta itemprop="datePublished" content="2020-10-20T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-10-20T00:00:00+00:00" />
 <meta itemprop="wordCount" content="5488">
 <meta itemprop="keywords" content="lime,Machine Learning,Capstone Ml," />
         
@@ -504,11 +504,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -892,12 +892,12 @@ if (!doNotTrack) {
 <h2 id="lime-package-in-r">LIME package in R</h2>
 <p>You can implement LIME in R with lime package. See Thomas Lin Pederson&rsquo;s<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> github repository for more details.</p>
 <p>To install the LIME package, you just simply run the <code>install.packages()</code> function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;lime&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;lime&#34;</span>)
 </code></pre></div><h1 id="case-study">CASE STUDY</h1>
 <p>We will try to use black box model to solve regression problem and implement LIME to interpret how the model behave on various input. The dataset would be the <strong>Student Performance</strong> from UCI machine learning repository<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>. This data approach student achievement in secondary education of two Portuguese schools.</p>
 <h2 id="library">Library</h2>
 <p>The following library and setup will be used throughout the articles.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Data Wrangling</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Data Wrangling</span>
 <span style="color:#a6e22e">library</span>(tidyverse)
 
 <span style="color:#75715e"># Exploratory Data Analysis</span>
@@ -917,7 +917,7 @@ if (!doNotTrack) {
 <span style="color:#a6e22e">options</span>(scipen <span style="color:#f92672">=</span> <span style="color:#ae81ff">999</span>)
 </code></pre></div><h2 id="import-data">Import Data</h2>
 <p>Now we will import the dataset and inspect the contents. There are performances for 2 subjects: Mathematics and Portuguese language (language). For the first part, we will focus only on the math dataset.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/student-mat.csv&#34;</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;;&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/student-mat.csv&#34;</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;;&#34;</span>)
 
 <span style="color:#a6e22e">glimpse</span>(df)
 </code></pre></div><pre><code>#&gt; Rows: 395
@@ -994,7 +994,7 @@ if (!doNotTrack) {
 </ol>
 <h2 id="data-cleansing">Data Cleansing</h2>
 <p>We will cleanse the data so that all variables have proper type of data. For example, there are many integer variables that are actually categorical variables. All variables, except for <code>G1</code>, <code>G2</code>, <code>G3</code>, <code>age</code>, and <code>absences</code> will be tranformed into factors.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">untransformed <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;G1&#34;</span>, <span style="color:#e6db74">&#34;G2&#34;</span>, <span style="color:#e6db74">&#34;G3&#34;</span>, <span style="color:#e6db74">&#34;age&#34;</span>, <span style="color:#e6db74">&#34;absences&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">untransformed <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;G1&#34;</span>, <span style="color:#e6db74">&#34;G2&#34;</span>, <span style="color:#e6db74">&#34;G3&#34;</span>, <span style="color:#e6db74">&#34;age&#34;</span>, <span style="color:#e6db74">&#34;absences&#34;</span>)
 
 df_clean <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate_if</span>(<span style="color:#f92672">!</span>(<span style="color:#a6e22e">names</span>(.) <span style="color:#f92672">%in%</span> untransformed), as.factor)
@@ -1039,7 +1039,7 @@ df_clean <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672"
 <p>The first thing we do before building the model is to do exploratory data analysis. The point is to find insight about the data before we start building the model.</p>
 <h3 id="missing-values">Missing Values</h3>
 <p>We will check whether there are any missing values in the data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df_clean <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df_clean <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">is.na</span>() <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">colSums</span>() 
 </code></pre></div><pre><code>#&gt;     school        sex        age    address    famsize    Pstatus       Medu 
@@ -1055,12 +1055,12 @@ df_clean <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672"
 </code></pre><p>No missing data found in any variables, so we are good to go.</p>
 <h3 id="correlation-between-variables">Correlation Between Variables</h3>
 <p>We will try to find the correlation between numeric variables.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggcorr</span>(df_clean, label <span style="color:#f92672">=</span> T)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggcorr</span>(df_clean, label <span style="color:#f92672">=</span> T)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>The final score (<code>G3</code>) has strong correlation with the score of the first (<code>G1</code>) and second period (<code>G2</code>). This is not surprising, since student achievement is highly affected by previous performances. Based on the author&rsquo;s commentary on this topic<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>, it is more difficult to predict <code>G3</code> without <code>G2</code> and <code>G1</code>. We will try to prove this point.</p>
 <h3 id="influence-of-schools">Influence of Schools</h3>
 <p>Since the data are collected from 2 different schools, we would like to see if there is a great discrepancy in the final score between school.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df_clean <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df_clean <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(school <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(school <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;GP&#34;</span>, <span style="color:#e6db74">&#34;Gabriel Pereira (GP)&#34;</span>, <span style="color:#e6db74">&#34;Mousinho da Silveira (MS)&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">ggplot</span>(<span style="color:#a6e22e">aes</span>(G3, fill <span style="color:#f92672">=</span> school)) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_density</span>(alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.6</span>, show.legend <span style="color:#f92672">=</span> F) <span style="color:#f92672">+</span>
@@ -1071,7 +1071,7 @@ df_clean <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672"
 <p>Based on the density plot, the final score distribution of math are almost similar in both school. Thus, schools might not be a strong predictor for the final score of a student.</p>
 <h2 id="cross-validation">Cross-Validation</h2>
 <p>Now that we&rsquo;ve explore some insight from our data, we will start to split the data into training set and testing set, with 80% of the data will be the training set.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 df_row <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">nrow</span>(df_clean)
 
 index <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(df_row, <span style="color:#ae81ff">0.8</span><span style="color:#f92672">*</span>df_row)
@@ -1081,9 +1081,9 @@ data_test <span style="color:#f92672">&lt;-</span> df_clean[ <span style="color:
 </code></pre></div><h2 id="model-fitting-and-evaluation">Model Fitting and Evaluation</h2>
 <h3 id="linear-regression">Linear Regression</h3>
 <p>As a common practice, we will build the basic linear regression model to fit the data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_linear <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(G3 <span style="color:#f92672">~</span> . , data <span style="color:#f92672">=</span> data_train)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_linear <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(G3 <span style="color:#f92672">~</span> . , data <span style="color:#f92672">=</span> data_train)
 </code></pre></div><p>We will use stepwise approach to find a linear model with minimum AIC.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_step <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">step</span>(model_linear, direction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;both&#34;</span>, trace <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_step <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">step</span>(model_linear, direction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;both&#34;</span>, trace <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
 
 <span style="color:#a6e22e">summary</span>(model_step)
 </code></pre></div><pre><code>#&gt; 
@@ -1118,7 +1118,7 @@ data_test <span style="color:#f92672">&lt;-</span> df_clean[ <span style="color:
 #&gt; Multiple R-squared:  0.8581,	Adjusted R-squared:  0.852 
 #&gt; F-statistic: 140.5 on 13 and 302 DF,  p-value: &lt; 0.00000000000000022
 </code></pre><p>The model has an <code>Adjusted R-Squared</code> of 85%, suggesting that the model can explain the data well enough. We might also interested in seeing how good the model will be on the testing dataset.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Function for evaluating model</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Function for evaluating model</span>
 eval_recap <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(truth, estimate){
   
   df_new <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(truth <span style="color:#f92672">=</span> truth,
@@ -1131,7 +1131,7 @@ eval_recap <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
              ) <span style="color:#f92672">%&gt;%</span> 
     <span style="color:#a6e22e">mutate</span>(MSE <span style="color:#f92672">=</span> <span style="color:#a6e22e">sqrt</span>(RMSE))
 }
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(model_step, data_test)
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(model_step, data_test)
 
 <span style="color:#a6e22e">eval_recap</span>(truth <span style="color:#f92672">=</span> data_test<span style="color:#f92672">$</span>G3,
            estimate <span style="color:#f92672">=</span> pred_test)
@@ -1144,7 +1144,7 @@ eval_recap <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 H_0 : p-value &gt; 0.05 : Residuals\ Normally\ Distributed \</p>
 <p>H_1 : p-value &lt; 0.05 : Residuals\ Are\ Not\ Normally\ Distributed
 $$</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">shapiro.test</span>(model_step<span style="color:#f92672">$</span>residuals)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">shapiro.test</span>(model_step<span style="color:#f92672">$</span>residuals)
 </code></pre></div><pre><code>#&gt; 
 #&gt; 	Shapiro-Wilk normality test
 #&gt; 
@@ -1157,7 +1157,7 @@ $$</p>
 H_0 : p-value &gt; 0.05 : Residuals\ Are\ Not\ Autocorrelated \</p>
 <p>H_1 : p-value &lt; 0.05 : Residuals\ Are\ Autocorrelated
 $$</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">dwtest</span>(model_step)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">dwtest</span>(model_step)
 </code></pre></div><pre><code>#&gt; 
 #&gt; 	Durbin-Watson test
 #&gt; 
@@ -1171,7 +1171,7 @@ $$</p>
 H_0 : p-value &gt; 0.05 : Constant\ Variance\ (Homoscesdasticity) \</p>
 <p>H_1 : p-value &lt; 0.05 : Variance\ Not\ Constance\ (Heterocesdasticity)
 $$</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">bptest</span>(model_step)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">bptest</span>(model_step)
 </code></pre></div><pre><code>#&gt; 
 #&gt; 	studentized Breusch-Pagan test
 #&gt; 
@@ -1180,7 +1180,7 @@ $$</p>
 </code></pre><p>The model is also doesn&rsquo;t have a constant variance.</p>
 <h4 id="multicollinearity">Multicollinearity</h4>
 <p>The multicollinearity will look for a high correlation between predictors.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">rms<span style="color:#f92672">::</span><span style="color:#a6e22e">vif</span>(model_step)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">rms<span style="color:#f92672">::</span><span style="color:#a6e22e">vif</span>(model_step)
 </code></pre></div><pre><code>#&gt;           age     failures1     failures2     failures3 activitiesyes 
 #&gt;      1.203030      1.210549      1.114074      1.142246      1.019727 
 #&gt;   romanticyes       famrel2       famrel3       famrel4       famrel5 
@@ -1191,7 +1191,7 @@ $$</p>
 <p>So &hellip; our model failed to fulfill almost all of assumptions for linear regression model. The interpretation of the estimate coefficient and the significant test would be unreliable. You might be interested in tuning the linear model to fulfill the assumption but for now, we will proceed to use more advanced models: Random Forest and Support Vector Regression (SVR).</p>
 <h3 id="random-forest">Random Forest</h3>
 <p>Random Forest implementation come in many packages but for this post I will use <code>randomForest()</code> from <code>randomForest</code> package.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 model_rf <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">randomForest</span>(x <span style="color:#f92672">=</span> data_train <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>G3),
                          y <span style="color:#f92672">=</span> data_train<span style="color:#f92672">$</span>G3, 
                          ntree <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>)
@@ -1207,7 +1207,7 @@ model_rf
 #&gt;           Mean of squared residuals: 3.414625
 #&gt;                     % Var explained: 83.08
 </code></pre><p>We will evaluate the Random Forest model.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(model_rf, data_test, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;response&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(model_rf, data_test, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;response&#34;</span>)
 
 <span style="color:#a6e22e">eval_recap</span>(truth <span style="color:#f92672">=</span> data_test<span style="color:#f92672">$</span>G3,
            estimate <span style="color:#f92672">=</span> pred_test)
@@ -1216,7 +1216,7 @@ model_rf
 </code></pre><p>The Random Forest is slightly better than the linear model.</p>
 <h3 id="support-vector-regression-svr">Support Vector Regression (SVR)</h3>
 <p>SVR is a variant of Support Vector Machine for regression problem<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>. If you are interested in SVM, you can the article from algotech<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>. The SVM implementation can be acquired from the <code>e1071</code> package.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(e1071)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(e1071)
 
 model_svr <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">svm</span>(G3 <span style="color:#f92672">~</span> ., data <span style="color:#f92672">=</span> data_train)
 
@@ -1229,7 +1229,7 @@ pred_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">p
 </code></pre><p>The SVR model has lower performance compared to Random Forest. However, we will still use both model for further analysis both as comparison and as examples.</p>
 <h1 id="model-interpretation">MODEL INTERPRETATION</h1>
 <p>You can actually find the importance of variables in Random Forest. The importances are calculated using the Gini index.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_rf<span style="color:#f92672">$</span>importance <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_rf<span style="color:#f92672">$</span>importance <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">as.data.frame</span>() <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">arrange</span>(<span style="color:#f92672">-</span>IncNodePurity) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">rownames_to_column</span>(<span style="color:#e6db74">&#34;variable&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
@@ -1246,7 +1246,7 @@ pred_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">p
 <p>Now we will try to interpret the black box model using <code>lime</code>.</p>
 <h2 id="explainer">Explainer</h2>
 <p>The first thing to is to build an <code>explainer</code>. This explainer object will be used as the foundation to interpret the black box model.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 explainer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lime</span>(x <span style="color:#f92672">=</span> data_train <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>G3), 
                   model <span style="color:#f92672">=</span> model_rf)
 </code></pre></div><p>Some parameter you can adjust in lime function:</p>
@@ -1258,7 +1258,7 @@ explainer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">l
 </ul>
 <h2 id="explanation">Explanation</h2>
 <p>The next thing to do is to build the <code>explanation</code> for each data test. The explanation will give the interpretation of the model toward each observation. However, in these part we will only make explanation for the first 4 observation of the data for simplicity.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Select only the first 4 observations</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Select only the first 4 observations</span>
 selected_data <span style="color:#f92672">&lt;-</span> data_test <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>G3) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>)
@@ -1272,26 +1272,26 @@ explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
                        )
 </code></pre></div><pre><code>#&gt; Error: The class of model must have a model_type method. See ?model_type to get an overview of models supported out of the box
 </code></pre><p>The explanation gave us an error. If you don&rsquo;t face the same error, congratulations, you can proceed to visualize the explanation using the <code>plot_features()</code> function below. However, I will explain how to handle the error first.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot_features</span>(explanation)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot_features</span>(explanation)
 </code></pre></div><h2 id="troubleshooting-error-in-model_type">Troubleshooting Error in <code>model_type</code></h2>
 <p>The error happened because <code>lime</code> didn&rsquo;t recognize the model. To handle this, we first specify the model so that it can be recognized by lime.</p>
 <p>First, check the class of the model.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">class</span>(model_rf)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">class</span>(model_rf)
 </code></pre></div><pre><code>#&gt; [1] &quot;randomForest&quot;
 </code></pre><p>The class of our Random Forest model is <code>randomForest</code>.</p>
 <p>The second step is to create a function named <code>model_type.</code> followed by the class of the model. In our model, the class is <strong>&ldquo;randomForest&rdquo;</strong>, so we need to create a function named <code>model_type.randomForest</code>. Since the problem is a regression problem, the function must return <strong>&ldquo;regression&rdquo;</strong>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_type.randomForest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_type.randomForest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
   <span style="color:#a6e22e">return</span>(<span style="color:#e6db74">&#34;regression&#34;</span>) <span style="color:#75715e"># for regression problem</span>
 }
 </code></pre></div><p>We also need a function to store the prediction value. Same with the <code>model_type.</code>, we need to create a <code>predict_model.</code> followed by the class of our model. The function would be <code>predict_model.randomForest</code>. The content of the function is the function to predict the model. In Random Forest, the function is predict(). We need to return the prediction value and convert them to data.frame, so the content would be <code>predict(x, newdata)</code>  to return the probability of the prediction and convert them with <code>as.data.frame()</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">predict_model.randomForest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x, newdata, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;response&#34;</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">predict_model.randomForest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x, newdata, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;response&#34;</span>) {
 
     <span style="color:#75715e"># return prediction value</span>
     <span style="color:#a6e22e">predict</span>(x, newdata) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.data.frame</span>()
     
 }
 </code></pre></div><p>Now once again we will run the previous explanation. The <code>n_features</code> determine how many features that will be used for interpretation. Here, we will only consider of 10 features. You can choose another number if you wish. The <code>feature_select</code> parameter will determine how the lime select which features/predictors that will be used for interpreting the model. To consider all predictors, you can simply change the parameter to <code>feature_select = &quot;none&quot;</code> to indicate that all features will be considered and there are no selection.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">explain</span>(x <span style="color:#f92672">=</span> selected_data, 
                        explainer <span style="color:#f92672">=</span> explainer, 
                        n_features <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, <span style="color:#75715e"># Number of features to explain the model</span>
@@ -1299,10 +1299,10 @@ explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
                        )
 </code></pre></div><h2 id="visualization-and-interpretation">Visualization and Interpretation</h2>
 <p>Finally, we will visualize the explanation using the <code>plot_features()</code> function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot_features</span>(explanation <span style="color:#f92672">=</span> explanation)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot_features</span>(explanation <span style="color:#f92672">=</span> explanation)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>The case indicate the index of the data. Case : 1 indicate the first observation, Case : 2 indicate the second observation, etc. The <code>prediction</code> value show the predicted value based on the model interpretation and prediction. You can compare the prediction value with the actual final score (<code>G3</code>) value.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data_test<span style="color:#f92672">$</span>G3)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data_test<span style="color:#f92672">$</span>G3)
 </code></pre></div><pre><code>#&gt; [1]  6 10 15 16 14 10
 </code></pre><p>Inside the plot, we can see several bar charts. The <code>y-axis</code> show the features while the <code>x-axis</code> show the relative strength of each features. The positive value (blue color) show that the feature support or increase the value of the prediction, while the negative value (red color) has negative effect or decrease the prediction value.</p>
 <p>Each observation has different explanation. For the first observation, The <code>G2</code> and <code>G1</code> value has negative effect toward the final score (<code>G3</code>). The interpretation is that because the <code>G2</code> (score of the student during the second grade) is lower than 9 and <code>G1</code> (score of the student during the first grade), it will lower the predicted final score (<code>G3</code>). However, since the student never fail in the past class (failure = 0), it increase the predicted final score, although only by little value.</p>
@@ -1312,7 +1312,7 @@ explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
 <p>The next element is Explanation Fit. These values indicate how good LIME explain the model, kind of like the <code>\(R^2\)</code> (R-Squared) value of linear regression. Here we see the Explanation Fit only has values around 0.50-0.7 (50%-70%), which can be interpreted that LIME can only explain a little about our model. You may consider not to trust the LIME output since it only has low Explanation Fit.</p>
 <h2 id="tuning-lime">Tuning LIME</h2>
 <p>You can improve the Explanation Fit by tuning the explain function parameter. The following parameter increase the explanation fit up to 90%. You can adjust the value of each parameters until you&rsquo;ve found the desired explanation fit.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">explain</span>(x <span style="color:#f92672">=</span> selected_data, 
                        explainer <span style="color:#f92672">=</span> explainer, 
                        dist_fun <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;manhattan&#34;</span>,
@@ -1334,14 +1334,14 @@ explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
 </ul>
 <p>Now the important features are changed along with the increasing explanation fit. The <code>G2</code> variable is still the most important feature for all observation while <code>G1</code> has declined.</p>
 <p>Similarly, you can create the explanation for the SVR model.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 explainer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lime</span>(x <span style="color:#f92672">=</span> data_train <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>G3), 
                   model <span style="color:#f92672">=</span> model_svr)
 </code></pre></div><p>Check the class of SVR model.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">class</span>(model_svr)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">class</span>(model_svr)
 </code></pre></div><pre><code>#&gt; [1] &quot;svm.formula&quot; &quot;svm&quot;
 </code></pre><p>Create SVR model specification for lime.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_type.svm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_type.svm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
   <span style="color:#a6e22e">return</span>(<span style="color:#e6db74">&#34;regression&#34;</span>) <span style="color:#75715e"># for regression problem</span>
 }
 
@@ -1352,7 +1352,7 @@ predict_model.svm <span style="color:#f92672">&lt;-</span> <span style="color:#a
     
 }
 </code></pre></div><p>Create explanation and visualize the result.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">explain</span>(x <span style="color:#f92672">=</span> selected_data, 
                        explainer <span style="color:#f92672">=</span> explainer, 
                        feature_select <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;auto&#34;</span>, <span style="color:#75715e"># Method of feature selection for lime</span>
@@ -1597,18 +1597,12 @@ explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

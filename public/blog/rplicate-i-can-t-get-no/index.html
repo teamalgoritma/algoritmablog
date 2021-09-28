@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -290,8 +290,8 @@
 <meta property="og:description" content="In this third article on Rplicate Series, We will share to you one way to replicate The Economist plot titled &ldquo;I can&rsquo;t get no &hellip;&quot;. The plot making will also demonstrate ways to converting smooth line into linear line, using guides for legend, and adding a text annotation to a plot. The raw dataset used for this graph was obtained from a PDF, so we will also use tibble package to copy-paste the data into R." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/rplicate-i-can-t-get-no/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2020-10-26T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2020-10-26T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2020-10-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-26T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -299,8 +299,8 @@
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Rplicate Series: I can&#39;t get no ...">
-<meta itemprop="description" content="In this third article on Rplicate Series, We will share to you one way to replicate The Economist plot titled &ldquo;I can&rsquo;t get no &hellip;&quot;. The plot making will also demonstrate ways to converting smooth line into linear line, using guides for legend, and adding a text annotation to a plot. The raw dataset used for this graph was obtained from a PDF, so we will also use tibble package to copy-paste the data into R."><meta itemprop="datePublished" content="2020-10-26T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-10-26T00:00:00&#43;00:00" />
+<meta itemprop="description" content="In this third article on Rplicate Series, We will share to you one way to replicate The Economist plot titled &ldquo;I can&rsquo;t get no &hellip;&quot;. The plot making will also demonstrate ways to converting smooth line into linear line, using guides for legend, and adding a text annotation to a plot. The raw dataset used for this graph was obtained from a PDF, so we will also use tibble package to copy-paste the data into R."><meta itemprop="datePublished" content="2020-10-26T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-10-26T00:00:00+00:00" />
 <meta itemprop="wordCount" content="2189">
 <meta itemprop="keywords" content="Data Visualization,Rplicate,ggplot2," />
         
@@ -504,11 +504,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -893,12 +893,12 @@ if (!doNotTrack) {
 <p>Let&rsquo;s dive in below!</p>
 <h1 id="load-packages">Load Packages</h1>
 <p>These are the basic packages that we will use. Along the way, there will be some packages that we will load just before its use to better understand and remember its functionality.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(dplyr)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(dplyr)
 <span style="color:#a6e22e">library</span>(ggplot2)
 </code></pre></div><h1 id="dataset">Dataset</h1>
 <h2 id="data-collection">Data Collection</h2>
 <p>The data used in this plot is sourced from a PDF file. Fortunately, we can literally <em>copy-paste</em> the data using <code>tribble()</code> from <em>tibble</em> package. Click <a href="https://tibble.tidyverse.org/reference/tribble.html">here</a> for more detailed documentation of tribble.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tibble)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tibble)
 data1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tribble</span>(
               <span style="color:#f92672">~</span>V1, <span style="color:#f92672">~</span>V2, <span style="color:#f92672">~</span>V3, <span style="color:#f92672">~</span>V4, <span style="color:#f92672">~</span>V5,
   <span style="color:#e6db74">&#34;United States&#34;</span>, <span style="color:#ae81ff">47L</span>, <span style="color:#ae81ff">58L</span>, <span style="color:#ae81ff">56L</span>, <span style="color:#ae81ff">61L</span>,
@@ -988,14 +988,14 @@ data2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tribb
 <span style="color:#75715e"># adding colnames to data2</span>
 <span style="color:#a6e22e">colnames</span>(data2) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Country&#34;</span>,<span style="color:#e6db74">&#34;x&#34;</span>, <span style="color:#e6db74">&#34;A lot&#34;</span>, <span style="color:#e6db74">&#34;Somewhat&#34;</span>, <span style="color:#e6db74">&#34;Not much&#34;</span>, <span style="color:#e6db74">&#34;Not at all&#34;</span>, <span style="color:#e6db74">&#34;DK/Refused&#34;</span>, <span style="color:#e6db74">&#34;Total&#34;</span>)
 </code></pre></div><p>Below is a glimpse of our data:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data1, <span style="color:#ae81ff">3</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data1, <span style="color:#ae81ff">3</span>)
 </code></pre></div><pre><code>#&gt; # A tibble: 3 x 5
 #&gt;   Country  Political_issues `News about govt.~ `News accuratel~ `Most important~
 #&gt;   &lt;chr&gt;               &lt;int&gt;              &lt;int&gt;            &lt;int&gt;            &lt;int&gt;
 #&gt; 1 United ~               47                 58               56               61
 #&gt; 2 Canada                 73                 79               78               82
 #&gt; 3 France                 47                 54               62               73
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data2, <span style="color:#ae81ff">3</span>)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data2, <span style="color:#ae81ff">3</span>)
 </code></pre></div><pre><code>#&gt; # A tibble: 3 x 8
 #&gt;   Country    x       `A lot` Somewhat `Not much` `Not at all` `DK/Refused` Total
 #&gt;   &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt;    &lt;int&gt;      &lt;int&gt;        &lt;int&gt;        &lt;int&gt; &lt;int&gt;
@@ -1004,9 +1004,9 @@ data2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tribb
 #&gt; 3 France     Spring~       3       17         36           42            1   100
 </code></pre><h2 id="feature-selection">Feature Selection</h2>
 <p>There are some features that we need to add and also select for visualization. But before that, we should first join our data. Here, we can join our data using the function <code>merge()</code> from base R.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># join data</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># join data</span>
 dataset <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">merge</span>(data1, data2, by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Country&#34;</span>)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># feature engineering `gov`</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># feature engineering `gov`</span>
 data_f <span style="color:#f92672">&lt;-</span> dataset <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(gov <span style="color:#f92672">=</span> `A lot` <span style="color:#f92672">+</span> Somewhat) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(Country,Political_issues,gov)
@@ -1016,7 +1016,7 @@ data_f <span style="color:#f92672">&lt;-</span> dataset <span style="color:#f926
 #&gt; 1 Argentina               37  22
 #&gt; 2 Australia               48  48
 #&gt; 3    Brazil               45  24
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># preparing region-country labels</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># preparing region-country labels</span>
 Asia_Oceania <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Australia&#34;</span>, <span style="color:#e6db74">&#34;India&#34;</span>, <span style="color:#e6db74">&#34;Indonesia&#34;</span>, <span style="color:#e6db74">&#34;Japan&#34;</span>,
                   <span style="color:#e6db74">&#34;Philippines&#34;</span>, <span style="color:#e6db74">&#34;South Korea&#34;</span>, <span style="color:#e6db74">&#34;Vietnam&#34;</span>)
 Europe <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;France&#34;</span>, <span style="color:#e6db74">&#34;Germany&#34;</span>, <span style="color:#e6db74">&#34;Greece&#34;</span>, <span style="color:#e6db74">&#34;Hungary&#34;</span>, <span style="color:#e6db74">&#34;Italy&#34;</span>,
@@ -1047,7 +1047,7 @@ data_f <span style="color:#f92672">&lt;-</span> data_f <span style="color:#f9267
 #&gt; 3    Brazil               45  24  South America
 </code></pre><h1 id="plotting">Plotting</h1>
 <p>Before making anything, we can first load fonts from our locale to R using <strong>extrafont</strong> package. This will allow R to use custom fonts in its plot. Discussions about using custom font can be found in the previous <a href="https://algotech.netlify.app/tags/rplicate/">Rplicate Series articles</a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(extrafont)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(extrafont)
 
 <span style="color:#75715e"># importing fonts to R</span>
 <span style="color:#75715e"># font_import() </span>
@@ -1056,7 +1056,7 @@ data_f <span style="color:#f92672">&lt;-</span> data_f <span style="color:#f9267
 <span style="color:#a6e22e">loadfonts</span>(device <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;win&#34;</span>) 
 </code></pre></div><h2 id="basic-plot">Basic Plot</h2>
 <p>We can first make the Basic Plot using the code below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> data_f, 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> data_f, 
              <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> gov, y <span style="color:#f92672">=</span> Political_issues)) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(colour <span style="color:#f92672">=</span> region, fill <span style="color:#f92672">=</span> region), <span style="color:#75715e"># we will edit the color &amp; fill manually later</span>
              shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.5</span>, stroke <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span>
@@ -1068,7 +1068,7 @@ g1
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="add-linear-line">Add Linear Line</h2>
 <p>This is the more interesting part of making the plot. When using <code>geom_smooth()</code>, we usually aim to display a trend line following pattern in our data and ended up obtaining a slightly curved line. Little that we know, this function can also be used for <em>making a linear line</em>, we only need to adjust its parameter <code>method</code> on how to make the trend line using a specific algorithm.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g2 <span style="color:#f92672">&lt;-</span> g1 <span style="color:#f92672">+</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g2 <span style="color:#f92672">&lt;-</span> g1 <span style="color:#f92672">+</span> 
   <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(group <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>), <span style="color:#75715e"># making 1 line</span>
               method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lm&#34;</span>, <span style="color:#75715e"># making a linear plot (using linear model)</span>
               <span style="color:#75715e"># formula = y ~ x, # we can also edit the linear model formula manually here</span>
@@ -1078,7 +1078,7 @@ g1
 g2
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Now, the trend line was made but it disturb our view on the other geoms. It is best to rearrange the geoms so that the trend line positioned in the first layer of the plot. The combined codes from the previous steps are below and we will use it for further process.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> data_f, 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> data_f, 
              <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> gov, y <span style="color:#f92672">=</span> Political_issues)) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(group <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>), 
               method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lm&#34;</span>, 
@@ -1094,14 +1094,14 @@ g2
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="add-repelled-text">Add Repelled Text</h2>
 <p>Just like in the previous <a href="https://algotech.netlify.app/blog/rplicate-happiness-of-the-third-age/">&ldquo;Rplicate Series: Happiness of The Third Age&rdquo;</a>, we can add repelled text label using <code>geom_text_repel()</code> from package <em>ggrepel</em>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(ggrepel)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(ggrepel)
 g3 <span style="color:#f92672">&lt;-</span> g2 <span style="color:#f92672">+</span> <span style="color:#a6e22e">geom_text_repel</span>(<span style="color:#a6e22e">aes</span>(label <span style="color:#f92672">=</span> Country), force <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>,
                            color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;grey20&#34;</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Segoe UI&#34;</span>)
 
 g3
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="add-labels--title">Add Labels &amp; Title</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g4 <span style="color:#f92672">&lt;-</span> g3 <span style="color:#f92672">+</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g4 <span style="color:#f92672">&lt;-</span> g3 <span style="color:#f92672">+</span> 
   <span style="color:#a6e22e">labs</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;I can&#39;t get no...&#34;</span>,
        subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Trust in goverment and satifaction with the media, 2017&#34;</span>,
        x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Trust the national goverment to do what is right for our country, % of respondents&#34;</span>,
@@ -1114,7 +1114,7 @@ g4
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="custom-point-colour">Custom Point Colour</h2>
 <p>To further replicate the original plot, we can also set colors and fill manually for points using <code>scale_color/fill_manual()</code>. Note that to do that, we need to specify a point shape that consist of area and border, such as shape 21. In the function, we can add values of the color/fill and labels for its respective color. We should also note that the order is based on the original level order in the data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g5 <span style="color:#f92672">&lt;-</span> g4 <span style="color:#f92672">+</span> <span style="color:#a6e22e">scale_color_manual</span>(values <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;#DE8321&#34;</span>,<span style="color:#e6db74">&#34;#1D84C6&#34;</span>,<span style="color:#e6db74">&#34;#0B743D&#34;</span>,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g5 <span style="color:#f92672">&lt;-</span> g4 <span style="color:#f92672">+</span> <span style="color:#a6e22e">scale_color_manual</span>(values <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;#DE8321&#34;</span>,<span style="color:#e6db74">&#34;#1D84C6&#34;</span>,<span style="color:#e6db74">&#34;#0B743D&#34;</span>,
                                          <span style="color:#e6db74">&#34;#000000&#34;</span>, <span style="color:#e6db74">&#34;#DA3411&#34;</span>,<span style="color:#e6db74">&#34;#04452D&#34;</span>),
                               <span style="color:#75715e"># we can provide custom label as well, respected to the data</span>
                               labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Asia &amp;\nOceania&#34;</span>, <span style="color:#e6db74">&#34;Europe&#34;</span>,<span style="color:#e6db74">&#34;Middle East &amp;\nNorth Africa&#34;</span>,
@@ -1130,7 +1130,7 @@ g5
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="customize-theme">Customize Theme</h2>
 <p>Next, we can tidy our plot using themes using the codes below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g6 <span style="color:#f92672">&lt;-</span> g5 <span style="color:#f92672">+</span> <span style="color:#a6e22e">theme</span>(
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g6 <span style="color:#f92672">&lt;-</span> g5 <span style="color:#f92672">+</span> <span style="color:#a6e22e">theme</span>(
 
   <span style="color:#75715e"># general</span>
   text <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Segoe UI&#34;</span>),
@@ -1169,13 +1169,13 @@ g6
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="guides--annotation">Guides &amp; Annotation</h2>
 <p>To have more flexibility in editing plot features such as legend, we can use <code>guides()</code> from ggplot2. There are various graphical features which you can apply guides into such as <code>guide_axis()</code>, <code>guide_colorbar()</code>, <code>guide_geoms()</code>, etc. We encourage you to visit the official ggplot2 documentation and explore it according to your needs on the net. Here, we will only use <code>guide_legend()</code> to custom our legend so that it will only display 1 row.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g7 <span style="color:#f92672">&lt;-</span> g6 <span style="color:#f92672">+</span> <span style="color:#a6e22e">guides</span>(color <span style="color:#f92672">=</span> <span style="color:#a6e22e">guide_legend</span>(nrow <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g7 <span style="color:#f92672">&lt;-</span> g6 <span style="color:#f92672">+</span> <span style="color:#a6e22e">guides</span>(color <span style="color:#f92672">=</span> <span style="color:#a6e22e">guide_legend</span>(nrow <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>))
 
 g7
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Last but not least, we can add text annotation into our plot using the function <code>annotate()</code> from ggplot2. There are various geoms you can annotate inside a plot, such as a rectangle, an arrow, a segment, etc. For a friendly introduction, you can refer to <a href="https://ggplot2.tidyverse.org/reference/annotate.html">R Graph Gallery - Annotations</a> or to the official <a href="https://ggplot2.tidyverse.org/reference/annotate.html">ggplot2 documentation</a>.</p>
 <p>Here, we will add annotations for the geometrical element <code>segment</code> and <code>text</code> for our trend line legend.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g8 <span style="color:#f92672">&lt;-</span> g7 <span style="color:#f92672">+</span> <span style="color:#a6e22e">annotate</span>(geom <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;segment&#34;</span>, <span style="color:#75715e"># making a line segment</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g8 <span style="color:#f92672">&lt;-</span> g7 <span style="color:#f92672">+</span> <span style="color:#a6e22e">annotate</span>(geom <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;segment&#34;</span>, <span style="color:#75715e"># making a line segment</span>
               x <span style="color:#f92672">=</span> <span style="color:#ae81ff">67</span>, xend <span style="color:#f92672">=</span> <span style="color:#ae81ff">69</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">13</span>, yend <span style="color:#f92672">=</span> <span style="color:#ae81ff">13</span>, <span style="color:#75715e"># position of segment </span>
               colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#77200b&#34;</span>, 
               size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
@@ -1187,7 +1187,7 @@ g7
               hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#75715e"># set the text on the right side of segment</span>
 </code></pre></div><h1 id="final-plot">Final Plot</h1>
 <p>Now let&rsquo;s display our final plot! We can display our plot with the desired height and width by specifying it in the R chunk setting. Below is the plot created with an R Markdown chunk setting <code>fig.height = 6, fig.width = 7</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g8
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">g8
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Thank you for reading and we hope this article can help you to create a more interesting visualization. We hope you can find the delight in exploring data visualization in R. Happy learning and coding!</p>
 
@@ -1396,18 +1396,12 @@ g7
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

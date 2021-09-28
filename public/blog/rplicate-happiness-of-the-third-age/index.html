@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -290,8 +290,8 @@
 <meta property="og:description" content="Have you ever wonder how far ggplot2 and other packages in R can go for data visualization? Here, we are introducing the Rplicate Series: a series of articles for data visualization in R using ggplot2 and other packages, in aim to replicate The Economist plot. The Economist is an international weekly newspaper that focuses on current affairs, international business, politics, and technology. Along with its article, various graphs were displayed with visuals that is captivating to the eye." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/rplicate-happiness-of-the-third-age/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2020-08-27T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2020-08-27T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2020-08-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-27T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -299,8 +299,8 @@
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Rplicate Series: Happiness of The Third Age">
-<meta itemprop="description" content="Have you ever wonder how far ggplot2 and other packages in R can go for data visualization? Here, we are introducing the Rplicate Series: a series of articles for data visualization in R using ggplot2 and other packages, in aim to replicate The Economist plot. The Economist is an international weekly newspaper that focuses on current affairs, international business, politics, and technology. Along with its article, various graphs were displayed with visuals that is captivating to the eye."><meta itemprop="datePublished" content="2020-08-27T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-08-27T00:00:00&#43;00:00" />
+<meta itemprop="description" content="Have you ever wonder how far ggplot2 and other packages in R can go for data visualization? Here, we are introducing the Rplicate Series: a series of articles for data visualization in R using ggplot2 and other packages, in aim to replicate The Economist plot. The Economist is an international weekly newspaper that focuses on current affairs, international business, politics, and technology. Along with its article, various graphs were displayed with visuals that is captivating to the eye."><meta itemprop="datePublished" content="2020-08-27T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-08-27T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1138">
 <meta itemprop="keywords" content="Data Visualization,Rplicate,ggplot2,ggrepel,extrafont,ggthemes,gridExtra," />
         
@@ -504,11 +504,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -875,10 +875,10 @@ if (!doNotTrack) {
 <p>Let&rsquo;s dive in below!</p>
 <h1 id="dataset">Dataset</h1>
 <p>The dataset used was a yearly record of suicides from male and female British pensioners per age group.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data.m <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/Suicide_Male.csv&#34;</span>, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data.m <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/Suicide_Male.csv&#34;</span>, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
 data.f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/Suicide_Female.csv&#34;</span>, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
 </code></pre></div><p>Let&rsquo;s get a glimpse of our data:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data.m)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data.m)
 </code></pre></div><pre><code>#&gt;   years X10.to.29 X30.to.44 X45.to.59 X60.to.74 X75.and.over
 #&gt; 1  1981       9.8      19.5      23.1      22.0         28.6
 #&gt; 2  1982       9.1      19.0      23.6      22.0         28.1
@@ -886,7 +886,7 @@ data.f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read
 #&gt; 4  1984       9.5      20.4      23.0      21.3         27.9
 #&gt; 5  1985      10.8      21.6      23.2      22.6         29.1
 #&gt; 6  1986      11.5      20.9      22.5      23.5         31.3
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data.f)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data.f)
 </code></pre></div><pre><code>#&gt;   years X10.to.29 X30.to.44 X45.to.59 X60.to.74 X75.and.over
 #&gt; 1  1981       3.0       8.5      15.0      16.2         13.6
 #&gt; 2  1982       3.2       8.4      13.9      15.4         14.2
@@ -899,7 +899,7 @@ data.f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read
 <h2 id="plotting-male-data">Plotting Male Data</h2>
 <p>From the original plot, we can see that there are several lines with different colors drawn on the plot. On making such lines, the original <code>geom_line()</code> function from <strong>ggplot2</strong> receives only one variable to distinguish each line on the plot. An option is to use <code>pivot_longer()</code> from <strong>tidyr</strong> package to transform the structure of our data from wide to long format.</p>
 <p>Another simpler option is to <strong>use multiple geom_line functions in our plot, layer-by-layer</strong>. This is a very convenient option moreover if you would like to really customize between each line by color, line type, width, etc. For example, using this option, you can set a line type for one line and leaving it to default for another. In this case, we will set a different color for each line, and a bolder line for the age group above 59.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(ggplot2)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(ggplot2)
 
 <span style="color:#75715e"># basic male plot</span>
 male <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> data.m, 
@@ -914,14 +914,14 @@ male
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Another tricky part here is to add text to our plot. We will be using <code>geom_text()</code> and customize its coordinates for each line. Notice that the coordinates were drawn from the estimated location from the plot. For example, the text for the line of age group 10-29 is approximately located in the 4th index of our data (the year 1984). From there, we can subset only that row of data and specify the value of x and y, and then increase/decrease its x and y value with <code>nudge_*</code>until we find the exact position. The subsetting step here is needed so our <code>geom_text()</code> function only makes one text for each line (not making for all 37 observations of our data). For the age group 45-59, we will also use the <code>geom_text_repel()</code> from <strong>ggrepel</strong> to make the text a little bit far from the actual line and draw a special point as mark.</p>
 <p>Additionally, we will also import our locale font library to R so that we can apply it for our <code>geom_text()</code>. We will need the additional package <strong>extrafont</strong>. Notice that the text fonts need to be customized manually inside its geom because <code>theme()</code> only applies to the non-data part of the plot.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(extrafont)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(extrafont)
 
 <span style="color:#75715e"># importing fonts to R</span>
 <span style="color:#75715e"># font_import() </span>
 
 <span style="color:#75715e"># load all fonts so it can be used</span>
 <span style="color:#a6e22e">loadfonts</span>(device <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;win&#34;</span>) 
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(ggrepel) <span style="color:#75715e"># extra library for text repel for 45-59 age group </span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(ggrepel) <span style="color:#75715e"># extra library for text repel for 45-59 age group </span>
 
 <span style="color:#75715e"># adding text</span>
 male1 <span style="color:#f92672">&lt;-</span> male <span style="color:#f92672">+</span>
@@ -951,7 +951,7 @@ male1 <span style="color:#f92672">&lt;-</span> male <span style="color:#f92672">
 male1
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Next, let&rsquo;s customize scales.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">male2 <span style="color:#f92672">&lt;-</span> male1 <span style="color:#f92672">+</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">male2 <span style="color:#f92672">&lt;-</span> male1 <span style="color:#f92672">+</span> 
   <span style="color:#a6e22e">scale_x_continuous</span>(breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">1981</span>,<span style="color:#ae81ff">2017</span>,<span style="color:#ae81ff">5</span>)) <span style="color:#f92672">+</span> <span style="color:#75715e"># sequence from 1981 to 2017, by 5</span>
   <span style="color:#a6e22e">scale_y_continuous</span>(position<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;right&#34;</span>, 
                      limits<span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">35</span>), 
@@ -961,7 +961,7 @@ male1
 male2
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Lastly, let&rsquo;s add labels and beautify our plot with themes. Luckily, there is already the <code>theme_economist_white()</code> from the <code>ggthemes</code> package.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(ggthemes)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(ggthemes)
 
 male3 <span style="color:#f92672">&lt;-</span> male2 <span style="color:#f92672">+</span> 
   <span style="color:#a6e22e">labs</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Happiness of the third age&#34;</span>, 
@@ -978,7 +978,7 @@ male3
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Whew! That was a lot of meticulous work! Now, making a female plot shouldn&rsquo;t be too hard.</p>
 <h2 id="plotting-female-data">Plotting Female Data</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">female <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> data.f, 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">female <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> data.f, 
                  mapping <span style="color:#f92672">=</span> <span style="color:#a6e22e">aes</span>(x<span style="color:#f92672">=</span>years)) <span style="color:#f92672">+</span> 
   <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(y<span style="color:#f92672">=</span>X10.to.29), size<span style="color:#f92672">=</span><span style="color:#ae81ff">1.5</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#6ecff6&#34;</span>) <span style="color:#f92672">+</span> 
   <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(y<span style="color:#f92672">=</span>X30.to.44), size<span style="color:#f92672">=</span><span style="color:#ae81ff">1.5</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#a6a8aa&#34;</span>) <span style="color:#f92672">+</span>
@@ -1003,7 +1003,7 @@ female
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="combining-female-and-male-plot">Combining Female and Male Plot</h2>
 <p>Below we can combine the male and female plot using <code>grid.arrange()</code> from gridExtra.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(gridExtra)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(gridExtra)
 
 <span style="color:#a6e22e">grid.arrange</span>(male3, female, nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
@@ -1226,18 +1226,12 @@ female
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

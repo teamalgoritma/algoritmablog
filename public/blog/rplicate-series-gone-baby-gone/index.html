@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -294,8 +294,8 @@ Let&rsquo;s dive in below!
 Load Packages These are the packages and some set up that we will use." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/rplicate-series-gone-baby-gone/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2020-11-25T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2020-11-25T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2020-11-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-25T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -305,8 +305,8 @@ Load Packages These are the packages and some set up that we will use." />
         <meta itemprop="name" content="Rplicate Series: Gone Baby Gone">
 <meta itemprop="description" content="Welcome again to the Rplicate Series! In this 4th article of the series, we will replicate The Economist plot titled &ldquo;Gone Baby Gone&rdquo;. In the process, we will explore ways to use transformed value as our axes, adding horizontal/vertical line, and making an elbow line (and generally more flexible) annotation for repelled texts.
 Let&rsquo;s dive in below!
-Load Packages These are the packages and some set up that we will use."><meta itemprop="datePublished" content="2020-11-25T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-11-25T00:00:00&#43;00:00" />
+Load Packages These are the packages and some set up that we will use."><meta itemprop="datePublished" content="2020-11-25T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-11-25T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1789">
 <meta itemprop="keywords" content="Data Visualization,Rplicate,ggplot2," />
         
@@ -510,11 +510,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -899,7 +899,7 @@ if (!doNotTrack) {
 <p>Let&rsquo;s dive in below!</p>
 <h1 id="load-packages">Load Packages</h1>
 <p>These are the packages and some set up that we will use.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tidyverse) <span style="color:#75715e"># for data wrangling</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tidyverse) <span style="color:#75715e"># for data wrangling</span>
 <span style="color:#a6e22e">library</span>(scales) <span style="color:#75715e"># customize axes in plot</span>
 <span style="color:#a6e22e">library</span>(ggrepel) <span style="color:#75715e"># add &amp; customize repelled text</span>
 <span style="color:#a6e22e">library</span>(ggthemes) <span style="color:#75715e"># provide previously made themes</span>
@@ -914,7 +914,7 @@ if (!doNotTrack) {
 <li>Population data: <a href="https://data.worldbank.org/indicator/SP.POP.TOTL?end=2018&amp;start=1996">https://data.worldbank.org/indicator/SP.POP.TOTL?end=2018&amp;start=1996</a></li>
 <li>GDP per Capita data: <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD">https://data.worldbank.org/indicator/NY.GDP.PCAP.CD</a></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_tfr <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;data_input/world_bank_fertility.csv&#34;</span>,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_tfr <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;data_input/world_bank_fertility.csv&#34;</span>,
                      skip <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
 data_pop <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;data_input/world_bank_pop.csv&#34;</span>,
                      skip <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
@@ -922,7 +922,7 @@ data_gdp <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">re
                      skip <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
 </code></pre></div><h2 id="data-preprocessing">Data Preprocessing</h2>
 <p>Since the article only use the population data from 2017, we will clean the data first.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># selecting data from 2017</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># selecting data from 2017</span>
 
 <span style="color:#75715e">## fertility rates</span>
 data_tfr <span style="color:#f92672">&lt;-</span> data_tfr <span style="color:#f92672">%&gt;%</span> 
@@ -954,7 +954,7 @@ data_gdp <span style="color:#f92672">&lt;-</span> data_gdp <span style="color:#f
 #&gt;  9 Armenia               1.60
 #&gt; 10 American Samoa       NA
 </code></pre><p>Next, we will combine the data while also removing NAs and arrange the data descendingly based on population:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">&lt;-</span> data_tfr <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">&lt;-</span> data_tfr <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">left_join</span>(data_pop) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">left_join</span>(data_gdp) <span style="color:#f92672">%&gt;%</span>  
   <span style="color:#a6e22e">na.omit</span>() <span style="color:#f92672">%&gt;%</span>                 
@@ -978,7 +978,7 @@ data_gdp <span style="color:#f92672">&lt;-</span> data_gdp <span style="color:#f
 #&gt; 10 Late-demographic dividend   1.71 2276319334  8943.
 #&gt; # ... with 30 more rows
 </code></pre><p>Look at the table above! Looks like we have some previously made clusters of countries in the data. To prevent redundancy, we need to remove them first.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">slice</span>(<span style="color:#f92672">-</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">18</span><span style="color:#f92672">:</span><span style="color:#ae81ff">43</span>))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">slice</span>(<span style="color:#f92672">-</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">18</span><span style="color:#f92672">:</span><span style="color:#ae81ff">43</span>))
 <span style="color:#a6e22e">head</span>(df,<span style="color:#ae81ff">10</span>)
 </code></pre></div><pre><code>#&gt; # A tibble: 10 x 4
 #&gt;    country              tfr        pop    gdp
@@ -997,7 +997,7 @@ data_gdp <span style="color:#f92672">&lt;-</span> data_gdp <span style="color:#f
 <h1 id="plotting">Plotting</h1>
 <h2 id="scatter-plot">Scatter Plot</h2>
 <p>First, we plot the data into scatter plot which the size of the dot indicating the population size.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> gdp, y <span style="color:#f92672">=</span> tfr, size <span style="color:#f92672">=</span> pop),
              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#62c9d8&#34;</span>,
@@ -1007,7 +1007,7 @@ p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="set-axis--aesthetic">Set Axis &amp; Aesthetic</h2>
 <p>As you can see above, the mapping between x and y values are quite extreme (forming a curve pointing at a position near zero at both axis). We can smooth the visualization by <strong>using transformed value for our axes</strong>. We will use the <em>log10 scale</em> for our x-axis since the values are high in range and possible for the transformation.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">scale_x_continuous</span>(trans <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;log10&#34;</span>, <span style="color:#75715e"># there are many more transformation function that you can explore!</span>
                      expand <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>,<span style="color:#ae81ff">0</span>), <span style="color:#75715e"># adjusting spaces on the min-max</span>
                      labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">number_format</span>(big.mark <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;,&#34;</span>), <span style="color:#75715e"># add comma to axis labels</span>
@@ -1015,7 +1015,7 @@ p
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Next, we can also set the y-axis:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">scale_y_continuous</span>(breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(from <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, to <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, by <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>),
                      limits <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">8.3</span>),
                      position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;right&#34;</span>,
@@ -1024,14 +1024,14 @@ p
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Following the transformation, we can also scale the aesthetic element <code>size</code> using <code>scale_size_continues()</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">scale_size_continuous</span>(range <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">16</span>))
 
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="line--annotation">Line &amp; Annotation</h2>
 <p>Next, we will add a horizontal line representing &ldquo;Replacement Fertility Level&rdquo; using <code>geom_hline()</code>. As a side note, you can use <code>geom_vline()</code> and set the <em>xintercept</em> aesthetic to add a vertical line.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_hline</span>(<span style="color:#a6e22e">aes</span>(yintercept<span style="color:#f92672">=</span> <span style="color:#ae81ff">2.1</span>),
              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#edb0ad&#34;</span>,
              linetype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dashed&#34;</span>,
@@ -1040,14 +1040,14 @@ p
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>We will also add text annotation for the line and the text below it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_text</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>,y <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.4</span>, label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Replacement fertility level&#34;</span>),
             color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#e07b78&#34;</span>,
             hjust <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;left&#34;</span>,
             size <span style="color:#f92672">=</span> <span style="color:#ae81ff">4.5</span>)
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_text</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Circle size = Population, 2017&#34;</span>),
             color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#8e9093&#34;</span>,
             hjust <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;left&#34;</span>,
@@ -1058,7 +1058,7 @@ p
 <h2 id="customize-repelled-text">Customize Repelled Text</h2>
 <p>Now we will highlights and add annotation for selected countries. Since the annotation line is an elbow shape, we need to be creative. To my best knowledge, there is no packages that can directly make an elbow annotation. I&rsquo;ll show you how to make one using a combination of <code>geom_text_repel()</code> and <code>geom_segment()</code>.</p>
 <p>We will manually add the text one by one based on how it positioned on the plot. First, let&rsquo;s add the Niger text which is quite simple compared to the others. Notice that we need to filter the data first so that we can custom the repelled text individually for each selected country.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
 df_niger <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Niger&#34;</span>)
 
 p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
@@ -1070,7 +1070,7 @@ p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Then we higlight the point of Niger by layering the plot using new <code>geom_point()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> gdp, y <span style="color:#f92672">=</span> tfr, size <span style="color:#f92672">=</span> pop),
              data <span style="color:#f92672">=</span> df_niger,
              shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,
@@ -1080,7 +1080,7 @@ p
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>The second one is for India and China. This one is more complicated for we have to create an elbow line. We can do that by using a combination of <code>geom_segment()</code> and <code>geom_text_repel()</code>. We first have to create a small vertical line as the starting point of the elbow line. We can use <code>geom_segment()</code> as seen below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
 df_inch <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(country <span style="color:#f92672">%in%</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;India&#34;</span>,<span style="color:#e6db74">&#34;China&#34;</span>))
 
 p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
@@ -1090,7 +1090,7 @@ p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>and then we can use <code>geom_text_repel()</code> to make the repelled text, following from the previously made position of <code>geom_segment()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_text_repel</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> gdp, y <span style="color:#f92672">=</span> tfr<span style="color:#ae81ff">-.7</span>, label <span style="color:#f92672">=</span> country),
                   data <span style="color:#f92672">=</span> df_inch,
                   nudge_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">-.3</span>,
@@ -1098,7 +1098,7 @@ p
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Do not forget to highlight the point:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(gdp, tfr, size <span style="color:#f92672">=</span> pop),
              data <span style="color:#f92672">=</span> df_inch,
              shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,
@@ -1118,7 +1118,7 @@ p
 <ul>
 <li>Japan &amp; United States</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
 df_japus <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(country <span style="color:#f92672">%in%</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Japan&#34;</span>,<span style="color:#e6db74">&#34;United States&#34;</span>))
 
 p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
@@ -1128,7 +1128,7 @@ p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span
                   direction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;y&#34;</span>)
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(gdp, tfr, size <span style="color:#f92672">=</span> pop),
              data <span style="color:#f92672">=</span> df_japus,
              shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,
@@ -1140,7 +1140,7 @@ p
 <ul>
 <li>Hongkong</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
 df_hongkong <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Hong Kong SAR, China&#34;</span>)
 df_hongkong <span style="color:#f92672">&lt;-</span> df_hongkong <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">mutate</span>(country <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hong Kong&#34;</span>)
 
@@ -1151,7 +1151,7 @@ p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span
                   direction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;y&#34;</span>)
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(gdp, tfr, size <span style="color:#f92672">=</span> pop),
              data <span style="color:#f92672">=</span> df_hongkong,
              shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,
@@ -1163,7 +1163,7 @@ p
 <ul>
 <li>Singapore</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
 df_sing <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Singapore&#34;</span>)
 
 p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
@@ -1172,7 +1172,7 @@ p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span
                color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;black&#34;</span>)
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_text_repel</span>(<span style="color:#a6e22e">aes</span>(gdp, tfr<span style="color:#ae81ff">-.5</span>, label <span style="color:#f92672">=</span> country),
                   data <span style="color:#f92672">=</span> df_sing,
                   color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;black&#34;</span>,
@@ -1181,7 +1181,7 @@ p
 
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(gdp, tfr, size <span style="color:#f92672">=</span> pop),
              data <span style="color:#f92672">=</span> df_sing,
              shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,
@@ -1194,7 +1194,7 @@ p
 <ul>
 <li>South Korea</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># filter the data to be used</span>
 df_kor <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Korea, Rep.&#34;</span>)
 df_kor <span style="color:#f92672">&lt;-</span> df_kor <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">mutate</span>(country <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;South Korea&#34;</span>)
 
@@ -1203,7 +1203,7 @@ p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span
                data <span style="color:#f92672">=</span> df_kor)
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_text_repel</span>(<span style="color:#a6e22e">aes</span>(gdp, tfr<span style="color:#ae81ff">-.5</span>, label <span style="color:#f92672">=</span> country),
                   data <span style="color:#f92672">=</span> df_kor,
                   nudge_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">-.3</span>,
@@ -1212,7 +1212,7 @@ p
 
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(gdp, tfr, size <span style="color:#f92672">=</span> pop),
              data <span style="color:#f92672">=</span> df_kor,
              shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,
@@ -1224,7 +1224,7 @@ p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="title--label">Title &amp; Label</h2>
 <p>Next we can add and customize title and label for the plot.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
    <span style="color:#a6e22e">labs</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Gone baby gone&#34;</span>,
        subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;GDP and fertility, 2017                                                                                                          Fertility Rate&#34;</span>,
        x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\n GDP per capita, $, log scale&#34;</span>, <span style="color:#75715e">#\n for adding space between axis and x-axis</span>
@@ -1235,13 +1235,13 @@ p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="plot-theme">Plot Theme</h2>
 <p>And as a finishing touch, we can customize theme for our plot.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">theme</span>(plot.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
         panel.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
         panel.grid.major.y <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_line</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gray80&#34;</span>))
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">theme</span>(axis.ticks.length.x <span style="color:#f92672">=</span> <span style="color:#a6e22e">unit</span>(<span style="color:#ae81ff">2</span>,<span style="color:#e6db74">&#34;mm&#34;</span>),
         axis.ticks.y <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
         axis.line.x <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_line</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;black&#34;</span>),
@@ -1249,12 +1249,12 @@ p
         axis.title.x <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;black&#34;</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>))
 p
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p <span style="color:#f92672">&lt;-</span> p <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">theme</span>(plot.title <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(face <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold&#34;</span>),
         plot.caption <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gray30&#34;</span>, hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>))
 </code></pre></div><h2 id="final-result">Final Result</h2>
 <p>Now let&rsquo;s display our final plot!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Thank you for reading and we hope this article can help you to create a more interesting visualization. We hope you can find the delight in exploring data visualization in R. Happy learning and coding!</p>
 
@@ -1463,18 +1463,12 @@ p
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

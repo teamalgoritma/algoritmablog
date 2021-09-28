@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -292,8 +292,8 @@ We need a better framework for our statistical thinking that is more transparent
 We need a better framework for our statistical thinking that is more transparent and flexible to use." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/bayesian-statistics-and-a-b-testing/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2021-03-08T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-03-08T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2021-03-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-03-08T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -302,8 +302,8 @@ We need a better framework for our statistical thinking that is more transparent
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Bayesian Statistics and A/B Testing">
 <meta itemprop="description" content="Introduction Statistics is one of the most essential tools in doing research. Statistics deals with uncertainty, both in our everyday life or in business operation. However, people sometimes discouraged from learning statistics because there are so much statistics test to remember. Sometimes people abuse this test by ignoring the underlying assumption. The following graph illustrate different kind of test for different situation1.
-We need a better framework for our statistical thinking that is more transparent and flexible to use."><meta itemprop="datePublished" content="2021-03-08T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2021-03-08T00:00:00&#43;00:00" />
+We need a better framework for our statistical thinking that is more transparent and flexible to use."><meta itemprop="datePublished" content="2021-03-08T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-03-08T00:00:00+00:00" />
 <meta itemprop="wordCount" content="10220">
 <meta itemprop="keywords" content="Statistics,Bayesian," />
         
@@ -507,11 +507,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -899,7 +899,7 @@ if (!doNotTrack) {
 <p>We need a better framework for our statistical thinking that is more transparent and flexible to use. Need no worry, there is a growing body of new kind of statistics that matched with our daily framework of thinking. This field is known as <code>Bayesian statistics</code>. In this article we will find out what Bayesian statistics is and how can we apply it in A/B testing for marketing purposes.</p>
 <h1 id="library-and-setup">Library and Setup</h1>
 <p>The following are the required libraries that will be used throughout the post.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Data Wrangling</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Data Wrangling</span>
 <span style="color:#a6e22e">library</span>(tidyverse)
 <span style="color:#a6e22e">library</span>(lubridate)
 
@@ -939,12 +939,12 @@ P(six) = \frac{1}{6}
 $$</p>
 <p>This frequentist probability assume that if you repeated flipping coin on infinite number of time you will approximately get those number. We can simulate what happen when we do coin flipping with different number of trials.</p>
 <p>First, we will toss a single coin. The <code>seed</code> will make sure that we can reproduce the random sampling.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Toss a single coin</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Toss a single coin</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 <span style="color:#a6e22e">sample</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Head&#34;</span>, <span style="color:#e6db74">&#34;Tail&#34;</span>), <span style="color:#ae81ff">1</span>)
 </code></pre></div><pre><code>#&gt; [1] &quot;Head&quot;
 </code></pre><p>Now we try to toss the coin 10 times and see the result. We can measure the probability by calculating how many head that we got in 10 trials. For this trials, we get the probability of head to be <strong>0.6</strong>. That&rsquo;s quite far from the theoretical probability that is 0.5. This is because the number of trials is to small. Let&rsquo;s try with the bigger one.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Sampling</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Sampling</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 flip_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Head&#34;</span>, <span style="color:#e6db74">&#34;Tail&#34;</span>), size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, replace <span style="color:#f92672">=</span> T)
 
@@ -962,7 +962,7 @@ prop_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">t
        )
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Here we try with 100 number of trials. The probability is getting closer to 0.5, although still quite far.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Sampling</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Sampling</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 flip_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Head&#34;</span>, <span style="color:#e6db74">&#34;Tail&#34;</span>), size <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>, replace <span style="color:#f92672">=</span> T)
 
@@ -980,7 +980,7 @@ prop_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">t
        )
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Now we will try with even bigger number of trials.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Sampling</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Sampling</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 flip_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Head&#34;</span>, <span style="color:#e6db74">&#34;Tail&#34;</span>), size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e4</span>, replace <span style="color:#f92672">=</span> T)
 
@@ -990,7 +990,7 @@ flip_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">s
 #&gt;   Head   Tail 
 #&gt; 0.5017 0.4983
 </code></pre><p>With 10,000 random coin flipping, the probability is getting very close to the theoretical one but still not close enough. We can try to simulate more coin flipping with 1,000,000.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Sampling</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Sampling</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 flip_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Head&#34;</span>, <span style="color:#e6db74">&#34;Tail&#34;</span>), size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e6</span>, replace <span style="color:#f92672">=</span> T)
 
@@ -1002,7 +1002,7 @@ flip_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">s
 </code></pre><p>To get very close to the theoretical probability, one must repeat the same experiment in infinite number of trials. The problem is, not all event or experiment can be done in such amount of trials. Some event may only happened once or it would be very hard to do experiment with plenty amount of trials due to limited resources. How do we measure the probability of a candidate would win the presidential election? We can&rsquo;t repeat the same election twice. What is the probability it will rain tomorrow? Or what if you come home and found out that your laptop is missing with your house back door opened. What is the probability of you getting robbed? Also, the probability 0.5 derived from getting 2 head from 4 trials and the probability from getting 500 head from 10 trials will give you different impression. You will be more likely to trust the later one.</p>
 <!-- raw HTML omitted -->
 <p>To answer such case, we need another method to measure uncertainty. But don&rsquo;t worry, we will not entirely throw away the previous concept of probability. Instead, we will improve upon it. Enter the Bayesian statistics.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Plot Background Set</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Plot Background Set</span>
 <span style="color:#a6e22e">theme_set</span>(<span style="color:#a6e22e">theme_pander</span>() <span style="color:#f92672">+</span> <span style="color:#a6e22e">theme</span>(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;top&#34;</span>))
 </code></pre></div><h2 id="bayesian-probability">Bayesian Probability</h2>
 <p>Instead of considering probability as a mere reflection of the frequency of a particular event, we can consider probability as a way to state our belief about something. Those belief can always change and be updated with new information.</p>
@@ -1079,7 +1079,7 @@ P(Test\ Positive) = \frac{1950}{10000} = 0.195\<br>
 P(Test\ Positive| Covid) = \frac{450}{500} = 0.9
 $$</p>
 <p>Finally, we can get the probability that someone is actually getting a COVID-19 while tested positive</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p_covid <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">500</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10000</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p_covid <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">500</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10000</span>
 p_positive <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1950</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10000</span>
 p_positive_covid <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">450</span><span style="color:#f92672">/</span><span style="color:#ae81ff">500</span>
 
@@ -1106,7 +1106,7 @@ $$</p>
 <p>An event always have a counterpart. For example, the probability of landing a head in coin flip has the counterpart of landing a tail. In throwing dice, there are six possible values of the dice that can happened. Each event will have its own probability to happen. Sometimes they are equally likely to happen, sometimes they don&rsquo;t. The spread of this probability for each event or some values is called the <code>probability distribution</code>. There are many kind of probability distribution, but for this post we will only consider on 3 kind of it: uniform distribution, binomial distribution, and beta distribution.</p>
 <h3 id="uniform-distribution">Uniform Distribution</h3>
 <p>A uniform distribution means that all possible outcomes are equally likely to occur. Example of this is when we flip a coin or throwing a dice. To illustrate this, imagine you are throwing a dice for 1,000,000 times and count the number of each side of the dice that occur. All side of dice will eventually have the same amount of chance to happen.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Sampling</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Sampling</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 flip_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">6</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e6</span>, replace <span style="color:#f92672">=</span> T)
 
@@ -1119,7 +1119,7 @@ flip_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">s
        )
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>We can directly get and visualize the probability for each event using <code>dunif()</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_unif <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dunif</span>(x, min <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, max <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_unif <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dunif</span>(x, min <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, max <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>)
 
 <span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">6</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(y <span style="color:#f92672">=</span> <span style="color:#a6e22e">fun_unif</span>(x)) <span style="color:#f92672">%&gt;%</span> 
@@ -1134,7 +1134,7 @@ flip_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">s
 <h3 id="binomial-distribution">Binomial Distribution</h3>
 <p>Different probability distribution can be used for different context. In coin flipping case or other binary outcome trials, there is the famous <code>binomial distribution</code>. Let&rsquo;s imagine you are flipping ten coins consecutively. From the ten flips, what is the probability that you will get 5 heads and 5 tails? What is the probability of landing 7 heads and 3 tails? Such question can be answered by the binomial distribution.</p>
 <p>Let&rsquo;s do some simulation. In this part, we will create a simulation of 10 coin flips and calculate how many heads that we get. We assume that the coin is fair with both head and tail are equally likely to come out. After we calculate how many heads we get, we do another 10 coin flips experiment. We repeat this process for 10,000 times. After the experiment end, how many of the trials resulted in 5 heads, how many resulted in 3 heads, etc. The following figure show the result of the simulations.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Simulating 10 coin flips trials for 10,000 times</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Simulating 10 coin flips trials for 10,000 times</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 flip_coin <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">map</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1e4</span>, 
                  <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">sample</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Head&#34;</span>, <span style="color:#e6db74">&#34;Tail&#34;</span>), size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, replace <span style="color:#f92672">=</span> T)
@@ -1163,10 +1163,10 @@ $$</p>
 <li><code>p</code>: Probability of a single success</li>
 </ul>
 <p>We can generate the probability distribution directly using <code>dbinom()</code>. For example, if we want to get the probability of landing 5 head from 10 trials if probability of getting a head is 0.5 is as follows.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">dbinom</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0.5</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">dbinom</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0.5</span>)
 </code></pre></div><pre><code>#&gt; [1] 0.2460938
 </code></pre><p>We can visualize the probability for each event.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_binom <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbinom</span>(x, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, prob <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_binom <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbinom</span>(x, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, prob <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)
 
 <span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(y <span style="color:#f92672">=</span> <span style="color:#a6e22e">fun_binom</span>(x)) <span style="color:#f92672">%&gt;%</span> 
@@ -1181,7 +1181,7 @@ $$</p>
 <h3 id="beta-distribution">Beta Distribution</h3>
 <p>Often, we are more interested in finding the probability or the value of certain parameters instead of simulating the outcome. If we know the probability of a single coin flip, we can find the probability of landing 5 heads in 10 trials. But what if all we have is the data? Can we determine the probability of a coin flip if all we know is that it give us 8 heads in 10 trials? That&rsquo;s the question statistics want to solve, finding the value of a parameter given the data.</p>
 <p>Consider the following case. Your friend said that he is super smart and able to answer any questions that you throw at him. To back up his claim, he ask you to ask him anything from your favorite meal to the MVP of the NBA in 1971. You give him 10 different questions and he is able to answer 8 of them. After you know the result, do you really  believe that your friend is crazy smart or just being lucky? In this case, you know the outcome of the trial but you don&rsquo;t know what is the probability of him being correct. We can try to answer that questions by try different probabilities using grid search. We try to test 100 different parameter p (probability of being superhuman) from 0 to 1.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">prob_value <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0.01</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">prob_value <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0.01</span>)
 
 fun_binom <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbinom</span>(<span style="color:#ae81ff">8</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, prob <span style="color:#f92672">=</span> x)
 
@@ -1203,7 +1203,7 @@ $$</p>
 </ul>
 <p>The total number of trials is <code>\(\alpha\)</code> + <code>\(\beta\)</code>. This is different than the binomial distribution, where we have <code>k</code> observations we are interested in and a finite number of <code>n</code> total trials.</p>
 <p>We will once again draw the previous superhuman guessing case with beta distribution. With beta distribution, we get the smooth curve that display the density for each parameter p of your friend being superhuman, which peaked at around 0.85. This means that the <code>binomial(8, 10, 0.85)</code> has the best chance at explaining your friend amazing guess.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">2</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">2</span>)
 
 <span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
@@ -1218,7 +1218,7 @@ $$</p>
 <h2 id="prior">Prior</h2>
 <p>The prior represent the strength of our belief before we see the data. You can have a strong belief that the probability should be somewhere around certain values. You can also have a weak belief about any values so you consider that all values of the probability are equally possible. A prior is said to be <code>weak</code> prior when the probability is widely distributed while a <code>strong</code> prior tend to concentrated in certain areas.</p>
 <p>Suppose we are interested in doing 10 coin flip and see if the coin is fair (have 50:50 chance to land a head) and not being manipulated. Before we do the experiment, we might have some belief about the possible values of the probability of landing a head. Then we convert our prior belief into a probability distribution. The most conservative prior is when we consider all probabilities between 0 and 1 are equally possible. This kind of prior is considered as a <code>weak</code> prior and can be illustrated by the <code>Beta(1,1)</code> distribution as follows.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
 
 <span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
@@ -1232,7 +1232,7 @@ $$</p>
 <!-- raw HTML omitted -->
 <p>Now that we understand that a <code>noninformative prior</code> is potentially dangerous for us, we can try to create another weak prior but with some of our personal belief. We can use <code>Beta(3,3)</code> for example to state that we believe the chance of landing a head and landing a tail is equal so the probability of landing a head would be somewhere around 0.5 but we still allow other possibility to happen. If we are strongly believe that a coin flip should result in 50:50 chance of landing a head, we can use stronger prior by using <code>Beta(50,50)</code>. Increasing the shape parameter of the beta distribution of the prior will give us a stronger prior. A strong prior will require more data to be dismissed.</p>
 <p>We can visualize all of the mentioned priors. As you can see, the stronger prior will give us a more concentrated probability distribution compared to the weaker one.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)
 fun_beta3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">50</span>)
 
 <span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e4</span>)) <span style="color:#f92672">%&gt;%</span> 
@@ -1252,14 +1252,14 @@ fun_beta3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">f
 <p>$$
 Tail\ Head\ Head\ Tail\ Head\ Head\ Tail\ Head\ Head\ Head
 $$</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">result <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;tail&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;tail&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;tail&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">result <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;tail&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;tail&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;tail&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>, <span style="color:#e6db74">&#34;head&#34;</span>)
 
 <span style="color:#a6e22e">table</span>(result)
 </code></pre></div><pre><code>#&gt; result
 #&gt; head tail 
 #&gt;    7    3
 </code></pre><p>Let&rsquo;s visualize the likelihood of us seeing 10 trials with 7 head and 3 tails given our belief of the probability of getting a head. Given our parameter of <code>p</code> (probability of landing a head), how likely it is to get  head and 3 tails?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_obs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">3</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_obs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">3</span>)
 
 <span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
@@ -1271,7 +1271,7 @@ $$</p>
 <p>Higher density shows that it is more likely that we will see 7 head and 3 tails in 10 trials if the probability of landing a head is around 0.75. We will be less likely to see such even of 7 heads and 3 tails if the probability of landing a head is 0.3 and it is even impossible to see such event if the probability of landing a head is close to 1.</p>
 <h2 id="posterior-and-parameter-estimation">Posterior and Parameter Estimation</h2>
 <p>We have understand what a prior and what a likelihood is. A prior is our belief before see the data, a likelihood reflect how likely will we get the data given our belief. Let&rsquo;s put the prior and the likelihood in the same plot as follows. So how do we calculate the posterior distribution from this information?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e4</span>)) <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e4</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(<span style="color:#e6db74">&#34;Prior Beta(3,3)&#34;</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">map_dbl</span>(x, fun_beta2),
          Likelihood <span style="color:#f92672">=</span> <span style="color:#a6e22e">map_dbl</span>(x, fun_obs)
          ) <span style="color:#f92672">%&gt;%</span> 
@@ -1299,7 +1299,7 @@ $$</p>
 Beta(\alpha_{posterior}, \beta_{posterior}) = Beta(3 + 7, 3 + 3) = Beta(10, 6)
 $$</p>
 <p>We can visualize the posterior probability distribution to see which value of parameter p (probability of landing a head) is mot likely to be.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_posterior <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">6</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_posterior <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">6</span>)
 
 <span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
@@ -1312,19 +1312,19 @@ $$</p>
 <blockquote>
 <p>A Monte Carlo simulation is any technique that makes use of random sampling to solve a problem. Each sample is chosen based on its probability in the distribution so that samples in a high-probability region will appear more frequently.</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">n_trial <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1e6</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">n_trial <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1e6</span>
 
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 sample_post <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbeta</span>(n <span style="color:#f92672">=</span> n_trial, <span style="color:#ae81ff">3+7</span>, <span style="color:#ae81ff">3+3</span>)
 </code></pre></div><p>Bayesian loves to work with distribution instead of a single point value. To summarize our posterior distribution, we will use something called <code>Credibility Interval</code>. A credibility interval is a lower and upper bound of values describing a range of high probability, usually 95%, 99%, or 90%. The choice of the percentage is arbitrary and there is no set of rule for it. Most of the time it is just a consensus. In the following example, 95% credibility interval is just our way of saying that there is 95% chance that probability of landing a head is between 0.383 and 0.836.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;95% Credibility Interval of the Posterior Probability\n&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;95% Credibility Interval of the Posterior Probability\n&#34;</span>)
 </code></pre></div><pre><code>#&gt; 95% Credibility Interval of the Posterior Probability
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_post, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.025</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.975</span>))
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_post, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.025</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.975</span>))
 </code></pre></div><pre><code>#&gt;      2.5%       50%     97.5% 
 #&gt; 0.3834289 0.6304564 0.8365127
 </code></pre><p><code>Credibility Intervals</code> is different from the frequentist approach of <code>Confidence Intervals</code>.</p>
 <p>Let&rsquo;s visualize the posterior distribution with the 95% credibility interval from the noninformative prior <code>Beta(1,1)</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e4</span>)) <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e4</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(post <span style="color:#f92672">=</span>  <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">3+7</span>, <span style="color:#ae81ff">3+3</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">ggplot</span>(<span style="color:#a6e22e">aes</span>(x, post)) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_ribbon</span>(<span style="color:#a6e22e">aes</span>(xmin <span style="color:#f92672">=</span> x, xmax <span style="color:#f92672">=</span> x, ymin <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, ymax <span style="color:#f92672">=</span> post),
@@ -1338,7 +1338,7 @@ sample_post <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
   <span style="color:#a6e22e">scale_x_continuous</span>(breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0.1</span>))
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>You can also see that the posterior probability is just the product between the prior and the likelihood.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e4</span>)) <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e4</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(Prior <span style="color:#f92672">=</span> <span style="color:#a6e22e">map_dbl</span>(x, fun_beta2),
          Likelihood <span style="color:#f92672">=</span> <span style="color:#a6e22e">map_dbl</span>(x, fun_obs),
          Posterior <span style="color:#f92672">=</span> <span style="color:#a6e22e">map_dbl</span>(x, <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">3+7</span>, <span style="color:#ae81ff">3+3</span>) )
@@ -1352,7 +1352,7 @@ sample_post <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
        subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;With Prior Beta(3,3)&#34;</span>,
        fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>) 
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e4</span>)) <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e4</span>)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(Prior <span style="color:#f92672">=</span> <span style="color:#a6e22e">map_dbl</span>(x, fun_beta3),
          Likelihood <span style="color:#f92672">=</span> <span style="color:#a6e22e">map_dbl</span>(x, fun_obs),
          Posterior <span style="color:#f92672">=</span> <span style="color:#a6e22e">map_dbl</span>(x, <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">50+7</span>, <span style="color:#ae81ff">50+3</span>) )
@@ -1367,7 +1367,7 @@ sample_post <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
        fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>) 
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>We can visualize the posterior probability for different priors. The posterior distribution will consider both priors and the observed data. As you can see, if you have a weak prior or even uninformative prior with <code>Beta(1,1)</code>, the result will be more influenced by the data, with the 95% credibility interval located between 0.389 to 0.891 with the median is located at 0.676, close to 0.7 or 70%. With stronger prior, the data become less relevant because with the small sample we have is not enough to outweigh the priors, as we can see at the prior <code>Beta(50,50)</code> that only slightly tilted to the right side but still pretty much concentrated between 0.384 to 0.782. Strong priors should only be used if you have a strong argument to justify it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">1+7</span>, <span style="color:#ae81ff">1+3</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">1+7</span>, <span style="color:#ae81ff">1+3</span>)
 fun_beta2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">3+7</span>, <span style="color:#ae81ff">3+3</span>)
 fun_beta3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">50+7</span>, <span style="color:#ae81ff">50+3</span>)
 
@@ -1386,7 +1386,7 @@ fun_beta3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">f
        y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Density&#34;</span>, x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Probability&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Here we can compile the 95% credibility interval from each posterior distribution.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 sample_b1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbeta</span>(n <span style="color:#f92672">=</span> n_trial, <span style="color:#ae81ff">1+7</span>, <span style="color:#ae81ff">1+3</span>)
 sample_b2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbeta</span>(n <span style="color:#f92672">=</span> n_trial, <span style="color:#ae81ff">3+7</span>, <span style="color:#ae81ff">3+3</span>)
 sample_b3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbeta</span>(n <span style="color:#f92672">=</span> n_trial, <span style="color:#ae81ff">50+7</span>, <span style="color:#ae81ff">50+3</span>)
@@ -1405,7 +1405,7 @@ sample_b3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">r
 #&gt; 50%   0.6763476   0.6304491    0.6304491
 #&gt; 97.5% 0.8908559   0.8369329    0.8369329
 </code></pre><p>We have observed with a small sample of data, the prior still have some effect toward the posterior. However, as you have more and more data, the prior become less relevant. The following figure shows the posterior distribution with the same prior but now we have a result of 1,000 trials with 700 head and 300 tails. Observe how the posterior distribution become very close to each other and favor more toward the observed data. That&rsquo;s how we intuitively think in real life. With small data, we might have some doubt since the data contradicts our previous belief. However, as more data comes in, our belief start to change and now we believe more toward the new information from the data. Stronger prior believe will require more data to convince.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">1+700</span>, <span style="color:#ae81ff">1+300</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">1+700</span>, <span style="color:#ae81ff">1+300</span>)
 fun_beta2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">3+700</span>, <span style="color:#ae81ff">3+300</span>)
 fun_beta3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">50+700</span>, <span style="color:#ae81ff">50+300</span>)
 
@@ -1437,7 +1437,7 @@ fun_beta3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">f
 </ul>
 <h2 id="case-study-udacity-landing-page">Case Study: Udacity Landing Page</h2>
 <p>The study case is from Udacity&rsquo;s Course and the data is acquired from <a href="https://github.com/erdiolmezogullari/ml-ab-testing">erdiolmezogullari</a>. The data contain A/B testing result of creating two different landing page layout. We will check if the new variant of the landing page can give us better conversion rate.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_ab <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/ab_data.csv&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_ab <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/ab_data.csv&#34;</span>)
 
 <span style="color:#a6e22e">glimpse</span>(data_ab)
 </code></pre></div><pre><code>#&gt; Rows: 294,478
@@ -1457,7 +1457,7 @@ fun_beta3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">f
 </ul>
 <h3 id="data-preprocessing">Data Preprocessing</h3>
 <p>For the start, we will do some data preprocessing before analyzing the data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_ab <span style="color:#f92672">&lt;-</span> data_ab <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_ab <span style="color:#f92672">&lt;-</span> data_ab <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(timestamp <span style="color:#f92672">=</span> <span style="color:#a6e22e">ymd_hms</span>(timestamp),
          hour <span style="color:#f92672">=</span> <span style="color:#a6e22e">hour</span>(timestamp),
          day <span style="color:#f92672">=</span> <span style="color:#a6e22e">wday</span>(timestamp, label <span style="color:#f92672">=</span> T),
@@ -1484,18 +1484,18 @@ fun_beta3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">f
 #&gt;                    Max.   :1.0000   Max.   :23.00   Fri:40159  
 #&gt;                                                     Sat:40185
 </code></pre><p>Let&rsquo;s check the frequency of each control group and the landing page presented. The user who belong to <code>control</code> group should get the <code>old page</code> landing page while the <code>treatment</code> group should get the <code>new page</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">table</span>(<span style="color:#e6db74">&#34;Landing Page&#34;</span> <span style="color:#f92672">=</span> data_ab<span style="color:#f92672">$</span>landing_page, <span style="color:#e6db74">&#34;Group&#34;</span> <span style="color:#f92672">=</span> data_ab<span style="color:#f92672">$</span>group)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">table</span>(<span style="color:#e6db74">&#34;Landing Page&#34;</span> <span style="color:#f92672">=</span> data_ab<span style="color:#f92672">$</span>landing_page, <span style="color:#e6db74">&#34;Group&#34;</span> <span style="color:#f92672">=</span> data_ab<span style="color:#f92672">$</span>group)
 </code></pre></div><pre><code>#&gt;             Group
 #&gt; Landing Page control treatment
 #&gt;     New Page    1928    145311
 #&gt;     Old Page  145274      1965
 </code></pre><p>Looks like some users are directed in the wrong landing page, so we will filter the data that get the correct landing page only.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_ab <span style="color:#f92672">&lt;-</span> data_ab <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_ab <span style="color:#f92672">&lt;-</span> data_ab <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">filter</span>((group <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;control&#34;</span> <span style="color:#f92672">&amp;</span> landing_page <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Old Page&#34;</span>) <span style="color:#f92672">|</span>
            (group <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;treatment&#34;</span> <span style="color:#f92672">&amp;</span> landing_page <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;New Page&#34;</span>)
            )
 </code></pre></div><p>Let&rsquo;s continue by checking if there are any missing values in our data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_ab <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_ab <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">is.na</span>() <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">colSums</span>()
 </code></pre></div><pre><code>#&gt;      user_id    timestamp        group landing_page    converted         hour 
@@ -1504,12 +1504,12 @@ fun_beta3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">f
 #&gt;            0
 </code></pre><h3 id="exploratory-data-analysis">Exploratory Data Analysis</h3>
 <p>Check how many number of users in each group to see if the group is balanced.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">table</span>(<span style="color:#e6db74">&#34;Group&#34;</span> <span style="color:#f92672">=</span> data_ab<span style="color:#f92672">$</span>group)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">table</span>(<span style="color:#e6db74">&#34;Group&#34;</span> <span style="color:#f92672">=</span> data_ab<span style="color:#f92672">$</span>group)
 </code></pre></div><pre><code>#&gt; Group
 #&gt;   control treatment 
 #&gt;    145274    145311
 </code></pre><p>Let&rsquo;s check the conversion rate by hour and weekdays to see if there are any specific time where the conversion rate increase.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_ab <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_ab <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">group_by</span>(day, hour, landing_page) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">summarise</span>(converted <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(converted)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">ungroup</span>() <span style="color:#f92672">%&gt;%</span> 
@@ -1524,7 +1524,7 @@ fun_beta3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">f
 <p>It looks like there is no apparent change between the old page variant and the new page variant based on the heatmap. However, we will test it using the Bayesian hypothesis testing.</p>
 <h3 id="hypothesis-testing">Hypothesis Testing</h3>
 <p>First we collect all the conversion result from each variant.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">variant_a <span style="color:#f92672">&lt;-</span> data_ab <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">variant_a <span style="color:#f92672">&lt;-</span> data_ab <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">filter</span>(landing_page <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Old Page&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">pull</span>(converted)
 
@@ -1533,7 +1533,7 @@ variant_b <span style="color:#f92672">&lt;-</span> data_ab <span style="color:#f
   <span style="color:#a6e22e">pull</span>(converted)
 </code></pre></div><h4 id="prior-1">Prior</h4>
 <p>Next, we need to define our prior for the conversion rate. This prior must not come from the observed data from the experiment but instead should come from our believe, which can be based on some historical data or other external information source, such as from online survey. Since we don&rsquo;t have any data before do the AB testing, let&rsquo;s say that we believe that our conversion rate should be around 10%, for every 100 people that land on our website, 10 people will subscribe for the content.  We then translate this into a prior probability distribution. We can use a weak prior since we are not really sure that our landing page could achieve those number and perhaps there are other factors that will cause a better or worse conversion. We will use <code>Beta(2, 8)</code> for our prior probability distribution. Remember that when we use <code>beta</code> distribution for a binary trial, the first shape represent the number of success or converted while the second is the number of not success.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">8</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">8</span>)
 
 <span style="color:#a6e22e">data.frame</span>() <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
@@ -1542,7 +1542,7 @@ variant_b <span style="color:#f92672">&lt;-</span> data_ab <span style="color:#f
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h4 id="observed-data">Observed Data</h4>
 <p>Next, we can check the conversion rate based on the observed data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_agg <span style="color:#f92672">&lt;-</span> data_ab <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_agg <span style="color:#f92672">&lt;-</span> data_ab <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">group_by</span>(group, landing_page) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">summarise</span>(total_visit <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>(),
             conversion <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(converted),
@@ -1564,7 +1564,7 @@ data_agg
 Beta(\alpha_{posterior}, \beta_{posterior}) = Beta(\alpha_{prior} + \alpha_{likelihood}, \beta_{prior} + \beta_{likelihood})
 $$</p>
 <p>We will visualize the density curve for the posterior probability of each variant. The distribution represent all possible values of conversion rate for each variant. The higher the density for a single parameter of conversion rate, the more likely that those conversion rate are the conversion rate of the variant. For example, in the following figure we can see that the conversion rate of the Old Page variant is more likely to be somewhere around 12% to 12.25% because the density is higher in those region.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">prior_alpha <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">prior_alpha <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>
 prior_beta <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">8</span>
 
 fun_beta_old <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, prior_alpha <span style="color:#f92672">+</span> data_agg<span style="color:#f92672">$</span>conversion[1], prior_beta <span style="color:#f92672">+</span> data_agg<span style="color:#f92672">$</span>not_converted[1])
@@ -1588,7 +1588,7 @@ fun_beta_new <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e
 <p>Clearly, our data suggests that variant A (the old landing page) is superior, in that it garners a higher conversion rate. However, we know that the true conversion rate is one of a range of possible values. We can also see here that there is an overlap between the possible true conversion rates for the old variant and the new variant. What if we were just unlucky in our variant B (new landing page) responses, and variant B&rsquo;s true conversion rate is in fact much higher? What if we were also just lucky with variant A, and its conversion rate is in fact much lower? It is easy to see a possible world in which variant A is actually the better variant, even though it did worse on our test. So the real question is: how sure can we be that variant B is the better variant?</p>
 <p>To answer such question, we will simulate the posterior using the Monte-Carlo simulation with 1,000,000 trials. We are going to randomly sample from the two distributions, where each sample is chosen based on its probability in the distribution so that samples in a high-probability region will appear more frequently.</p>
 <p>We can see the distribution of the posterior in each variant. The values represent the estimated parameter of conversion rate in each variant. If you want to take a single value for the estimated parameter, you can choose the median or the 50% percentile of the conversion rate. For variant A, that would be around 12.04% while for variant B is around 11.88%.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">n_trial <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1e6</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">n_trial <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1e6</span>
 
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 sample_old <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbeta</span>(n <span style="color:#f92672">=</span> n_trial, prior_alpha <span style="color:#f92672">+</span> data_agg<span style="color:#f92672">$</span>conversion[1], prior_beta <span style="color:#f92672">+</span> data_agg<span style="color:#f92672">$</span>not_converted[1])
@@ -1596,30 +1596,30 @@ sample_new <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 
 <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;Posterior Probability Distribution of Variant A (Old Page)\n&#34;</span>)
 </code></pre></div><pre><code>#&gt; Posterior Probability Distribution of Variant A (Old Page)
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_old)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_old)
 </code></pre></div><pre><code>#&gt;        0%       25%       50%       75%      100% 
 #&gt; 0.1162741 0.1198146 0.1203893 0.1209656 0.1246456
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;\nPosterior Probability Distribution of Variant B (New Page)\n&#34;</span>)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;\nPosterior Probability Distribution of Variant B (New Page)\n&#34;</span>)
 </code></pre></div><pre><code>#&gt; 
 #&gt; Posterior Probability Distribution of Variant B (New Page)
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_new)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_new)
 </code></pre></div><pre><code>#&gt;        0%       25%       50%       75%      100% 
 #&gt; 0.1147905 0.1182400 0.1188111 0.1193842 0.1228733
 </code></pre><p>It is better to present the parameter as a probability distribution rather than a single value because by then, you can determine the credible interval or the most likely range of value of the conversion rate. The 90% credible interval for variant A can be interpreted as <em>90% of all possible values of conversion rate are located between 11.89% and 12.18%</em> while for variant B it is somewhere between 11.74% and 12.02%.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;90% Credible Interval of Variant A (Old Page)\n&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;90% Credible Interval of Variant A (Old Page)\n&#34;</span>)
 </code></pre></div><pre><code>#&gt; 90% Credible Interval of Variant A (Old Page)
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_old, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.95</span>))
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_old, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.95</span>))
 </code></pre></div><pre><code>#&gt;        5%       95% 
 #&gt; 0.1189921 0.1217993
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;\n90% Credible Interval of Variant B (New Page)\n&#34;</span>)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;\n90% Credible Interval of Variant B (New Page)\n&#34;</span>)
 </code></pre></div><pre><code>#&gt; 
 #&gt; 90% Credible Interval of Variant B (New Page)
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_new, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.95</span>))
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_new, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.95</span>))
 </code></pre></div><pre><code>#&gt;        5%       95% 
 #&gt; 0.1174202 0.1202123
 </code></pre><h5 id="improvement">Improvement</h5>
 <p>To see how many times variant A produce better conversion rate than B, we can use the ratio between the total number of variant A beat variant B divided by the number of trials. This value is equivalent with the <em>p-value</em> that you may have encounter when using the NHST method. However, this value is easier to interpret and pretty intuitive compared to p-value, which mostly has been misunderstood.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p_a_superior <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sum</span>(sample_old <span style="color:#f92672">&gt;</span> sample_new) <span style="color:#f92672">/</span> n_trial
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p_a_superior <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sum</span>(sample_old <span style="color:#f92672">&gt;</span> sample_new) <span style="color:#f92672">/</span> n_trial
 p_a_superior
 </code></pre></div><pre><code>#&gt; [1] 0.905237
 </code></pre><p>What we see here is that in 90 percent of the 1,000,000 trials, variant A was superior. We can imagine this as looking at 1,000,000 possible worlds. Based on the distribution of possible conversion rates for each variant, in 90 percent of the worlds variant A was the better of the two. This result shows that we have a pretty strong belief based on our prior belief and the observed data that the old variant or the old landing page is the better variant. It turns out that variant B is no better than our old variant A.</p>
@@ -1627,7 +1627,7 @@ p_a_superior
 <p>$$
 Improvement\ A\ over\ B = \frac{A-B}{B}
 $$</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Calculate the improvement</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Calculate the improvement</span>
 sample_diff <span style="color:#f92672">&lt;-</span> (sample_old <span style="color:#f92672">-</span> sample_new) <span style="color:#f92672">/</span> sample_new
 
 <span style="color:#75715e"># Get the density</span>
@@ -1659,15 +1659,15 @@ df_diff <span style="color:#f92672">%&gt;%</span>
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>The result is the same with our previous step. Here we still can see that the variant A is better than variant B in 90.52% of all trials. The x-axis shows the percentage of how much A is better than B in term of the conversion rates. Most of the times variant A is better but sometimes variant B is also better.</p>
 <p>We can create the credible interval of the percentage. Based on the 90% credibility interval, improvement of variant A over variant B is ranging from -0.33% to 3.02%.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Credible Interval</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Credible Interval</span>
 
 <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;90% Credible Interval of (A - B)/B\n&#34;</span>)
 </code></pre></div><pre><code>#&gt; 90% Credible Interval of (A - B)/B
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_diff, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.95</span>))
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(sample_diff, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.95</span>))
 </code></pre></div><pre><code>#&gt;           5%          95% 
 #&gt; -0.003346881  0.030199500
 </code></pre><p>We can also use the cumulative probability for more analysis. For example, using the cumulative probability curve we can expect that there is 25% chance that variant A is 2% better than variant B.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>( <span style="color:#a6e22e">ecdf</span>(sample_diff), 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>( <span style="color:#a6e22e">ecdf</span>(sample_diff), 
       xlab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Improvement&#34;</span>, ylab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cumulative Probability&#34;</span>,
       main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cumulative Probability of variant A over variant B&#34;</span>)
 <span style="color:#a6e22e">abline</span>(h <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)
@@ -1678,7 +1678,7 @@ df_diff <span style="color:#f92672">%&gt;%</span>
 <p>Based on our analysis so far, we have see no evidence that variant B or the new design of the landing page can give us better conversion rate, in fact there is a great chance that it would perform worse than the old design of the landing page. It would be better if we go back to the old landing page and try another new variant to test. Using the bayesian statics, we are not only capable of estimating the conversion rates and see if variant A is better than B. We can go further by inspecting how much variant A is better than B and is there a high chance that variant A is really better than B? Are we willing to risk our money based on our finding?</p>
 <h5 id="using-bayesab-package">Using <code>bayesAB</code> package</h5>
 <p>We have shown so far that it is really easy to build a Bayesian hypothesis testing by our own. Alternatively, instead of writing the code from scratch to do the hypothesis testing, we can use the <code>bayesTest()</code> function from the <code>bayesAB</code> package. The function will give us the comprehensive result of what we have done previously.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Fit bernoulli test</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Fit bernoulli test</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 AB1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bayesTest</span>(variant_a, <span style="color:#75715e"># variant A</span>
                  variant_b, <span style="color:#75715e"># variant B</span>
@@ -1728,11 +1728,11 @@ AB1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bayesTe
 <li>The posterior distribution of each variant</li>
 <li>Improvement of variant A over variant B</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(AB1)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(AB1)
 </code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h2 id="case-study-hotel-booking-website">Case Study: Hotel Booking Website</h2>
 <p>We will do another case study. This time is the dataset of experimentation about a new hotel booking system of an anoymous hotel in UK.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_hotel <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/Website Results.csv&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_hotel <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/Website Results.csv&#34;</span>)
 
 <span style="color:#a6e22e">glimpse</span>(data_hotel)
 </code></pre></div><pre><code>#&gt; Rows: 1,451
@@ -1750,13 +1750,13 @@ AB1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bayesTe
 </ul>
 <h3 id="data-preprocessing-1">Data Preprocessing</h3>
 <p>Let&rsquo;s check if there are any missing values in the data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_hotel <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_hotel <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">is.na</span>() <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">colSums</span>()
 </code></pre></div><pre><code>#&gt;        variant      converted length_of_stay        revenue 
 #&gt;              0              0              0              0
 </code></pre><p>To help us easier to understand what each variant is, we will convert them into <code>control</code> and <code>treatment</code> group.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_hotel <span style="color:#f92672">&lt;-</span> data_hotel <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_hotel <span style="color:#f92672">&lt;-</span> data_hotel <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(converted <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.numeric</span>(converted),
          variant <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(variant <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;control&#34;</span>, <span style="color:#e6db74">&#34;treatment&#34;</span>)
          )
@@ -1767,7 +1767,7 @@ AB1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bayesTe
 <p>What is the average conversion for a hotel website? 2.2%. That&rsquo;s according to a recent Fastbooking study. The UK firm 80 Days, in an extensive report titled &ldquo;The great unanswered digital questions of hoteliers&rdquo; came to a similar conclusion: 2% percent. Both studies were conducted on hundreds of hotels, different in size, star rating, and location.</p>
 </blockquote>
 <p>Since we are pessimistic people, we will use the 2% conversion rate as our prior here. Now we need to convert them into the proper beta distribution. Our priors are pretty general and has a weak arguments. A different hotel in a different location my have very different conversion rate. Therefore, we will put a weak prior so that we can rely more on the data. We will use <code>Beta(2, 98)</code> for the prior.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">98</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">fun_beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">dbeta</span>(x, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">98</span>)
 
 <span style="color:#a6e22e">data.frame</span>() <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
@@ -1776,7 +1776,7 @@ AB1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bayesTe
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h4 id="observed-data-1">Observed Data</h4>
 <p>Let&rsquo;s check the conversion rate based on the observed data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_hotel <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_hotel <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">count</span>(converted, variant) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">pivot_wider</span>(names_from <span style="color:#f92672">=</span> converted, values_from <span style="color:#f92672">=</span> n) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">setNames</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;variant&#34;</span>, <span style="color:#e6db74">&#34;not_converted&#34;</span>, <span style="color:#e6db74">&#34;converted&#34;</span>)) <span style="color:#f92672">%&gt;%</span> 
@@ -1788,7 +1788,7 @@ AB1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bayesTe
 #&gt; 2 treatment           693        37          0.0507
 </code></pre><h4 id="posterior-1">Posterior</h4>
 <p>Let&rsquo;s do the hyphotesis testing. We will put the <code>treatment</code> group as variant A while the <code>control</code> group as the variant B.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">variant_a <span style="color:#f92672">&lt;-</span> data_hotel <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">variant_a <span style="color:#f92672">&lt;-</span> data_hotel <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">filter</span>(variant <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;treatment&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">pull</span>(converted)
 
@@ -1838,24 +1838,24 @@ AB2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bayesTe
 #&gt; $Probability
 #&gt; [1] 0.001330352
 </code></pre><p>Let&rsquo;s put the visualization here.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(AB2)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(AB2)
 </code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">posterior_a <span style="color:#f92672">&lt;-</span> AB2<span style="color:#f92672">$</span>posteriors<span style="color:#f92672">$</span>Probability<span style="color:#f92672">$</span>A
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">posterior_a <span style="color:#f92672">&lt;-</span> AB2<span style="color:#f92672">$</span>posteriors<span style="color:#f92672">$</span>Probability<span style="color:#f92672">$</span>A
 posterior_b <span style="color:#f92672">&lt;-</span> AB2<span style="color:#f92672">$</span>posteriors<span style="color:#f92672">$</span>Probability<span style="color:#f92672">$</span>B
 
 <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;90% Credible Interval of Treatment Variant\n&#34;</span>)
 </code></pre></div><pre><code>#&gt; 90% Credible Interval of Treatment Variant
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(posterior_a, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">0.95</span>))
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(posterior_a, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">0.95</span>))
 </code></pre></div><pre><code>#&gt;         5%        50%        95% 
 #&gt; 0.03555704 0.04662847 0.05965968
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;\n90% Credible Interval of Control Variant\n&#34;</span>)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;\n90% Credible Interval of Control Variant\n&#34;</span>)
 </code></pre></div><pre><code>#&gt; 
 #&gt; 90% Credible Interval of Control Variant
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(posterior_b, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.95</span>))
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">quantile</span>(posterior_b, probs <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.95</span>))
 </code></pre></div><pre><code>#&gt;         5%        50%        95% 
 #&gt; 0.01824963 0.02641531 0.03664246
 </code></pre><p>The 90% credible interval shows that the conversion rate for the <code>treatment</code> group is somewhere around 3.55% to 5.96% while the <code>control</code> group is between 1.82% and 3.66%. This clearly shows that the new treatment variant is better. Based on the posterior simulation, out of 1,000,000 trials we can expect that the treatment group is 98.6% better than the control group. You can also expect that there is around 32% chance that the new variant (treatment variant) is 100% or better than the control variant based on the cumulative probability. There is almost 0% chance that the treatment is worst than the control group.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_diff <span style="color:#f92672">&lt;-</span> (posterior_a <span style="color:#f92672">-</span> posterior_b) <span style="color:#f92672">/</span> posterior_b
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_diff <span style="color:#f92672">&lt;-</span> (posterior_a <span style="color:#f92672">-</span> posterior_b) <span style="color:#f92672">/</span> posterior_b
 
 <span style="color:#a6e22e">plot</span>(<span style="color:#a6e22e">ecdf</span>(sample_diff), 
      xlim <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">-0.5</span>, <span style="color:#ae81ff">2.5</span>), 
@@ -2088,18 +2088,12 @@ posterior_b <span style="color:#f92672">&lt;-</span> AB2<span style="color:#f926
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

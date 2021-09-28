@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -290,8 +290,8 @@
 <meta property="og:description" content="Clustering merupakan salah satu metode Unsupervised Learning yang bertujuan untuk melakukan pengelompokan data berdasasrkan kemiripan/jarak antar data. Clustering memiliki karakteristik dimana anggota dalam satu cluster memiliki kemiripan yang sama atau jarak yang sangat dekat, sementara anggota antar cluster memiliki kemiripan yang sangat berbeda atau jarak yang sangat jauh. Menurut (Tan et al., 2006) dalam bukunya yang berjudul Introduction to Data Mining, metode clustering dibagi menjadi dua jenis, yaitu Hierarchical Clustering dan Partitional Clustering1." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/introduction-to-hierarchical-clustering/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2021-02-22T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-02-22T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2021-02-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-02-22T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -299,8 +299,8 @@
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Introduction to Hierarchical Clustering">
-<meta itemprop="description" content="Clustering merupakan salah satu metode Unsupervised Learning yang bertujuan untuk melakukan pengelompokan data berdasasrkan kemiripan/jarak antar data. Clustering memiliki karakteristik dimana anggota dalam satu cluster memiliki kemiripan yang sama atau jarak yang sangat dekat, sementara anggota antar cluster memiliki kemiripan yang sangat berbeda atau jarak yang sangat jauh. Menurut (Tan et al., 2006) dalam bukunya yang berjudul Introduction to Data Mining, metode clustering dibagi menjadi dua jenis, yaitu Hierarchical Clustering dan Partitional Clustering1."><meta itemprop="datePublished" content="2021-02-22T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2021-02-22T00:00:00&#43;00:00" />
+<meta itemprop="description" content="Clustering merupakan salah satu metode Unsupervised Learning yang bertujuan untuk melakukan pengelompokan data berdasasrkan kemiripan/jarak antar data. Clustering memiliki karakteristik dimana anggota dalam satu cluster memiliki kemiripan yang sama atau jarak yang sangat dekat, sementara anggota antar cluster memiliki kemiripan yang sangat berbeda atau jarak yang sangat jauh. Menurut (Tan et al., 2006) dalam bukunya yang berjudul Introduction to Data Mining, metode clustering dibagi menjadi dua jenis, yaitu Hierarchical Clustering dan Partitional Clustering1."><meta itemprop="datePublished" content="2021-02-22T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-02-22T00:00:00+00:00" />
 <meta itemprop="wordCount" content="4777">
 <meta itemprop="keywords" content="Machine Learning,Unsupervised Learning,Hierarchical Clustering," />
         
@@ -504,11 +504,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -1000,7 +1000,7 @@ if (!doNotTrack) {
 <p>Pada artikel ini, kita akan coba mengaplikasikan cara kerja hierarchical clustering AGNES untuk menganalisis kedekatan Negara Bagian AS berdasarkan tingkat kriminalitasnya. Kita akan menggunakan dataset <code>USArrest</code> yang menyimpan informasi statistik terkait jumlah kriminalitas <code>assault</code>, <code>murder</code> dan <code>rape</code> per 100,000 penduduk pada 50 negara bagian Amerika Serikat pada tahun 1973, berikut data populasi penduduk tiap negara bagian tersebut.</p>
 <h2 id="dataset">Dataset</h2>
 <p>Pertama, kita load terlebih dahulu data yang akan digunakan.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(USArrests)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(USArrests)
 </code></pre></div><pre><code>#&gt;            Murder Assault UrbanPop Rape
 #&gt; Alabama      13.2     236       58 21.2
 #&gt; Alaska       10.0     263       48 44.5
@@ -1011,11 +1011,11 @@ if (!doNotTrack) {
 </code></pre><h2 id="preparasi-data">Preparasi Data</h2>
 <p>Sebelum membuat clustering, kita perlu menyiapkan dataset yang digunakan. Dari tampilan data sebelumnya, kita telah mengetahui bahwa tipe data pada tiap kolom sudah tepat/sesuai konteks kolomnya. Perlu diperhatikan bahwa, analisis clustering didasari oleh analisis jarak, sehingga dibutuhkan variable dengan tipe <strong>numerik</strong>. Variabel dengan tipe kategorik tidak terlalu bagus untuk dimasukkan pada analisis clustering. Pada dateset kita, semua variable bertipe numerik sehingga cocok untuk analisis clustering.</p>
 <p>Selanjutnya kita dapat cek apakah terdapat <strong>missing value</strong> pada data. Dari hasil di bawah, kita mengetahui bahwa tidak ada missing value pada data dan data dapat dianalisis lebih lanjut.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># cek missing value</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># cek missing value</span>
 <span style="color:#a6e22e">anyNA</span>(USArrests)
 </code></pre></div><pre><code>#&gt; [1] FALSE
 </code></pre><p>Selanjutnya, kita dapat melakukan perhitungan (dis)similarity data. Namun, perhitungan (dis)similarity / jarak amat sensitif terhadap perbedaan skala antar variable data. Oleh karena itu, kita perlu melakukan standarisasi data terlebih dahulu agar skala pada tiap variable serupa. Pada data <code>USArrest</code> setiap variabel belum memiliki skala yang sama sehingga perlu dilakukan standarisasi.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># cek skala tiap variable data</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># cek skala tiap variable data</span>
 <span style="color:#a6e22e">summary</span>(USArrests)
 </code></pre></div><pre><code>#&gt;      Murder          Assault         UrbanPop          Rape      
 #&gt;  Min.   : 0.800   Min.   : 45.0   Min.   :32.00   Min.   : 7.30  
@@ -1033,7 +1033,7 @@ if (!doNotTrack) {
 <li><code>\(\sigma\)</code>: standar deviasi pada variabel tersebut</li>
 </ul>
 <p>Pada R, kita bisa melakukan z-score standarization menggunakan fungsi <code>scale()</code>. Hasil standarisasi data akan kita simpan dalam objek <code>us_z</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># z-score standardization</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># z-score standardization</span>
 us_z <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale</span>(USArrests) 
 <span style="color:#a6e22e">head</span>(us_z)
 </code></pre></div><pre><code>#&gt;                Murder   Assault   UrbanPop         Rape
@@ -1045,7 +1045,7 @@ us_z <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scale<
 #&gt; Colorado   0.02571456 0.3988593  0.8608085  1.864967207
 </code></pre><h2 id="mengukur-dissimilarity">Mengukur (Dis)similarity</h2>
 <p>Setelah membersihkan dan menyiapkan data, selanjutnya kita dapat melakukan <strong>perhitungan (dis)similarity data</strong>. Metode yang akan digunakan pada kasus ini yaitu <em>euclidean distance</em>, karena kita akan menjadikan besaran nilai pada tiap variable data sebagai karakteristik yang membedakan tiap observasinya (negara bagian).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># menghitung distance</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># menghitung distance</span>
 us_dist <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">dist</span>(x <span style="color:#f92672">=</span> us_z, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;euclidean&#34;</span>)
 </code></pre></div><p>Fungsi <code>dist()</code> secara otomatis menghitung (dis)similarity antar observasi data. Objek hasil <code>dist()</code> tersebut nantinya dapat langsung dimasukkan kedalam fungsi clustering dan otomatis diolah sebagai <strong>distance matrix</strong>, namun berikut kurang lebih tampilannya dalam bentuk distance matrix.</p>
 <pre><code>#&gt;             Alabama   Alaska  Arizona Arkansas California
@@ -1073,27 +1073,27 @@ us_dist <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">dis
 <ul>
 <li><strong>Complete Linkage</strong></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">us_hc_complete <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hclust</span>(d <span style="color:#f92672">=</span> us_dist, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;complete&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">us_hc_complete <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hclust</span>(d <span style="color:#f92672">=</span> us_dist, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;complete&#34;</span>)
 </code></pre></div><ul>
 <li><strong>Single Linkage</strong></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">us_hc_single <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hclust</span>(d <span style="color:#f92672">=</span> us_dist, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;single&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">us_hc_single <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hclust</span>(d <span style="color:#f92672">=</span> us_dist, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;single&#34;</span>)
 </code></pre></div><ul>
 <li><strong>Average Linkage</strong></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">us_hc_avg <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hclust</span>(d <span style="color:#f92672">=</span> us_dist, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;average&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">us_hc_avg <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hclust</span>(d <span style="color:#f92672">=</span> us_dist, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;average&#34;</span>)
 </code></pre></div><ul>
 <li><strong>Centroid Linkage</strong></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">100</span>)
 us_hc_centroid <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hclust</span>(d <span style="color:#f92672">=</span> us_dist, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;centroid&#34;</span>)
 </code></pre></div><ul>
 <li><strong>Ward&rsquo;s Minimum Variance</strong></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">us_hc_ward <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hclust</span>(d <span style="color:#f92672">=</span> us_dist, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ward.D2&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">us_hc_ward <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hclust</span>(d <span style="color:#f92672">=</span> us_dist, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ward.D2&#34;</span>)
 </code></pre></div><p>Pada setiap metode clustering tersebut akan membentuk sebuah dendrogram. Dendrogram dapat divisualisasikan menggunakan fungsi <code>plot()</code> biasa atau bisa menggunakan fungsi <code>fviz_dend()</code> dari package <strong>factoextra</strong>.</p>
 <h3 id="dendrogram-complete-linkage">Dendrogram Complete Linkage</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(factoextra)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(factoextra)
 <span style="color:#a6e22e">fviz_dend</span>(us_hc_complete, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, 
           main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Dendrogram Complete Linkage&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
@@ -1101,18 +1101,18 @@ us_hc_centroid <span style="color:#f92672">&lt;-</span> <span style="color:#a6e2
 <p>Hasil yang terbentuk dari dendrogram complete linkage menunjukkan dendrogram yang cukup <strong>compact</strong>, dimana setiap cluster terlihat memiliki <strong>partisi yang cukup jelas</strong>. Hal ini akan mempermudah saat pemotongan dendrogram untuk membentuk banyak cluster.</p>
 <p>Untuk melakukan pengelompokan pada pada dendrogram, kita bisa melakukan pemotongan dendrogram pada nilai (dis)similarity tertentu untuk mendapatkan sejumlah cluster yang terbentuk. Untuk melakukan pemotongan dendrogram, R menyediakan fungsi <code>cutree()</code> dan kita dapat mendefinisikan <code>h</code> yaitu nilai (dis)similarity yang ingin dipakai, atau <code>k</code> yaitu banyaknya cluster yang ingin kita bentuk.</p>
 <p>Pada metode complete linkage ini akan kita coba potong menjadi 4 cluster.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># cutree untuk menghasilkan cluster data</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># cutree untuk menghasilkan cluster data</span>
 complete_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cutree</span>(us_hc_complete,  k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
 <span style="color:#a6e22e">head</span>(complete_clust)
 </code></pre></div><pre><code>#&gt;    Alabama     Alaska    Arizona   Arkansas California   Colorado 
 #&gt;          1          1          2          3          2          2
 </code></pre><p>Berikut ini banyak anggota dari masing-masing cluster yang terbentuk.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">table</span>(complete_clust)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">table</span>(complete_clust)
 </code></pre></div><pre><code>#&gt; complete_clust
 #&gt;  1  2  3  4 
 #&gt;  8 11 21 10
 </code></pre><p>Anggota pada masing-masing cluster cukup merata dengan cluster yang paling banyak memiliki anggota adalah cluster 3. Berikut hasil akhir cluster yang terbentuk apabila dilihat dari dendrogram.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_complete, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_complete, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, 
           main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Complete Linkage Cluster&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Cara membaca cluster pada dendrogram sebagai berikut :</p>
@@ -1124,26 +1124,26 @@ complete_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e2
 </ul>
 <p>Salah satu cara yang dapat digunakan untuk memvalidasi cluster tree yaitu dengan menghitung korelasi antara <strong>cophenetic distance</strong> dengan <strong>jarak original</strong> masing-masing observasi. Semakin kuat nilai korelasi jarak antar observasi, maka cluster tersebut merepresentasikan data yang dimiliki.</p>
 <p>Untuk melihat korelasinya, maka kita perlu menghitung cophenetic distance terlebih dahulu menggunakan fungsi <code>cophenetic()</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">complete_coph <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cophenetic</span>(us_hc_complete)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">complete_coph <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cophenetic</span>(us_hc_complete)
 <span style="color:#a6e22e">cor</span>(complete_coph, us_dist)
 </code></pre></div><pre><code>#&gt; [1] 0.6979437
 </code></pre><h3 id="dendrogram-single-linkage">Dendrogram Single Linkage</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_single, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_single, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, 
           main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Dendrogram Single Linkage&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Hasil dendrogram yang terbentuk pada model single linkage terlihat lebih lebar dimana antar anggota cluster yang berbeda pun terlihat memiliki Height / (dis)similarity yang rendah. Cluster yang terbut terlihat rapat dan sangat dekat sehingga <strong>partisi dari tiap cluster tidak tervisualisasikan dengan maksimal</strong>. Hal ini dikarenakan proses pembuatan hirarki dendrogram menggunakan minimum (dis)similarity pada setiap clusternya.</p>
 <p>Sangat sulit untuk menentukan banyak cluster yang akan terbentuk apabila setiap observasi sangat rapat. Apabila dicoba untuk membentuk 4 cluster, maka berikut ini hasil cluster yang terbentuk.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">single_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cutree</span>(us_hc_single, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">single_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cutree</span>(us_hc_single, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
 <span style="color:#a6e22e">head</span>(single_clust)
 </code></pre></div><pre><code>#&gt;    Alabama     Alaska    Arizona   Arkansas California   Colorado 
 #&gt;          1          2          1          1          3          1
 </code></pre><p>Banyak anggota pada masing-masing cluster adalah sebagai berikut.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">table</span>(single_clust)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">table</span>(single_clust)
 </code></pre></div><pre><code>#&gt; single_clust
 #&gt;  1  2  3  4 
 #&gt; 46  1  2  1
 </code></pre><p>Anggota pada cluster yang terbentuk sangat berbeda secara signifikan. Cluster 1 memiliki anggota yang paling banyak hampir sebanyak total observasi pada data. Hal ini yang dikarenakan terlalu rapatnya antar observasi sehingga sulit dipisahkan perbedaannya.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_single, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_single, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, 
           main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Single Linkage Cluster&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Cara membaca cluster pada dendrogram yaitu  sebagai berikut :</p>
@@ -1154,25 +1154,25 @@ complete_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e2
 <li>Cluster 4 digambarkan oleh dendrogram berwarna kuning.</li>
 </ul>
 <p>Apabila kita cek validasi dari cluster tree yang terbentuk, korelasi yang diperoleh rendah, artinya cluster yang terbentuk kurang merepresentasikan kondisi data yang ada. Sehingga menggunakan single linkage untuk data <code>USArrest</code> kurang relevan.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">single_coph <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cophenetic</span>(us_hc_single)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">single_coph <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cophenetic</span>(us_hc_single)
 <span style="color:#a6e22e">cor</span>(single_coph, us_dist)
 </code></pre></div><pre><code>#&gt; [1] 0.541272
 </code></pre><h3 id="dendrogram-average-linkage">Dendrogram Average Linkage</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_avg, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Dendrogram Average Linkage&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_avg, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Dendrogram Average Linkage&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Hasil dendrogram yang terbentuk pada model average linkage terlihat hampir mirip seperti complete linkage, yaitu terlihat compact. Model average linkage biasa digunakan karena menghasilkan nilai validasi cluster tree yang lebih baik dibandingkan metode linkage yang lain.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">avg_coph <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cophenetic</span>(us_hc_avg)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">avg_coph <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cophenetic</span>(us_hc_avg)
 <span style="color:#a6e22e">cor</span>(avg_coph, us_dist)
 </code></pre></div><pre><code>#&gt; [1] 0.7180382
 </code></pre><p>Apabila dendrogramnya dipotong untuk membentuk 4 cluster, berikut hasil yang diperoleh.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">avg_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cutree</span>(us_hc_avg, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">avg_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cutree</span>(us_hc_avg, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
 <span style="color:#a6e22e">table</span>(avg_clust)
 </code></pre></div><pre><code>#&gt; avg_clust
 #&gt;  1  2  3  4 
 #&gt;  7  1 12 30
 </code></pre><p>Anggota cluster paling banyak diperoleh pada cluster 4 sebanyak 30 cluster. Namun terdapat cluster yang hanya memiliki 1 anggota saja yaitu pada cluster 2. Hal ini dapat dijadikan indikasi bahwa observasi pada cluster 2 yaitu &ldquo;Alaska&rdquo; merupakan anomali data.</p>
 <p>Berikut visualisasi dendrogram yang terbentuk pada masing-masing cluster.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_avg, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Average Linkage Cluster&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_avg, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Average Linkage Cluster&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Cara membaca cluster pada dendrogram yaitu  sebagai berikut :</p>
 <ul>
@@ -1182,22 +1182,22 @@ complete_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e2
 <li>Cluster 4 digambarkan oleh dendrogram berwarna biru.</li>
 </ul>
 <h3 id="dendrogram-centroid-linkage">Dendrogram Centroid Linkage</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_centroid, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Dendrogram Centroid Linkage&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_centroid, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Dendrogram Centroid Linkage&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Dendrogram yang terbentuk sangat berbeda dengan dedrogram pada model sebelumnya. Terdapat ketidak teraturan distance pada dendrogram di beberapa cabang, dimana nilai distance antar cluster yang lebih rendah dibandingkan nilai distance antar observasinya. Kondisi ini disebut juga <strong>inversion</strong>.</p>
 <p>Hal ini dikarenakan pada centroid linkage terdapat pembentukan centroid atau pusat cluster yang &ldquo;memusatkan&rdquo; seluruh jarak observasi pada cluster. Sehingga ketika dihitung nilai (dis)similarity antar cluster, dapat dihasilkan nilai (dis)similarity yang lebih rendah dibandingkan (dis)similarity antar observasinya. Dalam kata lain, similarity dapat meningkat selama proses clustering. Hal inilah yang perlu diperhatikan bila menggunakan centroid method. Diskusi lebih lanjut dapat dilihat <a href="https://stats.stackexchange.com/questions/217519/centroid-linkage-clustering-with-hclust-yields-wrong-dendrogram">disini</a>.</p>
 <p>Meskipun begitu, apabila dilihat dari nilai korelasi distancenya menunjukkan nilai yang sedikit cukup merepresentasikan data yang ada.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">centroid_coph <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cophenetic</span>(us_hc_centroid)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">centroid_coph <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cophenetic</span>(us_hc_centroid)
 <span style="color:#a6e22e">cor</span>(centroid_coph, us_dist)
 </code></pre></div><pre><code>#&gt; [1] 0.6074717
 </code></pre><p>Berikut ini anggota cluster pada 4 cluster yang terbentuk.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">centroid_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cutree</span>(us_hc_centroid, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">centroid_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cutree</span>(us_hc_centroid, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
 <span style="color:#a6e22e">table</span>(centroid_clust)
 </code></pre></div><pre><code>#&gt; centroid_clust
 #&gt;  1  2  3  4 
 #&gt; 47  1  1  1
 </code></pre><p>Anggota cluster didominasi pada cluster 1 sebanyak 47 observasi, namun untuk cluster yang lain hanya memiliki 1 observasi saja. Berikut visualiasi cluster yang terbentuk untuk masing-masing dendrogramnya.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_centroid, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_centroid, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, 
           main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Centroid Linkage Cluster&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Hasil partisi cluster yang terbentuk tidak sesuai dengan yang seharusnya. Berikut deskripsi anggota cluster yang seharusnya:</p>
@@ -1209,22 +1209,22 @@ complete_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e2
 </ul>
 <p>Sepertinya terdapat kesulitan dalam melakukan pemotongan otomatis pada dendrogram yang mungkin dikarenakan oleh adanya <em>inversion</em>.</p>
 <h3 id="dendrogram-wards-minimum-variance">Dendrogram Ward&rsquo;s Minimum Variance</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_ward, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_ward, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, 
           main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cluster Dendrogram Ward&#39;s Minimum Variance&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Dendrogram yang diperoleh dari metode ward&rsquo;s minimum variance terlihat <strong>terpartisi dengan sangat baik</strong>. Pada tiap cluster, terlihat nilai height yang rendah atau similarity yang amat tinggi antar observasinya. Hal ini dikarenakan cara kerja metode ward&rsquo;s minimum variance yang meminimumkan nilai within sum of squared (wss) tiap cluster. Umumnya, dendrogram metode ini menghasilkan partisi yang baik dan dikatkan yang paling menyerupai hasil <em>k-means clustering</em> (salah satu metode partitional clustering).</p>
 <p>Berdasarkan nilai korelasi distance untuk metode ward&rsquo;s, diperoleh 0.69, yang mana dari segi nilai tidak terlalu besar, namun untuk melakukan partisi model cukup mudah.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ward_coph <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cophenetic</span>(us_hc_ward)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ward_coph <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cophenetic</span>(us_hc_ward)
 <span style="color:#a6e22e">cor</span>(ward_coph, us_dist)
 </code></pre></div><pre><code>#&gt; [1] 0.6975266
 </code></pre><p>Berikut ini anggota cluster pada 4 cluster yang terbentuk.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ward_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cutree</span>(us_hc_ward, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ward_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cutree</span>(us_hc_ward, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
 <span style="color:#a6e22e">table</span>(ward_clust)
 </code></pre></div><pre><code>#&gt; ward_clust
 #&gt;  1  2  3  4 
 #&gt;  7 12 19 12
 </code></pre><p>Anggota cluster yang diperoleh pada model ward&rsquo;s cukup mirip seperti model complete linkage. Anggota cluster yang paling sedikit yaitu pada cluster 1.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_ward, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_ward, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, 
           main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Ward&#39;s Minimum Variance Cluster&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Cara membaca cluster pada dendrogram sebagai berikut :</p>
@@ -1236,7 +1236,7 @@ complete_clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e2
 </ul>
 <h3 id="dendrogram-terpilih">Dendrogram Terpilih</h3>
 <p>Dari kelima dendrogram yang sudah dibuat, kita dapat memilih salah satu yang ingin digunakan. Pemilihannya dapat berdasarkan hasil validasi cluster tree menggunakan korelasi <strong>cophenetic distance</strong> dengan <strong>jarak original</strong> masing-masing observasi yang tadi telah dihitung:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(complete <span style="color:#f92672">=</span> <span style="color:#a6e22e">cor</span>(complete_coph, us_dist),
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data.frame</span>(complete <span style="color:#f92672">=</span> <span style="color:#a6e22e">cor</span>(complete_coph, us_dist),
           single <span style="color:#f92672">=</span> <span style="color:#a6e22e">cor</span>(single_coph, us_dist),
           average <span style="color:#f92672">=</span> <span style="color:#a6e22e">cor</span>(avg_coph, us_dist),
           centroid <span style="color:#f92672">=</span> <span style="color:#a6e22e">cor</span>(centroid_coph, us_dist),
@@ -1281,7 +1281,7 @@ Bahasan lebih jauh mengenai cluster validation dapat dibaca <a href="https://www
 <li><code>metric</code>: pengukuran (dis)similarity yang digunakan, beberapa yang bisa digunakan yaitu &ldquo;euclidean&rdquo;, &ldquo;correlation&rdquo;, dan &ldquo;manhattan&rdquo;.</li>
 <li><code>method</code>: metode hierarchical clustering yang digunakan, beberapa yang bisa digunakan yaitu &ldquo;ward&rdquo;, &ldquo;single&rdquo;, &ldquo;complete&rdquo;, dan &ldquo;average&rdquo;.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(clValid)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(clValid)
 <span style="color:#75715e"># internal measures</span>
 internal <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">clValid</span>(us_z, nClust <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>, 
                     clMethods <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;agnes&#34;</span>, 
@@ -1309,7 +1309,7 @@ internal <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cl
 #&gt; Connectivity 11.8730 agnes  3       
 #&gt; Dunn          0.2648 agnes  3       
 #&gt; Silhouette    0.3692 agnes  3
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># stabilitas measures</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># stabilitas measures</span>
 stability <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">clValid</span>(us_z, nClust <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>, 
                      clMethods <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;agnes&#34;</span>, 
                      validation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stability&#34;</span>, 
@@ -1325,7 +1325,7 @@ stability <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c
 </code></pre><p>Berdasarkan hasil validasi cluster, internal measures menghasilkan jumlah cluster terbaik di angka 3, sementara stability measures menghasilkan angka 4. <strong>Penggunaan cluster sebanyak 3 atau 4 bisa dijadikan opsi untuk melakukan partisi data</strong>. Nilai yang lebih baik dapat ditentukan berdasarkan kemudahan pengguna untuk melakukan interpretasi (misalnya profiling/analisis karakteristik) untuk tiap clusternya.</p>
 <h2 id="kesimpulan">Kesimpulan</h2>
 <p>Kita telah melakukan tahap demi tahap pembuatan hierarchical clustering dari pembacaan data hingga pembentukan dendrogram, berikut pemotongan dendrogramnya untuk clustering data. Berikut adalah tampilan dendrogram terpilih menggunakan pemotongan 4 cluster dan beberapa insight yang dapat diambil.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_complete, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">fviz_dend</span>(us_hc_complete, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, k_colors <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jco&#34;</span>, rect <span style="color:#f92672">=</span> T, 
           main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Complete Linkage Cluster&#34;</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Terdapat 2 cluster besar dan tiap cluster besar dapat dipecah kembali menjadi 2 cluster yang lebih kecil. Kemiripan antara negara bagian berdasarkan tingkat kriminalitasnya dapat terlihat, dan pasangan negara bagian yang paling serupa adalah Iowa &amp; New Hampshire.</p>
@@ -1563,18 +1563,12 @@ stability <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

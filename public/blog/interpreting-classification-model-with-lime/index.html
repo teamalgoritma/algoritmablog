@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -290,8 +290,8 @@
 <meta property="og:description" content="Introduction One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/interpreting-classification-model-with-lime/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2019-12-02T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2019-12-02T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2019-12-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-02T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -299,8 +299,8 @@
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Interpreting Classification Model with LIME">
-<meta itemprop="description" content="Introduction One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning."><meta itemprop="datePublished" content="2019-12-02T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-12-02T00:00:00&#43;00:00" />
+<meta itemprop="description" content="Introduction One of many things to consider when we want to choose a machine learning model is the interpretability: can we analyze what variables or certain values that contribute toward particular class or target? Some models can be easily interpreted, such as the linear or logistic regression model and decision trees, but interpreting more complex model such as random forest and neural network can be challenging. This sometimes drive the data scientist to choose more interpretable model since they need to communicate it to their manager or higher rank, who perhaps are not familiar with machine learning."><meta itemprop="datePublished" content="2019-12-02T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-12-02T00:00:00+00:00" />
 <meta itemprop="wordCount" content="2437">
 <meta itemprop="keywords" content="Machine Learning,Capstone Ml,tidymodels,lime," />
         
@@ -504,11 +504,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -918,7 +918,7 @@ if (!doNotTrack) {
 <h1 id="lime-packages-in-r"><code>lime</code> packages in R</h1>
 <p>You can implement LIME in R with <code>lime</code> package.  See <a href="https://github.com/thomasp85/lime">https://github.com/thomasp85/lime</a>.</p>
 <p>Here is the list of packages you need to load before proceeding to the next section.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tidyverse)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tidyverse)
 <span style="color:#a6e22e">library</span>(tidymodels)
 <span style="color:#a6e22e">library</span>(lime)
 <span style="color:#a6e22e">library</span>(rmarkdown)
@@ -926,7 +926,7 @@ if (!doNotTrack) {
 <p>Let&rsquo;s how LIME work on <code>IBM HR attrition</code> dataset from Kaggle (<a href="https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset)">https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset)</a>. We want to correctly target people who are likely to resign. We want to know what factors that drive people to resign/attrition and propose a plan to reduce the number of turnover next year. In order to effectively reduce turnover rate as many as possible, we want our model to have high Recall/Sensitivity.</p>
 <h3 id="import-data">Import Data</h3>
 <p>The data consists of information related to the employee who works from the company. Attrition refers to employees who quite the organization.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">attrition <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/attrition.csv&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">attrition <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;data_input/attrition.csv&#34;</span>)
 <span style="color:#a6e22e">paged_table</span>(attrition)
 </code></pre></div><!-- raw HTML omitted -->
 <h3 id="data-preprocessing-1">Data Preprocessing 1</h3>
@@ -940,7 +940,7 @@ if (!doNotTrack) {
 <li>Adjust the level of <code>attrition</code>, with the first level will be the positive class (<code>attrition = yes</code>)</li>
 <li>Remove unnecessary variables</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">&lt;-</span> attrition
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df <span style="color:#f92672">&lt;-</span> attrition
 df<span style="color:#f92672">$</span>total_satisfaction <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">group_by</span>(employee_number) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">summarise</span>(total_satisfaction <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(environment_satisfaction, job_satisfaction, performance_rating,
@@ -967,12 +967,12 @@ df <span style="color:#f92672">&lt;-</span> df <span style="color:#f92672">%&gt;
 </code></pre></div><!-- raw HTML omitted -->
 <h3 id="cross-validation">Cross-Validation</h3>
 <p>First we check if there is a class imbalance</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(df<span style="color:#f92672">$</span>attrition))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(df<span style="color:#f92672">$</span>attrition))
 </code></pre></div><pre><code>#&gt; 
 #&gt;       yes        no 
 #&gt; 0.1612245 0.8387755
 </code></pre><p>We split the data into training set and testing dataset, with 80% of the data will be used as the training set. The cross-validation, preprocessing, modeling, and evalution is done using various functions from <code>tidymodels</code> package. If you are unfamiliar with this, you can read our post about <code>tidymodels</code> <!-- raw HTML omitted --> here <!-- raw HTML omitted -->.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 intrain <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">initial_split</span>(df, prop <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>, strata <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;attrition&#34;</span>)
 
 intrain
@@ -985,7 +985,7 @@ intrain
 <li>Scaling all of the numeric variables</li>
 <li>Remove numeric variable with near zero variance</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Preprocess Recipes</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Preprocess Recipes</span>
 rec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">recipe</span>(attrition <span style="color:#f92672">~</span> ., data <span style="color:#f92672">=</span> <span style="color:#a6e22e">training</span>(intrain)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">step_downsample</span>(attrition) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">step_rm</span>(over_18) <span style="color:#f92672">%&gt;%</span> 
@@ -997,7 +997,7 @@ rec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">recipe<
 data_train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">juice</span>(rec)
 data_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bake</span>(rec, <span style="color:#a6e22e">testing</span>(intrain))
 </code></pre></div><p>For later implementation, we create a <code>rec_rev</code> to back transform our data that has already preprocessed with <code>recipes</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Prepare the reverse recipes</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Prepare the reverse recipes</span>
 
 rec_rev <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
   
@@ -1012,7 +1012,7 @@ rec_rev <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fun
 }
 </code></pre></div><h3 id="model-fitting">Model Fitting</h3>
 <p>We will use random Forest to predict if an employee will turnover (<code>attrition = yes</code>).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#define model spec</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#define model spec</span>
 model_spec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rand_forest</span>(
   mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classification&#34;</span>,
   mtry <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>,
@@ -1035,7 +1035,7 @@ model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fit_x
 )
 </code></pre></div><h3 id="model-evaluation">Model Evaluation</h3>
 <p>Let&rsquo;s check the model performance.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(model, new_data <span style="color:#f92672">=</span> data_test <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>attrition)) <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(model, new_data <span style="color:#f92672">=</span> data_test <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>attrition)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">bind_cols</span>(true <span style="color:#f92672">=</span> data_test<span style="color:#f92672">$</span>attrition)
 
 pred_test <span style="color:#f92672">%&gt;%</span> 
@@ -1049,7 +1049,7 @@ pred_test <span style="color:#f92672">%&gt;%</span>
 #&gt; 1    0.744       0.745     0.357       0.744
 </code></pre><p>We&rsquo;ve stated that we want to save as many employees as possible from turnover. Therefore, we want those who potentially would resign should be correctly predicted as many as possible. That&rsquo;s why we need to be concerned with the Sensitivity or Recall value of our model. Based on the model performance, 76% of employees who would resign are correctly predicted.</p>
 <p>Intuitively, you can check the importance of each variable from the model based on the <code>impurity</code> of each variables. Variable importance quantifies the global contribution of each input variable to the predictions of a machine learning model.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get variable importance</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># get variable importance</span>
 var_imp <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tidy</span>(model<span style="color:#f92672">$</span>fit<span style="color:#f92672">$</span>variable.importance) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">arrange</span>(<span style="color:#a6e22e">desc</span>(x))
 
@@ -1073,7 +1073,7 @@ var_imp <span style="color:#f92672">&lt;-</span> var_imp <span style="color:#f92
 <h3 id="use-lime-to-interpret-random-forest-model">Use LIME to Interpret Random Forest Model</h3>
 <p>Let&rsquo;s use LIME to interpret the model. Here we will use example of the first 4 observations from our testing dataset (<code>data_test</code>).</p>
 <p>We want to see how our model classify an observations likelihood to resign (<code>labels = &quot;yes&quot;</code>) with only 10 features that has the most contribution toward the probability (<code>n_features = 10</code>). Here we use the previous <code>rec_rev</code> function in order to back transform the preprocessed data so we can interpret them easily.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 explainer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lime</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">rec_rev</span>(data_train) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>attrition), 
                   model <span style="color:#f92672">=</span> model)
 </code></pre></div><p>Some parameter you can adjust in <code>lime</code> function:</p>
@@ -1084,7 +1084,7 @@ explainer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">l
 <li><code>n_bins</code> = Number of bins for continuous variables</li>
 </ul>
 <p>We then select the object we want to explain (the testing dataset).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">explain</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">rec_rev</span>(data_test) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>attrition) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>), 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">explain</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">rec_rev</span>(data_test) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>attrition) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>), 
                        labels <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;yes&#34;</span>,
                        explainer <span style="color:#f92672">=</span> explainer, 
                        n_features <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>)
@@ -1099,10 +1099,10 @@ explainer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">l
 <li><code>kernel_width</code> = An exponential kernel of a user defined width (defaults to 0.75 times the square root of the number of features) used to convert the distance measure to a similarity value</li>
 </ul>
 <p>Finally, we plot the explanation with <code>plot_features</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot_features</span>(explanation)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot_features</span>(explanation)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>The text <code>Label: yes</code> shows what value of target variable is being explained. The <code>Probability</code> shows the probability of the observation belong to the label <code>yes</code>. We can see that for all observations they have little probability, so the model would predict them as <code>no</code> instead of yes. You may check them on the object <code>pred_test</code> that we&rsquo;ve previously created.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred_test[1<span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>, ]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pred_test[1<span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>, ]
 </code></pre></div><pre><code>#&gt; # A tibble: 4 x 2
 #&gt;   .pred_class true 
 #&gt;   &lt;fct&gt;       &lt;fct&gt;
@@ -1113,7 +1113,7 @@ explainer <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">l
 </code></pre><p>Below all of those label there is a bar plot, with y-axis shows each selected features while x-axis is the weight of each respective features. The color of each bar represent whether the features <strong>support</strong> or <strong>contradict</strong> if the observations labeled as <strong>yes</strong>. The interpretation is quite simple. For example, for observation 1, <code>over_time = no</code> has the biggest weight to contradict the attrition to be <strong>yes</strong>. This mean that the employee has no over time job and less likely to turnover. On the other hand, the <code>training_times_last_year &lt;=2</code> support the likelihood to resign, suggesting that employee want more training for self-improvement.</p>
 <p>The next element is <code>Explanation Fit</code>. These values indicate how good LIME explain the model, kind of like the <code>\(R^2\)</code> (R-Squared) value of linear regression. Here we see the <code>Explanation Fit</code> only has values around 0.30-0.40 (30%-40%), which can be interpreted that LIME can only explain a little about our model. You may consider not to trust the LIME output since it only has low <code>Explanation Fit</code>. However, you can improve the <code>Explanation Fit</code> by tuning the <code>explain</code> function parameter.</p>
 <p>Here we tune the LIME by increasing the number of permutations into 500 (<code>n_permutations = 500</code>). The distance function is changed into manhattan distance (<code>dist_fun = manhattan</code>) and the kernel width into 3 (<code>kernel_width - 3</code>).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
 
 explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">explain</span>(<span style="color:#a6e22e">rec_rev</span>(data_test) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>attrition) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>), 
                        labels <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;yes&#34;</span>,
@@ -1341,18 +1341,12 @@ explanation <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e"
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

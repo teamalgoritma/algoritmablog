@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -292,8 +292,8 @@ Libraries and Setup You will need install the package to do APC analysis if it&r
 Libraries and Setup You will need install the package to do APC analysis if it&rsquo;s not already downloaded onto your machine." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/age-period-cohort-apc-analysis/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2019-03-28T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2019-03-28T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2019-03-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-03-28T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -302,8 +302,8 @@ Libraries and Setup You will need install the package to do APC analysis if it&r
         <meta property="og:image:height" content="512">
         <meta itemprop="name" content="Age-Period-Cohort (APC) Analysis">
 <meta itemprop="description" content="Background Disclaimer The following coursebook is produced by the team at Algoritma for its Data Science Academy internal training. The coursebook is intended for a restricted audience only, i.e. the individuals and organizations having received this coursebook directly from the training organization. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.
-Libraries and Setup You will need install the package to do APC analysis if it&rsquo;s not already downloaded onto your machine."><meta itemprop="datePublished" content="2019-03-28T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-03-28T00:00:00&#43;00:00" />
+Libraries and Setup You will need install the package to do APC analysis if it&rsquo;s not already downloaded onto your machine."><meta itemprop="datePublished" content="2019-03-28T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-03-28T00:00:00+00:00" />
 <meta itemprop="wordCount" content="3969">
 <meta itemprop="keywords" content="APC,time series," />
         
@@ -507,11 +507,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -896,7 +896,7 @@ if (!doNotTrack) {
 <p>The following coursebook is produced by the team at <a href="https://algorit.ma">Algoritma</a> for its Data Science Academy internal training. The coursebook is intended for a restricted audience only, i.e. the individuals and organizations having received this coursebook directly from the training organization. It may not be reproduced, distributed, translated or adapted in any form outside these individuals and organizations without permission.</p>
 <h2 id="libraries-and-setup">Libraries and Setup</h2>
 <p>You will need install the package to do APC analysis if it&rsquo;s not already downloaded onto your machine.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(broom)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(broom)
 <span style="color:#a6e22e">library</span>(tidyverse)
 </code></pre></div><h2 id="training-objectives">Training Objectives</h2>
 <p>The primary objective of this course is to provide a comprehensive introduction to the science of APC analysis. The syllabus covers:</p>
@@ -930,7 +930,7 @@ if (!doNotTrack) {
 <p>However, the results from this analysis will depend on constrains chosen by the investigator based on external information. The validity of the constraints chosen will depend on the theoretical preconception about the categories of parameter that are identical, is often subjective and there is no empirical way to confirm the validity of the chosen constraints <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
 <h3 id="apc-with-lm">APC with <code>lm</code></h3>
 <p>I&rsquo;ve prepared the following data originally made available in <a href="https://www.kaggle.com/russellyates88/suicide-rates-overview-1985-to-2016">kaggle</a>. We&rsquo;ll read the data into our workspace:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># load data</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># load data</span>
 suicides <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;data_input/suicides.csv&#34;</span>)
 
 <span style="color:#75715e"># quick check</span>
@@ -953,7 +953,7 @@ suicides <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">re
 <li><code>country</code>: country indicator</li>
 </ul>
 <p>We need to readjust APC variable to start with:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># readjust apc variable</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># readjust apc variable</span>
 suicides <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">mutate</span>(age_squared <span style="color:#f92672">=</span> age ^ <span style="color:#ae81ff">2</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate_at</span>(<span style="color:#a6e22e">vars</span>(period, cohort), <span style="color:#a6e22e">funs</span>(<span style="color:#a6e22e">as.factor</span>(.))) <span style="color:#f92672">%&gt;%</span> 
@@ -977,7 +977,7 @@ suicides
 </code></pre><p>Now we have our data that contained APC variables. For the next step we applied linear regression to extract coefficient of APC with equation:</p>
 <p><code>$$y_{ij} = \alpha_{ij} + \beta_{ij}Age + \beta_{ij}Age^2 + e_{ij}$$</code></p>
 <p>where <code>\(i\)</code> is representing period, and <code>\(j\)</code> representing cohort.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_lm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(suicides <span style="color:#f92672">~</span> age <span style="color:#f92672">+</span> age_squared <span style="color:#f92672">+</span> period <span style="color:#f92672">+</span> cohort, suicides)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_lm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(suicides <span style="color:#f92672">~</span> age <span style="color:#f92672">+</span> age_squared <span style="color:#f92672">+</span> period <span style="color:#f92672">+</span> cohort, suicides)
 
 <span style="color:#a6e22e">summary</span>(apc_lm)
 </code></pre></div><pre><code>#&gt; 
@@ -1127,7 +1127,7 @@ suicides
 #&gt; Multiple R-squared:  0.03193,	Adjusted R-squared:  0.02749 
 #&gt; F-statistic: 7.193 on 127 and 27692 DF,  p-value: &lt; 2.2e-16
 </code></pre><p>Use package <a href="https://cran.r-project.org/web/packages/broom/vignettes/broom.html">broom</a> to constructs a data frame that summarizes the model’s statistical findings.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_tidy <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tidy</span>(apc_lm)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_tidy <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tidy</span>(apc_lm)
 
 apc_tidy
 </code></pre></div><pre><code>#&gt; # A tibble: 128 x 5
@@ -1145,7 +1145,7 @@ apc_tidy
 #&gt; 10 period1992   118.      75.2       1.57   1.17e- 1
 #&gt; # ... with 118 more rows
 </code></pre><p>From tidied coefficients, we need to tidy our results, starting from period and cohort first:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pc_tidy <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pc_tidy <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">mutate</span>(
     key <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;[:digit:]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>), 
     value <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace_all</span>(term, <span style="color:#e6db74">&#34;[:alpha:]&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">as.numeric</span>() 
@@ -1170,7 +1170,7 @@ pc_tidy
 #&gt; 10    -62.2   1928     NA
 #&gt; # ... with 115 more rows
 </code></pre><p>Then we can extract and tidy each coefficient using code in the chunk below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">age_coef <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">age_coef <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">filter</span>(term <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;age&#34;</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">pull</span>(estimate)
 
@@ -1186,7 +1186,7 @@ cohort_coef <span style="color:#f92672">&lt;-</span> pc_tidy <span style="color:
   <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> cohort, y <span style="color:#f92672">=</span> estimate) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">drop_na</span>()
 </code></pre></div><p>Now we can calculate the age effect, then combine all the coefficient together:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_all <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_all <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">mutate</span>(age_effect <span style="color:#f92672">=</span> (age <span style="color:#f92672">*</span> age_coef) <span style="color:#f92672">+</span> (age_squared <span style="color:#f92672">*</span> age_squared_coef)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> age, y <span style="color:#f92672">=</span> age_effect) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">distinct</span>() <span style="color:#f92672">%&gt;%</span> 
@@ -1212,12 +1212,12 @@ apc_all
 #&gt; 10 Cohort Effect  1914 -24.1
 #&gt; # ... with 121 more rows
 </code></pre><p>The last but not least, we can visualize the estimated coefficient to get some insight regarding our APC decomposition:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(apc_all, <span style="color:#a6e22e">aes</span>(x, y)) <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(apc_all, <span style="color:#a6e22e">aes</span>(x, y)) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_line</span>() <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span> group, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free&#34;</span>, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>From plot above we can identify Age, Period and Cohort effect of suicides. But it&rsquo;s not capturing all of our the data dynamics, lets try it to more specific cases from the data. We filltered the data by sex and country:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">suicides_male_us <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">suicides_male_us <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">filter</span>(
     sex <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;male&#34;</span>,
     country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;United States&#34;</span>
@@ -1239,7 +1239,7 @@ suicides_male_us
 #&gt; 10     6450    44        1936 1986   1942   male  United States
 #&gt; # ... with 176 more rows
 </code></pre><p>Now we have our data that contained APC variables of <code>male</code> in <code>United States</code>. For the next step we applied linear regression to extract coefficient of APC from the data :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_lm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(suicides <span style="color:#f92672">~</span> age <span style="color:#f92672">+</span> age_squared <span style="color:#f92672">+</span> period <span style="color:#f92672">+</span> cohort, suicides_male_us)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_lm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(suicides <span style="color:#f92672">~</span> age <span style="color:#f92672">+</span> age_squared <span style="color:#f92672">+</span> period <span style="color:#f92672">+</span> cohort, suicides_male_us)
 
 <span style="color:#a6e22e">summary</span>(apc_lm)
 </code></pre></div><pre><code>#&gt; 
@@ -1388,7 +1388,7 @@ suicides_male_us
 #&gt; Multiple R-squared:  0.9105,	Adjusted R-squared:  0.7194 
 #&gt; F-statistic: 4.765 on 126 and 59 DF,  p-value: 3.789e-10
 </code></pre><p>Again, from tidied coefficients, we need to tidy our results:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_tidy <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tidy</span>(apc_lm)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_tidy <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tidy</span>(apc_lm)
 
 pc_tidy <span style="color:#f92672">&lt;-</span> apc_tidy <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">mutate</span>(
@@ -1415,7 +1415,7 @@ cohort_coef <span style="color:#f92672">&lt;-</span> pc_tidy <span style="color:
   <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> cohort, y <span style="color:#f92672">=</span> estimate) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">drop_na</span>()
 </code></pre></div><p>Now we can calculate the age effect, then combine all the coefficient together:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_all_male_us <span style="color:#f92672">&lt;-</span> suicides_male_us <span style="color:#f92672">%&gt;%</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">apc_all_male_us <span style="color:#f92672">&lt;-</span> suicides_male_us <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">mutate</span>(age_effect <span style="color:#f92672">=</span> (age <span style="color:#f92672">*</span> age_coef) <span style="color:#f92672">+</span> (age_squared <span style="color:#f92672">*</span> age_squared_coef)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(x <span style="color:#f92672">=</span> age, y <span style="color:#f92672">=</span> age_effect) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">distinct</span>() <span style="color:#f92672">%&gt;%</span> 
@@ -1441,13 +1441,13 @@ apc_all_male_us
 #&gt; 10 Cohort Effect  1914   -47.3
 #&gt; # ... with 120 more rows
 </code></pre><p>The last we visualize the estimated coefficient to get some insight regarding our APC decomposition:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(apc_all_male_us, <span style="color:#a6e22e">aes</span>(x, y)) <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(apc_all_male_us, <span style="color:#a6e22e">aes</span>(x, y)) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_line</span>() <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">facet_wrap</span>(<span style="color:#f92672">~</span> group, scales <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;free&#34;</span>, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p><em>dive deeper</em></p>
 <p>Create APC analysis, try to compare the APC of <code>female</code> in <code>United States</code> with the APC we get above:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">suicides_female_us <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">suicides_female_us <span style="color:#f92672">&lt;-</span> suicides <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">filter</span>(
     sex <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;female&#34;</span>,
     country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;United States&#34;</span>
@@ -1672,18 +1672,12 @@ suicides_female_us
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -294,8 +294,8 @@ Do we jump to conclusion of causal relationship often too quickly?
 Can association between factors that we call mathematically &ldquo;correlation&rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&rsquo;t mean it affects each other." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/causal-inference-and-bayesian-network/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2018-07-26T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2018-07-26T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2018-07-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-07-26T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -305,8 +305,8 @@ Can association between factors that we call mathematically &ldquo;correlation&r
         <meta itemprop="name" content="Causal Inference and Bayesian Network">
 <meta itemprop="description" content="Introduction Cause has been people&rsquo;s curiosity for a long time, you can see that people often ask &ldquo;Why&rdquo; to things happening around them. But do we actually know how to explain &ldquo;cause&rdquo;?
 Do we jump to conclusion of causal relationship often too quickly?
-Can association between factors that we call mathematically &ldquo;correlation&rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&rsquo;t mean it affects each other."><meta itemprop="datePublished" content="2018-07-26T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2018-07-26T00:00:00&#43;00:00" />
+Can association between factors that we call mathematically &ldquo;correlation&rdquo; tell us possible causal relationship? No. Correlation shows whether two variable go up or down together. But just because two variables go up together doesn&rsquo;t mean it affects each other."><meta itemprop="datePublished" content="2018-07-26T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-07-26T00:00:00+00:00" />
 <meta itemprop="wordCount" content="2878">
 <meta itemprop="keywords" content="Bayesian,Causal Inference,Machine Learning," />
         
@@ -510,11 +510,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -1033,11 +1033,11 @@ After gathering some data, we know that:</p>
 <li>P(T2=+|~D)=0.2 ; P(T2=-|~D)=0.8</li>
 </ol>
 <p>First, we have to make assumption about the plausible causal relations between the variables. The plausible one will be, presence of disease affects the result of test. So, the DAG would be:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">disease.dag<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">dag</span>(<span style="color:#f92672">~</span>D<span style="color:#f92672">:</span>T1<span style="color:#f92672">:</span>T2)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">disease.dag<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">dag</span>(<span style="color:#f92672">~</span>D<span style="color:#f92672">:</span>T1<span style="color:#f92672">:</span>T2)
 <span style="color:#a6e22e">plot</span>(disease.dag)
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Now we are going to make the Bayesian Network model</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># the possible values (all nodes are boolean vars - discrete with two category)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># the possible values (all nodes are boolean vars - discrete with two category)</span>
 yn <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;yes&#34;</span>,<span style="color:#e6db74">&#34;no&#34;</span>)
 
 <span style="color:#75715e"># specify the CPTs</span>
@@ -1053,22 +1053,22 @@ plist
 #&gt;  P( D )
 #&gt;  P( T1 | D )
 #&gt;  P( T2 | D )
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#kind of prop table</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#kind of prop table</span>
 plist<span style="color:#f92672">$</span>D
 </code></pre></div><pre><code>#&gt; D
 #&gt;  yes   no 
 #&gt; 0.01 0.99 
 #&gt; attr(,&quot;class&quot;)
 #&gt; [1] &quot;parray&quot; &quot;array&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create network</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create network</span>
 bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">grain</span>(plist)
 <span style="color:#a6e22e">summary</span>(bn.disease)
 </code></pre></div><pre><code>#&gt; Independence network: Compiled: FALSE Propagated: FALSE 
 #&gt;  Nodes : chr [1:3] &quot;D&quot; &quot;T1&quot; &quot;T2&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">bn.disease
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">bn.disease
 </code></pre></div><pre><code>#&gt; Independence network: Compiled: FALSE Propagated: FALSE 
 #&gt;   Nodes: chr [1:3] &quot;D&quot; &quot;T1&quot; &quot;T2&quot;
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#We can gain the probability of events using query</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#We can gain the probability of events using query</span>
 
 <span style="color:#75715e">#if we want to see the marginal probability (probability of individual event) of each node</span>
 <span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;T1&#34;</span>, <span style="color:#e6db74">&#34;T2&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;marginal&#34;</span>)
@@ -1086,7 +1086,7 @@ bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 #&gt; T2
 #&gt;    yes     no 
 #&gt; 0.2075 0.7925
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#or</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#or</span>
 <span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;T1&#34;</span>, <span style="color:#e6db74">&#34;T2&#34;</span>))
 </code></pre></div><pre><code>#&gt; $D
 #&gt; D
@@ -1102,13 +1102,13 @@ bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 #&gt; T2
 #&gt;    yes     no 
 #&gt; 0.2075 0.7925
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># or if we want to see joint probability (probability of 2 or more events happening), for example P(D,T1)</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># or if we want to see joint probability (probability of 2 or more events happening), for example P(D,T1)</span>
 <span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;T1&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;joint&#34;</span>)
 </code></pre></div><pre><code>#&gt;      T1
 #&gt; D        yes     no
 #&gt;   yes 0.0090 0.0010
 #&gt;   no  0.1485 0.8415
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># or if we want to see conditional probability of T1 given D</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># or if we want to see conditional probability of T1 given D</span>
 <span style="color:#a6e22e">querygrain</span>(bn.disease, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;T1&#34;</span>,<span style="color:#e6db74">&#34;D&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;conditional&#34;</span>)
 </code></pre></div><pre><code>#&gt;      T1
 #&gt; D      yes   no
@@ -1116,7 +1116,7 @@ bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 #&gt;   no  0.15 0.85
 </code></pre><h2 id="cad-dataset">CAD Dataset</h2>
 <p>We can also make Bayesian Network model from a dataset. This time we are going to use Cardio Artery Disease data from R dataset.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;cad1&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;cad1&#34;</span>)
 <span style="color:#a6e22e">str</span>(cad1)
 </code></pre></div><pre><code>#&gt; 'data.frame':	236 obs. of  14 variables:
 #&gt;  $ Sex        : Factor w/ 2 levels &quot;Female&quot;,&quot;Male&quot;: 2 2 1 2 2 2 2 2 1 2 ...
@@ -1136,14 +1136,14 @@ bn.disease <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">
 </code></pre><p>We are going to focus on<code>CAD</code> variable, which represent whether a person has CAD.
 First, we need some assumptions about how the variables relate in the dataset. This is usually gained from expert opinions and some common sense.
 Suppose we assume that <code>Smoker</code>,<code>Inherit</code>, and <code>Hyperchol</code> variables affect <code>CAD</code> and <code>CAD</code> affect <code>AngPec</code>,<code>Heartfail</code>,<code>QWave</code>. We create the DAG of the causal model we have.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create the DAG</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create the DAG</span>
 dag.cad <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">dag</span>(<span style="color:#f92672">~</span> CAD<span style="color:#f92672">:</span>Smoker<span style="color:#f92672">:</span>Inherit<span style="color:#f92672">:</span>Hyperchol <span style="color:#f92672">+</span> 
                  AngPec<span style="color:#f92672">:</span>CAD <span style="color:#f92672">+</span> 
                  Heartfail<span style="color:#f92672">:</span>CAD <span style="color:#f92672">+</span> 
                  QWave<span style="color:#f92672">:</span>CAD)
 <span style="color:#a6e22e">plot</span>(dag.cad)
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># smooth is a small positive number to avoid zero entries in the CPTs</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># smooth is a small positive number to avoid zero entries in the CPTs</span>
 <span style="color:#75715e"># (cf. Additive smoothing, http://en.wikipedia.org/wiki/Additive_smoothing)</span>
 bn.cad <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">grain</span>(dag.cad, data <span style="color:#f92672">=</span> cad1, smooth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>)
 <span style="color:#75715e"># Let&#39;s ask some questions...</span>
@@ -1152,7 +1152,7 @@ bn.cad <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">grai
 #&gt; Smoker        No       Yes
 #&gt;    No  0.7172084 0.2827916
 #&gt;    Yes 0.4933771 0.5066229
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># add some evidence and see how things get affected.</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># add some evidence and see how things get affected.</span>
 <span style="color:#75715e">#let say we know a person who is a smoker but he does not have hyperchol, and we want to know the probability of him gettinf CAD</span>
 bn.cad.1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">setFinding</span>(bn.cad, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Smoker&#34;</span>,<span style="color:#e6db74">&#34;Hyperchol&#34;</span>), states<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Yes&#34;</span>,<span style="color:#e6db74">&#34;No&#34;</span>))
 <span style="color:#a6e22e">querygrain</span>(bn.cad.1, nodes<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CAD&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;marginal&#34;</span>) 
@@ -1418,18 +1418,12 @@ bn.cad.1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">se
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>

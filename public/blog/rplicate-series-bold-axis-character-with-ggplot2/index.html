@@ -253,7 +253,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.83.1" />
+        <meta name="generator" content="Hugo 0.87.0" />
         
   
     
@@ -294,8 +294,8 @@ Load Packages These are the packages and some set up that we will use.
 library(tidyverse) # for data wrangling library(ggplot2) # for data visualization library(scales) # to customize axes in plot library(ggrepel) # add &amp; customize repelled text library(grid) # create grid &amp; enhance the layouting of plot library(gridExtra) library(png) # import plot to image library(extrafont) # font library # load font from local font_import() # type y when asked to import #&gt; Importing fonts may take a few minutes, depending on the number of fonts and the speed of the system." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://algotech.netlify.com/blog/rplicate-series-bold-axis-character-with-ggplot2/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2021-02-28T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-02-28T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2021-02-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-02-28T00:00:00+00:00" />
 
 
         <meta property="og:image" content="https://algotech.netlify.com//images/logo.png">
@@ -305,8 +305,8 @@ library(tidyverse) # for data wrangling library(ggplot2) # for data visualizatio
         <meta itemprop="name" content="Rplicate Series: Bold Axis &amp; Character with ggplot2">
 <meta itemprop="description" content="Welcome again to the Rplicate Series! In this 6th article of the series, we will replicate The Economist plot titled &ldquo;Marvellous&rdquo;. In the process, we will explore ways to use bold text and characters for our axes. Let&rsquo;s dive in below!
 Load Packages These are the packages and some set up that we will use.
-library(tidyverse) # for data wrangling library(ggplot2) # for data visualization library(scales) # to customize axes in plot library(ggrepel) # add &amp; customize repelled text library(grid) # create grid &amp; enhance the layouting of plot library(gridExtra) library(png) # import plot to image library(extrafont) # font library # load font from local font_import() # type y when asked to import #&gt; Importing fonts may take a few minutes, depending on the number of fonts and the speed of the system."><meta itemprop="datePublished" content="2021-02-28T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2021-02-28T00:00:00&#43;00:00" />
+library(tidyverse) # for data wrangling library(ggplot2) # for data visualization library(scales) # to customize axes in plot library(ggrepel) # add &amp; customize repelled text library(grid) # create grid &amp; enhance the layouting of plot library(gridExtra) library(png) # import plot to image library(extrafont) # font library # load font from local font_import() # type y when asked to import #&gt; Importing fonts may take a few minutes, depending on the number of fonts and the speed of the system."><meta itemprop="datePublished" content="2021-02-28T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-02-28T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1934">
 <meta itemprop="keywords" content="Data Visualization,Rplicate," />
         
@@ -510,11 +510,11 @@ if (!doNotTrack) {
                
                <div class="inputs">
  
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png",
-                     alt="Jendela Data - Data Science in Banking", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
-                <p>This webinar is organized by Algoritma in collaboration with OCBC NISP. Learn how the banking industry uses data science to improve their business process. Friday, 17 September 2021. 19.00 - 20.30 WIB.</p>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png",
+                     alt="Building Algorithmic Trading Dashboard", style="float: left; padding-right: 20px;" padding: 1px  width="30%" height="30%"></a>
+                <p>This 3-day online workshop is a beginner-friendly introduction to algorithmic trading using the Python programming language. Throughout the online course, we will provide you with hands-on examples and a rich interactive experience. One Instructor and two Teaching Assistants will help you to troubleshoot or help with any difficulties encountered.</p>
                 <div class="advance-wrapper callout-special-font">
-                    <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech" target="_blank" 
+                    <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech" target="_blank" 
                     class="leadin-button leadin-advance-button leadin-button-primary">LEARN MORE</a>
                 </div>
                </div>
@@ -898,7 +898,7 @@ if (!doNotTrack) {
 <!-- raw HTML omitted -->
 <h1 id="load-packages">Load Packages</h1>
 <p>These are the packages and some set up that we will use.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tidyverse) <span style="color:#75715e"># for data wrangling</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tidyverse) <span style="color:#75715e"># for data wrangling</span>
 <span style="color:#a6e22e">library</span>(ggplot2) <span style="color:#75715e"># for data visualization</span>
 <span style="color:#a6e22e">library</span>(scales) <span style="color:#75715e"># to customize axes in plot</span>
 <span style="color:#a6e22e">library</span>(ggrepel) <span style="color:#75715e"># add &amp; customize repelled text</span>
@@ -911,7 +911,7 @@ if (!doNotTrack) {
 <span style="color:#a6e22e">font_import</span>() <span style="color:#75715e"># type y when asked to import</span>
 </code></pre></div><pre><code>#&gt; Importing fonts may take a few minutes, depending on the number of fonts and the speed of the system.
 #&gt; Continue? [y/n]
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">loadfonts</span>(device <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;win&#34;</span>)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">loadfonts</span>(device <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;win&#34;</span>)
 
 <span style="color:#75715e"># to prevent R displaying scientific notation</span>
 <span style="color:#a6e22e">options</span>(scipen <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>) 
@@ -920,7 +920,7 @@ if (!doNotTrack) {
 <h1 id="first-plot-bar-plot">First Plot (Bar Plot)</h1>
 <h2 id="data-wrangling">Data Wrangling</h2>
 <p>Before making a visualization, let&rsquo;s prepare and clean the data:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># read csv</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># read csv</span>
 box_office_sales <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;data_input/rplicate6/box office sales 2019.csv&#34;</span>)
 <span style="color:#a6e22e">head</span>(box_office_sales)
 </code></pre></div><pre><code>#&gt; # A tibble: 6 x 6
@@ -934,7 +934,7 @@ box_office_sales <span style="color:#f92672">&lt;-</span> <span style="color:#a6
 #&gt; 6     6 Toy ~ $1,073,394,813   $434,038,008     $639,356,805    
 #&gt; # ... with 1 more variable: `Domestic Share` &lt;chr&gt;
 </code></pre><p>In this visualization, we only use the first 11 row of data and column Movie, Worldwide Box Office, and International Box Office. Therefore let&rsquo;s select these data and rename some column.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">head</span>(box_office_sales, <span style="color:#ae81ff">11</span>) <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">head</span>(box_office_sales, <span style="color:#ae81ff">11</span>) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(Movie,
          <span style="color:#e6db74">&#39;Domestic Box Office&#39;</span>,
          <span style="color:#e6db74">&#39;International Box Office&#39;</span>)
@@ -954,9 +954,9 @@ data_1
 #&gt; 10 Jumanji: The Next Level         $301,861,286         $468,828,061            
 #&gt; 11 Fast &amp; Furious Presents: Hobbs~ $173,956,935         $586,625,355
 </code></pre><p>Since there&rsquo;s no information about &ldquo;Jumanji&rdquo; movie inside the plot, it is best to remove it from the data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_box_office <span style="color:#f92672">&lt;-</span> data_1 <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(Movie <span style="color:#f92672">!=</span><span style="color:#e6db74">&#39;Jumanji: The Next Level&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_box_office <span style="color:#f92672">&lt;-</span> data_1 <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(Movie <span style="color:#f92672">!=</span><span style="color:#e6db74">&#39;Jumanji: The Next Level&#39;</span>)
 </code></pre></div><p>Next, we will also perform some string manipulation to replace special character like &ldquo;$&rdquo; and &ldquo;,&rdquo; into a blank space. This is to make sure that we can convert the columns into its correct data type.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_box_office[,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)]<span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lapply</span>(data_box_office[,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)], 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_box_office[,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)]<span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lapply</span>(data_box_office[,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)], 
                                   <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#39;\\$&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>, x))
 data_box_office[,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)]<span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lapply</span>(data_box_office[,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)], 
                                   <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#39;\\,&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>, x))
@@ -980,7 +980,7 @@ data_box_office[<span style="color:#ae81ff">-1</span>] <span style="color:#f9267
 #&gt; 5 Frozen II         Domestic Box Office       474900703
 #&gt; 6 Frozen II         International Box Office  955868637
 </code></pre><h2 id="create-visualization">Create Visualization</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot_bar <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> data_plot,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot_bar <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> data_plot,
                    <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">reorder</span>(Movie, value), y <span style="color:#f92672">=</span> value)) <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">coord_flip</span>() <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">geom_col</span>(<span style="color:#a6e22e">aes</span>(fill <span style="color:#f92672">=</span> revenue_type),
@@ -993,7 +993,7 @@ data_box_office[<span style="color:#ae81ff">-1</span>] <span style="color:#f9267
 plot_bar
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>We need to declare specific format for x-axis and y-axis text. Namely, bold character for specific movie and additional &ldquo;&gt;&rdquo; character with its red color. We can use function <code>expression()</code>. Here is the code below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot_bar <span style="color:#f92672">&lt;-</span> plot_bar <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot_bar <span style="color:#f92672">&lt;-</span> plot_bar <span style="color:#f92672">+</span>
    <span style="color:#a6e22e">scale_x_discrete</span>(labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">rev</span>(
      <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">expression</span>(<span style="color:#a6e22e">paste</span>(<span style="color:#a6e22e">bold</span>(<span style="color:#e6db74">&#34;Avengers:   Endgame&#34;</span>))), <span style="color:#75715e"># adding bold format</span>
        <span style="color:#a6e22e">expression</span>(<span style="color:#a6e22e">paste</span>(<span style="color:#a6e22e">bold</span>(<span style="color:#e6db74">&#34;The Lion King&#34;</span>))),
@@ -1014,7 +1014,7 @@ plot_bar
 
 plot_bar
 </code></pre></div><p><!-- raw HTML omitted --></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot_bar <span style="color:#f92672">&lt;-</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot_bar <span style="color:#f92672">&lt;-</span>
   plot_bar <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">labs</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Box-office sales, 2019, $bn \n&#34;</span>,
        caption_left <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; \n&#34;</span>) <span style="color:#75715e"># \n adding empty line in left side of the plot </span>
@@ -1023,7 +1023,7 @@ plot_bar
 plot_bar
 </code></pre></div><p><!-- raw HTML omitted -->
 And then we can apply theme into the plot:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># apply theme</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># apply theme</span>
 plot_bar <span style="color:#f92672">&lt;-</span> plot_bar <span style="color:#f92672">+</span>
   
   <span style="color:#a6e22e">theme</span>(
@@ -1061,7 +1061,7 @@ plot_bar
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="save-plot">Save Plot</h2>
 <p>After all of the visualization steps above were done, we can save the plot into a png file. To apply an arrow &ldquo;&gt;&rdquo; symbol, because ggplot haven&rsquo;t yet provide feature to accomodate it, we can apply it using <strong>grob text</strong>. And here below the result.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># prepare file</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># prepare file</span>
 <span style="color:#a6e22e">png</span>(<span style="color:#e6db74">&#34;bar.png&#34;</span>, width <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>, height <span style="color:#f92672">=</span> <span style="color:#ae81ff">5.5</span>, units <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;in&#34;</span>, res <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span>)
 
 <span style="color:#75715e"># make file (RUN ALL)</span>
@@ -1101,7 +1101,7 @@ plot_bar
 <h1 id="second-plot-line-plot">Second Plot (Line Plot)</h1>
 <h2 id="data-wrangling-1">Data Wrangling</h2>
 <p>Before making a visualization, let&rsquo;s prepare and clean the data:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># read data</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># read data</span>
 market_shares_disney <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;data_input/rplicate6/Disney Market Shares.csv&#34;</span>)
 <span style="color:#a6e22e">head</span>(market_shares_disney)
 </code></pre></div><pre><code>#&gt; # A tibble: 6 x 8
@@ -1116,7 +1116,7 @@ market_shares_disney <span style="color:#f92672">&lt;-</span> <span style="color
 #&gt; # ... with 2 more variables: `Top-Grossing Movie` &lt;chr&gt;, `Gross that
 #&gt; #   Year` &lt;chr&gt;
 </code></pre><p>We will drop some columns and filter some data:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_market_shares <span style="color:#f92672">&lt;-</span> market_shares_disney <span style="color:#f92672">%&gt;%</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_market_shares <span style="color:#f92672">&lt;-</span> market_shares_disney <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">select</span>(year <span style="color:#f92672">=</span> Year, 
          market_share <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Market Share&#39;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># rename into easier format for plotting</span>
   <span style="color:#a6e22e">filter</span>(year <span style="color:#f92672">!=</span><span style="color:#e6db74">&#39;2020&#39;</span>)
@@ -1129,7 +1129,7 @@ market_shares_disney <span style="color:#f92672">&lt;-</span> <span style="color
 #&gt; 2  1996 20.76%      
 #&gt; 3  1997 13.93%
 </code></pre><p>Now, we will replace special character &ldquo;%&rdquo; into a blank space and convert the Market Share data into its correct data type.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_market_shares[2]<span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lapply</span>(data_market_shares[2], <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#39;\\%&#39;</span>,<span style="color:#e6db74">&#39;&#39;</span>,x))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data_market_shares[2]<span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lapply</span>(data_market_shares[2], <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#39;\\%&#39;</span>,<span style="color:#e6db74">&#39;&#39;</span>,x))
 data_market_shares[2]<span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lapply</span>(data_market_shares[2], as.numeric)
 
 <span style="color:#a6e22e">head</span>(data_market_shares, <span style="color:#ae81ff">3</span>)
@@ -1140,7 +1140,7 @@ data_market_shares[2]<span style="color:#f92672">&lt;-</span> <span style="color
 #&gt; 2  1996         20.8
 #&gt; 3  1997         13.9
 </code></pre><h2 id="create-visualization-1">Create Visualization</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># creating plot</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># creating plot</span>
 plot_line <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> data_market_shares, 
                     <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year, y <span style="color:#f92672">=</span> market_share, group <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">+</span> <span style="color:#75715e"># group 1 to make 1 line</span>
   <span style="color:#a6e22e">geom_line</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#99404f&#34;</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.2</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">labs</span>(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)
@@ -1148,7 +1148,7 @@ plot_line <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">g
 plot_line
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>We need to declare the axis text and add some title and subtitle inside the plot, here is the code below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot_line <span style="color:#f92672">&lt;-</span> plot_line <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot_line <span style="color:#f92672">&lt;-</span> plot_line <span style="color:#f92672">+</span>
   <span style="color:#a6e22e">scale_y_continuous</span>(limit <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">40</span>),
                     expand <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>))<span style="color:#f92672">+</span>
   <span style="color:#a6e22e">scale_x_continuous</span>(breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">1995</span>,<span style="color:#ae81ff">2019</span>,by<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>),
@@ -1162,7 +1162,7 @@ plot_line
 plot_line
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Next, we need to customize y-axis text using grob text, because text needs to be put inside the plot:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">label_0 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">grobTree</span>(<span style="color:#a6e22e">textGrob</span>(<span style="color:#e6db74">&#34;0&#34;</span>, x<span style="color:#f92672">=</span><span style="color:#ae81ff">0.99</span>,y<span style="color:#f92672">=</span><span style="color:#ae81ff">0.03</span>, hjust<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">label_0 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">grobTree</span>(<span style="color:#a6e22e">textGrob</span>(<span style="color:#e6db74">&#34;0&#34;</span>, x<span style="color:#f92672">=</span><span style="color:#ae81ff">0.99</span>,y<span style="color:#f92672">=</span><span style="color:#ae81ff">0.03</span>, hjust<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,
                              gp<span style="color:#f92672">=</span><span style="color:#a6e22e">gpar</span>(col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;black&#34;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)))
 label_10 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">grobTree</span>(<span style="color:#a6e22e">textGrob</span>(<span style="color:#e6db74">&#34;10&#34;</span>, x<span style="color:#f92672">=</span><span style="color:#ae81ff">0.975</span>,y<span style="color:#f92672">=</span><span style="color:#ae81ff">0.302</span>, hjust<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,
                               gp<span style="color:#f92672">=</span><span style="color:#a6e22e">gpar</span>(col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;black&#34;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)))
@@ -1183,7 +1183,7 @@ plot_line <span style="color:#f92672">&lt;-</span> plot_line <span style="color:
 plot_line
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <p>Then, we can add theme into the plot:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot_line <span style="color:#f92672">&lt;-</span> plot_line <span style="color:#f92672">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot_line <span style="color:#f92672">&lt;-</span> plot_line <span style="color:#f92672">+</span>
   
   <span style="color:#a6e22e">theme</span>(
     text <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Calibri&#34;</span>),
@@ -1210,7 +1210,7 @@ plot_line
 </code></pre></div><p><!-- raw HTML omitted --></p>
 <h2 id="save-plot-1">Save Plot</h2>
 <p>After all of the steps were done, we can save the plot into png file:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># prepare file</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># prepare file</span>
 <span style="color:#a6e22e">png</span>(<span style="color:#e6db74">&#34;line.png&#34;</span>, width <span style="color:#f92672">=</span> <span style="color:#ae81ff">5.6</span>, height <span style="color:#f92672">=</span> <span style="color:#ae81ff">5.5</span>, units <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;in&#34;</span>, res <span style="color:#f92672">=</span><span style="color:#ae81ff">300</span>)
 
 <span style="color:#75715e"># make file (RUN ALL)</span>
@@ -1226,7 +1226,7 @@ plot_line
 </code></pre></div><!-- raw HTML omitted -->
 <h1 id="combine-plots">Combine Plots</h1>
 <p>In this finishing step, we will combine two plot into one plot and add plot accessories like caption and header.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># prepare file</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># prepare file</span>
 <span style="color:#a6e22e">png</span>(<span style="color:#e6db74">&#34;plot.png&#34;</span>, width <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span>, height <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, units <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;in&#34;</span>, res <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span>)
 
 <span style="color:#75715e"># make plot </span>
@@ -1469,18 +1469,12 @@ spacing <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rec
             <header>
               
               
-               <h3>
-                <a href="https://algorit.ma/ocbc-banking/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/jendela-data-ocbc.png", alt="Data Science for Banking Professional",  width="270" height="340">More details</a>
-              </h3>
-              
-              
-              
               <h3>
-                <a href="https://algorit.ma/ds-course/music-python/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-music-recomm.png", alt="Building Music Recommender System with Python",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/ds-course/dss-trading/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dss-okt.png", alt="Building Algorithmic Trading Dashboard",  width="270" height="340">More details</a>
               </h3>
               
               <h3>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoeHqMRhXkCY6UnaqxhoGgYnKPKetr3thf3fpQ5yBgRwjR-w/viewform"><img src="https://algotech.netlify.com/img/2021/ads/open-house-aug.png", alt="Introduction to Algoritma Academy",  width="270" height="340">More details</a>
+                <a href="https://algorit.ma/dds-oil-gas/?utm_source=algotech"><img src="https://algotech.netlify.com/img/2021/ads/dds-oilgas.png", alt="DDS: Secrets to a Successful Analytics Project in the Oil and Gas Industry",  width="270" height="340">More details</a>
               </h3>
             </header>
           </article>
