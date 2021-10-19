@@ -2,8 +2,7 @@
 title: Pendekatan Regresi Terboboti Spasial untuk Analisa Tingkat Kriminalitas di Pulau Jawa
 author: Muhamad Risman
 github: https://github.com/muhrisman
-date: '2021-10-11'
-<<<<<<< HEAD:content/blog/Regresi Terboboti Geografis.Rmd
+date: '2021-10-19'
 slug: regresi-terboboti-geografis
 categories:
   - R
@@ -12,17 +11,6 @@ tags:
   - Leaflet
   - Map
   - Machine Learning
-=======
-slug: creating-choropleth-with-mapshaper-and-r
-categories:
-  - R
-tags: 
-  - Geocoding
-  - Mapshaper
-  - Leaflet
-  - Map
-  - Data Visualization
->>>>>>> 53c3bdb3d50a96251c31555ade926146f2cf8d34:content/blog/Pendekatan Regresi Terboboti Spasial untuk Analisa Tingkat Kriminalitas di Pulau Jawa.Rmd
   - Regression
   - Spatial Analysis
 description: ''
@@ -61,23 +49,14 @@ Data spasial adalah data cross-section yang memiliki struktur geografis berupa l
 Regresi Terboboti Geografis (RTG) adalah metode yang dapat digunakan untuk menganalisis aspek heterogenitas spasial antar variabel. Model regresi terboboti geografis berangkat dari model regresi linear klasik dengan melibatkan hubungan antar variabel berdasarkan aspek ruang. Model yang dihasilkan menggunakan regresi linear klasik merupakan model global yang berarti pendugaan parameter yang dihasilkan berlaku untuk seluruh observasi.
 Regresi linear klasik dengan Ordinary Least Square (OLS) tidak mempertimbangkan aspek ruang atau efek spasial yang timbul. Hal ini dapat mengakibatkan interpretasi yang keliru terhadap model yang dihasilkan. Simpson's Paradox adalah salah satu fenomena yang muncul pada kasus statistik yang dapat mengakibatkan kekeliruan pengambilan kesimpulan[^5]. Fenomena ini terjadi ketika suatu group data yang dianalisis antara secara terpisah dan secara penggabungan memiliki hasil yang kontradiktif.
 
-<<<<<<< HEAD:content/blog/Regresi Terboboti Geografis.Rmd
-<center> ![](/img/GWR/a.gif) </center>`
-=======
-![](Simpson's Paradox.gif)
->>>>>>> 53c3bdb3d50a96251c31555ade926146f2cf8d34:content/blog/Pendekatan Regresi Terboboti Spasial untuk Analisa Tingkat Kriminalitas di Pulau Jawa.Rmd
+<center> ![](/img/rtg/a.gif) </center>`
 
 [Sumber Gambar](https://anatomisebiostats.com/biostatistics-blog/simpsons-paradox-hidden-bias/)
 
 Dalam pemodelan kasus regresi linear klasik yang melibatkan ruang, model yang dihasilkan dapat berhadapan dengan Simpson's Paradox karena bersinggungan dengan data yang melalui agregasi. Setiap observasi dalam pemodelan regresi yang melibatkan ruang memiliki kemungkinan menghasilkan pendugaan parameter yang berbeda ketika pemodelan yang dilakukan bersifat global.
 Regresi terboboti geografis dapat menangani permasalahan yang muncul akibat misinterpretasi saat melakukan pemodelan regresi linear klasik karena adanya keragaman spasial dalam data[^1]. Output yang muncul pada pemodelan regresi terboboti spasial adalah setiap observasi yang berbasis ruang memiliki model regresi masing-masing.
 
-<<<<<<< HEAD:content/blog/Regresi Terboboti Geografis.Rmd
-<center> ![](/img/GWR/gwr.PNG) </center>
-=======
-![](gwr.PNG)
-
->>>>>>> 53c3bdb3d50a96251c31555ade926146f2cf8d34:content/blog/Pendekatan Regresi Terboboti Spasial untuk Analisa Tingkat Kriminalitas di Pulau Jawa.Rmd
+<center> ![](/img/rtg/gwr.PNG) </center>
 
 Model regresi global dapat dinyatakan sebagai berikut:
 
@@ -139,13 +118,7 @@ $w_{ij} = exp \ [\frac{-1}{2}(\frac{d_{ij}}{b})^2]$
 
 $d_{ij}$ adalah jarak antara dua lokasi yaitu $i$ dan $j$ dan $b$ adalah lebar jendela (bandwidth). Bandwidth dapat dianalogikan sebagai suatu titik dalam lingkaran yang memiliki efek mempengaruhi area sekitar yang masih berada dalam area tersebut. Hal ini mempengaruhi pendugaan parameternya di lokasi ke-$i$. Bandwith terbagi menjadi dua yaitu memiliki efek sama pada setiap lokasi pengamatan (fixed) dan berbeda pada setiap lokasi pengamatan (adaptif).
 
-<<<<<<< HEAD:content/blog/Regresi Terboboti Geografis.Rmd
-<center> ![](/img/GWR/bandwidth.PNG) </center>
-=======
-
-![](bandwidth.PNG)
-
->>>>>>> 53c3bdb3d50a96251c31555ade926146f2cf8d34:content/blog/Pendekatan Regresi Terboboti Spasial untuk Analisa Tingkat Kriminalitas di Pulau Jawa.Rmd
+<center> ![](/img/rtg/bandwidth.PNG) </center>
 
 Metode yang dapat digunakan untuk menentukan nilai bandwidth optimum adalah dengan menggunakan validasi silang (Cross Validation). Adapun persamaan untuk mendapatkan CV adalah sebagai berikut:
 
@@ -159,11 +132,7 @@ $\hat{y}_{\ne i}(b)$ adalah nilai dugaan $y_{i}$ pada observasi di lokasi ke-$i$
 
 Pada tulisan ini akan digunakan metode regresi terboboti geografis pada data tingkat kriminalitas yang di pulau Jawa. Data ini merupakan kumpulan data yang berasal dari publikasi Badan Pusat Statistik (BPS) untuk tahun 2018 dari 6 provinsi yaitu Banten[^7], Jawa Barat[^11], DKI Jakarta[^8][^9], Jawa Tengah[^13], DI Yogyakarta[^10] dan Jawa Timur[^12]. Pemilihan variabel-variabel prediktor yang digunakan berdasarkan penelitian yang dilakukan oleh Putra (2019)[^3]. 
 
-<<<<<<< HEAD:content/blog/Regresi Terboboti Geografis.Rmd
-<center> ![](/img/GWR/crime.PNG) </center>
-=======
-![](Crime.png)
->>>>>>> 53c3bdb3d50a96251c31555ade926146f2cf8d34:content/blog/Pendekatan Regresi Terboboti Spasial untuk Analisa Tingkat Kriminalitas di Pulau Jawa.Rmd
+<center> ![](/img/rtg/crime.PNG) </center>
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -181,11 +150,7 @@ library(htmlwidgets)
 
 
 ```{r}
-<<<<<<< HEAD:content/blog/Regresi Terboboti Geografis.Rmd
-Data_Tingkat_Kriminalitas <- read.csv("data_input/GWR/Data Risiko Kejatahan Jawa.csv")
-=======
-Data_Tingkat_Kriminalitas <- read.csv("Data Risiko Kejatahan Jawa.csv")
->>>>>>> 53c3bdb3d50a96251c31555ade926146f2cf8d34:content/blog/Pendekatan Regresi Terboboti Spasial untuk Analisa Tingkat Kriminalitas di Pulau Jawa.Rmd
+Data_Tingkat_Kriminalitas <- read.csv("data_input/rtg/Data Risiko Kejatahan Jawa.csv")
 
 glimpse(Data_Tingkat_Kriminalitas)
 ```
@@ -209,11 +174,7 @@ Hal pertama yang harus disiapkan adalah menyiapkan file dalam bentuk peta daerah
 
 
 ```{r}
-<<<<<<< HEAD:content/blog/Regresi Terboboti Geografis.Rmd
 Pulau_Jawa <- readOGR(dsn = "data_input/Pulau_Jawa", layer = "Pulau_Jawa")
-=======
-Pulau_Jawa <- readOGR(dsn = "Pulau_Jawa", layer = "Pulau_Jawa")
->>>>>>> 53c3bdb3d50a96251c31555ade926146f2cf8d34:content/blog/Pendekatan Regresi Terboboti Spasial untuk Analisa Tingkat Kriminalitas di Pulau Jawa.Rmd
 
 ```
 
