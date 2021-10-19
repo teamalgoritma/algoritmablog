@@ -1,0 +1,1072 @@
+---
+title: Pendekatan Regresi Terboboti Spasial untuk Analisa Tingkat Kriminalitas di Pulau Jawa
+author: Muhamad Risman
+github: https://github.com/muhrisman
+date: '2021-10-19'
+slug: regresi-terboboti-geografis
+categories:
+  - R
+tags: 
+  - Mapshaper
+  - Leaflet
+  - Map
+  - Machine Learning
+  - Regression
+  - Spatial Analysis
+description: ''
+featured: ''
+featuredalt: ''
+featuredpath: ''
+linktitle: ''
+type: post
+---
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# clean up the environment
+rm(list = ls())
+
+# setup chunk options
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  comment = "#>"
+)
+```
+
+# Latar Belakang
+
+Analisis regresi adalah satu metode machine learning yang bertujuan untuk memprediksi target variabel berdasarkan variabel-variabel pendukung sesuai dengan kajian-kajian yang mendasarinya. Analisis regresi cukup populer dan banyak diaplikasikan pada banyak disiplin ilmu mulai dari kajian dalam ruang lingkup ekonomi dan bisnis hingga fenomena sehari-hari.
+
+Salah satu kajian dalam analisis regresi adalah dengan mempertimbangkan data spasial. Model regresi spasial dapat melakukan eksplorasi suatu kasus yang berhubungan dengan aspek kewilayahan. Contohnya kasus kelahiran balita di suatu wilayah, kasus tindak pidana di provinsi A, kasus penyebaran penyakit di wilayah yang berdekatan dll. Berbeda dengan pemodelan analisis regresi pada umumnya, pemodelan dengan menggunakan data spasial mempertimbangkan aspek kewilayahan yang memberikan pengaruh lingkungan dan karakteristik yang muncul dari suatu wilayah.
+
+Data spasial adalah data cross-section yang memiliki struktur geografis berupa longitude dan latitude dan dapat divisualisasikan dalam bentuk peta. Berdasarkan Hukum I Tobler, setiap hal memiliki keterkaitan dengan hal lainnya namun yang lebih berdekatan memiliki keterkaitan yang lebih dari lainnya [^6]. Hukum ini mendasari pemodelan data spasial yang mempertimbangkan aspek kewilayahan yang berdekatan.
+
+# Regresi Terboboti Geografis
+
+Regresi Terboboti Geografis (RTG) adalah metode yang dapat digunakan untuk menganalisis aspek heterogenitas spasial antar variabel. Model regresi terboboti geografis berangkat dari model regresi linear klasik dengan melibatkan hubungan antar variabel berdasarkan aspek ruang. Model yang dihasilkan menggunakan regresi linear klasik merupakan model global yang berarti pendugaan parameter yang dihasilkan berlaku untuk seluruh observasi.
+Regresi linear klasik dengan Ordinary Least Square (OLS) tidak mempertimbangkan aspek ruang atau efek spasial yang timbul. Hal ini dapat mengakibatkan interpretasi yang keliru terhadap model yang dihasilkan. Simpson's Paradox adalah salah satu fenomena yang muncul pada kasus statistik yang dapat mengakibatkan kekeliruan pengambilan kesimpulan[^5]. Fenomena ini terjadi ketika suatu group data yang dianalisis antara secara terpisah dan secara penggabungan memiliki hasil yang kontradiktif.
+
+<center> ![](/img/rtg/a.gif) </center>`
+
+[Sumber Gambar](https://anatomisebiostats.com/biostatistics-blog/simpsons-paradox-hidden-bias/)
+
+Dalam pemodelan kasus regresi linear klasik yang melibatkan ruang, model yang dihasilkan dapat berhadapan dengan Simpson's Paradox karena bersinggungan dengan data yang melalui agregasi. Setiap observasi dalam pemodelan regresi yang melibatkan ruang memiliki kemungkinan menghasilkan pendugaan parameter yang berbeda ketika pemodelan yang dilakukan bersifat global.
+Regresi terboboti geografis dapat menangani permasalahan yang muncul akibat misinterpretasi saat melakukan pemodelan regresi linear klasik karena adanya keragaman spasial dalam data[^1]. Output yang muncul pada pemodelan regresi terboboti spasial adalah setiap observasi yang berbasis ruang memiliki model regresi masing-masing.
+
+<center> ![](/img/rtg/gwr.PNG) </center>
+
+Model regresi global dapat dinyatakan sebagai berikut:
+
+
+$y_{i} = \beta_{0} + \sum_{k=1}^p \beta_{k}x_{ik} + \varepsilon_{i}$
+
+
+Melalui regresi terboboti geografis, model regresi tersebut dapat digunakan untuk menduga parameter lokal dengan model umum sebagai berikut:
+
+
+$y_{i} = \beta_{0}(u_{i},v_{i}) + \sum_{k=1}^p \beta_{k}(u_{i},v_{i})x_{ik} + \varepsilon_{i}$
+
+dengan:
+
+$y_{i}$                  : Variabel target untuk setiap lokasi ke-i
+
+$(u_{i},v_{i})$          : Titik koordinat lokasi ke-$i$ dalam bentuk longitude dan latitude
+
+$\beta_{k}(u_{i},v_{i})$ : Nilai koefisien regresi untuk variabel prediktor ke-$k$ dan lokasi ke-$i$
+
+$\varepsilon_{i}$        : Nilai residual regresi antara variabel prediktor dengan variabel target di lokasi ke-$i$
+
+
+Model regresi yang dihasilkan melalui RTG berguna ketika hendak dilakukan eksplorasi suatu variabel beserta pengambilan keputusannya pada daerah tersebut berdasarkan variabel-variabel yang diteliti. Karena setiap daerah memiliki model masing-masing, maka pengambilan kebijakan pada satu daerah akan berbeda dengan daerah lainnya.
+
+Untuk mendeteksi aspek keragaman spasial yang muncul dapat dilakukan menggunakan uji Breusch-Pagan dengan statistik uji sebagai berikut:
+
+$BP = \frac{1}{2}h^{'}y(y^{'}y)^{-1}y^{'}h$
+
+dengan 
+
+$h = (\frac{\epsilon_{i}^{2}}{\sigma^{2}} - 1)$
+
+
+Vektor observasi variabel target dinyatakan sebagai $y$ sedangkan $\epsilon_{i}^{2}$ adalah kuadrat error pengamatan ke-$i$ dan $\sigma^{2}$ adalah varians dari $\epsilon_{i}$
+
+Setelah dilakukan uji Breush-Pagan dan hasil yang ditunjukan adalah keragaman spasial yang signifikan maka pemodelan dengan regresi terboboti geografis dapat dilakukan. Pada model regresi terboboti geografis setiap lokasi memiliki parameter persamaan yang berbeda sehingga banyaknya model regresi yang diduga adalah sebagai obervasi yang digunakan dalam data.
+
+# Pembobot Spasial
+
+Dalam melakukan analisis spasial, dibutuhkan suatu pembobot spasial berdasarkan aspek ketetanggaan atau aspek jarak. Pembentukan pembobot spasial ini bersifat penting karena akan mempengaruhi hasil analisis regresi spasial yang dibentuk. Pembobotan ini akan disimpan ke dalam suatu matriks W yang kemudian bernama matriks pembobot spasial. Adapun beberapa konsep pembobotan spasial yang biasa digunakan diantaranya:
+
+1. Critical cut of Neighbourhood
+  
+   Dua lokasi yang memiliki koordinat easting-northing $s_{i}$ dan $s_{j}$ dianggap      bertetangga jika $0\le d_{ij} \le d^{*}$ dengan $d_{ij}$ adalah jarak antarlokasi dan $d^{*}$ mewakili jarak critical cut off.
+
+2. $k^{th}$ Nearest Neighboar (Tetangga terdekat)
+
+   Melibatkan lokasi terdekat dengan membertimbangkan nilai $k$ yang dipilih. Untuk lokasi $i$ yang terdekat dengan lokasi $j$ akan dipilih jika lokasi $i$ masih dalam urutan $k$ jarak terdekat dalam unit pengamatan.
+
+3. Contiguity Based Neighbourhood (Ketetanggaan berbasis persinggungan)
+
+   Dua lokasi berkoordinat $s_{i}$ dan $s_{j}$ disebut bertetangga jika saling berbagi batas wilayah.
+   
+
+Dalam melakukan pembobotan untuk regresi terboboti geografis, akan digunakan suatu fungsi kernal yaitu fungsi pembobot kernel Gaussian dengan persamaan sebagai berikut:
+
+$w_{ij} = exp \ [\frac{-1}{2}(\frac{d_{ij}}{b})^2]$
+
+$d_{ij}$ adalah jarak antara dua lokasi yaitu $i$ dan $j$ dan $b$ adalah lebar jendela (bandwidth). Bandwidth dapat dianalogikan sebagai suatu titik dalam lingkaran yang memiliki efek mempengaruhi area sekitar yang masih berada dalam area tersebut. Hal ini mempengaruhi pendugaan parameternya di lokasi ke-$i$. Bandwith terbagi menjadi dua yaitu memiliki efek sama pada setiap lokasi pengamatan (fixed) dan berbeda pada setiap lokasi pengamatan (adaptif).
+
+<center> ![](/img/rtg/bandwidth.PNG) </center>
+
+Metode yang dapat digunakan untuk menentukan nilai bandwidth optimum adalah dengan menggunakan validasi silang (Cross Validation). Adapun persamaan untuk mendapatkan CV adalah sebagai berikut:
+
+
+$CV = \Sigma_{i=1}^{n}[y_{i} - \hat{y}_{\ne i}(b)]^2$
+
+$\hat{y}_{\ne i}(b)$ adalah nilai dugaan $y_{i}$ pada observasi di lokasi ke-$i$ dihilangkan dalam pendugaan. Bandwidth optimum akan dicari melalui serangkaian iterasi sehingga didapatkan bandwidth bernilai minimum.
+
+
+# Persiapan Data
+
+Pada tulisan ini akan digunakan metode regresi terboboti geografis pada data tingkat kriminalitas yang di pulau Jawa. Data ini merupakan kumpulan data yang berasal dari publikasi Badan Pusat Statistik (BPS) untuk tahun 2018 dari 6 provinsi yaitu Banten[^7], Jawa Barat[^11], DKI Jakarta[^8][^9], Jawa Tengah[^13], DI Yogyakarta[^10] dan Jawa Timur[^12]. Pemilihan variabel-variabel prediktor yang digunakan berdasarkan penelitian yang dilakukan oleh Putra (2019)[^3]. 
+
+<center> ![](/img/rtg/crime.PNG) </center>
+
+```{r message=FALSE, warning=FALSE}
+
+library(geojsonio)
+library(sp)
+library(rgdal)
+library(tidyverse)
+library(leaflet)
+library(RColorBrewer)
+library(spatialreg)
+library(spdep)
+library(htmlwidgets)
+
+```
+
+
+```{r}
+Data_Tingkat_Kriminalitas <- read.csv("data_input/rtg/Data Risiko Kejatahan Jawa.csv")
+
+glimpse(Data_Tingkat_Kriminalitas)
+```
+
+Penjelasan untuk setiap variabel dari data yang akan digunakan adalah:
+
+* `Provinsi`          : Nama Provinsi
+* `Tipe Administratif`: Tipe Kabupaten/Kota
+* `Nama.Daerah`       : Nama Kabupaten/Kota
+* `TK`               `: Tingkat Kriminalitas/Risiko Penduduk Terjadi Tindak Pidana per 100.000 Penduduk
+* `KP`                : Kepadatan Penduduk
+* `PDRB`              : Produk Domestik Regional Bruto (juta rupiah)
+* `PPM`               : Persentase Penduduk Miskin
+* `TPT`               : Tingkat Pengangguran Terbuka
+* `IPM`               : Indeks Pembangunan Manusia
+
+
+## Membaca Data SHP
+
+Hal pertama yang harus disiapkan adalah menyiapkan file dalam bentuk peta daerah observasi yang hendak dikaji. Adapun peta tersebut dapat didapatkan di  [GADM](https://gadm.org/download_country_v3.html). Setelah mendapatkan file tersebut dalam bentuk SHP, dapat dilakukan pemilihan objek observasi sesuai yang dibutuhkan. Dalam melakukan ini kita bisa gunakan [Mapshaper](https://mapshaper.org/)[^2].
+
+
+```{r}
+Pulau_Jawa <- readOGR(dsn = "data_input/Pulau_Jawa", layer = "Pulau_Jawa")
+
+```
+
+`dsn` berfungsi sebagai directory tempat penyimpanan file `SHP` dan layer adalah nama file `SHP` yang akan digunakan.
+
+Selanjutnya file tersebut dikonversikan ke dalam bentuk `sf` yang akan digunakan sebagai dasar visualisasi menggunakan `leaflet`.
+
+
+```{r}
+jawa_sf <- sf::st_as_sf(Pulau_Jawa)
+```
+
+## Menggabungkan Data SHP
+
+Data yang sudah diimport baik dalam bentuk `SHP` dan `CSV` perlu digabungkan untuk keperluan data visualisasi yang akan dilakukan pada tahap selanjutnya. Variabel `NAME_2` akan digunakan sebagai dasar penggabungan berdasarkan nama kabupaten/kota. Selain itu perlu juga dilakukan penamaan ulang pada nama provinsi sehingga menampilkan informasi yang lebih baik.
+
+```{r}
+
+data_pulau_jawa <- jawa_sf %>% 
+  left_join(Data_Tingkat_Kriminalitas, by = c("NAME_2"="Nama.Daerah")) %>%
+  mutate(Provinsi = str_replace(Provinsi, "Jakarta Raya", "DKI Jakarta")) %>% 
+  mutate(Provinsi = str_replace(Provinsi, "Yogyakarta", "DI Yogyakarta"))
+
+```
+
+Karena peta yang dihasilkan pada setiap visualisasinya bersifat interaktif, ukuran file yang dihasilkan akan besar sehingga untuk efisiensi memori bisa dilakukan pengecilan ukuran file sebagai berikut:
+
+```{r message=FALSE, warning=FALSE}
+
+data_pulau_jawa <- data_pulau_jawa %>%  
+  st_simplify(preserveTopology = T, dTolerance = 0.0001)
+
+```
+
+# Eksplorasi Data
+
+## Sebaran Tingkat Kriminalitas Pulau Jawa
+
+Selanjutnya, akan digunakan library `leaflet` untuk membuat visualisai sebaran tingkat kriminalitas di tiap kabupaten kota di pulau Jawa. Sebelum itu akan diseting elemen-elemen pendukung visualisasi tersebut melingkupi pemilahan warna dan popup teks.
+
+
+```{r}
+
+mybin <-  c(min(data_pulau_jawa$TK), (fivenum(data_pulau_jawa$TK)))
+            
+mypalette <- colorBin(palette = "Spectral", domain = data_pulau_jawa, na.color = "transparent", bins = mybin)
+
+
+mytext <- paste(
+  
+  data_pulau_jawa$TYPE_2," ", data_pulau_jawa$NAME_2, "<br/>",
+  "Provinsi ", data_pulau_jawa$Provinsi, "<br/>",
+  "Rasio Kejahatan ", data_pulau_jawa$TK, "<br/>",
+  sep = "") %>% 
+  lapply(htmltools::HTML)
+
+```
+
+```{r}
+
+peta_kriminalitas <- 
+  leaflet(data_pulau_jawa) %>%
+  addProviderTiles(providers$CartoDB.DarkMatter) %>%
+  addPolygons(
+    fillColor = ~ mypalette(data_pulau_jawa$TK),
+    weight = 1,
+    opacity = 1,
+    color = "white",
+    dashArray = "2",
+    fillOpacity = 0.7,
+    label = mytext,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "13px",
+      direction = "auto"
+    )
+  ) %>% 
+  addLegend("bottomleft", 
+            pal = mypalette,
+            values = ~data_pulau_jawa$TK,
+            title = "Tingkat Kriminalitas",
+            labFormat = labelFormat(),
+            opacity = 1)
+
+peta_kriminalitas
+```
+
+
+
+```{r}
+summary(Data_Tingkat_Kriminalitas)
+```
+
+Median tingkat kriminalitas di pulau Jawa adalah 29.5 yang bermakna terdapat risiko 29.5 per 100,000 penduduk terjadi tindak pidana dengan visualisasi setiap provinsi sebagai berikut:
+
+```{r message=FALSE, warning=FALSE}
+library(ggridges)
+library(viridis)
+library(hrbrthemes)
+
+ridge_chart <- data_pulau_jawa %>% 
+  filter(TK >= 0) %>% 
+  mutate(Provinsi =fct_reorder(Provinsi,TK))
+
+ridge_chart %>% 
+  ggplot(aes(x = TK, y = Provinsi, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
+  scale_fill_viridis(name = "Risiko", option = "C") +
+  labs(title = 'Tingkat Kriminalitas Pulau Jawa') +
+  theme_ipsum() +
+    theme(
+      legend.position="none",
+      panel.spacing = unit(0.1, "lines"),
+      strip.text.x = element_text(size = 3)
+    ) 
+```
+
+
+```{r message=FALSE, warning=FALSE}
+Data_Tingkat_Kriminalitas %>%
+  filter(!is.na(TK)) %>%
+  arrange(TK) %>%
+  tail(20) %>%
+  mutate(Nama.Daerah=factor(Nama.Daerah, Nama.Daerah)) %>%
+  ggplot( aes(x=Nama.Daerah, y=TK) ) +
+    geom_segment( aes(x=Nama.Daerah,xend=Nama.Daerah, y=0, yend=TK), color="#3B1877") +
+    geom_point(size=3, color="#E69A8D") +
+    coord_flip() +
+    theme_ipsum() +
+    theme(
+      panel.grid.minor.y = element_blank(),
+      panel.grid.major.y = element_blank(),
+      legend.position="none"
+    ) +
+    xlab("") +
+    ylab("Tingkat Kriminalitas 2018 per 100,000 penduduk")
+```
+
+Interpretasi untuk tingkat kriminalitas di pulau Jawa adalah Provinsi DKI Jakarta memiliki tingkat kriminalitas tertinggi dibanding provinsi lain. Pada tingkat kabupaten/kota non DKI Jakarta, kota Cilegon memiliki tingkat kriminalitas 2018 cukup ekstrim dibanding kabupaten/kota non DKI Jakarta. Di Provinsi Jawa Timur, Kota Blitar dan Kota Madiun memiliki tingkat kriminalitas di atas 500 dan merupakan 2 daerah dengan tingkat kriminalitas tertinggi di Jawa Timur.
+
+
+## Hubungan antar variabel
+
+
+```{r message=FALSE, warning=FALSE}
+library(GGally)
+
+ggcorr(Data_Tingkat_Kriminalitas, label = TRUE, label_size = 2.9, hjust = 1, layout.exp = 2)
+
+```
+
+
+Pada plot korelasi hubungan antar variabel terlihat variabel TK (Tingkat Kriminalitas) memiliki hubungan positif dengan PDRB (Produk Domestik Regional Bruto). Hal ini mengindikasikan semakin tinggi tingkat kriminalitas, PDRB di lokasi tersebut juga tinggi. 
+
+# Pemodelan Regresi Global 
+
+## Teknik Multiple Linear Regression
+
+Sebelum dilakukan pemodelan dengan regresi terboboti geografis, akan dilakukan pemodelan dengan teknik multiple linear regression dengan Ordinary Least Square (OLS) untuk mendapatkan model global dari tingkat kriminalitas di pulau Jawa.
+
+```{r message=FALSE, warning=FALSE}
+
+library(stats)
+library(car)
+library(lmtest)
+
+model_global <- lm(TK ~ KP + PDRB + PPM + TPT + IPM,data = Data_Tingkat_Kriminalitas)
+
+summary(model_global)
+
+AIC(model_global)
+```
+
+Pendugaan parameter regresi menghasilkan dua variabel yang signifikan terhadap variabel tingkat kriminalitas yaitu Produk Domestik Regional Bruto (PDRB) dan Kepadatan Penduduk (KP). Variabel KP dan PDRB memiliki nilai koefisien positif sehingga tingkat kriminalitas akan meningkat seiring pertambahan kepadatan penduduk dan produk domestik regional bruto.
+
+Adjusted R-Squared yang dihasilkan adalah 58% yang berarti variabel-variabel yang dilibatkan mampu menjelaskan 58% varians tingkat kriminalitas di Pulau Jawa sedangkan 42% sisanya berasal dari faktor lain.
+
+
+### Uji Multikolinearitas
+
+```{r}
+vif(model_global)
+```
+
+Variabel-variabel yang digunakan dalam pemodelan tidak menunjukan multikolinearitas ditandai dengan nilai VIF yang kurang dari 5.
+
+
+### Uji Keragaman Spasial
+
+Untuk mengetahui signifikansi keragaman spasial dalam observasi akan dilakukan uji keragaman spasial menggunakan uji Breusch-Pagan error dari model global yang sudah terbentuk. Uji ini sama dengan uji homoskedastisitas dalam pengujian dengan teknik multiple linear regression.
+
+Hipotesis
+
+$H_{0}$: Ragam dari error bersifat homogen
+
+$H_{1}$: Ragam dari error tidak homogen
+
+```{r}
+bptest(model_global,studentize = FALSE)
+```
+
+Dengan melakukan uji Breusch-Pagan didapatkan hasil tolak $H_{0}$ (p-value < 5%) yang berarti ragam dari error yang didapatkan dalam model tidak homogen.
+Hal ini disebabkan karena terdapat efek spasial dalam data. Dengan munculnya faktor keragaman spasial mengindikasikan setiap daerah memiliki karakteristiknya masing-masing sehingga tidak lagi digunakan model regressi global dengan teknik multiple linear regression. Model yang akan digunakan untuk mengidentifikasi karakteristik masing-masing daerah adalah regresi terboboti geografis.
+
+
+# Pemodelan Regresi Terboboti Geografis
+
+## Mencari Titik Koordinat Pusat Setiap Wilayah
+
+Langkah awal pembentukan model regresi terboboti geografis adalah dengan menentukan letak pusat wilayah setiap lokasi observasi. Fungsi tersebut bernama `coordinates`, hasil penentuan titik pusat tersebut disimpan dalam objek `titik_centroid`. Sebelumnya, `data_pulau_jawa` akan dikonversi menjadi format `sp` serta membuang beberapa lokasi yang tidak memiliki data tingkat kriminalitas.
+
+```{r}
+data_pulau_jawa_sp <- sf:::as_Spatial(data_pulau_jawa %>% drop_na(TK))
+
+titik_centroid <- coordinates(data_pulau_jawa_sp)
+
+```
+
+## Pemodelan Lokal dengan Regresi Terboboti Geografis
+
+Setelah didapatkan titik centroid masing-masing daerah, dilakukan pemodelan regresi terboboti geografis. Library yang digunakan untuk analisis spasial RTG adalah `GWmodel`
+
+```{r message=FALSE, warning=FALSE}
+library(GWmodel)
+
+bwd<-bw.gwr(TK ~ KP + PDRB + PPM + TPT + IPM,data = data_pulau_jawa_sp,kernel = "gaussian", adaptive = TRUE)
+
+```
+Pembobotan pada fungsi kernel Gaussian tersebut menggunakan bobot kernel adaptif yang berarti terdapat bandwidth yang berbeda pada setiap lokasi pengamatan. 
+
+```{r message=FALSE, warning=FALSE}
+hasil<-gwr.basic(TK ~ KP + PDRB + PPM + TPT + IPM,data = data_pulau_jawa_sp,bw=bwd, kernel = "gaussian", adaptive = TRUE)
+
+hasil
+```
+
+Output `hasil` tersebut menampilkan perbandingan model antara dua jenis pemodelan yakni pemodelan menggunakan regresi global dan regresi terboboti geografis. Nilai koefiesien yang dihasilkan menggunakan regresi terboboti geografis menunjukan koefisien positif untuk variabel kepadatan penduduk (KP) dan produk domestik regional bruto (PDRB).
+
+Dengan menggunakan dua jenis pemodelan tersebut dapat dilihat perbedaan ukuran kebaikan antar model. Ukuran kebaikan ini dapat diketahui melalui nilai $R^2$ dan AIC sebagai berikut:
+
+
+```{r}
+r2_global <- 0.581
+aic_global <- AIC(model_global)
+r2_gwr <- 0.657
+aic_gwr <- 1476.542
+
+
+komparasi_model <- data.frame(Jenis_Model = c("MKT", "RTG"), Adjusted_R2 = c(r2_global*100, r2_gwr*100), AIC = c(aic_global,aic_gwr))
+
+komparasi_model
+
+```
+
+Model yang dihasilkan dengan regresi terboboti geografis (RTG) menghasilkan model yang lebih baik dibanding model regresi dengan Ordinary Least Square (OLS). Hal ini dapat terlihat dari nilai Adjusted $R^2$ yang lebih besar dan nilai AIC yang lebih kecil pada model RTG dibandingkan model OLS.
+
+
+## Penduga Parameter, P-Value Observasi dan R Square Lokal
+
+Pemodelan menggunakan RTG menghasilkan sejumlah model sesuai jumlah observasi yang digunakan. Dalam hal ini model RTG menghasilkan 112 model yang merupakan model masing-masing daerah observasi. Setiap observasi atau wilayah memiliki koefisien parameternya masing-masing. Adapun setiap koefisien paramater dari tiap variabel dapat diakses menggunakan fungsi berikut:
+
+```{r}
+parameter <- as.data.frame(hasil$SDF[1:6])
+
+glimpse(parameter)
+```
+
+Setiap observasi memiliki nilai signifikansi masing-masing untuk setiap variabel. Nilai-nilai ini dapat diakses melalui fungsi berikut:
+
+
+```{r message=FALSE, warning=FALSE}
+p.value.GWR <- gwr.t.adjust(hasil)$results$p
+
+glimpse(p.value.GWR)
+
+```
+
+Sebagaimana model regresi pada umumnya, setiap model regresi pada tiap observasi memiliki $R^2$ masing-masing. Nilai-nilai ini dapat pula diakses melalui fungsi berikut:
+
+```{r}
+local.R2<-hasil$SDF$Local_R2
+
+glimpse(local.R2)
+```
+
+# Eksplorasi Koefisien Regresi Terboboti Geografis
+
+Setelah didapatkan koefisien regresi untuk setiap variabel pada tiap observasi, dapat dilakukan visualisasi untuk melihat pembobotan koefisien
+
+```{r}
+nama.daerah <- data_pulau_jawa_sp$NAME_2
+
+hasil.GWR <- as.data.frame(cbind(nama.daerah,parameter,p.value.GWR,local.R2))
+
+glimpse(hasil.GWR)
+
+```
+
+Data berisi paramater-parameter tersebut harus digabung dengan data bertipe `sf` untuk keperluan visualisasi.
+
+
+```{r}
+
+gwr_gabung <- left_join(jawa_sf,hasil.GWR,by=c("NAME_2"="nama.daerah")) %>%
+  mutate(Provinsi = str_replace(NAME_1, "Jakarta Raya", "DKI Jakarta")) %>%
+  mutate(Provinsi = str_replace(NAME_1, "Yogyakarta", "DI Yogyakarta"))
+
+colSums(is.na(gwr_gabung))
+
+```
+
+Pada data frame tersebut terdapat beberapa data `NA` yang harus dihilangkan. Selain itu hanya akan dipilih variabel-variabel untuk mengurangi redudansi informasi.
+
+```{r message=FALSE, warning=FALSE}
+gwr_clean <- gwr_gabung %>% 
+  select(c(Provinsi, NAME_2,Intercept, KP, PDRB, PPM, TPT, IPM, Intercept_p, KP_p, PDRB_p, PPM_p, TPT_p, IPM_p, local.R2, geometry)) %>% 
+  drop_na(Intercept)
+
+
+gwr_clean <- gwr_clean %>% 
+  st_simplify(preserveTopology = T, dTolerance = 0.001)
+
+
+colSums(is.na(gwr_clean))
+```
+
+## Pemetaan Koefisien Kepadatan Penduduk (KP)
+
+Koefisien kepadatan penduduk merupakan variabel yang signifikan menggunakan regresi global. Dengan model regresi terboboti geografis dapat dihasilkan koefisien masing-masing wilayah dengan visualisasi sebagai berikut:
+
+```{r}
+
+mybin_kp <-  (fivenum(gwr_clean$KP))
+            
+mypalette_kp <- colorBin(palette = "YlOrBr", domain = gwr_clean, na.color = "transparent", bins = mybin_kp)
+
+
+mytext_kp <- paste(
+  
+  gwr_clean$TYPE_2," ", gwr_clean$NAME_2, "<br/>",
+  "Provinsi ", gwr_clean$Provinsi, "<br/>",
+  "Koefisien Kepadatan Penduduk ", gwr_clean$KP, "<br/>",
+  sep = "") %>% 
+  lapply(htmltools::HTML)
+
+```
+
+```{r}
+peta_koef_kp <- leaflet(gwr_clean) %>%
+  addProviderTiles(providers$CartoDB.DarkMatter) %>%
+  addPolygons(
+    fillColor = ~ mypalette_kp(gwr_clean$KP),
+    weight = 1,
+    opacity = 1,
+    color = "white",
+    dashArray = "2",
+    fillOpacity = 0.7,
+    label = mytext_kp,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "13px",
+      direction = "auto"
+    )
+  ) %>% 
+  addLegend("bottomleft", 
+            pal = mypalette_kp,
+            values = ~ gwr_clean$KP,
+            title = "Koefisien Kepadatan Penduduk",
+            labFormat = labelFormat(),
+            opacity = 1)
+
+
+peta_koef_kp
+```
+
+
+Melalui visualisasi tersebut dapat terlihat koefisien kepadatan penduduk di provinsi Jawa Timur memiliki bobot yang lebih tinggi dibanding provinsi lainnya.
+
+
+## Pemetaan Koefisien Produk Domestik Regional Bruto (PDRB)
+
+
+```{r}
+mybin_pdrb <-  (fivenum(gwr_clean$PDRB))
+            
+mypalette_pdrb <- colorBin(palette = "PuRd", domain = gwr_clean, na.color = "transparent", bins = mybin_pdrb)
+
+
+mytext_pdrb <- paste(
+  
+  gwr_clean$TYPE_2," ", gwr_clean$NAME_2, "<br/>",
+  "Provinsi ", gwr_clean$Provinsi, "<br/>",
+  "Koefisien PDRB ", gwr_clean$PDRB, "<br/>",
+  sep = "") %>% 
+  lapply(htmltools::HTML)
+```
+
+
+```{r}
+peta_koef_pdrb <- leaflet(gwr_clean) %>%
+  addProviderTiles(providers$CartoDB.DarkMatter) %>%
+  addPolygons(
+    fillColor = ~ mypalette_pdrb(gwr_clean$PDRB),
+    weight = 1,
+    opacity = 1,
+    color = "white",
+    dashArray = "2",
+    fillOpacity = 0.7,
+    label = mytext_pdrb,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "13px",
+      direction = "auto"
+    )
+  ) %>% 
+  addLegend("bottomleft", 
+            pal = mypalette_pdrb,
+            values = ~ gwr_clean$PDRB,
+            title = "Koefisien Kepadatan Penduduk",
+            labFormat = labelFormat(),
+            opacity = 1)
+
+peta_koef_pdrb
+```
+
+
+
+
+Pada visualisasi menggunakan koefisien Produk Domestik Regional Bruto (PDRB) didapat hasil yang berbeda dengan koefisien kepadatan penduduk.
+Pada visualisasi ini, bobot koefisien PDRB yang dihasilkan lebih besar pada pulau Jawa bagian barat meliputi DKI Jakarta, Banten, dan Jawa Barat diikuti Jawa Tengah, DI Yogyakarta dan sebagian wilayah Jawa Timur.
+
+# Eksplorasi Nilai Signifikansi Variabel
+
+## Pemetaan Signifikansi Variabel Kepadatan Penduduk (KP) 
+
+Setelah dilakukan pemetaan koefisien kepadatan penduduk untuk seluruh wilayah, akan dilakukan pemetaan di daerah mana saja variabel kepadatan penduduk bernilai signifikan (p-value < 5%).
+
+
+```{r}
+gwr_clean <- gwr_clean %>% mutate(sig_kp_5 = ifelse(KP_p <= 0.05,"Signifikan", "Tidak Signifikan")) %>% 
+  mutate(sig_kp_10 = ifelse(KP_p <= 0.10, "Signifikan", "Tidak Signifikan"))
+
+```
+
+```{r}
+
+mybin_kp_sig <- c(min(gwr_clean$KP_p), 0.05, max(gwr_clean$KP_p))
+            
+mypalette_kp_sig <- colorBin(palette = "GnBu", domain = gwr_clean, na.color = "transparent", bins = mybin_kp_sig)
+
+
+mytext_kp_sig <- paste(
+  
+  gwr_clean$TYPE_2," ", gwr_clean$NAME_2, "<br/>",
+  "Provinsi ", gwr_clean$Provinsi, "<br/>",
+  "Signifikansi Variabel 5% : "," ", gwr_clean$sig_kp_5, "<br/>",
+  sep = "") %>% 
+  lapply(htmltools::HTML)
+```
+
+
+```{r}
+peta_koef_kp_sig <- leaflet(gwr_clean) %>%
+  addProviderTiles(providers$CartoDB.DarkMatter) %>%
+  addPolygons(
+    fillColor = ~ mypalette_kp_sig(gwr_clean$KP_p),
+    weight = 1,
+    opacity = 1,
+    color = "white",
+    dashArray = "2",
+    fillOpacity = 0.7,
+    label = mytext_kp_sig,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "13px",
+      direction = "auto"
+    )
+  ) %>% 
+  addLegend("bottomleft", 
+            pal = mypalette_kp_sig,
+            values = ~ gwr_clean$KP_p,
+            title = "Signifikansi Variabel",
+            labFormat = labelFormat(),
+            opacity = 1)
+
+
+peta_koef_kp_sig
+```
+
+
+Terlihat tidak semua daerah memiliki p-value yang signifikan untuk variabel Kepadatan Penduduk. Daerah-daerah yang memiliki nilai signifikan berada pada provinsi Jawa Tengah yaitu Kabupaten Pemalang, Kabupaten Banjarnegara dan Kabupaten Kendal. Sementara di Jawa Timur, nilai P-value yang signifikan beberapa di beberapa wilayah diantaranya Kabupaten Jember, Kabupaten Banyuwangi, dan Kabupaten Pasuruan.
+
+
+## Pemetaan Signifikansi Variabel Produk Domestik Regional Bruto
+
+Selain variabel Kepadatan Penduduk, pada regresi global didapatkan hasil variabel Produk Domestik Regional Bruto juga bernilai signifikan. Berikut adalah visualisasi untuk variabel PDRB.
+
+```{r}
+gwr_clean <- gwr_clean %>% mutate(sig_pdrb = ifelse(PDRB_p <= 0.05,"Signifikan", "Tidak Signifikan"))
+
+
+mybin_pdrb_sig <- c(min(gwr_clean$PDRB_p), 0.05, max(gwr_clean$PDRB_p))
+            
+mypalette_pdrb_sig <- colorBin(palette = "YlGn", domain = gwr_clean, na.color = "transparent", bins = mybin_pdrb_sig)
+
+
+mytext_pdrb_sig <- paste(
+  
+  gwr_clean$TYPE_2," ", gwr_clean$NAME_2, "<br/>",
+  "Provinsi ", gwr_clean$Provinsi, "<br/>",
+  "Signifikansi Variabel 5% : "," ", gwr_clean$sig_pdrb, "<br/>",
+  sep = "") %>% 
+  lapply(htmltools::HTML)
+
+```
+
+
+```{r}
+
+peta_pdrb_sig <- leaflet(gwr_clean) %>%
+  addProviderTiles(providers$CartoDB.DarkMatter) %>%
+  addPolygons(
+    fillColor = ~ mypalette_pdrb_sig(gwr_clean$PDRB_p),
+    weight = 1,
+    opacity = 1,
+    color = "white",
+    dashArray = "2",
+    fillOpacity = 0.7,
+    label = mytext_pdrb_sig,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "13px",
+      direction = "auto"
+    )
+  ) %>% 
+  addLegend("bottomleft", 
+            pal = mypalette_pdrb_sig,
+            values = ~ gwr_clean$PDRB_p,
+            title = "Signifikansi Variabel",
+            labFormat = labelFormat(),
+            opacity = 1)
+
+peta_pdrb_sig
+```
+
+
+Hampir semua observasi pada variabel PDRB bernilai signifikan pada taraf nyata 5%. Namun variabel ini tidak bernilai signifikan untuk sebagian wilayah Jawa Timur seperti Kabupaten Madiun, Kabupaten Bojonegoro dan Kabupaten Tuban.
+
+# Eksplorasi R2 Lokal
+
+Setiap observasi dalam model RTG memiliki R2 masing-masing, hasil ini dapat pula dipetakan sebagai berikut:
+
+```{r}
+gwr_clean <- gwr_clean %>% mutate(local.R2 = local.R2 * 100)
+
+mybin_r2 <- (fivenum(gwr_clean$local.R2))
+            
+mypalette_r2 <- colorBin(palette = "YlOrBr", domain = gwr_clean, na.color = "transparent", bins = mybin_r2)
+
+
+mytext_r2 <- paste(
+  
+  gwr_clean$TYPE_2," ", gwr_clean$NAME_2, "<br/>",
+  "Provinsi ", gwr_clean$Provinsi, "<br/>",
+  "Nilai R2 : "," ", round(gwr_clean$local.R2,2),"%", "<br/>",
+  sep = "") %>% 
+  lapply(htmltools::HTML)
+```
+
+
+```{r}
+peta_r2_lokal <- leaflet(gwr_clean) %>%
+  addProviderTiles(providers$CartoDB.DarkMatter) %>%
+  addPolygons(
+    fillColor = ~ mypalette_r2(gwr_clean$local.R2),
+    weight = 1,
+    opacity = 1,
+    color = "white",
+    dashArray = "2",
+    fillOpacity = 0.7,
+    label = mytext_r2,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "13px",
+      direction = "auto"
+    )
+  ) %>% 
+  addLegend("bottomleft", 
+            pal = mypalette_r2,
+            values = ~ gwr_clean$local.R2,
+            title = "Nilai R2",
+            labFormat = labelFormat(),
+            opacity = 1)
+
+peta_r2_lokal
+```
+
+
+
+
+Nilai $R^2$ yang lebih tinggi berada di pulau Jawa bagian barat meliputi DKI Jakarta, Banten dan Jawa Barat diikuti provinsi Jawa Tengah, DI Yogyakarta, Jawa Timur bagian barat dan terakhir Jawa Timur bagian Timur.
+
+Sebagai perbandingan, nilai $R^2$ di Kabupaten Bogor sebesar 73.71% yang bermakna variabel-variabel prediktor mampu menjelaskan keragaman tingkat kriminalitas sebesar 73.71% sedangkan sisanya dijelaskan diluar variabel prediktor. Hal ini berbeda dengan Kabupaten Banyuwangi yang memiliki $R^2$ lebih kecil yaitu 63.01%.
+
+
+# Pendekatan Analisis Klaster
+
+Untuk meringkas pendugaan parameter masing-masing yang dihasilkan oleh RTG, akan dilakukan pendekatan analisis klaster. Analisis klaster akan menghasilkan rangkuman klaster-klaster berdasarkan karakteristik setiap observasi yang mirip. Pengklasteran akan dilakukan pada setiap penduga parameter pada setiap variabel prediktor.
+
+## Kemungkinan Pengklasteran
+
+
+```{r}
+library(ggplot2)
+
+ggplot(gwr_clean, aes(KP, PDRB, color = Provinsi)) + 
+    geom_point(alpha = 0.8) + theme_minimal()
+```
+
+
+Visualiasi tersebut memperlihatkan sejumlah observasi memiliki kemungkinan membentuk suatu klaster berdasarkan koefisien parameter Kepadatan Penduduk dan Produk Domestik Regional Bruto.
+
+## Penentuan Klaster Optimum Berdasarkan Pendugaan Parameter
+
+Untuk menentukan jumlah klaster optimum, akan dilakukan dua metode yaitu "wss" dan "silhouette" menggunakan metode elbow. Nilai optimum yang muncul akan digunakan sebagai "k" pada analisis klaster. Sebelumnya variabel-variabel prediktor akan dilakukan subsetting.
+
+```{r}
+
+gwr_clean_sp <- as.data.frame(gwr_clean)
+
+gwr_clean_koef <- gwr_clean_sp %>% 
+   select(KP, PDRB, PPM, TPT, IPM)
+
+```
+
+```{r message=FALSE, warning=FALSE}
+library(factoextra)
+
+fviz_nbclust(gwr_clean_koef, kmeans, method = "wss")
+```
+
+
+
+```{r}
+fviz_nbclust(gwr_clean_koef, kmeans, method = "silhouette")
+```
+
+Berdasarkan metode elbow diketahui klaster optimum yang muncul adalah 4 karena jumlah kuadarat setelah klaster ke 4 tidak lagi mengalami penurunan drastis.
+
+```{r}
+set.seed(11)
+gwr_klaster <- kmeans(gwr_clean_koef, 4)
+
+gwr_klaster
+
+```
+
+```{r}
+gwr_klaster$cluster <- as.factor(gwr_klaster$cluster)
+```
+
+```{r}
+fviz_cluster(object = gwr_klaster, 
+             data = gwr_clean_koef)
+```
+
+
+```{r}
+
+gwr_clean_koef$cluster <- gwr_klaster$cluster
+
+gwr_clean_koef %>%
+   group_by(cluster) %>% 
+   summarise_all(.funs = "mean") 
+
+```
+
+
+Terdapat 4 klaster yang terbentuk dengan karakteristik masing-masing. Klaster pertama menunjukan koefisien PDRB terbesar dibanding klaster lain sementara pada klaster kedua memiliki karakteristik koefisien KP yang lebih besar dibanding klaster lainnya. 
+
+
+```{r}
+gwr_clean$clusterp <- gwr_klaster$cluster
+
+gwr_clean <- gwr_clean %>% mutate(klaster_p = as.numeric(clusterp))
+```
+
+## Pemetaan Analisis Klaster Berdasarkan Koefisien Variabel Prediktor
+
+```{r}
+
+mybin_k <- c(1,2,3,4,5)
+            
+mypalette_k <- colorBin(palette = c("Yellow", "Green", "Turquoise", "Navajowhite"), domain = gwr_clean, na.color = "transparent", bins = mybin_k)
+
+
+mytext_k <- paste(
+  
+  gwr_clean$TYPE_2," ", gwr_clean$NAME_2, "<br/>",
+  "Provinsi ", gwr_clean$Provinsi, "<br/>",
+  "Anggota Klaster : "," ", gwr_clean$klaster_p, "<br/>",
+  sep = "") %>% 
+  lapply(htmltools::HTML)
+```
+
+
+
+```{r}
+peta_klaster_p <- leaflet(gwr_clean) %>%
+  addProviderTiles(providers$CartoDB.DarkMatter) %>%
+  addPolygons(
+    fillColor = ~ mypalette_k(gwr_clean$klaster_p),
+    weight = 1,
+    opacity = 1,
+    color = "white",
+    dashArray = "2",
+    fillOpacity = 0.7,
+    label = mytext_k,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "13px",
+      direction = "auto"
+    )
+  ) %>% 
+  addLegend("bottomleft", 
+            colors = c("Yellow", "Green", "Turquoise", "Navajowhite"),
+            labels= c("Klaster 1", "Klaster 2", "Klaster 3", "Klaster 4"),
+            values = ~ gwr_clean$klaster_p,
+            title = "Anggota Klaster",
+            labFormat = labelFormat(),
+            opacity = 1)
+
+
+peta_klaster_p
+```
+
+
+
+
+Peta tersebut memperlihatkan pemetaan berdasarkan anggota klaster masing-masing. Terlihat klaster pertama berasal dari provinsi Jawa Barat, DKI Jakarta, dan Banten. Klaster kedua terdiri dari sebagian besar kabupaten/kota di provinsi Jawa Tengah dan DI Yogyakarta. Sementara di Provinsi Jawa Timur terdapat dua klaster dengan karakteristik berbeda.
+
+
+## Penentuan Klaster Optimum Berdasarkan Signifikansi Variabel
+
+Selain menggunakan koefisien setiap variabel prediktor, analisis dapat juga dilakukan menggunakan signifikansi variabel prediktor. Seperti halnya pada pengklasteran menggunakan koefisien antar variabel, akan juga dilakukan penentuan klaster optimum berdasarkan signifikansi antar variabel prediktor.
+
+```{r}
+
+gwr_clean_p <- as.data.frame(gwr_clean)
+
+gwr_clean_p <- gwr_clean_p %>% 
+   select(KP_p, PDRB_p, PPM_p, TPT_p, IPM_p)
+
+```
+
+```{r}
+fviz_nbclust(gwr_clean_p, kmeans, method = "wss")
+```
+
+```{r}
+fviz_nbclust(gwr_clean_p, kmeans, method = "silhouette")
+```
+
+
+Berbeda dengan jenis pengklasteran sebelumnya, pada pengklasteran menggunakan signifikansi variabel prediktor terdapat 6 klaster yang optimum.
+
+```{r}
+set.seed(11)
+gwr_klaster_p <- kmeans(gwr_clean_p, 6)
+
+gwr_klaster_p
+```
+
+
+```{r}
+gwr_klaster_p$klaster_s <- as.numeric(gwr_klaster_p$cluster)
+```
+
+```{r}
+fviz_cluster(object = gwr_klaster_p, 
+             data = gwr_clean_p)
+```
+
+```{r}
+gwr_clean_p$klaster_s <- gwr_klaster_p$cluster
+
+gwr_clean_p %>%
+   group_by(klaster_s) %>% 
+   summarise_all(.funs = "mean") 
+```
+
+Hampir semua klaster yang muncul memperlihatkan nilai signifikan untuk p-value <= 0.05 pada variabel PDRB. Hal ini tidak terjadi pada klaster keenam. Selain itu, wilayah-wilayah yang masuk di klaster keenam juga tidak memperlihatkan nilai p-value yang signifikan untuk variabel KP. Klaster keempat adalah klaster dengan p-value signifikan baik pada variabel KP maupun PDRB.
+
+
+## Pemetaan Analisis Klaster Berdasarkan Signifikansi Variabel prediktor
+
+
+```{r}
+
+gwr_clean$cluster_s <- gwr_klaster_p$cluster
+
+mybin_p <- c(1,2,3,4,5,6,7)
+            
+mypalette_p <- colorBin(palette = c("yellow", "green", "Turquoise", "blue", "red","brown"), domain = gwr_clean_p, na.color = "transparent", bins = mybin_p)
+
+
+mytext_p <- paste(
+  
+  gwr_clean$NAME_2," ", gwr_clean_p$NAME_2, "<br/>",
+  "Provinsi ", gwr_clean$Provinsi, "<br/>",
+  "Anggota Klaster : "," ", gwr_clean_p$klaster_s
+  , "<br/>",
+  sep = "") %>% 
+  lapply(htmltools::HTML)
+```
+
+```{r}
+peta_klaster_s <- leaflet(gwr_clean) %>%
+  addProviderTiles(providers$CartoDB.DarkMatter) %>%
+  addPolygons(
+    fillColor = ~ mypalette_p(gwr_clean$cluster_s),
+    weight = 1,
+    opacity = 1,
+    color = "white",
+    dashArray = "2",
+    fillOpacity = 0.5,
+    label = mytext_p,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "13px",
+      direction = "auto"
+    )
+  ) %>% 
+  addLegend("bottomleft", 
+            colors =c("Yellow", "Green", "Turquoise", "Blue", "Red","Brown"),
+            values = ~ gwr_clean$cluster_s,
+            labels = c("Klaster 1", "Klaster 2", "Klaster 3", "Klaster 4","Klaster 5", "Klaster 6"),
+            title = "Anggota Klaster",
+            labFormat = labelFormat(),
+            opacity = 1)
+
+peta_klaster_s
+```
+
+
+
+Pada pemetaan tersebut muncul enam klaster dengan karakteristik masing-masing. Pada klaster pertama didominasi oleh kabupaten/kota dari provinsi Jawa Barat, DKI Jakarta dan Banten. Klaster ketiga merupakan kabupaten/kota yang terletak antara Jawa Barat dan Jawa Tengah. Klaster keempat yang memiliki nilai p-value signifikan pada variabel KP dan PDRB berasal dari provinsi Jawa Timur bagian Timur.
+
+
+
+# Kesimpulan
+
+
+Model regresi yang dihasilkan dengan regresi terboboti geografis dapat dijadikan sebagai bahan eksplorasi pada suatu daerah yang memiliki karakteristik berbeda satu sama lain. Berbeda dengan metode multiple linear regression yang bersifat global dan menghasilkan satu persamaan model, regresi terboboti geografis mampu menjelaskan karakteristik suatu daerah yang beragam.
+
+Regresi terboboti geografis baik digunakan ketika ingin melakukan eksplorasi serangkaian variabel terhadap suatu daerah dan bagaimana antar daerah memiliki variabel prediktor signifikan yang tidak sama. Hasil eksplorasi tersebut dapat dijadikan pengambilan kebijakan di lokasi mana suatu variabel prediktor harus diperhatikan. Pada pemodelan regresi terboboti geografis yang telah dilakukan terdapat variabel Kepadatan Penduduk (KP) dan Produk Domestik Regional Bruto (PDRB) memiliki koefisien positif dan memiliki p-value signifikan pada taraf nyata 5%. Variabel Kepadatan Penduduk dan Produk Domestik Regional Bruto yang signifikan tidak berlaku di semua daerah. Terdapat beberapa daerah yang memiliki variabbel PDRB yang signifikan namun tidak signifikan di variabel Kepadatan Penduduk. Nilai R2 yang dihasilkan di pulau Jawa bagian barat lebih tinggi dibandingkan Jawa bagian timur. Hal ini menunjukan variabel-variabel prediktor yang digunakan mampu menjelaskan variabel tingkat kriminalitas lebih baik pada daerah di barat pulau Jawa.  
+
+Hasil regresi terboboti geografis dapat didekati dengan analisis klaster untuk merangkum karakteristik daerah yang mirip berdasarkan koefisien parameter yang dihasilkan. Selain itu dengan menggunakan pendekatan analisis klaster dapat dilakukan eksplorasi daerah observasi yang memiliki karakteristik yang mirip pada tingkat signifikansi variabel. Berdasarkan parameter model regresi yang dihasilkan pulau Jawa terbagi menjadi 4 klaster. Pada tingkat signifkansi variabel prediktor, terdapat 6 klaster yang membagi pulau Jawa berdasarkan antar daerahnya. Setiap daerah yang berdekatan cenderung berada dalam satu klaster. Daerah-daerah yang berada di perlintasan antar provinsi cenderung membentuk suatu klaster tertentu.
+
+
+# Penelitian Lebih Lanjut
+
+Terdapat beberapa macam fungsi kernel lain yang bisa digunakan untuk melakukan analisis RTG. Beberapa diantaranya adalah kernel Tricube, kernel kuadrat, dan kernel eksponensial. Penggunaan pembobotan kernel yang berbeda dapat dikaji lebih lanjut untuk melihat kemampuan pembobot dalam menghasilkan pemodelan yang lebih baik. Selain itu terdapat beberapa macam model lain dalam pemodelan RTG yaitu RTG Logistik, RTG Lasso dan RTG Ridge. Setiap teknik pemodelan RTG ini memiliki karakter masing-masing dan dapat dilakukan sebagai rujukan perbandingan teknik terbaik yang dapat diterapkan pada suatu data.
+
+
+# Sumber Rujukan
+
+[^1]: [Fotheringham AS, Brunsdon C, Charlton M. 2002. Geographically Weighted Regression : the Analysis of Spatially Varying Relationships. West Sussex 
+(UK): John Wiley and Sons LTD.]()
+
+[^2]: [https://algotech.netlify.app/blog/creating-choropleth-with-mapshaper-and-r/]()
+
+[^3]: [Zikalta P. 2019. Model Regresi Terboboti Geografis Temporal Kekar untuk Tingkat Kriminalitas di Provinsi Jawa Tengah dan Provinsi Jawa Timur.  [tesis]. Bogor (ID): Institut Pertanian Bogor.]()
+
+[^5]: [https://anatomisebiostats.com/biostatistics-blog/simpsons-paradox-hidden-bias/]()
+
+[^6]: [https://osgis.org/2020/06/what-is-toblers-first-law-of-geography/]()
+
+[^7]: [[BPS]. Badan Pusat Statistik.2020.Provinsi Banten Dalam Angka 2020. Serang(ID) : BPS]()
+
+[^8]: [[BPS]. Badan Pusat Statistik.2020.Provinsi DKI Jakarta Dalam Angka 2020. Jakarta(ID) : BPS]()
+
+[^9]: [[BPS]. Badan Pusat Statistik.2018.Statistik Kesejahteraan Rakyat Provinsi DKI Jakarta 2018. Jakarta(ID) : BPS]()
+
+[^10]: [[BPS]. Badan Pusat Statistik.2021.Provinsi DI Yogyakarta Dalam Angka 2021. Yogyakarta(ID) : BPS]()
+
+[^11]: [[BPS]. Badan Pusat Statistik.2021.Provinsi Jawa Barat Dalam Angka 2020. Bandung(ID) : BPS]()
+
+[^12]: [[BPS]. Badan Pusat Statistik.2021.Provinsi Jawa Tengah Dalam Angka 2020. Semarang(ID) : BPS]()
+
+[^13]: [[BPS]. Badan Pusat Statistik.2021.Provinsi Jawa Timur Dalam Angka 2021. Surabaya(ID) : BPS]()
+
+
+
+
